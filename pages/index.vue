@@ -83,10 +83,7 @@
 </template>
 
 <script>
-import UCard from '@/components/u-card.vue'
-
 export default {
-  components: { UCard },
   async fetch () {
     this.articles = await this.$content('articles').sortBy('publishedOn', 'desc').limit(3).fetch()
   },
