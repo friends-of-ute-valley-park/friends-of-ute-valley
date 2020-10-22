@@ -8,6 +8,7 @@
         <nuxt-content :document="page" />
       </article>
     </div>
+    <u-team />
   </div>
 </template>
 
