@@ -75,10 +75,10 @@
         <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
           {{ page.title }}
         </h1>
-        <img class="h-96 w-full object-cover rounded-lg shadow-lg" :src="page.image" alt="">
-        <article class="prose lg:prose-xl">
+        <img loading="lazy" class="h-96 w-full object-cover rounded-lg shadow-lg" :src="page.image" alt="">
+        <news class="prose lg:prose-xl">
           <nuxt-content :document="page" />
-        </article>
+        </news>
       </div>
     </div>
   </div>
@@ -88,7 +88,7 @@
 export default {
   async asyncData ({ $content, params, error }) {
     const slug = params.slug || 'index'
-    const page = await $content(`articles/${slug}`)
+    const page = await $content(`news/${slug}`)
       .fetch()
       .catch(() => {
         error({ statusCode: 404, message: 'Page not found' })

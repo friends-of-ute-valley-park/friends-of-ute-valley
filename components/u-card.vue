@@ -1,16 +1,16 @@
 <template>
   <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
     <div class="flex-shrink-0">
-      <img class="h-48 w-full object-cover" :src="article.image" alt="">
+      <img class="h-48 w-full object-cover" :src="news.image" alt="">
     </div>
     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
       <div class="flex-1">
-        <nuxt-link :to="'/article/' + article.slug" class="block">
+        <nuxt-link :to="'/news/' + news.slug" class="block">
           <h3 class="mt-2 text-xl leading-7 font-semibold text-gray-900">
-            {{ article.title }}
+            {{ news.title }}
           </h3>
           <p class="mt-3 text-base leading-6 text-gray-500">
-            {{ article.excerpt }}
+            {{ news.excerpt }}
           </p>
         </nuxt-link>
       </div>
@@ -23,7 +23,7 @@
         <div class="ml-3">
           <p class="text-sm leading-5 font-medium text-gray-900">
             <a href="#" class="hover:underline">
-              {{ article.author }}
+              {{ news.author }}
             </a>
           </p>
           <div class="flex text-sm leading-5 text-gray-500">
@@ -34,7 +34,7 @@
               &middot;
             </span>
             <span>
-              {{ article.readTime }}
+              {{ news.readTime }}
             </span>
           </div>
         </div>
@@ -46,7 +46,7 @@
 <script>
 export default {
   props: {
-    article: {
+    news: {
       type: Object,
       required: true
     }
@@ -54,7 +54,7 @@ export default {
   computed: {
     publishedOn () {
       const options = { year: 'numeric', month: 'short', day: 'numeric' }
-      return new Intl.DateTimeFormat('en-US', options).format(new Date(this.article.publishedOn))
+      return new Intl.DateTimeFormat('en-US', options).format(new Date(this.news.publishedOn))
     }
   }
 }

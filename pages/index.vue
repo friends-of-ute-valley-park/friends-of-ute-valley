@@ -18,7 +18,7 @@
               </a>
             </div>
             <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-              <a href="/article/2020-accomplishments" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-green-600 bg-white hover:text-green-500 focus:outline-none focus:border-green-300 focus:shadow-outline-green transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+              <a href="/news/2020-accomplishments" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-green-600 bg-white hover:text-green-500 focus:outline-none focus:border-green-300 focus:shadow-outline-green transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                 2020 Accomplishments
               </a>
             </div>
@@ -75,7 +75,7 @@
           </p>
         </div>
         <div class="mt-12 grid gap-5 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
-          <u-card v-for="article in articles" :key="article.slug" :article="article" />
+          <u-card v-for="news in news" :key="news.slug" :news="news" />
         </div>
       </div>
     </div>
@@ -85,11 +85,11 @@
 <script>
 export default {
   async fetch () {
-    this.articles = await this.$content('articles').sortBy('publishedOn', 'desc').limit(3).fetch()
+    this.news = await this.$content('news').sortBy('publishedOn', 'desc').limit(3).fetch()
   },
   data () {
     return {
-      articles: []
+      news: []
     }
   }
 }
