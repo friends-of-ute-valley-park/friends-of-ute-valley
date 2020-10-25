@@ -46,7 +46,7 @@
                 <span class="block text-green-900">Donate or Volunteer today.</span>
               </h2>
               <p class="mt-4 text-lg leading-6 text-orange-50">
-                Help Ute Valley Park by making a tax deducitble donation or volunteering.
+                Get involved and help Ute Valley Park by making a tax deducitble donation or volunteering.
               </p>
               <nuxt-link to="/donate" class="mt-8 bg-green-200 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base leading-6 font-medium text-green-600 hover:text-green-500 focus:outline-none focus:border-green-300 focus:shadow-outline-green transition duration-150 ease-in-out">
                 Doante
