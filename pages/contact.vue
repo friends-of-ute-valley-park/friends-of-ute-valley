@@ -53,7 +53,10 @@
             Contact Friends of Ute Valley Park
           </h2>
           <p class="mt-4 text-base leading-6 text-gray-500">
-            Got a problem or a comment? Let us know and we'll be happy to assist you.
+            Got a problem or a comment? Let us know and we'll be happy to assist you. Make sure to check out our
+            <nuxt-link class="font-semibold no-underline text-indigo-600" to="faq">
+              FAQ
+            </nuxt-link> page.
           </p>
         </div>
         <div class="mt-12">
