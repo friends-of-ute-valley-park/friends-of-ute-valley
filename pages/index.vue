@@ -48,8 +48,12 @@
               <p class="mt-4 text-lg leading-6 text-orange-50">
                 Help Ute Valley Park by making a tax deducitble donation or volunteering.
               </p>
-              <a href="#" class="mt-8 bg-green-200 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base leading-6 font-medium text-green-600 hover:text-green-500 focus:outline-none focus:border-green-300 focus:shadow-outline-green transition duration-150 ease-in-out">Doante</a>
-              <a href="#" class="mt-8 bg-teal-200 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base leading-6 font-medium text-teal-600 hover:text-teal-500 focus:outline-none focus:border-teal-300 focus:shadow-outline-teal transition duration-150 ease-in-out">Volunteer</a>
+              <nuxt-link to="/donate" class="mt-8 bg-green-200 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base leading-6 font-medium text-green-600 hover:text-green-500 focus:outline-none focus:border-green-300 focus:shadow-outline-green transition duration-150 ease-in-out">
+                Doante
+              </nuxt-link>
+              <nuxt-link to="/volunteer" class="mt-8 bg-teal-200 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base leading-6 font-medium text-teal-600 hover:text-teal-500 focus:outline-none focus:border-teal-300 focus:shadow-outline-teal transition duration-150 ease-in-out">
+                Volunteer
+              </nuxt-link>
             </div>
           </div>
           <div class="relative pb-3/5 -mt-6 md:pb-1/2">
