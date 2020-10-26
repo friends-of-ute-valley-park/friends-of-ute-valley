@@ -2,7 +2,7 @@
 title: 2020 Accomplishments
 published: true
 publishedOn: 2020-08-21T10:01:30.670Z
-image: /images/news/ute-news-1.jpg
+image: images/ute-news-1.jpg
 author: John Smith
 readTime: 6 minutes
 excerpt: 2017 was a great year with a long list of accomplishments for Ute Valley Park. It took many organizations and individuals to make it all happen.

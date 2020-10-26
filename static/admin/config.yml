@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: drewtownchi/friends-of-ute-valley
+  branch: main
+
+media_folder: static/images/blog
+public_folder: /images
+
+collections:
+  - name: 'news'
+    label: 'News'
+    folder: '/content/news'
+    create: true
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Published', name: 'published', widget: 'boolean', default: false }
+      - { label: 'Published On', name: 'publishedOn', widget: 'datetime' }
+      - {label: 'Cover Image', name: 'cover_image', widget: 'image'}
+      - { label: 'Excerpt', name: 'excerpt', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
