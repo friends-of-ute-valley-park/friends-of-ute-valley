@@ -3,7 +3,7 @@ backend:
   repo: drewtownchi/friends-of-ute-valley
   branch: main
 
-media_folder: static/images/blog
+media_folder: static/images
 public_folder: /images
 
 collections:
