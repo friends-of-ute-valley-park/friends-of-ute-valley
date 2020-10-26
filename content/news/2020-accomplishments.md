@@ -1,7 +1,6 @@
 ---
 excerpt: 2017 was a great year with a long list of accomplishments for Ute
   Valley Park. It took many organizations and individuals to make it all happen.
-readTime: 6 minutes
 author: John Smith
 title: 2020 Accomplishments
 published: true

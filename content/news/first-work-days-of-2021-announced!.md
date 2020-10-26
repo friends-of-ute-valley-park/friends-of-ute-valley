@@ -3,7 +3,6 @@ title: First work days of 2021 announced!
 published: true
 publishedOn: 2020-10-15T10:01:30.670Z
 author: John Smith
-readTime: 6 minutes
 excerpt: Come out and join us for the first workdays of the 2021 season!
 coverImage: /images/ute-news-2.jpg
 ---

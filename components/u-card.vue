@@ -34,7 +34,7 @@
               &middot;
             </span>
             <span>
-              {{ news.readTime }}
+              {{ news.readingTime }}
             </span>
           </div>
         </div>
