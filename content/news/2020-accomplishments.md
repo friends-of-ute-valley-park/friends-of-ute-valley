@@ -6,8 +6,7 @@ author: John Smith
 title: 2020 Accomplishments
 published: true
 publishedOn: 2020-08-21T10:01:30.670Z
-cover_image: /images/ute-blog-1.jpg
-image: images/ute-news-1.jpg
+coverImage: /images/ute-news-1.jpg
 ---
 
 Dear Friends,

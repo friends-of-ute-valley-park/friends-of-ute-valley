@@ -75,7 +75,7 @@
         <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
           {{ page.title }}
         </h1>
-        <img loading="lazy" class="h-96 w-full object-cover rounded-lg shadow-lg" :src="page.image" alt="">
+        <img loading="lazy" class="h-96 w-full object-cover rounded-lg shadow-lg" :src="page.coverImage" alt="">
         <news class="prose lg:prose-xl">
           <nuxt-content :document="page" />
         </news>

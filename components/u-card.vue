@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
     <div class="flex-shrink-0">
-      <img class="h-48 w-full object-cover" :src="news.image" alt="">
+      <img class="h-48 w-full object-cover" :src="news.coverImage" alt="">
     </div>
     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
       <div class="flex-1">
@@ -17,7 +17,7 @@
       <div class="mt-6 flex items-center">
         <div class="flex-shrink-0">
           <a href="#">
-            <img class="h-10 w-10 rounded-full" src="/images/blog-author.webp" alt="">
+            <img class="h-10 w-10 rounded-full" src="/images/news-author.webp" alt="">
           </a>
         </div>
         <div class="ml-3">
