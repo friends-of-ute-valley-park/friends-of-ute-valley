@@ -76,9 +76,9 @@
           {{ page.title }}
         </h1>
         <img loading="lazy" class="h-96 w-full object-cover rounded-lg shadow-lg" :src="page.coverImage" alt="">
-        <news class="prose lg:prose-xl">
+        <div class="prose lg:prose-xl">
           <nuxt-content :document="page" />
-        </news>
+        </div>
       </div>
     </div>
   </div>
@@ -96,6 +96,11 @@ export default {
 
     return {
       page
+    }
+  },
+  head () {
+    return {
+      title: this.page ? this.page.title : null
     }
   }
 }

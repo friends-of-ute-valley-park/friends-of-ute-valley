@@ -49,6 +49,9 @@ export default {
         }
       ]
     }
+  },
+  head: {
+    title: 'FAQ'
   }
 }
 </script>

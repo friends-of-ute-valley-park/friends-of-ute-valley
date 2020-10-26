@@ -27,3 +27,11 @@ export default {
   }
 }
 </script>
+
+<script>
+export default {
+  head: {
+    title: 'About'
+  }
+}
+</script>
