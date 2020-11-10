@@ -98,7 +98,7 @@
         </div>
 
         <div class="mt-10 -mx-4 relative lg:mt-0">
-          <svg class="absolute left-1/2 transform -translate-x-1/2 translate-y-16 lg:hidden" width="784" height="404" fill="none" viewBox="0 0 784 404">
+          <svg class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 translate-y-16 lg:hidden" width="784" height="404" fill="none" viewBox="0 0 784 404">
             <defs>
               <pattern
                 id="ca9667ae-9f92-4be7-abcb-9e3d727f2941"
