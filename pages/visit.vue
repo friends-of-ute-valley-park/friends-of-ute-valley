@@ -274,7 +274,7 @@ export default {
           altText: 'Two hikers near a snow capped mountain'
         },
         {
-          name: 'Trave & Camp on Durable Surfaces',
+          name: 'Travel & Camp on Durable Surfaces',
           url: 'https://lnt.org/why/7-principles/travel-camp-on-durable-surfaces/',
           image: require('~/assets/lnt/travel-and-camp-on-durable-surfaces.jpg'),
           altText: 'Two hikers near a snow capped mountain'
