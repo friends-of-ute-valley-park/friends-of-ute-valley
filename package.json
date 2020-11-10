@@ -13,7 +13,7 @@
   "dependencies": {
     "@nuxt/content": "^1.10.0",
     "@tailwindcss/typography": "^0.2.0",
-    "@tailwindcss/ui": "^0.6.2",
+    "@tailwindcss/ui": "^0.7.2",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.7",
     "reading-time": "^1.2.0"
