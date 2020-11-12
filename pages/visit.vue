@@ -150,7 +150,7 @@
             </div>
             <div class="mt-8 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
               <div v-for="principle in principles" :key="principle.name" class="col-span-1 flex justify-center bg-gray-50 overflow-hidden relative  bg-gradient-to-t from-gray-700 ">
-                <a class="transition text-2xl font-semibold text-white" :href="principle.url">
+                <a class="transition text-xl sm:text-2xl font-semibold text-white" :href="principle.url">
                   <img class="transition transform duration-500 opacity-75 hover:opacity-100 hover:scale-105" :src="principle.image" :alt="principle.altText">
                   <span class="absolute inset-x-1 bottom-0">{{ principle.name }}</span>
                 </a>
