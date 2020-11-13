@@ -277,37 +277,37 @@ export default {
           name: 'Travel & Camp on Durable Surfaces',
           url: 'https://lnt.org/why/7-principles/travel-camp-on-durable-surfaces/',
           image: require('~/assets/lnt/travel-and-camp-on-durable-surfaces.jpg'),
-          altText: 'Two hikers near a snow capped mountain'
+          altText: 'Hiker on a trail surround by pine trees'
         },
         {
           name: 'Dispose of Waste Properly',
           url: 'https://lnt.org/why/7-principles/dispose-of-waste-properly/',
           image: require('~/assets/lnt/dispose-of-waste-properly.jpg'),
-          altText: 'Two hikers near a snow capped mountain'
+          altText: 'Rubbish in the dirt'
         },
         {
           name: 'Leave What You Find',
           url: 'https://lnt.org/why/7-principles/leave-what-you-find/',
           image: require('~/assets/lnt/leave-what-you-find.jpg'),
-          altText: 'Two hikers near a snow capped mountain'
+          altText: 'Flowers'
         },
         {
           name: 'Minimize Campfire Impacts',
           url: 'https://lnt.org/why/7-principles/minimize-campfire-impacts/',
           image: require('~/assets/lnt/minimize-campfire-impacts.jpg'),
-          altText: 'Two hikers near a snow capped mountain'
+          altText: 'Campsite with a fire'
+        },
+        {
+          name: 'Respect Wildlife',
+          url: 'https://lnt.org/why/7-principles/respect-wildlife/',
+          image: require('~/assets/lnt/respect-wildlife.jpg'),
+          altText: 'Black bear'
         },
         {
           name: 'Be Considerate of Other Visitors',
           url: 'https://lnt.org/why/7-principles/be-considerate-of-other-visitors/',
           image: require('~/assets/lnt/be-considerate-of-other-visitors.jpg'),
-          altText: 'Two hikers near a snow capped mountain'
-        },
-        {
-          name: 'Plan Ahead & Prepare',
-          url: 'https://lnt.org/why/7-principles/plan-ahead-and-prepare/',
-          image: require('~/assets/lnt/plan-ahead-and-prepare.jpg'),
-          altText: 'Two hikers near a snow capped mountain'
+          altText: 'Hikers walking in a line in a park'
         }
       ]
     }
