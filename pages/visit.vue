@@ -132,7 +132,7 @@
       <!-- Leave No Trace -->
       <div class="bg-green-600 my-16 rounded-lg">
         <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-          <div class="lg:grid lg:grid-cols-2 lg:gap-8">
+          <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div>
               <h2 class="text-3xl leading-9 font-extrabold text-green-50 sm:text-5xl sm:leading-10">
                 Leave No Trace
