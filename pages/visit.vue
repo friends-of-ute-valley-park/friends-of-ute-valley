@@ -190,11 +190,11 @@
               Activities
             </h4>
             <p class="mt-3 text-lg leading-7 text-gray-500">
-              Some text about activities
+              Do more at Ute Valley Park by taking advantage of these activities.
             </p>
 
             <ul class="mt-10">
-              <li>
+              <li v-for="(activity, i) in activities" :key="activity.name" :class="{'mt-10': i !== 0}">
                 <div class="flex">
                   <div class="flex-shrink-0">
                     <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
@@ -203,27 +203,10 @@
                   </div>
                   <div class="ml-4">
                     <h5 class="text-lg leading-6 font-medium text-gray-900">
-                      Hiking
+                      {{ activity.name }}
                     </h5>
                     <p class="mt-2 text-base leading-6 text-gray-500">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li class="mt-10">
-                <div class="flex">
-                  <div class="flex-shrink-0">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
-                    </div>
-                  </div>
-                  <div class="ml-4">
-                    <h5 class="text-lg leading-6 font-medium text-gray-900">
-                      Mountain Biking
-                    </h5>
-                    <p class="mt-2 text-base leading-6 text-gray-500">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
+                      {{ activity.description }}
                     </p>
                   </div>
                 </div>
@@ -254,7 +237,7 @@
               </defs>
               <rect width="784" height="404" fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)" />
             </svg>
-            <!-- image -->
+            <img class="relative mx-auto w-96 rounded-lg" src="~/assets/activities.jpg" alt="Biker in the air at sunset">
           </div>
         </div>
       </div>
@@ -308,6 +291,24 @@ export default {
           url: 'https://lnt.org/why/7-principles/be-considerate-of-other-visitors/',
           image: require('~/assets/lnt/be-considerate-of-other-visitors.jpg'),
           altText: 'Hikers walking in a line in a park'
+        }
+      ],
+      activities: [
+        {
+          name: 'Hiking',
+          description: 'Explore the serene nature within a bustling city. Hike your way through forest and meadow while taking in the fresh air.'
+        },
+        {
+          name: 'Mountain Biking',
+          description: 'Ute Valley Park offers a variety of tails suitable to mountain bikers as well as the designated downhill area for the adventurous.'
+        },
+        {
+          name: 'Running',
+          description: 'Numerous trails from wide and flat to steep rocky offer joggers and trail runners the perfect opportunity to get outside.'
+        },
+        {
+          name: 'Bouldering',
+          description: 'Located in the Southwest corner of the park, near Piñon Park Dr., you can explore the variety of climbing challenges.'
         }
       ]
     }
