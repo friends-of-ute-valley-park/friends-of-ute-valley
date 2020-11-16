@@ -123,7 +123,7 @@
           <a href="/maps/ute-valley-park-map-full.jpg">
             <img class="relative mx-auto" width="490" src="~/assets/ute-valley-park-map-small.jpg" alt="Map of Ute Valley Park">
             <p class="mt-1 text-sm leading-6 text-gray-500 text-center">
-              Click to enlarge
+              Click to open
             </p>
           </a>
         </div>
@@ -190,7 +190,7 @@
               Activities
             </h4>
             <p class="mt-3 text-lg leading-7 text-gray-500">
-              Do more at Ute Valley Park by taking advantage of these activities.
+              Do more at Ute Valley Park by taking advantage of these activities:
             </p>
 
             <ul class="mt-10">
