@@ -44,8 +44,8 @@ export default {
         { name: 'Nick Cirincione', title: 'Coordinator of Volunteers', image: 'https://images.unsplash.com/photo-1568990545613-aa37e9353eb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
         { name: 'Christine Thomas', title: 'Coordinator of Volunteers', image: 'https://images.unsplash.com/photo-1546961329-78bef0414d7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
         { name: 'Liz Campbell', title: 'Coordinator of Volunteers', image: 'https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
-        { name: 'Frank Self', title: 'Property and Master Plan', image: 'https://images.unsplash.com/photo-1584940120743-8981ca35b012?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
-        { name: 'Phil Emmert', title: 'Publicity', image: 'https://images.unsplash.com/flagged/photo-1567194974473-c866a1ba88d5?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
+        { name: 'Frank Self', title: 'Property and Master Plan', image: require('~/assets/members/frank-self.jpg') },
+        { name: 'Phill Emmert', title: 'Publicity', image: require('~/assets/members/phill-emmert.jpg') },
         { name: 'Bruce Hutchinson', title: 'Education', image: 'https://images.unsplash.com/flagged/photo-1553642618-de0381320ff3?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
         { name: 'Carl Reese', title: 'Communications, Website, Newsletter', image: 'https://images.unsplash.com/photo-1562788869-4ed32648eb72?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' }
       ]
