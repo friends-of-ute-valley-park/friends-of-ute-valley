@@ -1,4 +1,24 @@
 {
     "name": "Vindicator Trailhead",
-    "description": "Popular parking spot with convenient access to easy trails for hiking, biking and running."
+    "description": "Popular parking spot with convenient access to easy trails for hiking, biking and running.",
+    "location": "Located on Vindicator Drive between Centennial Boulevard and W Rockrimmon Road just West of Eagleview Middle School",
+    "amenities": [
+        {
+            "name": "Parking",
+            "description": "22 parking spots and 1 handicap parking spot available."
+        },
+        {
+            "name": "Facilities",
+            "description": "1 portable toilet."
+        },
+        {
+            "name": "Trash",
+            "description": "A bear-proof trash bin is available for waste disposal."
+        }
+    ],
+    "map": "vindicator-trailhead-map.jpg",
+    "photos": [
+        "vindicator-trailhead-1.jpg",
+        "vindicator-trailhead-2.jpg"
+    ]
 }
