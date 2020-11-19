@@ -224,7 +224,7 @@
 <script>
 export default {
   async asyncData ({ $content }) {
-    const trailheads = await $content('trailheads')
+    const trailheads = await $content('trailheads').sortBy('order')
       .fetch()
     return {
       trailheads
