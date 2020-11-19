@@ -49,20 +49,22 @@
                 :to="{name: 'trailheads-slug', params: {slug: trailhead.slug}}"
               >
                 <div class="flex items-center px-4 py-4 sm:px-6">
-                  <div class="flex-shrink-0">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                  <div class="min-w-0 flex-1 flex items-center">
+                    <div class="flex-shrink-0">
+                      <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      </div>
+                    </div>
+                    <div class="ml-4">
+                      <h5 class="text-lg leading-4 font-medium text-green-800">
+                        {{ trailhead.name }}
+                      </h5>
+                      <p class="mt-2 text-base leading-6 text-gray-500">
+                        {{ trailhead.description }}
+                      </p>
                     </div>
                   </div>
-                  <div class="ml-4">
-                    <h5 class="text-lg leading-4 font-medium text-green-800">
-                      {{ trailhead.name }}
-                    </h5>
-                    <p class="mt-2 text-base leading-6 text-gray-500">
-                      {{ trailhead.description }}
-                    </p>
-                  </div>
-                  <svg class="h-5 w-5 text-green-400 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <svg class="h-8 w-8 text-green-400 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                   </svg>
                 </div>
