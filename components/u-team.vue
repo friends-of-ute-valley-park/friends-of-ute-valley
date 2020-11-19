@@ -15,7 +15,10 @@
         <ul class="mx-auto grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 md:gap-x-6 lg:max-w-5xl lg:gap-x-8 lg:gap-y-12 xl:grid-cols-6">
           <li v-for="teamMember in teamMembers" :key="teamMember.name">
             <div class="space-y-4">
-              <img class="mx-auto h-20 w-20 rounded-full lg:w-24 lg:h-24" :src="teamMember.image" :alt="'Photo of ' + teamMember.name">
+              <img v-if="teamMember.image" class="mx-auto h-20 w-20 rounded-full lg:w-24 lg:h-24" :src="teamMember.image" :alt="'Photo of ' + teamMember.name">
+              <svg v-else class="mx-auto stroke-current stroke-1 text-green-600 h-20 w-20 lg:w-24 lg:h-24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
               <div class="space-y-2">
                 <div class="text-xs leading-4 font-medium lg:text-sm lg:leading-5">
                   <h4>{{ teamMember.name }}</h4>
@@ -37,17 +40,17 @@ export default {
   data () {
     return {
       teamMembers: [
-        { name: 'Dan Woods', title: 'President', image: 'https://images.unsplash.com/photo-1576558656222-ba66febe3dec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
-        { name: 'Kris Kaltenbacher', title: 'Secretary', image: 'https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
-        { name: 'Dave Ward', title: 'Treasurer', image: 'https://images.unsplash.com/photo-1505632958218-4f23394784a6?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
-        { name: 'Larry DeWitt', title: 'Coordinator of Volunteers', image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
-        { name: 'Nick Cirincione', title: 'Coordinator of Volunteers', image: 'https://images.unsplash.com/photo-1568990545613-aa37e9353eb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
-        { name: 'Christine Thomas', title: 'Coordinator of Volunteers', image: 'https://images.unsplash.com/photo-1546961329-78bef0414d7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
-        { name: 'Liz Campbell', title: 'Coordinator of Volunteers', image: 'https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
+        { name: 'Dan Woods', title: 'President', image: '' },
+        { name: 'Kris Kaltenbacher', title: 'Secretary', image: '' },
+        { name: 'Dave Ward', title: 'Treasurer', image: '' },
+        { name: 'Larry DeWitt', title: 'Coordinator of Volunteers', image: '' },
+        { name: 'Nick Cirincione', title: 'Coordinator of Volunteers', image: '' },
+        { name: 'Christine Thomas', title: 'Coordinator of Volunteers', image: '' },
+        { name: 'Liz Campbell', title: 'Coordinator of Volunteers', image: '' },
         { name: 'Frank Self', title: 'Property and Master Plan', image: require('~/assets/members/frank-self.jpg') },
         { name: 'Phill Emmert', title: 'Publicity', image: require('~/assets/members/phill-emmert.jpg') },
-        { name: 'Bruce Hutchinson', title: 'Education', image: 'https://images.unsplash.com/flagged/photo-1553642618-de0381320ff3?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' },
-        { name: 'Carl Reese', title: 'Communications, Website, Newsletter', image: 'https://images.unsplash.com/photo-1562788869-4ed32648eb72?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80' }
+        { name: 'Bruce Hutchinson', title: 'Education', image: '' },
+        { name: 'Carl Reese', title: 'Communications, Website, Newsletter', image: '' }
       ]
     }
   }
