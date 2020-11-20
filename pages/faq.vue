@@ -45,7 +45,7 @@ export default {
         },
         {
           question: 'How do I get involved with Ute Valley Park?',
-          answer: 'Please see our <nuxt-link class="font-semibold text-indigo-600 no-underline" to="volunteer">volunteer</nuxt-link> page.'
+          answer: 'Please see our <nuxt-link class="font-semibold text-green-600 no-underline" to="volunteer">volunteer</nuxt-link> page.'
         }
       ]
     }

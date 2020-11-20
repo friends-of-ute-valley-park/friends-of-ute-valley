@@ -57,7 +57,7 @@
           <p class="mt-4 text-base leading-6 text-gray-500">
             <slot name="subtitle">
               Got a problem or a comment? Let us know and we'll be happy to assist you. Make sure to check out our
-              <nuxt-link class="font-semibold no-underline text-indigo-600" to="faq">
+              <nuxt-link class="font-semibold no-underline text-green-600" to="faq">
                 FAQ
               </nuxt-link> page.
             </slot>
