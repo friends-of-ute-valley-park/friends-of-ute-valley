@@ -24,28 +24,32 @@ export default {
     return {
       faqs: [
         {
+          question: 'How do I find my way around UVP?, I am always getting lost.',
+          answer: 'Please download the <a class="font-semibold text-green-600 no-underline" href="/visit">map</a> or take a picture of our new trail map before you head out on the trail and always remember the parking lot that you parked in; we have several to choose from.'
+        },
+        {
           question: 'What are the park hours?',
-          answer: 'The park is open between 6AM and 8PM'
+          answer: '5am - 9pm from Nov 1 through April 30. 5am - 10pm May 1 through Oct 31'
         },
         {
           question: 'Where can I park my car?',
-          answer: 'Parking is available at the parking lot on vindicator as well as the lot by I-25.'
-        },
-        {
-          question: 'Can I host a wedding/reception/large event here?',
-          answer: 'Unfortunately no, we do not have the facilities or staff to handle large events.'
+          answer: 'Please see our <a class="font-semibold text-green-600 no-underline" href="/visit">visit</a> page for trailhead information.'
         },
         {
           question: 'Are there bathroom facilities available?',
-          answer: 'There is a portable bathroom available at the vindicator parking lot.'
+          answer: 'There is a portable bathroom available at the Vindicator and South Rockrimmon parking lots.'
+        },
+        {
+          question: 'What wildlife will I see?',
+          answer: 'We have abundant wildlife to watch out for; deer, bobcat, bear, mountain lions, pack rats, mice and we are famous for our Rattlesnakes.  Please 		   		respect their habituate by staying on the trails at all times, giving wildlife abundant space, NEVER try to engage with our wild family.'
         },
         {
           question: 'I saw a rattlesnack. What should I do?',
-          answer: 'Ute Valley Park is a open space and wildlife lives there. Stay calm, back away and do not aggitate it. Please stay on the trails!'
+          answer: 'Ute Valley Park is a open space and wildlife lives there. Stay calm, back away and do not agitate it. Please stay on the trails!'
         },
         {
           question: 'How do I get involved with Ute Valley Park?',
-          answer: 'Please see our <nuxt-link class="font-semibold text-green-600 no-underline" to="volunteer">volunteer</nuxt-link> page.'
+          answer: 'Please see our <a class="font-semibold text-green-600 no-underline" href="/volunteer">volunteer</a> page.'
         }
       ]
     }
