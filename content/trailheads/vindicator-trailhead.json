@@ -19,7 +19,13 @@
     ],
     "map": "vindicator-trailhead-map.jpg",
     "photos": [
-        "vindicator-trailhead-1.jpg",
-        "vindicator-trailhead-2.jpg"
+        {
+            "photo": "vindicator-trailhead-1.jpg",
+            "caption": "Facing North on Vindicator Drive"
+        },
+        {
+            "photo": "vindicator-trailhead-2.jpg",
+            "caption": "Facing East on Triple Treat trail"
+        }
     ]
 }

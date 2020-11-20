@@ -116,13 +116,16 @@
       </svg>
       <div class="relative mt-12 sm:mt-16 lg:mt-24">
         <div class="flex flex-wrap">
-          <img
-            v-for="photo in trailhead.photos"
-            :key="photo"
-            class="relative mx-auto lg:w-1/2 w-full p-4"
-            :src="require(`~/assets/trailheads/${photo}`)"
-            alt=""
-          >
+          <div v-for="photo in trailhead.photos" :key="photo.photo" class="lg:w-1/2 w-full p-4">
+            <img
+              class="relative mx-auto"
+              :src="require(`~/assets/trailheads/${photo.photo}`)"
+              alt=""
+            >
+            <p class="text-center text-gray-500 leading-9">
+              {{ photo.caption }}
+            </p>
+          </div>
         </div>
       </div>
     </div>

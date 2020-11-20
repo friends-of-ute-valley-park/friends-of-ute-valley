@@ -19,7 +19,13 @@
     ],
     "map": "south-rockrimmon-trailhead-map.jpg",
     "photos": [
-        "south-rockrimmon-trailhead-1.jpg",
-        "south-rockrimmon-trailhead-2.jpg"
+        {
+            "photo": "south-rockrimmon-trailhead-1.jpg",
+            "caption": "Facing Northwest from Ute Valley Trail roundabout"
+        },
+        {
+            "photo": "south-rockrimmon-trailhead-2.jpg",
+            "caption": "Facing West from Ute Valley Trail roundabout"
+        }
     ]
 }
