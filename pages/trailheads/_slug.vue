@@ -88,7 +88,15 @@
             </defs>
             <rect width="784" height="404" fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)" />
           </svg>
-          <img class="relative mx-auto" width="550" :src="require(`~/assets/trailheads/${trailhead.map}`)" alt="">
+          <div class="relative">
+            <a class="absolute rounded-md px-5 py-2 border border-transparent bg-green-600 text-green-50 inline-flex items-center justify-center top-1 right-6 font-semibold text-lg hover:bg-green-500 focus:bg-green-500" :href="trailhead.directionsLink">
+              Get Directions
+              <svg class="w-6 h-6 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+            <img class="mx-auto" width="550" :src="require(`~/assets/trailheads/${trailhead.map}`)" alt="">
+          </div>
         </div>
       </div>
 

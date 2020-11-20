@@ -2,6 +2,7 @@
     "name": "Tech Center Trailhead",
     "order": 2,
     "description": "Furthest parking spot from the majority of the park. Great for visitors looking to access longer routes for running or biking.",
+    "directionsLink": "https://goo.gl/maps/rkiwri55h4481Vgg7",
     "location": "Located off Tech Center Drive between South Rockrimmon Blvd and Garden of the Gods Road.",
     "amenities": [
         {
