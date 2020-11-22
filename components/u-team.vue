@@ -1,6 +1,4 @@
 <template>
-  <!-- Meet the team -->
-
   <div class="bg-white">
     <div class="max-w-screen-xl mx-auto py-12 px-4 text-center sm:px-6 lg:px-8">
       <div class="space-y-8 sm:space-y-12">
@@ -12,7 +10,7 @@
             Meet the team of people who help make Ute Valley Park great.
           </p>
         </div>
-        <ul class="mx-auto grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 md:gap-x-6 lg:max-w-5xl lg:gap-x-8 lg:gap-y-12 xl:grid-cols-6">
+        <ul class="mx-auto grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 md:gap-x-6 lg:max-w-5xl lg:gap-x-8 lg:gap-y-12">
           <li v-for="teamMember in teamMembers" :key="teamMember.name">
             <div class="space-y-4">
               <img v-if="teamMember.image" class="mx-auto h-20 w-20 rounded-full lg:w-24 lg:h-24" :src="teamMember.image" :alt="'Photo of ' + teamMember.name">
@@ -40,17 +38,14 @@ export default {
   data () {
     return {
       teamMembers: [
-        { name: 'Dan Woods', title: 'President', image: '' },
+        { name: 'Dan Woods', title: 'Chair', image: '' },
+        { name: 'Christine Thomas', title: 'Vice-Chair', image: '' },
         { name: 'Kris Kaltenbacher', title: 'Secretary', image: '' },
         { name: 'Dave Ward', title: 'Treasurer', image: '' },
-        { name: 'Larry DeWitt', title: 'Coordinator of Volunteers', image: '' },
-        { name: 'Nick Cirincione', title: 'Coordinator of Volunteers', image: '' },
-        { name: 'Christine Thomas', title: 'Coordinator of Volunteers', image: '' },
-        { name: 'Liz Campbell', title: 'Coordinator of Volunteers', image: '' },
-        { name: 'Frank Self', title: 'Property and Master Plan', image: require('~/assets/members/frank-self.jpg') },
-        { name: 'Phill Emmert', title: 'Publicity', image: require('~/assets/members/phill-emmert.jpg') },
-        { name: 'Bruce Hutchinson', title: 'Education', image: '' },
-        { name: 'Carl Reese', title: 'Communications, Website, Newsletter', image: '' }
+        { name: 'Phill Emmert', title: 'Communications', image: require('~/assets/members/phill-emmert.jpg') },
+        { name: 'Nick Cirincione', title: 'Board Member', image: '' },
+        { name: 'Frank Self', title: 'Board Member', image: require('~/assets/members/frank-self.jpg') },
+        { name: 'Morgan Vlasse', title: 'Board Member', image: '' }
       ]
     }
   }
