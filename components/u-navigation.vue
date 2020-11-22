@@ -21,13 +21,19 @@
         </div>
         <div class="hidden sm:ml-8 sm:flex sm:items-center">
           <div class="inline-flex items-center px-2 pt-1 ">
-            <img class="h-6" src="~/assets/logos/facebook.png" alt="Facebook">
+            <a href="https://www.facebook.com/FriendsOfUteValleyPark">
+              <img class="h-6" src="~/assets/logos/facebook.png" alt="Facebook">
+            </a>
           </div>
           <div class="inline-flex items-center px-2 pt-1 ">
-            <img class="h-6" src="~/assets/logos/instagram.png" alt="Instagram">
+            <a href="https://www.instagram.com/friendsofutevalleypark/">
+              <img class="h-6" src="~/assets/logos/instagram.png" alt="Instagram">
+            </a>
           </div>
           <div class="inline-flex items-center px-2 pt-1 ">
-            <img class="h-6" src="~/assets/logos/twitter.svg" alt="Twitter">
+            <a href="https://www.twitter.com/FriendsUVP">
+              <img class="h-6" src="~/assets/logos/twitter.svg" alt="Twitter">
+            </a>
           </div>
         </div>
         <div class="-mr-2 flex items-center sm:hidden">
