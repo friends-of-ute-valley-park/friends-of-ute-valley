@@ -159,7 +159,7 @@
         <rect width="404" height="784" fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)" />
       </svg>
 
-      <div class="relative mt-12 sm:mt-16 lg:mt-24">
+      <div class="relative mt-12 sm:mt-16 lg:mt-24 mb-16">
         <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
           <div class="lg:col-start-2">
             <h4 class="text-2xl leading-8 font-extrabold text-gray-900 tracking-tight sm:text-3xl sm:leading-9">
@@ -215,6 +215,44 @@
             </svg>
             <img class="relative mx-auto w-96 rounded-lg" src="~/assets/activities.jpg" alt="Biker in the air at sunset">
           </div>
+        </div>
+      </div>
+    </div>
+    <!-- trails -->
+    <div class="max-w-7xl mx-auto relative bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto text-base">
+        <h2 class="text-base text-green-600 font-semibold tracking-wide uppercase">
+          Trails
+        </h2>
+        <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          Discover the trails of Ute Valley Park
+        </h3>
+      </div>
+      <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
+        <div class="mt-8 lg:mt-0">
+          <div class="mt-5 prose prose-green text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
+            <h4>BeaUTEiful Loop</h4>
+            <p class="text-lg text-gray-600">
+              Ridge top views of Pikes Peak, Black Forrest and Rockrimmon as well as meandering through dense forrest and rocky outcrops.
+            </p>
+            <h4>Rattlesnake Ridge</h4>
+            <p class="text-lg text-gray-600">
+              Breathtaking views on a razor ridge where you can see Pikes Peak, Garden of the Gods, Pinion Valley as well as Black Forrest.  This is a very technical, sharp, rocky trail, great for a challenging hike, not recommended for most mountain bikers; only the most experienced.
+            </p>
+            <h4>High Arches loop</h4>
+            <p class="text-lg text-gray-600">
+              This quick loop is close to Vindicator Parking Lot and will take you through a rocky outcropping that overlooks a winding valley of an old ranch that was once located here.  The trail winds down to a natural arch, ducking required.  Also not recommended for beginning mountain bikers.
+            </p>
+            <h4>Black and Blue Loop</h4>
+            <p class="text-lg text-gray-600">
+              This loop has earned its name for mountain bikers; not for beginners.  Located just off the Ute Valley Trail parking lot and will take you above a drainage creek.  The black side is ranked black due to its challenging terrain of sharp rocks and steep grades.  You will have to walk along the Tech Center Drive parking lot to make a full loop.  The blue side of the loop is more flowing and takes you over a natural arch, a monstrous bridge that had to be built on site, mine tailings and a cave!
+            </p>
+          </div>
+        </div>
+        <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
+          <figure>
+            <img class="rounded-lg shadow-lg object-cover object-center h-96" src="~/assets/ute-valley-park.jpg">
+          </figure>
         </div>
       </div>
     </div>
