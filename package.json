@@ -11,19 +11,19 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
-    "@nuxt/content": "^1.10.0",
-    "@tailwindcss/typography": "^0.2.0",
+    "@nuxt/content": "^1.11.1",
+    "@tailwindcss/typography": "^0.3.1",
     "@tailwindcss/ui": "^0.7.2",
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.7",
-    "reading-time": "^1.2.0"
+    "nuxt": "^2.14.9",
+    "reading-time": "^1.2.1"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^4.0.0",
-    "@nuxtjs/eslint-module": "^3.0.0",
+    "@nuxtjs/eslint-config": "^5.0.0",
+    "@nuxtjs/eslint-module": "^3.0.1",
     "@nuxtjs/tailwindcss": "^3.2.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.10.0",
-    "eslint-plugin-nuxt": "^1.0.0"
+    "eslint": "^7.14.0",
+    "eslint-plugin-nuxt": "^2.0.0"
   }
 }
