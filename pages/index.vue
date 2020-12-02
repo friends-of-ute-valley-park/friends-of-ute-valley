@@ -88,13 +88,13 @@
 
 <script>
 export default {
-  async fetch () {
-    this.news = await this.$content('news').sortBy('publishedOn', 'desc').limit(3).fetch()
-  },
   data () {
     return {
       news: []
     }
+  },
+  async fetch () {
+    this.news = await this.$content('news').sortBy('publishedOn', 'desc').limit(3).fetch()
   }
 }
 </script>

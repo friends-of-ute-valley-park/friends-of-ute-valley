@@ -41,7 +41,7 @@ export default {
         },
         {
           question: 'What wildlife will I see?',
-          answer: 'We have abundant wildlife to watch out for; deer, bobcat, bear, mountain lions, pack rats, mice and we are famous for our Rattlesnakes.  Please 		   		respect their habituate by staying on the trails at all times, giving wildlife abundant space, NEVER try to engage with our wild family.'
+          answer: 'We have abundant wildlife to watch out for; deer, bobcat, bear, mountain lions, pack rats, mice and we are famous for our Rattlesnakes.  Please respect their habituate by staying on the trails at all times, giving wildlife abundant space, NEVER try to engage with our wild family.'
         },
         {
           question: 'I saw a rattlesnack. What should I do?',
