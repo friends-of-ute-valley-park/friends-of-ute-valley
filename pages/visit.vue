@@ -45,7 +45,7 @@
           <ul class="mt-10">
             <li v-for="(trailhead, i) in trailheads" :key="trailhead.name" :class="{'mt-10': i !== 0}">
               <nuxt-link
-                class="block hover:bg-gray-200 focus:outline-none focus:bg-gray-200 transition duration-150 ease-in-out"
+                class="block hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
                 :to="{name: 'trailheads-slug', params: {slug: trailhead.slug}}"
               >
                 <div class="flex items-center px-4 py-4 sm:px-6">
@@ -56,10 +56,10 @@
                       </div>
                     </div>
                     <div class="ml-4">
-                      <h5 class="text-lg leading-4 font-medium text-green-800">
+                      <h5 class="text-lg font-semibold text-green-800">
                         {{ trailhead.name }}
                       </h5>
-                      <p class="mt-2 text-base leading-6 text-gray-500">
+                      <p class="text-base text-gray-500">
                         {{ trailhead.description }}
                       </p>
                     </div>
@@ -110,10 +110,10 @@
         <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
           <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div>
-              <h2 class="text-3xl leading-9 font-extrabold text-green-50 sm:text-5xl sm:leading-10">
+              <h2 class="text-3xl font-extrabold text-green-50 sm:text-5xl sm:leading-10">
                 Leave No Trace
               </h2>
-              <p class="mt-3 max-w-3xl text-lg leading-7 text-gray-50">
+              <p class="mt-3 max-w-3xl text-lg text-gray-50">
                 Ute Valley Park proudly supports The 7 Principles of Leave No Trace. Please help keep the park safe and clean by following the principles.
               </p>
               <div class="mt-8 sm:flex">
@@ -126,7 +126,7 @@
             </div>
             <div class="mt-8 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
               <div v-for="principle in principles" :key="principle.name" class="col-span-1 flex justify-center bg-gray-50 overflow-hidden relative  bg-gradient-to-t from-gray-700 ">
-                <a class="transition text-xl sm:text-2xl font-semibold text-white" :href="principle.url">
+                <a class="transition text-xl font-semibold text-white" :href="principle.url">
                   <img class="transition transform duration-500 opacity-75 hover:opacity-100 hover:scale-105" :src="principle.image" :alt="principle.altText">
                   <span class="absolute inset-x-1 bottom-0">{{ principle.name }}</span>
                 </a>
@@ -162,10 +162,10 @@
       <div class="relative mt-12 sm:mt-16 lg:mt-24 mb-16">
         <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
           <div class="lg:col-start-2">
-            <h4 class="text-2xl leading-8 font-extrabold text-gray-900 tracking-tight sm:text-3xl sm:leading-9">
+            <h4 class="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl sm:leading-9">
               Activities
             </h4>
-            <p class="mt-3 text-lg leading-7 text-gray-500">
+            <p class="mt-3 text-lg text-gray-500">
               Do more at Ute Valley Park by taking advantage of these activities:
             </p>
 
@@ -178,10 +178,10 @@
                     </div>
                   </div>
                   <div class="ml-4">
-                    <h5 class="text-lg leading-6 font-medium text-gray-900">
+                    <h5 class="text-lg font-medium text-gray-900">
                       {{ activity.name }}
                     </h5>
-                    <p class="mt-2 text-base leading-6 text-gray-500">
+                    <p class="mt-2 text-base text-gray-500">
                       {{ activity.description }}
                     </p>
                   </div>
@@ -213,7 +213,9 @@
               </defs>
               <rect width="784" height="404" fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)" />
             </svg>
-            <img class="relative mx-auto w-96 rounded-lg" src="~/assets/activities.jpg" alt="Biker in the air at sunset">
+            <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 px-4">
+              <img class="rounded-lg shadow-lg object-cover object-center" src="~/assets/activities.jpg" alt="Biker in the air at sunset">
+            </div>
           </div>
         </div>
       </div>
@@ -250,9 +252,11 @@
           </div>
         </div>
         <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
-          <figure>
-            <img class="rounded-lg shadow-lg object-cover object-center h-96" src="~/assets/ute-valley-park.jpg">
-          </figure>
+          <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 lg:h-96 mt-8 lg:mt-0">
+            <figure>
+              <img class="rounded-lg shadow-lg object-cover object-center" src="~/assets/ute-valley-park.jpg">
+            </figure>
+          </div>
         </div>
       </div>
     </div>

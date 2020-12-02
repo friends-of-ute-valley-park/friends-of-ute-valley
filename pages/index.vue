@@ -1,5 +1,6 @@
 <template>
   <div>
+    <u-volunteerbanner class="mb-8" />
     <main class="lg:relative bg-gray-50">
       <div class="mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-18 lg:text-left">
         <div class="px-4 lg:w-1/2 sm:px-8 xl:pr-16">
@@ -13,12 +14,12 @@
           </p>
           <div class="mt-10 sm:flex sm:justify-center lg:justify-start">
             <div class="rounded-md shadow">
-              <nuxt-link to="/about" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+              <nuxt-link to="/about" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:ring-green transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                 Read More
               </nuxt-link>
             </div>
             <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-              <nuxt-link to="/visit" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-green-600 bg-white hover:text-green-500 focus:outline-none focus:border-green-300 focus:shadow-outline-green transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+              <nuxt-link to="/visit" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-green-600 bg-white hover:text-green-500 focus:outline-none focus:border-green-300 focus:ring-green transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                 Visit Ute Valley Park
               </nuxt-link>
             </div>
@@ -38,7 +39,7 @@
         <div class="flex-1" />
       </div>
       <div class="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-r from-green-400 to-teal-500 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+        <div class="bg-gradient-to-r from-green-400 to-teal-600 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
           <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
             <div class="lg:self-center">
               <h2 class="text-3xl leading-9 font-extrabold text-white sm:text-4xl sm:leading-10">
@@ -48,10 +49,10 @@
               <p class="mt-4 text-lg leading-6 text-orange-50">
                 Get involved and help Ute Valley Park by making a tax deducitble donation or volunteering.
               </p>
-              <nuxt-link to="/donate" class="mt-8 bg-green-200 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base leading-6 font-medium text-green-600 hover:text-green-500 focus:outline-none focus:border-green-300 focus:shadow-outline-green transition duration-150 ease-in-out">
-                Doante
+              <nuxt-link to="/donate" class="mt-8 bg-green-100 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-green-600 hover:text-green-500 focus:outline-none focus:border-green-300 focus:ring-green transition duration-150 ease-in-out">
+                Donate
               </nuxt-link>
-              <nuxt-link to="/volunteer" class="mt-8 bg-teal-200 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base leading-6 font-medium text-teal-600 hover:text-teal-500 focus:outline-none focus:border-teal-300 focus:shadow-outline-teal transition duration-150 ease-in-out">
+              <nuxt-link to="/volunteer" class="mt-8 bg-teal-100 border border-transparent rounded-md shadow py-3 ml-2 px-6 inline-flex items-center text-base font-medium text-teal-600 hover:text-teal-500 focus:outline-none focus:border-teal-300 focus:ring-teal transition duration-150 ease-in-out">
                 Volunteer
               </nuxt-link>
             </div>

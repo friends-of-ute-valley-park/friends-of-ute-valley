@@ -25,20 +25,20 @@
       </svg>
 
       <div class="relative">
-        <h3 class="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+        <h3 class="text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
           {{ trailhead.name }}
         </h3>
-        <p class="mt-4 max-w-3xl mx-auto text-center text-xl leading-7 text-gray-500">
+        <p class="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
           {{ trailhead.description }}
         </p>
       </div>
 
       <div class="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
         <div class="relative">
-          <h4 class="text-2xl leading-8 font-extrabold text-gray-900 tracking-tight sm:text-3xl sm:leading-9">
+          <h4 class="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">
             Getting There
           </h4>
-          <p class="mt-3 text-lg leading-7 text-gray-500">
+          <p class="mt-3 text-lg text-gray-500">
             {{ trailhead.location }}
           </p>
 
@@ -53,10 +53,10 @@
                   </div>
                 </div>
                 <div class="ml-4">
-                  <h5 class="text-lg leading-6 font-medium text-gray-900">
+                  <h5 class="text-lg font-medium text-gray-900">
                     {{ amenity.name }}
                   </h5>
-                  <p class="mt-2 text-base leading-6 text-gray-500">
+                  <p class="mt-2 text-base text-gray-500">
                     {{ amenity.description }}
                   </p>
                 </div>
@@ -130,7 +130,7 @@
               :src="require(`~/assets/trailheads/${photo.photo}`)"
               alt=""
             >
-            <p class="text-center text-gray-500 leading-9">
+            <p class="text-center text-gray-500">
               {{ photo.caption }}
             </p>
           </div>

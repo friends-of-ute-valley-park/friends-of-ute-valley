@@ -66,35 +66,35 @@
         <div class="mt-12">
           <form action="#" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
             <div class="sm:col-span-2">
-              <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Name</label>
-              <div class="mt-1 relative rounded-md shadow-sm">
-                <input id="name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+              <label for="name" class="block text-sm font-semibold text-gray-700">Name</label>
+              <div class="mt-1">
+                <input id="name" type="text" name="name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md">
               </div>
             </div>
             <div class="sm:col-span-2">
-              <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email</label>
+              <label for="email" class="block text-sm font-semibold text-gray-700">Email</label>
               <div class="mt-1 relative rounded-md shadow-sm">
-                <input id="email" type="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+                <input id="email" type="email" class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md">
               </div>
             </div>
             <div class="sm:col-span-2">
-              <label for="location" class="block text-sm leading-5 font-medium text-gray-700">Category</label>
-              <select id="location" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+              <label for="location" class="block text-sm font-semibold text-gray-700">Category</label>
+              <select id="location" class="py-3 px-3 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md">
                 <option v-for="option in options" :key="option" :selected="option === defaultOption ? 'selected': null">
                   {{ option }}
                 </option>
               </select>
             </div>
             <div class="sm:col-span-2">
-              <label for="message" class="block text-sm font-medium leading-5 text-gray-700">Message</label>
+              <label for="message" class="block text-sm font-semibold text-gray-700">Message</label>
               <div class="mt-1 relative rounded-md shadow-sm">
-                <textarea id="message" rows="4" class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150" />
+                <textarea id="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md" />
               </div>
             </div>
 
             <div class="sm:col-span-2">
               <span class="w-full inline-flex rounded-md shadow-sm">
-                <button type="button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150">
+                <button type="button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:ring-green active:bg-green-700 transition ease-in-out duration-150">
                   Submit
                 </button>
               </span>
