@@ -9,10 +9,10 @@
             <br class="xl:hidden">
             <span class="text-green-600">Ute Valley Park</span>
           </h2>
-          <p class="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
-            Friends of Ute Valley Park is an officially recognized “Friends” organization by the City of Colorado Springs Parks and Recreation Department. Our mission is to maintain, preserve, and provide education for Ute Valley Park. Our mission is in alignment with the goals and master plan of the City of Colorado Springs Parks and Recreation Department.
+          <p class="mt-3 max-w-md mx-auto text-lg text-gray-600 md:mt-5 md:max-w-3xl">
+            Friends of Ute Valley Park is an officially recognized “Friends” organization by the City of Colorado Springs Parks and Recreation Department. Our mission is to maintain, preserve, and provide education for Ute Valley Park.
           </p>
-          <div class="mt-10 sm:flex sm:justify-center lg:justify-start">
+          <div class="mt-12 sm:flex sm:justify-center lg:justify-start">
             <div class="rounded-md shadow">
               <nuxt-link to="/about" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:ring-green transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                 Read More
