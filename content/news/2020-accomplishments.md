@@ -1,10 +1,9 @@
 ---
-excerpt: 2020 was a great year with a long list of accomplishments for Ute
-  Valley Park. It took many organizations and individuals to make it all happen.
 title: 2020 Accomplishments
 published: true
 publishedOn: 2020-11-22T10:01:30.670Z
 coverImage: /images/ute-news-1.jpg
+previewText: 2020 was a great year with a long list of accomplishments for Ute Valley Park. It took many organizations and individuals to make it all happen.
 ---
 
 Dear Friends,
