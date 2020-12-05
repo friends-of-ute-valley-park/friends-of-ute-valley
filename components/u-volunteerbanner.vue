@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-teal-700">
+  <div v-if="isVisible" class="bg-teal-700">
     <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between flex-wrap">
         <div class="w-0 flex-1 flex items-center">
@@ -36,6 +36,12 @@
 
 <script>
 export default {
+  props: {
+    isExpanded: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
       volunteerInfo: []
@@ -45,9 +51,15 @@ export default {
     this.volunteerInfo = await this.$content('volunteer').fetch()
   },
   computed: {
+    VolunteerDate () {
+      return new Date(this.volunteerInfo.date)
+    },
+    isVisible () {
+      return this.VolunteerDate > new Date()
+    },
     formattedDate () {
       if (this.volunteerInfo.date) {
-        return new Intl.DateTimeFormat('en-US').format(new Date(this.volunteerInfo.date))
+        return new Intl.DateTimeFormat('en-US').format(this.VolunteerDate)
       }
       return null
     }
