@@ -1,25 +1,25 @@
 <template>
   <div class="bg-white">
-    <div class="bg-green-600">
-      <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 lg:max-w-screen-xl">
-        <div class="px-0 sm:px-4 lg:px-0 lg:flex lg:justify-between lg:items-center">
-          <div class="max-w-xl">
-            <h2 class="text-4xl0 font-extrabold text-white sm:text-5xl sm:leading-none sm:tracking-tight lg:text-6xl">
-              Volunteer
+    <div class="max-w-7xl mx-auto">
+      <div class="bg-gradient-to-r from-green-400 to-teal-600 shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+        <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
+          <div class="lg:self-center">
+            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+              <span class="block">Ready to help?</span>
+              <span class="block text-teal-900">Volunteer to help improve Ute Valley Park</span>
             </h2>
-            <p class="mt-5 text-xl text-green-50">
+            <p class="mt-4 text-lg leading-6 text-green-50">
               Looking for a great workout? Meet wonderful people, get dirty, get fit and improve Ute Valley Park – all at the same time!
             </p>
           </div>
-          <div class="mt-10 w-full max-w-xs lg:mt-0">
-            <img src="~/assets/volunteer-2.jpg" class="rounded-lg shadow">
-          </div>
+        </div>
+        <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+          <img src="~/assets/volunteer-2.jpg" class="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20" alt="Volunteers raking mulch">
         </div>
       </div>
     </div>
 
     <div class="bg-gradient-to-b from-green-50 via-white to-white">
-      <!-- Pricing section with single price and feature list -->
       <div class="max-w-screen-xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div class="pb-16 xl:flex xl:items-center xl:justify-between">
           <div>
@@ -40,9 +40,8 @@
           <div class="mt-4 sm:mt-8 md:mt-10 md:grid md:grid-cols-2 md:gap-x-8 xl:mt-0 xl:col-span-2">
             <ul class="divide-y divide-cool-gray-200">
               <li class="py-4 flex space-x-3 md:py-0 md:pb-4">
-                <!-- Heroicon name: check -->
                 <svg
-                  class="flex-shrink-0 h-6 w-6 text-green-500"
+                  class="flex-shrink-0 h-6 w-6 text-green-700"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -56,7 +55,7 @@
               <li class="py-4 flex space-x-3">
                 <!-- Heroicon name: check -->
                 <svg
-                  class="flex-shrink-0 h-6 w-6 text-green-500"
+                  class="flex-shrink-0 h-6 w-6 text-green-600"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -72,7 +71,7 @@
               <li class="py-4 flex space-x-3 md:border-t-0 md:py-0 md:pb-4">
                 <!-- Heroicon name: check -->
                 <svg
-                  class="flex-shrink-0 h-6 w-6 text-green-500"
+                  class="flex-shrink-0 h-6 w-6 text-green-600"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -86,7 +85,7 @@
               <li class="py-4 flex space-x-3">
                 <!-- Heroicon name: check -->
                 <svg
-                  class="flex-shrink-0 h-6 w-6 text-green-500"
+                  class="flex-shrink-0 h-6 w-6 text-green-600"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -100,7 +99,7 @@
               <li class="py-4 flex space-x-3">
                 <!-- Heroicon name: check -->
                 <svg
-                  class="flex-shrink-0 h-6 w-6 text-green-500"
+                  class="flex-shrink-0 h-6 w-6 text-green-600"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -129,9 +128,7 @@
 </template>
 
 <script>
-import uVolunteerbanner from '~/components/u-volunteerbanner.vue'
 export default {
-  components: { uVolunteerbanner },
   head: {
     title: 'Volunteer'
   }
