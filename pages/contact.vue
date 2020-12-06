@@ -1,7 +1,7 @@
 <template>
   <div>
-    <u-contact />
-    <u-team />
+    <contact-form />
+    <team-list />
   </div>
 </template>
 

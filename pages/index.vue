@@ -1,6 +1,6 @@
 <template>
   <div>
-    <u-volunteerbanner class="mb-8" />
+    <volunteer-banner class="mb-8" />
     <main class="lg:relative bg-gray-50">
       <div class="mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-18 lg:text-left">
         <div class="px-4 lg:w-1/2 sm:px-8 xl:pr-16">

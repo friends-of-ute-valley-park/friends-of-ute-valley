@@ -21,6 +21,7 @@
 
     <div class="bg-gradient-to-b from-green-50 via-white to-white">
       <div class="max-w-screen-xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <volunteer-banner is-expanded />
         <div class="pb-16 xl:flex xl:items-center xl:justify-between">
           <div>
             <h2 class="text-4xl0 font-extrabold sm:text-5xl sm:leading-none sm:tracking-tight">
@@ -41,7 +42,7 @@
             <ul class="divide-y divide-cool-gray-200">
               <li class="py-4 flex space-x-3 md:py-0 md:pb-4">
                 <svg
-                  class="flex-shrink-0 h-6 w-6 text-green-700"
+                  class="flex-shrink-0 h-6 w-6 text-green-600"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -53,7 +54,6 @@
                 <span class="text-base text-cool-gray-500">Volunteer days: the 1st and 3rd Wednesday of every month, 5:30 – 7:30 p.m. April through September.</span>
               </li>
               <li class="py-4 flex space-x-3">
-                <!-- Heroicon name: check -->
                 <svg
                   class="flex-shrink-0 h-6 w-6 text-green-600"
                   aria-hidden="true"
@@ -69,7 +69,6 @@
             </ul>
             <ul class="border-t border-cool-gray-200 divide-y divide-cool-gray-200 md:border-t-0">
               <li class="py-4 flex space-x-3 md:border-t-0 md:py-0 md:pb-4">
-                <!-- Heroicon name: check -->
                 <svg
                   class="flex-shrink-0 h-6 w-6 text-green-600"
                   aria-hidden="true"
@@ -83,7 +82,6 @@
                 <span class="text-base text-cool-gray-500">Volunteer and get a free water bottle and T-shirt! After 4 hours of volunteer work you’ll receive a Friends of Ute Valley Park logo t-shirt and water bottle. <span class="text-grey-600 text-sm">Limit 1 water bottle and t-shirt per volunteer. </span></span>
               </li>
               <li class="py-4 flex space-x-3">
-                <!-- Heroicon name: check -->
                 <svg
                   class="flex-shrink-0 h-6 w-6 text-green-600"
                   aria-hidden="true"
@@ -97,7 +95,6 @@
                 <span class="text-base text-cool-gray-500">All tools provided</span>
               </li>
               <li class="py-4 flex space-x-3">
-                <!-- Heroicon name: check -->
                 <svg
                   class="flex-shrink-0 h-6 w-6 text-green-600"
                   aria-hidden="true"
@@ -116,14 +113,14 @@
       </div>
     </div>
 
-    <u-contact default-option="Volunteer">
+    <contact-form default-option="Volunteer">
       <template #title>
         Contact us for more information!
       </template>
       <template #subtitle>
         Help make Ute Valley Park better by volunteering.
       </template>
-    </u-contact>
+    </contact-form>
   </div>
 </template>
 
