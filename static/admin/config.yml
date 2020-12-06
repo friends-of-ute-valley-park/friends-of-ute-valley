@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: drewtownchi/friends-of-ute-valley
+  repo: friends-of-ute-valley-park/friends-of-ute-valley
   branch: main
 
 media_folder: static/images
