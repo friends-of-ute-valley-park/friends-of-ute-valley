@@ -23,7 +23,9 @@ collections:
       - { label: 'Body', name: 'body', widget: 'markdown' }
   - name: 'volunteer'
     label: 'Volunteer'
-    folder: 'content/volunteer'
-    create: false
-    fields:
-      - { label: 'Description', name: 'description', widget: 'string'}
+    files:
+      - label: "Volunteer Day Info"
+        name: "volunteer"
+        file: "/content/volunteer/volunteer.json"
+        fields:
+          - { label: 'Description', name: 'description', widget: 'string'}
