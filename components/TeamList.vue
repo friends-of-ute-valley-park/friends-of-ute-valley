@@ -43,9 +43,9 @@ export default {
         { name: 'Kris Kaltenbacher', title: 'Secretary', image: '' },
         { name: 'Dave Ward', title: 'Treasurer', image: '' },
         { name: 'Phill Emmert', title: 'Communications', image: require('~/assets/members/phill-emmert.jpg') },
-        { name: 'Nick Cirincione', title: 'Board Member', image: '' },
-        { name: 'Frank Self', title: 'Board Member', image: require('~/assets/members/frank-self.jpg') },
-        { name: 'Morgan Vlasse', title: 'Board Member', image: '' }
+        { name: 'Nick Cirincione', title: 'Committee Member', image: '' },
+        { name: 'Frank Self', title: 'Committee Member', image: require('~/assets/members/frank-self.jpg') },
+        { name: 'Morgan Vlasse', title: 'Committee Member', image: '' }
       ]
     }
   }
