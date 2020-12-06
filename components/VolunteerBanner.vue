@@ -22,7 +22,7 @@
       <p class="text-lg text-gray-500">
         {{ volunteerInfo.description }}
       </p>
-      <a href="volunteerInfo.link" class="my-8 bg-green-500 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-green-50 hover:text-green-100 focus:outline-none focus:border-green-300 focus:ring-green transition duration-150 ease-in-out">
+      <a :href="volunteerInfo.link" class="my-8 bg-green-500 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-green-50 hover:text-green-100 focus:outline-none focus:border-green-300 focus:ring-green transition duration-150 ease-in-out">
         Register
       </a>
     </div>
