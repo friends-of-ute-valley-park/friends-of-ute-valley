@@ -76,7 +76,7 @@ export default {
     }
   },
   async fetch () {
-    this.volunteerInfo = await this.$content('volunteer').fetch()
+    this.volunteerInfo = await this.$content('volunteer/volunteer').fetch()
   },
   computed: {
     volunteerDate () {

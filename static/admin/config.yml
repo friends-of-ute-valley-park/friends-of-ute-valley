@@ -21,3 +21,9 @@ collections:
       - { label: 'Cover Image', name: 'coverImage', widget: 'image' }
       - { label: 'Preview Text', name: 'previewText', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: 'volunteer'
+    label: 'Volunteer'
+    folder: 'content/volunteer'
+    create: false
+    fields:
+      - { label: 'Description', name: 'description', widget: 'string'}
