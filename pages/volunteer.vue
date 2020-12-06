@@ -24,22 +24,22 @@
         <volunteer-banner is-expanded />
         <div class="pb-16 xl:flex xl:items-center xl:justify-between">
           <div>
-            <h2 class="text-4xl0 font-extrabold sm:text-5xl sm:leading-none sm:tracking-tight">
+            <h2 class="text-4xl font-extrabold sm:text-5xl sm:leading-none sm:tracking-tight">
               <span class="text-green-900">Learn More </span>
             </h2>
-            <p class="mt-4 text-lg text-cool-gray-500">
+            <p class="mt-4 text-lg text-gray-500">
               Meet your trail crew leader at the Pinon Valley Park (west) entrance to Ute Valley Park.
               The meeting location can change, so please check the FUVP <a href="https://www.facebook.com/FriendsOfUteValleyPark/" class="text-green-600 font-semibold no-underline">Facebook</a> page for updates.
               Any cancellations due to weather will also be posted on <a href="https://www.facebook.com/FriendsOfUteValleyPark/" class="text-green-600 font-semibold no-underline">Facebook</a>.
             </p>
           </div>
         </div>
-        <div class="border-t border-cool-gray-200 pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
+        <div class="border-t border-gray-200 pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
           <div>
             <img src="~/assets/volunteer-3.jpg" class="object-cover rounded-lg shadow">
           </div>
           <div class="mt-4 sm:mt-8 md:mt-10 md:grid md:grid-cols-2 md:gap-x-8 xl:mt-0 xl:col-span-2">
-            <ul class="divide-y divide-cool-gray-200">
+            <ul class="divide-y divide-gray-200">
               <li class="py-4 flex space-x-3 md:py-0 md:pb-4">
                 <svg
                   class="flex-shrink-0 h-6 w-6 text-green-600"
@@ -51,7 +51,7 @@
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                <span class="text-base text-cool-gray-500">Volunteer days: the 1st and 3rd Wednesday of every month, 5:30 – 7:30 p.m. April through September.</span>
+                <span class="text-base text-gray-500">Volunteer days: the 1st and 3rd Wednesday of every month, 5:30 – 7:30 p.m. April through September.</span>
               </li>
               <li class="py-4 flex space-x-3">
                 <svg
@@ -64,10 +64,10 @@
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                <span class="text-base text-cool-gray-500">Crew leaders schedule additional volunteer days. Check the FUVP <a href="https://www.facebook.com/FriendsOfUteValleyPark/" class="text-green-600 font-semibold no-underline">Facebook</a> page for volunteer opportunities, meeting locations and updates.</span>
+                <span class="text-base text-gray-500">Crew leaders schedule additional volunteer days. Check the FUVP <a href="https://www.facebook.com/FriendsOfUteValleyPark/" class="text-green-600 font-semibold no-underline">Facebook</a> page for volunteer opportunities, meeting locations and updates.</span>
               </li>
             </ul>
-            <ul class="border-t border-cool-gray-200 divide-y divide-cool-gray-200 md:border-t-0">
+            <ul class="border-t border-gray-200 divide-y divide-gray-200 md:border-t-0">
               <li class="py-4 flex space-x-3 md:border-t-0 md:py-0 md:pb-4">
                 <svg
                   class="flex-shrink-0 h-6 w-6 text-green-600"
@@ -79,7 +79,7 @@
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                <span class="text-base text-cool-gray-500">Volunteer and get a free water bottle and T-shirt! After 4 hours of volunteer work you’ll receive a Friends of Ute Valley Park logo t-shirt and water bottle. <span class="text-grey-600 text-sm">Limit 1 water bottle and t-shirt per volunteer. </span></span>
+                <span class="text-base text-gray-500">Volunteer and get a free water bottle and T-shirt! After 4 hours of volunteer work you’ll receive a Friends of Ute Valley Park logo t-shirt and water bottle. <span class="text-grey-600 text-sm">Limit 1 water bottle and t-shirt per volunteer. </span></span>
               </li>
               <li class="py-4 flex space-x-3">
                 <svg
@@ -92,7 +92,7 @@
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                <span class="text-base text-cool-gray-500">All tools provided</span>
+                <span class="text-base text-gray-500">All tools provided</span>
               </li>
               <li class="py-4 flex space-x-3">
                 <svg
@@ -105,7 +105,7 @@
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                <span class="text-base text-cool-gray-500">Please wear closed toed shoes</span>
+                <span class="text-base text-gray-500">Please wear closed toed shoes</span>
               </li>
             </ul>
           </div>
