@@ -64,23 +64,38 @@
           </p>
         </div>
         <div class="mt-12">
-          <form action="#" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+          <form action="/.netlify/functions/contact-form" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" @submit.prevent="submit">
             <div class="sm:col-span-2">
               <label for="name" class="block text-sm font-semibold text-gray-700">Name</label>
               <div class="mt-1">
-                <input id="name" type="text" name="name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md">
+                <input
+                  id="name"
+                  v-model="form.name"
+                  required
+                  type="text"
+                  name="name"
+                  autocomplete="given-name"
+                  class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md"
+                >
               </div>
             </div>
             <div class="sm:col-span-2">
               <label for="email" class="block text-sm font-semibold text-gray-700">Email</label>
               <div class="mt-1 relative rounded-md shadow-sm">
-                <input id="email" type="email" class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md">
+                <input
+                  id="email"
+                  v-model="form.email"
+                  autocomplete="email"
+                  required
+                  type="email"
+                  class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md"
+                >
               </div>
             </div>
             <div class="sm:col-span-2">
-              <label for="location" class="block text-sm font-semibold text-gray-700">Category</label>
-              <select id="location" class="py-3 px-3 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md">
-                <option v-for="option in options" :key="option" :selected="option === defaultOption ? 'selected': null">
+              <label for="category" class="block text-sm font-semibold text-gray-700">Category</label>
+              <select id="category" v-model="form.category" class="py-3 px-3 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md">
+                <option v-for="option in options" :key="option">
                   {{ option }}
                 </option>
               </select>
@@ -88,13 +103,13 @@
             <div class="sm:col-span-2">
               <label for="message" class="block text-sm font-semibold text-gray-700">Message</label>
               <div class="mt-1 relative rounded-md shadow-sm">
-                <textarea id="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md" />
+                <textarea id="message" v-model="form.message" required rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md" />
               </div>
             </div>
 
             <div class="sm:col-span-2">
               <span class="w-full inline-flex rounded-md shadow-sm">
-                <button type="button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:ring-green active:bg-green-700 transition ease-in-out duration-150">
+                <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:ring-green active:bg-green-700 transition ease-in-out duration-150">
                   Submit
                 </button>
               </span>
@@ -116,7 +131,38 @@ export default {
   },
   data () {
     return {
-      options: ['Report a problem', 'Volunteer', 'Information', 'Other']
+      errorMessage: '',
+      options: ['Report a problem', 'Volunteer', 'Information', 'Other'],
+      form: {
+        name: '',
+        email: '',
+        category: this.defaultOption || 'Report a problem',
+        message: ''
+      }
+    }
+  },
+  methods: {
+    async submit () {
+      if (this.form.name === '' || this.form.email === '' || this.form.message === '') {
+        this.errorMessage = 'Please fill out the form'
+        return
+      }
+      try {
+        const res = await this.$axios.post('/.netlify/functions/contact-form', {
+          name: this.form.name,
+          email: this.form.email,
+          category: this.form.category,
+          message: this.form.message
+        })
+        if (res.data.status === true) {
+          // Thank Them
+        } else {
+          this.errorMessage = res.data.message
+        }
+      } catch (err) {
+        console.log(err.response.data.message)
+        this.errorMessage = err.response.data.message
+      }
     }
   }
 }

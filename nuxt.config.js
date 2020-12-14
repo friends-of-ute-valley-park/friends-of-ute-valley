@@ -42,7 +42,8 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/content
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxtjs/axios'
   ],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
@@ -59,5 +60,8 @@ export default {
         document.readingTime = text
       }
     }
+  },
+  axios: {
+    baseURL: '/' // Used as fallback if no runtime config is provided
   }
 }
