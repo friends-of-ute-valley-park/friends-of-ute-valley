@@ -1,7 +1,32 @@
 <template>
   <div>
-    <!-- contact form -->
+    <!-- notification banner -->
+    <div v-if="message" class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div class="p-2 rounded-lg bg-green-600 shadow-lg sm:p-3">
+        <div class="flex items-center justify-between flex-wrap">
+          <div class="w-0 flex-1 flex items-center">
+            <span class="flex p-2 rounded-lg bg-green-800">
+              <!-- Heroicon name: speakerphone -->
+              <svg
+                class="h-6 w-6 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+              </svg>
+            </span>
+            <p v-if="message" class="ml-3 font-medium text-white">
+              {{ message }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- contact form -->
     <div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8">
       <div class="relative max-w-xl mx-auto">
         <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404">
@@ -109,7 +134,20 @@
 
             <div class="sm:col-span-2">
               <span class="w-full inline-flex rounded-md shadow-sm">
-                <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:ring-green active:bg-green-700 transition ease-in-out duration-150">
+                <button :disabled="submitInProgress" type="submit" class="disabled:opacity-25 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:ring-green active:bg-green-700 transition ease-in-out duration-150">
+                  <span>
+                    <svg v-if="submitInProgress" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle
+                        class="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="4"
+                      />
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                  </span>
                   Submit
                 </button>
               </span>
@@ -131,20 +169,22 @@ export default {
   },
   data () {
     return {
-      errorMessage: '',
+      message: '',
       options: ['Report a problem', 'Volunteer', 'Information', 'Other'],
       form: {
         name: '',
         email: '',
         category: this.defaultOption || 'Report a problem',
         message: ''
-      }
+      },
+      submitInProgress: false
     }
   },
   methods: {
     async submit () {
+      this.submitInProgress = true
       if (this.form.name === '' || this.form.email === '' || this.form.message === '') {
-        this.errorMessage = 'Please fill out the form'
+        this.message = 'Please fill out the form completely'
         return
       }
       try {
@@ -155,13 +195,17 @@ export default {
           message: this.form.message
         })
         if (res.data.status === true) {
-          // Thank Them
+          this.message = "Thanks for contacting Friend of Ute Valley Park! We'll review your message shortly."
+          this.form.name = ''
+          this.form.email = ''
+          this.form.message = ''
         } else {
-          this.errorMessage = res.data.message
+          this.message = `There was an error processing your request: ${res.data.message}`
         }
       } catch (err) {
-        console.log(err.response.data.message)
-        this.errorMessage = err.response.data.message
+        this.message = err.response.data.message
+      } finally {
+        this.submitInProgress = false
       }
     }
   }
