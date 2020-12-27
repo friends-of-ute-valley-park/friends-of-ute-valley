@@ -1,0 +1,32 @@
+{
+    "name": "Piñon Valley Park Trailhead",
+    "order": 3,
+    "description": "Great access to both Ute Valley and Piñon Valley Parks with the most convenient access to the boulder area.",
+    "directionsLink": "https://goo.gl/maps/ZXN3c92sjsCFhnF19",
+    "location": "Located on Piñon Park Dr and Mule Deer Dr East of Centennial Blvd",
+    "amenities": [
+        {
+            "name": "Parking",
+            "description": "Street parking only."
+        },
+        {
+            "name": "Facilities",
+            "description": "Seasonally available in Piñon Valley Park."
+        },
+        {
+            "name": "Trash",
+            "description": "Provided by Piñon Valley Park near the playground structure."
+        }
+    ],
+    "map": "pinon-valley-park-trailhead-map.jpg",
+    "photos": [
+        {
+            "photo": "pinon-valley-park-trailhead-1.jpg",
+            "caption": "Facing East on Piñon Park Drive"
+        },
+        {
+            "photo": "pinon-valley-park-trailhead-2.jpg",
+            "caption": "Facing West from Ute Valley Park"
+        }
+    ]
+}
