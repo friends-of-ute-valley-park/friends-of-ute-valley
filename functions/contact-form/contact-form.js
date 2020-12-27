@@ -4,6 +4,7 @@ require('dotenv').config()
 
 exports.handler = async function (event, context, callback) {
   const data = generateRequestData(event.body)
+  // eslint-disable-next-line no-console
   console.log(data)
   if (!data.email) {
     return callback(null, {
