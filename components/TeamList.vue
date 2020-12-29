@@ -39,7 +39,7 @@ export default {
     return {
       teamMembers: [
         { name: 'Dan Woods', title: 'Chair', image: require('~/assets/members/dan-woods.jpg') },
-        { name: 'Christine Thomas', title: 'Vice-Chair', image: '' },
+        { name: 'Christine Thomas', title: 'Vice-Chair', image: require('~/assets/members/christine-thomas.jpg') },
         { name: 'Kris Kaltenbacher', title: 'Secretary', image: '' },
         { name: 'Dave Ward', title: 'Treasurer', image: '' },
         { name: 'Phill Emmert', title: 'Communications', image: require('~/assets/members/phill-emmert.jpg') },
