@@ -30,6 +30,21 @@ collections:
         fields:
           - { label: 'Date', name: 'date', widget: 'datetime'}
           - { label: 'Description', name: 'description', widget: 'text'}
-          - { label: 'Meeting Location', name: 'meetingLocation', widget: 'string'}
+          - label: "Meeting Location"
+            name: "meetingLocation"
+            widget: "object"
+            summary: "{{fields.location}}"
+            fields:
+              - label: "Predefined Location"
+                name: "predefinedLocation"
+                widget: "select"
+                options:
+                  - { label: "Other (please fill in the alternative field below)", value: -1}
+                  - { label: "Vindicator", value: 0 }
+                  - { label: "South Rockrimmon", value: 1 }
+                  - { label: "Tech Center", value: 2 }
+                  - { label: "Piñon Valley", value: 3 }
+                  - { label: "Popes Valley", value: 4 }
+              - { label: 'Alternative Location', name: 'alternativeLocation', widget: 'string'}
           - { label: 'Link', name: 'link', widget: 'string'}
           - { label: 'Time', name: 'time', widget: 'string'}
