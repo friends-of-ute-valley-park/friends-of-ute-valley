@@ -17,7 +17,7 @@
         </span>
       </h2>
       <p class="text-lg text-gray-500 py-3">
-        {{ volunteerInfo.meetingLocation }}
+        Meet at <a class="text-green-600 font-semibold no-underline" :href="directionsLink">{{ meetingLocation }}</a>
       </p>
       <p class="text-lg text-gray-500">
         {{ volunteerInfo.description }}
@@ -72,11 +72,22 @@ export default {
   },
   data () {
     return {
-      volunteerInfo: []
+      volunteerInfo: [],
+      meetingLocation: '',
+      directionsLink: ''
     }
   },
   async fetch () {
     this.volunteerInfo = await this.$content('volunteer/volunteer').fetch()
+    const predefinedLocation = this.volunteerInfo.meetingLocation.predefinedLocation
+    if (predefinedLocation !== -1) {
+      const data = await this.$content('trailheads').where({ id: { $eq: predefinedLocation } }).fetch()
+      this.meetingLocation = data[0].name
+      this.directionsLink = data[0].directionsLink
+    } else {
+      this.meetingLocation = this.volunteerInfo.meetingLocation.alternativeLocation
+      this.directionsLink = this.volunteerInfo.meetingLocation.alternativeLocationDirectionsLink
+    }
   },
   computed: {
     volunteerDate () {

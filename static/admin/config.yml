@@ -46,6 +46,6 @@ collections:
                   - { label: "Piñon Valley", value: 4 }
                   - { label: "Popes Valley", value: 5 }
               - { label: 'Alternative Location', name: 'alternativeLocation', widget: 'string', required: false }
-              - { label: 'Alternative Location Maps Link', name: 'alternativeLocationMapsLink', widget: 'string', required: false }
+              - { label: 'Alternative Location Maps Link', name: 'alternativeLocationDirectionsLink', widget: 'string', required: false }
           - { label: 'Link', name: 'link', widget: 'string'}
           - { label: 'Time', name: 'time', widget: 'string'}
