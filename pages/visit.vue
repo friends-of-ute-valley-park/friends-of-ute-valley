@@ -44,7 +44,7 @@
 
           <ul class="mt-10">
             <li v-for="(trailhead, i) in trailheads" :key="trailhead.name" class="relative focus-within:ring-2 focus-within:ring-green-500" :class="{'mt-10': i !== 0}">
-              <div class="flex items-center px-4 py-4 sm:px-6">
+              <div class="flex items-center px-4 py-4 sm:px-6 hover:bg-gray-100">
                 <div class="min-w-0 flex-1 flex items-center">
                   <div class="flex-shrink-0">
                     <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
@@ -54,7 +54,7 @@
                   <div class="ml-4">
                     <h5 class="text-lg font-semibold text-green-800 hover:underline">
                       <nuxt-link
-                        class="block hover:bg-gray-100 focus:outline-none"
+                        class="block focus:outline-none"
                         :to="{name: 'trailheads-slug', params: {slug: trailhead.slug}}"
                       >
                         <!-- Extend touch target to entire panel -->
