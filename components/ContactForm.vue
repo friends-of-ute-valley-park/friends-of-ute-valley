@@ -195,7 +195,7 @@ export default {
           message: this.form.message
         })
         if (res.data.status === true) {
-          this.message = "Thanks for contacting Friend of Ute Valley Park! We'll review your message shortly."
+          this.message = "Thank you for contacting Friends of Ute Valley Park! We'll review your message shortly."
           this.form.name = ''
           this.form.email = ''
           this.form.message = ''
