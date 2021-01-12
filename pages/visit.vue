@@ -43,32 +43,34 @@
           </p>
 
           <ul class="mt-10">
-            <li v-for="(trailhead, i) in trailheads" :key="trailhead.name" :class="{'mt-10': i !== 0}">
-              <nuxt-link
-                class="block hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                :to="{name: 'trailheads-slug', params: {slug: trailhead.slug}}"
-              >
-                <div class="flex items-center px-4 py-4 sm:px-6">
-                  <div class="min-w-0 flex-1 flex items-center">
-                    <div class="flex-shrink-0">
-                      <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                      </div>
-                    </div>
-                    <div class="ml-4">
-                      <h5 class="text-lg font-semibold text-green-800">
-                        {{ trailhead.name }}
-                      </h5>
-                      <p class="text-base text-gray-500">
-                        {{ trailhead.description }}
-                      </p>
+            <li v-for="(trailhead, i) in trailheads" :key="trailhead.name" class="relative focus-within:ring-2 focus-within:ring-green-500" :class="{'mt-10': i !== 0}">
+              <div class="flex items-center px-4 py-4 sm:px-6">
+                <div class="min-w-0 flex-1 flex items-center">
+                  <div class="flex-shrink-0">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                     </div>
                   </div>
-                  <svg class="h-8 w-8 text-green-400 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                  </svg>
+                  <div class="ml-4">
+                    <h5 class="text-lg font-semibold text-green-800 hover:underline">
+                      <nuxt-link
+                        class="block hover:bg-gray-100 focus:outline-none"
+                        :to="{name: 'trailheads-slug', params: {slug: trailhead.slug}}"
+                      >
+                        <!-- Extend touch target to entire panel -->
+                        <span class="absolute inset-0" aria-hidden="true" />
+                        {{ trailhead.name }}
+                      </nuxt-link>
+                    </h5>
+                    <p class="text-base text-gray-500">
+                      {{ trailhead.description }}
+                    </p>
+                  </div>
                 </div>
-              </nuxt-link>
+                <svg class="h-8 w-8 text-green-400 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+              </div>
             </li>
           </ul>
         </div>
@@ -117,7 +119,7 @@
                 Ute Valley Park proudly supports The 7 Principles of Leave No Trace. Please help keep the park safe and clean by following the principles.
               </p>
               <div class="mt-8 sm:flex">
-                <div class="rounded-md shadow mx-auto bg-white p-8 w-64">
+                <div class="rounded-md shadow mx-auto bg-white p-8 w-64 focus-within:ring-2 focus-within:ring-green-100">
                   <a href="https://www.lnt.org">
                     <img src="~/assets/logos/leave-no-trace.jpg" alt="Leave No Trace Logo">
                   </a>
@@ -125,7 +127,7 @@
               </div>
             </div>
             <div class="mt-8 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
-              <div v-for="principle in principles" :key="principle.name" class="col-span-1 flex justify-center bg-gray-50 overflow-hidden relative  bg-gradient-to-t from-gray-700 ">
+              <div v-for="principle in principles" :key="principle.name" class="col-span-1 flex justify-center bg-gray-50 overflow-hidden relative  bg-gradient-to-t from-gray-700 focus-within:ring-2 focus-within:ring-green-100">
                 <a class="transition text-xl font-semibold text-white" :href="principle.url">
                   <img class="transition transform duration-500 opacity-75 hover:opacity-100 hover:scale-105" :src="principle.image" :alt="principle.altText">
                   <span class="absolute inset-x-1 bottom-0">{{ principle.name }}</span>
