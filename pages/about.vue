@@ -9,6 +9,7 @@
       </div>
     </div>
     <team-list />
+    <leave-no-trace is-small />
   </div>
 </template>
 

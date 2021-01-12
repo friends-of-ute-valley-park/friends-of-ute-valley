@@ -1,6 +1,19 @@
 <template>
-  <div class="bg-green-600 my-16 rounded-lg">
-    <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+  <div class="bg-green-600 my-16 rounded-lg mx-2 md:mx-0 ">
+    <div v-if="isSmall" class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+      <h2 class="text-4xl font-extrabold tracking-tight text-green-50 sm:text-5xl">
+        <span class="block">Leave No Trace</span>
+        <span class="block text-green-100 text-2xl">Ute Valley Park proudly supports The 7 Principles of Leave No Trace.</span>
+      </h2>
+      <div class="mt-8 md:ml-8 lg:mt-0 lg:flex-shrink-0">
+        <div class="rounded-md shadow mx-auto bg-white p-8 w-64 focus-within:ring-2 focus-within:ring-green-100">
+          <a href="https://www.lnt.org">
+            <img src="~/assets/logos/leave-no-trace.jpg" alt="Leave No Trace Logo">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div v-else class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
       <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
         <div>
           <h2 class="text-3xl font-extrabold text-green-50 sm:text-5xl text-center">
@@ -32,6 +45,12 @@
 
 <script>
 export default {
+  props: {
+    isSmall: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
       principles: [

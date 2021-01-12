@@ -14,6 +14,7 @@
           </div>
         </dl>
       </div>
+      <leave-no-trace is-small />
     </div>
   </div>
 </template>

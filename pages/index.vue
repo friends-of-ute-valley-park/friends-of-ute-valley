@@ -84,6 +84,7 @@
         </div>
       </div>
     </div>
+    <leave-no-trace />
   </div>
 </template>
 

@@ -113,6 +113,8 @@
       </div>
     </div>
 
+    <leave-no-trace is-small />
+
     <contact-form default-option="Volunteer">
       <template #title>
         Contact us for more information!
