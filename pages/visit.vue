@@ -112,7 +112,7 @@
         <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
           <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div>
-              <h2 class="text-3xl font-extrabold text-green-50 sm:text-5xl sm:leading-10">
+              <h2 class="text-3xl font-extrabold text-green-50 sm:text-5xl text-center">
                 Leave No Trace
               </h2>
               <p class="mt-3 max-w-3xl text-lg text-gray-50">
@@ -126,7 +126,7 @@
                 </div>
               </div>
             </div>
-            <div class="mt-8 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
+            <div class="mt-8 grid grid-cols-2 gap-0.5 lg:mt-0">
               <div v-for="principle in principles" :key="principle.name" class="col-span-1 flex justify-center bg-gray-50 overflow-hidden relative  bg-gradient-to-t from-gray-700 focus-within:ring-2 focus-within:ring-green-100">
                 <a class="transition text-xl font-semibold text-white" :href="principle.url">
                   <img class="transition transform duration-500 opacity-75 hover:opacity-100 hover:scale-105" :src="principle.image" :alt="principle.altText">
