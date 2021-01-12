@@ -20,18 +20,18 @@
           </div>
         </div>
         <div class="hidden sm:ml-8 sm:flex sm:items-center">
-          <div class="inline-flex items-center px-2 pt-1 ">
-            <a href="https://www.facebook.com/FriendsOfUteValleyPark">
+          <div class="inline-flex items-center px-2 pt-1">
+            <a href="https://www.facebook.com/FriendsOfUteValleyPark" class="focus:outline-none focus-within:ring-2 focus-within:ring-green-500">
               <img class="h-6" src="~/assets/logos/facebook.png" alt="Facebook">
             </a>
           </div>
-          <div class="inline-flex items-center px-2 pt-1 ">
-            <a href="https://www.instagram.com/friendsofutevalleypark/">
+          <div class="inline-flex items-center px-2 pt-1">
+            <a href="https://www.instagram.com/friendsofutevalleypark/" class="focus:outline-none focus-within:ring-2 focus-within:ring-green-500">
               <img class="h-6" src="~/assets/logos/instagram.png" alt="Instagram">
             </a>
           </div>
-          <div class="inline-flex items-center px-2 pt-1 ">
-            <a href="https://www.twitter.com/FriendsUVP">
+          <div class="inline-flex items-center px-2 pt-1">
+            <a href="https://www.twitter.com/FriendsUVP" class="focus:outline-none focus-within:ring-2 focus-within:ring-green-500">
               <img class="h-6" src="~/assets/logos/twitter.svg" alt="Twitter">
             </a>
           </div>

@@ -22,7 +22,7 @@
       <p class="text-lg text-gray-500">
         {{ volunteerInfo.description }}
       </p>
-      <a :href="volunteerInfo.link" class="my-8 bg-green-500 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-green-50 hover:text-green-100 focus:outline-none focus:border-green-300 focus:ring-green transition duration-150 ease-in-out">
+      <a :href="volunteerInfo.link" class="my-8 bg-green-500 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-green-50 hover:text-green-100 focus:outline-none focus:ring-green-300 focus:ring-2 transition duration-150 ease-in-out">
         Register
       </a>
     </div>
@@ -52,7 +52,7 @@
             </p>
           </div>
           <div class="order-3 mt-4 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
-            <a :href="volunteerInfo.link" class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-semibold text-teal-600 bg-white hover:bg-teal-50">
+            <a :href="volunteerInfo.link" class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-semibold text-teal-600 bg-white hover:bg-teal-50 focus:outline-none focus:ring-green-500 focus:ring-2">
               Register
             </a>
           </div>
