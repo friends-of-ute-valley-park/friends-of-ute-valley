@@ -208,11 +208,11 @@
           <div class="mt-5 prose prose-green text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
             <h4>BeaUTEiful Loop</h4>
             <p class="text-lg text-gray-600">
-              Ridge top views of Pikes Peak, Black Forrest and Rockrimmon as well as meandering through dense forrest and rocky outcrops.
+              Ridge top views of Pikes Peak, Black Forest and Rockrimmon as well as meandering through dense forest and rocky outcrops.
             </p>
             <h4>Rattlesnake Ridge</h4>
             <p class="text-lg text-gray-600">
-              Breathtaking views on a razor ridge where you can see Pikes Peak, Garden of the Gods, Pinion Valley as well as Black Forrest.  This is a very technical, sharp, rocky trail, great for a challenging hike, not recommended for most mountain bikers; only the most experienced.
+              Breathtaking views on a razor ridge where you can see Pikes Peak, Garden of the Gods, Pinion Valley as well as Black Forest.  This is a very technical, sharp, rocky trail, great for a challenging hike, not recommended for most mountain bikers; only the most experienced.
             </p>
             <h4>High Arches loop</h4>
             <p class="text-lg text-gray-600">
