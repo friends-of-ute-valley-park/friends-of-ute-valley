@@ -29,7 +29,7 @@
     <div v-else class="bg-teal-700">
       <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between flex-wrap">
-          <div class="w-0 flex-1 flex items-center">
+          <div class="flex-1 flex items-center">
             <span class="flex p-2 rounded-lg bg-teal-800">
               <svg
                 class="h-6 w-6 text-white"
