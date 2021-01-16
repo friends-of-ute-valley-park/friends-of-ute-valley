@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+  <div class="flex flex-col rounded-lg shadow-lg overflow-hidden" :class="{'sm:flex-row': canBeWide}">
     <div class="flex-shrink-0">
       <img class="h-48 w-full object-cover" :src="news.coverImage" alt="">
     </div>
@@ -40,6 +40,10 @@ export default {
     news: {
       type: Object,
       required: true
+    },
+    canBeWide: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
