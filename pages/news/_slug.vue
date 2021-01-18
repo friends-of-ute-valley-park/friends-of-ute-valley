@@ -100,7 +100,29 @@ export default {
   },
   head () {
     return {
-      title: this.page ? this.page.title : null
+      title: this.page?.title,
+      meta: [
+        {
+          name: 'twitter:card',
+          content: 'summary_large_image'
+        },
+        {
+          name: 'twitter:site',
+          content: '@FriendsUVP'
+        },
+        {
+          name: 'twitter:title',
+          content: this.page?.title
+        },
+        {
+          name: 'twitter:image',
+          content: this.page?.coverImage
+        },
+        {
+          name: 'description',
+          content: this.page?.previewText
+        }
+      ]
     }
   }
 }
