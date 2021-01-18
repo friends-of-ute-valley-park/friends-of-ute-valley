@@ -13,6 +13,9 @@ export default {
   },
   async fetch () {
     this.news = await this.$content('news').sortBy('publishedOn', 'desc').limit(50).fetch()
+  },
+  head: {
+    title: 'News'
   }
 }
 </script>

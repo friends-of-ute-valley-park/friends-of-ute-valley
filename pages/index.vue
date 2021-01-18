@@ -100,6 +100,7 @@ export default {
   },
   head () {
     return {
+      title: 'Home',
       meta: [
         {
           name: 'twitter:card',
