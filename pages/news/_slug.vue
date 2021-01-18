@@ -116,7 +116,11 @@ export default {
         },
         {
           name: 'twitter:image',
-          content: this.page?.coverImage
+          content: 'https://www.friendsofutevalleypark.com' + this.page?.coverImage
+        },
+        {
+          name: 'twitter:description',
+          content: this.page?.previewText
         },
         {
           name: 'description',

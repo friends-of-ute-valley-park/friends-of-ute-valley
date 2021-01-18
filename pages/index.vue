@@ -115,7 +115,11 @@ export default {
         },
         {
           name: 'twitter:image',
-          content: require('~/assets/ute-valley-park.jpg')
+          content: 'https://www.friendsofutevalleypark.com' + require('~/assets/ute-valley-park.jpg')
+        },
+        {
+          name: 'twitter:description',
+          content: 'Friends of Ute Valley Park is an officially recognized “Friends” organization by the City of Colorado Springs Parks and Recreation Department.'
         },
         {
           name: 'description',
