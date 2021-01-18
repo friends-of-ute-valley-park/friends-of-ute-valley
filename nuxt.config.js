@@ -6,6 +6,9 @@ export default {
   head: {
     title: 'Friends of Ute Valley Park',
     titleTemplate: '%s - Friends of Ute Valley Park',
+    htmlAttrs: {
+      lang: 'en'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

@@ -58,10 +58,10 @@
             </svg>
           </a>
         </div>
-        <p class="mt-8 text-center text-base text-gray-400">
+        <p class="mt-8 text-center text-base text-gray-600">
           &copy; 2020 Friend of Ute Valley Park. All rights reserved.
         </p>
-        <p class="mt-2 text-center text-base text-gray-400">
+        <p class="mt-2 text-center text-base text-gray-600">
           A fiscally sponsored fund of the Trails and Open Space Coalition, a 501(c)(3) organization. Contributions are tax deductible to the extent allowed by law.
         </p>
       </div>

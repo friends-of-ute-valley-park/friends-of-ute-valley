@@ -123,6 +123,7 @@ export default {
           content: 'Friends of Ute Valley Park is an officially recognized “Friends” organization by the City of Colorado Springs Parks and Recreation Department.'
         },
         {
+          hid: 'description',
           name: 'description',
           content: 'Friends of Ute Valley Park is an officially recognized “Friends” organization by the City of Colorado Springs Parks and Recreation Department. Our mission is to maintain, preserve, and provide education for Ute Valley Park.'
         }
