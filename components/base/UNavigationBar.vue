@@ -80,6 +80,7 @@ export default {
         { route: '/', title: 'Home' },
         { route: '/visit', title: 'Visit' },
         { route: '/volunteer', title: 'Volunteer' },
+        { route: '/donate', title: 'Donate' },
         { route: '/contact', title: 'Contact' }
       ],
       mobileMenuOpen: false
