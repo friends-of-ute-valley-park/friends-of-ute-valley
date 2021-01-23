@@ -39,7 +39,7 @@
             Getting There
           </h4>
           <p class="mt-3 text-lg leading-7 text-gray-500">
-            Ute Valley Park is nestled between Centennial Blvd, Vindicator Dr and I-25 in Colorado Springs with 3 convenient parking locations.
+            Ute Valley Park is nestled between Centennial Blvd, Vindicator Dr and I-25 in Colorado Springs with 5 convenient parking locations.
           </p>
 
           <ul class="mt-10">
