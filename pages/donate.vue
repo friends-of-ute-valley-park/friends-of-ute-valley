@@ -86,13 +86,13 @@
               </p>
               <div class="mt-6">
                 <div class="rounded-md shadow">
-                  <a href="https://www.trailsandopenspaces.org/donate/" class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring transition duration-150 ease-in-out">
+                  <a href="https://www.trailsandopenspaces.org/fiscal-sponsors/" class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring transition duration-150 ease-in-out">
                     Donate
                   </a>
                 </div>
               </div>
               <div class="mt-4 text-sm leading-5">
-                <a href="https://www.trailsandopenspaces.org/donate/" class="font-medium text-gray-900">
+                <a href="https://www.trailsandopenspaces.org/fiscal-sponsors/" class="font-medium text-gray-900">
                   <svg
                     id="Layer_1"
                     class="w-64"
