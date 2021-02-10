@@ -150,7 +150,7 @@
           <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
             <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 mt-8 lg:mt-0">
               <figure>
-                <img class="rounded-lg shadow-lg object-cover object-center" src="~/assets/dog.jpg">
+                <img class="rounded-lg shadow-lg object-cover object-center" src="~/assets/dog.jpg" alt="dog in park in front of mountains">
               </figure>
             </div>
           </div>
@@ -234,7 +234,7 @@
         <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
           <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 lg:h-96 mt-8 lg:mt-0">
             <figure>
-              <img class="rounded-lg shadow-lg object-cover object-center" src="~/assets/ute-valley-park.jpg">
+              <img class="rounded-lg shadow-lg object-cover object-center" src="~/assets/ute-valley-park.jpg" alt="ute valley park">
             </figure>
           </div>
         </div>
