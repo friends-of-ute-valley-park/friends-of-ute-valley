@@ -37,6 +37,11 @@
               Donate
             </nuxt-link>
           </div>
+          <div class="px-5 py-2">
+            <nuxt-link to="/rules" class="text-base text-gray-500 hover:underline hover:text-green-800 focus:outline-none focus:underline focus:text-green-800">
+              Rules
+            </nuxt-link>
+          </div>
         </nav>
         <div class="mt-8 flex justify-center space-x-6">
           <a href="https://www.facebook.com/FriendsOfUteValleyPark" class="text-gray-400 hover:text-gray-500 focus:outline-none focus-within:ring-2 focus-within:ring-green-500">

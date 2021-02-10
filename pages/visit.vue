@@ -108,7 +108,7 @@
       </div>
 
       <leave-no-trace />
-
+      <!-- Rules -->
       <svg class="hidden lg:block absolute right-full transform translate-x-1/2 translate-y-12" width="404" height="784" fill="none" viewBox="0 0 404 784">
         <defs>
           <pattern
@@ -131,6 +131,33 @@
         </defs>
         <rect width="404" height="784" fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)" />
       </svg>
+
+      <div class="max-w-7xl mx-auto relative bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto text-base">
+          <h2 class="text-base text-green-600 font-semibold tracking-wide uppercase">
+            Rules
+          </h2>
+          <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            Help keep Ute Valley Safe and Clean
+          </h3>
+        </div>
+        <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
+          <div class="mt-8 lg:mt-0 text-xl">
+            For the safety and comfort of all visitors please read <nuxt-link to="/rules" class="text-green-600 font-semibold no-underline">
+              rules
+            </nuxt-link> the city of Colorado Springs enforces for all parks.
+          </div>
+          <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
+            <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 mt-8 lg:mt-0">
+              <figure>
+                <img class="rounded-lg shadow-lg object-cover object-center" src="~/assets/dog.jpg">
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activities -->
 
       <div class="relative mt-12 sm:mt-16 lg:mt-24 mb-16">
         <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
@@ -163,31 +190,11 @@
             </ul>
           </div>
 
-          <div class="mt-10 -mx-4 relative lg:mt-0 lg:col-start-1">
-            <svg class="absolute left-1/2 transform -translate-x-1/2 translate-y-16 lg:hidden" width="784" height="404" fill="none" viewBox="0 0 784 404">
-              <defs>
-                <pattern
-                  id="e80155a9-dfde-425a-b5ea-1f6fadd20131"
-                  x="0"
-                  y="0"
-                  width="20"
-                  height="20"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <rect
-                    x="0"
-                    y="0"
-                    width="4"
-                    height="4"
-                    class="text-gray-200"
-                    fill="currentColor"
-                  />
-                </pattern>
-              </defs>
-              <rect width="784" height="404" fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)" />
-            </svg>
-            <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 px-4">
-              <img class="rounded-lg shadow-lg object-cover object-center" src="~/assets/activities.jpg" alt="Biker in the air at sunset">
+          <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
+            <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 lg:h-96 mt-8 lg:mt-0">
+              <figure>
+                <img class="rounded-lg shadow-lg object-cover object-center" src="~/assets/activities.jpg" alt="Biker in the air at sunset">
+              </figure>
             </div>
           </div>
         </div>
