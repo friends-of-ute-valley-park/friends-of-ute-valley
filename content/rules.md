@@ -40,3 +40,8 @@ B. In any dog park or off-leash area designated by the Park Manager in which dog
 ## Trail Etiquette
 
 ![Trail right of way sign](/images/trail-right-of-way.png)
+
+* Please, stay on the trail.
+* Share the trail. Ride, walk or run on the right, pass on the left.
+* Bicyclist - slow down when approaching others or curves. Warn others when passing.
+* Dogs must beo n leash. Owner is responsible for cleaning up pet excrement.
