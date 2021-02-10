@@ -1,3 +1,12 @@
+## Park Hours
+* November 1 to April 30: **5 am - 9 pm**.
+* May 1 to October 31: **5 am - 10 pm**.
+
+## Ute Valley Park Exceptions
+1. There is **no** designated smoking area in Ute Valley Park.
+2. There is **no** designated area where the pet waste rule does not apply in Ute Valley Park.
+3. There is **no** dog park or off-leash area in Ute Valley Park.
+
 ## Park Rules
 
 1. Alcoholic beverages are prohibited in City Parks by Ordinance No. 9-9-410.
@@ -26,4 +35,8 @@ B. In any dog park or off-leash area designated by the Park Manager in which dog
 
 2. To fail to obey any posted rules, regulations or guidelines for use of the fenced dog park or off-leash area.
 
-3. To bring a dangerous animal, as defined in section 6.7.102 (link is external) of this Code, into a fenced dog park or off-leash area. (Ord. 18-24)
+3. To bring a dangerous animal, as defined in section [6.7.102](https://codelibrary.amlegal.com/codes/coloradospringsco/latest/coloradosprings_co/0-0-0-6991) (link is external) of this Code, into a fenced dog park or off-leash area. (Ord. 18-24)
+
+## Trail Etiquette
+
+![Trail right of way sign](/images/trail-right-of-way.png)
