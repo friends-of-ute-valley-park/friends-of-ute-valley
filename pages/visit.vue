@@ -143,7 +143,7 @@
         </div>
         <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
           <div class="mt-8 lg:mt-0 text-xl">
-            For the safety and comfort of all visitors please read <nuxt-link to="/rules" class="text-green-600 font-semibold no-underline">
+            For the safety and comfort of all visitors please read the <nuxt-link to="/rules" class="text-green-600 font-semibold no-underline">
               rules
             </nuxt-link> the city of Colorado Springs enforces for all parks.
           </div>
