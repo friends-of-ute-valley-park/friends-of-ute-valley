@@ -145,7 +145,7 @@
           <div class="mt-8 lg:mt-0 text-xl">
             For the safety and comfort of all visitors please read the <nuxt-link to="/rules" class="text-green-600 font-semibold no-underline">
               rules
-            </nuxt-link> the city of Colorado Springs enforces for all parks.
+            </nuxt-link> the city of Colorado Springs enforces for all city parks and open spaces.
           </div>
           <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
             <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 mt-8 lg:mt-0">
