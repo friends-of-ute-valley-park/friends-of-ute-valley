@@ -1,5 +1,7 @@
 Friends of Ute Valley Park (FUVP) is an officially recognized “Friends” organization by the city of Colorado Springs Parks, Recreation, and Cultural Services Department. Our mission is to maintain, preserve, and provide education for Ute Valley Park (UVP).
 
+[Click here](https://coloradosprings.gov/sites/default/files/parks_recreation_and_cultural_services/parks/15.03.12_ute_mmp.pdf) to view the Ute Valley Park Master Plan developed by the City of Colorado Springs.
+
 In 2012, The City Parks Department learned that the Hewlett-Packard Company was willing to sell 205 acres of its property in Rockrimmon adjacent to the existing 345 acre UVP. The City of Colorado Springs was hoping to purchase the additional 205 acres through the Trails, Open Spaces, and Parks fund (TOPS). Having a “Friends” group in place would be a way in which the community could be seen as having a stake in the purchase process. Thus, FUVP was organized in 2012 with its first meeting of the board taking place in early 2013. With the cooperation of FUVP, the Trust for Public Land, and TOPS the City was able to purchase the property in 2014-15. FUVP raised $110,000 in 3-1/2 months toward the purchase.
 
 In March 2015 the City adopted a Master & Management Plan for UVP. The Plan represents a cooperative agreement between the community and the City. This community-created plan guides our efforts in UVP.
