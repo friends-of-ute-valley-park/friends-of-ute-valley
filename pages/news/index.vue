@@ -1,6 +1,6 @@
 <template>
   <ul class="space-y-3 mx-4 sm:mx-0">
-    <u-card v-for="newsItem in news" :key="newsItem.slug" :news="newsItem" can-be-wide />
+    <base-card v-for="newsItem in news" :key="newsItem.slug" :news="newsItem" can-be-wide />
   </ul>
 </template>
 
