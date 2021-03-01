@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-white">
-    <u-navigation-bar />
+    <base-navigation-bar />
 
     <div class="py-10">
       <main>

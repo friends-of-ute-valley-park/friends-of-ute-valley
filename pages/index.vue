@@ -80,7 +80,7 @@
           </p>
         </div>
         <div class="mt-12 grid gap-5 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
-          <u-card v-for="newsItem in news" :key="newsItem.slug" :news="newsItem" />
+          <base-card v-for="newsItem in news" :key="newsItem.slug" :news="newsItem" />
         </div>
       </div>
     </div>
