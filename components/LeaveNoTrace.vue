@@ -3,7 +3,14 @@
     <div v-if="isSmall" class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
       <h2 class="text-4xl font-extrabold tracking-tight text-green-50 sm:text-5xl">
         <span class="block">Leave No Trace</span>
-        <span class="block text-green-100 text-2xl">Ute Valley Park proudly supports The 7 Principles of Leave No Trace.</span>
+        <span class="block text-green-100 text-2xl border-b-2 border-green-200 pb-2">Ute Valley Park proudly supports The 7 Principles of Leave No Trace.</span>
+        <p class="mt-3 max-w-3xl text-lg text-green-100 font-normal">
+          Please read and always obey the
+          <nuxt-link to="/rules" class="text-gray-50 underline font-bold inline-block">
+            rules
+          </nuxt-link>
+          of Ute Valley Park.
+        </p>
       </h2>
       <div class="mt-8 md:ml-8 lg:mt-0 lg:flex-shrink-0">
         <div class="rounded-md shadow mx-auto bg-white p-8 w-64 focus-within:ring-2 focus-within:ring-green-100">
