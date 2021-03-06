@@ -48,7 +48,7 @@
           <div class="lg:col-span-2">
             <ul class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:gap-x-8">
               <li v-for="principle in principles" :key="principle.name">
-                <a class="space-y-4" :href="principle.url">
+                <div class="space-y-4">
                   <div class="aspect-w-3 aspect-h-2">
                     <img class="object-cover shadow-lg rounded-lg" :src="principle.image" :alt="principle.altText">
                   </div>
@@ -62,7 +62,7 @@
                       {{ principle.text }}
                     </p>
                   </div>
-                </a>
+                </div>
               </li>
             </ul>
           </div>
@@ -86,42 +86,36 @@ export default {
         {
           name: 'Plan Ahead & Prepare',
           text: 'A little preparation goes a long way! Checking the forecast, planning your route, and reviewing the Rules and Regulations will help prepare you for your Ute Valley Park adventure.',
-          url: 'https://lnt.org/why/7-principles/plan-ahead-and-prepare/',
           image: require('~/assets/lnt/plan-ahead-and-prepare.jpg'),
           altText: 'A lone tree in Ute Valley Park'
         },
         {
           name: 'Travel on Durable Surfaces',
           text: 'Stay on designated trails to minimize soil erosion and preserve Ute Valley Park’s natural features. Muddy trails? Hike right through them! And please respect Natural Preservation Area closures.',
-          url: 'https://lnt.org/why/7-principles/travel-camp-on-durable-surfaces/',
           image: require('~/assets/lnt/travel-on-durable-surfaces.jpg'),
           altText: 'Ute Valley Park trail'
         },
         {
           name: 'Dispose of Waste Properly',
           text: 'Please pack out all trash items, including bagged dog waste, or place it into trash cans before leaving the park. This keeps Ute Valley Park looking (and smelling) bea-UTE-iful!',
-          url: 'https://lnt.org/why/7-principles/dispose-of-waste-properly/',
           image: require('~/assets/lnt/dispose-of-waste-properly.jpg'),
           altText: 'Rubbish in the dirt'
         },
         {
           name: 'Leave What You Find',
           text: 'From flowers to frog eggs, Ute Valley Park is full of fascinating features! Remember to take pictures of these fun finds and leave them where they are for other park users to discover.',
-          url: 'https://lnt.org/why/7-principles/leave-what-you-find/',
           image: require('~/assets/lnt/leave-what-you-find.jpg'),
           altText: 'Flowers'
         },
         {
           name: 'Respect Wildlife',
           text: 'Ute Valley Park provides essential habitat for a variety of animals. Please observe all wildlife from safe distances and never feed them. Keeping your pet on a leash protects everyone who uses, and lives in, the park.',
-          url: 'https://lnt.org/why/7-principles/respect-wildlife/',
           image: require('~/assets/lnt/respect-wildlife.jpg'),
           altText: 'A deer in Ute Valley Park'
         },
         {
           name: 'Be Considerate of Other Visitors',
           text: 'Practice recreational empathy! Enhance the experience of other park visitors by sharing the trail. Cyclists should always ride in control. Hikers, be mindful of the Downhill Bike Area trails.',
-          url: 'https://lnt.org/why/7-principles/be-considerate-of-other-visitors/',
           image: require('~/assets/lnt/be-considerate-of-other-visitors.jpg'),
           altText: 'Hikers walking on snow in the park'
         }
