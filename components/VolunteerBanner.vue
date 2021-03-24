@@ -20,12 +20,14 @@
       <div class="prose  max-w-none">
         <nuxt-content :document="volunteerInfo" />
       </div>
-      <a :href="volunteerInfo.link" class="my-8 bg-green-500 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-green-50 hover:text-green-100 focus:outline-none focus:ring-green-300 focus:ring-2 transition duration-150 ease-in-out">
-        Register
-      </a>
-      <a href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf" class="my-8 bg-teal-600 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-teal-50 hover:text-teal-100 focus:outline-none focus:ring-teal-300 focus:ring-2 transition duration-150 ease-in-out">
-        View Consent and Release Form
-      </a>
+      <div class="my-8">
+        <a :href="volunteerInfo.link" class="bg-green-500 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-green-50 hover:text-green-100 focus:outline-none focus:ring-green-300 focus:ring-2 transition duration-150 ease-in-out">
+          Register
+        </a>
+        <a href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf" class="bg-teal-600 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-teal-50 hover:text-teal-100 focus:outline-none focus:ring-teal-300 focus:ring-2 transition duration-150 ease-in-out">
+          View Consent and Release Form
+        </a>
+      </div>
     </div>
     <div v-else class="bg-teal-700">
       <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
