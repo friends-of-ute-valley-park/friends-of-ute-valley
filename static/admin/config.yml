@@ -29,7 +29,7 @@ collections:
         file: "/content/volunteer/volunteer.json"
         fields:
           - { label: 'Date', name: 'date', widget: 'datetime'}
-          - { label: 'Description', name: 'description', widget: 'text'}
+          - { label: 'Description', name: 'description', widget: 'markdown'}
           - label: "Meeting Location"
             name: "meetingLocation"
             widget: "object"
