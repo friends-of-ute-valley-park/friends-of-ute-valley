@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="isSmall" class="bg-green-600 my-16 rounded-lg md:mx-0 max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+    <div v-if="isSmall" class="bg-green-600 my-16 rounded-lg mx-4 max-w-7xl py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
       <h2 class="text-4xl font-extrabold tracking-tight text-green-50 sm:text-5xl">
         <span class="block">Leave No Trace</span>
         <span class="block text-green-100 text-2xl border-b-2 border-green-200 pb-2">Ute Valley Park proudly supports The 7 Principles of Leave No Trace.</span>
