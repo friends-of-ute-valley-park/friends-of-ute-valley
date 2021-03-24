@@ -21,7 +21,7 @@
         <nuxt-content :document="volunteerInfo" />
       </div>
       <div class="my-8">
-        <a :href="volunteerInfo.link" class="bg-green-500 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-green-50 hover:text-green-100 focus:outline-none focus:ring-green-300 focus:ring-2 transition duration-150 ease-in-out">
+        <a :href="volunteerInfo.link" class="mb-2 md:my-0 bg-green-500 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-green-50 hover:text-green-100 focus:outline-none focus:ring-green-300 focus:ring-2 transition duration-150 ease-in-out">
           Register
         </a>
         <a href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf" class="bg-teal-600 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-teal-50 hover:text-teal-100 focus:outline-none focus:ring-teal-300 focus:ring-2 transition duration-150 ease-in-out">
