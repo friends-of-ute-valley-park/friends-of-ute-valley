@@ -56,11 +56,16 @@ export default {
   build: {
   },
   hooks: {
-    'content:file:beforeInsert': (document) => {
+    'content:file:beforeInsert': async (document, database) => {
       if (document.extension === '.md') {
         const { text } = require('reading-time')(document.text)
 
         document.readingTime = text
+      }
+      if (document.extension === '.json' && document.body) {
+        const data = await database.markdown.toJSON(document.body)
+
+        Object.assign(document, data)
       }
     }
   },

@@ -17,7 +17,9 @@
       <p class="text-lg text-gray-500 py-3">
         Meet at <a class="text-green-600 font-semibold no-underline" :href="directionsLink">{{ meetingLocation }}</a>
       </p>
-      <p class="text-lg text-gray-500" v-html="volunteerInfo.description" />
+      <div class="prose  max-w-none">
+        <nuxt-content :document="volunteerInfo" />
+      </div>
       <a :href="volunteerInfo.link" class="my-8 bg-green-500 border border-transparent rounded-md shadow py-3 px-6 inline-flex items-center text-base font-medium text-green-50 hover:text-green-100 focus:outline-none focus:ring-green-300 focus:ring-2 transition duration-150 ease-in-out">
         Register
       </a>
