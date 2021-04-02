@@ -26,8 +26,10 @@ collections:
     files:
       - label: "Volunteer Day Info"
         name: "volunteer"
-        file: "/content/volunteer/volunteer.json"
+        file: "/content/volunteer"
+        slug: '{{slug}}'
         fields:
+          - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Date', name: 'date', widget: 'datetime'}
           - { label: 'Description', name: 'body', widget: 'markdown'}
           - label: "Meeting Location"

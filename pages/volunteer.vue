@@ -20,21 +20,23 @@
     </div>
 
     <div class="bg-gradient-to-b from-green-50 via-white to-white">
-      <div class="max-w-screen-xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        <volunteer-banner is-expanded />
-        <div class="pb-16 xl:flex xl:items-center xl:justify-between">
-          <div>
-            <h2 class="text-4xl font-extrabold sm:text-5xl sm:leading-none sm:tracking-tight">
-              <span class="text-green-900">Learn More </span>
-            </h2>
-            <p class="mt-4 text-lg text-gray-500">
-              Meet your trail crew leader at the Pinon Valley Park (west) entrance to Ute Valley Park.
-              The meeting location can change, so please check the FUVP <a href="https://www.facebook.com/FriendsOfUteValleyPark/" class="text-green-600 font-semibold no-underline">Facebook</a> page for updates.
-              Any cancellations due to weather will also be posted on <a href="https://www.facebook.com/FriendsOfUteValleyPark/" class="text-green-600 font-semibold no-underline">Facebook</a>.
-            </p>
+      <div class="max-w-screen-xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div v-if="volunteerEvents.length > 0" class="mb-12">
+          <h2 class="text-4xl font-extrabold sm:text-5xl sm:leading-none sm:tracking-tight text-green-900 my-4">
+            Upcoming Volunteer Events
+          </h2>
+          <div class="bg-white shadow overflow-hidden sm:rounded-md">
+            <ul class="divide-y divide-gray-200">
+              <volunteer-item v-for="(volunteerEvent, i) in volunteerEvents" :key="i" :volunteer-event="volunteerEvent" />
+            </ul>
           </div>
         </div>
-        <div class="border-t border-gray-200 pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
+        <div>
+          <h2 class="text-4xl font-extrabold sm:text-5xl sm:leading-none sm:tracking-tight text-green-900">
+            Learn More
+          </h2>
+        </div>
+        <div class="border-gray-200 pt-8 xl:grid xl:grid-cols-3 xl:gap-x-8">
           <div>
             <img src="~/assets/volunteer-3.jpg" class="object-cover rounded-lg shadow">
           </div>
@@ -128,6 +130,16 @@
 
 <script>
 export default {
+  data () {
+    return {
+      volunteerEvents: []
+    }
+  },
+  async fetch () {
+    this.volunteerEvents = await this.$content('volunteer').where({
+      date: { $gt: new Date('1/2/2021') }
+    }).fetch()
+  },
   head: {
     title: 'Volunteer'
   }
