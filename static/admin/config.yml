@@ -28,7 +28,7 @@ collections:
     slug: '{{slug}}'
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Date', name: 'date', widget: 'datetime'}
+      - { label: 'Date', name: 'date', widget: 'date'}
       - { label: 'Description', name: 'body', widget: 'markdown'}
       - label: "Meeting Location"
         name: "meetingLocation"
