@@ -2,11 +2,11 @@
   <li>
     <a href="#" class="block hover:bg-gray-50">
       <div class="px-4 py-4 sm:px-6">
-        <div class="flex items-center justify-between">
-          <p class="text-lg font-medium text-green-600 truncate">
+        <div class="sm:flex items-center justify-between">
+          <p class="text-lg font-medium text-green-600">
             {{ volunteerEvent.title }}
           </p>
-          <div class="ml-2 flex-shrink-0 flex">
+          <div class="sm:ml-2 mt-2 sm:mt-0 flex-shrink-0 flex">
             <div>
               <a :href="volunteerEvent.link" class="mb-2 md:my-0 bg-green-500 border border-transparent rounded-md shadow py-1 px-2 inline-flex items-center text-sm font-medium text-green-50 hover:text-green-100 focus:outline-none focus:ring-green-300 focus:ring-2 transition duration-150 ease-in-out">
                 Register
