@@ -1,6 +1,6 @@
 ---
 title: Wednesday Evening Work Session (Group 1) - 4/7/2021
-date: 2021-04-07T16:47:53.260Z
+date: 2021-04-07T23:30:00.000Z
 meetingLocation:
   predefinedLocation: 4
 link: https://cerv.is/m?0132g0xTgbq
