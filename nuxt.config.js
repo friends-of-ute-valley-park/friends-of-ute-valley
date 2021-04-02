@@ -62,11 +62,6 @@ export default {
 
         document.readingTime = text
       }
-      if (document.extension === '.json' && document.body) {
-        const data = await database.markdown.toJSON(document.body)
-
-        Object.assign(document, data)
-      }
     }
   },
   axios: {
