@@ -69,7 +69,7 @@ export default {
       return null
     }
   },
-  beforeMount () {
+  mounted () {
     const predefinedLocation = this.volunteerEvent.meetingLocation.predefinedLocation
     if (predefinedLocation !== -1) {
       const location = this.meetingLocations.find(loc => loc.id === predefinedLocation)
