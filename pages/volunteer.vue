@@ -27,7 +27,7 @@
           </h2>
           <div class="bg-white shadow overflow-hidden sm:rounded-md">
             <ul class="divide-y divide-gray-200">
-              <volunteer-item v-for="(volunteerEvent, i) in volunteerEvents" :key="i" :volunteer-event="volunteerEvent" />
+              <volunteer-item v-for="(volunteerEvent, i) in volunteerEvents" :key="i" :meeting-locations="meetingLocations" :volunteer-event="volunteerEvent" />
             </ul>
           </div>
         </div>
@@ -132,10 +132,12 @@
 export default {
   data () {
     return {
-      volunteerEvents: []
+      volunteerEvents: [],
+      meetingLocations: []
     }
   },
   async fetch () {
+    this.meetingLocations = await this.$content('trailheads').only(['id', 'name', 'directionsLink']).fetch()
     this.volunteerEvents = await this.$content('volunteer').where({
       date: { $gt: new Date('1/2/2021') }
     }).fetch()
