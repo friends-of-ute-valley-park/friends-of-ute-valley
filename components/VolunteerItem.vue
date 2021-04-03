@@ -1,6 +1,6 @@
 <template>
   <li>
-    <a href="#" class="block hover:bg-gray-50">
+    <nuxt-link :to="'/events/' + volunteerEvent.slug" class="block hover:bg-gray-50">
       <div class="px-4 py-4 sm:px-6">
         <div class="sm:flex items-center justify-between">
           <p class="text-lg font-medium text-green-600">
@@ -12,7 +12,7 @@
                 Register
               </a>
               <a href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf" class="bg-teal-600 border border-transparent rounded-md shadow py-1 px-2 inline-flex items-center text-sm font-medium text-teal-50 hover:text-teal-100 focus:outline-none focus:ring-teal-300 focus:ring-2 transition duration-150 ease-in-out">
-                View Consent and Release Form
+                Consent and Release Form
               </a>
             </div>
           </div>
@@ -34,12 +34,15 @@
           </div>
         </div>
       </div>
-    </a>
+    </nuxt-link>
   </li>
 </template>
 
 <script>
+import volunteerEventMixin from '~/mixins/volunteer-event-mixin'
+
 export default {
+  mixins: [volunteerEventMixin],
   props: {
     volunteerEvent: {
       type: Object,
@@ -48,34 +51,6 @@ export default {
     meetingLocations: {
       type: Array,
       required: true
-    }
-  },
-  computed: {
-    volunteerDate () {
-      return new Date(this.volunteerEvent.date)
-    },
-    formattedDate () {
-      if (this.volunteerEvent.date) {
-        return new Intl.DateTimeFormat('en-US').format(this.volunteerDate)
-      }
-      return null
-    },
-    predefinedLocation () {
-      return this.volunteerEvent.meetingLocation.predefinedLocation
-    },
-    meetingLocation () {
-      if (this.predefinedLocation !== -1) {
-        const location = this.meetingLocations.find(loc => loc.id === this.predefinedLocation)
-        return location.name
-      }
-      return this.volunteerEvent.meetingLocation.alternativeLocation
-    },
-    directionsLink () {
-      if (this.predefinedLocation !== -1) {
-        const location = this.meetingLocations.find(loc => loc.id === this.predefinedLocation)
-        return location.directionsLink
-      }
-      return this.volunteerEvent.meetingLocation.alternativeLocationDirectionsLink
     }
   }
 }
