@@ -7,7 +7,7 @@ previewText: As we go through our life, we come to realize that change is and
   will always be a constant. A lot of the change we experience is expected and
   accepted. Much of the change we can control, but there is a lot we cannot.
 ---
-This article was originally published in the \[Woodman Edition](https://gazette.com/woodmenedition/changes-afoot-at-ute-valley-park-park-place/article_e83cfd98-8cd9-11eb-bcc7-a70e5944ca66.html)
+This article was originally published in the [Woodman Edition](https://gazette.com/woodmenedition/changes-afoot-at-ute-valley-park-park-place/article_e83cfd98-8cd9-11eb-bcc7-a70e5944ca66.html)
 
 As we go through our life, we come to realize that change is and will always be a constant. A lot of the change we experience is expected and accepted. Much of the change we can control, but there is a lot we cannot.
 
