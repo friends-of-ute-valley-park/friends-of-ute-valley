@@ -147,11 +147,11 @@ export default {
         },
         {
           name: 'twitter:image',
-          content: require('~/assets/volunteer.jpg')
+          content: '/images/volunteer.jpg'
         },
         {
           name: 'twitter:description',
-          content: this.volunteerEvent?.body
+          content: this.volunteerEvent?.description
         },
         {
           name: 'description',
