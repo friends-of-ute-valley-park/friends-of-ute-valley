@@ -1,6 +1,9 @@
 ---
 title: Wednesday Evening Work Session (Group 2) - 4/7/2021
 date: 2021-04-07T23:30:00.000Z
+description: We've been given another signup for a 2nd group since there's a 10
+  person limit due to COVID. This group will meet at the same time and place as
+  group 1, but will be working in a different area and only have 5 volunteers.
 meetingLocation:
   predefinedLocation: 4
 link: https://cerv.is/m?0132g0xTgbq
