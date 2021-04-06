@@ -1,12 +1,12 @@
 <template>
   <div class="bg-white">
     <div class="max-w-7xl mx-auto">
-      <div class="bg-gradient-to-r from-green-400 to-teal-600 shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+      <div class="bg-gradient-to-r from-green-400 to-teal-500 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
         <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
           <div class="lg:self-center">
             <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
               <span class="block">Ready to help?</span>
-              <span class="block text-teal-900">Volunteer to help improve Ute Valley Park</span>
+              <span class="block text-teal-800">Volunteer to help improve Ute Valley Park</span>
             </h2>
             <p class="mt-4 text-lg leading-6 text-green-50">
               Looking for a great workout? Meet wonderful people, get dirty, get fit and improve Ute Valley Park – all at the same time!
@@ -19,22 +19,24 @@
       </div>
     </div>
 
-    <div class="bg-gradient-to-b from-green-50 via-white to-white">
-      <div class="max-w-screen-xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <div>
+      <div class="max-w-screen-xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
         <div v-if="volunteerEvents.length > 0" class="mb-12">
-          <h2 class="text-4xl font-extrabold sm:text-5xl sm:leading-none sm:tracking-tight text-green-900 my-4">
-            Upcoming Volunteer Events
-          </h2>
+          <div class="mb-5">
+            <h3 class="text-3xl leading-6 font-medium text-green-900">
+              Upcoming Volunteer Events
+            </h3>
+          </div>
           <div class="bg-white shadow overflow-hidden sm:rounded-md">
             <ul class="divide-y divide-gray-200">
               <volunteer-item v-for="(volunteerEvent, i) in volunteerEvents" :key="i" :meeting-locations="meetingLocations" :volunteer-event="volunteerEvent" />
             </ul>
           </div>
         </div>
-        <div>
-          <h2 class="text-4xl font-extrabold sm:text-5xl sm:leading-none sm:tracking-tight text-green-900">
+        <div class="pb-5 border-b border-gray-200 pt-4">
+          <h3 class="text-3xl leading-6 font-medium text-green-900">
             Learn More
-          </h2>
+          </h3>
         </div>
         <div class="border-gray-200 pt-8 xl:grid xl:grid-cols-3 xl:gap-x-8">
           <div>
