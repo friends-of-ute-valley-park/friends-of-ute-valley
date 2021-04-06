@@ -139,7 +139,7 @@ export default {
   async fetch () {
     this.meetingLocations = await this.$content('trailheads').only(['id', 'name', 'directionsLink']).fetch()
     this.volunteerEvents = await this.$content('volunteer').where({
-      date: { $gt: new Date('1/2/2021') }
+      date: { $gt: new Date() }
     }).fetch()
   },
   head: {
