@@ -111,15 +111,15 @@ export default {
           content: '@FriendsUVP'
         },
         {
-          name: 'twitter:title',
+          name: 'og:title',
           content: this.page?.title
         },
         {
-          name: 'twitter:image',
+          name: 'og:image',
           content: 'https://www.friendsofutevalleypark.com' + this.page?.coverImage
         },
         {
-          name: 'twitter:description',
+          name: 'og:description',
           content: this.page?.previewText
         },
         {

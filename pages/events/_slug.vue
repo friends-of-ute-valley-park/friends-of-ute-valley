@@ -142,20 +142,20 @@ export default {
           content: '@FriendsUVP'
         },
         {
-          name: 'twitter:title',
+          name: 'og:title',
           content: this.volunteerEvent?.title
         },
         {
-          name: 'twitter:image',
-          content: '/images/volunteer.jpg'
+          name: 'og:image',
+          content: 'https://www.friendsofutevalleypark.com/images/volunteer.jpg'
         },
         {
-          name: 'twitter:description',
+          name: 'og:description',
           content: this.volunteerEvent?.description
         },
         {
           name: 'description',
-          content: this.volunteerEvent?.body
+          content: this.volunteerEvent?.description
         }
       ]
     }
