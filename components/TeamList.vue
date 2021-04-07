@@ -45,6 +45,7 @@ export default {
         { name: 'Phill Emmert', title: 'Communications', image: require('~/assets/members/phill-emmert.jpg') },
         { name: 'Nick Cirincione', title: 'Committee Member', image: require('~/assets/members/nick-cirincione.jpg') },
         { name: 'Frank Self', title: 'Committee Member', image: require('~/assets/members/frank-self.jpg') },
+        { name: 'Drew Town', title: 'Technology', image: require('~/assets/members/drew-town.jpg') },
         { name: 'Morgan Vlasse', title: 'Committee Member', image: '' }
       ]
     }
