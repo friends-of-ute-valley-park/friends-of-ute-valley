@@ -76,6 +76,17 @@
           {{ page.title }}
         </h1>
         <img loading="lazy" class="h-96 w-full object-cover rounded-lg shadow-lg" :src="page.coverImage" alt="">
+        <div class="flex text-sm leading-5 text-gray-500 mt-4">
+          <time :datetime="publishedOn">
+            {{ publishedOn }}
+          </time>
+          <span class="mx-1">
+            &middot;
+          </span>
+          <span>
+            {{ page.readingTime }}
+          </span>
+        </div>
         <div class="prose lg:prose-xl">
           <nuxt-content :document="page" />
         </div>
@@ -127,6 +138,13 @@ export default {
           content: this.page?.previewText
         }
       ]
+    }
+  },
+  computed: {
+    publishedOn () {
+      const options = { year: 'numeric', month: 'short', day: 'numeric' }
+      if (!this.page) { return '' }
+      return new Intl.DateTimeFormat('en-US', options).format(new Date(this.page.publishedOn))
     }
   }
 }
