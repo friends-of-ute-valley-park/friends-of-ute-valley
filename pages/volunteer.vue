@@ -6,10 +6,10 @@
           <div class="lg:self-center">
             <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
               <span class="block">Ready to help?</span>
-              <span class="block text-teal-800">Volunteer to help improve Ute Valley Park</span>
+              <span class="block text-teal-800">Give back to the park you love</span>
             </h2>
             <p class="mt-4 text-lg leading-6 text-green-50">
-              Looking for a great workout? Meet wonderful people, get dirty, get fit and improve Ute Valley Park – all at the same time!
+              Volunteer at Ute Valley Park to improve the trails, make friends and give back to your favorite park.
             </p>
           </div>
         </div>
