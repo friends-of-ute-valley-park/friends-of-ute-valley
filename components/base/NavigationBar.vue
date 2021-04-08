@@ -31,7 +31,7 @@
             </a>
           </div>
           <div class="inline-flex items-center px-2 pt-1">
-            <a href="https://www.twitter.com/FriendsUVP" class="focus:outline-none focus-within:ring-2 focus-within:ring-green-500">
+            <a href="https://twitter.com/UteValleyPark" class="focus:outline-none focus-within:ring-2 focus-within:ring-green-500">
               <img class="h-6" src="~/assets/logos/twitter.svg" alt="Twitter">
             </a>
           </div>
