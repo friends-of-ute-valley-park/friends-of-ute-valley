@@ -84,6 +84,7 @@
               </svg>
               {{ meetingLocation }}
             </a>
+            <span v-if="volunteerEvent.meetingLocation.notes" class="ml-1 text-gray-500">({{ volunteerEvent.meetingLocation.notes }})</span>
           </div>
           <div class="mt-2 flex items-center text-lg text-gray-500 sm:mt-0">
             <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
