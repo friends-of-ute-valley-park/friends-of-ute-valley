@@ -46,7 +46,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxt/image'
   ],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)

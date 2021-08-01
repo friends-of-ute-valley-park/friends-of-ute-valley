@@ -9,6 +9,8 @@
       </div>
     </div>
     <team-list />
+    <old-photos />
+    <land-survey />
     <leave-no-trace is-small />
   </div>
 </template>
