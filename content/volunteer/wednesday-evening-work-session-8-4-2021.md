@@ -1,6 +1,6 @@
 ---
 title: Wednesday Evening Work Session - 8/4/2021
-date: 2021-08-01T14:54:54.139Z
+date: 2021-08-04T14:54:54.139Z
 description: Come join the Friends of Ute Valley on our Wednesday night
   volunteer work session as we continue our closures associated with the new Ute
   Valley Regional Trail! Please wear pants and closed-toe shoes, bring work
