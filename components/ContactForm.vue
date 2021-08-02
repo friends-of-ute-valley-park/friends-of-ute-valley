@@ -141,7 +141,8 @@
                     </h3>
                     <div class="mt-2 text-sm text-green-700">
                       <p>
-                        We hold volunteer work events the first and third Wednesday of the month April through September.  You can find more information on our <nuxt-link to="/volunteer">
+                        We hold volunteer work events the first and third Wednesday of the month April through September.  You can find more information on our
+                        <nuxt-link class="underline text-green-800" to="/volunteer">
                           volunteer
                         </nuxt-link> page. Also, consider following our
                         <a class="underline text-green-800" href="https://www.facebook.com/FriendsOfUteValleyPark">Facebook</a>
