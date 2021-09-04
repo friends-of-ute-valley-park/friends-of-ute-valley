@@ -10,7 +10,7 @@ meetingLocation:
   alternativeLocationDirectionsLink: https://goo.gl/maps/axQyA8mrMXbjPE5F9
   notes: Please be courteous of where you choose to park as this is a residential
     street and not a designated trail head
-link: https://cerv.is/m?0132gjwjoA3
+link: https://cerv.is/m?0132g9J0Ysd
 time: 5:30-7:30PM
 ---
 Come join the Friends of Ute Valley on our Wednesday night volunteer work session as we continue making trail improvements with the new Ute Valley Regional Trail and close down rogue social trails on Rattlesnake Ridge! Please wear pants and closed-toe shoes, bring work gloves, sunscreen, water, and snacks.
