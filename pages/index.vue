@@ -1,33 +1,28 @@
 <template>
   <div>
     <volunteer-banner class="mb-8" />
-    <main class="lg:relative bg-gray-50">
-      <div class="mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-18 lg:text-left">
-        <div class="px-4 lg:w-1/2 sm:px-8 xl:pr-16">
-          <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl lg:text-5xl xl:text-6xl">
-            Friends of
-            <br class="xl:hidden">
-            <span class="text-green-600">Ute Valley Park</span>
-          </h2>
-          <p class="mt-3 max-w-md mx-auto text-lg text-gray-600 md:mt-5 md:max-w-3xl">
+    <main class="mt-2 mx-auto max-w-7xl px-4 sm:px-6  bg-gray-50">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+        <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+          <h1 class="mt-12">
+            <span class="mt-1 block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl">
+              <span class="inline text-gray-900">Friends of</span>
+              <span class="inline text-green-600">Ute Valley Park</span>
+            </span>
+          </h1>
+          <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
             Friends of Ute Valley Park is an officially recognized “Friends” organization by the City of Colorado Springs Parks, Recreation, and Cultural Services Department. Our mission is to maintain, preserve, and provide education for Ute Valley Park.
           </p>
-          <div class="mt-12 sm:flex sm:justify-center lg:justify-start">
-            <div class="rounded-md shadow">
-              <nuxt-link to="/about" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-green-700 focus:ring-2 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
-                Read More
-              </nuxt-link>
-            </div>
-            <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-              <nuxt-link to="/visit" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-green-600 bg-white hover:text-green-500 focus:outline-none focus:ring-green-300 focus:ring-2 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
-                Visit Ute Valley Park
-              </nuxt-link>
+          <email-form class="mt-8" />
+        </div>
+        <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
+          <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+            <div type="button" class="relative block w-full bg-white rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <span class="sr-only">Watch our video to learn more</span>
+              <img class="w-full" src="~/assets/ute-valley-park.jpg" alt="Ute Valley Park">
             </div>
           </div>
         </div>
-      </div>
-      <div class="relative w-full h-64 sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:h-full">
-        <img class="absolute inset-0 w-full h-full object-cover" src="~/assets/ute-valley-park.jpg" alt="Ute Valley Park">
       </div>
     </main>
 
