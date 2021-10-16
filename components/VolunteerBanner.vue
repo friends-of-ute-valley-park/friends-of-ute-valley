@@ -40,7 +40,7 @@ export default {
   },
   async fetch () {
     this.volunteerEvents = await this.$content('volunteer').where({
-      date: { $gt: new Date() }
+      date: { $gt: new Date().valueOf() }
     }).fetch()
   },
   computed: {
