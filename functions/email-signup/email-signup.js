@@ -25,7 +25,7 @@ exports.handler = async function (event, context, callback) {
       })
     })
   }
-  const { access_token: accessToken } = await axios.post('https://api.sendpulse.com/oauth/access_token', {
+  const authRequest = await axios.post('https://api.sendpulse.com/oauth/access_token', {
     grant_type: 'client_credentials',
     client_id: process.env.SENDPULSE_CLIENT_ID,
     client_secret: process.env.SENDPULSE_CLIENT_SECRET
@@ -34,11 +34,11 @@ exports.handler = async function (event, context, callback) {
   const config = {
     headers: {
       'Content-type': 'application/json',
-      Authorization: `Bearer ${accessToken}`
+      Authorization: `Bearer ${authRequest.data.access_token}`
     }
   }
 
-  await axios.post(`https://api.sendpulse.com/addressbooks/${process.env.SENDPULSE_MAILING_LIST_ID}/emails`, {
+  const res = await axios.post(`https://api.sendpulse.com/addressbooks/${process.env.SENDPULSE_MAILING_LIST_ID}/emails`, {
     emails: [
       {
         email: data.email,
@@ -52,6 +52,17 @@ exports.handler = async function (event, context, callback) {
     template_id: process.env.SENDPULSE_CONFIRMATION_ID,
     message_lang: 'en'
   }, config)
+
+  if (res.data.result === true) {
+    return callback(null, {
+      statusCode: 200,
+      body: JSON.stringify({ status: true })
+    })
+  }
+  return callback(null, {
+    statusCode: 200,
+    body: JSON.stringify({ status: false, message: res.data.result })
+  })
 }
 
 function generateRequestData (eventBody) {
