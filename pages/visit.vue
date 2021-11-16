@@ -1,39 +1,28 @@
 <template>
-  <div class="py-16 bg-gray-50 overflow-hidden lg:py-24">
+  <div class="py-8 bg-gray-50 overflow-hidden lg:py-12">
     <div class="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-screen-xl">
-      <svg class="hidden lg:block absolute left-full transform -translate-x-1/2 -translate-y-1/4" width="404" height="784" fill="none" viewBox="0 0 404 784">
-        <defs>
-          <pattern
-            id="b1e6e422-73f8-40a6-b5d9-c8586e37e0e7"
-            x="0"
-            y="0"
-            width="20"
-            height="20"
-            patternUnits="userSpaceOnUse"
-          >
-            <rect
-              x="0"
-              y="0"
-              width="4"
-              height="4"
-              class="text-gray-200"
-              fill="currentColor"
-            />
-          </pattern>
-        </defs>
-        <rect width="404" height="784" fill="url(#b1e6e422-73f8-40a6-b5d9-c8586e37e0e7)" />
-      </svg>
-
+      <!-- Hero section -->
       <div class="relative">
-        <h3 class="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-          Visit Ute Valley Park
-        </h3>
-        <p class="mt-4 max-w-3xl mx-auto text-center text-xl leading-7 text-gray-500">
-          Explore all Ute Valley Park has to offer. Explore nature and scenic views via hiking, running, bouldering, horseback riding and mountain biking.
-        </p>
+        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-50" />
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div class="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
+            <div class="absolute inset-0">
+              <img class="h-full w-full object-cover" src="~/assets/ute-valley-park-biker.jpg" alt="Biker in Ute Valley Park">
+              <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-teal-300 mix-blend-multiply" />
+            </div>
+            <div class="relative px-4 py-32 sm:px-6 sm:py-48 lg:py-64 lg:px-8">
+              <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                <span class="block text-white">Visit Ute Valley Park</span>
+              </h1>
+              <p class="mt-6 max-w-lg mx-auto text-center text-2xl text-green-50 sm:max-w-3xl">
+                Explore all Ute Valley Park has to offer. Explore nature and scenic views via hiking, running, bouldering, horseback riding and mountain biking.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+      <div class="relative mt-12 lg:mt-18 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
         <div class="relative">
           <h4 class="text-2xl leading-8 font-extrabold text-gray-900 tracking-tight sm:text-3xl sm:leading-9">
             Getting There
@@ -234,7 +223,7 @@
         <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
           <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 lg:h-96 mt-8 lg:mt-0">
             <figure>
-              <img class="rounded-lg shadow-lg object-cover object-center" src="~/assets/ute-valley-park.jpg" alt="ute valley park">
+              <img class="rounded-lg shadow-lg object-cover object-center" src="~/assets/ute-valley-park-arch.jpg" alt="arch at ute valley park">
             </figure>
           </div>
         </div>
