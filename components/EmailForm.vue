@@ -1,6 +1,6 @@
 <template>
   <div class="sm:text-center lg:text-left lg:mx-0">
-    <div v-if="!submitSuccess">
+    <div v-if="!submitSuccess" class="lg:w-11/12">
       <p class="text-base font-medium text-gray-900">
         Sign up to get notified of future volunteer opportunities.
       </p>
@@ -23,7 +23,7 @@
           type="text"
           name="email"
           :class="{'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500': emailIsError}"
-          class="block w-full py-3 text-base rounded-md placeholder-gray-500 shadow-sm focus:ring-green-500 focus:border-green-500 sm:flex-1 border-gray-300"
+          class="block w-full py-3 text-base rounded-md placeholder-gray-500 shadow-sm focus:ring-green-500 focus:border-green-500 sm:flex-1 border-gray-300 mt-3 sm:mt-0"
           placeholder="Enter your email"
           @input="updateEmail"
         >
