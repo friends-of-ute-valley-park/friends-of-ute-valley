@@ -4,6 +4,7 @@
       <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
         About Friends of Ute Valley Park
       </h1>
+      <img class="block h-64 w-auto mx-auto" src="~/assets/logo.jpg" alt="Friends of Ute Valley logo">
       <div class="prose lg:prose-xl">
         <nuxt-content :document="page" />
       </div>
