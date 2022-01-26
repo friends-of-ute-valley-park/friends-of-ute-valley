@@ -4,7 +4,7 @@
       <div class="flex justify-between h-16">
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
-            <img class="block h-14 w-auto" src="~/assets/logo.jpg" alt="Friends of Ute Valley logo">
+            <img class="block h-14 w-auto" src="~/assets/logo-small.jpg" alt="Friends of Ute Valley logo">
           </div>
           <div class="hidden sm:-my-px sm:ml-6 space-x-8 sm:flex">
             <nuxt-link
