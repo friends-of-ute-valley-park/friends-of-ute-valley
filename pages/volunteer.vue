@@ -1,12 +1,12 @@
 <template>
   <div class="bg-white">
     <div class="max-w-7xl mx-auto">
-      <div class="bg-gradient-to-r from-green-500 to-teal-500 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+      <div class="bg-gradient-to-r from-green-500 to-teal-500 sm:rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
         <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
           <div class="lg:self-center">
-            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
-              <span class="block">Ready to help?</span>
-              <span class="block text-teal-800">Give back to the park you love</span>
+            <h2 class="font-extrabold text-white">
+              <span class="block text-5xl mb-3">Ready to help?</span>
+              <span class="block text-green-900 text-3xl ">Give back to the park you love</span>
             </h2>
             <p class="mt-4 text-lg leading-6 text-green-50">
               Volunteer at Ute Valley Park to improve the trails, make friends and give back to your favorite park.
