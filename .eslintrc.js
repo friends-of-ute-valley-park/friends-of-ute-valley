@@ -4,8 +4,13 @@ module.exports = {
     browser: true,
     node: true
   },
+  parserOptions: {
+    ecmaVersion: 12,
+    parser: '@babel/eslint-parser',
+    requireConfigFile: false,
+    sourceType: 'module',
+  },
   extends: [
-    '@nuxtjs',
     'plugin:nuxt/recommended'
   ],
   plugins: [

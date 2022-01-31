@@ -144,7 +144,7 @@ export default {
         },
         {
           name: 'og:title',
-          content: this.volunteerEvent ? this.volunteerEvent.title : ''
+          content: this.volunteerEvent?.title
         },
         {
           name: 'og:image',
@@ -152,11 +152,11 @@ export default {
         },
         {
           name: 'og:description',
-          content: this.volunteerEvent ? this.volunteerEvent.description : ''
+          content: this.volunteerEvent?.description
         },
         {
           name: 'description',
-          content: this.volunteerEvent ? this.volunteerEvent.description : ''
+          content: this.volunteerEvent?.description
         }
       ]
     }
