@@ -111,7 +111,7 @@ export default {
   },
   head () {
     return {
-      title: this.page?.title,
+      title: this.page ? this.page.title : '',
       meta: [
         {
           name: 'twitter:card',
@@ -123,19 +123,19 @@ export default {
         },
         {
           name: 'og:title',
-          content: this.page?.title
+          content: this.page ? this.page.title : ''
         },
         {
           name: 'og:image',
-          content: 'https://www.friendsofutevalleypark.com' + this.page?.coverImage
+          content: 'https://www.friendsofutevalleypark.com' + this.page ? this.page.coverImage : ''
         },
         {
           name: 'og:description',
-          content: this.page?.previewText
+          content: this.page ? this.page.previewText : ''
         },
         {
           name: 'description',
-          content: this.page?.previewText
+          content: this.page ? this.page.previewText : ''
         }
       ]
     }
