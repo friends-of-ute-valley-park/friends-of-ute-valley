@@ -4,12 +4,12 @@
       Old Photos from Ute Valley Park
     </h2>
     <div class="grid md:grid-cols-3 gap-3">
-      <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-1.jpg" quality="80" width="400" height="300" />
-      <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-2.jpg" quality="80" width="400" height="300" />
-      <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-3.jpg" quality="80" width="400" height="300" />
-      <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-4.jpg" quality="80" width="400" height="300" />
-      <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-5.jpg" quality="80" width="400" height="300" />
-      <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-6.jpg" quality="80" width="400" height="300" />
+      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-1.jpg">
+      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-2.jpg">
+      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-3.jpg">
+      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-4.jpg">
+      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-5.jpg">
+      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-6.jpg">
     </div>
     <div v-if="!viewMore">
       <button class="text-base my-2 ml-1 text-green-900 rounded px-2 py-1 underline" @click="viewMore = true">
@@ -19,23 +19,23 @@
     </div>
     <div v-else>
       <div class="grid md:grid-cols-3 gap-3 mt-3">
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-7.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-8.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-9.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-10.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-11.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-12.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-13.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-14.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-15.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-16.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-17.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-18.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-19.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-20.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-21.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-22.jpg" quality="80" width="400" height="300" />
-        <nuxt-picture class="image" src="/images/old-ute-valley-park-photos/old-ute-23.jpg" quality="80" width="400" height="300" />
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-7.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-8.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-9.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-10.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-11.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-12.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-13.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-14.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-15.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-16.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-17.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-18.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-19.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-20.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-21.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-22.jpg">
+        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-23.jpg">
       </div>
     </div>
   </div>
