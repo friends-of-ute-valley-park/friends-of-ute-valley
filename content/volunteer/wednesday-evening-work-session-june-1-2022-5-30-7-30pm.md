@@ -1,19 +1,19 @@
 ---
-title: Wednesday Evening Work Session - June 1, 2022 5:30-7:30pm
-date: 2022-06-01T15:44:54.098Z
+title: Wednesday Evening Work Session - June 15, 2022 5:30-7:30pm
+date: 2022-06-15T15:44:54.098Z
 description: Come join the Friends of Ute Valley on our Wednesday night
   volunteer work session!
 meetingLocation:
-  predefinedLocation: 5
+  predefinedLocation: 2
   alternativeLocation: ""
   alternativeLocationDirectionsLink: ""
   notes: ""
-link: https://cerv.is/0132g3aMUcB
+link: https://cerv.is/0132gRLWzYO
 time: 5:30-7:30PM
 ---
-Come join the Friends of Ute Valley on our Wednesday night volunteer work session! We will be finishing up restoration projects in multiple areas of the park!! Please wear pants and closed-toe shoes, bring work gloves, sunscreen, water, and snacks.
+Come join the Friends of Ute Valley on our Wednesday night volunteer work session! We will be performing closure and restoration tasks in association with the new Ute Valley Regional Trail construction. Please wear pants and closed-toe shoes, bring work gloves, sunscreen, water, and snacks.
 
-**\*\*Meet up location is at the Popes Valley entrance.\*\***
+**\*\***Meetup location is the newer parking lot located on Ute Valley Trail off Rockrimmon Blvd. (aka - HP / roundabout parking lot)***\***
 
  You *must* register to participate in this event.
 
