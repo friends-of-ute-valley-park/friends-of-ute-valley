@@ -35,7 +35,7 @@ B. In any dog park or off-leash area designated by the Park Manager in which dog
 
 2. To fail to obey any posted rules, regulations or guidelines for use of the fenced dog park or off-leash area.
 
-3. To bring a dangerous animal, as defined in section [6.7.102](https://codelibrary.amlegal.com/codes/coloradospringsco/latest/coloradosprings_co/0-0-0-6991) (link is external) of this Code, into a fenced dog park or off-leash area. (Ord. 18-24)
+3. To bring a dangerous animal, as defined in section [6.7.107](https://codelibrary.amlegal.com/codes/coloradospringsco/latest/coloradosprings_co/0-0-0-7038) (link is external) of this Code, into a fenced dog park or off-leash area. (Ord. 18-24)
 
 ## Trail Etiquette
 

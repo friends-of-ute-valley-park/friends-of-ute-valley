@@ -13,7 +13,7 @@ module.exports = {
       }
     }
   },
-  purge: [
+  content: [
     './src/**/*.html',
     './src/**/*.vue',
     './src/**/*.jsx'

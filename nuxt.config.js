@@ -66,5 +66,6 @@ export default {
   },
   axios: {
     baseURL: '/' // Used as fallback if no runtime config is provided
-  }
+  },
+  devServerHandlers: []
 }
