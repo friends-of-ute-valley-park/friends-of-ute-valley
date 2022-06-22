@@ -68,18 +68,18 @@
                       </div>
                       <div class="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
                         <div class="w-44 h-64 rounded-lg overflow-hidden relative">
-                          <a :href="'https://instagram.com/' + dogs[2]">
-                            <img :src="require('~/assets/dogs/' + dogs[2] + '.jpg')" alt="" class="w-full h-full object-center object-cover">
-                            <p class="absolute left-0 bottom-0 bg-gray-900/30 text-gray-50 text-xs px-2 py-1">
-                              @{{ dogs[2] }}
-                            </p>
-                          </a>
-                        </div>
-                        <div class="w-44 h-64 rounded-lg overflow-hidden relative">
                           <a :href="'https://instagram.com/' + dogs[1]">
                             <img :src="require('~/assets/dogs/' + dogs[1] + '.jpg')" alt="" class="w-full h-full object-center object-cover">
                             <p class="absolute left-0 bottom-0 bg-gray-900/30 text-gray-50 text-xs px-2 py-1">
                               @{{ dogs[1] }}
+                            </p>
+                          </a>
+                        </div>
+                        <div class="w-44 h-64 rounded-lg overflow-hidden relative">
+                          <a :href="'https://instagram.com/' + dogs[2]">
+                            <img :src="require('~/assets/dogs/' + dogs[2] + '.jpg')" alt="" class="w-full h-full object-center object-cover">
+                            <p class="absolute left-0 bottom-0 bg-gray-900/30 text-gray-50 text-xs px-2 py-1">
+                              @{{ dogs[2] }}
                             </p>
                           </a>
                         </div>
@@ -245,7 +245,7 @@ export default {
         }
       ],
       reasons: [
-        "It's the law! <a class='text-green-600 underline' href='https://codelibrary.amlegal.com/codes/coloradospringsco/latest/coloradosprings_co/0-0-0-7038'>6.7.107</a>",
+        "It's the law! <a class='text-green-600 underline' href='https://codelibrary.amlegal.com/codes/coloradospringsco/latest/coloradosprings_co/0-0-0-7038'>6.7.107</a>. The fine can be $50, $100 or $150 for a first, second and third offense respectively.",
         'Ute Valley Park is visited by many people and not everyone is a dog person.',
         'Not all dogs are friendly, even if your dog is.',
         'Ute Valley Park is infamous for rattlesnakes.  Keep your dog and wildlife safe by keeping them leashed.'
