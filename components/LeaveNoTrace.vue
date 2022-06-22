@@ -58,9 +58,7 @@
                     </h3>
                   </div>
                   <div class="text-lg">
-                    <p class="text-gray-500">
-                      {{ principle.text }}
-                    </p>
+                    <p class="text-gray-500" v-html="principle.text" />
                   </div>
                 </div>
               </li>
@@ -91,13 +89,13 @@ export default {
         },
         {
           name: 'Travel on Durable Surfaces',
-          text: 'Stay on designated trails to minimize soil erosion and preserve Ute Valley Park’s natural features. Muddy trails? Hike right through them! And please respect Natural Preservation Area closures.',
+          text: 'Stay on designated trails to minimize soil erosion and preserve Ute Valley Park\'s natural features. Muddy trails? Hike right through them! And please respect Natural Preservation Area closures.',
           image: require('~/assets/lnt/travel-on-durable-surfaces.jpg'),
           altText: 'Ute Valley Park trail'
         },
         {
           name: 'Dispose of Waste Properly',
-          text: 'Please pack out all trash items, including bagged dog waste, or place it into trash cans before leaving the park. This keeps Ute Valley Park looking (and smelling) bea-UTE-iful!',
+          text: 'Please pack out all trash items, including bagged <a class="text-green-600 underline" href="/leavenotrace/dogs">dog waste</a>, or place it into trash cans before leaving the park. This keeps Ute Valley Park looking (and smelling) bea-UTE-iful!',
           image: require('~/assets/lnt/dispose-of-waste-properly.jpg'),
           altText: 'Rubbish in the dirt'
         },
