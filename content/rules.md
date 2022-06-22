@@ -5,7 +5,7 @@
 ## Ute Valley Park Exceptions
 1. There is **no** designated smoking area in Ute Valley Park.
 2. There is **no** designated area where the pet waste rule does not apply in Ute Valley Park.
-3. There is **no** dog park or off-leash area in Ute Valley Park.
+3. There is **no** [dog park](/leavenotrace/dogs) or off-leash area in Ute Valley Park.
 
 ## Park Rules
 
