@@ -58,10 +58,10 @@
                           </a>
                         </div>
                         <div class="w-44 h-64 rounded-lg overflow-hidden relative">
-                          <a :href="'https://instagram.com/' + dogs[0]">
-                            <img :src="require('~/assets/dogs/' + dogs[0] + '.jpg')" alt="" class="w-full h-full object-center object-cover">
+                          <a :href="'https://instagram.com/' + dogs[4]">
+                            <img :src="require('~/assets/dogs/' + dogs[4] + '.jpg')" alt="" class="w-full h-full object-center object-cover">
                             <p class="absolute left-0 bottom-0 bg-gray-900/30 text-gray-50 text-xs px-2 py-1">
-                              @{{ dogs[0] }}
+                              @{{ dogs[4] }}
                             </p>
                           </a>
                         </div>
@@ -204,7 +204,8 @@ export default {
         'freyja_pup',
         'the.sweet.life.of.five',
         'logan.and.the.rescue.crew',
-        'marisslh'
+        'marisslh',
+        'queen_padme_21'
       ],
       otherParks: [
         {
