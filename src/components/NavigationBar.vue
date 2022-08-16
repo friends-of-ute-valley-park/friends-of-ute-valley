@@ -52,7 +52,7 @@
           </span>
         </div>
       </div>
-      <div class="my-4 flex justify-center space-x-12 pb-6">
+      <div class="-ml-4 my-4 flex justify-center pb-6">
         <slot name="social-links" />
       </div>
     </DisclosurePanel>
