@@ -14,7 +14,7 @@ const principles = [
   },
   {
     name: 'Dispose of Waste Properly',
-    text: 'Please pack out all trash items, including bagged <a class="text-green-600 underline" href="/leavenotrace/dogs">dog waste</a>, or place it into trash cans before leaving the park. This keeps Ute Valley Park looking (and smelling) bea-UTE-iful!',
+    text: 'Please pack out all trash items, including bagged <a class="text-green-700 underline" href="/leavenotrace/dogs">dog waste</a>, or place it into trash cans before leaving the park. This keeps Ute Valley Park looking (and smelling) bea-UTE-iful!',
     image: '/images/lnt/dispose-of-waste-properly',
     altText: 'Rubbish in the dirt',
   },
@@ -44,10 +44,10 @@ const principles = [
     <div class="space-y-12 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
       <div class="space-y-5 sm:space-y-4">
         <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Leave No Trace</h2>
-        <p class="text-xl text-gray-500">Ute Valley Park proudly supports the Leave No Trace Seven Principles. Please help keep the park safe and clean by following the principles.</p>
-        <p class="mt-3 max-w-3xl text-lg text-green-600">
+        <p class="text-xl text-gray-600">Ute Valley Park proudly supports the Leave No Trace Seven Principles. Please help keep the park safe and clean by following the principles.</p>
+        <p class="mt-3 max-w-3xl text-lg text-green-700">
           Please read and always obey the
-          <a href="/rules" class="text-green-500 underline font-bold inline-block"> rules</a>
+          <a href="/rules" class="text-green-800 underline font-bold inline-block"> rules</a>
           of Ute Valley Park.
         </p>
         <div class="mt-8 sm:flex">
@@ -76,10 +76,10 @@ const principles = [
                     </picture>
                   </div>
                   <div class="text-lg leading-6 font-medium">
-                    <h3 class="text-green-600">{principle.name}</h3>
+                    <h3 class="text-green-700">{principle.name}</h3>
                   </div>
                   <div class="text-lg">
-                    <p class="text-gray-500" set:html={principle.text} />
+                    <p class="text-gray-600" set:html={principle.text} />
                   </div>
                 </div>
               </li>

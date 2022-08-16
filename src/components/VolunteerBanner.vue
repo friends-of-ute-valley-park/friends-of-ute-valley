@@ -1,10 +1,10 @@
 <template>
   <div class="mb-8" v-if="hasUpcomingVolunteerEvent">
     <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-      <div class="p-2 rounded-lg bg-teal-600 shadow-lg sm:p-3">
+      <div class="p-2 rounded-lg bg-teal-700 shadow-lg sm:p-3">
         <div class="flex items-center justify-between flex-wrap">
           <div class="flex-1 flex items-center">
-            <span class="flex p-2 rounded-lg bg-teal-700">
+            <span class="flex p-2 rounded-lg bg-teal-800">
               <SpeakerphoneIcon class="h-6 w-6 text-white" />
             </span>
             <p class="ml-3 font-medium text-white">
@@ -22,10 +22,10 @@
   </div>
   <div v-else>
     <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-      <div class="p-2 rounded-lg bg-green-600 shadow-lg sm:p-3">
+      <div class="p-2 rounded-lg bg-green-700 shadow-lg sm:p-3">
         <div class="flex items-center justify-between flex-wrap">
           <div class="flex-1 flex items-center">
-            <span class="flex p-2 rounded-lg bg-green-700">
+            <span class="flex p-2 rounded-lg bg-green-800">
               <BellIcon class="w-8 h-8 text-white" />
             </span>
             <p class="ml-3 font-medium text-white">
