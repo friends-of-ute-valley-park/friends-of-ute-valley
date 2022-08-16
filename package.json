@@ -1,36 +1,32 @@
 {
-  "name": "friends-of-ute-valley",
-  "version": "1.0.0",
+  "name": "@example/basics",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "npm run lint:js"
-  },
-  "dependencies": {
-    "@nuxt/content": "^1.15.1",
-    "@nuxtjs/axios": "^5.13.6",
-    "@tailwindcss/aspect-ratio": "^0.4.0",
-    "@tailwindcss/forms": "^0.5.2",
-    "@tailwindcss/typography": "^0.5.2",
-    "dotenv": "^16.0.1",
-    "google-spreadsheet": "^3.3.0",
-    "nuxt": "^2.15.8",
-    "reading-time": "^1.5.0"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.18.2",
-    "@nuxtjs/eslint-config": "^10.0.0",
-    "@nuxtjs/eslint-module": "^3.1.0",
-    "@nuxtjs/tailwindcss": "^5.1.3",
-    "autoprefixer": "^10.4.7",
-    "core-js": "^3.22.8",
-    "eslint": "^8.17.0",
-    "eslint-plugin-nuxt": "^3.2.0",
-    "eslint-plugin-vue": "^9.1.0",
-    "postcss": "^8.4.14"
+    "@astrojs/tailwind": "^1.0.0",
+    "@astrojs/vue": "^1.0.0",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/typography": "^0.5.4",
+    "astro": "1.0.6",
+    "axios": "^0.27.2",
+    "prettier": "^2.7.1",
+    "prettier-plugin-astro": "^0.5.0",
+    "vue": "^3.2.37"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.6.7",
+    "@heroicons/vue": "^1.0.6",
+    "dotenv": "^16.0.1",
+    "google-spreadsheet": "^3.3.0",
+    "mdast-util-to-string": "^3.1.0",
+    "reading-time": "^1.5.0"
   }
 }
