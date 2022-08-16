@@ -9,7 +9,7 @@ public_folder: /images
 collections:
   - name: 'news'
     label: 'News'
-    folder: '/content/news'
+    folder: '/src/pages/news'
     create: true
     slug: '{{slug}}'
     editor:
@@ -24,7 +24,7 @@ collections:
       - { label: 'Layout', name: 'layout', widget: 'hidden', default: '../../layouts/NewsLayout.astro'}
   - name: 'volunteer'
     label: 'Volunteer'
-    folder: "/content/volunteer"
+    folder: "/src/pages/events"
     create: true
     slug: '{{slug}}'
     fields:
