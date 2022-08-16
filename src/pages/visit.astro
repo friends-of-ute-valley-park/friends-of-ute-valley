@@ -1,0 +1,253 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const activities = [
+  {
+    name: 'Hiking',
+    description: 'Explore the serene nature within a bustling city. Hike your way through forest and meadow while taking in the fresh air.',
+  },
+  {
+    name: 'Mountain Biking',
+    description: 'Ute Valley Park offers a variety of tails suitable to mountain bikers as well as the designated downhill area for the adventurous.',
+  },
+  {
+    name: 'Running',
+    description: 'Numerous trails from wide and flat to steep rocky offer joggers and trail runners the perfect opportunity to get outside.',
+  },
+  {
+    name: 'Bouldering',
+    description: 'Located in the Southwest corner of the park, near Piñon Park Dr., you can explore the variety of climbing challenges.',
+  },
+];
+
+interface TrailheadFile {
+  id: number;
+  name: String;
+  description: String;
+  url: URL;
+}
+
+const trailheads = await Astro.glob<TrailheadFile>('../pages/trailheads/*.md');
+trailheads.sort((a, b) => a.frontmatter.id - b.frontmatter.id)
+---
+
+<Layout title="Visit">
+  <div class="py-8 bg-gray-50 overflow-hidden lg:py-12">
+    <div class="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-screen-xl">
+      <!-- Hero section -->
+      <div class="relative">
+        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-50"></div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div class="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
+            <div class="absolute inset-0">
+              <picture>
+                <source srcset="/images/ute-valley-park-biker.webp" type="image/webp" />
+                <source srcset="/images/ute-valley-park-biker.jpg" type="image/jpeg" />
+                <img class="h-full w-full object-cover" src="/images/ute-valley-park-biker.jpg" alt="Biker in Ute Valley Park" />
+              </picture>
+              <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-teal-300 mix-blend-multiply"></div>
+            </div>
+            <div class="relative px-4 py-32 sm:px-6 sm:py-48 lg:py-64 lg:px-8">
+              <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                <span class="block text-white">Visit Ute Valley Park</span>
+              </h1>
+              <p class="mt-6 max-w-lg mx-auto text-center text-2xl text-green-50 sm:max-w-3xl">
+                Explore all Ute Valley Park has to offer. Explore nature and scenic views via hiking, running, bouldering, horseback riding and mountain biking.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative mt-12 lg:mt-18 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+        <div class="relative">
+          <h4 class="text-2xl leading-8 font-extrabold text-gray-900 tracking-tight sm:text-3xl sm:leading-9">Getting There</h4>
+
+          <p class="mt-3 text-lg leading-7 text-gray-500">Ute Valley Park is nestled between Centennial Blvd, Vindicator Dr and I-25 in Colorado Springs with 5 convenient parking locations.</p>
+          <ul class="my-10">
+            {
+              trailheads.map((trailhead, i) => (
+                <li class:list={['relative focus-within:ring-2 focus-within:ring-green-500', { 'mt-6': i !== 0 }]}>
+                  <div class="flex items-center px-4 py-4 sm:px-6 hover:bg-gray-100">
+                    <div class="min-w-0 flex-1 flex items-center">
+                      <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="ml-4">
+                        <h5 class="text-lg font-semibold text-green-800 hover:underline">
+                          <a class="block focus:outline-none" href={trailhead.url}>
+                            <span class="absolute inset-0" aria-hidden="true" />
+                            {trailhead.frontmatter.name}
+                          </a>
+                        </h5>
+                        <p class="text-base text-gray-500">{trailhead.frontmatter.description}</p>
+                      </div>
+                    </div>
+                    <svg class="h-8 w-8 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="sm:mx-auto sm:max-w-3xl sm:px-6">
+          <div class="py-12 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+            <div class="hidden sm:block">
+              <div class="absolute inset-y-0 left-1/2 w-screen bg-gray-50 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full"></div>
+              <svg class="absolute top-8 right-1/2 -mr-3 lg:m-0 lg:left-0" width="404" height="392" fill="none" viewBox="0 0 404 392">
+                <defs>
+                  <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"></rect>
+                  </pattern>
+                </defs>
+                <rect width="404" height="392" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"></rect>
+              </svg>
+            </div>
+            <div class="relative lg:-mr-10 sm:mx-auto sm:max-w-3xl sm:px-0 lg:max-w-none lg:h-full lg:pl-12">
+              <a href="/images/maps/ute-valley-park-map-full.jpg">
+              <picture>
+                <source srcset="/images/maps/ute-valley-park-map-small.webp" type="image/webp" />
+                <source srcset="/images/maps/ute-valley-park-map-small.jpg" type="image/jpeg" />
+                <img class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:w-auto lg:max-w-none lg:h-96 mx-auto" src="/images/maps/ute-valley-park-map-small.jpg" alt="Map of Ute Valley Park" />
+              </picture>                
+                <p class="mt-1 text-sm leading-6 text-gray-500 text-center w-1/2 mx-auto">Click to open fullsize map</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <leave-no-trace />
+      <!-- Rules -->
+      <svg class="hidden lg:block absolute right-full transform translate-x-1/2 translate-y-12" width="404" height="784" fill="none" viewBox="0 0 404 784">
+        <defs>
+          <pattern id="64e643ad-2176-4f86-b3d7-f2c5da3b6a6d" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"></rect>
+          </pattern>
+        </defs>
+        <rect width="404" height="784" fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)"></rect>
+      </svg>
+
+      <div class="max-w-7xl mx-auto relative bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto text-base">
+          <h2 class="text-base text-green-600 font-semibold tracking-wide uppercase">Rules</h2>
+          <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Help keep Ute Valley Safe and Clean</h3>
+        </div>
+        <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
+          <div class="mt-8 lg:mt-0 text-xl">
+            For the safety and comfort of all visitors please read the
+            {' '}
+            <a href="/rules" class="text-green-600 font-semibold no-underline"> rules</a>
+            {' '}
+            the city of Colorado Springs enforces for all city parks and open spaces.
+          </div>
+          <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
+            <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 mt-8 lg:mt-0">
+              <figure>
+                <img class="rounded-lg shadow-lg object-cover object-center" src="/images/dog.jpg" alt="dog in park in front of mountains" />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activities -->
+      <div class="relative mt-12 sm:mt-16 lg:mt-24 mb-16">
+        <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
+          <div class="lg:col-start-2">
+            <h4 class="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl sm:leading-9">Activities</h4>
+            <p class="mt-3 text-lg text-gray-500">Do more at Ute Valley Park by taking advantage of these activities:</p>
+
+            <ul class="mt-10">
+              {
+                activities.map((activity, i) => (
+                  <li class:list={[{ 'mt-10': i !== 0 }]}>
+                    <div class="flex">
+                      <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              stroke-Linecap="round"
+                              stroke-Linejoin="round"
+                              stroke-Width="2"
+                              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="ml-4">
+                        <h5 class="text-lg font-medium text-gray-900">{activity.name}</h5>
+                        <p class="mt-2 text-base text-gray-500">{activity.description}</p>
+                      </div>
+                    </div>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
+            <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 lg:h-96 mt-8 lg:mt-0">
+              <figure>
+                <picture>
+                  <source srcset="/images/activities.webp" type="image/webp" />
+                  <source srcset="/images/activities.jpg" type="image/jpeg" />
+                  <img class="rounded-lg shadow-lg object-cover object-center" src="/images/activities.jpg" alt="Biker in the air at sunset" />
+                </picture>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- trails -->
+    <div class="max-w-7xl mx-auto relative bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto text-base">
+        <h2 class="text-base text-green-600 font-semibold tracking-wide uppercase">Trails</h2>
+        <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Discover the trails of Ute Valley Park</h3>
+      </div>
+      <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
+        <div class="mt-8 lg:mt-0">
+          <div class="mt-5 prose prose-green text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
+            <h4>BeaUTEiful Loop</h4>
+            <p class="text-lg text-gray-600">Ridge top views of Pikes Peak, Black Forest and Rockrimmon as well as meandering through dense forest and rocky outcrops.</p>
+            <h4>Rattlesnake Ridge</h4>
+            <p class="text-lg text-gray-600">
+              Breathtaking views on a razor ridge where you can see Pikes Peak, Garden of the Gods, Pinion Valley as well as Black Forest. This is a very technical, sharp, rocky trail, great for a
+              challenging hike, not recommended for most mountain bikers; only the most experienced.
+            </p>
+            <h4>High Arches loop</h4>
+            <p class="text-lg text-gray-600">
+              This quick loop is close to Vindicator Parking Lot and will take you through a rocky outcropping that overlooks a winding valley of an old ranch that was once located here. The trail
+              winds down to a natural arch, ducking required. Also not recommended for beginning mountain bikers.
+            </p>
+            <h4>Black and Blue Loop</h4>
+            <p class="text-lg text-gray-600">
+              This loop has earned its name for mountain bikers; not for beginners. Located just off the Ute Valley Trail parking lot and will take you above a drainage creek. The black side is ranked
+              black due to its challenging terrain of sharp rocks and steep grades. You will have to walk along the Tech Center Drive parking lot to make a full loop. The blue side of the loop is more
+              flowing and takes you over a natural arch, a monstrous bridge that had to be built on site, mine tailings and a cave!
+            </p>
+          </div>
+        </div>
+        <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
+          <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 lg:h-96 mt-8 lg:mt-0">
+            <figure>
+              <picture>
+                <source srcset="/images/ute-valley-park-arch.webp" type="image/webp" />
+                <source srcset="/images/ute-valley-park-arch.jpg" type="image/jpeg" />
+                <img class="rounded-lg shadow-lg object-cover object-center" src="/images/ute-valley-park-arch.jpg" alt="arch at ute valley park" />
+              </picture>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
