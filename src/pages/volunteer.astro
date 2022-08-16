@@ -1,8 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import VolunteerItem from '../components/VolunteerItem.vue';
-import LeaveNoTraceSmall from '../components/LeaveNoTraceSmall.astro';
-import ContactForm from '../components/ContactForm.vue';
+import Layout from '@layouts/Layout.astro';
+import VolunteerItem from '@components/VolunteerItem.vue';
+import LeaveNoTraceSmall from '@components/LeaveNoTraceSmall.astro';
+import ContactForm from '@components/ContactForm.vue';
 const volunteerEvents = await Astro.glob('./events/*.md');
 const upcomingVolunteerEvents = volunteerEvents.filter((e) => new Date(e.frontmatter.date) > new Date());
 

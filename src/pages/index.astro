@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import LeaveNoTrace from '../components/LeaveNoTrace.astro';
-import EmailForm from '../components/EmailForm.vue';
-import VolunteerBanner from '../components/VolunteerBanner.vue';
+import Layout from '@layouts/Layout.astro';
+import Card from '@components/Card.astro';
+import LeaveNoTrace from '@components/LeaveNoTrace.astro';
+import EmailForm from '@components/EmailForm.vue';
+import VolunteerBanner from '@components/VolunteerBanner.vue';
 
 const newsPosts = await Astro.glob('../pages/news/*.md');
 const volunteerEvents = await Astro.glob('../pages/events/*.md');
