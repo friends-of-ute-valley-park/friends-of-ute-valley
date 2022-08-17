@@ -11,7 +11,7 @@ const upcomingVolunteerEvents = volunteerEvents.filter((e) => new Date(e.frontma
 ---
 
 <Layout title="Home">
-  <VolunteerBanner events={upcomingVolunteerEvents.map(event => event.frontmatter)} client:idle />
+  <VolunteerBanner events={upcomingVolunteerEvents.map((event) => event.frontmatter)} client:idle />
 
   <div class="relative bg-gray-50 overflow-hidden">
     <div class="max-w-7xl mx-auto">
@@ -79,7 +79,11 @@ const upcomingVolunteerEvents = volunteerEvents.filter((e) => new Date(e.frontma
           <picture>
             <source srcset="/images/volunteer.webp" type="image/webp" />
             <source srcset="/images/volunteer.jpg" type="image/jpg" />
-            <img class="absolute inset-0 w-full h-full transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20" src="/images/volunteer.jpg" alt="" />
+            <img
+              class="absolute inset-0 w-full h-full transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20"
+              src="/images/volunteer.jpg"
+              alt=""
+            />
           </picture>
         </div>
       </div>

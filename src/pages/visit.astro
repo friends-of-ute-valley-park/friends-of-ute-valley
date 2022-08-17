@@ -28,7 +28,7 @@ interface TrailheadFile {
 }
 
 const trailheads = await Astro.glob<TrailheadFile>('../pages/trailheads/*.md');
-trailheads.sort((a, b) => a.frontmatter.id - b.frontmatter.id)
+trailheads.sort((a, b) => a.frontmatter.id - b.frontmatter.id);
 ---
 
 <Layout title="Visit">
@@ -113,11 +113,15 @@ trailheads.sort((a, b) => a.frontmatter.id - b.frontmatter.id)
             </div>
             <div class="relative lg:-mr-10 sm:mx-auto sm:max-w-3xl sm:px-0 lg:max-w-none lg:h-full lg:pl-12">
               <a href="/images/maps/ute-valley-park-map-full.jpg">
-              <picture>
-                <source srcset="/images/maps/ute-valley-park-map-small.webp" type="image/webp" />
-                <source srcset="/images/maps/ute-valley-park-map-small.jpg" type="image/jpeg" />
-                <img class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:w-auto lg:max-w-none lg:h-96 mx-auto" src="/images/maps/ute-valley-park-map-small.jpg" alt="Map of Ute Valley Park" />
-              </picture>                
+                <picture>
+                  <source srcset="/images/maps/ute-valley-park-map-small.webp" type="image/webp" />
+                  <source srcset="/images/maps/ute-valley-park-map-small.jpg" type="image/jpeg" />
+                  <img
+                    class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:w-auto lg:max-w-none lg:h-96 mx-auto"
+                    src="/images/maps/ute-valley-park-map-small.jpg"
+                    alt="Map of Ute Valley Park"
+                  />
+                </picture>
                 <p class="mt-1 text-sm leading-6 text-gray-500 text-center w-1/2 mx-auto">Click to open fullsize map</p>
               </a>
             </div>
