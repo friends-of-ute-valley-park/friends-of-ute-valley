@@ -1,0 +1,14 @@
+# This should help clear out old events after they've completed
+
+name: Every Thursday Deploy
+
+on:
+  schedule:
+    - cron: "0 7 * * 4"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: POST hook
+      run: curl -X POST -d {} https://api.netlify.com/build_hooks/62fd6d394e7fed1c7f351d47
