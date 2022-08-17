@@ -17,7 +17,7 @@
           <div v-if="volunteerEvent.frontmatter.link" class="flex space-x-2">
             <a
               :href="volunteerEvent.frontmatter.link"
-              class="mb-2 md:my-0 bg-green-500 border border-transparent rounded-md shadow py-1 px-2 inline-flex items-center text-sm font-medium text-green-50 hover:text-green-100 focus:outline-none focus:ring-green-300 focus:ring-2 transition duration-150 ease-in-out">
+              class="bg-green-500 border border-transparent rounded-md shadow py-1 px-2 inline-flex items-center text-sm font-medium text-green-50 hover:text-green-100 focus:outline-none focus:ring-green-300 focus:ring-2 transition duration-150 ease-in-out">
               Register
             </a>
             <a
