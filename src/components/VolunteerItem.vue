@@ -1,5 +1,5 @@
 <template>
-  <li v-if="isVisible">
+  <li>
     <div class="px-4 py-4 sm:px-6">
       <div class="sm:flex items-center justify-between">
         <a :href="volunteerEvent.url" class="block hover:bg-gray-50">
@@ -54,7 +54,6 @@
 
 <script>
 import MeetingLocationParser from '../utils/EventData.js';
-import { endOfDay, isFuture } from 'date-fns'
 
 export default {
   props: {
@@ -79,9 +78,6 @@ export default {
     },
     predefinedLocation() {
       return this.volunteerEvent.frontmatter.meetingLocation.predefinedLocation;
-    },
-    isVisible() {
-     return isFuture(endOfDay(new Date(this.volunteerEvent.frontmatter.date)))
     }
   },
   mounted() {
