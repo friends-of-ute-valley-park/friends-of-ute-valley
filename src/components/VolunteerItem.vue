@@ -81,7 +81,7 @@ export default {
       return this.volunteerEvent.frontmatter.meetingLocation.predefinedLocation;
     },
     isVisible() {
-     return isFuture(endOfDay(new Date(event.date)))
+     return isFuture(endOfDay(new Date(this.volunteerEvent.frontmatter.date)))
     }
   },
   mounted() {
