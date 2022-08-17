@@ -7,7 +7,8 @@ import VolunteerBanner from '@components/VolunteerBanner.vue';
 
 const newsPosts = await Astro.glob('../pages/news/*.md');
 const volunteerEvents = await Astro.glob('../pages/events/*.md');
-const upcomingVolunteerEvents = volunteerEvents.filter((e) => new Date(e.frontmatter.date) > new Date());
+import { isFuture, endOfDay} from "date-fns"
+const upcomingVolunteerEvents = volunteerEvents.filter((e) => isFuture(endOfDay(new Date(e.frontmatter.date))));
 ---
 
 <Layout title="Home">

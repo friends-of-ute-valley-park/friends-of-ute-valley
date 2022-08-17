@@ -45,6 +45,7 @@
 <script setup lang="ts">
 /// <reference path="../../node_modules/astro/dist/types/@types/astro.d.ts" />
 import { computed } from "vue"
+import { endOfDay, isFuture } from 'date-fns'
 import { SpeakerphoneIcon, BellIcon } from '@heroicons/vue/outline/esm/index.js'
 
 const props = defineProps({
@@ -65,7 +66,7 @@ const hasUpcomingVolunteerEvent = computed(() => {
   if (!anyEvents) return false;
 
   for (const event of props.events) {
-    if (new Date(event.date) > new Date()) return true;
+    if (isFuture(endOfDay(new Date(event.date)))) return true;
   }
   return false;
 })
