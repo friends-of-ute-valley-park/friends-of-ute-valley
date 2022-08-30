@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.6.7",
-    "@heroicons/vue": "^1.0.6",
+    "@heroicons/vue": "^2.0.10",
     "date-fns": "^2.29.2",
     "dotenv": "^16.0.1",
     "google-spreadsheet": "^3.3.0",
