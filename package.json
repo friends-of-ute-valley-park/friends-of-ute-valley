@@ -25,7 +25,7 @@
     "@headlessui/vue": "^1.6.7",
     "@heroicons/vue": "^1.0.6",
     "date-fns": "^2.29.2",
-    "dotenv": "^16.0.1",
+    "dotenv": "^16.0.2",
     "google-spreadsheet": "^3.3.0",
     "inter-ui": "^3.19.3",
     "mdast-util-to-string": "^3.1.0",
