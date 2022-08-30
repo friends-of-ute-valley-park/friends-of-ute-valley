@@ -19,7 +19,7 @@
     "axios": "^0.27.2",
     "prettier": "^2.7.1",
     "prettier-plugin-astro": "^0.5.3",
-    "vue": "^3.2.37"
+    "vue": "^3.2.38"
   },
   "dependencies": {
     "@headlessui/vue": "^1.6.7",
