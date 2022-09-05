@@ -139,8 +139,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ExclamationCircleIcon } from '@heroicons/vue/solid/esm/index.js'
-import { SpeakerphoneIcon } from '@heroicons/vue/outline/esm/index.js'
+import { ExclamationCircleIcon } from '@heroicons/vue/24/solid/esm/index.js'
+import { SpeakerphoneIcon } from '@heroicons/vue/24/outline/esm/index.js'
 const props = defineProps({
   defaultOption: {
     type: String,

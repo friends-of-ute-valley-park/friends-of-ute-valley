@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue"
-import { ChevronDownIcon } from '@heroicons/vue/solid/esm/index.js'
+import { ChevronDownIcon } from '@heroicons/vue/24/solid/esm/index.js'
 const viewMore = ref(false)
 
 </script>

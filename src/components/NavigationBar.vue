@@ -61,7 +61,7 @@
 
 <script setup lang="ts">
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
-import { MenuIcon, XIcon } from '@heroicons/vue/outline/esm/index.js';
+import { MenuIcon, XIcon } from '@heroicons/vue/24/outline/esm/index.js';
 
 const props = defineProps(['page']);
 
