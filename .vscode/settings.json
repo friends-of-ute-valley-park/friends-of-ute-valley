@@ -1,3 +1,21 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[astro]": {
+      "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+      },
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+      "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+      },
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[js]": {
+      "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+      },
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }
