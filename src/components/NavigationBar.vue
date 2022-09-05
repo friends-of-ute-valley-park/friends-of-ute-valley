@@ -1,5 +1,5 @@
 <template>
-  <Disclosure as="nav" class="bg-white shadow" v-slot="{ open }">
+  <Disclosure v-slot="{ open }" as="nav" class="bg-white shadow">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex">
@@ -8,11 +8,17 @@
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
             <!-- Current: "border-green-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-            <a v-for="item in navigation" :key="item.name" :href="item.href"
-              :aria-current="item.current ? 'page' : undefined" :class="[
+            <a
+              v-for="item in navigation"
+              :key="item.name"
+              :href="item.href"
+              :aria-current="item.current ? 'page' : undefined"
+              :class="[
                 item.current ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
                 'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium',
-              ]">{{ item.name }}</a>
+              ]"
+              >{{ item.name }}</a
+            >
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
@@ -33,10 +39,17 @@
     <DisclosurePanel class="sm:hidden">
       <div class="pt-2 pb-3 space-y-1">
         <!-- Current: "bg-green-50 border-green-500 text-green-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
-        <DisclosureButton as="a" v-for="item in navigation" :key="item.name" :href="item.href" :class="[
-          item.current ? 'bg-green-50 border-green-500 text-green-700' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700',
-          'block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6',
-        ]">{{ item.name }}</DisclosureButton>
+        <DisclosureButton
+          v-for="item in navigation"
+          :key="item.name"
+          as="a"
+          :href="item.href"
+          :class="[
+            item.current ? 'bg-green-50 border-green-500 text-green-700' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700',
+            'block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6',
+          ]"
+          >{{ item.name }}</DisclosureButton
+        >
       </div>
       <div class="relative">
         <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -45,9 +58,7 @@
         <div class="relative flex justify-center">
           <span class="bg-white px-2 text-gray-500">
             <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-              <path fill="#6B7280" fill-rule="evenodd"
-                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                clip-rule="evenodd" />
+              <path fill="#6B7280" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
           </span>
         </div>

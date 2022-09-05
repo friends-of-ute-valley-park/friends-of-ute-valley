@@ -78,7 +78,7 @@ export default {
     },
     predefinedLocation() {
       return this.volunteerEvent.frontmatter.meetingLocation.predefinedLocation;
-    }
+    },
   },
   mounted() {
     const locationInformation = MeetingLocationParser(this.volunteerEvent.frontmatter, this.meetingLocations);

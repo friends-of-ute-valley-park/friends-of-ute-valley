@@ -85,7 +85,7 @@ export default {
       }
 
       try {
-        const res = await fetch('/.netlify/functions/email-signup', {
+        await fetch('/.netlify/functions/email-signup', {
           method: 'post',
           headers: {
             Accept: 'application/json',
@@ -96,7 +96,6 @@ export default {
             email: this.email,
           }),
         });
-        const json = await res.json();
         this.submitSuccess = true;
         return;
       } catch (e) {

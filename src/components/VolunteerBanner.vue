@@ -1,18 +1,17 @@
 <template>
-  <div class="mb-8" v-if="hasUpcomingVolunteerEvent">
+  <div v-if="hasUpcomingVolunteerEvent" class="mb-8">
     <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
       <div class="p-2 rounded-lg bg-teal-700 shadow-lg sm:p-3">
         <div class="flex items-center justify-between flex-wrap">
           <div class="flex-1 flex items-center">
             <span class="flex p-2 rounded-lg bg-teal-800">
-              <SpeakerphoneIcon class="h-6 w-6 text-white" />
+              <MegaphoneIcon class="h-6 w-6 text-white" />
             </span>
             <p class="ml-3 font-medium text-white">
               Upcoming volunteer
               <span class="font-semibold">{{ eventDates }}!</span>
               <span class="block sm:ml-2 sm:inline-block">
-                <a href="/volunteer" class="text-white font-bold underline"> Learn More <span
-                    aria-hidden="true">&rarr;</span> </a>
+                <a href="/volunteer" class="text-white font-bold underline"> Learn More <span aria-hidden="true">&rarr;</span> </a>
               </span>
             </p>
           </div>
@@ -31,8 +30,7 @@
             <p class="ml-3 font-medium text-white">
               {{ leavenotrace[0].text }}
               <span class="block sm:ml-2 sm:inline-block">
-                <a :href="leavenotrace[0].link" class="text-white font-bold underline"> Learn More <span
-                    aria-hidden="true">&rarr;</span> </a>
+                <a :href="leavenotrace[0].link" class="text-white font-bold underline"> Learn More <span aria-hidden="true">&rarr;</span> </a>
               </span>
             </p>
           </div>
@@ -43,25 +41,30 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue"
-import { MegaphoneIcon, BellIcon } from '@heroicons/vue/24/outline/esm/index.js'
+import { computed, PropType } from 'vue';
+import { MegaphoneIcon, BellIcon } from '@heroicons/vue/24/outline/esm/index.js';
+
+interface Event {
+  date: Date;
+}
 
 const props = defineProps({
   events: {
-    type: Array<Record<string, any>>
-  }
-})
+    type: Array as PropType<Array<Event>>,
+    default: () => [],
+  },
+});
 const leavenotrace = [
   {
     text: 'Reminder! Dogs must be leashed in Ute Valley Park at all times.  Find a nearby off-leash park.',
-    link: '/leavenotrace/dogs'
+    link: '/leavenotrace/dogs',
   },
-]
+];
 
 const hasUpcomingVolunteerEvent = computed(() => {
   if (props.events === undefined) return false;
   return props.events.length > 0;
-})
+});
 
 const eventDates = computed(() => {
   if (props.events === undefined) {
@@ -79,5 +82,5 @@ const eventDates = computed(() => {
     })
     .join(' and ');
   return dateString;
-})
+});
 </script>
