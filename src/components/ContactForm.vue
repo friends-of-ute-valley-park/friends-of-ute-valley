@@ -6,7 +6,7 @@
         <div class="flex items-center justify-between flex-wrap">
           <div class="w-0 flex-1 flex items-center">
             <span class="flex p-2 rounded-lg bg-green-800">
-              <SpeakerphoneIcon class="h-6 w-6 text-white" />
+              <MegaphoneIcon class="h-6 w-6 text-white" />
             </span>
             <p v-if="message" class="ml-3 font-medium text-white">
               {{ message }}
@@ -140,7 +140,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ExclamationCircleIcon } from '@heroicons/vue/24/solid/esm/index.js'
-import { SpeakerphoneIcon } from '@heroicons/vue/24/outline/esm/index.js'
+import { MegaphoneIcon } from '@heroicons/vue/24/outline/esm/index.js'
 const props = defineProps({
   defaultOption: {
     type: String,

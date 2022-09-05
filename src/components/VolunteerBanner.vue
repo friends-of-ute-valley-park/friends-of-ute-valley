@@ -44,7 +44,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue"
-import { SpeakerphoneIcon, BellIcon } from '@heroicons/vue/24/outline/esm/index.js'
+import { MegaphoneIcon, BellIcon } from '@heroicons/vue/24/outline/esm/index.js'
 
 const props = defineProps({
   events: {
