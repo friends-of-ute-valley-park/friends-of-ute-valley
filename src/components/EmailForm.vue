@@ -13,7 +13,7 @@
             'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500': nameIsError,
           }"
           class="block w-full py-3 text-base rounded-md placeholder-gray-500 shadow-sm focus:ring-green-500 focus:border-green-500 sm:flex-1 border-gray-300 mr-4"
-          placeholder="Enter your full name"
+          placeholder="Full name"
           @input="updateName" />
         <label for="email" class="sr-only">Email</label>
         <input
@@ -25,7 +25,7 @@
             'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500': emailIsError,
           }"
           class="block w-full py-3 text-base rounded-md placeholder-gray-500 shadow-sm focus:ring-green-500 focus:border-green-500 sm:flex-1 border-gray-300 mt-3 sm:mt-0"
-          placeholder="Enter your email"
+          placeholder="Email"
           @input="updateEmail" />
         <button
           :disabled="submitInProgress"
@@ -45,7 +45,7 @@
       </p>
       <p class="mt-3 text-sm text-gray-500">
         We care about the protection of your data. Read our
-        <a href="/privacy" class="font-medium text-gray-900 underline"> Privacy Policy </a>.
+        <a href="/privacy" class="font-medium text-gray-900 underline"> Privacy Policy</a>.
       </p>
     </div>
     <div v-else>
