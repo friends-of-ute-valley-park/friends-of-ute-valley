@@ -8,13 +8,11 @@ meetingLocation:
   alternativeLocation: ""
   alternativeLocationDirectionsLink: ""
   notes: ""
-link: https://cerv.is/0132gMQmR0x
+link: https://cerv.is/0132gAOj93X
 time: 5:30-7:30PM
 layout: ../../layouts/EventLayout.astro
 ---
 Come join the Friends of Ute Valley on our Wednesday night volunteer work session! We will be performing trail closure and restoration tasks along Rattlesnake Ridge. Please wear pants and closed-toe shoes, bring work gloves, eye protection, sunscreen, water, and snacks.
-
-
 
 **\*\***Meetup location is the Vindicator trailhead/parking lot **\*\***
 
