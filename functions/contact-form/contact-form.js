@@ -50,6 +50,7 @@ exports.handler = async function (event, context, callback) {
   const sheet = doc.sheetsByIndex[0];
 
   await sheet.addRow({
+    Date: new Intl.DateTimeFormat('en-US').format(new Date()),
     Name: data.name,
     Email: data.email,
     Category: data.category,
