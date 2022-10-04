@@ -10,16 +10,16 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/tailwind": "^2.0.0",
+    "@astrojs/tailwind": "^2.0.2",
     "@astrojs/vue": "^1.0.2",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.7",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
-    "@typescript-eslint/parser": "^5.37.0",
+    "@typescript-eslint/parser": "^5.39.0",
     "astro": "1.2.4",
     "axios": "^0.27.2",
-    "eslint": "^8.23.1",
+    "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.5.1",
@@ -29,10 +29,10 @@
     "vue": "^3.2.39"
   },
   "dependencies": {
-    "@headlessui/vue": "^1.7.1",
+    "@headlessui/vue": "^1.7.3",
     "@heroicons/vue": "^2.0.11",
     "date-fns": "^2.29.3",
-    "dotenv": "^16.0.2",
+    "dotenv": "^16.0.3",
     "google-spreadsheet": "^3.3.0",
     "inter-ui": "^3.19.3",
     "mdast-util-to-string": "^3.1.0",
