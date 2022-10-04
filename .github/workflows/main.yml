@@ -21,5 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - env:
+      NETLIFY_WEBHOOK_ID: ${{ secrets.NETLIFY_WEBHOOK_ID }}
     - name: POST hook
       run: curl -X POST -d {} https://api.netlify.com/build_hooks/$NETLIFY_WEBHOOK_ID
