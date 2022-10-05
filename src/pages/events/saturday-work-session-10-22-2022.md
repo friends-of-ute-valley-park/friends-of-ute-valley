@@ -1,6 +1,6 @@
 ---
 title: Saturday Work Session - 10/22/2022
-date: 2022-10-05T15:22:46.072Z
+date: 2022-10-22T15:22:46.072Z
 description: Come join the Friends of Ute Valley on our final volunteer work
   session of 2022!
 meetingLocation:
