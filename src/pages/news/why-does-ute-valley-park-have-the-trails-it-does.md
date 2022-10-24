@@ -28,6 +28,4 @@ When the Master Plan was being worked on for the new trail system the main focus
 
 > Trail sustainability requires consideration of and attention to protection of the natural and cultural resources, trail safety, long-term durability, construction cost, structural integrity, social behavior and maintenance. Compliance with and proper execution of consistent design and construction standards that reduce entrenching, braiding, erosion and sediment loading, will best ensure durable, safe, sustainable trails.
 
-If that sounds like a mouthful Vox has a great video demonstrating the thought process of what goes into building sustainable trails.
-
-https://www.youtube.com/watch?v=oFIdIVngeYA
+If that sounds like a mouthful Vox has a great [video](https://www.youtube.com/watch?v=oFIdIVngeYA) demonstrating the thought process of what goes into building sustainable trails.
