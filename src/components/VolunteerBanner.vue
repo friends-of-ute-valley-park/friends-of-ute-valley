@@ -1,17 +1,17 @@
 <template>
-  <div v-if="hasUpcomingVolunteerEvent" class="mb-8">
-    <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-      <div class="p-2 rounded-lg bg-teal-700 shadow-lg sm:p-3">
+  <div v-if="hasUpcomingVolunteerEvent" class="mb-2">
+    <div class="bg-teal-900">
+      <div class="p-2 mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between flex-wrap">
           <div class="flex-1 flex items-center">
-            <span class="flex p-2 rounded-lg bg-teal-800">
+            <span class="flex p-1 rounded-lg bg-teal-800">
               <MegaphoneIcon class="h-6 w-6 text-white" />
             </span>
-            <p class="ml-3 font-medium text-white">
+            <p class="ml-3 text-teal-50 text-sm font-medium">
               Upcoming volunteer
               <span class="font-semibold">{{ eventDates }}!</span>
-              <span class="block sm:ml-2 sm:inline-block">
-                <a href="/volunteer" class="text-white font-bold underline"> Learn More <span aria-hidden="true">&rarr;</span> </a>
+              <span class="inline-block sm:ml-2 sm:inline-block">
+                <a href="/volunteer" class="text-teal-200 font-bold underline"> Learn More <span aria-hidden="true">&rarr;</span> </a>
               </span>
             </p>
           </div>
@@ -19,18 +19,18 @@
       </div>
     </div>
   </div>
-  <div v-else>
-    <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-      <div class="p-2 rounded-lg bg-green-700 shadow-lg sm:p-3">
+  <div v-else class="mb-2">
+    <div class="bg-green-900">
+      <div class="p-2 mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between flex-wrap">
           <div class="flex-1 flex items-center">
-            <span class="flex p-2 rounded-lg bg-green-800">
-              <BellIcon class="w-8 h-8 text-white" />
+            <span class="flex p-1 rounded-lg bg-green-800">
+              <BellIcon class="w-6 h-6 text-white" />
             </span>
-            <p class="ml-3 font-medium text-white">
+            <p class="ml-3 text-green-50 text-sm font-medium">
               {{ leavenotrace[0].text }}
-              <span class="block sm:ml-2 sm:inline-block">
-                <a :href="leavenotrace[0].link" class="text-white font-bold underline"> Learn More <span aria-hidden="true">&rarr;</span> </a>
+              <span class="inline-block sm:ml-2 sm:inline-block">
+                <a :href="leavenotrace[0].link" class="text-green-200 font-bold underline"> Learn More <span aria-hidden="true">&rarr;</span> </a>
               </span>
             </p>
           </div>

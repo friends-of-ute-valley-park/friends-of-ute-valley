@@ -1,6 +1,6 @@
 <template>
   <div class="sm:text-center lg:text-left lg:mx-0">
-    <div v-if="!submitSuccess" class="lg:w-11/12">
+    <div v-if="!submitSuccess">
       <p class="text-base font-medium text-gray-900">Sign up to get notified of future volunteer opportunities.</p>
       <form class="mt-3 sm:flex" @submit="submit">
         <label for="name" class="sr-only">Name</label>

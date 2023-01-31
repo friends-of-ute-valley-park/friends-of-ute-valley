@@ -3,18 +3,14 @@ import Layout from '@layouts/Layout.astro';
 import Card from '@components/Card.astro';
 import LeaveNoTrace from '@components/LeaveNoTrace.astro';
 import EmailForm from '@components/EmailForm.vue';
-import VolunteerBanner from '@components/VolunteerBanner.vue';
+
+import { Picture } from '@astrojs/image/components';
 
 const newsPosts = await Astro.glob('../pages/news/*.md');
-const volunteerEvents = await Astro.glob('../pages/events/*.md');
-import { isFuture, endOfDay } from 'date-fns';
-const upcomingVolunteerEvents = volunteerEvents.filter((e) => isFuture(endOfDay(new Date(e.frontmatter.date))));
 ---
 
 <Layout title="Home">
-  <VolunteerBanner events={upcomingVolunteerEvents.map((event) => event.frontmatter)} client:idle />
-
-  <div class="relative bg-gray-50 overflow-hidden">
+  <div class="relative bg-gray-50 overflow-hidden mt-2">
     <div class="relative overflow-hidden pt-16 pb-8">
       <div aria-hidden="true" class="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-gray-100"></div>
       <div class="relative">
@@ -36,14 +32,19 @@ const upcomingVolunteerEvents = volunteerEvents.filter((e) => isFuture(endOfDay(
               <EmailForm client:idle />
             </div>
           </div>
-          <div class="mt-12 sm:mt-16 lg:mt-0">
-            <div class="-mr-48 pl-4 sm:pl-6 md:-mr-16 lg:relative lg:m-0 lg:h-full lg:px-0">
-              <picture>
-                <source srcset="/images/ute-valley-park.webp" type="image/webp" />
-                <source srcset="/images/ute-valley-park.avif" type="image/avif" />
-                <source srcset="/images/ute-valley-park.jpg" type="image/jpg" />
-                <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none" src="/images/ute-valley-park.jpg" alt="" />
-              </picture>
+          <div class="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none">
+            <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+              <div class="-m-2 sm:rounded-xl bg-green-900/5 p-2 ring-1 ring-inset ring-green-900/10 lg:-m-4 lg:rounded-2xl">
+                <Picture
+                  src="/images/ute-valley-park-hero.jpg"
+                  widths={[600, 800]}
+                  aspectRatio={4 / 3}
+                  width="530"
+                  height="600"
+                  alt="Ute Valley Park"
+                  class="w-[50rem] sm:rounded-md ring-1 ring-green-900/10"
+                />
+              </div>
             </div>
           </div>
         </div>
