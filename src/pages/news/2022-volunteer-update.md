@@ -2,7 +2,7 @@
 title: 2022 Volunteer Update
 published: true
 publishedOn: 2022-12-13T22:13:27.190Z
-coverImage: /images/eb9c2d21-4f50-40e9-88b8-17f79cc6a867.jpeg
+coverImage: /images/ute-news-12-13-22.jpg
 previewText:  This year the FUVP was able to report that we recorded 201
   individual volunteer sessions over the workday season.
 layout: ../../layouts/NewsLayout.astro
