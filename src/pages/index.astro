@@ -4,6 +4,7 @@ import Card from '@components/Card.astro';
 import LeaveNoTrace from '@components/LeaveNoTrace.astro';
 import EmailForm from '@components/EmailForm.vue';
 
+import { ChevronRightIcon } from '@heroicons/vue/24/outline/esm/index.js';
 import { Picture } from '@astrojs/image/components';
 import heroImage from '../assets/images/ute-valley-park-hero.jpg';
 
@@ -19,13 +20,22 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
           <div class="mx-auto max-w-xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
             <div>
               <div class="mt-6">
-                <h2 class="text-7xl font-bold tracking-tight">
+                <a href="/visit" class="inline-flex items-center rounded-full bg-slate-800 p-1 pr-2 text-white hover:text-gray-200 sm:text-base lg:text-sm xl:text-base">
+                  <span class="rounded-full bg-gradient-to-r from-teal-500 to-green-600 px-3 py-0.5 text-sm font-semibold leading-5 text-white">Visit Ute Valley Park</span>
+                  <span class="ml-4 text-sm">Find out more</span>
+                  <ChevronRightIcon class="ml-2 h-5 w-5 text-gray-500" aria-hidden="true" />
+                </a>
+                <h2 class="text-7xl font-bold tracking-tight mt-4">
                   <span class="inline text-gray-900">Friends of</span>
                   <span class="inline text-green-600">Ute Valley Park</span>
                 </h2>
                 <p class="mt-4 text-lg text-gray-500">
-                  Friends of Ute Valley Park is an officially recognized “Friends” organization by the City of Colorado Springs Parks, Recreation, and Cultural Services Department. Our mission is to
-                  maintain, preserve, and provide education for Ute Valley Park.
+                  <a
+                    href="/about"
+                    class="text-green-600 underline decoration-green-500 decoration-[0.25rem] motion-safe:transition-all motion-safe:duration-200 hover:decoration-[0.5rem] focus:decoration-[0.5rem] hover:decoration-green-500/50 focus:decoration-green-500/50"
+                    >Friends of Ute Valley Park</a
+                  > is an officially recognized “Friends” organization by the City of Colorado Springs Parks, Recreation, and Cultural Services Department. Our mission is to maintain, preserve, and provide
+                  education for Ute Valley Park.
                 </p>
               </div>
             </div>
