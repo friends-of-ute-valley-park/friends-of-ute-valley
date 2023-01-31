@@ -5,6 +5,7 @@ import LeaveNoTrace from '@components/LeaveNoTrace.astro';
 import EmailForm from '@components/EmailForm.vue';
 
 import { Picture } from '@astrojs/image/components';
+import heroImage from '../assets/images/ute-valley-park-hero.jpg';
 
 const newsPosts = await Astro.glob('../pages/news/*.md');
 ---
@@ -35,15 +36,7 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
           <div class="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none">
             <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
               <div class="-m-2 sm:rounded-xl bg-green-900/5 p-2 ring-1 ring-inset ring-green-900/10 lg:-m-4 lg:rounded-2xl">
-                <Picture
-                  src="/images/ute-valley-park-hero.jpg"
-                  widths={[600, 800]}
-                  aspectRatio={4 / 3}
-                  width="530"
-                  height="600"
-                  alt="Ute Valley Park"
-                  class="w-[50rem] sm:rounded-md ring-1 ring-green-900/10"
-                />
+                <Picture src={heroImage} widths={[600, 800]} aspectRatio={4 / 3} width="530" height="600" alt="Ute Valley Park" class="w-[50rem] sm:rounded-md ring-1 ring-green-900/10" />
               </div>
             </div>
           </div>
