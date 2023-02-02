@@ -47,10 +47,11 @@
             </slot>
           </p>
         </div>
-        <div class="mt-12">
+        <p class="my-2"><span class="text-red-700">*</span> indicates a required field</p>
+        <div class="mt-8">
           <form action="/.netlify/functions/contact-form" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" @submit.prevent="submit">
             <div class="sm:col-span-2">
-              <label for="name" class="block text-sm font-semibold text-gray-700">Name</label>
+              <label for="name" class="block text-sm font-semibold text-gray-700">Name <span class="text-red-700">*</span></label>
               <div class="mt-1">
                 <input
                   id="name"
@@ -63,7 +64,7 @@
               </div>
             </div>
             <div class="sm:col-span-2">
-              <label for="email" class="block text-sm font-semibold text-gray-700">Email</label>
+              <label for="email" class="block text-sm font-semibold text-gray-700">Email <span class="text-red-700">*</span></label>
               <div class="mt-1 relative rounded-md shadow-sm">
                 <input
                   id="email"
@@ -75,7 +76,7 @@
               </div>
             </div>
             <div class="sm:col-span-2">
-              <label for="category" class="block text-sm font-semibold text-gray-700">Category</label>
+              <label for="category" class="block text-sm font-semibold text-gray-700 mb-1">Category <span class="text-red-700">*</span></label>
               <select id="category" v-model="form.category" class="py-3 px-3 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md">
                 <option v-for="option in options" :key="option">
                   {{ option }}
@@ -108,7 +109,7 @@
               </div>
             </div>
             <div class="sm:col-span-2">
-              <label for="message" class="block text-sm font-semibold text-gray-700">Message</label>
+              <label for="message" class="block text-sm font-semibold text-gray-700">Message <span class="text-red-700">*</span></label>
               <div class="mt-1 relative rounded-md shadow-sm">
                 <textarea id="message" v-model="form.message" required rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md" />
               </div>
@@ -119,7 +120,7 @@
                 <button
                   :disabled="submitInProgress"
                   type="submit"
-                  class="disabled:opacity-25 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-green-500 focus:ring-2 active:bg-green-700 transition ease-in-out duration-150">
+                  class="disabled:opacity-25 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-700 hover:bg-green-500 focus:outline-none focus:ring-green-500 focus:ring-2 active:bg-green-700 transition ease-in-out duration-150">
                   <span>
                     <svg v-if="submitInProgress" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
