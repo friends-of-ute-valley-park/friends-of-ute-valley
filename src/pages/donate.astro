@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { CheckBadgeIcon } from '@heroicons/vue/24/outline/esm/index.js';
 ---
 
 <Layout title="Donate">
@@ -22,51 +23,31 @@ import Layout from '../layouts/Layout.astro';
               <p class="mt-6 text-base leading-6 text-gray-500">Make contributions to the Trails and Open Space Coalition and designate your gift to the Friends of Ute Valley Park.</p>
               <div class="mt-8">
                 <div class="flex items-center">
-                  <h4 class="flex-shrink-0 pr-4 bg-white text-sm leading-5 tracking-wider font-semibold uppercase text-green-600">What you are supporting</h4>
+                  <h4 class="flex-shrink-0 pr-4 bg-white text-sm leading-5 tracking-wider font-semibold uppercase text-green-700">What you are supporting</h4>
                   <div class="flex-1 border-t-2 border-gray-200"></div>
                 </div>
                 <ul class="mt-8 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5">
                   <li class="flex items-start lg:col-span-1">
                     <div class="flex-shrink-0">
-                      <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"></path>
-                      </svg>
+                      <CheckBadgeIcon class="h-6 w-6" aria-hidden="true" />
                     </div>
                     <p class="ml-3 text-sm leading-5 text-gray-700">New tools</p>
                   </li>
                   <li class="mt-5 flex items-start lg:col-span-1 lg:mt-0">
                     <div class="flex-shrink-0">
-                      <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"></path>
-                      </svg>
+                      <CheckBadgeIcon class="h-6 w-6" aria-hidden="true" />
                     </div>
                     <p class="ml-3 text-sm leading-5 text-gray-700">Expanded trails</p>
                   </li>
                   <li class="mt-5 flex items-start lg:col-span-1 lg:mt-0">
                     <div class="flex-shrink-0">
-                      <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"></path>
-                      </svg>
+                      <CheckBadgeIcon class="h-6 w-6" aria-hidden="true" />
                     </div>
                     <p class="ml-3 text-sm leading-5 text-gray-700">Trail maintenance</p>
                   </li>
                   <li class="mt-5 flex items-start lg:col-span-1 lg:mt-0">
                     <div class="flex-shrink-0">
-                      <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"></path>
-                      </svg>
+                      <CheckBadgeIcon class="h-6 w-6" aria-hidden="true" />
                     </div>
                     <p class="ml-3 text-sm leading-5 text-gray-700">Signage and facilities</p>
                   </li>
@@ -90,6 +71,7 @@ import Layout from '../layouts/Layout.astro';
               <div class="mt-4 text-sm leading-5">
                 <a href="https://www.trailsandopenspaces.org/fiscal-sponsors/" class="font-medium text-gray-900">
                   <svg id="Layer_1" class="w-64 mx-auto" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 484.2 201.5" xml:space="preserve">
+                    <title>Trails and Open Spaces Logo</title>
                     <path
                       class="st0"
                       d="M234.9 43.4h-18.5v135.4h-17.2V43.4h-17.6V26.3h53.3v17.1zM269 178.9c-13 0-19.4-6.4-19.4-19.4V45.7c0-13 6.4-19.4 19.4-19.4h18.5c13 0 19.4 6.4 19.4 19.4v113.7c0 13-6.4 19.4-19.4 19.4H269zm-2.3-17.2h23.1V43.4h-23.1v118.3zM342.4 124.9v36.8h23.1v-36.4c0-3.4-.2-5.5-.7-6.4-.5-.9-1.6-1.8-3.4-2.5l-25.8-9.8c-4.1-1.6-6.9-3.9-8.2-7.1-1.4-3.2-2.1-8.7-2.1-16.5V45.7c0-13 6.4-19.4 19.4-19.4h18.5c13 0 19.4 6.4 19.4 19.4V81h-17.2V43.4h-23.1v40.3c0 3.9.2 6.2.9 7.1.5.9 1.8 1.8 4.1 2.7l23.6 8.7c4.8 1.6 7.8 3.9 9.4 6.6s2.3 7.3 2.3 13.7v36.8c0 13-6.4 19.4-19.4 19.4h-18.5c-13 0-19.4-6.4-19.4-19.4v-34.5h17.1zM458.4 159.4c0 13-6.4 19.4-19.4 19.4h-18.5c-13 0-19.4-6.4-19.4-19.4V45.7c0-13 6.4-19.4 19.4-19.4H439c13 0 19.4 6.4 19.4 19.4v38.2h-17.2V43.4h-23.1v118.3h23.1v-40.9h17.2v38.6z"
