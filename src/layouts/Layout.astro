@@ -26,6 +26,7 @@ const { title } = Astro.props as Props;
     <title>{title} - Friends of Ute Valley Park</title>
   </head>
   <body>
+    <a href="#main-content" class="bg-white text-black underline sr-only focus:not-sr-only">Skip to main content</a>
     <div class="min-h-screen bg-white">
       <VolunteerBanner events={upcomingVolunteerEvents.map((event) => event.frontmatter)} client:idle />
       <NavigationBar page={Astro.url.pathname} client:idle>
@@ -34,7 +35,7 @@ const { title } = Astro.props as Props;
         </Fragment>
       </NavigationBar>
 
-      <div>
+      <div id="main-content">
         <main>
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <slot />
