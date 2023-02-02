@@ -17,9 +17,9 @@ const meetingLocations = await Astro.glob('./trailheads/*.md');
       <div class="bg-gradient-to-r from-green-700/80 to-teal-500 sm:rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
         <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
           <div class="lg:self-center">
-            <h2 class="font-extrabold text-white">
+            <h1 class="font-extrabold text-white">
               <span class="block text-white text-5xl mb-8">Give back to the park you love</span>
-            </h2>
+            </h1>
             <p class="mt-4 text-2xl text-green-50">Volunteer at Ute Valley Park to improve the trails, make friends and give back to your favorite park.</p>
           </div>
         </div>
@@ -107,7 +107,9 @@ const meetingLocations = await Astro.glob('./trailheads/*.md');
     <LeaveNoTraceSmall />
 
     <ContactForm default-option="Volunteer" client:visible>
-      <Fragment slot="title">Contact us for more information!</Fragment>
+      <Fragment slot="title">
+        <h2 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">Contact us for more information!</h2>
+      </Fragment>
       <Fragment slot="subtitle">Help make Ute Valley Park better by volunteering.</Fragment>
     </ContactForm>
   </div>
