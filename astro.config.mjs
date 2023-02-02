@@ -3,21 +3,24 @@ import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 import vue from '@astrojs/vue';
 
-// https://astro.build/config
 import image from '@astrojs/image';
-
-// https://astro.build/config
-import sitemap from "@astrojs/sitemap";
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.friendsofutevalleypark.com',
   markdown: {
-    remarkPlugins: [remarkReadingTime]
+    remarkPlugins: [remarkReadingTime],
   },
-  integrations: [tailwind(), vue({
-    template: {
-      // workaround for https://github.com/withastro/astro/issues/6071
-      transformAssetUrls: false
-    }
-  }), image(), sitemap()]
+  integrations: [
+    tailwind(),
+    vue({
+      template: {
+        // workaround for https://github.com/withastro/astro/issues/6071
+        transformAssetUrls: false,
+      },
+    }),
+    image(),
+    sitemap(),
+  ],
 });
