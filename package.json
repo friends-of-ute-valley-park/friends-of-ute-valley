@@ -32,7 +32,7 @@
     "@astrojs/sitemap": "^1.0.1",
     "@headlessui/vue": "^1.7.8",
     "@heroicons/vue": "^2.0.14",
-    "astro": "^2.0.5",
+    "astro": "^2.1.2",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "google-spreadsheet": "^3.3.0",
