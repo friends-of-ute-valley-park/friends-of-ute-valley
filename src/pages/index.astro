@@ -45,7 +45,7 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
       </svg>
     </div>
     <div class="overflow-hidden">
-      <div class="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
+      <div class="mx-auto max-w-7xl px-6 pb-24 pt-36 sm:pt-60 lg:px-8 lg:pt-24">
         <div class="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
           <div class="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
             <a href="/visit" class="inline-flex items-center rounded-full bg-slate-800 p-1 pr-2 text-white hover:text-gray-200 sm:text-base lg:text-sm xl:text-base">
@@ -99,20 +99,9 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
     </div>
   </div>
 
-  <div class="bg-white py-8">
-    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-      <div class="max-w-xl text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:col-span-6">
-        <h2 class="inline sm:block lg:inline xl:block">Want events, news and updates?</h2>
-        <p class="inline sm:block lg:inline xl:block">Sign up for our newsletter.</p>
-      </div>
-      <div class="w-full max-w-md lg:col-span-6 lg:pt-2">
-        <EmailForm client:idle />
-      </div>
-    </div>
-  </div>
-
+  <!-- CTA -->
   <div class="bg-white">
-    <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
+    <div class="mx-auto max-w-7xl py-12 sm:px-6 sm:py-24 lg:px-8">
       <div class="relative isolate overflow-hidden bg-green-700 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
         <svg
           viewBox="0 0 1024 1024"
@@ -151,6 +140,20 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
     </div>
   </div>
 
+  <!-- Newsletter -->
+
+  <div class="bg-white py-16">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
+      <div class="max-w-xl text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:col-span-6">
+        <h2 class="inline sm:block lg:inline xl:block">Want events, news and updates?</h2>
+        <p class="inline sm:block lg:inline xl:block">Sign up for our newsletter.</p>
+      </div>
+      <div class="w-full max-w-md lg:col-span-6 lg:pt-2">
+        <EmailForm client:idle />
+      </div>
+    </div>
+  </div>
+
   <!-- News -->
 
   <div class="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
@@ -159,7 +162,7 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
     </div>
     <div class="relative max-w-7xl mx-auto">
       <div class="text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Ute Valley Park News</h2>
+        <h2 class="text-3xl font-bold tracking-tight text-green-800 sm:text-4xl">Ute Valley Park News</h2>
         <p class="mt-2 text-lg leading-8 text-gray-600">Find out what is happening in and around Ute Valley Park</p>
       </div>
       <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
@@ -183,6 +186,7 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
       </div>
     </div>
   </div>
+
   <LeaveNoTrace />
 </Layout>
 
