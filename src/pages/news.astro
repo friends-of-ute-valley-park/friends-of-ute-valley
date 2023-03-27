@@ -6,22 +6,24 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
 ---
 
 <Layout title="News">
-  <h1 class="mt-16 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">News From Ute Valley Park</h1>
-  <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-    {
-      newsPosts
-        .sort((a, b) => new Date(a.frontmatter.publishedOn).getTime() - new Date(b.frontmatter.publishedOn).getTime())
-        .reverse()
-        .map((post) => (
-          <Card
-            title={post.frontmatter.title}
-            previewText={post.frontmatter.previewText}
-            image={post.frontmatter.coverImage}
-            href={post.url}
-            publishedOn={post.frontmatter.publishedOn}
-            minutesRead={post.frontmatter.minutesRead}
-          />
-        ))
-    }
+  <div class="bg-white mx-2">
+    <h1 class="mt-16 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">News From Ute Valley Park</h1>
+    <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      {
+        newsPosts
+          .sort((a, b) => new Date(a.frontmatter.publishedOn).getTime() - new Date(b.frontmatter.publishedOn).getTime())
+          .reverse()
+          .map((post) => (
+            <Card
+              title={post.frontmatter.title}
+              previewText={post.frontmatter.previewText}
+              image={post.frontmatter.coverImage}
+              href={post.url}
+              publishedOn={post.frontmatter.publishedOn}
+              minutesRead={post.frontmatter.minutesRead}
+            />
+          ))
+      }
+    </div>
   </div>
 </Layout>
