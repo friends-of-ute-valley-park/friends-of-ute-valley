@@ -1,7 +1,6 @@
 <template>
   <div class="sm:text-center lg:text-left lg:mx-0">
     <div v-if="!submitSuccess">
-      <p class="text-base font-medium text-gray-900">Sign up to get notified of future volunteer opportunities.</p>
       <form class="mt-3 sm:flex" @submit="submit">
         <label for="name" class="sr-only">Name</label>
         <input
@@ -44,7 +43,7 @@
         {{ errorMessage }}
       </p>
       <p class="mt-3 text-sm text-gray-500">
-        We care about the protection of your data. Read our
+        We care about your data. Read our
         <a href="/privacy" class="font-medium text-gray-900 underline"> Privacy Policy</a>.
       </p>
     </div>

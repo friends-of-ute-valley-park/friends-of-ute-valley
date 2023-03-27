@@ -1,22 +1,21 @@
 <template>
   <div v-if="hasUpcomingVolunteerEvent" class="mb-2">
-    <div class="bg-teal-900">
-      <div class="p-2 mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between flex-wrap">
-          <div class="flex-1 flex items-center">
-            <span class="flex p-1 rounded-lg bg-teal-800">
-              <MegaphoneIcon class="h-6 w-6 text-white" />
-            </span>
-            <p class="ml-3 text-teal-50 text-sm font-medium">
-              Upcoming volunteer
-              <span class="font-semibold">{{ eventDates }}!</span>
-              <span class="inline-block sm:ml-2 sm:inline-block">
-                <a href="/volunteer" class="text-teal-200 font-bold underline"> Learn More <span aria-hidden="true">&rarr;</span> </a>
-              </span>
-            </p>
-          </div>
-        </div>
+    <div class="relative isolate flex items-center gap-x-6 overflow-hidden bg-teal-900 py-2.5 px-6 sm:px-3.5 sm:before:flex-1">
+      <svg viewBox="0 0 577 310" aria-hidden="true" class="absolute top-1/2 left-[max(45rem,calc(50%+8rem))] -z-10 w-[36.0625rem] -translate-y-1/2 transform-gpu blur-2xl">
+        <use href="#1d77c128-3ec1-4660-a7f6-26c7006705ad" />
+      </svg>
+      <div class="flex flex-wrap items-center gap-y-2 gap-x-4">
+        <MegaphoneIcon class="h-6 w-6 text-white" />
+        <p class="text-sm leading-6 text-gray-900 text-white">
+          <strong class="font-semibold">Upcoming Volunteer Event {{ eventDates }}!</strong>
+        </p>
+        <a
+          href="/volunteer"
+          class="flex-none rounded-full bg-green-700 py-1 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+          >Learn more <span aria-hidden="true">&rarr;</span></a
+        >
       </div>
+      <div class="flex flex-1 justify-end"></div>
     </div>
   </div>
   <div v-else class="mb-2">
