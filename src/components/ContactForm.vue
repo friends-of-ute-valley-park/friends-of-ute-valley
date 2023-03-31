@@ -35,15 +35,15 @@
           </defs>
           <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
         </svg>
-        <div class="text-center">
+        <div>
           <slot name="title">
+            <p class="text-base font-semibold leading-7 text-green-600">Need Help? Contact Us!</p>
             <h1 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">Contact Friends of Ute Valley Park</h1>
           </slot>
           <p class="mt-4 text-base leading-6 text-gray-500">
             <slot name="subtitle">
-              Got a problem or a comment? Let us know and we'll be happy to assist you. Make sure to check out our
-              <a class="font-semibold no-underline text-green-700" href="/faq"> FAQ </a>
-              page.
+              If you have a question, comment or concern, don't hesitate to reach out. Our team is always here to assist you in any way we can. Before contacting us, please take a moment to browse our
+              <a class="font-semibold no-underline text-green-700" href="/faq"> FAQ </a> page to see if your question has already been answered. We look forward to hearing from you!
             </slot>
           </p>
         </div>
