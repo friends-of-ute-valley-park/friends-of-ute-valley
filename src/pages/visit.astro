@@ -1,6 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro';
-
+import LeaveNoTrace from '@components/LeaveNoTrace.astro';
 const activities = [
   {
     name: 'Hiking',
@@ -32,10 +32,10 @@ trailheads.sort((a, b) => a.frontmatter.id - b.frontmatter.id);
 ---
 
 <Layout title="Visit">
-  <div class="py-8 bg-gray-50 overflow-hidden lg:py-12 mt-2">
+  <div class="bg-gray-50 overflow-hidden mt-2">
     <div class="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-screen-xl">
       <!-- Hero section -->
-      <div class="relative">
+      <div class="py-12 lg:py-24 relative">
         <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-50"></div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
@@ -49,17 +49,18 @@ trailheads.sort((a, b) => a.frontmatter.id - b.frontmatter.id);
             </div>
             <div class="relative px-4 py-32 sm:px-6 sm:py-48 lg:py-64 lg:px-8">
               <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                <span class="block text-white">Visit Ute Valley Park</span>
+                <span class="block text-white">Discover Ute Valley Park</span>
               </h1>
               <p class="mt-6 max-w-lg mx-auto text-center text-2xl text-green-50 sm:max-w-3xl">
-                Explore all Ute Valley Park has to offer. Explore nature and scenic views via hiking, running, bouldering, horseback riding and mountain biking.
+                Discover the breathtaking beauty of Ute Valley Park. Hike, run, boulder or mountain bike and immerse yourself in the park's stunning surroundings. Join us and experience the wonders of
+                nature firsthand.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="relative mt-12 lg:mt-18 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+      <div class="relative lg:mt-18 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
         <div class="relative">
           <h4 class="text-2xl leading-8 font-extrabold text-gray-900 tracking-tight sm:text-3xl sm:leading-9">Getting There</h4>
 
@@ -128,7 +129,7 @@ trailheads.sort((a, b) => a.frontmatter.id - b.frontmatter.id);
           </div>
         </div>
       </div>
-      <leave-no-trace />
+      <LeaveNoTrace />
       <!-- Rules -->
       <svg class="hidden lg:block absolute right-full transform translate-x-1/2 translate-y-12" width="404" height="784" fill="none" viewBox="0 0 404 784">
         <defs>
