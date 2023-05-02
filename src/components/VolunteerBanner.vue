@@ -5,8 +5,8 @@
         <use href="#1d77c128-3ec1-4660-a7f6-26c7006705ad" />
       </svg>
       <div class="flex flex-wrap items-center gap-y-2 gap-x-4">
-        <MegaphoneIcon class="h-6 w-6 text-white" />
-        <p class="text-sm leading-6 text-gray-900 text-white">
+        <p class="text-sm text-white">
+          <MegaphoneIcon class="h-6 w-6 text-white inline-block mr-2" />
           <strong class="font-semibold">Upcoming Volunteer Event {{ eventDates }}!</strong>
         </p>
         <a
