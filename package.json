@@ -28,7 +28,7 @@
     "vue": "^3.2.47"
   },
   "dependencies": {
-    "@astrojs/image": "^0.16.6",
+    "@astrojs/image": "^0.16.7",
     "@astrojs/sitemap": "^1.2.2",
     "@headlessui/vue": "^1.7.13",
     "@heroicons/vue": "^2.0.17",
