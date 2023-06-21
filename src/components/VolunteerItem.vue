@@ -2,17 +2,18 @@
   <li>
     <div class="px-4 py-4 sm:px-6">
       <div class="sm:flex items-center justify-between">
-        <a :href="volunteerEvent.url" class="block hover:bg-gray-50">
-          <div>
-            <p class="text-lg font-medium text-green-700">
-              {{ volunteerEvent.frontmatter.title }}
-            </p>
-            <p class="text-base font-medium text-gray-500 my-2">
-              {{ volunteerEvent.frontmatter.description }}
-              <span class="text-green-600 font-bold underline"> Learn More <span aria-hidden="true">&rarr;</span> </span>
-            </p>
-          </div>
-        </a>
+        <div class="relative isolate hover:bg-green-50 px-2 py-3 w-full">
+          <a :href="volunteerEvent.url" class="text-xl font-medium text-green-700">
+            <span class="absolute inset-0" aria-hidden="true"></span>
+
+            {{ volunteerEvent.frontmatter.title }}
+          </a>
+          <p class="text-sm font-medium text-gray-500 my-2">
+            {{ volunteerEvent.frontmatter.description }}
+            <span class="text-green-600 font-bold underline"> Learn More <span aria-hidden="true">&rarr;</span> </span>
+          </p>
+        </div>
+
         <div class="sm:ml-2 mt-2 sm:mt-0 flex-shrink-0 flex">
           <div v-if="volunteerEvent.frontmatter.link" class="flex space-x-2">
             <a
