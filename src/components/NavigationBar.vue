@@ -78,13 +78,13 @@ const props = defineProps(['page']);
 
 const navigation = [
   { href: '/', name: 'Home', current: props.page === '/' },
-  { href: '/visit', name: 'Visit', current: props.page === '/visit' },
+  { href: '/visit/', name: 'Visit', current: props.page === '/visit/' },
   {
-    href: '/volunteer',
+    href: '/volunteer/',
     name: 'Volunteer',
-    current: props.page === '/volunteer',
+    current: props.page === '/volunteer/',
   },
-  { href: '/donate', name: 'Donate', current: props.page === '/donate' },
-  { href: '/contact', name: 'Contact', current: props.page === '/contact' },
+  { href: '/donate/', name: 'Donate', current: props.page === '/donate/' },
+  { href: '/contact/', name: 'Contact', current: props.page === '/contact/' },
 ];
 </script>
