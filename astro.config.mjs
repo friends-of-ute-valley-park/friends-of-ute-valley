@@ -3,7 +3,6 @@ import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 import vue from '@astrojs/vue';
 
-import image from '@astrojs/image';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
@@ -20,7 +19,6 @@ export default defineConfig({
         transformAssetUrls: false,
       },
     }),
-    image(),
     sitemap(),
   ],
 });
