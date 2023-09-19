@@ -10,7 +10,7 @@
           <strong class="font-semibold">Upcoming Volunteer Event {{ eventDates }}!</strong>
         </p>
         <a
-          href="/volunteer"
+          href="/volunteer/"
           class="flex-none rounded-full bg-green-700 py-1 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
           >Learn more <span aria-hidden="true">&rarr;</span></a
         >
