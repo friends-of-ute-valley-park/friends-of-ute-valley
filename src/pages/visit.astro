@@ -1,5 +1,9 @@
 ---
 import Layout from '@layouts/Layout.astro';
+
+import { Image } from 'astro:assets';
+import heroImage from '../assets/images/ute-valley-park-biker.jpg';
+
 import LeaveNoTrace from '@components/LeaveNoTrace.astro';
 const activities = [
   {
@@ -39,12 +43,8 @@ trailheads.sort((a, b) => a.frontmatter.id - b.frontmatter.id);
         <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-50"></div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
-            <div class="absolute inset-0">
-              <picture>
-                <source srcset="/images/ute-valley-park-biker.webp" type="image/webp" />
-                <source srcset="/images/ute-valley-park-biker.jpg" type="image/jpeg" />
-                <img class="h-full w-full object-cover" src="/images/ute-valley-park-biker.jpg" alt="Biker in Ute Valley Park" />
-              </picture>
+            <div class="absolute inset-0" transition:name="hero">
+              <Image src={heroImage} alt="" width="1200" height="1200" class="transition-all h-full w-full object-cover" />
               <div class="absolute inset-0 bg-gradient-to-r from-green-700 to-teal-600 mix-blend-multiply"></div>
             </div>
             <div class="relative px-4 py-32 sm:px-6 sm:py-48 lg:py-64 lg:px-8">
