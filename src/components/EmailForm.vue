@@ -44,7 +44,7 @@
       </p>
       <p class="mt-3 text-sm text-gray-500">
         We care about your data. Read our
-        <a href="/privacy" class="font-medium text-gray-900 underline"> Privacy Policy</a>.
+        <a href="/privacy/" class="font-medium text-gray-900 underline"> Privacy Policy</a>.
       </p>
     </div>
     <div v-else>

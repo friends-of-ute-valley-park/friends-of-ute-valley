@@ -53,7 +53,7 @@
           <p class="mt-4 text-base leading-6 text-gray-500">
             <slot name="subtitle">
               If you have a question, comment or concern, don't hesitate to reach out. Our team is always here to assist you in any way we can. Before contacting us, please take a moment to browse our
-              <a class="font-semibold no-underline text-green-700" href="/faq"> FAQ </a> page to see if your question has already been answered. We look forward to hearing from you!
+              <a class="font-semibold no-underline text-green-700" href="/faq/"> FAQ </a> page to see if your question has already been answered. We look forward to hearing from you!
             </slot>
           </p>
         </div>
@@ -105,7 +105,7 @@
                     <div class="mt-2 text-sm text-green-700">
                       <p>
                         We hold volunteer work events the first and third Wednesday of the month April through September. You can find more information on our
-                        <a class="underline text-green-800" href="/volunteer"> volunteer </a>
+                        <a class="underline text-green-800" href="/volunteer/"> volunteer </a>
                         page. Also, consider following our
                         <a class="underline text-green-800" href="https://www.facebook.com/FriendsOfUteValleyPark">Facebook</a>
                         or
