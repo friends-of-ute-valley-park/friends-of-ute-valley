@@ -56,7 +56,7 @@ const props = defineProps({
 const leavenotrace = [
   {
     text: 'Reminder! Dogs must be leashed in Ute Valley Park at all times.  Find a nearby off-leash park.',
-    link: '/leavenotrace/dogs',
+    link: '/leavenotrace/dogs/',
   },
 ];
 
