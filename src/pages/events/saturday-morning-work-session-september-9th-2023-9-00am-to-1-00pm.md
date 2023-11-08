@@ -9,4 +9,5 @@ link: https://cerv.is/0132ghn2ysS
 time: 9:00AM-1PM
 layout: ../../layouts/EventLayout.astro
 ---
+
 Come join the Friends of Ute Valley on a special Saturday session as we put on the finishing touches of the Bea-UTE-iful Loop reroute! Fencing, seeding, and new trail construction are on the docket! Please wear pants and closed-toe shoes, bring work gloves, eye protection, sunscreen, water, and snacks.

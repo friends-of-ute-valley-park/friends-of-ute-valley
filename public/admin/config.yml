@@ -21,35 +21,35 @@ collections:
       - { label: 'Cover Image', name: 'coverImage', widget: 'image' }
       - { label: 'Preview Text', name: 'previewText', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: '../../layouts/NewsLayout.astro'}
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: '../../layouts/NewsLayout.astro' }
   - name: 'volunteer'
     label: 'Volunteer'
-    folder: "/src/pages/events"
+    folder: '/src/pages/events'
     create: true
     slug: '{{slug}}'
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Date', name: 'date', widget: 'date'}
-      - { label: 'Short Description', name: 'description', widget: 'text', hint: 'Provide 1 sentence to preview the event on the page and social media'}
-      - { label: 'Description', name: 'body', widget: 'markdown'}
-      - label: "Meeting Location"
-        name: "meetingLocation"
-        widget: "object"
-        summary: "{{fields.predefinedLocation}}"
+      - { label: 'Date', name: 'date', widget: 'date' }
+      - { label: 'Short Description', name: 'description', widget: 'text', hint: 'Provide 1 sentence to preview the event on the page and social media' }
+      - { label: 'Description', name: 'body', widget: 'markdown' }
+      - label: 'Meeting Location'
+        name: 'meetingLocation'
+        widget: 'object'
+        summary: '{{fields.predefinedLocation}}'
         fields:
-          - label: "Predefined Location"
-            name: "predefinedLocation"
-            widget: "select"
+          - label: 'Predefined Location'
+            name: 'predefinedLocation'
+            widget: 'select'
             options:
-              - { label: "Other (please fill in the alternative field below)", value: -1}
-              - { label: "Vindicator", value: 1 }
-              - { label: "South Rockrimmon", value: 2 }
-              - { label: "Tech Center", value: 3 }
-              - { label: "Piñon Valley", value: 4 }
-              - { label: "Popes Valley", value: 5 }
+              - { label: 'Other (please fill in the alternative field below)', value: -1 }
+              - { label: 'Vindicator', value: 1 }
+              - { label: 'South Rockrimmon', value: 2 }
+              - { label: 'Tech Center', value: 3 }
+              - { label: 'Piñon Valley', value: 4 }
+              - { label: 'Popes Valley', value: 5 }
           - { label: 'Alternative Location', name: 'alternativeLocation', widget: 'string', required: false }
           - { label: 'Alternative Location Maps Link', name: 'alternativeLocationDirectionsLink', widget: 'string', required: false }
-          - { label: 'Location Notes', name: 'notes', widget: 'text', hint: 'If necessary, provide additional info such as "at the top of the hill"', required: false}
-      - { label: 'Link', name: 'link', widget: 'string', required: false}
-      - { label: 'Time', name: 'time', widget: 'string'}
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: '../../layouts/EventLayout.astro'}
+          - { label: 'Location Notes', name: 'notes', widget: 'text', hint: 'If necessary, provide additional info such as "at the top of the hill"', required: false }
+      - { label: 'Link', name: 'link', widget: 'string', required: false }
+      - { label: 'Time', name: 'time', widget: 'string' }
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: '../../layouts/EventLayout.astro' }

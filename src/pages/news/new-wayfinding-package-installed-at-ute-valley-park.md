@@ -8,6 +8,7 @@ previewText: The wayfinding package was purchased in part by community donations
   and safety.
 layout: ../../layouts/NewsLayout.astro
 ---
+
 Ute Valley Park, a popular destination for hiking, mountain biking, dog walking, and running in Colorado Springs, has recently received a new wayfinding package to enhance the visitor experience. The wayfinding package consists of signage that displays the trail names and directions, making it easier for users to navigate and orient themselves within the park.
 
 The wayfinding package was purchased in part by community donations from park users and supporters who wanted to improve the park’s accessibility and safety. The Colorado Springs Parks, Recreation, and Cultural Services provided the remainder of the funding and installed the signage throughout the park. The project was completed in October 2023, just in time for the fall season.

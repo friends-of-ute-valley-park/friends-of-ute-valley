@@ -9,6 +9,7 @@ link: https://cerv.is/0132gNSbWEt
 time: 5:30-7:30PM
 layout: ../../layouts/EventLayout.astro
 ---
+
 Come join the Friends of Ute Valley on our Wednesday night volunteer work session! We will be refining new trail connections between the Rocky Top Loop and the Ute Valley Regional Trail and finishing up work from the "3 Parks in 3 Days" event. Please wear pants and closed-toe shoes, bring work gloves, eye protection, sunscreen, water, and snacks.
 
 You *must* register to participate in this event.

@@ -4,7 +4,7 @@ name: Every Thursday Deploy
 
 on:
   schedule:
-    - cron: "0 7 * * 4"
+    - cron: '0 7 * * 4'
   workflow_dispatch:
     inputs:
       logLevel:
@@ -13,13 +13,13 @@ on:
         default: 'warning'
         type: choice
         options:
-        - info
-        - warning
-        - debug
+          - info
+          - warning
+          - debug
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: POST hook
-      run: curl -X POST -d {} https://api.netlify.com/build_hooks/${{ secrets.NETLIFY_WEBHOOK_ID }}
+      - uses: actions/checkout@v2
+      - name: POST hook
+        run: curl -X POST -d {} https://api.netlify.com/build_hooks/${{ secrets.NETLIFY_WEBHOOK_ID }}

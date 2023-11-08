@@ -9,6 +9,7 @@ link: https://cerv.is/0132gVZh4BV
 time: 5:30-7:30PM
 layout: ../../layouts/EventLayout.astro
 ---
+
 Come join the Friends of Ute Valley on our Wednesday night volunteer work session! We will be preforming restoration of a couple trails that have been rerouted, installing fencing, and building check dams in drainages. Please wear pants and closed-toe shoes, bring work gloves, eye protection, sunscreen, water, and snacks.
 
 You *must* register to participate in this event.

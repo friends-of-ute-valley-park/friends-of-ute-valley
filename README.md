@@ -4,9 +4,9 @@
 
 # Welcome to [Friends of Ute Valley Park](https://www.friendsofutevalleypark.com)
 
-This is the public repository of Friends of Ute Valley Park.  
+This is the public repository of Friends of Ute Valley Park.
 
-Friends of Ute Valley Park (FUVP) is an officially recognized “Friends” organization by the city of Colorado Springs Parks, Recreation, and Cultural Services Department. Our mission is to maintain, preserve, and provide education for Ute Valley Park (UVP). 
+Friends of Ute Valley Park (FUVP) is an officially recognized “Friends” organization by the city of Colorado Springs Parks, Recreation, and Cultural Services Department. Our mission is to maintain, preserve, and provide education for Ute Valley Park (UVP).
 
 We hope to encourage other Friends groups by providing our code as a template for communicating with the public.
 

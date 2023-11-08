@@ -9,4 +9,5 @@ link: https://cerv.is/0132gmgD2ab
 time: 5:30-7:30PM
 layout: ../../layouts/EventLayout.astro
 ---
+
 Come join the Friends of Ute Valley on our Wednesday night volunteer work session! We will primarily be focused on building check dams and mitigating drainage issues in the central valley. Please wear pants and closed-toe shoes, bring work gloves, eye protection, sunscreen, water, and snacks.
