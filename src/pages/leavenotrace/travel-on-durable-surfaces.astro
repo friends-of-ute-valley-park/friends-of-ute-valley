@@ -1,0 +1,124 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+import TravelOnDurableSurfacesImage from '../../assets/images/travel-on-durable-surfaces.jpeg';
+
+import { ChevronRightIcon } from '@heroicons/vue/20/solid';
+
+const whatAreDurableSurfaces = ['Established trails', 'Rock, gravel and sand', 'Snow and ice', 'Water'];
+
+const whyTravelOnDurableSurfaces = [
+  'Protect the soil from erosion and compaction',
+  'Preserve the vegetation and the habitats of animals and insects',
+  'Prevent the spread of invasive species and diseases',
+  'Maintain the natural beauty and diversity of the landscape',
+  'Avoid creating new trails that fragment the wilderness',
+  'Reduce the need for trail maintenance and restoration',
+];
+---
+
+<Layout title="Travel on Durable Surfaces">
+  <div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0 mt-1">
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <svg class="absolute left-[max(50%,25rem)] top-0 h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]" aria-hidden="true">
+        <defs>
+          <pattern id="e813992c-7d03-4cc4-a2bd-151760b470a0" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+            <path d="M100 200V.5M.5 .5H200" fill="none"></path>
+          </pattern>
+        </defs>
+        <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
+          <path d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z" stroke-width="0"></path>
+        </svg>
+        <rect width="100%" height="100%" stroke-width="0" fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)"></rect>
+      </svg>
+    </div>
+    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
+      <div class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+          <div class="lg:max-w-lg">
+            <p class="text-base font-semibold leading-7 text-green-600">Leave No Trace</p>
+            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Travel on Durable Surfaces</h1>
+            <p class="mt-6 text-xl leading-8 text-gray-700">
+              Ute Valley Park is a beautiful natural area that offers many opportunities for outdoor recreation, such as hiking, biking, and wildlife viewing. However, it is also a fragile ecosystem
+              that needs our care and respect.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+        <Image class="w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]" src={TravelOnDurableSurfacesImage} alt="Travel on Durable Surfaces" />
+      </div>
+      <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+          <div class="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
+            <p>
+              When we visit Ute Valley Park, we want to leave it as we found it, or even better. But sometimes, our footsteps and activities can damage the land, the plants, and the wildlife. That’s
+              why it’s important to travel on durable surfaces, which are surfaces that can resist or recover from the impacts of our visit.
+            </p>
+
+            <h2 class="mt-16 text-2xl font-bold tracking-tight text-gray-900">What are durable surfaces?</h2>
+            <p class="mt-6">
+              Durable surfaces are those that can tolerate repeated trampling and scuffing without losing their structure or function. In Ute Valley Park, the most durable surfaces are:
+            </p>
+            <ul role="list" class="mt-8 space-y-2 text-gray-600">
+              {
+                whatAreDurableSurfaces.map((surface) => (
+                  <li class="flex gap-x-3">
+                    <ChevronRightIcon class="mt-1 h-5 w-5 flex-none text-green-600" aria-hidden="true" />
+                    {surface}
+                  </li>
+                ))
+              }
+            </ul>
+
+            <h2 class="mt-16 text-2xl font-bold tracking-tight text-gray-900">Why should we travel on durable surfaces?</h2>
+            <p class="mt-6">Traveling on durable surfaces helps to:</p>
+            <ul role="list" class="mt-8 space-y-2 text-gray-600">
+              {
+                whyTravelOnDurableSurfaces.map((theWhy) => (
+                  <li class="flex gap-x-3">
+                    <ChevronRightIcon class="mt-1 h-5 w-5 flex-none text-green-600" aria-hidden="true" />
+                    {theWhy}
+                  </li>
+                ))
+              }
+            </ul>
+
+            <h2 class="mt-16 text-2xl font-bold tracking-tight text-gray-900">How can we travel on durable surfaces?</h2>
+            <p class="mt-6">In Ute Valley Park, we can apply the following strategies to travel on durable surfaces:</p>
+
+            <p class="text-base font-semibold leading-7 text-green-600 mt-6">Stay on trail.</p>
+            <p>
+              It is illegal to travel off trails in Ute Valley Park. Park visitors should always stay on the designated trails and avoid cutting switchbacks or creating shortcuts. This helps to
+              prevent soil erosion, vegetation loss, and wildlife disturbance.
+            </p>
+
+            <p class="text-base font-semibold leading-7 text-green-600 mt-6">Choose the right trail.</p>
+            <p>
+              Ute Valley Park has trails for different types of users, such as hikers, bikers, and equestrians. Choose the trail that matches your activity and skill level, and follow the signs and
+              rules for each trail. This helps to reduce conflicts and accidents among users, and to protect the trails from excessive wear and tear.
+            </p>
+
+            <p class="text-base font-semibold leading-7 text-green-600 mt-6">Walk through mud and snow.</p>
+            <p>
+              When the trails are wet or snowy, walk through the center of the trail, even when wet or muddy. This helps to keep the trail narrow and prevent widening and braiding. Do not walk around
+              puddles or snow patches, as this can damage the vegetation and create new trails. If the trails are too muddy or snowy, consider postponing your visit or choosing another trail.
+            </p>
+
+            <p class="text-base font-semibold leading-7 text-green-600 mt-6">Camp elsewhere.</p>
+            <p>
+              There is no camping in Ute Valley Park. Camping is illegal and can cause fire hazards, littering, and wildlife conflicts. If you want to camp, please find a legal and suitable campsite
+              outside the park boundaries.
+            </p>
+
+            <p class="mt-6 text-xl leading-8 text-gray-700">
+              By following these guidelines, we can enjoy Ute Valley Park while respecting and protecting the natural environment. Remember, the goal of being outdoors is to move through natural areas
+              while avoiding damage to the land, foliage, or waterways. Leave no trace of your visit, and leave the place better than you found it.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
