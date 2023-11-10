@@ -1,8 +1,10 @@
 ---
 import Layout from '@layouts/Layout.astro';
 
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import heroImage from '../assets/images/ute-valley-park-biker.jpg';
+import DogImage from '../assets/images/dog.jpg';
+import uteValleyParkMap from '../assets/images/maps/ute-valley-park-map-full.jpg';
 
 import LeaveNoTrace from '@components/LeaveNoTrace.astro';
 const activities = [
@@ -44,7 +46,7 @@ trailheads.sort((a, b) => a.frontmatter.id - b.frontmatter.id);
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
             <div class="absolute inset-0" transition:name="hero">
-              <Image src={heroImage} alt="" width="1200" height="1200" class="transition-all h-full w-full object-cover" />
+              <Picture src={heroImage} formats={['avif', 'webp']} alt="" width="1200" height="1200" class="transition-all h-full w-full object-cover" />
               <div class="absolute inset-0 bg-gradient-to-r from-green-700 to-teal-600 mix-blend-multiply"></div>
             </div>
             <div class="relative px-4 py-32 sm:px-6 sm:py-48 lg:py-64 lg:px-8">
@@ -109,15 +111,14 @@ trailheads.sort((a, b) => a.frontmatter.id - b.frontmatter.id);
             </div>
             <div class="relative lg:-mr-10 sm:mx-auto sm:max-w-3xl sm:px-0 lg:max-w-none lg:h-full lg:pl-12">
               <a href="/images/maps/ute-valley-park-map-full.jpg" target="_blank">
-                <picture>
-                  <source srcset="/images/maps/ute-valley-park-map-small.webp" type="image/webp" />
-                  <source srcset="/images/maps/ute-valley-park-map-small.jpg" type="image/jpeg" />
-                  <img
-                    class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:w-auto lg:max-w-none lg:h-96 mx-auto"
-                    src="/images/maps/ute-valley-park-map-small.jpg"
-                    alt="Map of Ute Valley Park"
-                  />
-                </picture>
+                <Picture
+                  src={uteValleyParkMap}
+                  formats={['avif', 'webp']}
+                  alt="Map of Ute Valley Park"
+                  width="800"
+                  height="600"
+                  class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:w-auto lg:max-w-none lg:h-96 mx-auto"
+                />
                 <p class="mt-1 text-sm text-gray-700 text-center w-1/2 mx-auto">Click to open fullsize map</p>
               </a>
             </div>
@@ -146,12 +147,12 @@ trailheads.sort((a, b) => a.frontmatter.id - b.frontmatter.id);
             {' '}
             <a href="/rules/" class="text-green-600 font-semibold no-underline"> rules</a>
             {' '}
-            the city of Colorado Springs enforces for all city parks and open spaces.
+             the city of Colorado Springs enforces for all city parks and open spaces.
           </div>
           <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
             <div class="relative aspect-w-12 aspect-h-7 lg:aspect-none lg:px-16 mt-8 lg:mt-0">
               <figure>
-                <img class="rounded-lg shadow-lg object-cover object-center" src="/images/dog.jpg" alt="dog in park in front of mountains" />
+                <Picture src={DogImage} formats={['avif', 'webp']} alt="dog in park in front of mountains" width="600" height="400" class="rounded-lg shadow-lg object-cover object-center" />
               </figure>
             </div>
           </div>

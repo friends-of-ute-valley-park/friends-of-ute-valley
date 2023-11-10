@@ -8,18 +8,9 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.friendsofutevalleypark.com',
-  trailingSlash: 'always',
+  //trailingSlash: 'always',
   markdown: {
     remarkPlugins: [remarkReadingTime],
   },
-  integrations: [
-    tailwind(),
-    vue({
-      template: {
-        // workaround for https://github.com/withastro/astro/issues/6071
-        transformAssetUrls: false,
-      },
-    }),
-    sitemap(),
-  ],
+  integrations: [tailwind(), vue(), sitemap()],
 });

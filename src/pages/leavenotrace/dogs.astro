@@ -1,6 +1,10 @@
 ---
+import { Picture } from 'astro:assets';
+
 import DogImages from '@components/DogImages.vue';
 import Layout from '@layouts/Layout.astro';
+
+import DogImage from '../../assets/images/dog.jpg';
 
 const otherParks = [
   {
@@ -68,7 +72,7 @@ const rules = [
                 stroke-width="2"
                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
             </svg>
-            Dogs!
+             Dogs!
           </h1>
           <p class="mt-4 text-xl text-gray-500">
             Dogs are always welcome in Ute Valley Park but please remember you <span class="uppercase font-semibold text-green-600">must</span> leash your furry friend. Ute Valley Park <span
@@ -165,7 +169,7 @@ const rules = [
             stroke-width="2"
             d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
         </svg>
-        All Colorado Springs Off-leash dog parks</a
+         All Colorado Springs Off-leash dog parks</a
       >
     </div>
   </div>
@@ -187,7 +191,7 @@ const rules = [
         </ul>
       </div>
       <div class="w-4/5 lg:w-2/5 mx-auto mt-16 lg:p-8 lg:m-0">
-        <img class="rounded shadow" src="/images/dog.jpg" />
+        <Picture src={DogImage} formats={['avif', 'webp']} alt="dog in park in front of mountains" width="600" height="400" class="rounded shadow" />
       </div>
     </div>
   </div>
