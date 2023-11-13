@@ -19,6 +19,44 @@
               ]"
               >{{ item.name }}</a
             >
+            <div class="flex h-full justify-center">
+              <Popover class="relative flex">
+                <PopoverButton
+                  :class="[
+                    props.page.startsWith('/leavenotrace') === true ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                    'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium',
+                  ]">
+                  <span class="items-center">Leave No Trace</span>
+                  <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
+                </PopoverButton>
+                <transition
+                  enter-active-class="transition ease-out duration-200"
+                  enter-from-class="opacity-0 translate-y-1"
+                  enter-to-class="opacity-100 translate-y-0"
+                  leave-active-class="transition ease-in duration-150"
+                  leave-from-class="opacity-100 translate-y-0"
+                  leave-to-class="opacity-0 translate-y-1">
+                  <PopoverPanel class="absolute left-1/2 z-10 mt-16 flex w-screen max-w-max -translate-x-1/2 px-4">
+                    <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                      <div class="p-4">
+                        <div v-for="item in leaveNoTraceMenuItems" :key="item.name" class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                          <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                            <component :is="item.icon" class="h-6 w-6 text-gray-600 group-hover:text-green-600" aria-hidden="true" />
+                          </div>
+                          <div>
+                            <a :href="item.href" class="font-semibold text-gray-900">
+                              {{ item.name }}
+                              <span class="absolute inset-0" />
+                            </a>
+                            <p class="mt-1 text-gray-600">{{ item.description }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </PopoverPanel>
+                </transition>
+              </Popover>
+            </div>
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
@@ -48,8 +86,21 @@
             item.current ? 'border-green-500 bg-green-50 text-green-700' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700',
             'block border-l-4 py-2 pl-3 pr-4 text-base font-medium sm:pl-5 sm:pr-6',
           ]"
-          >{{ item.name }}</DisclosureButton
-        >
+          >{{ item.name }}
+        </DisclosureButton>
+      </div>
+      <div class="space-y-1 border-t border-gray-200 pt-6">
+        <DisclosureButton
+          v-for="item in leaveNoTraceMenuItems"
+          :key="item.name"
+          as="a"
+          :href="item.href"
+          :class="[
+            item.current ? 'border-green-500 bg-green-50 text-green-700' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700',
+            'block border-l-4 py-2 pl-3 pr-4 text-base font-medium sm:pl-5 sm:pr-6',
+          ]"
+          >{{ item.name }}
+        </DisclosureButton>
       </div>
       <div class="relative">
         <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -71,10 +122,23 @@
 </template>
 
 <script setup lang="ts">
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
-import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline/esm/index.js';
+import { Disclosure, DisclosureButton, DisclosurePanel, Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
+import { Bars3Icon, XMarkIcon, MapIcon } from '@heroicons/vue/24/outline/esm/index.js';
+import { ChevronDownIcon } from '@heroicons/vue/20/solid';
+import { PawPrint } from 'lucide-vue-next';
 
 const props = defineProps(['page']);
+
+const leaveNoTraceMenuItems = [
+  { name: 'Dog Etiquette and Rules', description: 'Leash Laws and Clean-Up Rules', href: '/leavenotrace/dogs/', current: props.page === '/leavenotrace/dogs/', icon: PawPrint },
+  {
+    name: 'Travel on Durable Surfaces',
+    description: 'Respecting Durable Surfaces in Parks',
+    href: '/leavenotrace/travel-on-durable-surfaces/',
+    current: props.page === '/leavenotrace/travel-on-durable-surfaces/',
+    icon: MapIcon,
+  },
+];
 
 const navigation = [
   { href: '/', name: 'Home', current: props.page === '/' },

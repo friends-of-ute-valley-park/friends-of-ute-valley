@@ -1,21 +1,13 @@
 <template>
   <div v-if="hasUpcomingVolunteerEvent" class="mb-2">
-    <div
-      class="relative isolate flex items-center gap-x-6 overflow-hidden bg-teal-900 px-6 py-2.5 sm:px-3.5 sm:before:flex-1"
-    >
-      <svg
-        viewBox="0 0 577 310"
-        aria-hidden="true"
-        class="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 w-[36.0625rem] -translate-y-1/2 transform-gpu blur-2xl"
-      >
+    <div class="relative isolate flex items-center gap-x-6 overflow-hidden bg-teal-900 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+      <svg viewBox="0 0 577 310" aria-hidden="true" class="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 w-[36.0625rem] -translate-y-1/2 transform-gpu blur-2xl">
         <use href="#1d77c128-3ec1-4660-a7f6-26c7006705ad" />
       </svg>
       <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
         <p class="text-sm text-white">
           <MegaphoneIcon class="mr-2 inline-block h-6 w-6 text-white" />
-          <strong class="font-semibold"
-            >Upcoming Volunteer Event {{ eventDates }}!</strong
-          >
+          <strong class="font-semibold">Upcoming Volunteer Event {{ eventDates }}!</strong>
         </p>
         <a
           href="/volunteer/"
@@ -26,42 +18,11 @@
       <div class="flex flex-1 justify-end"></div>
     </div>
   </div>
-  <div v-else class="mb-2">
-    <div class="bg-green-900">
-      <div class="mx-auto max-w-7xl p-2 px-3 sm:px-6 lg:px-8">
-        <div class="flex flex-wrap items-center justify-between">
-          <div class="flex flex-1 items-center">
-            <span class="flex rounded-lg bg-green-800 p-1">
-              <BellIcon class="h-6 w-6 text-white" />
-            </span>
-            <p
-              v-if="randomLeaveNoTrace !== undefined"
-              class="ml-3 text-sm font-medium text-green-50"
-            >
-              {{ randomLeaveNoTrace.text }}
-              <span class="inline-block sm:ml-2 sm:inline-block">
-                <a
-                  :href="randomLeaveNoTrace.link"
-                  class="font-bold text-green-200 underline"
-                >
-                  Learn More
-                  <span aria-hidden="true">&rarr;</span>
-                </a>
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeMount, PropType, ref } from "vue";
-import {
-  MegaphoneIcon,
-  BellIcon,
-} from "@heroicons/vue/24/outline/esm/index.js";
+import { computed, PropType } from 'vue';
+import { MegaphoneIcon } from '@heroicons/vue/24/outline/esm/index.js';
 
 interface Event {
   date: Date;
@@ -72,23 +33,6 @@ const props = defineProps({
     type: Array as PropType<Array<Event>>,
     default: () => [],
   },
-});
-const leavenotrace = [
-  {
-    text: "Reminder! Dogs must be leashed in Ute Valley Park at all times.  Find a nearby off-leash park.",
-    link: "/leavenotrace/dogs/",
-  },
-  {
-    text: "Reminder! Always stay on trail and travel on durable surfaces.",
-    link: "/leavenotrace/travel-on-durable-surfaces/",
-  },
-];
-
-let randomLeaveNoTrace = ref();
-
-onBeforeMount(() => {
-  const randomIndex = Math.floor(Math.random() * leavenotrace.length);
-  randomLeaveNoTrace.value = leavenotrace[randomIndex];
 });
 
 const hasUpcomingVolunteerEvent = computed(() => {
@@ -101,28 +45,16 @@ const eventDates = computed(() => {
     return;
   }
 
-  let dateString = "day" + (props.events.length > 1 ? "s" : "") + " on ";
+  let dateString = 'day' + (props.events.length > 1 ? 's' : '') + ' on ';
 
   dateString += [...props.events]
     .sort((a, b) => {
       return new Date(a.date).getTime() - new Date(b.date).getTime();
     })
     .map((item) => {
-      return new Intl.DateTimeFormat("en-US").format(new Date(item.date));
+      return new Intl.DateTimeFormat('en-US').format(new Date(item.date));
     })
-    .join(" and ");
+    .join(' and ');
   return dateString;
 });
 </script>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
