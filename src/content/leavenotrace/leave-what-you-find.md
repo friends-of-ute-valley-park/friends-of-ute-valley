@@ -32,7 +32,7 @@ Visitors can practice this principle by:
 
 - **Observing wildlife from a distance.**
   
-  Enjoy watching wildlife in their natural habitat without interfering. Feeding animals or approaching them can alter their behavior and endanger their safety and yours.
+  Enjoy watching wildlife in their natural habitat without interfering. Not leashing your pets, feeding animals or approaching them can alter their behavior and endanger their safety and yours.
 
 - **Taking photos instead of souvenirs.**
   
