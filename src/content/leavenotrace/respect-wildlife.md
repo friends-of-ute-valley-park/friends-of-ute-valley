@@ -41,7 +41,7 @@ Visitors can show respect for wildlife by:
 
 - **Storing food and trash securely.**
   
-  Properly storing food and disposing of trash prevents animals from being attracted to human food, which can be harmful to their health and alter their natural foraging habits.
+  Use bear-proof trash cans provided at park trailheads to dispose of garbage, and store your food appropriately while utilizing the park. This prevents wildlife from being attracted to human food, which can be harmful to their health and disrupt their natural foraging habits. Proper food storage also maintains the cleanliness and safety of the park for all visitors. Remember to always pack out and properly dispose of pet waste.
 
 - **Learning about the wildlife.**
   
