@@ -123,9 +123,9 @@
 
 <script setup lang="ts">
 import { Disclosure, DisclosureButton, DisclosurePanel, Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
-import { Bars3Icon, XMarkIcon, MapIcon, CameraIcon } from '@heroicons/vue/24/outline/esm/index.js';
+import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline/esm/index.js';
 import { ChevronDownIcon } from '@heroicons/vue/20/solid';
-import { PawPrint } from 'lucide-vue-next';
+import { PawPrint, Bird, Camera, Map } from 'lucide-vue-next';
 
 const props = defineProps(['page']);
 
@@ -136,14 +136,21 @@ const leaveNoTraceMenuItems = [
     description: 'Respecting Durable Surfaces in Parks',
     href: '/leavenotrace/travel-on-durable-surfaces/',
     current: props.page === '/leavenotrace/travel-on-durable-surfaces/',
-    icon: MapIcon,
+    icon: Map,
   },
   {
     name: 'Leave What You find',
     description: 'Appreciating Nature Without Taking It Home',
     href: '/leavenotrace/leave-what-you-find/',
     current: props.page === '/leavenotrace/leave-what-you-find/',
-    icon: CameraIcon,
+    icon: Camera,
+  },
+  {
+    name: 'Respect Wildlife',
+    description: 'Appreciating Wildlife Without Disturbing It',
+    href: '/leavenotrace/respect-wildlife/',
+    current: props.page === '/leavenotrace/respect-wildlife/',
+    icon: Bird,
   },
 ];
 

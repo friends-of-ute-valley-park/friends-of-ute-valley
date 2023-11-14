@@ -182,6 +182,13 @@ declare module 'astro:content' {
   collection: "leavenotrace";
   data: InferEntrySchema<"leavenotrace">
 } & { render(): Render[".md"] };
+"respect-wildlife.md": {
+	id: "respect-wildlife.md";
+  slug: "respect-wildlife";
+  body: string;
+  collection: "leavenotrace";
+  data: InferEntrySchema<"leavenotrace">
+} & { render(): Render[".md"] };
 "travel-on-durable-surfaces.md": {
 	id: "travel-on-durable-surfaces.md";
   slug: "travel-on-durable-surfaces";
