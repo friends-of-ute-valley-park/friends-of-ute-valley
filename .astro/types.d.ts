@@ -175,6 +175,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"leavenotrace": {
+"leave-what-you-find.md": {
+	id: "leave-what-you-find.md";
+  slug: "leave-what-you-find";
+  body: string;
+  collection: "leavenotrace";
+  data: InferEntrySchema<"leavenotrace">
+} & { render(): Render[".md"] };
 "travel-on-durable-surfaces.md": {
 	id: "travel-on-durable-surfaces.md";
   slug: "travel-on-durable-surfaces";

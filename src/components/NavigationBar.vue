@@ -123,7 +123,7 @@
 
 <script setup lang="ts">
 import { Disclosure, DisclosureButton, DisclosurePanel, Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
-import { Bars3Icon, XMarkIcon, MapIcon } from '@heroicons/vue/24/outline/esm/index.js';
+import { Bars3Icon, XMarkIcon, MapIcon, CameraIcon } from '@heroicons/vue/24/outline/esm/index.js';
 import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 import { PawPrint } from 'lucide-vue-next';
 
@@ -137,6 +137,13 @@ const leaveNoTraceMenuItems = [
     href: '/leavenotrace/travel-on-durable-surfaces/',
     current: props.page === '/leavenotrace/travel-on-durable-surfaces/',
     icon: MapIcon,
+  },
+  {
+    name: 'Leave What You find',
+    description: 'Appreciating Nature Without Taking It Home',
+    href: '/leavenotrace/leave-what-you-find/',
+    current: props.page === '/leavenotrace/leave-what-you-find/',
+    icon: CameraIcon,
   },
 ];
 
