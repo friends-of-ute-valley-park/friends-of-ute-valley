@@ -44,6 +44,6 @@ Visitors can practice this principle by:
 
 - **Educating yourself and others.**
   
-  Learn about the cultural significance and the natural ecosystem of Ute Valley Park. Share your knowledge with others to promote awareness and respect for the Leave No Trace principles.
+  Learn about the cultural significance and the natural ecosystem of Ute Valley Park. Share your knowledge with others to promote awareness and respect for the Leave No Trace principles or [volunteer](/volunteer/) to maintain the natural beauty of Ute Valley Park.
 
 By embracing the Leave What You Find principle, we ensure that Ute Valley Park remains a vibrant, living landscape. This not only enhances our own experience but also acts as a gift to those who will walk these trails after us. Let's enjoy the natural splendor of Ute Valley Park and leave it just as we found it, untouched and full of wonder.
