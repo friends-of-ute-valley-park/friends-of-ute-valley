@@ -29,7 +29,7 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
       </svg>
       <rect width="100%" height="100%" stroke-width="0" fill="url(#1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84)"></rect>
     </svg>
-    <div class="absolute top-0 left-1/2 right-0 -z-10 -ml-24 transform-gpu overflow-hidden blur-3xl lg:ml-24 xl:ml-48">
+    <div class="absolute left-1/2 right-0 top-0 -z-10 -ml-24 transform-gpu overflow-hidden blur-3xl lg:ml-24 xl:ml-48">
       <svg viewBox="0 0 801 1036" aria-hidden="true" class="w-[50.0625rem]">
         <path
           fill="url(#70656b7e-db44-4b9b-b7d2-1f06791bed52)"
@@ -48,28 +48,36 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
       <div class="mx-auto max-w-7xl px-6 pb-24 pt-36 sm:pt-60 lg:px-8 lg:pt-24">
         <div class="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
           <div class="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-            <a href="/visit/" class="inline-flex items-center rounded-full bg-slate-800 p-1 pr-2 text-white hover:text-gray-200 sm:text-base lg:text-sm xl:text-base">
-              <span class="rounded-full bg-gradient-to-r from-teal-500 to-green-600 px-3 py-0.5 text-sm font-semibold leading-5 text-white">Visit Ute Valley Park</span>
-              <span class="ml-4 text-sm">Find out more</span>
-              <ChevronRightIcon class="ml-2 h-5 w-5 text-gray-500" aria-hidden="true" />
-            </a>
-            <h2 class="text-7xl font-bold tracking-tight mt-4">
+            <div class="group relative inline-flex">
+              <div
+                class="transitiona-all animate-tilt absolute -inset-px rounded-xl bg-gradient-to-r from-[#6be6e0] via-[#31e721] to-[#1c8f02] opacity-40 blur-lg duration-1000 group-hover:-inset-1 group-hover:opacity-70 group-hover:duration-200">
+              </div>
+
+              <a
+                href="/visit/"
+                class="relative inline-flex items-center rounded-full bg-slate-800 p-1 pr-2 text-lg font-bold text-white transition-all duration-200 hover:text-gray-200 sm:text-base lg:text-sm xl:text-base">
+                <span class="rounded-full bg-gradient-to-r from-teal-500 to-green-600 px-3 py-0.5 text-sm font-semibold leading-5 text-white">Visit Ute Valley Park</span>
+                <span class="ml-4 text-sm">Find out more</span>
+                <ChevronRightIcon class="ml-2 h-5 w-5 text-gray-500" aria-hidden="true" />
+              </a>
+            </div>
+            <h2 class="mt-4 text-7xl font-bold tracking-tight">
               <span class="inline text-gray-900">Friends of</span>
               <span class="inline text-green-600"> Ute Valley Park</span>
             </h2>
             <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
               <a
                 href="/about/"
-                class="text-green-700 underline decoration-green-500 decoration-[0.25rem] motion-safe:transition-all motion-safe:duration-200 hover:decoration-[0.5rem] focus:decoration-[0.5rem] hover:decoration-green-500/50 focus:decoration-green-500/50"
+                class="text-green-700 underline decoration-green-500 decoration-[0.25rem] hover:decoration-green-500/50 hover:decoration-[0.5rem] focus:decoration-green-500/50 focus:decoration-[0.5rem] motion-safe:transition-all motion-safe:duration-200"
                 >Friends of Ute Valley Park</a
-              > is an officially recognized “Friends” organization by the City of Colorado Springs Parks, Recreation, and Cultural Services Department. Our mission is to maintain, preserve, and
-              provide education for Ute Valley Park
+              > is an officially recognized “Friends” organization by the City of Colorado Springs Parks, Recreation, and Cultural Services Department. Our mission is to maintain, preserve, and provide
+              education for Ute Valley Park
             </p>
           </div>
           <div class="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
             <div class="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
               <div class="relative" transition:name="hero">
-                <Picture src={heroImage} formats={['avif', 'webp']} width="1200" height="1200" alt="" class="transition-all aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg" />
+                <Picture src={heroImage} formats={['avif', 'webp']} width="1200" height="1200" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg transition-all" />
                 <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
               </div>
             </div>
@@ -142,7 +150,7 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
         <h2 class="inline sm:block lg:inline xl:block">Want events, news and updates?</h2>
         <p class="inline sm:block lg:inline xl:block">Sign up for our newsletter.</p>
       </div>
-      <div class="w-full md:max-w-xl lg:max-w-md lg:col-span-6 lg:pt-2">
+      <div class="w-full md:max-w-xl lg:col-span-6 lg:max-w-md lg:pt-2">
         <EmailForm client:idle />
       </div>
     </div>
@@ -150,11 +158,8 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
 
   <!-- News -->
 
-  <div class="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
-    <div class="absolute inset-0">
-      <div class="bg-white h-1/3 sm:h-2/3"></div>
-    </div>
-    <div class="relative max-w-7xl mx-auto">
+  <div class="relative px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pb-28 lg:pt-24">
+    <div class="relative mx-auto max-w-7xl">
       <div class="text-center">
         <h2 class="text-3xl font-bold tracking-tight text-green-800 sm:text-4xl">Ute Valley Park News</h2>
         <p class="mt-2 text-lg leading-8 text-gray-600">Find out what is happening in and around Ute Valley Park</p>

@@ -3,13 +3,13 @@ module.exports = {
   bracketSameLine: true,
   printWidth: 200,
   singleQuote: true,
-  tailwindConfig: "./tailwind.config.cjs",
-  plugins: ["prettier-plugin-tailwindcss", "prettier-plugin-astro"],
+  tailwindConfig: './tailwind.config.cjs',
+  plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
   overrides: [
     {
-      files: ["**/*.astro"],
+      files: '*.astro',
       options: {
-        parser: "astro",
+        parser: 'astro',
       },
     },
   ],

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">Old Photos from Ute Valley Park</h2>
-    <div class="grid md:grid-cols-3 gap-3">
+    <h2 class="mb-8 mt-2 text-center text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">Old Photos from Ute Valley Park</h2>
+    <div class="grid gap-3 md:grid-cols-3">
       <img class="image" src="/images/old-ute-valley-park-photos/old-ute-1.jpg" />
       <img class="image" src="/images/old-ute-valley-park-photos/old-ute-2.jpg" />
       <img class="image" src="/images/old-ute-valley-park-photos/old-ute-3.jpg" />
@@ -10,13 +10,13 @@
       <img class="image" src="/images/old-ute-valley-park-photos/old-ute-6.jpg" />
     </div>
     <div v-if="!viewMore">
-      <button class="text-base my-2 ml-1 text-green-900 rounded px-2 py-1 underline" @click="viewMore = true">
+      <button class="my-2 ml-1 rounded px-2 py-1 text-base text-green-900 underline" @click="viewMore = true">
         View More
-        <ChevronDownIcon class="w-6 h-6 inline-block ml-1" />
+        <ChevronDownIcon class="ml-1 inline-block h-6 w-6" />
       </button>
     </div>
     <div v-else>
-      <div class="grid md:grid-cols-3 gap-3 mt-3">
+      <div class="mt-3 grid gap-3 md:grid-cols-3">
         <img class="image" src="/images/old-ute-valley-park-photos/old-ute-7.jpg" />
         <img class="image" src="/images/old-ute-valley-park-photos/old-ute-8.jpg" />
         <img class="image" src="/images/old-ute-valley-park-photos/old-ute-9.jpg" />

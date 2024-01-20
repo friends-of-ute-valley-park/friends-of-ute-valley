@@ -39,8 +39,8 @@ const principles = [
 ];
 ---
 
-<div class="bg-gray-100 rounded my-8">
-  <div class="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
+<div class="my-8 rounded bg-gray-100">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-24">
     <div class="space-y-12 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
       <div class="space-y-5 sm:space-y-4">
         <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Leave No Trace</h2>
@@ -49,16 +49,16 @@ const principles = [
         </p>
         <p class="mt-3 max-w-3xl text-lg text-green-700">
           Please read and always obey the
-          <a href="/rules/" class="text-green-800 underline font-bold inline-block"> rules</a>
-           of Ute Valley Park.
+          <a href="/rules/" class="inline-block font-bold text-green-800 underline"> rules</a>
+          of Ute Valley Park.
         </p>
         <div class="mt-8 sm:flex">
-          <div class="rounded-md shadow mx-auto bg-white p-8 w-64 focus-within:ring-2 focus-within:ring-green-100">
+          <div class="mx-auto w-64 rounded-md bg-white p-8 shadow focus-within:ring-2 focus-within:ring-green-100">
             <a href="https://www.lnt.org">
               <picture>
                 <source srcset="/images/logos/leave-no-trace.webp" type="image/webp" />
                 <source srcset="/images/logos/leave-no-trace.jpg" type="image/jpg" />
-                <img class="w-64 h-auto" src="/images/logos/leave-no-trace.jpg" alt="Leave No Trace logo" />
+                <img class="h-auto w-64" src="/images/logos/leave-no-trace.jpg" alt="Leave No Trace logo" />
               </picture>
             </a>
           </div>
@@ -70,14 +70,14 @@ const principles = [
             principles.map((principle) => (
               <li>
                 <div class="space-y-4">
-                  <div class="aspect-w-3 aspect-h-2">
+                  <div class="aspect-h-2 aspect-w-3">
                     <picture>
                       <source srcset={`${principle.image}.webp`} type="image/webp" />
                       <source srcset={`${principle.image}.jpg`} type="image/jpg" />
-                      <img class="object-cover shadow-lg rounded-lg" src={`${principle.image}.jpg`} alt={principle.altText} />
+                      <img class="rounded-lg object-cover shadow-lg" src={`${principle.image}.jpg`} alt={principle.altText} />
                     </picture>
                   </div>
-                  <div class="text-lg leading-6 font-medium">
+                  <div class="text-lg font-medium leading-6">
                     <h3 class="text-green-700">{principle.name}</h3>
                   </div>
                   <div class="text-lg">

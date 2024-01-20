@@ -1,90 +1,67 @@
 <template>
-  <li>
-    <div class="px-4 py-4 sm:px-6">
-      <div class="sm:flex items-center justify-between">
-        <div class="relative isolate hover:bg-green-50 px-2 py-3 w-full">
-          <a :href="volunteerEvent.url" class="text-xl font-medium text-green-700">
-            <span class="absolute inset-0" aria-hidden="true"></span>
-
-            {{ volunteerEvent.frontmatter.title }}
-          </a>
-          <p class="text-sm font-medium text-gray-500 my-2">
-            {{ volunteerEvent.frontmatter.description }}
-            <span class="text-green-600 font-bold underline"> Learn More <span aria-hidden="true">&rarr;</span> </span>
-          </p>
-        </div>
-
-        <div class="sm:ml-2 mt-2 sm:mt-0 flex-shrink-0 flex">
-          <div v-if="volunteerEvent.frontmatter.link" class="flex space-x-2">
-            <a
-              :href="volunteerEvent.frontmatter.link"
-              class="bg-green-500 border border-transparent rounded-md shadow py-1 px-2 inline-flex items-center text-sm font-medium text-green-50 hover:text-green-100 focus:outline-none focus:ring-green-300 focus:ring-2 transition duration-150 ease-in-out">
-              Register
-            </a>
-            <a
-              href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
-              class="bg-teal-600 border border-transparent rounded-md shadow py-1 px-2 inline-flex items-center text-sm font-medium text-teal-50 hover:text-teal-100 focus:outline-none focus:ring-teal-300 focus:ring-2 transition duration-150 ease-in-out">
-              Consent and Release Form
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="mt-2 sm:flex sm:justify-between">
-        <div class="sm:flex">
-          <a class="mt-2 flex items-center text-sm text-green-700 sm:mt-0 underline" :href="directionsLink">
-            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-            </svg>
-            {{ meetingLocation }}
-          </a>
-          <span v-if="volunteerEvent.frontmatter.meetingLocation.notes" class="text-gray-500 text-sm max-w-xs md:max-w-none mx-2">{{ volunteerEvent.frontmatter.meetingLocation.notes }}</span>
-        </div>
-        <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-          <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path
-              fill-rule="evenodd"
-              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-              clip-rule="evenodd" />
-          </svg>
-          {{ formattedDate }} {{ volunteerEvent.frontmatter.time }}
-        </div>
-      </div>
+  <div>
+    <p class="text-sm font-semibold leading-6 text-green-800">
+      <a :href="volunteerEvent.frontmatter.link" class="hover:underline">{{ volunteerEvent.frontmatter.title }}</a>
+    </p>
+    <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+      <p>
+        <time :datetime="formattedDate + ' ' + volunteerEvent.frontmatter.time">{{ formattedDate }} {{ volunteerEvent.frontmatter.time }}</time>
+      </p>
+      <svg viewBox="0 0 2 2" class="h-0.5 w-0.5 fill-current">
+        <circle cx="1" cy="1" r="1" />
+      </svg>
+      <p>
+        <a :href="directionsLink" class="text-green-800 underline">{{ meetingLocation }}</a>
+      </p>
+      <svg v-if="volunteerEvent.frontmatter.meetingLocation.notes" viewBox="0 0 2 2" class="h-0.5 w-0.5 fill-current">
+        <circle cx="1" cy="1" r="1" />
+      </svg>
+      <p
+        v-if="volunteerEvent.frontmatter.meetingLocation.notes"
+        :title="volunteerEvent.frontmatter.meetingLocation.notes"
+        class="mx-2 max-w-xs overflow-hidden truncate overflow-ellipsis text-sm text-gray-500">
+        {{ volunteerEvent.frontmatter.meetingLocation.notes }}
+      </p>
     </div>
-  </li>
+  </div>
+  <div class="flex w-full flex-none justify-between gap-x-4 sm:w-auto">
+    <div class="flex h-12">
+      <a
+        :href="volunteerEvent.frontmatter.link"
+        class="inline-flex items-center rounded-md border border-transparent bg-green-600 px-2 py-1 text-sm font-medium text-green-50 shadow-sm transition duration-150 ease-in-out hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
+        Register
+      </a>
+    </div>
+    <div class="flex h-12 gap-x-2.5">
+      <a
+        href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
+        class="inline-flex items-center rounded-md border border-transparent bg-teal-600 px-2 py-1 text-sm font-medium text-teal-50 shadow-sm transition duration-150 ease-in-out hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">
+        Consent and Release Form
+      </a>
+    </div>
+  </div>
 </template>
 
-<script>
-import MeetingLocationParser from '../utils/EventData.js';
+<script setup lang="ts">
+import { onMounted, ref, computed } from 'vue';
+import { MeetingLocationParser } from '@/utils/EventData';
+import { MeetingLocation, VolunteerEvent } from 'typings';
 
-export default {
-  props: {
-    volunteerEvent: {
-      type: Object,
-      required: true,
-    },
-    meetingLocations: {
-      type: Array,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      meetingLocation: '',
-      directionsLink: '',
-    };
-  },
-  computed: {
-    formattedDate() {
-      return new Intl.DateTimeFormat('en-US').format(new Date(this.volunteerEvent.frontmatter.date));
-    },
-    predefinedLocation() {
-      return this.volunteerEvent.frontmatter.meetingLocation.predefinedLocation;
-    },
-  },
-  mounted() {
-    const locationInformation = MeetingLocationParser(this.volunteerEvent.frontmatter, this.meetingLocations);
-    this.meetingLocation = locationInformation.name;
-    this.directionsLink = locationInformation.directionsLink;
-  },
-};
+const props = defineProps<{
+  volunteerEvent: VolunteerEvent;
+  meetingLocations: MeetingLocation[];
+}>();
+
+const meetingLocation = ref('');
+const directionsLink = ref('');
+
+const formattedDate = computed(() => {
+  return new Intl.DateTimeFormat('en-US').format(new Date(props.volunteerEvent.frontmatter.date));
+});
+
+onMounted(() => {
+  const locationInformation = MeetingLocationParser(props.volunteerEvent.frontmatter, props.meetingLocations);
+  meetingLocation.value = locationInformation.name;
+  directionsLink.value = locationInformation.directionsLink;
+});
 </script>

@@ -1,12 +1,12 @@
 <template>
   <div>
     <!-- notification banner -->
-    <div v-if="message" class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-      <div class="p-2 rounded-lg bg-green-600 shadow-lg sm:p-3">
-        <div class="flex items-center justify-between flex-wrap">
-          <div class="w-0 flex-1 flex items-center">
-            <span class="flex p-2 rounded-lg bg-green-800">
-              <MegaphoneIcon class="h-6 w-6 text-white" />
+    <div v-if="message" class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="rounded-lg bg-green-600 p-2 shadow-lg sm:p-3">
+        <div class="flex flex-wrap items-center justify-between">
+          <div class="flex w-0 flex-1 items-center">
+            <span class="flex rounded-lg bg-green-800 p-2">
+              <i-heroicons-megaphone class="h-6 w-6 text-white" />
             </span>
             <p v-if="message" class="ml-3 font-medium text-white">
               {{ message }}
@@ -17,8 +17,8 @@
     </div>
 
     <!-- contact form -->
-    <div class="isolate bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8">
-      <div class="relative max-w-7xl mx-auto">
+    <div class="isolate overflow-hidden bg-white px-4 py-16 sm:px-6 lg:px-8">
+      <div class="relative mx-auto max-w-7xl">
         <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
           <div
             class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-green-200 to-teal-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
@@ -44,16 +44,16 @@
             " />
         </div>
       </div>
-      <div class="relative max-w-xl mx-auto">
+      <div class="relative mx-auto max-w-xl">
         <div>
           <slot name="title">
             <p class="text-base font-semibold leading-7 text-green-600">Need Help? Contact Us!</p>
-            <h1 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">Contact Friends of Ute Valley Park</h1>
+            <h1 class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">Contact Friends of Ute Valley Park</h1>
           </slot>
           <p class="mt-4 text-base leading-6 text-gray-500">
             <slot name="subtitle">
               If you have a question, comment or concern, don't hesitate to reach out. Our team is always here to assist you in any way we can. Before contacting us, please take a moment to browse our
-              <a class="font-semibold no-underline text-green-700" href="/faq/"> FAQ </a> page to see if your question has already been answered. We look forward to hearing from you!
+              <a class="font-semibold text-green-700 no-underline" href="/faq/"> FAQ </a> page to see if your question has already been answered. We look forward to hearing from you!
             </slot>
           </p>
         </div>
@@ -70,24 +70,24 @@
                   type="text"
                   name="name"
                   autocomplete="given-name"
-                  class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md" />
+                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-green-500 focus:ring-green-500" />
               </div>
             </div>
             <div class="sm:col-span-2">
               <label for="email" class="block text-sm font-semibold text-gray-700">Email <span class="text-red-700">*</span></label>
-              <div class="mt-1 relative rounded-md shadow-sm">
+              <div class="relative mt-1 rounded-md shadow-sm">
                 <input
                   id="email"
                   v-model="form.email"
                   autocomplete="email"
                   required
                   type="email"
-                  class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md" />
+                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-green-500 focus:ring-green-500" />
               </div>
             </div>
             <div class="sm:col-span-2">
-              <label for="category" class="block text-sm font-semibold text-gray-700 mb-1">Category <span class="text-red-700">*</span></label>
-              <select id="category" v-model="form.category" class="py-3 px-3 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md">
+              <label for="category" class="mb-1 block text-sm font-semibold text-gray-700">Category <span class="text-red-700">*</span></label>
+              <select id="category" v-model="form.category" class="block w-full rounded-md border-gray-300 px-3 py-3 shadow-sm focus:border-green-500 focus:ring-green-500">
                 <option v-for="option in options" :key="option">
                   {{ option }}
                 </option>
@@ -98,18 +98,18 @@
               <div class="rounded-md bg-green-50 p-4">
                 <div class="flex">
                   <div class="flex-shrink-0">
-                    <ExclamationCircleIcon class="w-5 h-5 text-green-800" aria-hidden="true" />
+                    <i-heroicons-exclamation-circle class="h-5 w-5 text-green-800" aria-hidden="true" />
                   </div>
                   <div class="ml-3">
                     <h3 class="text-sm font-medium text-green-800">Volunteer Information</h3>
                     <div class="mt-2 text-sm text-green-700">
                       <p>
                         We hold volunteer work events the first and third Wednesday of the month April through September. You can find more information on our
-                        <a class="underline text-green-800" href="/volunteer/"> volunteer </a>
+                        <a class="text-green-800 underline" href="/volunteer/"> volunteer </a>
                         page. Also, consider following our
-                        <a class="underline text-green-800" href="https://www.facebook.com/FriendsOfUteValleyPark">Facebook</a>
+                        <a class="text-green-800 underline" href="https://www.facebook.com/FriendsOfUteValleyPark">Facebook</a>
                         or
-                        <a class="underline text-green-800" href="https://www.instagram.com/friendsofutevalleypark/">Instagram</a>
+                        <a class="text-green-800 underline" href="https://www.instagram.com/friendsofutevalleypark/">Instagram</a>
                         for updates.
                       </p>
                       <p class="mt-2">If you have any questions regarding volunteering or organizing a volunteer event please contact us.</p>
@@ -120,19 +120,19 @@
             </div>
             <div class="sm:col-span-2">
               <label for="message" class="block text-sm font-semibold text-gray-700">Message <span class="text-red-700">*</span></label>
-              <div class="mt-1 relative rounded-md shadow-sm">
-                <textarea id="message" v-model="form.message" required rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-green-500 focus:border-green-500 border-gray-300 rounded-md" />
+              <div class="relative mt-1 rounded-md shadow-sm">
+                <textarea id="message" v-model="form.message" required rows="4" class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-green-500 focus:ring-green-500" />
               </div>
             </div>
 
             <div class="sm:col-span-2">
-              <span class="w-full inline-flex rounded-md shadow-sm">
+              <span class="inline-flex w-full rounded-md shadow-sm">
                 <button
                   :disabled="submitInProgress"
                   type="submit"
-                  class="disabled:opacity-25 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-700 hover:bg-green-500 focus:outline-none focus:ring-green-500 focus:ring-2 active:bg-green-700 transition ease-in-out duration-150">
+                  class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 active:bg-green-700 disabled:opacity-25">
                   <span>
-                    <svg v-if="submitInProgress" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg v-if="submitInProgress" class="-ml-1 mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
                       <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
@@ -150,13 +150,13 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { ExclamationCircleIcon } from '@heroicons/vue/24/solid/esm/index.js';
-import { MegaphoneIcon } from '@heroicons/vue/24/outline/esm/index.js';
-const props = defineProps({
-  defaultOption: {
-    type: String,
-    default: null,
-  },
+
+export interface Props {
+  defaultOption?: string | null;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  defaultOption: null,
 });
 
 const message = ref('');

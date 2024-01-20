@@ -6,7 +6,7 @@
       </svg>
       <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
         <p class="text-sm text-white">
-          <MegaphoneIcon class="mr-2 inline-block h-6 w-6 text-white" />
+          <i-heroicons-megaphone class="mr-2 inline-block h-6 w-6 text-white" />
           <strong class="font-semibold">Upcoming Volunteer Event {{ eventDates }}!</strong>
         </p>
         <a
@@ -21,19 +21,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from 'vue';
-import { MegaphoneIcon } from '@heroicons/vue/24/outline/esm/index.js';
+import { computed } from 'vue';
 
 interface Event {
   date: Date;
 }
 
-const props = defineProps({
-  events: {
-    type: Array as PropType<Array<Event>>,
-    default: () => [],
-  },
-});
+const props = defineProps<{
+  events: Array<Event>;
+}>();
 
 const hasUpcomingVolunteerEvent = computed(() => {
   if (props.events === undefined) return false;

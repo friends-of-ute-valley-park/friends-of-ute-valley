@@ -122,7 +122,6 @@
 </template>
 
 <script setup lang="ts">
-import { Disclosure, DisclosureButton, DisclosurePanel, Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline/esm/index.js';
 import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 import { PawPrint, Bird, Camera, Map } from 'lucide-vue-next';
