@@ -19,9 +19,9 @@
     <!-- contact form -->
     <div class="isolate overflow-hidden bg-white px-4 py-16 sm:px-6 lg:px-8">
       <div class="relative mx-auto max-w-7xl">
-        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+        <div class="absolute inset-x-0 -top-20 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-60" aria-hidden="true">
           <div
-            class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-green-200 to-teal-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/4 rotate-[30deg] bg-gradient-to-tr from-green-200 to-teal-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             style="
               clip-path: polygon(
                 74.1% 44.1%,
@@ -95,13 +95,13 @@
             </div>
 
             <div v-if="form.category == 'Volunteer'" class="sm:col-span-2">
-              <div class="rounded-md bg-green-50 p-4">
+              <div class="rounded-md bg-green-50/60 p-4">
                 <div class="flex">
                   <div class="flex-shrink-0">
-                    <i-heroicons-exclamation-circle class="h-5 w-5 text-green-800" aria-hidden="true" />
+                    <i-heroicons-exclamation-circle class="mt-1 h-6 w-6 text-green-800" aria-hidden="true" />
                   </div>
                   <div class="ml-3">
-                    <h3 class="text-sm font-medium text-green-800">Volunteer Information</h3>
+                    <h3 class="text-xl font-medium text-green-800">Volunteer Information</h3>
                     <div class="mt-2 text-sm text-green-700">
                       <p>
                         We hold volunteer work events the first and third Wednesday of the month April through September. You can find more information on our
