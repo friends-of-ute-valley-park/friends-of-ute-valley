@@ -35,7 +35,7 @@
     "@astrojs/sitemap": "^3.0.5",
     "@headlessui/vue": "^1.7.17",
     "@heroicons/vue": "^2.1.1",
-    "astro": "^4.2.1",
+    "astro": "^4.3.3",
     "date-fns": "^3.3.0",
     "dotenv": "^16.3.2",
     "google-spreadsheet": "^3.3.0",
