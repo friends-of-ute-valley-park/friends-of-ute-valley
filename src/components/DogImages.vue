@@ -53,29 +53,26 @@
   </transition>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      showDogs: false,
-      dogs: ['freyja_pup', 'the.sweet.life.of.five', 'logan.and.the.rescue.crew', 'marisslh', 'queen_padme_21'],
-    };
-  },
-  mounted() {
-    this.randomize();
-    this.showDogs = true;
-  },
-  methods: {
-    randomize() {
-      for (let i = this.dogs.length - 1; i > 0; i--) {
-        const randomIndex = Math.floor(Math.random() * i);
-        const temp = this.dogs[i];
-        this.dogs[i] = this.dogs[randomIndex];
-        this.dogs[randomIndex] = temp;
-      }
-    },
-  },
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+
+const showDogs = ref(false);
+
+const randomize = function () {
+  for (let i = dogs.value.length - 1; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * i);
+    const temp = dogs.value[i];
+    dogs.value[i] = dogs.value[randomIndex];
+    dogs.value[randomIndex] = temp;
+  }
 };
+
+const dogs = ref(['freyja_pup', 'the.sweet.life.of.five', 'logan.and.the.rescue.crew', 'marisslh', 'queen_padme_21']);
+randomize();
+
+onMounted(() => {
+  showDogs.value = true;
+});
 </script>
 
 <style>
