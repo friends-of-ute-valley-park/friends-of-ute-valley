@@ -23,7 +23,6 @@ collections:
       - { label: 'Cover Image', name: 'coverImage', widget: 'image' }
       - { label: 'Preview Text', name: 'previewText', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: '../../layouts/NewsLayout.astro' }
   - name: 'volunteer'
     label: 'Volunteer'
     folder: '/src/pages/events'
@@ -54,4 +53,3 @@ collections:
           - { label: 'Location Notes', name: 'notes', widget: 'text', hint: 'If necessary, provide additional info such as "at the top of the hill"', required: false }
       - { label: 'Link', name: 'link', widget: 'string', required: false }
       - { label: 'Time', name: 'time', widget: 'string' }
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: '../../layouts/EventLayout.astro' }
