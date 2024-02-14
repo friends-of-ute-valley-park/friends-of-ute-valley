@@ -32,8 +32,7 @@ const props = defineProps<{
 }>();
 
 const hasUpcomingVolunteerEvent = computed(() => {
-  if (props.events === undefined) return false;
-  return props.events.length > 0;
+  return props.events?.length > 0;
 });
 
 const eventDates = computed(() => {
