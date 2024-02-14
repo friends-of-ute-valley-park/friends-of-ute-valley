@@ -1,6 +1,7 @@
 # build output
 dist/
 .output/
+components.d.ts
 
 # dependencies
 node_modules/
