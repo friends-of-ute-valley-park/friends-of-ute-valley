@@ -1,21 +1,5 @@
 <template>
   <div>
-    <!-- notification banner -->
-    <div v-if="message" class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div class="rounded-lg bg-green-600 p-2 shadow-lg sm:p-3">
-        <div class="flex flex-wrap items-center justify-between">
-          <div class="flex w-0 flex-1 items-center">
-            <span class="flex rounded-lg bg-green-800 p-2">
-              <i-heroicons-megaphone class="h-6 w-6 text-white" />
-            </span>
-            <p v-if="message" class="ml-3 font-medium text-white">
-              {{ message }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- contact form -->
     <div class="isolate overflow-hidden bg-white px-4 py-16 sm:px-6 lg:px-8">
       <div class="relative mx-auto max-w-7xl">
@@ -66,8 +50,8 @@
                 <input
                   id="name"
                   v-model="form.name"
-                  required
                   type="text"
+                  required
                   name="name"
                   autocomplete="given-name"
                   class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-green-500 focus:ring-green-500" />
@@ -128,14 +112,11 @@
             <div class="sm:col-span-2">
               <span class="inline-flex w-full rounded-md shadow-sm">
                 <button
-                  :disabled="submitInProgress"
+                  :disabled="isFetching"
                   type="submit"
                   class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 active:bg-green-700 disabled:opacity-25">
                   <span>
-                    <svg v-if="submitInProgress" class="-ml-1 mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                    </svg>
+                    <i-mdi-loading v-if="isFetching" class="-ml-1 mr-2 h-6 w-6 animate-spin text-white" />
                   </span>
                   Submit
                 </button>
@@ -143,13 +124,32 @@
             </div>
           </form>
         </div>
+
+        <!-- notification banner -->
+        <div v-if="isFinished" class="my-8 rounded-md p-4" :class="[error ? 'bg-red-50' : 'bg-green-50']">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <i-heroicons-megaphone class="size-6" :class="[error ? 'text-red-800' : 'text-green-800']" />
+            </div>
+            <div class="ml-3">
+              <h3 :class="[error ? 'text-red-800' : 'text-green-800', 'text-lg font-medium']">{{ error ? 'There were errors with your submission' : 'Thank you for contacting us!' }}</h3>
+              <div :class="[error ? 'text-red-700' : 'text-green-700', 'mt-2 text-sm ']">
+                <p class="text-pretty font-medium">
+                  <span v-if="displayMessage">{{ displayMessage }}</span>
+                  <span v-else-if="error">There was an error processing your request: {{ error }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useFetch } from '@vueuse/core';
 
 export interface Props {
   defaultOption?: string | null;
@@ -159,7 +159,7 @@ const props = withDefaults(defineProps<Props>(), {
   defaultOption: null,
 });
 
-const message = ref('');
+const displayMessage = ref('');
 const options = ['Report a problem', 'Volunteer', 'Information', 'Other'];
 const form = ref({
   name: '',
@@ -167,40 +167,26 @@ const form = ref({
   category: props.defaultOption || 'Report a problem',
   message: '',
 });
-const submitInProgress = ref(false);
 
-async function submit() {
-  submitInProgress.value = true;
+const { isFetching, isFinished, data, error, execute } = useFetch('/.netlify/functions/contact-form', { immediate: false })
+  .post({
+    payload: form.value,
+  })
+  .json();
+
+function submit() {
   if (form.value.name === '' || form.value.email === '' || form.value.message === '') {
-    message.value = 'Please fill out the form completely';
+    error.value = 'Please fill out the form completely';
+    isFinished.value = true;
     return;
   }
-  try {
-    const res = await fetch('/.netlify/functions/contact-form', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: form.value.name,
-        email: form.value.email,
-        category: form.value.category,
-        message: form.value.message,
-      }),
-    });
-    if (res.ok === true) {
-      message.value = "Thank you for contacting Friends of Ute Valley Park! We'll review your message shortly.";
-      form.value.name = '';
-      form.value.email = '';
-      form.value.message = '';
-    } else {
-      message.value = `There was an error processing your request: ${res.statusText}`;
-    }
-  } catch (err: any) {
-    message.value = err.message;
-  } finally {
-    submitInProgress.value = false;
-  }
+  execute();
 }
+
+watch(data, () => {
+  displayMessage.value = "Thank you for contacting Friends of Ute Valley Park! We'll review your message shortly.";
+  form.value.name = '';
+  form.value.email = '';
+  form.value.message = '';
+});
 </script>

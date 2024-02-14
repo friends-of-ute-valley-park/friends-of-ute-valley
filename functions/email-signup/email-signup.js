@@ -1,29 +1,29 @@
-const { parse } = require('querystring');
+import { parse } from 'querystring';
+import axios from 'axios';
 require('dotenv').config();
-const axios = require('axios').default;
 
-exports.handler = async function (event, context, callback) {
+export async function handler(event) {
   const data = generateRequestData(event.body);
   // eslint-disable-next-line no-console
   console.log(data);
   if (!data.email) {
-    return callback(null, {
+    return {
       statusCode: 400,
       body: JSON.stringify({
         status: false,
         message: 'Email address required',
       }),
-    });
+    };
   }
 
   if (!data.name) {
-    return callback(null, {
+    return {
       statusCode: 400,
       body: JSON.stringify({
         status: false,
         message: 'Name required',
       }),
-    });
+    };
   }
   const authRequest = await axios.post('https://api.sendpulse.com/oauth/access_token', {
     grant_type: 'client_credentials',
@@ -54,20 +54,20 @@ exports.handler = async function (event, context, callback) {
       template_id: process.env.SENDPULSE_CONFIRMATION_ID,
       message_lang: 'en',
     },
-    config
+    config,
   );
 
   if (res.data.result === true) {
-    return callback(null, {
+    return {
       statusCode: 200,
       body: JSON.stringify({ status: true }),
-    });
+    };
   }
-  return callback(null, {
+  return {
     statusCode: 200,
     body: JSON.stringify({ status: false, message: res.data.result }),
-  });
-};
+  };
+}
 
 function generateRequestData(eventBody) {
   let body = {};
@@ -78,7 +78,7 @@ function generateRequestData(eventBody) {
   }
 
   return {
-    email: body.email,
-    name: body.name,
+    email: body.payload.email,
+    name: body.payload.name,
   };
 }

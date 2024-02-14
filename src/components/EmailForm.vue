@@ -1,11 +1,11 @@
 <template>
   <div class="sm:text-center lg:mx-0 lg:text-left">
-    <div v-if="!submitSuccess">
+    <div v-if="!isFinished || error">
       <form class="mt-3 sm:flex" @submit="submit">
         <label for="name" class="sr-only">Name</label>
         <input
           id="name"
-          v-model="name"
+          v-model="payload.name"
           type="text"
           name="name"
           :class="{
@@ -13,11 +13,11 @@
           }"
           class="mr-4 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-sm focus:border-green-500 focus:ring-green-500 sm:flex-1"
           placeholder="Full name"
-          @input="updateName" />
+          @blur="validate" />
         <label for="email" class="sr-only">Email</label>
         <input
           id="email"
-          v-model="email"
+          v-model="payload.email"
           type="text"
           name="email"
           :class="{
@@ -25,97 +25,73 @@
           }"
           class="mt-3 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-sm focus:border-green-500 focus:ring-green-500 sm:mt-0 sm:flex-1"
           placeholder="Email"
-          @input="updateEmail" />
+          @blur="validate" />
         <button
-          :disabled="submitInProgress"
+          :disabled="isFetching"
           type="submit"
-          class="mt-3 w-full rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium text-green-50 shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:ml-3 sm:mt-0 sm:inline-flex sm:w-auto sm:flex-shrink-0 sm:items-center">
+          class="mt-3 w-full rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium text-green-50 shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:bg-green-600 sm:ml-3 sm:mt-0 sm:inline-flex sm:w-auto sm:flex-shrink-0 sm:items-center">
           <span>
-            <svg v-if="submitInProgress" class="-ml-1 mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-            </svg>
+            <i-mdi-loading v-if="isFetching" class="-ml-2 mr-2 h-6 w-6 animate-spin text-white" />
           </span>
           Notify me
         </button>
       </form>
-      <p v-if="errorMessage" class="mt-2 text-sm text-red-600">
-        {{ errorMessage }}
+      <p v-if="nameValidationError || emailValidationError" class="mt-2 text-sm text-red-600">
+        {{ nameValidationError }}
+        {{ emailValidationError }}
       </p>
       <p class="mt-3 text-sm text-gray-500">
         We care about your data. Read our
         <a href="/privacy/" class="font-medium text-gray-900 underline"> Privacy Policy</a>.
       </p>
     </div>
-    <div v-else>
+    <div v-if="isFinished && !error">
       <p class="text-base font-medium text-gray-900">Thank you for signing up. Please check your email for a confirmation email.</p>
+    </div>
+    <div v-if="error" class="mt-2 text-sm text-red-600">
+      <h2 class="text-3xl font-medium">Submit Error</h2>
+      {{ data.message }}
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      name: '',
-      email: '',
-      nameIsError: false,
-      emailIsError: false,
-      errorMessage: '',
-      submitInProgress: false,
-      submitSuccess: false,
-    };
-  },
-  methods: {
-    async submit(e) {
-      e.preventDefault();
-      this.submitInProgress = true;
-      if (!this.name) {
-        this.nameIsError = true;
-        this.errorMessage = 'Your name is required';
-        this.submitInProgress = false;
-        return;
-      }
-      if (!this.email || !this.email.includes('@') || !this.email.includes('.')) {
-        this.emailIsError = true;
-        this.errorMessage = 'A valid email is required';
-        this.submitInProgress = false;
-        return;
-      }
+<script setup lang="ts">
+import { useFetch } from '@vueuse/core';
+import { ref } from 'vue';
 
-      try {
-        await fetch('/.netlify/functions/email-signup', {
-          method: 'post',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: this.name,
-            email: this.email,
-          }),
-        });
-        this.submitSuccess = true;
-        return;
-      } catch (e) {
-        this.errorMessage = e;
-        this.submitInProgress = false;
-        this.submitSuccess = false;
-        return;
-      }
-    },
-    updateName() {
-      if (this.name) {
-        this.nameIsError = false;
-        this.errorMessage = false;
-      }
-    },
-    updateEmail() {
-      if (this.email && this.email.includes('@') && this.email.includes('.')) {
-        this.emailIsError = false;
-        this.errorMessage = false;
-      }
-    },
-  },
+const nameIsError = ref(false);
+const emailIsError = ref(false);
+const emailValidationError = ref('');
+const nameValidationError = ref('');
+const payload = ref({ name: '', email: '' });
+
+const { isFetching, isFinished, error, data, execute } = useFetch('/.netlify/functions/email-signup', { updateDataOnError: true, immediate: false })
+  .post({
+    payload: payload.value,
+  })
+  .json();
+
+const submit = async function (e: Event) {
+  e.preventDefault();
+  validate();
+  if (nameValidationError.value || emailValidationError.value) return;
+  execute();
+};
+
+const validate = function () {
+  if (payload.value.name) {
+    nameIsError.value = false;
+    nameValidationError.value = '';
+  } else {
+    nameIsError.value = true;
+    nameValidationError.value = 'Please enter your name.';
+  }
+  if (payload.value.email && payload.value.email.includes('@') && payload.value.email.includes('.')) {
+    emailIsError.value = false;
+    emailValidationError.value = '';
+  } else {
+    emailIsError.value = true;
+    emailValidationError.value = 'Please enter a valid email address.';
+  }
 };
 </script>

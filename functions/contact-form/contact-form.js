@@ -1,49 +1,52 @@
-const { parse } = require('querystring');
-const { GoogleSpreadsheet } = require('google-spreadsheet');
+import { parse } from 'querystring';
+import { GoogleSpreadsheet } from 'google-spreadsheet';
+import { JWT } from 'google-auth-library';
 require('dotenv').config();
 
-exports.handler = async function (event, context, callback) {
+export async function handler(event, context, callback) {
   const data = generateRequestData(event.body);
   // eslint-disable-next-line no-console
   console.log(data);
   if (!data.email) {
-    return callback(null, {
+    return {
       statusCode: 400,
       body: JSON.stringify({
         status: false,
         message: 'Email address required',
       }),
-    });
+    };
   }
 
   if (!data.name) {
-    return callback(null, {
+    return {
       statusCode: 400,
       body: JSON.stringify({
         status: false,
         message: 'Name required',
       }),
-    });
+    };
   }
 
   if (!data.message) {
-    return callback(null, {
+    return {
       statusCode: 400,
       body: JSON.stringify({
         status: false,
         message: 'Message required',
       }),
-    });
+    };
   }
 
-  // spreadsheet key is the long id in the sheets URL
-  const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
+  const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 
-  // use service account creds
-  await doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  const jwtFromEnv = new JWT({
+    email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    scopes: SCOPES,
   });
+
+  // spreadsheet key is the long id in the sheets URL
+  const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, jwtFromEnv);
 
   await doc.loadInfo(); // loads document properties and worksheets
 
@@ -58,11 +61,11 @@ exports.handler = async function (event, context, callback) {
   });
   await sheet.saveUpdatedCells(); // save all updates in one call
 
-  return callback(null, {
+  return {
     statusCode: 200,
     body: JSON.stringify({ status: true }),
-  });
-};
+  };
+}
 
 function generateRequestData(eventBody) {
   let body = {};
@@ -73,9 +76,9 @@ function generateRequestData(eventBody) {
   }
 
   return {
-    email: body.email,
-    name: body.name,
-    category: body.category,
-    message: body.message,
+    email: body.payload.email,
+    name: body.payload.name,
+    category: body.payload.category,
+    message: body.payload.message,
   };
 }
