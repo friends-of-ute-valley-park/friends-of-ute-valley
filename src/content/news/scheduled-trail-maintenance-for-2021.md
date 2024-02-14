@@ -2,11 +2,10 @@
 title: Scheduled Trail Maintenance For 2021
 published: true
 publishedOn: 2021-02-06T21:44:47.114Z
-coverImage: /images/ute-news-5.jpg
+coverImage: /src/content/news/ute-news-5.jpg
 previewText: As we get closer to the warmer months, the city has scheduled
   several tentative projects to improve Ute Valley Park. As of now, we are still
   limited to 9 volunteers and 1 crew leader per group.
-layout: '../../layouts/NewsLayout.astro'
 ---
 
 As we get closer to the warmer months, the city has scheduled several tentative projects to improve Ute Valley Park. As of now, we are still limited to 9 volunteers and 1 crew leader per group. If we need to, for a larger group, we can make multiple, distinct working groups, doing different projects in different areas.

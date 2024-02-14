@@ -3,8 +3,7 @@ title: New Website
 published: true
 publishedOn: 2021-01-21T10:01:30.670Z
 previewText: 2021 brings a new website for Friends of Ute Valley Park
-coverImage: /images/ute-news-2.jpg
-layout: '../../layouts/NewsLayout.astro'
+coverImage: /src/content/news/ute-news-2.jpg
 ---
 
 Friends of Ute Valley Park is proud to bring online a new website with many new exciting features!

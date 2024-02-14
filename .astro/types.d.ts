@@ -197,6 +197,134 @@ declare module 'astro:content' {
   data: InferEntrySchema<"leavenotrace">
 } & { render(): Render[".md"] };
 };
+"news": {
+"2020-accomplishments.md": {
+	id: "2020-accomplishments.md";
+  slug: "2020-accomplishments";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"2022-volunteer-update.md": {
+	id: "2022-volunteer-update.md";
+  slug: "2022-volunteer-update";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"a-city-of-good-friendly-and-helpful-people.md": {
+	id: "a-city-of-good-friendly-and-helpful-people.md";
+  slug: "a-city-of-good-friendly-and-helpful-people";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"big-changes-afoot-at-the-ute-valley-park-vindicator-trailhead.md": {
+	id: "big-changes-afoot-at-the-ute-valley-park-vindicator-trailhead.md";
+  slug: "big-changes-afoot-at-the-ute-valley-park-vindicator-trailhead";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"changes-afoot-at-ute-valley-park.md": {
+	id: "changes-afoot-at-ute-valley-park.md";
+  slug: "changes-afoot-at-ute-valley-park";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"city-of-colorado-springs-e-bike-pilot-postponed.md": {
+	id: "city-of-colorado-springs-e-bike-pilot-postponed.md";
+  slug: "city-of-colorado-springs-e-bike-pilot-postponed";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"construction-on-ute-valley-park-regional-trail.md": {
+	id: "construction-on-ute-valley-park-regional-trail.md";
+  slug: "construction-on-ute-valley-park-regional-trail";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"embracing-change.md": {
+	id: "embracing-change.md";
+  slug: "embracing-change";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"friends-of-ute-valley-park-year-end-review.md": {
+	id: "friends-of-ute-valley-park-year-end-review.md";
+  slug: "friends-of-ute-valley-park-year-end-review";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"much-to-be-thankful-for-in-2020-in-ute-valley-park.md": {
+	id: "much-to-be-thankful-for-in-2020-in-ute-valley-park.md";
+  slug: "much-to-be-thankful-for-in-2020-in-ute-valley-park";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"new-wayfinding-package-installed-at-ute-valley-park.md": {
+	id: "new-wayfinding-package-installed-at-ute-valley-park.md";
+  slug: "new-wayfinding-package-installed-at-ute-valley-park";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"new-website.md": {
+	id: "new-website.md";
+  slug: "new-website";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"proposed-development-quiet-time-at-ute.md": {
+	id: "proposed-development-quiet-time-at-ute.md";
+  slug: "proposed-development-quiet-time-at-ute";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"scheduled-trail-maintenance-for-2021.md": {
+	id: "scheduled-trail-maintenance-for-2021.md";
+  slug: "scheduled-trail-maintenance-for-2021";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"upcoming-volunteer-events-in-ute-valley-park-and-vote-yes-on-tops-renewal.md": {
+	id: "upcoming-volunteer-events-in-ute-valley-park-and-vote-yes-on-tops-renewal.md";
+  slug: "upcoming-volunteer-events-in-ute-valley-park-and-vote-yes-on-tops-renewal";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"ute-valley-park-volunteers-featured-in-woodmen-edition.md": {
+	id: "ute-valley-park-volunteers-featured-in-woodmen-edition.md";
+  slug: "ute-valley-park-volunteers-featured-in-woodmen-edition";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"why-building-illegal-trails-and-using-undesignated-trails-is-so-damaging-to-our-open-spaces.md": {
+	id: "why-building-illegal-trails-and-using-undesignated-trails-is-so-damaging-to-our-open-spaces.md";
+  slug: "why-building-illegal-trails-and-using-undesignated-trails-is-so-damaging-to-our-open-spaces";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"why-does-ute-valley-park-have-the-trails-it-does.md": {
+	id: "why-does-ute-valley-park-have-the-trails-it-does.md";
+  slug: "why-does-ute-valley-park-have-the-trails-it-does";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+};
 
 	};
 

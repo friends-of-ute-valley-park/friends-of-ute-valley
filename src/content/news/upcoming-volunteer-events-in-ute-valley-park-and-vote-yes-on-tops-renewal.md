@@ -2,12 +2,11 @@
 title: 'Upcoming Volunteer events in Ute Valley Park and Vote Yes on TOPS Renewal! '
 published: true
 publishedOn: 2023-03-09T15:17:04.304Z
-coverImage: /images/ute-news-3-9-2023.jpg
+coverImage: /src/content/news/ute-news-3-9-2023.jpg
 previewText: 'Borrowing a line from a Simon & Garfunkel song – “Look around,
   Leaves are brown, And the sky is a hazy shade of winter – yep we know winter
   is still upon us. The only recent givens we seem to have are a lot of
   discussion about 10 cents a bag in stores and it snows every Wednesday. '
-layout: ../../layouts/NewsLayout.astro
 ---
 
 Borrowing a line from a Simon & Garfunkel song – "Look around, Leaves are brown,\

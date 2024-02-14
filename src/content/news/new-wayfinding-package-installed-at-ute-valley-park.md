@@ -2,11 +2,10 @@
 title: New Wayfinding Package Installed at Ute Valley Park
 published: true
 publishedOn: 2023-11-03T19:06:31.256Z
-coverImage: /images/ute-news-11-3-2023.jpg
+coverImage: /src/content/news/ute-news-11-3-2023.jpg
 previewText: The wayfinding package was purchased in part by community donations
   from park users and supporters who wanted to improve the park’s accessibility
   and safety.
-layout: ../../layouts/NewsLayout.astro
 ---
 
 Ute Valley Park, a popular destination for hiking, mountain biking, dog walking, and running in Colorado Springs, has recently received a new wayfinding package to enhance the visitor experience. The wayfinding package consists of signage that displays the trail names and directions, making it easier for users to navigate and orient themselves within the park.

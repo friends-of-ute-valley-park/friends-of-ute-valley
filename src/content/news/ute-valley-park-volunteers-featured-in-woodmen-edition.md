@@ -3,8 +3,7 @@ title: Ute Valley Park Volunteers Featured in Woodmen Edition
 published: true
 publishedOn: 2016-04-14T10:01:30.670Z
 previewText: A group of 15 volunteers stands behind a trailer filled with shovels, polaskis and trail-building tools at Ute Valley Park.
-coverImage: /images/ute-news-3.jpg
-layout: '../../layouts/NewsLayout.astro'
+coverImage: /src/content/news/ute-news-3.jpg
 ---
 
 Volunteers kick off new season with trail work in Ute Valley Park

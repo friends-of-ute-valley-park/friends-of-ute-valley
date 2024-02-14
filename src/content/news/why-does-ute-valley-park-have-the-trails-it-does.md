@@ -2,9 +2,8 @@
 title: Why Does Ute Valley Park Have The Trails It Does?
 published: true
 publishedOn: 2022-10-24T16:21:28.759Z
-coverImage: /images/ute-news-oct-24-2022.avif
+coverImage: /src/content/news/ute-news-oct-24-2022.avif
 previewText: What goes into making a trail? And Who Decides?!
-layout: ../../layouts/NewsLayout.astro
 ---
 
 The Friends of Ute Valley Park receives many inquiries over the year about Ute Valley Park. A substantial amount of those inquires regard why a trail has been closed, moved, rearranged or opened.

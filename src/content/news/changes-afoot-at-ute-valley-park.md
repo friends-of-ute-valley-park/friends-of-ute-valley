@@ -2,11 +2,10 @@
 title: Changes afoot at Ute Valley Park
 published: true
 publishedOn: 2021-03-30T13:29:26.321Z
-coverImage: /images/ute-news-6.jpg
+coverImage: /src/content/news/ute-news-6.jpg
 previewText: As we go through our life, we come to realize that change is and
   will always be a constant. A lot of the change we experience is expected and
   accepted. Much of the change we can control, but there is a lot we cannot.
-layout: '../../layouts/NewsLayout.astro'
 ---
 
 This article was originally published in the [Woodman Edition](https://gazette.com/woodmenedition/changes-afoot-at-ute-valley-park-park-place/article_e83cfd98-8cd9-11eb-bcc7-a70e5944ca66.html)

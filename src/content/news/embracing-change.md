@@ -2,11 +2,10 @@
 title: Embracing change
 published: true
 publishedOn: 2021-09-29T13:47:03.356Z
-coverImage: /images/ute-news-10-6-21.jpg
+coverImage: /src/content/news/ute-news-10-6-21.jpg
 previewText: The word of the day is change. Not the nick­els, dimes and
   quar­ters rolling around in your car’s con­sole kind of change. Nope. This use
   of the word would be the embrace change kind of change.
-layout: '../../layouts/NewsLayout.astro'
 ---
 
 This article originally appeared in the [North Springs Edition](https://daily.gazette.com/article/281565178917014)

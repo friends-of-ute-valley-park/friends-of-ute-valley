@@ -1,10 +1,21 @@
 ---
-import Layout from './Layout.astro';
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { Picture } from 'astro:assets';
 
-const { content } = Astro.props;
+export async function getStaticPaths() {
+  const newsEntries = await getCollection('news');
+  return newsEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await entry.render();
 ---
 
-<Layout title={content.title}>
+<Layout title={entry.data.title}>
   <div class="py-10">
     <main>
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -40,20 +51,16 @@ const { content } = Astro.props;
           <div class="relative px-4 sm:px-6 lg:px-8">
             <div class="mx-auto mb-6 max-w-prose text-lg">
               <h1 class="mb-8 mt-2 text-center text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-                {content.title}
+                {entry.data.title}
               </h1>
-              <img loading="lazy" class="h-96 w-full rounded-lg object-cover shadow-lg" src={content.coverImage} alt="" />
+              <Picture loading="lazy" formats={['avif', 'webp']} width={900} height={600} class="h-96 w-full rounded-lg object-cover shadow-lg" src={entry.data.coverImage} alt="" />
               <div class="mt-4 flex text-sm leading-5 text-gray-500">
-                <time datetime={content.publishedOn}>
-                  {new Intl.DateTimeFormat('en-US').format(new Date(content.publishedOn))}
+                <time datetime={entry.data.publishedOn.toString()}>
+                  {new Intl.DateTimeFormat('en-US').format(new Date(entry.data.publishedOn))}
                 </time>
-                <span class="mx-1"> &middot;</span>
-                <span>
-                  {content.minutesRead}
-                </span>
               </div>
               <div class="prose lg:prose-xl">
-                <slot />
+                <Content />
               </div>
             </div>
           </div>

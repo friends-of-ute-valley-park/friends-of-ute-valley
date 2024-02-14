@@ -2,10 +2,9 @@
 title: 2022 Volunteer Update
 published: true
 publishedOn: 2022-12-13T22:13:27.190Z
-coverImage: /images/ute-news-12-13-22.jpg
+coverImage: /src/content/news/ute-news-12-13-22.jpg
 previewText:  This year the FUVP was able to report that we recorded 201
   individual volunteer sessions over the workday season.
-layout: ../../layouts/NewsLayout.astro
 ---
 
 Weather, footsteps, and bike tires all take their toll on the many trails in and around Ute Valley Park. Sometimes the property gets more help from the weather and this year was a bit of a toss-up. Significant snowfall in May was certainly impactful with lots of melting and erosion. Park users are anxious to get back outside after being shelved for a few days, and damage caused on wet, mucky trails must be tended to. As a reminder we always ask users to be mindful of that and maybe wait a bit for drying to occur before returning. Warm weather and mostly dry conditions prevailed through most of year into the fall to aid in the trail work.

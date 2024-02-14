@@ -13,7 +13,10 @@ import heroImage4 from '../assets/images/ute-valley-park-hero-4.jpg';
 import heroImage5 from '../assets/images/ute-valley-park-hero-5.jpg';
 import cta from '../assets/images/home-page-cta.jpg';
 
-const newsPosts = await Astro.glob('../pages/news/*.md');
+import { getCollection } from 'astro:content';
+const publishedNewsEntries = await getCollection('news', ({ data }) => {
+  return data.published === true;
+});
 ---
 
 <Layout title="Home">
@@ -166,21 +169,11 @@ const newsPosts = await Astro.glob('../pages/news/*.md');
       </div>
       <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         {
-          newsPosts
-            .sort((a, b) => new Date(a.frontmatter.publishedOn).getTime() - new Date(b.frontmatter.publishedOn).getTime())
+          publishedNewsEntries
+            .sort((a, b) => new Date(a.data.publishedOn).getTime() - new Date(b.data.publishedOn).getTime())
             .reverse()
             .splice(0, 3)
-            .map((post) => (
-              <Card
-                title={post.frontmatter.title}
-                previewText={post.frontmatter.previewText}
-                image={post.frontmatter.coverImage}
-                href={post.url}
-                publishedOn={post.frontmatter.publishedOn}
-                minutesRead={post.frontmatter.minutesRead}
-                canBeWide={false}
-              />
-            ))
+            .map((post) => <Card title={post.data.title} previewText={post.data.previewText} image={post.data.coverImage} href={post.slug} publishedOn={post.data.publishedOn} canBeWide={false} />)
         }
       </div>
     </div>

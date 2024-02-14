@@ -2,9 +2,8 @@
 title: Much to be thankful for in 2020 in Ute Valley Park
 published: true
 publishedOn: 2020-12-29T10:01:30.670Z
-coverImage: /images/ute-news-4.jpg
+coverImage: /src/content/news/ute-news-4.jpg
 previewText: It this time last year so many verbal greetings I had extended and all the holiday cards I sent all included the traditional “Happy New Year” wish to family and friends alike. Who knew?
-layout: '../../layouts/NewsLayout.astro'
 ---
 
 This article was originally published in the [Woodman Edition](https://gazette.com/woodmenedition/much-to-be-thankful-for-in-2020-in-ute-valley-park-park-place/article_051821a6-4552-11eb-b956-836d79f36108.html)

@@ -9,9 +9,11 @@ public_folder: /images
 collections:
   - name: 'news'
     label: 'News'
-    folder: '/src/pages/news'
+    folder: '/src/content/news'
     create: true
     slug: '{{slug}}'
+    media_folder: ''
+    public_folder: ''
     editor:
       preview: false
     fields:

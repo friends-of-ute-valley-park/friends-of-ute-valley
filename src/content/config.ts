@@ -10,6 +10,18 @@ const leavenotraceCollection = defineCollection({
     }),
 });
 
+const newsCollection = defineCollection({
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      published: z.boolean(),
+      publishedOn: z.date(),
+      coverImage: image(),
+      previewText: z.string(),
+    }),
+});
+
 export const collections = {
   leavenotrace: leavenotraceCollection,
+  news: newsCollection,
 };

@@ -2,11 +2,10 @@
 title: A city of good, friendly and helpful people
 published: true
 publishedOn: 2021-06-30T00:40:55.742Z
-coverImage: /images/ute-news-june-29.jpg
+coverImage: /src/content/news/ute-news-june-29.jpg
 previewText: During my recent deplaning effort on one of their flights, I
   overheard a man and women talking. She explained she was visiting Colorado
   Springs for a wedding, and it was her first trip here.
-layout: '../../layouts/NewsLayout.astro'
 ---
 
 This article was originally published in the [North Springs Edition](https://gazette.com/northspringsedition/a-city-of-good-friendly-and-helpful-people-park-place/article_cb09e87a-d776-11eb-a20a-57342ac98123.html)
