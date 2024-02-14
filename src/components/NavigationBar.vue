@@ -27,7 +27,7 @@
                     'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium',
                   ]">
                   <span class="items-center">Leave No Trace</span>
-                  <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
+                  <i-heroicons-chevron-down class="ml-1 h-5 w-5" aria-hidden="true" />
                 </PopoverButton>
                 <transition
                   enter-active-class="transition ease-out duration-200"
@@ -67,8 +67,8 @@
           <DisclosureButton
             class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
             <span class="sr-only">Open main menu</span>
-            <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
-            <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
+            <i-heroicons-bars-3 v-if="!open" class="block h-6 w-6" aria-hidden="true" />
+            <i-heroicons-x-mark v-else class="block h-6 w-6" aria-hidden="true" />
           </DisclosureButton>
         </div>
       </div>
@@ -122,34 +122,35 @@
 </template>
 
 <script setup lang="ts">
-import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline/esm/index.js';
-import { ChevronDownIcon } from '@heroicons/vue/20/solid';
-import { PawPrint, Bird, Camera, Map } from 'lucide-vue-next';
+import LucidePawPrint from 'virtual:icons/lucide/paw-print';
+import LucideBird from 'virtual:icons/lucide/bird';
+import LucideCamera from 'virtual:icons/lucide/camera';
+import LucideMap from 'virtual:icons/lucide/map';
 
 const props = defineProps(['page']);
 
 const leaveNoTraceMenuItems = [
-  { name: 'Dog Etiquette and Rules', description: 'Leash Laws and Clean-Up Rules', href: '/leavenotrace/dogs/', current: props.page === '/leavenotrace/dogs/', icon: PawPrint },
+  { name: 'Dog Etiquette and Rules', description: 'Leash Laws and Clean-Up Rules', href: '/leavenotrace/dogs/', current: props.page === '/leavenotrace/dogs/', icon: LucidePawPrint },
   {
     name: 'Travel on Durable Surfaces',
     description: 'Respecting Durable Surfaces in Parks',
     href: '/leavenotrace/travel-on-durable-surfaces/',
     current: props.page === '/leavenotrace/travel-on-durable-surfaces/',
-    icon: Map,
+    icon: LucideMap,
   },
   {
     name: 'Leave What You find',
     description: 'Appreciating Nature Without Taking It Home',
     href: '/leavenotrace/leave-what-you-find/',
     current: props.page === '/leavenotrace/leave-what-you-find/',
-    icon: Camera,
+    icon: LucideCamera,
   },
   {
     name: 'Respect Wildlife',
     description: 'Appreciating Wildlife Without Disturbing It',
     href: '/leavenotrace/respect-wildlife/',
     current: props.page === '/leavenotrace/respect-wildlife/',
-    icon: Bird,
+    icon: LucideBird,
   },
 ];
 
