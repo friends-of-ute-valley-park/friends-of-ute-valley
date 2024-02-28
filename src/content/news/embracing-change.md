@@ -7,18 +7,11 @@ previewText: The word of the day is change. Not the nick­els, dimes and
   quar­ters rolling around in your car’s con­sole kind of change. Nope. This use
   of the word would be the embrace change kind of change.
 ---
-
 This article originally appeared in the [North Springs Edition](https://daily.gazette.com/article/281565178917014)
 
 The word of the day is change. Not the nick­els, dimes and quar­ters rolling around in your car’s con­sole kind of change. Nope. This use of the word would be the embrace change kind of change.
 
 Some people embrace change, many do not and would rather res­ist change. Change can be neg­at­ive, but pos­it­ive too. But here I will identify good change for you to know about, that you could help with, or may in fact already be involved in.
-
-First up is an announce­ment of a change in the park ranger that will over­see the Trails, Open Space and Parks por­tion of Ute Val­ley Park. The new ranger is Jacob Reta. Jacob is excited about this oppor­tun­ity and very eager to learn about the park prop­erty. He has plans to ini­ti­ate a few volun­teer projects for the fall. Jacob recently shared with the Friends of Ute Val­ley Park this note….
-
-“Howdy, my name is Jacob. I am ori­gin­ally from Las Cruces, New Mex­ico. I am Tigua Pueblo from the vil­lage of Tor­tu­gas. I obtained my degree from New Mex­ico State Uni­versity in the field of Fish­er­ies, Wild­life and Con­ser­va­tion Eco­logy. I enjoy being out­doors whether it is hunt­ing, fish­ing, hik­ing, or camp­ing. I love to teach about nat­ural resources with both the west­ern learn­ing and deep-rooted tra­di­tional ways that come from my tribe. I like to have my trusty steed Bailey (dog) by my side whenever I go out on the trails. I am super excited to be part of a team that has so much poten­tial in bet­ter­ing the nat­ural areas we strive to man­age and pro­tect.”
-
-The FUVP says wel­come Jacob, and we look for­ward to your efforts and guid­ance in the park.
 
 The volun­teer work ses­sions ini­ti­ated by the FUVP from April through Septem­ber have suc­cess­fully ended for this year. Now we change over to mon­it­or­ing the park through the fall and winter and will con­duct our plan­ning to determ­ine what improve­ments and changes will come about next year. Volun­teer sup­port stayed strong again this year and we will tally the res­ults and share them in this space soon. There will also be a recog­ni­tion event to thank the many volun­teers that stepped up to help with a vari­ety of projects.
 
