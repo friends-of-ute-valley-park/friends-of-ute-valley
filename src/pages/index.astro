@@ -4,7 +4,7 @@ import Card from '@components/Card.astro';
 import LeaveNoTrace from '@components/LeaveNoTrace.astro';
 import EmailForm from '@components/EmailForm.vue';
 
-import { ChevronRightIcon } from '@heroicons/vue/24/outline/esm/index.js';
+import ChevronRightIcon from '~icons/heroicons/chevron-right';
 import { Image, Picture } from 'astro:assets';
 import heroImage from '../assets/images/ute-valley-park-biker.jpg';
 import heroImage2 from '../assets/images/ute-valley-park-hero-2.jpg';
@@ -74,7 +74,7 @@ const publishedNewsEntries = await getCollection('news', ({ data }) => {
                 class="text-green-700 underline decoration-green-500 decoration-[0.25rem] hover:decoration-green-500/50 hover:decoration-[0.5rem] focus:decoration-green-500/50 focus:decoration-[0.5rem] motion-safe:transition-all motion-safe:duration-200"
                 >Friends of Ute Valley Park</a
               > is an officially recognized “Friends” organization by the City of Colorado Springs Parks, Recreation, and Cultural Services Department. Our mission is to maintain, preserve, and provide
-              education for Ute Valley Park
+              education for Ute Valley Park.
             </p>
           </div>
           <div class="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
