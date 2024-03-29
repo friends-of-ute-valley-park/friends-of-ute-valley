@@ -21,7 +21,7 @@ Lastly, we're excited to announce several upcoming fundraising events in collabo
 
 * Cerberus at [Seven's Gate Tap Room](https://maps.app.goo.gl/B91xhWHEQrN3oDZp9) April 9th 4-7PM
 * [B﻿rass Brewing](https://maps.app.goo.gl/sDssNPn4tA9NnK1fA) April 17th 5-7PM
-* [W﻿ackadoo Brewing](https://maps.app.goo.gl/nH6eiqeStqgzvdbFA) April 25th 5-7PM
+* [W﻿ackadoo Brewing](https://maps.app.goo.gl/nH6eiqeStqgzvdbFA) May 11th 5-7PM
 * [O﻿CC Brewing](https://maps.app.goo.gl/J5QY6TCwBgumGcoM6) June 14th 6-8PM
 
 We hope you'll join us for these fun evenings and help spread the word to your friends and family.
