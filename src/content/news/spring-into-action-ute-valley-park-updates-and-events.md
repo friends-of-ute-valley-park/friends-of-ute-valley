@@ -2,7 +2,7 @@
 title: "Spring into Action: Ute Valley Park Updates and Events"
 published: true
 publishedOn: 2024-03-29T13:24:08.781Z
-coverImage: ute-news-3-29-2024.jpg
+coverImage: /src/content/news/ute-news-3-29-2024.jpg
 previewText: Upcoming announcements for the 2024 volunteer season
 ---
 Dear Friends of Ute Valley Park,
