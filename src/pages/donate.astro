@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import CheckBadgeIcon from '~icons/heroicons/check-badge';
 
-const benefits = ['New tools', 'Expanded trails', 'Trail maintenance', 'Wayfinding signage and facilities'];
+const benefits = ['Expanded trails', 'Trail maintenance', 'Wayfinding signage and facilities', 'New tools', 'Educational programs', 'Conservation efforts'];
 import VolunteerHeroImage from '../assets/images/volunteer-hero.jpg';
 ---
 
@@ -50,7 +50,7 @@ import VolunteerHeroImage from '../assets/images/volunteer-hero.jpg';
         <div class="relative mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div class="mx-auto max-w-lg overflow-hidden rounded-lg shadow-lg lg:flex lg:max-w-none">
             <div class="flex-1 bg-white px-6 py-8 lg:p-12">
-              <h3 class="text-2xl font-bold text-gray-900 sm:text-3xl">Support Ute Valley Park via Trails and Open Spaces Coalition</h3>
+              <h3 class="text-2xl font-bold text-gray-900 sm:text-3xl">Support Ute Valley Park via Trails and Open Space Coalition</h3>
               <p class="mt-6 text-base text-gray-500">Make contributions to the Trails and Open Space Coalition and designate your gift to the Friends of Ute Valley Park.</p>
               <div class="mt-8">
                 <div class="flex items-center">
@@ -60,11 +60,11 @@ import VolunteerHeroImage from '../assets/images/volunteer-hero.jpg';
                 <ul class="mt-8 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5">
                   {
                     benefits.map((benefit) => (
-                      <li class="flex items-start lg:col-span-1">
+                      <li class="my-2 flex items-start md:mt-0 lg:col-span-1">
                         <div class="flex-shrink-0">
                           <CheckBadgeIcon class="h-6 w-6 text-green-600" aria-hidden="true" />
                         </div>
-                        <p class="ml-3 text-sm  text-gray-700">{benefit}</p>
+                        <p class="ml-3 text-sm text-gray-700">{benefit}</p>
                       </li>
                     ))
                   }
@@ -76,16 +76,16 @@ import VolunteerHeroImage from '../assets/images/volunteer-hero.jpg';
               <div class="mt-6">
                 <div class="rounded-md shadow">
                   <a
-                    href="https://www.trailsandopenspaces.org/fiscal-sponsors/"
+                    href="https://trailsandopenspacecoalition-bloom.kindful.com/embeds/65db98e0-d794-4712-bf37-144689d58de3"
                     class="flex items-center justify-center rounded-md border border-transparent bg-green-900 px-5 py-3 text-base font-medium text-white transition duration-150 ease-in-out hover:bg-green-800 focus:outline-none focus:ring">
                     Donate Now
                   </a>
                 </div>
               </div>
               <div class="my-4 text-sm">
-                <a href="https://www.trailsandopenspaces.org/fiscal-sponsors/" class="font-medium text-gray-900">
+                <a href="https://trailsandopenspacecoalition-bloom.kindful.com/embeds/65db98e0-d794-4712-bf37-144689d58de3" class="font-medium text-gray-900">
                   <svg id="Layer_1" class="mx-auto w-64" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 484.2 201.5" xml:space="preserve">
-                    <title>Trails and Open Spaces Logo</title>
+                    <title>Trails and Open Space Logo</title>
                     <path
                       class="st0"
                       d="M234.9 43.4h-18.5v135.4h-17.2V43.4h-17.6V26.3h53.3v17.1zM269 178.9c-13 0-19.4-6.4-19.4-19.4V45.7c0-13 6.4-19.4 19.4-19.4h18.5c13 0 19.4 6.4 19.4 19.4v113.7c0 13-6.4 19.4-19.4 19.4H269zm-2.3-17.2h23.1V43.4h-23.1v118.3zM342.4 124.9v36.8h23.1v-36.4c0-3.4-.2-5.5-.7-6.4-.5-.9-1.6-1.8-3.4-2.5l-25.8-9.8c-4.1-1.6-6.9-3.9-8.2-7.1-1.4-3.2-2.1-8.7-2.1-16.5V45.7c0-13 6.4-19.4 19.4-19.4h18.5c13 0 19.4 6.4 19.4 19.4V81h-17.2V43.4h-23.1v40.3c0 3.9.2 6.2.9 7.1.5.9 1.8 1.8 4.1 2.7l23.6 8.7c4.8 1.6 7.8 3.9 9.4 6.6s2.3 7.3 2.3 13.7v36.8c0 13-6.4 19.4-19.4 19.4h-18.5c-13 0-19.4-6.4-19.4-19.4v-34.5h17.1zM458.4 159.4c0 13-6.4 19.4-19.4 19.4h-18.5c-13 0-19.4-6.4-19.4-19.4V45.7c0-13 6.4-19.4 19.4-19.4H439c13 0 19.4 6.4 19.4 19.4v38.2h-17.2V43.4h-23.1v118.3h23.1v-40.9h17.2v38.6z"
