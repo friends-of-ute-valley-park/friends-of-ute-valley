@@ -9,7 +9,9 @@ Dear Friends of Ute Valley Park,
 
 We hope this message finds you well and excited for the upcoming spring season in our beloved park! We have a few important updates and events to share with you.
 
-First, mark your calendars for our upcoming volunteer day on April 3rd from 5:30-7:30PM. We'll be focusing our efforts on drainage and tread work on the Winding Woods Loop trail, as well as removing invasive Mullein plants along the regional trail. Your help is crucial in maintaining the beauty and accessibility of our park. Please join us if you can! Sign up [here](https://cerv.is/0132x4184)
+First, mark your calendars for our upcoming volunteer day on April 3rd from 5:30-7:30PM. We'll be focusing our efforts on drainage and tread work on the Winding Woods Loop trail, as well as removing invasive Mullein plants along the regional trail. Your help is crucial in maintaining the beauty and accessibility of our park. Please join us if you can! 
+
+Sign up [here](https://cerv.is/0132x4184) for the April 3rd event!
 
 Next, we want to take a moment to congratulate and thank our former ranger, Mark Tatro, for his years of dedicated service to Ute Valley Park. Mark has recently moved on to "redder pastures" and is now the senior park ranger for Garden of the Gods. While we will miss him greatly, we are thrilled for this exciting new chapter in his career. Thank you, Mark, for all you've done for our park!
 
