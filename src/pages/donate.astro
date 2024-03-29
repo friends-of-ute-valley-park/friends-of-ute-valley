@@ -1,15 +1,46 @@
 ---
+import { Image } from 'astro:assets';
+
 import Layout from '../layouts/Layout.astro';
 import CheckBadgeIcon from '~icons/heroicons/check-badge';
+
+const benefits = ['New tools', 'Expanded trails', 'Trail maintenance', 'Wayfinding signage and facilities'];
+import VolunteerHeroImage from '../assets/images/volunteer-hero.jpg';
 ---
 
 <Layout title="Donate">
+  <div class="bg-white">
+    <div class="relative isolate overflow-hidden bg-gradient-to-b from-green-100/20">
+      <div class="mx-auto max-w-7xl pb-24 pt-10 sm:pb-16 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-20">
+        <div class="px-6 lg:px-0 lg:pt-4">
+          <div class="mx-auto max-w-2xl">
+            <div class="max-w-lg">
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Dear Friends of Ute Valley Park,</h1>
+              <p class="mt-6 text-lg leading-8 text-gray-600">
+                We need your help to continue our mission of maintaining and expanding the amazing trails and open spaces at Ute Valley Park. Your tax-deductible donation to the Friends of Ute Valley
+                Park will directly support critical initiatives such as building new trails, acquiring additional tools and resources for conservation, and providing educational programs that connect
+                our community with nature.
+              </p>
+              <p class="mt-6 text-lg leading-8 text-gray-600">
+                Every contribution, no matter the size, makes a real difference in preserving this treasured resource for generations to come. Please consider making a donation today and becoming a
+                champion for Ute Valley Park. <span class="font-bold">Thank you for your generosity and support!</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-20 sm:mt-24 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-screen">
+          <Image src={VolunteerHeroImage} alt="" class="shadow-lg md:rounded-3xl" width={1000} />
+        </div>
+      </div>
+      <div class="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32"></div>
+    </div>
+  </div>
   <div class="mt-2 bg-gray-100">
     <div class="pt-12 sm:pt-16 lg:pt-20">
       <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div class="text-center">
-          <h2 class="text-3xl font-extrabold leading-9 text-gray-900 sm:text-4xl sm:leading-10 lg:text-5xl lg:leading-none">Donate to Friends of Ute Valley Park</h2>
-          <p class="mt-4 text-xl leading-7 text-gray-600">Make a tax deductible donation to support the park today!</p>
+          <h2 class="text-3xl font-extrabold text-green-800 sm:text-4xl lg:text-5xl">Donate to Friends of Ute Valley Park</h2>
+          <p class="mt-4 text-2xl text-green-700">Your donation will help expand trails and protect open spaces for all to enjoy</p>
         </div>
       </div>
     </div>
@@ -19,56 +50,39 @@ import CheckBadgeIcon from '~icons/heroicons/check-badge';
         <div class="relative mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div class="mx-auto max-w-lg overflow-hidden rounded-lg shadow-lg lg:flex lg:max-w-none">
             <div class="flex-1 bg-white px-6 py-8 lg:p-12">
-              <h3 class="text-2xl font-extrabold leading-8 text-gray-900 sm:text-3xl sm:leading-9">Support Ute Valley Park via Trails and Open Spaces Coalition</h3>
-              <p class="mt-6 text-base leading-6 text-gray-500">Make contributions to the Trails and Open Space Coalition and designate your gift to the Friends of Ute Valley Park.</p>
+              <h3 class="text-2xl font-bold text-gray-900 sm:text-3xl">Support Ute Valley Park via Trails and Open Spaces Coalition</h3>
+              <p class="mt-6 text-base text-gray-500">Make contributions to the Trails and Open Space Coalition and designate your gift to the Friends of Ute Valley Park.</p>
               <div class="mt-8">
                 <div class="flex items-center">
-                  <h4 class="flex-shrink-0 bg-white pr-4 text-sm font-semibold uppercase leading-5 tracking-wider text-green-700">What you are supporting</h4>
+                  <h4 class="flex-shrink-0 bg-white pr-4 text-sm font-semibold uppercase tracking-wider text-green-700">What you are supporting</h4>
                   <div class="flex-1 border-t-2 border-gray-200"></div>
                 </div>
                 <ul class="mt-8 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5">
-                  <li class="flex items-start lg:col-span-1">
-                    <div class="flex-shrink-0">
-                      <CheckBadgeIcon class="h-6 w-6" aria-hidden="true" />
-                    </div>
-                    <p class="ml-3 text-sm leading-5 text-gray-700">New tools</p>
-                  </li>
-                  <li class="mt-5 flex items-start lg:col-span-1 lg:mt-0">
-                    <div class="flex-shrink-0">
-                      <CheckBadgeIcon class="h-6 w-6" aria-hidden="true" />
-                    </div>
-                    <p class="ml-3 text-sm leading-5 text-gray-700">Expanded trails</p>
-                  </li>
-                  <li class="mt-5 flex items-start lg:col-span-1 lg:mt-0">
-                    <div class="flex-shrink-0">
-                      <CheckBadgeIcon class="h-6 w-6" aria-hidden="true" />
-                    </div>
-                    <p class="ml-3 text-sm leading-5 text-gray-700">Trail maintenance</p>
-                  </li>
-                  <li class="mt-5 flex items-start lg:col-span-1 lg:mt-0">
-                    <div class="flex-shrink-0">
-                      <CheckBadgeIcon class="h-6 w-6" aria-hidden="true" />
-                    </div>
-                    <p class="ml-3 text-sm leading-5 text-gray-700">Signage and facilities</p>
-                  </li>
+                  {
+                    benefits.map((benefit) => (
+                      <li class="flex items-start lg:col-span-1">
+                        <div class="flex-shrink-0">
+                          <CheckBadgeIcon class="h-6 w-6 text-green-600" aria-hidden="true" />
+                        </div>
+                        <p class="ml-3 text-sm  text-gray-700">{benefit}</p>
+                      </li>
+                    ))
+                  }
                 </ul>
               </div>
             </div>
             <div class="bg-gray-50 px-6 py-8 text-center lg:flex lg:flex-shrink-0 lg:flex-col lg:justify-center lg:p-12">
-              <p class="text-lg font-medium leading-6 text-gray-900">Thank you for your support!</p>
-              <p class="mt-4 text-sm leading-5">
-                <a href="/volunteer/" class="font-medium text-gray-500 underline"> Want to donate your time? Volunteer today!</a>
-              </p>
+              <p class="text-xl font-bold text-green-700">Be a park hero - donate today!</p>
               <div class="mt-6">
                 <div class="rounded-md shadow">
                   <a
                     href="https://www.trailsandopenspaces.org/fiscal-sponsors/"
-                    class="flex items-center justify-center rounded-md border border-transparent bg-gray-900 px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring">
-                    Donate
+                    class="flex items-center justify-center rounded-md border border-transparent bg-green-900 px-5 py-3 text-base font-medium text-white transition duration-150 ease-in-out hover:bg-green-800 focus:outline-none focus:ring">
+                    Donate Now
                   </a>
                 </div>
               </div>
-              <div class="mt-4 text-sm leading-5">
+              <div class="my-4 text-sm">
                 <a href="https://www.trailsandopenspaces.org/fiscal-sponsors/" class="font-medium text-gray-900">
                   <svg id="Layer_1" class="mx-auto w-64" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 484.2 201.5" xml:space="preserve">
                     <title>Trails and Open Spaces Logo</title>
@@ -97,6 +111,9 @@ import CheckBadgeIcon from '~icons/heroicons/check-badge';
                   </svg>
                 </a>
               </div>
+              <p class="mt-4 text-sm font-medium text-gray-600">
+                Want to donate your time? <a href="/volunteer/" class="block font-semibold text-green-600 underline">Check out our volunteer opportunities!</a>
+              </p>
             </div>
           </div>
         </div>

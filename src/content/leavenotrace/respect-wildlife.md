@@ -47,4 +47,6 @@ Visitors can show respect for wildlife by:
   
   Before you visit, take time to learn about the animals you might see in Ute Valley Park, such as mule deer, coyotes, rattlesnakes and black bears. Understanding their behavior and needs helps you make responsible decisions while in their presence.
 
+## Preserving the Sanctuary for All
+
 By following the Respect Wildlife principle, visitors can ensure that Ute Valley Park remains a sanctuary for both animals and people. Let's enjoy the privilege of observing these creatures by giving them the respect and space they need to live undisturbed.

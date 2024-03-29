@@ -13,18 +13,18 @@ Preserving the natural state of Ute Valley Park ensures that future generations 
 
 Leaving What You Find means:
 
-- Not picking flowers, plants, or fungi.
-- Refraining from taking rocks, antlers, or other natural objects.
-- Not disturbing historical structures and artifacts.
-- Avoiding the creation of carvings, structures, or any other physical marks in the park.
+- Not picking flowers, plants, or fungi
+- Refraining from taking rocks, antlers, or other natural objects
+- Not disturbing historical structures and artifacts
+- Avoiding the creation of carvings, structures, or any other physical marks in the park
 
 ### Why is it important to Leave What You Find?
 
 Adhering to this principle is important because it:
 
-- Maintains the natural abundance and diversity for wildlife that depends on plants, rocks, and other natural features for their survival.
-- Preserves the park as a historical and natural archive of the region.
-- Ensures that the park remains a scenic destination for all visitors.
+- Maintains the natural abundance and diversity for wildlife that depends on plants, rocks, and other natural features for their survival
+- Preserves the park as a historical and natural archive of the region
+- Ensures that the park remains a scenic destination for all visitors
 
 ### How can visitors practice Leaving What You Find?
 
@@ -45,5 +45,7 @@ Visitors can practice this principle by:
 - **Educating yourself and others.**
   
   Learn about the cultural significance and the natural ecosystem of Ute Valley Park. Share your knowledge with others to promote awareness and respect for the Leave No Trace principles or [volunteer](/volunteer/) to maintain the natural beauty of Ute Valley Park.
+
+## Embracing the Leave What You Find principle
 
 By embracing the Leave What You Find principle, we ensure that Ute Valley Park remains a vibrant, living landscape. This not only enhances our own experience but also acts as a gift to those who will walk these trails after us. Let's enjoy the natural splendor of Ute Valley Park and leave it just as we found it, untouched and full of wonder.

@@ -1,50 +1,52 @@
 ---
 title: "Travel on Durable Surfaces"
-topText: "Ute Valley Park is a beautiful natural area that offers many opportunities for outdoor recreation, such as hiking, biking, and wildlife viewing. However, it is also a fragile ecosystem that needs our care and respect."
+topText: "Ute Valley Park, a stunning natural haven, beckons outdoor enthusiasts with its diverse recreational activities. From hiking and biking to wildlife watching, this park has something for everyone. However, we must remember that this fragile ecosystem demands our utmost care and respect."
 image: "./travel-on-durable-surfaces.jpeg"
 imageAlt: "Wayfinding sign next to a trail"
 ---
 
-When we visit Ute Valley Park, we want to leave it as we found it, or even better. But sometimes, our footsteps and activities can damage the land, the plants, and the wildlife. That’s why it’s important to travel on durable surfaces, which are surfaces that can resist or recover from the impacts of our visit.
+Our goal when visiting Ute Valley Park should be to leave it in the same condition as we found it, if not better. Unfortunately, our footsteps and activities can sometimes cause harm to the land, flora, and fauna. That's where traveling on durable surfaces comes in - these surfaces can withstand or recover from the impact of our visit.
 
-## What are durable surfaces?
+## What exactly are durable surfaces?
 
-Durable surfaces are those that can tolerate repeated trampling and scuffing without losing their structure or function. In Ute Valley Park, the most durable surfaces are:
+Durable surfaces are those that can handle repeated trampling and scuffing without compromising their structure or function. In Ute Valley Park, you'll find several types of durable surfaces:
 
-- Established trails
+- Well-established trails
 - Rock, gravel and sand
 - Snow and ice
 - Water
 
-## Why should we travel on durable surfaces?
+## The importance of traveling on durable surfaces
 
-Traveling on durable surfaces helps to:
+By sticking to durable surfaces, you're actively contributing to:
 
-- Protect the soil from erosion and compaction
-- Preserve the vegetation and the habitats of animals and insects
-- Prevent the spread of invasive species and diseases
-- Maintain the natural beauty and diversity of the landscape
-- Avoid creating new trails that fragment the wilderness
-- Reduce the need for trail maintenance and restoration
+- Preventing soil erosion and compaction
+- Safeguarding vegetation and animal habitats
+- Curbing the spread of invasive species and diseases
+- Preserving the park's natural beauty and diversity
+- Avoiding the creation of new trails that can fragment the wilderness
+- Minimizing the need for trail maintenance and restoration
 
-## How can we travel on durable surfaces?
-
-In Ute Valley Park, we can apply the following strategies to travel on durable surfaces:
+## Strategies for traveling on durable surfaces in Ute Valley Park
 
 ### Stay on trail.
   
-  Park users are not allowed to travel off trails in Ute Valley Park. Park visitors should always stay on the designated trails and avoid cutting switchbacks or creating shortcuts. Designated trails are indicated by official park signage and maintained paths. These trails are carefully planned to provide a safe and enjoyable route for park users while protecting the natural environment. Please follow signs and stay within the confines of the trail, avoiding straying onto undisturbed land which may be home to vulnerable plant and animal species. Always look for signage and stick to well-trodden paths to ensure you are on an approved route and to help preserve the park's natural beauty for everyone.
+Venturing off-trail is strictly prohibited in Ute Valley Park. Always stay on designated trails, which are indicated by official park signage and well-maintained paths. These trails have been carefully designed to provide a safe and enjoyable experience while protecting the natural environment. Avoid cutting switchbacks or creating shortcuts, and always follow signs to ensure you remain on approved routes.
 
 ### Choose the right trail.
   
-  Ute Valley Park has trails for different types of users, such as hikers, bikers, and equestrians. Choose the trail that matches your activity and skill level, and follow the signs and rules for each trail. This helps to reduce conflicts and accidents among users, and to protect the trails from excessive wear and tear.
+Ute Valley Park offers trails suitable for various users, including hikers, bikers, and equestrians. Choose a trail that aligns with your activity and skill level, and adhere to the signs and rules specific to each trail. By doing so, you'll help reduce conflicts and accidents among users while minimizing excessive wear and tear on the trails.
 
 ### Walk through mud and snow.
   
-  When the trails are wet or snowy, walk through the center of the trail, even when wet or muddy. This helps to keep the trail narrow and prevent widening and braiding. Do not walk around puddles or snow patches, as this can damage the vegetation and create new trails. If the trails are too muddy or snowy, consider postponing your visit or choosing another trail.
+When trails are wet or snowy, walk through the center of the trail, even if it's muddy. This practice helps keep the trail narrow and prevents widening and braiding. Avoid walking around puddles or snow patches, as this can damage vegetation and lead to the creation of new trails. If the trails are excessively muddy or snowy, consider postponing your visit or opting for another trail.
 
 ### Camp elsewhere.
   
-  There is no camping in Ute Valley Park. Camping is illegal and can cause fire hazards, littering, and wildlife conflicts. If you want to camp, please find a legal and suitable campsite outside the park boundaries.
+Ute Valley Park does not allow camping within its boundaries. Camping is illegal and can lead to fire hazards, littering, and wildlife conflicts. If you wish to camp, please find a legal and suitable campsite outside the park.
 
-By following these guidelines, we can enjoy Ute Valley Park while respecting and protecting the natural environment. Remember, the goal of being outdoors is to move through natural areas while avoiding damage to the land, foliage, or waterways. Leave no trace of your visit, and leave the place better than you found it.
+## Embrace Responsible Outdoor Ethics
+
+By adhering to these guidelines, you can fully immerse yourself in the beauty of Ute Valley Park while simultaneously respecting and protecting its natural environment. Remember, the essence of being outdoors lies in moving through natural areas without causing damage to the land, foliage, or waterways. Strive to leave no trace of your visit, and, if possible, leave the place even better than you found it.
+
+So, the next time you visit Ute Valley Park, keep these tips in mind. By being a responsible park visitor, you're not only ensuring a memorable experience for yourself but also preserving the park's pristine beauty for generations to come. Let's work together to maintain the integrity of this incredible natural treasure!
