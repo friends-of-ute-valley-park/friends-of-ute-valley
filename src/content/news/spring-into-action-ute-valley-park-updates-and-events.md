@@ -17,10 +17,10 @@ With Mark's departure, the city is actively seeking to fill the park ranger posi
 
 Lastly, we're excited to announce several upcoming fundraising events in collaboration with local breweries. These "pint nights" are a fantastic opportunity to enjoy great beer while supporting our park. A portion of the proceeds from each event will directly benefit Friends of Ute Valley Park. Here are the details to mark your calendars (and we'll send reminders closer to the dates):
 
-Cerberus at [Seven's Gate Tap Room](https://maps.app.goo.gl/B91xhWHEQrN3oDZp9) April 9th
-[B﻿rass Brewing](https://maps.app.goo.gl/sDssNPn4tA9NnK1fA) April 17th
-[W﻿ackadoo Brewing](https://maps.app.goo.gl/nH6eiqeStqgzvdbFA) April 25th
-[O﻿CC Brewing](https://maps.app.goo.gl/J5QY6TCwBgumGcoM6) June 14th
+* Cerberus at [Seven's Gate Tap Room](https://maps.app.goo.gl/B91xhWHEQrN3oDZp9) April 9th
+* [B﻿rass Brewing](https://maps.app.goo.gl/sDssNPn4tA9NnK1fA) April 17th
+* [W﻿ackadoo Brewing](https://maps.app.goo.gl/nH6eiqeStqgzvdbFA) April 25th
+* [O﻿CC Brewing](https://maps.app.goo.gl/J5QY6TCwBgumGcoM6) June 14th
 
 We hope you'll join us for these fun evenings and help spread the word to your friends and family.
 
