@@ -58,7 +58,7 @@ const principles = [
               <picture>
                 <source srcset="/images/logos/leave-no-trace.webp" type="image/webp" />
                 <source srcset="/images/logos/leave-no-trace.jpg" type="image/jpg" />
-                <img class="h-auto w-64" src="/images/logos/leave-no-trace.jpg" alt="Leave No Trace logo" />
+                <img loading="lazy" class="h-auto w-64" src="/images/logos/leave-no-trace.jpg" alt="Leave No Trace logo" />
               </picture>
             </a>
           </div>
@@ -74,7 +74,7 @@ const principles = [
                     <picture>
                       <source srcset={`${principle.image}.webp`} type="image/webp" />
                       <source srcset={`${principle.image}.jpg`} type="image/jpg" />
-                      <img class="rounded-lg object-cover shadow-lg" src={`${principle.image}.jpg`} alt={principle.altText} />
+                      <img loading="lazy" class="rounded-lg object-cover shadow-lg" src={`${principle.image}.jpg`} alt={principle.altText} />
                     </picture>
                   </div>
                   <div class="text-lg font-medium leading-6">
