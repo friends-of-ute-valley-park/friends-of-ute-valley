@@ -173,7 +173,7 @@ const publishedNewsEntries = await getCollection('news', ({ data }) => {
             .sort((a, b) => new Date(a.data.publishedOn).getTime() - new Date(b.data.publishedOn).getTime())
             .reverse()
             .splice(0, 3)
-            .map((post) => <Card title={post.data.title} previewText={post.data.previewText} image={post.data.cove rImage} href={post.slug} publishedOn={post.data.publishedOn} canBeWide={false} />)
+            .map((post) => <Card title={post.data.title} previewText={post.data.previewText} image={post.data.coverImage} href={post.slug} publishedOn={post.data.publishedOn} canBeWide={false} />)
         }
       </div>
     </div>
