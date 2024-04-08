@@ -41,8 +41,8 @@
             </slot>
           </p>
         </div>
-        <p class="my-2"><span class="text-red-700">*</span> indicates a required field</p>
         <div class="mt-8">
+          <p class="mb-1"><span class="text-red-700">*</span> indicates a required field</p>
           <form action="/.netlify/functions/contact-form" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" @submit.prevent="submit">
             <div class="sm:col-span-2">
               <label for="name" class="block text-sm font-semibold text-gray-700">Name <span class="text-red-700">*</span></label>
