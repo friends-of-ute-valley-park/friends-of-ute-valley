@@ -6,7 +6,7 @@ import EmailForm from '@components/EmailForm.vue';
 
 import ChevronRightIcon from '~icons/heroicons/chevron-right';
 import { Image, Picture } from 'astro:assets';
-import heroImage from '../assets/images/ute-valley-park-biker.jpg';
+import heroImage from '../assets/images/ute-valley-park-hero.jpg';
 import heroImage2 from '../assets/images/ute-valley-park-hero-2.jpg';
 import heroImage3 from '../assets/images/ute-valley-park-hero-3.jpg';
 import heroImage4 from '../assets/images/ute-valley-park-hero-4.jpg';
@@ -79,8 +79,8 @@ const publishedNewsEntries = await getCollection('news', ({ data }) => {
           </div>
           <div class="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
             <div class="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
-              <div class="relative" transition:name="hero">
-                <Picture src={heroImage} formats={['avif', 'webp']} width="1200" height="1200" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg transition-all" />
+              <div class="relative">
+                <Picture src={heroImage} formats={['avif', 'webp']} width="300" height="450" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg" />
                 <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
               </div>
             </div>
@@ -173,7 +173,7 @@ const publishedNewsEntries = await getCollection('news', ({ data }) => {
             .sort((a, b) => new Date(a.data.publishedOn).getTime() - new Date(b.data.publishedOn).getTime())
             .reverse()
             .splice(0, 3)
-            .map((post) => <Card title={post.data.title} previewText={post.data.previewText} image={post.data.coverImage} href={post.slug} publishedOn={post.data.publishedOn} canBeWide={false} />)
+            .map((post) => <Card title={post.data.title} previewText={post.data.previewText} image={post.data.cove rImage} href={post.slug} publishedOn={post.data.publishedOn} canBeWide={false} />)
         }
       </div>
     </div>
