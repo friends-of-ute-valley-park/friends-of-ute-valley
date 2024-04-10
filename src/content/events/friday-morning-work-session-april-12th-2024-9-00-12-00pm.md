@@ -1,6 +1,6 @@
 ---
 title: Friday Morning Work Session - April 12th 2024 9:00-12:00PM
-date: 04-12-2024
+date: 2024-04-12T18:15:38.323Z
 description: "Come join the Friends of Ute Valley enjoy a beautiful morning of
   removing mullein. Please wear closed-toed shoes, bring work gloves, sunscreen,
   water and snacks. Meet up location at the Popes Valley entrance to Ute Valley
