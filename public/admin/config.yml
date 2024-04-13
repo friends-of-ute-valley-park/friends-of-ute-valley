@@ -30,7 +30,7 @@ collections:
     slug: '{{slug}}'
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Date', name: 'date', widget: 'datetime', date_format: "YYYY-MM-DDTHH:mm:ss[Z]", time_format: false }
+      - { label: 'Date', name: 'date', widget: 'datetime' }
       - { label: 'Short Description', name: 'description', widget: 'text', hint: 'Provide 1 sentence to preview the event on the page and social media' }
       - { label: 'Description', name: 'body', widget: 'markdown' }
       - label: 'Meeting Location'
