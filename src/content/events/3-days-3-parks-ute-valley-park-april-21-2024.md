@@ -1,6 +1,6 @@
 ---
 title: 3 Days, 3 Parks Ute Valley Park April 21, 2024
-date: 2024-04-21T00:00:00.000Z
+date: 2024-04-21T09:03:00.000Z
 description: The 3 days / 3 parks event is a multiday, multi-park collaboration
   between the Friends of Peregrine Parks and Open Spaces, the Guardians of
   Palmer Park, and the Friends of Ute Valley.
