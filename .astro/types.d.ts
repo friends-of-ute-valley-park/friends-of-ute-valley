@@ -140,9 +140,23 @@ declare module 'astro:content' {
   collection: "events";
   data: InferEntrySchema<"events">
 } & { render(): Render[".md"] };
+"3-days-3-parks-ute-valley-park-april-21-2024.md": {
+	id: "3-days-3-parks-ute-valley-park-april-21-2024.md";
+  slug: "3-days-3-parks-ute-valley-park-april-21-2024";
+  body: string;
+  collection: "events";
+  data: InferEntrySchema<"events">
+} & { render(): Render[".md"] };
 "community-workday-at-ute-valley-park.md": {
 	id: "community-workday-at-ute-valley-park.md";
   slug: "community-workday-at-ute-valley-park";
+  body: string;
+  collection: "events";
+  data: InferEntrySchema<"events">
+} & { render(): Render[".md"] };
+"friday-morning-work-session-april-12th-2024-9-00-12-00pm.md": {
+	id: "friday-morning-work-session-april-12th-2024-9-00-12-00pm.md";
+  slug: "friday-morning-work-session-april-12th-2024-9-00-12-00pm";
   body: string;
   collection: "events";
   data: InferEntrySchema<"events">
@@ -364,6 +378,13 @@ declare module 'astro:content' {
   collection: "events";
   data: InferEntrySchema<"events">
 } & { render(): Render[".md"] };
+"wednesday-evening-work-session-may-1st-2024-5-30-7-30pm.md": {
+	id: "wednesday-evening-work-session-may-1st-2024-5-30-7-30pm.md";
+  slug: "wednesday-evening-work-session-may-1st-2024-5-30-7-30pm";
+  body: string;
+  collection: "events";
+  data: InferEntrySchema<"events">
+} & { render(): Render[".md"] };
 "wednesday-evening-work-session-may-3rd-2023-5-30-7-30pm.md": {
 	id: "wednesday-evening-work-session-may-3rd-2023-5-30-7-30pm.md";
   slug: "wednesday-evening-work-session-may-3rd-2023-5-30-7-30pm";
@@ -483,6 +504,13 @@ declare module 'astro:content' {
 "construction-on-ute-valley-park-regional-trail.md": {
 	id: "construction-on-ute-valley-park-regional-trail.md";
   slug: "construction-on-ute-valley-park-regional-trail";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"earth-day-weekend-3-parks-3-days-event-friends-of-ute-valley-committee-applications-now-open.md": {
+	id: "earth-day-weekend-3-parks-3-days-event-friends-of-ute-valley-committee-applications-now-open.md";
+  slug: "earth-day-weekend-3-parks-3-days-event-friends-of-ute-valley-committee-applications-now-open";
   body: string;
   collection: "news";
   data: InferEntrySchema<"news">
