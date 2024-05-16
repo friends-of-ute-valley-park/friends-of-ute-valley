@@ -14,6 +14,8 @@ const upcomingVolunteerEvents = await getCollection('events', ({ data }) => {
 });
 
 import VolunteerHeroImage from '../assets/images/volunteer-hero-mask.jpg';
+import VolunteerInfoImage from '../assets/images/volunteer-3.jpg';
+import VolunteerInfoImage2 from '../assets/images/volunteer-4.jpg';
 
 const meetingLocations = await getCollection('trailheads');
 ---
@@ -46,7 +48,7 @@ const meetingLocations = await getCollection('trailheads');
   </div>
 
   <div>
-    <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       {
         upcomingVolunteerEvents.length > 0 && (
           <>
@@ -64,17 +66,58 @@ const meetingLocations = await getCollection('trailheads');
         )
       }
 
-      <div class="mt-8 border-b border-gray-200 pb-5 pt-4">
+      <div class="overflow-hidden bg-white py-12 sm:py-16">
+        <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div class="lg:pr-8 lg:pt-4">
+            <div class="lg:max-w-lg">
+              <h2 class="text-base font-semibold leading-7 text-green-600">Make a Difference, Make Friends, and Have Fun!</h2>
+              <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Join Ute Valley Park's Volunteer Team and Discover the Joy of Giving Back</p>
+              <p class="mt-6 leading-8 text-gray-700">
+                Want to have fun while making a meaningful impact in your community? Become a volunteer at Ute Valley Park! Our team welcomes people of all ages and abilities, offering a variety of
+                rewarding tasks to suit your interests and skills. From maintaining trails, building drains and seeding native grass to closing rogue paths, there's something for everyone to
+                contribute.
+              </p>
+              <p class="mt-6 leading-8 text-gray-700">
+                As a Ute Valley Park volunteer, you'll work alongside a friendly, diverse group of individuals who share your enthusiasm for preserving this beloved natural resource. Not only will you
+                forge new connections with fellow nature lovers, but you'll also take pride in knowing your efforts directly benefit the park and all who visit it. Experience the joy of giving back
+                and making a difference - volunteer at Ute Valley Park today! Your community will appreciate your dedication.
+              </p>
+              <a href="#learnmore" class="my-2 block font-semibold text-green-700 underline">Learn more<span aria-hidden="true">→</span> </a>
+            </div>
+          </div>
+          <Image
+            src={VolunteerInfoImage2}
+            alt="Volunteers working on a trail in Ute Valley Park"
+            class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+            width="900"
+            height="600"
+          />
+        </div>
+      </div>
+
+      <div class="bg-white py-16">
+        <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
+          <div class="max-w-xl text-2xl font-bold text-gray-900 sm:text-4xl lg:col-span-6">
+            <h2 class="inline tracking-tight sm:block lg:inline xl:block">Get Notified!</h2>
+            <p class="inline text-base font-normal sm:block lg:inline xl:block">Sign up for our newsletter to receive volunteer events right in your inbox.</p>
+          </div>
+          <div class="w-full md:max-w-xl lg:col-span-6 lg:max-w-md lg:pt-2">
+            <EmailForm client:idle />
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 border-b border-gray-200 pb-5 pt-4" id="learnmore">
         <h3 class="text-3xl font-medium leading-6 text-green-900">Learn More About Volunteering in Ute Valley Park</h3>
       </div>
       <div class="border-gray-200 pt-8 xl:grid xl:grid-cols-3 xl:gap-x-8">
         <div>
-          <img src="/images/volunteer-3.jpg" class="rounded-lg object-cover shadow" alt="" />
+          <Image src={VolunteerInfoImage} alt="" class="rounded-lg object-cover shadow" width={400} />
         </div>
         <div class="col-span-2">
           <ul class="ml-4 list-disc divide-y divide-gray-200 text-gray-700">
-            <li class="py-3"><span class="font-bold">Volunteer days:</span> the 1st and 3rd Wednesday of every month, 5:30-7:30 p.m. April through September.</li>
-            <li class="py-3">
+            <li class="py-4"><span class="font-bold">Volunteer days:</span> the 1st and 3rd Wednesday of every month, 5:30-7:30 p.m. April through September.</li>
+            <li class="py-4">
               Crew leaders may schedule additional volunteer days. Please check our website, the FUVP <a
                 href="https://www.facebook.com/FriendsOfUteValleyPark/"
                 class="font-semibold text-green-700 no-underline"
@@ -82,25 +125,13 @@ const meetingLocations = await getCollection('trailheads');
               </a>
               page or register for our newsletter below for additional volunteer opportunities, meeting locations and updates.
             </li>
-            <li class="py-3">
+            <li class="py-4">
               Volunteer and get a free beverage, stickers and buttons! After 4 hours of volunteer work you will receive a free beverage (beer or non-alcoholic) at our end of year appreciation party.
             </li>
-            <li class="py-3">All tools provided.</li>
-            <li class="py-3 font-semibold">You must wear pants and closed toed shoes and please bring gloves and safety goggles or sunglasses.</li>
+            <li class="py-4">All tools provided.</li>
+            <li class="py-4 font-semibold">You must wear pants and closed toed shoes and please bring gloves and safety goggles or sunglasses.</li>
           </ul>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="bg-white py-16">
-    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-      <div class="max-w-xl text-2xl font-bold text-gray-900 sm:text-4xl lg:col-span-6">
-        <h2 class="inline tracking-tight sm:block lg:inline xl:block">Get Notified!</h2>
-        <p class="inline text-base font-normal sm:block lg:inline xl:block">Sign up for our newsletter to receive volunteer events right in your inbox.</p>
-      </div>
-      <div class="w-full md:max-w-xl lg:col-span-6 lg:max-w-md lg:pt-2">
-        <EmailForm client:idle />
       </div>
     </div>
   </div>
