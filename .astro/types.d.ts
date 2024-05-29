@@ -357,6 +357,13 @@ declare module 'astro:content' {
   collection: "events";
   data: InferEntrySchema<"events">
 } & { render(): Render[".md"] };
+"wednesday-evening-work-session-june-5th-2024-5-30-7-30pm.md": {
+	id: "wednesday-evening-work-session-june-5th-2024-5-30-7-30pm.md";
+  slug: "wednesday-evening-work-session-june-5th-2024-5-30-7-30pm";
+  body: string;
+  collection: "events";
+  data: InferEntrySchema<"events">
+} & { render(): Render[".md"] };
 "wednesday-evening-work-session-june-7th-2023-5-30-7-30pm.md": {
 	id: "wednesday-evening-work-session-june-7th-2023-5-30-7-30pm.md";
   slug: "wednesday-evening-work-session-june-7th-2023-5-30-7-30pm";
