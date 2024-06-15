@@ -1,14 +1,19 @@
 ---
-const teamMembers = [
-  { name: 'Drew Town', title: 'Chair', image: '/images/members/drew-town.png' },
-  { name: 'Christine Thomas', title: 'Vice-Chair', image: '/images/members/christine-thomas.jpg' },
-  { name: 'Megan Town', title: 'Treasurer', image: '/images/members/megan-town.jpg' },
-  { name: 'Phill Emmert', title: 'Communications', image: '/images/members/phill-emmert.jpg' },
-  { name: 'Molly Murrow', title: 'Committee Member', image: '/images/members/molly-murrow.jpg' },
-  { name: 'Frank Self', title: 'Committee Member', image: '/images/members/frank-self.jpg' },
-];
-
+import { Image } from 'astro:assets';
 import UserCircleIcon from '~icons/heroicons/user-circle';
+
+const teamMembers = [
+  { name: 'Drew Town', title: 'Chair', image: import('@/assets/images/members/drew-town.png') },
+  { name: 'Christine Thomas', title: 'Vice-Chair', image: import('@/assets/images/members/christine-thomas.jpg') },
+  { name: 'Megan Town', title: 'Treasurer', image: import('@/assets/images/members/megan-town.jpg') },
+  { name: 'Molly Murrow', title: 'Secretary', image: import('@/assets/images/members/molly-murrow.jpg') },
+  { name: 'Phill Emmert', title: 'Communications', image: import('@/assets/images/members/phill-emmert.jpg') },
+  { name: 'Frank Self', title: 'Committee Member', image: import('@/assets/images/members/frank-self.jpg') },
+  { name: 'Haley Kline Murphy', title: 'Outreach and Engagement Specialist', image: import('@/assets/images/members/haley-kline-murphy.jpg') },
+  { name: 'Pete Galeotti', title: 'Outreach and Engagement Specialist', image: import('@/assets/images/members/pete-galeotti.jpg') },
+  { name: 'Katie Gray', title: 'Nature and Trail Specialist', image: import('@/assets/images/members/katie-gray.jpg') },
+  { name: 'Nadine Lambert', title: 'Volunteer Coordinator', image: import('@/assets/images/members/nadine-lambert.jpg') },
+];
 ---
 
 <div class="bg-white">
@@ -25,8 +30,8 @@ import UserCircleIcon from '~icons/heroicons/user-circle';
           teamMembers.map((teamMember) => (
             <li>
               <div class="space-y-4">
-                {teamMember.image !== '' ? (
-                  <img class="mx-auto h-20 w-20 rounded-full lg:h-24 lg:w-24" src={teamMember.image} alt="" />
+                {teamMember.image !== null ? (
+                  <Image height="128" width="128" class="mx-auto h-20 w-20 rounded-full lg:h-24 lg:w-24" src={teamMember.image} alt="" />
                 ) : (
                   <UserCircleIcon class="mx-auto h-20 w-20 text-green-800 lg:h-24 lg:w-24" />
                 )}
