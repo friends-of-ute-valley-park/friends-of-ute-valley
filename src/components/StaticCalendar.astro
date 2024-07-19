@@ -1,0 +1,78 @@
+---
+import { format, eachDayOfInterval, startOfMonth, endOfMonth, getDay } from 'date-fns';
+import SocialLinksInline from './SocialLinksInline.astro';
+
+const currentYear = new Date().getFullYear();
+const months = ['April', 'May', 'June', 'July', 'August', 'September'];
+const volunteerEventDates = [
+  new Date(currentYear, 3, 3),
+  new Date(currentYear, 3, 21),
+  new Date(currentYear, 4, 1),
+  new Date(currentYear, 4, 15),
+  new Date(currentYear, 5, 5),
+  new Date(currentYear, 5, 19),
+  new Date(currentYear, 6, 10),
+  new Date(currentYear, 6, 24),
+  new Date(currentYear, 7, 7),
+  new Date(currentYear, 7, 21),
+  new Date(currentYear, 8, 4),
+  new Date(currentYear, 8, 18),
+];
+
+const isVolunteerEventDate = (date: Date) => {
+  return volunteerEventDates.some((eventDate) => eventDate.getDate() === date.getDate() && eventDate.getMonth() === date.getMonth() && eventDate.getFullYear() === date.getFullYear());
+};
+
+const getDaysInMonth = (year: number, month: number) => {
+  const start = startOfMonth(new Date(year, month));
+  const end = endOfMonth(start);
+  return eachDayOfInterval({ start, end });
+};
+---
+
+<div class="calendar-container mt-6 bg-gray-50 p-4">
+  <h1 class="mb-6 text-center text-3xl font-bold text-green-800">Volunteer Calendar {currentYear}</h1>
+  <p class="mb-2 text-sm font-medium text-gray-500">
+    <span class="font-bold">Volunteer days:</span> When we get closer to the volunteer event date, we'll send you a registration reminder email. If you haven't signed up yet, please find our sign up form
+    below or check out our social media <SocialLinksInline /> for additional ways to stay connected.
+  </p>
+  <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {
+      months.map((month, index) => {
+        const monthIndex = index + 3; // April is index 3
+        const daysInMonth = getDaysInMonth(currentYear, monthIndex);
+        const firstDayOfWeek = getDay(daysInMonth[0]);
+
+        return (
+          <div class="rounded-lg bg-white p-4 shadow-md">
+            <h2 class="mb-2 text-center text-xl font-semibold">{month}</h2>
+            <div class="grid grid-cols-7 gap-1">
+              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+                <div class="text-center text-sm font-medium text-gray-500">{day}</div>
+              ))}
+              {Array.from({ length: firstDayOfWeek }).map((_, i) => (
+                <div key={`empty-${i}`} class="h-6" />
+              ))}
+              {daysInMonth.map((day) => (
+                <div class="relative flex h-6 items-center justify-center">
+                  <span class={`text-sm ${isVolunteerEventDate(day) ? 'font-bold text-green-600' : ''}`}>{format(day, 'd')}</span>
+                  {isVolunteerEventDate(day) && (
+                    <svg class="absolute h-8 w-8 text-green-400" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="5" stroke-dasharray="10 5" />
+                    </svg>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</div>
+
+<style>
+  .calendar-container {
+    font-family: Arial, sans-serif;
+  }
+</style>
