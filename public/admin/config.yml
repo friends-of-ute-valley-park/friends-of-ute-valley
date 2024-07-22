@@ -61,6 +61,7 @@ collections:
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Link', name: 'link', widget: 'string' }
+      - { label: 'Priority', name: 'priority', valueType: 'int', default: 0 }
   - name: 'Wishlist'
     label: 'Wishlist'
     folder: '/src/content/wishlist'
@@ -72,3 +73,4 @@ collections:
       - { label: 'Link', name: 'link', widget: 'string' }
       - { label: 'Image', name: 'image', widget: 'image', media_folder: '/src/content/wishlist/' }
       - { label: 'Image Alt', name: 'imageAlt', widget: 'string' }
+      - { label: 'Quantity', name: 'quantity', valueType: 'int', default: 1 }
