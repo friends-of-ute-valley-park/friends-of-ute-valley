@@ -63,6 +63,26 @@ const trailheadsCollection = defineCollection({
     }),
   });
 
+  const linksCollection = defineCollection({
+    type: 'content',
+    schema: ({ image }) =>
+      z.object({
+        title: z.string(),
+        link: z.string(),
+      }),
+  });
+
+  const wishlistCollection = defineCollection({
+    type: 'content',
+    schema: ({ image }) =>
+      z.object({
+        title: z.string(),
+        link: z.string(),
+        image: image(),
+        imageAlt: z.string(),
+        quantityNeeded: z.number(),
+      }),
+  });
 
 export const collections = {
   leavenotrace: leavenotraceCollection,

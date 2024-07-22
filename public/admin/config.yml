@@ -53,3 +53,22 @@ collections:
           - { label: 'Location Notes', name: 'notes', widget: 'text', hint: 'If necessary, provide additional info such as "at the top of the hill"', required: false }
       - { label: 'Link', name: 'link', widget: 'string', required: false }
       - { label: 'Time', name: 'time', widget: 'string' }
+  - name: 'Links'
+    label: 'Links'
+    folder: '/src/content/links'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Link', name: 'link', widget: 'string' }
+  - name: 'Wishlist'
+    label: 'Wishlist'
+    folder: '/src/content/wishlist'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Link', name: 'link', widget: 'string' }
+      - { label: 'Image', name: 'image', widget: 'image', media_folder: '/src/content/wishlist/' }
+      - { label: 'Image Alt', name: 'imageAlt', widget: 'string' }
