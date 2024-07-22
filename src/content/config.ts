@@ -69,6 +69,7 @@ const trailheadsCollection = defineCollection({
       z.object({
         title: z.string(),
         link: z.string(),
+        priority: z.number(),
       }),
   });
 
