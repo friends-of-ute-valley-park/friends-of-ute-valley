@@ -67,8 +67,15 @@ import ChevronRight from '~icons/heroicons/chevron-right';
 
       <div class="mx-auto my-4 overflow-hidden py-4 sm:px-6 lg:px-8">
         <h2 class="text-center text-3xl font-bold tracking-tight text-green-800 sm:text-2xl">Wishlist</h2>
-
-        <div class="-mx-px grid grid-cols-2 border-l border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
+        <p>
+          We gratefully accept donations of tools to support our mission and help those in need. If you have tools you'd like to donate, please <a
+            href="/contact/"
+            class="text-green-600 underline"
+            target="_blank"
+            rel="noopener noreferrer">contact us</a
+          > to arrange the best way to hand them off – your generosity can make a real difference in our community!
+        </p>
+        <div class="-mx-px mt-4 grid grid-cols-2 border-l border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
           {
             wishlist.map((wishlistItem) => (
               <div class="group relative border-b border-r border-gray-200 p-4 sm:p-6">
