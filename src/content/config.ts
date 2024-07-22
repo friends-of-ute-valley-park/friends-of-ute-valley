@@ -78,6 +78,7 @@ const trailheadsCollection = defineCollection({
       z.object({
         title: z.string(),
         link: z.string(),
+        description: z.string(),
         image: image(),
         imageAlt: z.string(),
         quantityNeeded: z.number(),
@@ -89,4 +90,6 @@ export const collections = {
   news: newsCollection,
   events: eventsCollection,
   trailheads: trailheadsCollection,
+  links: linksCollection,
+  wishlist: wishlistCollection,
 }

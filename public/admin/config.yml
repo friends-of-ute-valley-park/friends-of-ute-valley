@@ -73,4 +73,4 @@ collections:
       - { label: 'Link', name: 'link', widget: 'string' }
       - { label: 'Image', name: 'image', widget: 'image', media_folder: '/src/content/wishlist/' }
       - { label: 'Image Alt', name: 'imageAlt', widget: 'string' }
-      - { label: 'Quantity', name: 'quantity', valueType: 'int', default: 1 }
+      - { label: 'QuantityNeeded', name: 'quantityNeeded', valueType: 'int', default: 1 }
