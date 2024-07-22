@@ -3,13 +3,15 @@ import LeaveNoTraceSmall from '@components/LeaveNoTraceSmall.astro';
 import TeamList from '@components/TeamList.astro';
 import Layout from '@layouts/Layout.astro';
 import OldPhotos from '@components/OldPhotos.vue';
+import StatsCard from '@components/StatsCard.astro';
 ---
 
 <Layout title="About">
   <div class="relative mt-16 px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto mb-6 max-w-prose text-lg">
-      <h1 class="mb-8 mt-2 text-center text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">About Friends of Ute Valley Park</h1>
-      <img class="mx-auto my-12 block h-64 w-auto" src="/images/logo-medium.jpg" alt="Friends of Ute Valley logo" />
+    <h1 class="mb-8 mt-2 text-center text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">About Friends of Ute Valley Park</h1>
+    <img class="mx-auto my-12 block h-64 w-auto" src="/images/logo-medium.jpg" alt="Friends of Ute Valley logo" />
+    <StatsCard />
+    <div class="mx-auto mb-6 mt-12 max-w-prose text-lg">
       <div class="prose lg:prose-xl">
         <h2>Our Mission</h2>
         <p>
@@ -22,6 +24,7 @@ import OldPhotos from '@components/OldPhotos.vue';
           Open Spaces, and Parks (TOPS) program, and saw having a "Friends" group in place as a way to demonstrate community support. With the help of FUVP, the Trust for Public Land, and TOPS, the
           city was able to acquire the land in 2014-15. FUVP raised $110,000 in just 3.5 months to contribute to the purchase.
         </p>
+
         <h2>What We Do</h2>
         <p>
           Under the guidance of the community-created <a href="https://coloradosprings.gov/sites/default/files/parks_recreation_and_cultural_services/parks/15.03.12_ute_mmp.pdf"

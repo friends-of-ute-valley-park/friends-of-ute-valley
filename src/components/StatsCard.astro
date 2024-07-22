@@ -1,0 +1,37 @@
+---
+const stats = [
+  { id: 1, name: 'Individual volunteers', value: '76' },
+  { id: 2, name: 'Feet of new trail construction', value: '782' },
+  { id: 3, name: 'Feet trail restoration- with some up to 40 feet wide', value: '2,149' },
+  { id: 4, name: 'Total volunteer hours', value: '478' },
+];
+
+import { Image } from 'astro:assets';
+import Volunteers from '@/assets/images/volunteer-6.jpg';
+---
+
+<div class="relative bg-white">
+  <Image src={Volunteers} alt="" class="h-56 w-full bg-gray-50 object-cover lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-1/2" />
+  <div class="mx-auto grid max-w-7xl lg:grid-cols-2">
+    <div class="px-6 pb-24 pt-16 sm:pb-32 sm:pt-20 lg:col-start-2 lg:px-8 lg:pt-32">
+      <div class="mx-auto max-w-2xl lg:mr-0 lg:max-w-lg">
+        <h2 class="text-base font-semibold leading-8 text-green-600">2023 FUVP Statistics</h2>
+        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">What we accomplished</p>
+        <p class="mt-6 text-lg leading-8 text-gray-600">
+          In 2023, the Friends of Ute Valley Park (FUVP) made significant strides in preserving and enhancing our beloved community treasure. Through the dedication of our volunteers and supporters,
+          we've achieved remarkable results:
+        </p>
+        <dl class="mt-16 grid max-w-xl grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 xl:mt-16">
+          {
+            stats.map((stat) => (
+              <div class="flex flex-col gap-y-3 border-l border-gray-900/10 pl-6">
+                <dt class="text-sm leading-6 text-gray-600">{stat.name}</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">{stat.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>

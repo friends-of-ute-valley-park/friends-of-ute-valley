@@ -14,6 +14,7 @@ import heroImage5 from '../assets/images/ute-valley-park-hero-5.jpg';
 import cta from '../assets/images/volunteer-5.jpg';
 
 import { getCollection } from 'astro:content';
+import StatsCard from '@components/StatsCard.astro';
 const publishedNewsEntries = await getCollection('news', ({ data }) => {
   return data.published === true;
 });
@@ -110,6 +111,22 @@ const publishedNewsEntries = await getCollection('news', ({ data }) => {
     </div>
   </div>
 
+  <!-- Newsletter -->
+
+  <div class="bg-white py-16">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
+      <div class="max-w-xl text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:col-span-6">
+        <h2 class="inline sm:block lg:inline xl:block">Want events, news and updates?</h2>
+        <p class="inline sm:block lg:inline xl:block">Sign up for our newsletter.</p>
+      </div>
+      <div class="w-full md:max-w-xl lg:col-span-6 lg:max-w-md lg:pt-2">
+        <EmailForm client:idle />
+      </div>
+    </div>
+  </div>
+
+  <StatsCard />
+
   <!-- CTA -->
   <div class="bg-white">
     <div class="mx-auto max-w-7xl py-12 sm:px-6 sm:py-24 lg:px-8">
@@ -141,20 +158,6 @@ const publishedNewsEntries = await getCollection('news', ({ data }) => {
         <div class="relative mt-16 h-80 lg:mt-8">
           <Image class="absolute left-0 top-0 w-[47rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src={cta} alt="Volunteers working on a fence" width="900" />
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Newsletter -->
-
-  <div class="bg-white py-16">
-    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-      <div class="max-w-xl text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:col-span-6">
-        <h2 class="inline sm:block lg:inline xl:block">Want events, news and updates?</h2>
-        <p class="inline sm:block lg:inline xl:block">Sign up for our newsletter.</p>
-      </div>
-      <div class="w-full md:max-w-xl lg:col-span-6 lg:max-w-md lg:pt-2">
-        <EmailForm client:idle />
       </div>
     </div>
   </div>
