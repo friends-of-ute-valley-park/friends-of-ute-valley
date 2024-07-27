@@ -61,7 +61,7 @@ collections:
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Link', name: 'link', widget: 'string' }
-      - { label: 'Priority', name: 'priority', valueType: 'int', default: 0 }
+      - { label: 'Priority', name: 'priority', widget: 'number', valueType: 'int', default: 0 }
   - name: 'Wishlist'
     label: 'Wishlist'
     folder: '/src/content/wishlist'
