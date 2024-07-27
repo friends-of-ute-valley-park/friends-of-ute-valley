@@ -12,7 +12,9 @@ const upcomingVolunteerEvents = await getCollection('events', ({ data }) => {
 });
 const meetingLocations = await getCollection('trailheads');
 const links = await getCollection('links');
-const wishlist = await getCollection('wishlist');
+const wishlist = await getCollection('wishlist', ({ data }) => {
+  return data.quantityNeeded > 0;
+});
 const sortedLinks = links.sort((b, a) => a.data.priority - b.data.priority);
 
 import Logo from '@/assets/images/logos/logo-medium.jpg';
