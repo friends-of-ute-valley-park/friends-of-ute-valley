@@ -1,5 +1,5 @@
 ---
-title: Wednesday Evening Work Session - July 7th 2024 5:30-7:30PM
+title: Wednesday Evening Work Session - August 8th 2024 5:30-7:30PM
 date: 2024-08-07T17:39:00.000Z
 description: Come join the Friends of Ute Valley on our Wednesday night
   volunteer work session!
