@@ -7,7 +7,7 @@ import InstagramIcon from '~icons/mdi/instagram';
 import WebsiteIcon from '~icons/mdi/computer';
 
 export async function getStaticPaths() {
-  const volunteerSpotlights = await getCollection('volunteerspotlight');
+  const volunteerSpotlights = await getCollection('volunteer-spotlight');
   return volunteerSpotlights.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },

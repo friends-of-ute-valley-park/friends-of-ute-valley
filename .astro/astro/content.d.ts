@@ -717,30 +717,38 @@ declare module 'astro:content' {
   data: InferEntrySchema<"trailheads">
 } & { render(): Render[".md"] };
 };
-"volunteerSpotlight": Record<string, {
-  id: string;
-  slug: string;
-  body: string;
-  collection: "volunteerSpotlight";
-  data: InferEntrySchema<"volunteerSpotlight">;
-  render(): Render[".md"];
-}>;
-"volunteerspotlight": {
+"volunteer-spotlight": {
 "jake-nixon.md": {
 	id: "jake-nixon.md";
   slug: "jake-nixon";
   body: string;
-  collection: "volunteerspotlight";
-  data: any
+  collection: "volunteer-spotlight";
+  data: InferEntrySchema<"volunteer-spotlight">
 } & { render(): Render[".md"] };
 "vance-hewuse.md": {
 	id: "vance-hewuse.md";
   slug: "vance-hewuse";
   body: string;
-  collection: "volunteerspotlight";
-  data: any
+  collection: "volunteer-spotlight";
+  data: InferEntrySchema<"volunteer-spotlight">
 } & { render(): Render[".md"] };
 };
+"volunteerSpotlight": Record<string, {
+  id: string;
+  slug: string;
+  body: string;
+  collection: "volunteerSpotlight";
+  data: any;
+  render(): Render[".md"];
+}>;
+"volunteerspotlight": Record<string, {
+  id: string;
+  slug: string;
+  body: string;
+  collection: "volunteerspotlight";
+  data: any;
+  render(): Render[".md"];
+}>;
 "wishlist": {
 "2-5-lb-pick-mattock.md": {
 	id: "2-5-lb-pick-mattock.md";

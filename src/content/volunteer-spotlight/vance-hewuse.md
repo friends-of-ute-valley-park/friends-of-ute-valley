@@ -1,10 +1,8 @@
 ---
 name: Vance Hewuse
 intro: "Vance Hewuse is a testament to the power of dedication and passion in volunteering. As one of the most committed volunteers at Friends of Ute Valley Park (FUVP), Vance consistently tops the charts in volunteer hours year after year. His unwavering commitment to making Ute Valley Park the best it can be is an inspiration to all who know him."
-instagram: 
-website: 
 images: 
-  - {image: '/src/content/volunteerspotlight/vance-hewuse-01.jpg'}
+  - {image: './vance-hewuse-01.jpg'}
 
 ---
 

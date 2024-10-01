@@ -90,12 +90,13 @@ const trailheadsCollection = defineCollection({
     type: 'content',
     schema: ({ image }) =>
       z.object({
+        intro: z.string(),
+        instagram: z.string().optional(),
+        website: z.string().optional(),
         name: z.string(),
         images: z.array(z.object({
           image: image(),
         })),
-        instagram: z.string().optional(),
-        website: z.string().optional(),
       }),
   });
 
@@ -106,5 +107,5 @@ export const collections = {
   trailheads: trailheadsCollection,
   links: linksCollection,
   wishlist: wishlistCollection,
-  volunteerSpotlight: volunteerSpotlightCollection,
+  'volunteer-spotlight': volunteerSpotlightCollection,
 }

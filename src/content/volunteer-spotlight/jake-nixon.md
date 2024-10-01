@@ -4,8 +4,8 @@ intro: "Jake Nixon, an avid photographer and outdoor enthusiast, found a new pas
 instagram: thejakenixon
 website: https://jakenixon.photography
 images:
-  - {image: '/src/content/volunteerspotlight/jake-nixon-01.jpg'}
-  - {image: '/src/content/volunteerspotlight/jake-nixon-02.jpg'}
+  - {image: './jake-nixon-01.jpg'}
+  - {image: './jake-nixon-02.jpg'}
 
 ---
 
