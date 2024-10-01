@@ -43,7 +43,7 @@ const { Content } = await entry.render();
       </div>
       <div class="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
         <div>
-          <Image src={entry.data.cover} alt={entry.data.name} width="500" height="500" class="mb-8" />
+          {entry.data.images.map((image) => <Image src={image.image} alt={entry.data.name} width="500" height="500" class="mb-8" />)}
         </div>
         <div class="prose max-w-xl">
           <Content />
