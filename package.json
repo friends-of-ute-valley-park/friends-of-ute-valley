@@ -11,8 +11,8 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/tailwind": "^5.1.0",
-    "@astrojs/vue": "^4.3.0",
+    "@astrojs/tailwind": "^5.1.1",
+    "@astrojs/vue": "^4.5.1",
     "@iconify/json": "^2.2.214",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
@@ -33,10 +33,10 @@
     "vue": "^3.4.27"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.1.5",
+    "@astrojs/sitemap": "^3.1.6",
     "@headlessui/vue": "^1.7.22",
     "@vueuse/core": "^10.10.0",
-    "astro": "^4.9.2",
+    "astro": "4.15.9",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "google-auth-library": "^9.10.0",

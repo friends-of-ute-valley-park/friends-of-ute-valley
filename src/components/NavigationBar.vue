@@ -164,5 +164,6 @@ const navigation = [
   },
   { href: '/donate/', name: 'Donate', current: props.page === '/donate/' },
   { href: '/contact/', name: 'Contact', current: props.page === '/contact/' },
+  { href: '/volunteerspotlight/', name: 'Volunteer Spotlight', current: props.page === '/volunteerspotlight/' },
 ];
 </script>

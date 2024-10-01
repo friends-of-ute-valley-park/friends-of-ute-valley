@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+import InstagramIcon from '~icons/mdi/instagram';
+import WebsiteIcon from '~icons/mdi/computer';
+
+export async function getStaticPaths() {
+  const volunteerSpotlights = await getCollection('volunteerspotlight');
+  return volunteerSpotlights.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={`Volunteer Spotlight: ${entry.data.name}`}>
+  <div class="mt-2 bg-white py-12 sm:py-16">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{entry.data.name} - Volunteer Spotlight</h2>
+        <div class="ml-2 mt-2 flex gap-x-2">
+          {
+            entry.data.instagram && (
+              <a href={'https://instagram.com/' + entry.data.instagram}>
+                <InstagramIcon class="h-5 w-5 text-red-400" aria-hidden="true" />
+              </a>
+            )
+          }
+          {
+            entry.data.website && (
+              <a href={entry.data.website}>
+                <WebsiteIcon class="h-5 w-5" aria-hidden="true" />
+              </a>
+            )
+          }
+        </div>
+        <p class="mt-2 text-lg leading-8 text-gray-600">{entry.data.intro}</p>
+      </div>
+      <div class="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+        <div>
+          <Image src={entry.data.cover} alt={entry.data.name} width="500" height="500" class="mb-8" />
+        </div>
+        <div class="prose max-w-xl">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

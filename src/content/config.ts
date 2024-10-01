@@ -86,6 +86,19 @@ const trailheadsCollection = defineCollection({
       }),
   });
 
+  const volunteerSpotlightCollection = defineCollection({
+    type: 'content',
+    schema: ({ image }) =>
+      z.object({
+        name: z.string(),
+        images: z.array(z.object({
+          image: image(),
+        })),
+        instagram: z.string().optional(),
+        website: z.string().optional(),
+      }),
+  });
+
 export const collections = {
   leavenotrace: leavenotraceCollection,
   news: newsCollection,
@@ -93,4 +106,5 @@ export const collections = {
   trailheads: trailheadsCollection,
   links: linksCollection,
   wishlist: wishlistCollection,
+  volunteerSpotlight: volunteerSpotlightCollection,
 }
