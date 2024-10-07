@@ -1,7 +1,3 @@
-# Netlify Status
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/816e4278-01c7-4ca0-82d3-9f24c315a4fb/deploy-status)](https://app.netlify.com/sites/xenodochial-liskov-22c9dc/deploys)
-
 # Welcome to [Friends of Ute Valley Park](https://www.friendsofutevalleypark.com)
 
 This is the public repository of Friends of Ute Valley Park.
