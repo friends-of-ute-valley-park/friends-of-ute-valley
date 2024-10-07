@@ -168,7 +168,7 @@ const form = ref({
   message: '',
 });
 
-const { isFetching, isFinished, data, error, execute } = useFetch('/.netlify/functions/contact-form', { immediate: false })
+const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form', { immediate: false })
   .post({
     payload: form.value,
   })
