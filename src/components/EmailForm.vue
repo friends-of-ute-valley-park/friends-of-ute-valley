@@ -65,7 +65,7 @@ const emailValidationError = ref('');
 const nameValidationError = ref('');
 const payload = ref({ name: '', email: '' });
 
-const { isFetching, isFinished, error, data, execute } = useFetch('/.netlify/functions/email-signup', { updateDataOnError: true, immediate: false })
+const { isFetching, isFinished, error, data, execute } = useFetch('/email-signup', { updateDataOnError: true, immediate: false })
   .post({
     payload: payload.value,
   })

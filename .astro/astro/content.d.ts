@@ -169,9 +169,23 @@ declare module 'astro:content' {
   collection: "events";
   data: InferEntrySchema<"events">
 } & { render(): Render[".md"] };
+"creek-week-2024.md": {
+	id: "creek-week-2024.md";
+  slug: "creek-week-2024";
+  body: string;
+  collection: "events";
+  data: InferEntrySchema<"events">
+} & { render(): Render[".md"] };
 "friday-morning-work-session-april-12th-2024-9-00-12-00pm.md": {
 	id: "friday-morning-work-session-april-12th-2024-9-00-12-00pm.md";
   slug: "friday-morning-work-session-april-12th-2024-9-00-12-00pm";
+  body: string;
+  collection: "events";
+  data: InferEntrySchema<"events">
+} & { render(): Render[".md"] };
+"saturday-morning-work-session-october-19th-2024-9-00am-12-00pm.md": {
+	id: "saturday-morning-work-session-october-19th-2024-9-00am-12-00pm.md";
+  slug: "saturday-morning-work-session-october-19th-2024-9-00am-12-00pm";
   body: string;
   collection: "events";
   data: InferEntrySchema<"events">
@@ -309,6 +323,13 @@ declare module 'astro:content' {
   collection: "events";
   data: InferEntrySchema<"events">
 } & { render(): Render[".md"] };
+"wednesday-evening-work-session-august-21st-2024-5-30-7-30pm.md": {
+	id: "wednesday-evening-work-session-august-21st-2024-5-30-7-30pm.md";
+  slug: "wednesday-evening-work-session-august-21st-2024-5-30-7-30pm";
+  body: string;
+  collection: "events";
+  data: InferEntrySchema<"events">
+} & { render(): Render[".md"] };
 "wednesday-evening-work-session-august-2nd-2023-5-30-7-30pm.md": {
 	id: "wednesday-evening-work-session-august-2nd-2023-5-30-7-30pm.md";
   slug: "wednesday-evening-work-session-august-2nd-2023-5-30-7-30pm";
@@ -368,6 +389,13 @@ declare module 'astro:content' {
 "wednesday-evening-work-session-july-6-2022-5-30-7-30pm.md": {
 	id: "wednesday-evening-work-session-july-6-2022-5-30-7-30pm.md";
   slug: "wednesday-evening-work-session-july-6-2022-5-30-7-30pm";
+  body: string;
+  collection: "events";
+  data: InferEntrySchema<"events">
+} & { render(): Render[".md"] };
+"wednesday-evening-work-session-july-7th-2024-5-30-7-30pm.md": {
+	id: "wednesday-evening-work-session-july-7th-2024-5-30-7-30pm.md";
+  slug: "wednesday-evening-work-session-july-7th-2024-5-30-7-30pm";
   body: string;
   collection: "events";
   data: InferEntrySchema<"events">
@@ -463,9 +491,23 @@ declare module 'astro:content' {
   collection: "events";
   data: InferEntrySchema<"events">
 } & { render(): Render[".md"] };
+"wednesday-evening-work-session-september-18th-2024-5-30-7-30pm.md": {
+	id: "wednesday-evening-work-session-september-18th-2024-5-30-7-30pm.md";
+  slug: "wednesday-evening-work-session-september-18th-2024-5-30-7-30pm";
+  body: string;
+  collection: "events";
+  data: InferEntrySchema<"events">
+} & { render(): Render[".md"] };
 "wednesday-evening-work-session-september-20th-2023-5-30-7-30pm.md": {
 	id: "wednesday-evening-work-session-september-20th-2023-5-30-7-30pm.md";
   slug: "wednesday-evening-work-session-september-20th-2023-5-30-7-30pm";
+  body: string;
+  collection: "events";
+  data: InferEntrySchema<"events">
+} & { render(): Render[".md"] };
+"wednesday-evening-work-session-september-4th-2024-5-30-7-30pm.md": {
+	id: "wednesday-evening-work-session-september-4th-2024-5-30-7-30pm.md";
+  slug: "wednesday-evening-work-session-september-4th-2024-5-30-7-30pm";
   body: string;
   collection: "events";
   data: InferEntrySchema<"events">
@@ -733,22 +775,6 @@ declare module 'astro:content' {
   data: InferEntrySchema<"volunteer-spotlight">
 } & { render(): Render[".md"] };
 };
-"volunteerSpotlight": Record<string, {
-  id: string;
-  slug: string;
-  body: string;
-  collection: "volunteerSpotlight";
-  data: any;
-  render(): Render[".md"];
-}>;
-"volunteerspotlight": Record<string, {
-  id: string;
-  slug: string;
-  body: string;
-  collection: "volunteerspotlight";
-  data: any;
-  render(): Render[".md"];
-}>;
 "wishlist": {
 "2-5-lb-pick-mattock.md": {
 	id: "2-5-lb-pick-mattock.md";
@@ -795,6 +821,20 @@ declare module 'astro:content' {
 "rock-bar.md": {
 	id: "rock-bar.md";
   slug: "rock-bar";
+  body: string;
+  collection: "wishlist";
+  data: InferEntrySchema<"wishlist">
+} & { render(): Render[".md"] };
+"rock-net.md": {
+	id: "rock-net.md";
+  slug: "rock-net";
+  body: string;
+  collection: "wishlist";
+  data: InferEntrySchema<"wishlist">
+} & { render(): Render[".md"] };
+"single-jack-hammer.md": {
+	id: "single-jack-hammer.md";
+  slug: "single-jack-hammer";
   body: string;
   collection: "wishlist";
   data: InferEntrySchema<"wishlist">

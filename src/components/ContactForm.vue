@@ -43,7 +43,7 @@
         </div>
         <div class="mt-8">
           <p class="mb-1"><span class="text-red-700">*</span> indicates a required field</p>
-          <form action="/.netlify/functions/contact-form" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" @submit.prevent="submit">
+          <form action="/contact-form" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" @submit.prevent="submit">
             <div class="sm:col-span-2">
               <label for="name" class="block text-sm font-semibold text-gray-700">Name <span class="text-red-700">*</span></label>
               <div class="mt-1">
@@ -168,7 +168,7 @@ const form = ref({
   message: '',
 });
 
-const { isFetching, isFinished, data, error, execute } = useFetch('/.netlify/functions/contact-form', { immediate: false })
+const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form', { immediate: false })
   .post({
     payload: form.value,
   })
