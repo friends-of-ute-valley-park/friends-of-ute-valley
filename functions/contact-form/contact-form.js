@@ -1,33 +1,32 @@
-import { parse } from 'querystring';
 import { Resend } from 'resend';
 
 export async function onRequestPost(context) {
-  const data = await generateRequestData(context.request);
+  try {
+    const data = await generateRequestData(context.request);
 
-  // Validate form data
-  if (!data.email || !data.name || !data.message) {
-    return new Response(
-      JSON.stringify({
-        status: false,
-        message: 'Email, name, and message are required',
-      }),
-      {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      },
-    );
-  }
+    // Validate form data
+    if (!data.email || !data.name || !data.message) {
+      return new Response(
+        JSON.stringify({
+          status: false,
+          message: 'Email, name, and message are required',
+        }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        },
+      );
+    }
 
-  const resend = new Resend(context.env.RESEND_API_KEY);
+    const resend = new Resend(context.env.RESEND_API_KEY);
 
-  const emailContent = `
+    const emailContent = `
 Name: ${data.name}
 Email: ${data.email}
 Category: ${data.category}
 Message: ${data.message}
   `;
 
-  try {
     // Send email using Resend
     await resend.emails.send({
       from: 'contact@friendsofutevalleypark.com',
@@ -41,35 +40,32 @@ Message: ${data.message}
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('Error processing request:', error);
     return new Response(
       JSON.stringify({
         status: false,
-        message: 'Failed to send email',
+        message: error.message || 'Failed to process request',
       }),
       {
-        status: 500,
+        status: 400,
         headers: { 'Content-Type': 'application/json' },
-      },
+      }
     );
   }
 }
 
 async function generateRequestData(request) {
-  let body = {};
   const contentType = request.headers.get('content-type');
 
   if (contentType && contentType.includes('application/json')) {
-    body = await request.json();
+    const body = await request.json();
+    return {
+      email: body.payload.email,
+      name: body.payload.name,
+      category: body.payload.category,
+      message: body.payload.message,
+    };
   } else {
-    const text = await request.text();
-    body = parse(text);
+    throw new Error('Unsupported content type. Only application/json is allowed.');
   }
-
-  return {
-    email: body.payload.email,
-    name: body.payload.name,
-    category: body.payload.category,
-    message: body.payload.message,
-  };
 }
