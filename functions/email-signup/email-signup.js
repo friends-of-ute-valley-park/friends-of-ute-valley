@@ -1,84 +1,97 @@
 import { parse } from 'querystring';
-import axios from 'axios';
 require('dotenv').config();
 
-export async function handler(event) {
-  const data = generateRequestData(event.body);
-  // eslint-disable-next-line no-console
-  console.log(data);
-  if (!data.email) {
-    return {
-      statusCode: 400,
+export default {
+  async fetch(request, env) {
+    if (request.method !== 'POST') {
+      return new Response(JSON.stringify({ status: false, message: 'Method not allowed' }), {
+        status: 405,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    const data = await generateRequestData(request);
+    console.log(data);
+
+    if (!data.email) {
+      return new Response(JSON.stringify({ status: false, message: 'Email address required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    if (!data.name) {
+      return new Response(JSON.stringify({ status: false, message: 'Name required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    const authResponse = await fetch('https://api.sendpulse.com/oauth/access_token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        status: false,
-        message: 'Email address required',
+        grant_type: 'client_credentials',
+        client_id: env.SENDPULSE_CLIENT_ID,
+        client_secret: env.SENDPULSE_CLIENT_SECRET,
       }),
-    };
-  }
+    });
 
-  if (!data.name) {
-    return {
-      statusCode: 400,
+    const authData = await authResponse.json();
+
+    const sendpulseResponse = await fetch(`https://api.sendpulse.com/addressbooks/${env.SENDPULSE_MAILING_LIST_ID}/emails`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authData.access_token}`,
+      },
       body: JSON.stringify({
-        status: false,
-        message: 'Name required',
-      }),
-    };
-  }
-  const authRequest = await axios.post('https://api.sendpulse.com/oauth/access_token', {
-    grant_type: 'client_credentials',
-    client_id: process.env.SENDPULSE_CLIENT_ID,
-    client_secret: process.env.SENDPULSE_CLIENT_SECRET,
-  });
-
-  const config = {
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${authRequest.data.access_token}`,
-    },
-  };
-
-  const res = await axios.post(
-    `https://api.sendpulse.com/addressbooks/${process.env.SENDPULSE_MAILING_LIST_ID}/emails`,
-    {
-      emails: [
-        {
-          email: data.email,
-          variables: {
-            name: data.name,
+        emails: [
+          {
+            email: data.email,
+            variables: {
+              name: data.name,
+            },
           },
-        },
-      ],
-      confirmation: 'force',
-      sender_email: 'contact@friendsofutevalleypark.com',
-      template_id: process.env.SENDPULSE_CONFIRMATION_ID,
-      message_lang: 'en',
-    },
-    config,
-  );
+        ],
+        confirmation: 'force',
+        sender_email: 'contact@friendsofutevalleypark.com',
+        template_id: env.SENDPULSE_CONFIRMATION_ID,
+        message_lang: 'en',
+      }),
+    });
 
-  if (res.data.result === true) {
+    const sendpulseData = await sendpulseResponse.json();
+
+    if (sendpulseData.result === true) {
+      return new Response(JSON.stringify({ status: true }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    return new Response(JSON.stringify({ status: false, message: sendpulseData.result }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+};
+
+async function generateRequestData(request) {
+  const contentType = request.headers.get('content-type');
+  if (contentType.includes('application/json')) {
+    const body = await request.json();
     return {
-      statusCode: 200,
-      body: JSON.stringify({ status: true }),
+      email: body.payload.email,
+      name: body.payload.name,
+    };
+  } else if (contentType.includes('application/x-www-form-urlencoded')) {
+    const formData = await request.formData();
+    const body = Object.fromEntries(formData);
+    return {
+      email: body.payload.email,
+      name: body.payload.name,
     };
   }
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ status: false, message: res.data.result }),
-  };
-}
-
-function generateRequestData(eventBody) {
-  let body = {};
-  try {
-    body = JSON.parse(eventBody);
-  } catch (e) {
-    body = parse(eventBody);
-  }
-
-  return {
-    email: body.payload.email,
-    name: body.payload.name,
-  };
+  throw new Error('Unsupported content type');
 }

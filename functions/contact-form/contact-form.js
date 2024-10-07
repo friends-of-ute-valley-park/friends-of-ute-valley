@@ -1,78 +1,69 @@
 import { parse } from 'querystring';
-import { GoogleSpreadsheet } from 'google-spreadsheet';
-import { JWT } from 'google-auth-library';
-require('dotenv').config();
+import { Resend } from 'resend';
 
-export async function handler(event, context, callback) {
-  const data = generateRequestData(event.body);
-  // eslint-disable-next-line no-console
-  console.log(data);
-  if (!data.email) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({
+export async function onRequestPost(context) {
+  const data = await generateRequestData(context.request);
+
+  // Validate form data
+  if (!data.email || !data.name || !data.message) {
+    return new Response(
+      JSON.stringify({
         status: false,
-        message: 'Email address required',
+        message: 'Email, name, and message are required',
       }),
-    };
+      {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
   }
 
-  if (!data.name) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({
+  const resend = new Resend(context.env.RESEND_API_KEY);
+
+  const emailContent = `
+Name: ${data.name}
+Email: ${data.email}
+Category: ${data.category}
+Message: ${data.message}
+  `;
+
+  try {
+    // Send email using Resend
+    await resend.emails.send({
+      from: 'contact@friendsofutevalleypark.com',
+      to: 'contact@friendsofutevalleypark.com',
+      subject: `New Contact Form Submission from ${data.name}`,
+      text: emailContent,
+    });
+
+    return new Response(JSON.stringify({ status: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return new Response(
+      JSON.stringify({
         status: false,
-        message: 'Name required',
+        message: 'Failed to send email',
       }),
-    };
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
   }
-
-  if (!data.message) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({
-        status: false,
-        message: 'Message required',
-      }),
-    };
-  }
-
-  const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
-
-  const jwtFromEnv = new JWT({
-    email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    scopes: SCOPES,
-  });
-
-  // spreadsheet key is the long id in the sheets URL
-  const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, jwtFromEnv);
-
-  await doc.loadInfo(); // loads document properties and worksheets
-
-  const sheet = doc.sheetsByIndex[0];
-
-  await sheet.addRow({
-    Date: new Intl.DateTimeFormat('en-US').format(new Date()),
-    Name: data.name,
-    Email: data.email,
-    Category: data.category,
-    Message: data.message,
-  });
-  await sheet.saveUpdatedCells(); // save all updates in one call
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ status: true }),
-  };
 }
 
-function generateRequestData(eventBody) {
+async function generateRequestData(request) {
   let body = {};
-  try {
-    body = JSON.parse(eventBody);
-  } catch (e) {
-    body = parse(eventBody);
+  const contentType = request.headers.get('content-type');
+
+  if (contentType && contentType.includes('application/json')) {
+    body = await request.json();
+  } else {
+    const text = await request.text();
+    body = parse(text);
   }
 
   return {
