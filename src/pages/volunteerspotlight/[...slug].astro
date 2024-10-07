@@ -23,6 +23,12 @@ const { Content } = await entry.render();
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div>
         <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{entry.data.name} - Volunteer Spotlight</h2>
+        <a href="/volunteerspotlight/" class="mt-2 inline-flex items-center text-sm font-medium text-green-600 hover:text-green-500">
+          <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+          </svg>
+          Back to Volunteer Spotlight
+        </a>
         <div class="ml-2 mt-2 flex gap-x-2">
           {
             entry.data.instagram && (
@@ -39,6 +45,7 @@ const { Content } = await entry.render();
             )
           }
         </div>
+
         <p class="mt-2 text-lg leading-8 text-gray-600">{entry.data.intro}</p>
       </div>
       <div class="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
