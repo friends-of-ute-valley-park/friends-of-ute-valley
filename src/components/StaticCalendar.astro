@@ -4,20 +4,7 @@ import SocialLinksInline from './SocialLinksInline.astro';
 
 const currentYear = new Date().getFullYear();
 const months = ['April', 'May', 'June', 'July', 'August', 'September'];
-const volunteerEventDates = [
-  new Date(currentYear, 3, 3),
-  new Date(currentYear, 3, 21),
-  new Date(currentYear, 4, 1),
-  new Date(currentYear, 4, 15),
-  new Date(currentYear, 5, 5),
-  new Date(currentYear, 5, 19),
-  new Date(currentYear, 6, 10),
-  new Date(currentYear, 6, 24),
-  new Date(currentYear, 7, 7),
-  new Date(currentYear, 7, 21),
-  new Date(currentYear, 8, 4),
-  new Date(currentYear, 8, 18),
-];
+const volunteerEventDates = [new Date(currentYear, 3, 27)];
 
 const isVolunteerEventDate = (date: Date) => {
   return volunteerEventDates.some((eventDate) => eventDate.getDate() === date.getDate() && eventDate.getMonth() === date.getMonth() && eventDate.getFullYear() === date.getFullYear());
@@ -32,6 +19,7 @@ const getDaysInMonth = (year: number, month: number) => {
 
 <div class="calendar-container mt-6 bg-gray-50 p-4">
   <h1 class="mb-6 text-center text-3xl font-bold text-green-800">Volunteer Calendar {currentYear}</h1>
+  <h2 class="mb-6 text-center text-xl font-bold text-green-800">Our calendar is currently under construction. Please check back soon for updates.</h2>
   <p class="mb-2 text-sm font-medium text-gray-500">
     <span class="font-bold">Volunteer days:</span> When we get closer to the volunteer event date, we'll send you a registration reminder email. If you haven't signed up yet, please find our sign up form
     below or check out our social media <SocialLinksInline /> for additional ways to stay connected.
