@@ -39,7 +39,7 @@ const getDaysInMonth = (year: number, month: number) => {
                 <div class="text-center text-sm font-medium text-gray-500">{day}</div>
               ))}
               {Array.from({ length: firstDayOfWeek }).map((_, i) => (
-                <div key={`empty-${i}`} class="h-6" />
+                <div class="h-6" />
               ))}
               {daysInMonth.map((day) => (
                 <div class="relative flex h-6 items-center justify-center">
