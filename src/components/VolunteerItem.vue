@@ -19,7 +19,7 @@
       <p
         v-if="volunteerEvent.data.meetingLocation.notes"
         :title="volunteerEvent.data.meetingLocation.notes"
-        class="mx-2 max-w-xs overflow-hidden truncate overflow-ellipsis text-sm text-gray-500">
+        class="mx-2 max-w-xs break-words text-sm text-gray-500">
         {{ volunteerEvent.data.meetingLocation.notes }}
       </p>
     </div>

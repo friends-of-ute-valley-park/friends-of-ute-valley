@@ -162,6 +162,13 @@ declare module 'astro:content' {
   collection: "events";
   data: InferEntrySchema<"events">
 } & { render(): Render[".md"] };
+"3-days-3-parks-ute-valley-park-april-27-2025.md": {
+	id: "3-days-3-parks-ute-valley-park-april-27-2025.md";
+  slug: "3-days-3-parks-ute-valley-park-april-27-2025";
+  body: string;
+  collection: "events";
+  data: InferEntrySchema<"events">
+} & { render(): Render[".md"] };
 "community-workday-at-ute-valley-park.md": {
 	id: "community-workday-at-ute-valley-park.md";
   slug: "community-workday-at-ute-valley-park";
@@ -591,6 +598,13 @@ declare module 'astro:content' {
 "2022-volunteer-update.md": {
 	id: "2022-volunteer-update.md";
   slug: "2022-volunteer-update";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
+"4th-annual-3-days-3-parks-volunteer-event.md": {
+	id: "4th-annual-3-days-3-parks-volunteer-event.md";
+  slug: "4th-annual-3-days-3-parks-volunteer-event";
   body: string;
   collection: "news";
   data: InferEntrySchema<"news">
