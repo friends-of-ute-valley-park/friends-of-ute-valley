@@ -4,7 +4,16 @@ import SocialLinksInline from './SocialLinksInline.astro';
 
 const currentYear = new Date().getFullYear();
 const months = ['April', 'May', 'June', 'July', 'August', 'September'];
-const volunteerEventDates = [new Date(currentYear, 3, 27)];
+const volunteerEventDates = [
+  new Date(currentYear, 3, 27),
+  new Date(currentYear, 4, 17),
+  new Date(currentYear, 5, 4),
+  new Date(currentYear, 5, 18),
+  new Date(currentYear, 6, 2),
+  new Date(currentYear, 6, 16),
+  new Date(currentYear, 7, 6),
+  new Date(currentYear, 7, 20),
+];
 
 const isVolunteerEventDate = (date: Date) => {
   return volunteerEventDates.some((eventDate) => eventDate.getDate() === date.getDate() && eventDate.getMonth() === date.getMonth() && eventDate.getFullYear() === date.getFullYear());
