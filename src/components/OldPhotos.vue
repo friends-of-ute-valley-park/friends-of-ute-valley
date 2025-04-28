@@ -10,7 +10,7 @@
       <img class="image" src="/images/old-ute-valley-park-photos/old-ute-6.jpg" />
     </div>
     <div v-if="!viewMore">
-      <button class="my-2 ml-1 rounded px-2 py-1 text-base text-green-900 underline" @click="viewMore = true">
+      <button class="my-2 ml-1 rounded-sm px-2 py-1 text-base text-green-900 underline" @click="viewMore = true">
         View More
         <i-heroicons-chevron-down class="ml-1 inline-block h-6 w-6" />
       </button>

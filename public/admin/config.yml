@@ -9,7 +9,7 @@ public_folder: /images
 collections:
   - name: 'news'
     label: 'News'
-    folder: '/src/content/news'
+    folder: '/src/data/news'
     create: true
     slug: '{{slug}}'
     media_folder: ''
@@ -20,12 +20,12 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Published', name: 'published', widget: 'boolean', default: false }
       - { label: 'Published On', name: 'publishedOn', widget: 'datetime' }
-      - { label: 'Cover Image', name: 'coverImage', widget: 'image', media_folder: '/src/content/news/' }
+      - { label: 'Cover Image', name: 'coverImage', widget: 'image', media_folder: '/src/data/news/' }
       - { label: 'Preview Text', name: 'previewText', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
   - name: 'volunteer'
     label: 'Volunteer'
-    folder: '/src/content/events'
+    folder: '/src/data/events'
     create: true
     slug: '{{slug}}'
     fields:
@@ -55,7 +55,7 @@ collections:
       - { label: 'Time', name: 'time', widget: 'string' }
   - name: 'Links'
     label: 'Links'
-    folder: '/src/content/links'
+    folder: '/src/data/links'
     create: true
     slug: '{{slug}}'
     fields:
@@ -64,13 +64,13 @@ collections:
       - { label: 'Priority', name: 'priority', widget: 'number', valueType: 'int', default: 0 }
   - name: 'Wishlist'
     label: 'Wishlist'
-    folder: '/src/content/wishlist'
+    folder: '/src/data/wishlist'
     create: true
     slug: '{{slug}}'
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Link', name: 'link', widget: 'string' }
-      - { label: 'Image', name: 'image', widget: 'image', media_folder: '/src/content/wishlist/' }
+      - { label: 'Image', name: 'image', widget: 'image', media_folder: '/src/data/wishlist/' }
       - { label: 'Image Alt', name: 'imageAlt', widget: 'string' }
       - { label: 'QuantityNeeded', name: 'quantityNeeded', widget: 'number', valueType: 'int', default: 1 }

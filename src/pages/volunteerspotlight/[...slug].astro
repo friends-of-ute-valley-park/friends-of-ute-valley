@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
 import { Image } from 'astro:assets';
 
@@ -9,13 +9,13 @@ import WebsiteIcon from '~icons/mdi/computer';
 export async function getStaticPaths() {
   const volunteerSpotlights = await getCollection('volunteer-spotlight');
   return volunteerSpotlights.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <Layout title={`Volunteer Spotlight: ${entry.data.name}`}>
@@ -29,7 +29,7 @@ const { Content } = await entry.render();
           </svg>
           Back to Volunteer Spotlight
         </a>
-        <div class="ml-2 mt-2 flex gap-x-2">
+        <div class="mt-2 ml-2 flex gap-x-2">
           {
             entry.data.instagram && (
               <a href={'https://instagram.com/' + entry.data.instagram}>

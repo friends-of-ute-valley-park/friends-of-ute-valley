@@ -5,7 +5,7 @@
       <div class="relative mx-auto max-w-7xl">
         <div class="absolute inset-x-0 -top-20 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-60" aria-hidden="true">
           <div
-            class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/4 rotate-[30deg] bg-gradient-to-tr from-green-200 to-teal-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/4 rotate-[30deg] bg-linear-to-tr from-green-200 to-teal-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             style="
               clip-path: polygon(
                 74.1% 44.1%,
@@ -54,24 +54,24 @@
                   required
                   name="name"
                   autocomplete="given-name"
-                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-green-500 focus:ring-green-500" />
+                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-green-500 focus:ring-green-500" />
               </div>
             </div>
             <div class="sm:col-span-2">
               <label for="email" class="block text-sm font-semibold text-gray-700">Email <span class="text-red-700">*</span></label>
-              <div class="relative mt-1 rounded-md shadow-sm">
+              <div class="relative mt-1 rounded-md shadow-xs">
                 <input
                   id="email"
                   v-model="form.email"
                   autocomplete="email"
                   required
                   type="email"
-                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-green-500 focus:ring-green-500" />
+                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-green-500 focus:ring-green-500" />
               </div>
             </div>
             <div class="sm:col-span-2">
               <label for="category" class="mb-1 block text-sm font-semibold text-gray-700">Category <span class="text-red-700">*</span></label>
-              <select id="category" v-model="form.category" class="block w-full rounded-md border-gray-300 px-3 py-3 shadow-sm focus:border-green-500 focus:ring-green-500">
+              <select id="category" v-model="form.category" class="block w-full rounded-md border-gray-300 px-3 py-3 shadow-xs focus:border-green-500 focus:ring-green-500">
                 <option v-for="option in options" :key="option">
                   {{ option }}
                 </option>
@@ -81,7 +81,7 @@
             <div v-if="form.category == 'Volunteer'" class="sm:col-span-2">
               <div class="rounded-md bg-green-50/60 p-4">
                 <div class="flex">
-                  <div class="flex-shrink-0">
+                  <div class="shrink-0">
                     <i-heroicons-exclamation-circle class="mt-1 h-6 w-6 text-green-800" aria-hidden="true" />
                   </div>
                   <div class="ml-3">
@@ -104,17 +104,17 @@
             </div>
             <div class="sm:col-span-2">
               <label for="message" class="block text-sm font-semibold text-gray-700">Message <span class="text-red-700">*</span></label>
-              <div class="relative mt-1 rounded-md shadow-sm">
-                <textarea id="message" v-model="form.message" required rows="4" class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-green-500 focus:ring-green-500" />
+              <div class="relative mt-1 rounded-md shadow-xs">
+                <textarea id="message" v-model="form.message" required rows="4" class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-green-500 focus:ring-green-500" />
               </div>
             </div>
 
             <div class="sm:col-span-2">
-              <span class="inline-flex w-full rounded-md shadow-sm">
+              <span class="inline-flex w-full rounded-md shadow-xs">
                 <button
                   :disabled="isFetching"
                   type="submit"
-                  class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 active:bg-green-700 disabled:opacity-25">
+                  class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-green-500 focus:outline-hidden focus:ring-2 focus:ring-green-500 active:bg-green-700 disabled:opacity-25">
                   <span>
                     <i-mdi-loading v-if="isFetching" class="-ml-1 mr-2 h-6 w-6 animate-spin text-white" />
                   </span>
@@ -128,7 +128,7 @@
         <!-- notification banner -->
         <div v-if="isFinished" class="my-8 rounded-md p-4" :class="[error ? 'bg-red-50' : 'bg-green-50']">
           <div class="flex">
-            <div class="flex-shrink-0">
+            <div class="shrink-0">
               <i-heroicons-megaphone class="size-6" :class="[error ? 'text-red-800' : 'text-green-800']" />
             </div>
             <div class="ml-3">

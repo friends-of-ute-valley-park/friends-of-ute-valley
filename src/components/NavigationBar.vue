@@ -1,9 +1,9 @@
 <template>
-  <Disclosure v-slot="{ open }" as="nav" class="bg-white shadow">
+  <Disclosure v-slot="{ open }" as="nav" class="bg-white shadow-sm">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 justify-between">
         <div class="flex">
-          <div class="flex flex-shrink-0 items-center">
+          <div class="flex shrink-0 items-center">
             <img class="block h-14 w-14" src="/images/logo-small.jpg" alt="Friends of Ute Valley Park" />
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -65,7 +65,7 @@
         <div class="-mr-2 flex items-center sm:hidden">
           <!-- Mobile menu button -->
           <DisclosureButton
-            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
+            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-green-500">
             <span class="sr-only">Open main menu</span>
             <i-heroicons-bars-3 v-if="!open" class="block h-6 w-6" aria-hidden="true" />
             <i-heroicons-x-mark v-else class="block h-6 w-6" aria-hidden="true" />

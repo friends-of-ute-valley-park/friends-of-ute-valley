@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div v-if="showDogs" class="flex items-center space-x-6 lg:space-x-8">
-      <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+      <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
         <div class="relative h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
           <a :href="'https://instagram.com/' + dogs[0]">
             <img :src="'/images/dogs/' + dogs[0] + '.jpg'" alt="" class="h-full w-full object-cover object-center" />
@@ -15,7 +15,7 @@
           </a>
         </div>
       </div>
-      <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+      <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
         <div class="relative h-64 w-44 overflow-hidden rounded-lg">
           <a :href="'https://instagram.com/' + dogs[2]">
             <img :src="'/images/dogs/' + dogs[2] + '.jpg'" alt="" class="h-full w-full object-cover object-center" />
@@ -35,7 +35,7 @@
           </a>
         </div>
       </div>
-      <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+      <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
         <div class="relative h-64 w-44 overflow-hidden rounded-lg">
           <a :href="'https://instagram.com/' + dogs[1]">
             <img :src="'/images/dogs/' + dogs[1] + '.jpg'" alt="" class="h-full w-full object-cover object-center" />

@@ -1,6 +1,6 @@
 export interface VolunteerEvent {
   data: VolunteerEventFrontmatter;
-  slug: string;
+  id: string;
 }
 
 export interface VolunteerEventFrontmatter {

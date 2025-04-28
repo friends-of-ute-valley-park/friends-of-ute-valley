@@ -1,18 +1,18 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { Picture } from 'astro:assets';
 
 export async function getStaticPaths() {
   const newsEntries = await getCollection('news');
   return newsEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <Layout title={entry.data.title}>
@@ -22,7 +22,7 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
         <div class="relative overflow-hidden bg-white py-16">
           <div class="hidden lg:absolute lg:inset-y-0 lg:block lg:h-full lg:w-full">
             <div class="relative mx-auto h-full max-w-prose text-lg">
-              <svg class="absolute left-full top-12 translate-x-32 transform" width="404" height="384" fill="none" viewBox="0 0 404 384">
+              <svg class="absolute top-12 left-full translate-x-32 transform" width="404" height="384" fill="none" viewBox="0 0 404 384">
                 <defs>
                   <pattern id="74b3fd99-0a6f-4271-bef2-e80eeafdf357" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
                     <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"></rect>
@@ -30,7 +30,7 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
                 </defs>
                 <rect width="404" height="384" fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)"></rect>
               </svg>
-              <svg class="absolute right-full top-1/2 -translate-x-32 -translate-y-1/2 transform" width="404" height="384" fill="none" viewBox="0 0 404 384">
+              <svg class="absolute top-1/2 right-full -translate-x-32 -translate-y-1/2 transform" width="404" height="384" fill="none" viewBox="0 0 404 384">
                 <defs>
                   <pattern id="f210dbf6-a58d-4871-961e-36d5016a0f49" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
                     <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"></rect>
@@ -50,7 +50,7 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
           </div>
           <div class="relative px-4 sm:px-6 lg:px-8">
             <div class="mx-auto mb-6 max-w-prose text-lg">
-              <h1 class="mb-8 mt-2 text-center text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+              <h1 class="mt-2 mb-8 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
                 {entry.data.title}
               </h1>
               <Picture loading="lazy" formats={['avif', 'webp']} width={900} height={600} class="h-96 w-full rounded-lg object-cover shadow-lg" src={entry.data.coverImage} alt="" />

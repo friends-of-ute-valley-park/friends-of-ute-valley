@@ -110,7 +110,7 @@ const rules = [
               <img class="h-48 w-full overflow-hidden rounded-t-lg" src={park.image} alt="" />
               <div class="px-8 py-6">
                 <h3 class="mt-6 text-sm font-medium text-gray-900">{park.name}</h3>
-                <dl class="mt-1 flex flex-grow flex-col justify-between">
+                <dl class="mt-1 flex grow flex-col justify-between">
                   <dt class="sr-only">Park Type</dt>
                   <dd class="text-sm text-gray-500">{park.type} off-leash park</dd>
                 </dl>
@@ -160,7 +160,7 @@ const rules = [
     </ul>
     <div id="rules" class="flex w-full items-center justify-center">
       <a
-        class="my-8 inline-flex items-center rounded-full border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+        class="my-8 inline-flex items-center rounded-full border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-green-700 focus:outline-hidden focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
         href="https://coloradosprings.gov/parks/page/dog-parks?mlid=4736">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
           ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path
@@ -180,7 +180,7 @@ const rules = [
         <ul role="list" class="mt-8 space-y-3">
           {
             reasons.map((reason) => (
-              <li class="overflow-hidden bg-white px-4 py-4 shadow sm:rounded-md sm:px-6">
+              <li class="overflow-hidden bg-white px-4 py-4 shadow-sm sm:rounded-md sm:px-6">
                 <svg class="inline-block h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
@@ -191,7 +191,7 @@ const rules = [
         </ul>
       </div>
       <div class="mx-auto mt-16 w-4/5 lg:m-0 lg:w-2/5 lg:p-8">
-        <Picture src={DogImage} formats={['avif', 'webp']} alt="dog in park in front of mountains" width="600" height="400" class="rounded shadow" />
+        <Picture src={DogImage} formats={['avif', 'webp']} alt="dog in park in front of mountains" width="600" height="400" class="rounded-sm shadow-sm" />
       </div>
     </div>
   </div>
@@ -200,7 +200,7 @@ const rules = [
     <ul role="list" class="my-8 space-y-3">
       {
         rules.map((rule) => (
-          <li class="overflow-hidden bg-white px-4 py-4 shadow sm:rounded-md sm:px-6">
+          <li class="overflow-hidden bg-white px-4 py-4 shadow-sm sm:rounded-md sm:px-6">
             <svg class="inline-block h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>

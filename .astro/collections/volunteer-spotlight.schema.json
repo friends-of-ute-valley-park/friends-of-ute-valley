@@ -1,0 +1,47 @@
+{
+  "$ref": "#/definitions/volunteer-spotlight",
+  "definitions": {
+    "volunteer-spotlight": {
+      "type": "object",
+      "properties": {
+        "intro": {
+          "type": "string"
+        },
+        "instagram": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "image": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "image"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "intro",
+        "name",
+        "images"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

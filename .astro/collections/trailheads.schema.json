@@ -1,0 +1,81 @@
+{
+  "$ref": "#/definitions/trailheads",
+  "definitions": {
+    "trailheads": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "directionsLink": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "amenities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "description"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "map": {
+          "type": "string"
+        },
+        "photos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "photo": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "photo",
+              "caption"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "directionsLink",
+        "location",
+        "amenities",
+        "map",
+        "photos"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
