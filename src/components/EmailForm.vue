@@ -11,7 +11,7 @@
           :class="{
             'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-hidden focus:ring-red-500': nameIsError,
           }"
-          class="mr-4 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-xs focus:border-green-500 focus:ring-green-500 sm:flex-1"
+          class="mr-4 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-xs focus:border-green-500 focus:ring-green-500 caret-green-400 sm:flex-1"
           placeholder="Full name"
           @blur="validate" />
         <label for="email" class="sr-only">Email</label>
@@ -23,7 +23,7 @@
           :class="{
             'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-hidden focus:ring-red-500': emailIsError,
           }"
-          class="mt-3 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-xs focus:border-green-500 focus:ring-green-500 sm:mt-0 sm:flex-1"
+          class="mt-3 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-xs focus:border-green-500 focus:ring-green-500 caret-green-400 sm:mt-0 sm:flex-1"
           placeholder="Email"
           @blur="validate" />
         <button

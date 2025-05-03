@@ -4,7 +4,7 @@
       "source.fixAll.eslint": "explicit"
     },
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "astro-build.astro-vscode"
   },
   "[vue]": {
     "editor.codeActionsOnSave": {
