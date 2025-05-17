@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 import NavigationBar from '@components/NavigationBar.vue';
 import NavigationFooter from '@components/NavigationFooter.astro';
@@ -30,7 +30,7 @@ const { title } = Astro.props as Props;
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title} - Friends of Ute Valley Park</title>
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body class="font-sans">
     <a href="#main-content" class="sr-only bg-white text-black underline focus:not-sr-only">Skip to main content</a>
