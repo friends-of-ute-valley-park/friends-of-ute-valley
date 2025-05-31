@@ -179,6 +179,9 @@ const publishedNewsEntries = await getCollection('news', ({ data }) => {
             .map((post) => <Card title={post.data.title} previewText={post.data.previewText} image={post.data.coverImage} href={post.id} publishedOn={post.data.publishedOn} canBeWide={false} />)
         }
       </div>
+      <div class="text-center mt-8">
+        <a href="/news" class="text-green-600 hover:text-green-800 font-semibold">More News</a>
+      </div>
     </div>
   </div>
 
