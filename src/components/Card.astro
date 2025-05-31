@@ -17,15 +17,16 @@ export function getStaticPaths() {
 import { Image } from 'astro:assets';
 ---
 
-<article class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in-out">
+<article
+  class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 shadow-lg transition-all duration-200 ease-in-out hover:scale-105 hover:rotate-1 hover:shadow-xl sm:pt-48 lg:pt-80">
   <Image src={image} width={600} quality="70" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover" />
   <div class="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40"></div>
-  <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+  <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-gray-900/10 ring-inset"></div>
 
   <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
     <time datetime={publishedOn.toString()} class="mr-8">{new Intl.DateTimeFormat('en-US').format(new Date(publishedOn))}</time>
   </div>
-  <h3 class="mt-3 text-lg font-semibold leading-6 text-white">
+  <h3 class="mt-3 text-lg leading-6 font-semibold text-white">
     <a href={'/news/' + href}>
       <span class="absolute inset-0"></span>
       {title}
