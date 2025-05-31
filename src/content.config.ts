@@ -26,21 +26,19 @@ const newsCollection = defineCollection({
 
 const eventsCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/data/events" }),
-  schema: () => {
-    z.object({
-      title: z.string(),
-      date: z.date(),
-      description: z.string(),
-      meetingLocation: z.object({
-        predefinedLocation: z.number(),
-        alternativeLocation: z.string().optional(),
-        alternativeLocationDirectionsLink: z.string().optional(),
-        notes: z.string().optional(),
-      }),
-      link: z.string().optional(),
-      time: z.string(),
-    })
-  }
+  schema: () => z.object({
+    title: z.string(),
+    date: z.date(),
+    description: z.string(),
+    meetingLocation: z.object({
+      predefinedLocation: z.number(),
+      alternativeLocation: z.string().optional(),
+      alternativeLocationDirectionsLink: z.string().optional(),
+      notes: z.string().optional(),
+    }),
+    link: z.string().optional(),
+    time: z.string(),
+  })
 })
 
 const trailheadsCollection = defineCollection({
