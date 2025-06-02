@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@astrojs/vue": "^5.0.11",
-    "@iconify/json": "^2.2.332",
+    "@iconify/json": "^2.2.345",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
