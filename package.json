@@ -11,7 +11,7 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/vue": "^5.0.11",
+    "@astrojs/vue": "^5.1.0",
     "@iconify/json": "^2.2.345",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.10",
