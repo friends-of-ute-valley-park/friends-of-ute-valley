@@ -27,7 +27,7 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^4.1.4",
     "unplugin-icons": "^22.1.0",
-    "unplugin-vue-components": "^28.5.0",
+    "unplugin-vue-components": "^29.0.0",
     "vue": "^3.5.13"
   },
   "dependencies": {
