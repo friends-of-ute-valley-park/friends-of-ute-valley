@@ -33,7 +33,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.3.1",
     "@headlessui/vue": "^1.7.23",
-    "@tailwindcss/vite": "^4.1.8",
+    "@tailwindcss/vite": "^4.1.13",
     "@vueuse/core": "^13.4.0",
     "astro": "5.13.8",
     "date-fns": "^4.1.0",
