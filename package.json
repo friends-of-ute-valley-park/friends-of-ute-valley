@@ -35,7 +35,7 @@
     "@headlessui/vue": "^1.7.23",
     "@tailwindcss/vite": "^4.1.8",
     "@vueuse/core": "^13.4.0",
-    "astro": "5.13.8",
+    "astro": "5.14.6",
     "date-fns": "^4.1.0",
     "dotenv": "^16.6.1",
     "inter-ui": "^4.1.1",
