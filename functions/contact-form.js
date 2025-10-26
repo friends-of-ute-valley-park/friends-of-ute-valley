@@ -3,7 +3,10 @@ import turnstilePlugin from "@cloudflare/pages-plugin-turnstile";
 
 export const onRequestPost = [
   turnstilePlugin({
-    secret: (context) => context.env.TURNSTILE_SECRET_KEY,
+    secret: (context) => {
+      console.log("Using TURNSTILE_SECRET_KEY from environment", context.env.TURNSTILE_SECRET_KEY);
+      return context.env.TURNSTILE_SECRET_KEY
+    }
   }),
   (async (context) => {
     try {
