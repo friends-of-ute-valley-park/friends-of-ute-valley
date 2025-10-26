@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import vue from '@astrojs/vue';
 import Components from 'unplugin-vue-components/vite';
 import Icons from 'unplugin-icons/vite';
@@ -41,4 +41,10 @@ export default defineConfig({
       tailwindcss(),
     ],
   },
+  env: {
+    schema: {
+      TURNSTILE_SITE_KEY: envField.string({ context: "client", access: "public"}),
+      TURNSTILE_SECRET_KEY: envField.string({ context: "server", access: "secret"})
+    }
+  }
 });

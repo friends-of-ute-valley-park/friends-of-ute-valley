@@ -17,6 +17,7 @@ const upcomingVolunteerEvents = await getCollection('events', ({ data }) => {
 import VolunteerHeroImage from '../assets/images/volunteer-hero-mask.jpg';
 import VolunteerInfoImage from '../assets/images/volunteer-3.jpg';
 import VolunteerInfoImage2 from '../assets/images/volunteer-4.jpg';
+import { TURNSTILE_SITE_KEY } from 'astro:env/client';
 
 const meetingLocations = await getCollection('trailheads');
 ---
@@ -71,9 +72,9 @@ const meetingLocations = await getCollection('trailheads');
 
       <div class="overflow-hidden bg-white py-12 sm:py-16">
         <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-          <div class="lg:pr-8 lg:pt-4">
+          <div class="lg:pt-4 lg:pr-8">
             <div class="lg:max-w-lg">
-              <h2 class="text-base font-semibold leading-7 text-green-600">Make a Difference, Make Friends, and Have Fun!</h2>
+              <h2 class="text-base leading-7 font-semibold text-green-600">Make a Difference, Make Friends, and Have Fun!</h2>
               <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Join Ute Valley Park's Volunteer Team and Discover the Joy of Giving Back</p>
               <p class="mt-6 leading-8 text-gray-700">
                 Want to have fun while making a meaningful impact in your community? Become a volunteer at Ute Valley Park! Our team welcomes people of all ages and abilities, offering a variety of
@@ -110,8 +111,8 @@ const meetingLocations = await getCollection('trailheads');
         </div>
       </div>
 
-      <div class="mt-8 border-b border-gray-200 pb-5 pt-4" id="learnmore">
-        <h3 class="text-3xl font-medium leading-6 text-green-900">Learn More About Volunteering in Ute Valley Park</h3>
+      <div class="mt-8 border-b border-gray-200 pt-4 pb-5" id="learnmore">
+        <h3 class="text-3xl leading-6 font-medium text-green-900">Learn More About Volunteering in Ute Valley Park</h3>
       </div>
       <div class="border-gray-200 pt-8 xl:grid xl:grid-cols-3 xl:gap-x-8">
         <div>
@@ -144,9 +145,9 @@ const meetingLocations = await getCollection('trailheads');
 
   <LeaveNoTraceSmall />
 
-  <ContactForm default-option="Volunteer" client:visible>
+  <ContactForm default-option="Volunteer" client:visible turnstileSiteKey={TURNSTILE_SITE_KEY}>
     <Fragment slot="title">
-      <h2 class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">Contact us for more information!</h2>
+      <h2 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">Contact us for more information!</h2>
     </Fragment>
     <Fragment slot="subtitle">We'd love to hear from you! Whether you have questions about volunteering or just want to share your thoughts on Ute Valley Park, feel free to get in touch.</Fragment>
   </ContactForm>

@@ -110,6 +110,10 @@
             </div>
 
             <div class="sm:col-span-2">
+              <div class="cf-turnstile" :data-sitekey="turnstileSiteKey"></div>
+            </div>
+
+            <div class="sm:col-span-2">
               <span class="inline-flex w-full rounded-md shadow-xs">
                 <button
                   :disabled="isFetching"
@@ -153,6 +157,7 @@ import { useFetch } from '@vueuse/core';
 
 export interface Props {
   defaultOption?: string | null;
+  turnstileSiteKey: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {

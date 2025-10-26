@@ -8,10 +8,10 @@ import StatsCard from '@components/StatsCard.astro';
 
 <Layout title="About">
   <div class="relative mt-16 px-4 sm:px-6 lg:px-8">
-    <h1 class="mb-8 mt-2 text-center text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">About Friends of Ute Valley Park</h1>
+    <h1 class="mt-2 mb-8 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">About Friends of Ute Valley Park</h1>
     <img class="mx-auto my-12 block h-64 w-auto" src="/images/logo-medium.jpg" alt="Friends of Ute Valley logo" />
     <StatsCard />
-    <div class="mx-auto mb-6 mt-12 max-w-prose text-lg">
+    <div class="mx-auto mt-12 mb-6 max-w-prose text-lg">
       <div class="prose lg:prose-xl">
         <h2>Our Mission</h2>
         <p>
@@ -85,7 +85,7 @@ import StatsCard from '@components/StatsCard.astro';
     <OldPhotos client:visible />
 
     <div class="mt-8">
-      <h2 class="mb-8 mt-2 text-center text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">1983 Colorado Front Range Inactive Coal Mine Data (El Paso County)</h2>
+      <h2 class="mt-2 mb-8 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">1983 Colorado Front Range Inactive Coal Mine Data (El Paso County)</h2>
       <img src="/images/colorado-land-survey-preview.jpg" />
       <div class="mt-1 text-center text-sm text-gray-600">
         <a href="/images/maps/colorado-springs-coal-mine-survey.pdf" download>Download (14.8 mb)</a>
@@ -95,3 +95,5 @@ import StatsCard from '@components/StatsCard.astro';
     <LeaveNoTraceSmall />
   </div>
 </Layout>
+
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
