@@ -2,12 +2,9 @@ import { Resend } from 'resend';
 import turnstilePlugin from "@cloudflare/pages-plugin-turnstile";
 
 export const onRequestPost = [
-  turnstilePlugin({
-    secret: (context) => {
-      console.log("Using TURNSTILE_SECRET_KEY from environment", context.env.TURNSTILE_SECRET_KEY);
-      return context.env.TURNSTILE_SECRET_KEY
-    }
-  }),
+  async (context) => {
+    return turnstilePlugin({ secret: context.env.TURNSTILE_SECRET_KEY })(context);
+  },
   (async (context) => {
     try {
       const data = await generateRequestData(context.request);
