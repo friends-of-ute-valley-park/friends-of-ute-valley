@@ -52,7 +52,6 @@ export const onRequestPost = [
         to: 'contact@friendsofutevalleypark.com',
         subject: `New Contact Form Submission from ${data.name}`,
         text: emailContent,
-        turnstile_outcome: context.data.turnstile,
       });
 
       return new Response(JSON.stringify({ status: true }), {
@@ -76,18 +75,23 @@ export const onRequestPost = [
 ];
 
 async function generateRequestData(request) {
-  const contentType = request.headers.get('content-type');
+  const contentType = request.headers.get('content-type') || '';
 
-  if (contentType && contentType.includes('application/json')) {
-    const body = await request.json();
+  // Check for supported content types
+  if (
+    contentType.includes('application/x-www-form-urlencoded') ||
+    contentType.includes('multipart/form-data')
+  ) {
+    const formData = await request.formData();
+    
+    // Get data directly from formData fields.
     return {
-      email: body.payload.email,
-      name: body.payload.name,
-      category: body.payload.category,
-      message: body.payload.message,
+      email: formData.get('email')?.toString() || '',
+      name: formData.get('name')?.toString() || '',
+      category: formData.get('category')?.toString() || '',
+      message: formData.get('message')?.toString() || '',
     };
   } else {
-    throw new Error('Unsupported content type. Only application/json is allowed.');
+    throw new Error('Unsupported content type. Only FormData is allowed.');
   }
 }
-

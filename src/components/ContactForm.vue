@@ -110,7 +110,7 @@
             </div>
 
             <div class="sm:col-span-2">
-              <div class="cf-turnstile" :data-sitekey="turnstileSiteKey"></div>
+              <div id="turnstile"></div>
             </div>
 
             <div class="sm:col-span-2">
@@ -152,7 +152,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { useFetch } from '@vueuse/core';
 
 export interface Props {
@@ -172,22 +172,49 @@ const form = ref({
   category: props.defaultOption || 'Report a problem',
   message: '',
 });
+const captchaToken = ref('')
+onMounted(() => {
+  // Ensure the Turnstile script is loaded
+  if (typeof turnstile !== 'undefined') {
+    turnstile.render('#turnstile', {
+      sitekey: props.turnstileSiteKey,
+      callback: function (token) {
+        // Store the token when the user solves the CAPTCHA
+        captchaToken.value = token;
+      },
+    });
+  } else {
+    console.error('Turnstile script not loaded.');
+  }
+});
 
-const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form', { immediate: false })
-  .post({
-    payload: form.value,
-  })
-  .json();
+const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form', {
+  immediate: false,
+})
+  .post() // Remove the pre-configured body
+  .json(); // This .json() parses the RESPONSE, which is correct.
 
-function submit() {
+async function submit() {
   if (form.value.name === '' || form.value.email === '' || form.value.message === '') {
     error.value = 'Please fill out the form completely';
-    isFinished.value = true;
     return;
   }
+
+  if (!captchaToken.value) {
+    error.value = 'Please complete the CAPTCHA.';
+    return;
+  }
+
+  // Create a new FormData object
+  const formData = new FormData();
+  formData.append('name', form.value.name);
+  formData.append('email', form.value.email);
+  formData.append('category', form.value.category);
+  formData.append('message', form.value.message);
+  formData.append('cf-turnstile-response', captchaToken.value);
+
   execute();
 }
-
 watch(data, () => {
   displayMessage.value = "Thank you for contacting Friends of Ute Valley Park! We'll review your message shortly.";
   form.value.name = '';
