@@ -1,11 +1,9 @@
 import { Resend } from 'resend';
 import turnstilePlugin from "@cloudflare/pages-plugin-turnstile";
 
-const SECRET_KEY = context.env.TURNSTILE_SECRET_KEY;
-
 export const onRequestPost = [
   turnstilePlugin({
-    secret: SECRET_KEY,
+    secret: (context) => context.env.TURNSTILE_SECRET_KEY,
   }),
   (async (context) => {
     try {
@@ -20,6 +18,20 @@ export const onRequestPost = [
           }),
           {
             status: 400,
+            headers: { 'Content-Type': 'application/json' },
+          },
+        );
+      }
+
+      // Check if Turnstile validation passed (the plugin adds this)
+      if (!context.data.turnstile.success) {
+         return new Response(
+          JSON.stringify({
+            status: false,
+            message: 'CAPTCHA validation failed. Please try again.',
+          }),
+          {
+            status: 400, // Use 403 Forbidden or 400 Bad Request
             headers: { 'Content-Type': 'application/json' },
           },
         );
