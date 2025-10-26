@@ -110,7 +110,7 @@
             </div>
 
             <div class="sm:col-span-2">
-              <div id="turnstile"></div>
+              <div class="cf-turnstile" :data-sitekey="turnstileSiteKey"></div>
             </div>
 
             <div class="sm:col-span-2">
@@ -152,7 +152,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 import { useFetch } from '@vueuse/core';
 
 export interface Props {
@@ -172,49 +172,53 @@ const form = ref({
   category: props.defaultOption || 'Report a problem',
   message: '',
 });
-const captchaToken = ref('')
-onMounted(() => {
-  // Ensure the Turnstile script is loaded
-  if (typeof turnstile !== 'undefined') {
-    turnstile.render('#turnstile', {
-      sitekey: props.turnstileSiteKey,
-      callback: function (token) {
-        // Store the token when the user solves the CAPTCHA
-        captchaToken.value = token;
-      },
-    });
-  } else {
-    console.error('Turnstile script not loaded.');
-  }
-});
 
+// 1. Create a ref to hold the payload.
+// We must explicitly type it so TypeScript/Vue knows it will hold FormData.
+const formPayload = ref<FormData | null>(null);
+
+// 2. Pass the PAYLOAD REF to the .post() method.
+//    .json() is correct for parsing the *response*.
 const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form', {
-  immediate: false,
+  immediate: false, // Don't run on load
 })
-  .post() // Remove the pre-configured body
-  .json(); // This .json() parses the RESPONSE, which is correct.
+  .post(formPayload) // Pass the ref here
+  .json(); // Parse the server's JSON response
 
-async function submit() {
+// 3. The submit function now updates the ref, then executes.
+function submit() {
+  // Reset state on new submission
+  error.value = null;
+
+  // --- Form Validation ---
   if (form.value.name === '' || form.value.email === '' || form.value.message === '') {
     error.value = 'Please fill out the form completely';
     return;
   }
 
-  if (!captchaToken.value) {
-    error.value = 'Please complete the CAPTCHA.';
+  // --- Token Validation ---
+  const turnstileToken = (document.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement | null)?.value;
+
+  if (!turnstileToken) {
+    error.value = 'CAPTCHA validation failed. Please refresh and try again.';
     return;
   }
 
-  // Create a new FormData object
+  // --- Create FormData ---
   const formData = new FormData();
   formData.append('name', form.value.name);
   formData.append('email', form.value.email);
   formData.append('category', form.value.category);
   formData.append('message', form.value.message);
-  formData.append('cf-turnstile-response', captchaToken.value);
+  formData.append('cf-turnstile-response', turnstileToken);
 
+  // 4. Update the payload ref's value.
+  formPayload.value = formData;
+
+  // 5. Call execute(), which will now use the new value of formPayload.
   execute();
 }
+
 watch(data, () => {
   displayMessage.value = "Thank you for contacting Friends of Ute Valley Park! We'll review your message shortly.";
   form.value.name = '';
