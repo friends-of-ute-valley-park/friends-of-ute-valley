@@ -130,7 +130,7 @@
         </div>
 
         <!-- notification banner -->
-        <div v-if="isFinished" class="my-8 rounded-md p-4" :class="[error ? 'bg-red-50' : 'bg-green-50']">
+        <div v-if="isFinished || error" class="my-8 rounded-md p-4" :class="[error ? 'bg-red-50' : 'bg-green-50']">
           <div class="flex">
             <div class="shrink-0">
               <i-heroicons-megaphone class="size-6" :class="[error ? 'text-red-800' : 'text-green-800']" />
@@ -189,18 +189,19 @@ const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form
 function submit() {
   // Reset state on new submission
   error.value = null;
-
   // --- Form Validation ---
   if (form.value.name === '' || form.value.email === '' || form.value.message === '') {
     error.value = 'Please fill out the form completely';
+    displayMessage.value = 'All required fields must be filled out before submitting the form.';
     return;
   }
-
+  
   // --- Token Validation ---
   const turnstileToken = (document.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement | null)?.value;
 
-  if (!turnstileToken) {
-    error.value = 'CAPTCHA validation failed. Please refresh and try again.';
+  if (!turnstileToken || turnstileToken === '') {
+    error.value = 'Turnstile verification failed. Please try again.';
+    displayMessage.value = 'Please verify you are not a robot and try again.';
     return;
   }
 
