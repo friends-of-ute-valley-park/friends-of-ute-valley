@@ -110,7 +110,7 @@
             </div>
 
             <div class="sm:col-span-2">
-              <div class="cf-turnstile" :data-sitekey="turnstileSiteKey"></div>
+              <div class="cf-turnstile" :data-sitekey="turnstileSiteKey" data-size="flexible" data-theme="light"></div>
             </div>
 
             <div class="sm:col-span-2">
