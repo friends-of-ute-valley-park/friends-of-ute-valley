@@ -11,35 +11,35 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/vue": "^5.1.3",
-    "@iconify/json": "^2.2.422",
+    "@astrojs/vue": "^5.1.4",
+    "@iconify/json": "^2.2.428",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19",
-    "@typescript-eslint/eslint-plugin": "^8.51.0",
-    "@typescript-eslint/parser": "^8.51.0",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@typescript-eslint/parser": "^8.53.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-vue": "^10.6.2",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.0",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.1.18",
-    "unplugin-icons": "^22.5.0",
-    "unplugin-vue-components": "^30.0.0",
+    "unplugin-icons": "^23.0.1",
+    "unplugin-vue-components": "^31.0.0",
     "vue": "^3.5.26"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/sitemap": "^3.6.1",
     "@cloudflare/pages-plugin-turnstile": "^1.0.2",
     "@headlessui/vue": "^1.7.23",
     "@tailwindcss/vite": "^4.1.18",
     "@vueuse/core": "^14.1.0",
-    "astro": "5.16.6",
+    "astro": "5.16.9",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
     "inter-ui": "^4.1.1",
-    "resend": "^6.6.0"
+    "resend": "^6.7.0"
   }
 }
