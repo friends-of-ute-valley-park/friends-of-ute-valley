@@ -31,7 +31,7 @@
     "vue": "^3.5.26"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.6.1",
+    "@astrojs/sitemap": "^3.7.0",
     "@cloudflare/pages-plugin-turnstile": "^1.0.2",
     "@headlessui/vue": "^1.7.23",
     "@tailwindcss/vite": "^4.1.18",
