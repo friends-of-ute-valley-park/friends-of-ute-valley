@@ -1,61 +1,83 @@
 ---
-import Layout from '@layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
 
-import { Picture } from 'astro:assets';
-import heroImage from '../assets/images/ute-valley-park-biker.jpg';
-import DogImage from '../assets/images/dog.jpg';
-import uteValleyParkMap from '../assets/images/maps/ute-valley-park-map-full.jpg';
+import { Picture } from "astro:assets";
+import heroImage from "../assets/images/ute-valley-park-biker.jpg";
+import DogImage from "../assets/images/dog.jpg";
+import uteValleyParkMap from "../assets/images/maps/ute-valley-park-map-full.jpg";
 
-import LeaveNoTrace from '@components/LeaveNoTrace.astro';
+import LeaveNoTrace from "@components/LeaveNoTrace.astro";
 const activities = [
   {
-    name: 'Hiking',
-    description: 'Explore the serene nature within a bustling city. Hike your way through forest and meadow while taking in the fresh air.',
+    name: "Hiking",
+    description:
+      "Explore the serene nature within a bustling city. Hike your way through forest and meadow while taking in the fresh air.",
   },
   {
-    name: 'Mountain Biking',
-    description: 'Ute Valley Park offers a variety of tails suitable to mountain bikers as well as the designated downhill area for the adventurous.',
+    name: "Mountain Biking",
+    description:
+      "Ute Valley Park offers a variety of tails suitable to mountain bikers as well as the designated downhill area for the adventurous.",
   },
   {
-    name: 'Running',
-    description: 'Numerous trails from wide and flat to steep rocky offer joggers and trail runners the perfect opportunity to get outside.',
+    name: "Running",
+    description:
+      "Numerous trails from wide and flat to steep rocky offer joggers and trail runners the perfect opportunity to get outside.",
   },
   {
-    name: 'Bouldering',
-    description: 'Located in the Southwest corner of the park, near Piñon Park Dr., you can explore the variety of climbing challenges.',
+    name: "Bouldering",
+    description:
+      "Located in the Southwest corner of the park, near Piñon Park Dr., you can explore the variety of climbing challenges.",
   },
 ];
 
 interface TrailheadFile {
   id: number;
-  name: String;
-  description: String;
+  name: string;
+  description: string;
   url: URL;
 }
 
-import { getCollection } from 'astro:content';
-const trailheads = await getCollection('trailheads');
+import { getCollection } from "astro:content";
+const trailheads = await getCollection("trailheads");
 const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
 ---
 
 <Layout title="Visit">
   <div class="mt-2 overflow-hidden bg-gray-50">
-    <div class="relative mx-auto max-w-xl px-4 sm:px-6 lg:max-w-(--breakpoint-xl) lg:px-8">
+    <div
+      class="relative mx-auto max-w-xl px-4 sm:px-6 lg:max-w-(--breakpoint-xl) lg:px-8"
+    >
       <!-- Hero section -->
       <div class="relative py-12 lg:py-24">
         <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-50"></div>
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div class="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
             <div class="absolute inset-0">
-              <Picture src={heroImage} formats={['avif', 'webp']} alt="" width="1200" height="1200" class="h-full w-full object-cover" />
-              <div class="absolute inset-0 bg-linear-to-r from-green-700 to-teal-600 mix-blend-multiply"></div>
+              <Picture
+                src={heroImage}
+                formats={["avif", "webp"]}
+                alt=""
+                width="1200"
+                height="1200"
+                class="h-full w-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-linear-to-r from-green-700 to-teal-600 mix-blend-multiply"
+              >
+              </div>
             </div>
             <div class="relative px-4 py-32 sm:px-6 sm:py-48 lg:px-8 lg:py-64">
-              <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+              <h1
+                class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
+              >
                 <span class="block text-white">Discover Ute Valley Park</span>
               </h1>
-              <p class="mx-auto mt-6 max-w-lg text-center text-2xl text-green-50 sm:max-w-3xl">
-                Immerse yourself in the beauty of Ute Valley Park. Hike, run, boulder or mountain bike and immerse yourself in the park's stunning surroundings. Join us and experience the wonders of
+              <p
+                class="mx-auto mt-6 max-w-lg text-center text-2xl text-green-50 sm:max-w-3xl"
+              >
+                Immerse yourself in the beauty of Ute Valley Park. Hike, run,
+                boulder or mountain bike and immerse yourself in the park's
+                stunning surroundings. Join us and experience the wonders of
                 nature firsthand.
               </p>
             </div>
@@ -63,37 +85,82 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
         </div>
       </div>
 
-      <div class="relative lg:mt-18 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
+      <div
+        class="relative lg:mt-18 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8"
+      >
         <div class="relative">
-          <h4 class="text-2xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-3xl sm:leading-9">Getting There</h4>
+          <h4
+            class="text-2xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-3xl sm:leading-9"
+          >
+            Getting There
+          </h4>
 
-          <p class="mt-3 text-lg leading-7 text-gray-500">Ute Valley Park is nestled between Centennial Blvd, Vindicator Dr and I-25 in Colorado Springs with 5 convenient parking locations.</p>
+          <p class="mt-3 text-lg leading-7 text-gray-500">
+            Ute Valley Park is nestled between Centennial Blvd, Vindicator Dr
+            and I-25 in Colorado Springs with 5 convenient parking locations.
+          </p>
           <ul class="my-10">
             {
               sortedTrailheads.map((trailhead, i) => (
-                <li class:list={['relative focus-within:ring-2 focus-within:ring-green-500', { 'mt-6': i !== 0 }]}>
+                <li
+                  class:list={[
+                    "relative focus-within:ring-2 focus-within:ring-green-500",
+                    { "mt-6": i !== 0 },
+                  ]}
+                >
                   <div class="flex items-center px-4 py-4 hover:bg-gray-100 sm:px-6">
                     <div class="flex min-w-0 flex-1 items-center">
                       <div class="shrink-0">
                         <div class="flex h-12 w-12 items-center justify-center rounded-md bg-green-500 text-white">
-                          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <svg
+                            class="h-6 w-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                            />
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
                           </svg>
                         </div>
                       </div>
                       <div class="ml-4">
                         <h5 class="text-lg font-semibold text-green-800 hover:underline">
-                          <a class="block focus:outline-hidden" href={'/trailheads/' + trailhead.id + '/'}>
+                          <a
+                            class="block focus:outline-hidden"
+                            href={"/trailheads/" + trailhead.id + "/"}
+                          >
                             <span class="absolute inset-0" aria-hidden="true" />
                             {trailhead.data.name}
                           </a>
                         </h5>
-                        <p class="text-base text-gray-500">{trailhead.data.description}</p>
+                        <p class="text-base text-gray-500">
+                          {trailhead.data.description}
+                        </p>
                       </div>
                     </div>
-                    <svg class="h-8 w-8 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    <svg
+                      class="h-8 w-8 text-green-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      />
                     </svg>
                   </div>
                 </li>
@@ -103,24 +170,37 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
         </div>
 
         <div class="sm:mx-auto sm:max-w-3xl sm:px-6">
-          <div class="py-12 sm:isolate sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(40%-30rem)]" aria-hidden="true">
+          <div
+            class="py-12 sm:isolate sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2"
+          >
+            <div
+              class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(40%-30rem)]"
+              aria-hidden="true"
+            >
               <div
-                class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-green-200 to-teal-200 opacity-90 sm:left-[calc(0%+36rem)] sm:w-[72.1875rem]"
-                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                class="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-green-200 to-teal-200 opacity-90 sm:left-[calc(0%+36rem)] sm:w-288.75"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+              >
               </div>
             </div>
-            <div class="relative sm:mx-auto sm:max-w-3xl sm:px-0 lg:-mr-10 lg:h-full lg:max-w-none lg:pl-12">
-              <a href="/images/maps/ute-valley-park-map-full.jpg" target="_blank">
+            <div
+              class="relative sm:mx-auto sm:max-w-3xl sm:px-0 lg:-mr-10 lg:h-full lg:max-w-none lg:pl-12"
+            >
+              <a
+                href="/images/maps/ute-valley-park-map-full.jpg"
+                target="_blank"
+              >
                 <Picture
                   src={uteValleyParkMap}
-                  formats={['avif', 'webp']}
+                  formats={["avif", "webp"]}
                   alt="Map of Ute Valley Park"
                   width="800"
                   height="600"
                   class="ring-opacity-5 mx-auto w-full rounded-md shadow-xl ring-1 ring-black lg:h-96 lg:w-auto lg:max-w-none"
                 />
-                <p class="mx-auto mt-1 w-1/2 text-center text-sm text-gray-700">Click to open fullsize map</p>
+                <p class="mx-auto mt-1 w-1/2 text-center text-sm text-gray-700">
+                  Click to open fullsize map
+                </p>
               </a>
             </div>
           </div>
@@ -128,32 +208,75 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
       </div>
       <LeaveNoTrace />
       <!-- Rules -->
-      <svg class="absolute right-full hidden translate-x-1/2 translate-y-12 transform lg:block" width="404" height="784" fill="none" viewBox="0 0 404 784">
+      <svg
+        class="absolute right-full hidden translate-x-1/2 translate-y-12 transform lg:block"
+        width="404"
+        height="784"
+        fill="none"
+        viewBox="0 0 404 784"
+      >
         <defs>
-          <pattern id="64e643ad-2176-4f86-b3d7-f2c5da3b6a6d" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"></rect>
+          <pattern
+            id="64e643ad-2176-4f86-b3d7-f2c5da3b6a6d"
+            x="0"
+            y="0"
+            width="20"
+            height="20"
+            patternUnits="userSpaceOnUse"
+          >
+            <rect
+              x="0"
+              y="0"
+              width="4"
+              height="4"
+              class="text-gray-200"
+              fill="currentColor"></rect>
           </pattern>
         </defs>
-        <rect width="404" height="784" fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)"></rect>
+        <rect
+          width="404"
+          height="784"
+          fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)"></rect>
       </svg>
 
-      <div class="relative mx-auto max-w-7xl bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
+      <div
+        class="relative mx-auto max-w-7xl bg-gray-50 px-4 py-8 sm:px-6 lg:px-8"
+      >
         <div class="mx-auto text-base">
-          <h2 class="text-base font-semibold tracking-wide text-green-600 uppercase">Rules</h2>
-          <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Help keep Ute Valley Safe and Clean</h3>
+          <h2
+            class="text-base font-semibold tracking-wide text-green-600 uppercase"
+          >
+            Rules
+          </h2>
+          <h3
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
+          >
+            Help keep Ute Valley Safe and Clean
+          </h3>
         </div>
         <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
           <div class="mt-8 text-xl lg:mt-0">
             For the safety and comfort of all visitors please read the
-            {' '}
-            <a href="/rules/" class="font-semibold text-green-600 no-underline"> rules</a>
-            {' '}
+            {" "}
+            <a href="/rules/" class="font-semibold text-green-600 no-underline">
+              rules</a
+            >
+            {" "}
             the city of Colorado Springs enforces for all city parks and open spaces.
           </div>
           <div class="relative mx-auto max-w-prose text-base lg:max-w-none">
-            <div class="aspect-h-7 aspect-w-12 lg:aspect-none relative mt-8 lg:mt-0 lg:px-16">
+            <div
+              class="aspect-h-7 aspect-w-12 lg:aspect-none relative mt-8 lg:mt-0 lg:px-16"
+            >
               <figure>
-                <Picture src={DogImage} formats={['avif', 'webp']} alt="dog in park in front of mountains" width="600" height="400" class="rounded-lg object-cover object-center shadow-lg" />
+                <Picture
+                  src={DogImage}
+                  formats={["avif", "webp"]}
+                  alt="dog in park in front of mountains"
+                  width="600"
+                  height="400"
+                  class="rounded-lg object-cover object-center shadow-lg"
+                />
               </figure>
             </div>
           </div>
@@ -162,19 +285,35 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
 
       <!-- Activities -->
       <div class="relative mt-12 mb-16 sm:mt-16 lg:mt-24">
-        <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center lg:gap-8">
+        <div
+          class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center lg:gap-8"
+        >
           <div class="lg:col-start-2">
-            <h2 class="text-base font-semibold tracking-wide text-green-600 uppercase">Activities</h2>
-            <h4 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Do more at Ute Valley Park</h4>
+            <h2
+              class="text-base font-semibold tracking-wide text-green-600 uppercase"
+            >
+              Activities
+            </h2>
+            <h4
+              class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
+            >
+              Do more at Ute Valley Park
+            </h4>
 
             <ul class="mt-10">
               {
                 activities.map((activity, i) => (
-                  <li class:list={[{ 'mt-10': i !== 0 }]}>
+                  <li class:list={[{ "mt-10": i !== 0 }]}>
                     <div class="flex">
                       <div class="shrink-0">
                         <div class="flex h-12 w-12 items-center justify-center rounded-md bg-green-500 text-white">
-                          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <svg
+                            class="h-6 w-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
                             <path
                               stroke-Linecap="round"
                               stroke-Linejoin="round"
@@ -185,8 +324,12 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
                         </div>
                       </div>
                       <div class="ml-4">
-                        <h5 class="text-lg font-medium text-gray-900">{activity.name}</h5>
-                        <p class="mt-2 text-base text-gray-500">{activity.description}</p>
+                        <h5 class="text-lg font-medium text-gray-900">
+                          {activity.name}
+                        </h5>
+                        <p class="mt-2 text-base text-gray-500">
+                          {activity.description}
+                        </p>
                       </div>
                     </div>
                   </li>
@@ -196,12 +339,18 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
           </div>
 
           <div class="relative mx-auto max-w-prose text-base lg:max-w-none">
-            <div class="aspect-h-7 aspect-w-12 lg:aspect-none relative mt-8 lg:mt-0 lg:h-96 lg:px-16">
+            <div
+              class="aspect-h-7 aspect-w-12 lg:aspect-none relative mt-8 lg:mt-0 lg:h-96 lg:px-16"
+            >
               <figure>
                 <picture>
                   <source srcset="/images/activities.webp" type="image/webp" />
                   <source srcset="/images/activities.jpg" type="image/jpeg" />
-                  <img class="rounded-lg object-cover object-center shadow-lg" src="/images/activities.jpg" alt="Biker in the air at sunset" />
+                  <img
+                    class="rounded-lg object-cover object-center shadow-lg"
+                    src="/images/activities.jpg"
+                    alt="Biker in the air at sunset"
+                  />
                 </picture>
               </figure>
             </div>
@@ -210,41 +359,79 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
       </div>
     </div>
     <!-- trails -->
-    <div class="relative mx-auto max-w-7xl bg-gray-50 px-4 py-16 sm:px-6 lg:px-8">
+    <div
+      class="relative mx-auto max-w-7xl bg-gray-50 px-4 py-16 sm:px-6 lg:px-8"
+    >
       <div class="mx-auto text-base">
-        <h2 class="text-base font-semibold tracking-wide text-green-600 uppercase">Trails</h2>
-        <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Discover the trails of Ute Valley Park</h3>
+        <h2
+          class="text-base font-semibold tracking-wide text-green-600 uppercase"
+        >
+          Trails
+        </h2>
+        <h3
+          class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
+        >
+          Discover the trails of Ute Valley Park
+        </h3>
       </div>
       <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
         <div class="mt-8 lg:mt-0">
-          <div class="prose prose-green mx-auto mt-5 text-gray-500 lg:col-start-1 lg:row-start-1 lg:max-w-none">
+          <div
+            class="prose prose-green mx-auto mt-5 text-gray-500 lg:col-start-1 lg:row-start-1 lg:max-w-none"
+          >
             <h4>BeaUTEiful Loop</h4>
-            <p class="text-lg text-gray-600">Ridge top views of Pikes Peak, Black Forest and Rockrimmon as well as meandering through dense forest and rocky outcrops.</p>
+            <p class="text-lg text-gray-600">
+              Ridge top views of Pikes Peak, Black Forest and Rockrimmon as well
+              as meandering through dense forest and rocky outcrops.
+            </p>
             <h4>Rattlesnake Ridge</h4>
             <p class="text-lg text-gray-600">
-              Breathtaking views on a razor ridge where you can see Pikes Peak, Garden of the Gods, Piñon Valley as well as Black Forest. This is a very technical, sharp, rocky trail, great for a
-              challenging hike, not recommended for most mountain bikers; only the most experienced.
+              Breathtaking views on a razor ridge where you can see Pikes Peak,
+              Garden of the Gods, Piñon Valley as well as Black Forest. This is
+              a very technical, sharp, rocky trail, great for a challenging
+              hike, not recommended for most mountain bikers; only the most
+              experienced.
             </p>
             <h4>High Arches loop</h4>
             <p class="text-lg text-gray-600">
-              This quick loop is close to Vindicator Parking Lot and will take you through a rocky outcropping that overlooks a winding valley of an old ranch that was once located here. The trail
-              winds down to a natural arch, ducking required. Also not recommended for beginning mountain bikers.
+              This quick loop is close to Vindicator Parking Lot and will take
+              you through a rocky outcropping that overlooks a winding valley of
+              an old ranch that was once located here. The trail winds down to a
+              natural arch, ducking required. Also not recommended for beginning
+              mountain bikers.
             </p>
             <h4>Black and Blue Loop</h4>
             <p class="text-lg text-gray-600">
-              This loop has earned its name for mountain bikers; not for beginners. Located just off the Ute Valley Trail parking lot and will take you above a drainage creek. The black side is ranked
-              black due to its challenging terrain of sharp rocks and steep grades. You will have to walk along the Tech Center Drive parking lot to make a full loop. The blue side of the loop is more
-              flowing and takes you over a natural arch, a monstrous bridge that had to be built on site, mine tailings and a cave!
+              This loop has earned its name for mountain bikers; not for
+              beginners. Located just off the Ute Valley Trail parking lot and
+              will take you above a drainage creek. The black side is ranked
+              black due to its challenging terrain of sharp rocks and steep
+              grades. You will have to walk along the Tech Center Drive parking
+              lot to make a full loop. The blue side of the loop is more flowing
+              and takes you over a natural arch, a monstrous bridge that had to
+              be built on site, mine tailings and a cave!
             </p>
           </div>
         </div>
         <div class="relative mx-auto max-w-prose text-base lg:max-w-none">
-          <div class="aspect-h-7 aspect-w-12 lg:aspect-none relative mt-8 lg:mt-0 lg:h-96 lg:px-16">
+          <div
+            class="aspect-h-7 aspect-w-12 lg:aspect-none relative mt-8 lg:mt-0 lg:h-96 lg:px-16"
+          >
             <figure>
               <picture>
-                <source srcset="/images/ute-valley-park-arch.webp" type="image/webp" />
-                <source srcset="/images/ute-valley-park-arch.jpg" type="image/jpeg" />
-                <img class="rounded-lg object-cover object-center shadow-lg" src="/images/ute-valley-park-arch.jpg" alt="arch at ute valley park" />
+                <source
+                  srcset="/images/ute-valley-park-arch.webp"
+                  type="image/webp"
+                />
+                <source
+                  srcset="/images/ute-valley-park-arch.jpg"
+                  type="image/jpeg"
+                />
+                <img
+                  class="rounded-lg object-cover object-center shadow-lg"
+                  src="/images/ute-valley-park-arch.jpg"
+                  alt="arch at ute valley park"
+                />
               </picture>
             </figure>
           </div>

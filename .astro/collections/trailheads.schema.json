@@ -31,10 +31,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "name",
-              "description"
-            ],
+            "required": ["name", "description"],
             "additionalProperties": false
           }
         },
@@ -53,10 +50,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "photo",
-              "caption"
-            ],
+            "required": ["photo", "caption"],
             "additionalProperties": false
           }
         },
@@ -64,16 +58,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id",
-        "name",
-        "description",
-        "directionsLink",
-        "location",
-        "amenities",
-        "map",
-        "photos"
-      ],
+      "required": ["id", "name", "description", "directionsLink", "location", "amenities", "map", "photos"],
       "additionalProperties": false
     }
   },

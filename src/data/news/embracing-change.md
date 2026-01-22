@@ -7,6 +7,7 @@ previewText: The word of the day is change. Not the nick­els, dimes and
   quar­ters rolling around in your car’s con­sole kind of change. Nope. This use
   of the word would be the embrace change kind of change.
 ---
+
 This article originally appeared in the [North Springs Edition](https://daily.gazette.com/article/281565178917014)
 
 The word of the day is change. Not the nick­els, dimes and quar­ters rolling around in your car’s con­sole kind of change. Nope. This use of the word would be the embrace change kind of change.

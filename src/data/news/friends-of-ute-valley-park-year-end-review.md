@@ -7,6 +7,7 @@ previewText: As 2023 winds down it is typical to review our accomplishments
   during the year as well as noting those items that may still be on a To Do
   List.
 ---
+
 As 2023 winds down it is typical to review our accomplishments during the year as well as noting those items that may still be on a To Do List. With 2024 rapidly approaching it also is likely you may be pondering some future plans as well. Yes, that all may describe your current life status, but it is also spot on where the Friends of Ute Valley Park currently are as well.
 
 We have come through another year of heavy activity in the park. Always hard to root against the rain as a Coloradoan, but there was a lot of it this year that impacted us in many ways. Running water is often described as evil and with the varying topographic levels and soil composition in UVP it can wreak havoc. Plus, the wet weather succeeded in diminishing some work sessions causing us challenges with the ongoing maintenance FUVP likes to provide.
@@ -15,10 +16,10 @@ So that is the bad news, but the **GREAT** news is that even with those challeng
 
 ## Let’s look at the amazing numbers:
 
-* 76 total individual volunteers
-* 782 feet of new trail construction
-* 2,149 of trail restoration- with some up to 40 feet wide
-* 478 total volunteer hours of work provided.
+- 76 total individual volunteers
+- 782 feet of new trail construction
+- 2,149 of trail restoration- with some up to 40 feet wide
+- 478 total volunteer hours of work provided.
 
 The FUVP is very, very thankful for all those that regularly turn out and the vital and meaningful work they provide. Again this year we enjoyed hosting a celebration for our volunteers as a thank you at Red Leg Brewery.
 

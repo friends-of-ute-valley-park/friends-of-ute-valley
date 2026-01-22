@@ -7,14 +7,14 @@ export async function onRequestPost(context) {
   if (!data.email) {
     return new Response(JSON.stringify({ status: false, message: 'Email address required' }), {
       status: 400,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 
   if (!data.name) {
     return new Response(JSON.stringify({ status: false, message: 'Name required' }), {
       status: 400,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 
@@ -34,7 +34,7 @@ export async function onRequestPost(context) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${authData.access_token}`,
+      Authorization: `Bearer ${authData.access_token}`,
     },
     body: JSON.stringify({
       emails: [
@@ -57,13 +57,13 @@ export async function onRequestPost(context) {
   if (sendpulseData.result === true) {
     return new Response(JSON.stringify({ status: true }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 
   return new Response(JSON.stringify({ status: false, message: sendpulseData.result }), {
     status: 200,
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json' },
   });
 }
 

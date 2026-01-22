@@ -8,27 +8,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
-  },
-  "devDependencies": {
-    "@astrojs/vue": "^5.1.4",
-    "@iconify/json": "^2.2.428",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/forms": "^0.5.11",
-    "@tailwindcss/typography": "^0.5.19",
-    "@typescript-eslint/eslint-plugin": "^8.53.0",
-    "@typescript-eslint/parser": "^8.53.0",
-    "eslint": "^9.39.2",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.5",
-    "eslint-plugin-vue": "^10.6.2",
-    "prettier": "^3.8.0",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "tailwindcss": "^4.1.18",
-    "unplugin-icons": "^23.0.1",
-    "unplugin-vue-components": "^31.0.0",
-    "vue": "^3.5.26"
+    "astro": "astro",
+    "lint": "oxlint --type-aware",
+    "lint:fix": "oxlint --fix --type-aware"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.1",
@@ -41,5 +23,21 @@
     "dotenv": "^17.2.3",
     "inter-ui": "^4.1.1",
     "resend": "^6.7.0"
+  },
+  "devDependencies": {
+    "@astrojs/vue": "^5.1.4",
+    "@iconify/json": "^2.2.428",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/typography": "^0.5.19",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@typescript-eslint/parser": "^8.53.0",
+    "oxfmt": "^0.26.0",
+    "oxlint": "^1.41.0",
+    "oxlint-tsgolint": "^0.11.1",
+    "tailwindcss": "^4.1.18",
+    "unplugin-icons": "^23.0.1",
+    "unplugin-vue-components": "^31.0.0",
+    "vue": "^3.5.26"
   }
 }

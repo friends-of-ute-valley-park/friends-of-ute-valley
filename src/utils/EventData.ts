@@ -1,6 +1,6 @@
-import type { VolunteerEventFrontmatter, MeetingLocation } from '../../typings/index'
+import type { VolunteerEventFrontmatter, MeetingLocation } from '../../typings/index';
 
-export function MeetingLocationParser(volunteerEventFrontmatter : VolunteerEventFrontmatter, meetingLocations: MeetingLocation[]) {
+export function MeetingLocationParser(volunteerEventFrontmatter: VolunteerEventFrontmatter, meetingLocations: MeetingLocation[]) {
   if (volunteerEventFrontmatter.meetingLocation.predefinedLocation !== -1) {
     const location = meetingLocations.find((loc) => loc.data.id === volunteerEventFrontmatter.meetingLocation.predefinedLocation);
     if (!location) {

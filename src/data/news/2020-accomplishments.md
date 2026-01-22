@@ -17,7 +17,6 @@ Our season was limited to groups of 10 but still accomplished a great deal of go
 
 - 87 volunteers working 199 hours.
 - We built
-
   - 10 feet of Buck and Rail fencing
   - 20 Feet of split rail Fencing
   - closed 460 feet of Rogue trails

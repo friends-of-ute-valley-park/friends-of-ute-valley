@@ -8,4 +8,5 @@ meetingLocation:
 link: https://cerv.is/0132x4272
 time: 5:30-7:30PM
 ---
+
 Come join the Friends of Ute Valley on our Wednesday night volunteer work session! We will be focusing on drainage installation, and closing rogue trails near the regional access trail. Please wear pants and closed-toe shoes, bring work gloves, eye protection, sunscreen, water, and snacks.

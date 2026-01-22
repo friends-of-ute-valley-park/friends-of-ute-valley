@@ -14,15 +14,13 @@
     // Enable strict type checking.
     "strict": true,
     // Error when a value import is only used as a type.
-    "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@/*": ["src/*"],
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@/*": ["./src/*"],
+      "@/typings/*": ["./typings/*"]
     },
-      "types": [
-        "unplugin-icons/types/astro"
-      ]
-    },
-    "skipLibCheck": true,
+    "types": ["unplugin-icons/types/astro"]
+  },
+  "skipLibCheck": true
 }

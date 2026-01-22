@@ -25,6 +25,5 @@ export interface MeetingLocation {
     name: string;
     notes: string;
     directionsLink: string;
-
-  }
+  };
 }

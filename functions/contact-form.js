@@ -1,11 +1,11 @@
 import { Resend } from 'resend';
-import turnstilePlugin from "@cloudflare/pages-plugin-turnstile";
+import turnstilePlugin from '@cloudflare/pages-plugin-turnstile';
 
 export const onRequestPost = [
   async (context) => {
     return turnstilePlugin({ secret: context.env.TURNSTILE_SECRET_KEY })(context);
   },
-  (async (context) => {
+  async (context) => {
     try {
       const data = await generateRequestData(context.request);
 
@@ -25,7 +25,7 @@ export const onRequestPost = [
 
       // Check if Turnstile validation passed (the plugin adds this)
       if (!context.data.turnstile.success) {
-         return new Response(
+        return new Response(
           JSON.stringify({
             status: false,
             message: 'CAPTCHA validation failed. Please try again.',
@@ -68,22 +68,19 @@ export const onRequestPost = [
         {
           status: 400,
           headers: { 'Content-Type': 'application/json' },
-        }
+        },
       );
     }
-  })
+  },
 ];
 
 async function generateRequestData(request) {
   const contentType = request.headers.get('content-type') || '';
 
   // Check for supported content types
-  if (
-    contentType.includes('application/x-www-form-urlencoded') ||
-    contentType.includes('multipart/form-data')
-  ) {
+  if (contentType.includes('application/x-www-form-urlencoded') || contentType.includes('multipart/form-data')) {
     const formData = await request.formData();
-    
+
     // Get data directly from formData fields.
     return {
       email: formData.get('email')?.toString() || '',

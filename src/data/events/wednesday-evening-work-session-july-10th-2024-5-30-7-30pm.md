@@ -8,4 +8,5 @@ meetingLocation:
 link: https://cerv.is/0132x4312
 time: 5:30-7:30 PM
 ---
+
 Come join the Friends of Ute Valley on our Wednesday night volunteer work session! We will be focusing on seeding and restoration below Nachos Trail and some invasive plant removal. Please wear pants and closed-toe shoes, bring work gloves, eye protection, sunscreen, water, and snacks.

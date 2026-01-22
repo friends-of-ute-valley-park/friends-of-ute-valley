@@ -2,9 +2,8 @@
 name: Dan Woods
 intro: "Dan Woods, a dedicated community leader and outdoor enthusiast, played a pivotal role in the expansion and preservation of Ute Valley Park. His leadership in rallying community support to protect the park ensured that future generations could continue to enjoy its natural beauty. Dan’s journey from newcomer to founding father of Friends of Ute Valley Park (FUVP) highlights how one person's vision and determination can have a lasting impact on a community."
 images:
-  - {image: './dan-woods-01.jpg'}
-  - {image: './dan-woods-02.jpg'}
-
+  - { image: './dan-woods-01.jpg' }
+  - { image: './dan-woods-02.jpg' }
 ---
 
 ## A Lifelong Career of Leadership
@@ -17,7 +16,7 @@ Dan's story with Ute Valley Park began years before his retirement, when he and 
 
 ## A Calling to Make a Difference
 
-Dan quickly became an active member of his community, involving himself in his local and regional church. His reputation as a respected leader led Bruce Hutchison to approach him with a challenging proposition: spearhead the effort to protect and expand Ute Valley Park by 209 acres. Though he had no prior experience with such an undertaking, Dan rose to the challenge, assembling a team of concerned citizens to support the campaign. "I had never done anything like this before," Dan remarked, reflecting on the team’s accomplishments, "we have accomplished great things together.” 
+Dan quickly became an active member of his community, involving himself in his local and regional church. His reputation as a respected leader led Bruce Hutchison to approach him with a challenging proposition: spearhead the effort to protect and expand Ute Valley Park by 209 acres. Though he had no prior experience with such an undertaking, Dan rose to the challenge, assembling a team of concerned citizens to support the campaign. "I had never done anything like this before," Dan remarked, reflecting on the team’s accomplishments, "we have accomplished great things together.”
 
 ## A Leader in Our Community
 

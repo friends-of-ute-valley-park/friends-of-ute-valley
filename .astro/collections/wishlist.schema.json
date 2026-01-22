@@ -26,14 +26,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "title",
-        "link",
-        "description",
-        "image",
-        "imageAlt",
-        "quantityNeeded"
-      ],
+      "required": ["title", "link", "description", "image", "imageAlt", "quantityNeeded"],
       "additionalProperties": false
     }
   },

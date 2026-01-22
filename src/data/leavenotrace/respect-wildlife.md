@@ -1,8 +1,8 @@
 ---
-title: "Respect Wildlife"
-topText: "The diverse wildlife in Ute Valley Park is one of its greatest treasures, offering visitors the chance to encounter nature in its purest form. To preserve this unique experience for everyone, it's vital to practice the Leave No Trace principle of \"Respect Wildlife.\""
-image: "./respect-wildlife.jpg"
-imageAlt: "Two mule deer bucks standing in a field of grass"
+title: 'Respect Wildlife'
+topText: 'The diverse wildlife in Ute Valley Park is one of its greatest treasures, offering visitors the chance to encounter nature in its purest form. To preserve this unique experience for everyone, it''s vital to practice the Leave No Trace principle of "Respect Wildlife."'
+image: './respect-wildlife.jpg'
+imageAlt: 'Two mule deer bucks standing in a field of grass'
 ---
 
 ## Respecting Wildlife at Ute Valley Park
@@ -34,19 +34,19 @@ This principle is important because it:
 Visitors can show respect for wildlife by:
 
 - **Using binoculars or a zoom lens for a closer look.**
-  
+
   Get a close-up view without getting too close physically. This minimizes stress for animals, allows you to observe their natural behavior, and enhances your experience by revealing details you might otherwise miss.
 
 - **Being mindful of noise levels.**
-  
+
   Loud noises can frighten wildlife and disrupt their communication, mating rituals, and hunting behaviors, which can have far-reaching ecological consequences. Speak softly and avoid loud activities that could disturb animals in their natural habitat.
 
 - **Storing food and trash securely.**
-  
+
   Use bear-proof trash cans provided at park trailheads to dispose of garbage, and store your food appropriately while utilizing the park. This prevents wildlife from being attracted to human food, which can be harmful to their health and disrupt their natural foraging habits. Proper food storage also maintains the cleanliness and safety of the park for all visitors. Remember to always pack out and properly dispose of pet waste.
 
 - **Learning about the wildlife.**
-  
+
   Before you visit, take time to learn about the animals you might see in Ute Valley Park, such as mule deer, coyotes, rattlesnakes and black bears. Understanding their behavior and needs helps you make responsible decisions while in their presence.
 
 ## Preserving the Sanctuary for All

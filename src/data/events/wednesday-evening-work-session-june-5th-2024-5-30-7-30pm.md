@@ -8,4 +8,5 @@ meetingLocation:
 link: https://cerv.is/0132x4294
 time: 5:30-7:30PM
 ---
+
 Come join the Friends of Ute Valley on our Wednesday night volunteer work session! We will be focusing on Regional Trail, including refining of backslope, outsloping tread, knocking down berms, seeding and restoration. Please wear pants and closed-toe shoes, bring work gloves, eye protection, sunscreen, water, and snacks.

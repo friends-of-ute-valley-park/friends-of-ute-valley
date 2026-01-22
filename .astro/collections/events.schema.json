@@ -42,9 +42,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "predefinedLocation"
-          ],
+          "required": ["predefinedLocation"],
           "additionalProperties": false
         },
         "link": {
@@ -57,13 +55,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "title",
-        "date",
-        "description",
-        "meetingLocation",
-        "time"
-      ],
+      "required": ["title", "date", "description", "meetingLocation", "time"],
       "additionalProperties": false
     }
   },

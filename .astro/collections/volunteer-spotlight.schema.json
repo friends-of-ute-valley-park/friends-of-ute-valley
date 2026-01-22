@@ -25,9 +25,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "image"
-            ],
+            "required": ["image"],
             "additionalProperties": false
           }
         },
@@ -35,11 +33,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "intro",
-        "name",
-        "images"
-      ],
+      "required": ["intro", "name", "images"],
       "additionalProperties": false
     }
   },

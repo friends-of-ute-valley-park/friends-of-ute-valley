@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "tabWidth": 2,
+  "bracketSameLine": true,
+  "printWidth": 200,
+  "singleQuote": true,
+  "experimentalTailwindcss": {
+    "stylesheet": "./src/styles/global.css"
+  },
+  "ignorePatterns": []
+}

@@ -20,12 +20,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "title",
-        "topText",
-        "image",
-        "imageAlt"
-      ],
+      "required": ["title", "topText", "image", "imageAlt"],
       "additionalProperties": false
     }
   },

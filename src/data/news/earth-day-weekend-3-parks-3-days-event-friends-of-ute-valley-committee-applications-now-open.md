@@ -7,21 +7,22 @@ coverImage: /src/data/news/3-days-3-parks.jpg
 previewText: We are excited to announce that Friends of Ute Valley will be
   participating in the Earth Day Weekend "3 Parks 3 Days" service event
 ---
+
 Dear Friends of Ute Valley,
 
 We are excited to announce that Friends of Ute Valley will be participating in the Earth Day Weekend "3 Parks 3 Days" service event, sponsored by Colorado Springs Parks and Recreation. This is a fantastic opportunity to give back to our community and help maintain the beautiful parks and open spaces we all cherish.
 
 Event Details:
 
-* Friday, April 19th 9AM-1PM: Blodgett Open Space
-* Saturday, April 20th 9AM-1PM: Palmer Park
-* Sunday, April 21st 9AM-1PM: Ute Valley Park
+- Friday, April 19th 9AM-1PM: Blodgett Open Space
+- Saturday, April 20th 9AM-1PM: Palmer Park
+- Sunday, April 21st 9AM-1PM: Ute Valley Park
 
 To participate in any of these events, please sign up on the Parks and Rec's Cervis website using the following links:
 
-* [Blodgett Open Space (Friday)](https://www.cervistech.com/acts/console.php?console_id=0132&console_type=event_list&ht=1&event_id=4230)
-* [Palmer Park (Saturday)](https://cerv.is/0132gtmBWgE)
-* [Ute Valley Park (Sunday)](https://www.cervistech.com/acts/console.php?console_id=0132&console_type=event_list&ht=1&event_id=4229)
+- [Blodgett Open Space (Friday)](https://www.cervistech.com/acts/console.php?console_id=0132&console_type=event_list&ht=1&event_id=4230)
+- [Palmer Park (Saturday)](https://cerv.is/0132gtmBWgE)
+- [Ute Valley Park (Sunday)](https://www.cervistech.com/acts/console.php?console_id=0132&console_type=event_list&ht=1&event_id=4229)
 
 The "3 Parks 3 Days" event is a wonderful way to get involved with different parks and groups from around the city. Not only will you have the chance to make a positive impact on these natural spaces, but you'll also have the opportunity to meet new people who share your passion for the outdoors. By participating in events at Blodgett Open Space, Palmer Park, and Ute Valley Park, you'll gain a deeper understanding and appreciation for the diverse parks and open spaces that make Colorado Springs such a special place to live.
 

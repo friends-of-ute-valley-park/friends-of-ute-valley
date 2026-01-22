@@ -3,35 +3,21 @@
     <div v-if="!isFinished || error">
       <form class="mt-3 sm:flex" @submit="submit">
         <label for="name" class="sr-only">Name</label>
-        <input
-          id="name"
-          v-model="payload.name"
-          type="text"
-          name="name"
-          :class="{
-            'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-hidden focus:ring-red-500': nameIsError,
-          }"
-          class="mr-4 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-xs focus:border-green-500 focus:ring-green-500 caret-green-400 sm:flex-1"
-          placeholder="Full name"
-          @blur="validate" />
+        <input id="name" v-model="payload.name" type="text" name="name" :class="{
+          'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': nameIsError,
+        }"
+          class="mr-4 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 caret-green-400 shadow-xs focus:border-green-500 focus:ring-green-500 sm:flex-1"
+          placeholder="Full name" @blur="validate" />
         <label for="email" class="sr-only">Email</label>
-        <input
-          id="email"
-          v-model="payload.email"
-          type="text"
-          name="email"
-          :class="{
-            'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-hidden focus:ring-red-500': emailIsError,
-          }"
-          class="mt-3 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-xs focus:border-green-500 focus:ring-green-500 caret-green-400 sm:mt-0 sm:flex-1"
-          placeholder="Email"
-          @blur="validate" />
-        <button
-          :disabled="isFetching"
-          type="submit"
-          class="mt-3 w-full rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium text-green-50 shadow-xs hover:bg-green-800 focus:outline-hidden focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:bg-green-600 sm:ml-3 sm:mt-0 sm:inline-flex sm:w-auto sm:shrink-0 sm:items-center">
+        <input id="email" v-model="payload.email" type="text" name="email" :class="{
+          'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': emailIsError,
+        }"
+          class="mt-3 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 caret-green-400 shadow-xs focus:border-green-500 focus:ring-green-500 sm:mt-0 sm:flex-1"
+          placeholder="Email" @blur="validate" />
+        <button :disabled="isFetching" type="submit"
+          class="mt-3 w-full rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium text-green-50 shadow-xs hover:bg-green-800 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-hidden disabled:bg-green-600 sm:mt-0 sm:ml-3 sm:inline-flex sm:w-auto sm:shrink-0 sm:items-center">
           <span>
-            <i-mdi-loading v-if="isFetching" class="-ml-2 mr-2 h-6 w-6 animate-spin text-white" />
+            <i-mdi-loading v-if="isFetching" class="mr-2 -ml-2 h-6 w-6 animate-spin text-white" />
           </span>
           Notify me
         </button>
@@ -46,7 +32,8 @@
       </p>
     </div>
     <div v-if="isFinished && !error">
-      <p class="text-base font-medium text-gray-900">Thank you for signing up. Please check your email for a confirmation email.</p>
+      <p class="text-base font-medium text-gray-900">Thank you for signing up. Please check your email for a
+        confirmation email.</p>
     </div>
     <div v-if="error" class="mt-2 text-sm text-red-600">
       <h2 class="text-3xl font-medium">Submit Error</h2>

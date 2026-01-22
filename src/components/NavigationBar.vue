@@ -8,40 +8,34 @@
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
             <!-- Current: "border-green-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-            <a
-              v-for="item in navigation"
-              :key="item.name"
-              :href="item.href"
-              :aria-current="item.current ? 'page' : undefined"
-              :class="[
+            <a v-for="item in navigation" :key="item.name" :href="item.href"
+              :aria-current="item.current ? 'page' : undefined" :class="[
                 item.current ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
                 'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium',
-              ]"
-              >{{ item.name }}</a
-            >
+              ]">{{ item.name }}</a>
             <div class="flex h-full justify-center">
               <Popover class="relative flex">
-                <PopoverButton
-                  :class="[
-                    props.page.startsWith('/leavenotrace') === true ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-                    'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium',
-                  ]">
+                <PopoverButton :class="[
+                  props.page.startsWith('/leavenotrace') === true ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                  'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium',
+                ]">
                   <span class="items-center">Leave No Trace</span>
                   <i-heroicons-chevron-down class="ml-1 h-5 w-5" aria-hidden="true" />
                 </PopoverButton>
-                <transition
-                  enter-active-class="transition ease-out duration-200"
-                  enter-from-class="opacity-0 translate-y-1"
-                  enter-to-class="opacity-100 translate-y-0"
-                  leave-active-class="transition ease-in duration-150"
-                  leave-from-class="opacity-100 translate-y-0"
+                <transition enter-active-class="transition ease-out duration-200"
+                  enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0"
+                  leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0"
                   leave-to-class="opacity-0 translate-y-1">
                   <PopoverPanel class="absolute left-1/2 z-10 mt-16 flex w-screen max-w-max -translate-x-1/2 px-4">
-                    <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                    <div
+                      class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
                       <div class="p-4">
-                        <div v-for="item in leaveNoTraceMenuItems" :key="item.name" class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
-                          <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                            <component :is="item.icon" class="h-6 w-6 text-gray-600 group-hover:text-green-600" aria-hidden="true" />
+                        <div v-for="item in leaveNoTraceMenuItems" :key="item.name"
+                          class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                          <div
+                            class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                            <component :is="item.icon" class="h-6 w-6 text-gray-600 group-hover:text-green-600"
+                              aria-hidden="true" />
                           </div>
                           <div>
                             <a :href="item.href" class="font-semibold text-gray-900">
@@ -65,7 +59,7 @@
         <div class="-mr-2 flex items-center sm:hidden">
           <!-- Mobile menu button -->
           <DisclosureButton
-            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-green-500">
+            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:ring-2 focus:ring-green-500 focus:outline-hidden focus:ring-inset">
             <span class="sr-only">Open main menu</span>
             <i-heroicons-bars-3 v-if="!open" class="block h-6 w-6" aria-hidden="true" />
             <i-heroicons-x-mark v-else class="block h-6 w-6" aria-hidden="true" />
@@ -75,31 +69,19 @@
     </div>
 
     <DisclosurePanel class="sm:hidden">
-      <div class="space-y-1 pb-3 pt-2">
+      <div class="space-y-1 pt-2 pb-3">
         <!-- Current: "bg-green-50 border-green-500 text-green-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
-        <DisclosureButton
-          v-for="item in navigation"
-          :key="item.name"
-          as="a"
-          :href="item.href"
-          :class="[
-            item.current ? 'border-green-500 bg-green-50 text-green-700' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700',
-            'block border-l-4 py-2 pl-3 pr-4 text-base font-medium sm:pl-5 sm:pr-6',
-          ]"
-          >{{ item.name }}
+        <DisclosureButton v-for="item in navigation" :key="item.name" as="a" :href="item.href" :class="[
+          item.current ? 'border-green-500 bg-green-50 text-green-700' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700',
+          'block border-l-4 py-2 pr-4 pl-3 text-base font-medium sm:pr-6 sm:pl-5',
+        ]">{{ item.name }}
         </DisclosureButton>
       </div>
       <div class="space-y-1 border-t border-gray-200 pt-6">
-        <DisclosureButton
-          v-for="item in leaveNoTraceMenuItems"
-          :key="item.name"
-          as="a"
-          :href="item.href"
-          :class="[
-            item.current ? 'border-green-500 bg-green-50 text-green-700' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700',
-            'block border-l-4 py-2 pl-3 pr-4 text-base font-medium sm:pl-5 sm:pr-6',
-          ]"
-          >{{ item.name }}
+        <DisclosureButton v-for="item in leaveNoTraceMenuItems" :key="item.name" as="a" :href="item.href" :class="[
+          item.current ? 'border-green-500 bg-green-50 text-green-700' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700',
+          'block border-l-4 py-2 pr-4 pl-3 text-base font-medium sm:pr-6 sm:pl-5',
+        ]">{{ item.name }}
         </DisclosureButton>
       </div>
       <div class="relative">
@@ -109,7 +91,9 @@
         <div class="relative flex justify-center">
           <span class="bg-white px-2 text-gray-500">
             <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-              <path fill="#6B7280" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+              <path fill="#6B7280" fill-rule="evenodd"
+                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                clip-rule="evenodd" />
             </svg>
           </span>
         </div>

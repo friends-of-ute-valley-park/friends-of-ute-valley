@@ -9,7 +9,7 @@ link: https://cerv.is/0132x4184
 time: 5:30-7:30PM
 ---
 
-Come join the Friends of Ute Valley as we clean out drains and fix trail tread on Winding Woods Loop and remove mullein. Please wear closed-toed shoes, bring work gloves, sunscreen, water and snacks. Meet up location at the Popes Valley entrance to Ute Valley Park. From there we will be dividing up into teams to accomplish our goals. 
+Come join the Friends of Ute Valley as we clean out drains and fix trail tread on Winding Woods Loop and remove mullein. Please wear closed-toed shoes, bring work gloves, sunscreen, water and snacks. Meet up location at the Popes Valley entrance to Ute Valley Park. From there we will be dividing up into teams to accomplish our goals.
 
 You *must* register to participate in this event.
 

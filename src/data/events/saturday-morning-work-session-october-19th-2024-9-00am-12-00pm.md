@@ -7,6 +7,7 @@ meetingLocation:
 link: https://cerv.is/0132x4416
 time: 9:00AM-12:00PM
 ---
+
 Come join the Friends of Ute Valley on a special Saturday session as we complete some corridor clearing and restoration work along Rattlesnake Ridge Trail. Please wear pants and closed-toe shoes, bring work gloves, eye protection, sunscreen, water, and snacks.
 
 Participants must be at least 16 years old.
