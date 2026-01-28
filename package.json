@@ -13,6 +13,7 @@
     "lint:fix": "oxlint --fix --type-aware"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.6",
     "@astrojs/sitemap": "^3.6.1",
     "@cloudflare/pages-plugin-turnstile": "^1.0.2",
     "@headlessui/vue": "^1.7.23",
@@ -22,7 +23,8 @@
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
     "inter-ui": "^4.1.1",
-    "resend": "^6.7.0"
+    "resend": "^6.7.0",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@astrojs/vue": "^5.1.4",

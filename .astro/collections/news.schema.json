@@ -36,7 +36,13 @@
           "type": "string"
         }
       },
-      "required": ["title", "published", "publishedOn", "coverImage", "previewText"],
+      "required": [
+        "title",
+        "published",
+        "publishedOn",
+        "coverImage",
+        "previewText"
+      ],
       "additionalProperties": false
     }
   },
