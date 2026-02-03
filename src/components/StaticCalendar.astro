@@ -10,7 +10,7 @@ import SocialLinksInline from "./SocialLinksInline.astro";
 
 const currentYear = new Date().getFullYear();
 const months = ["April", "May", "June", "July", "August", "September"];
-const volunteerEventDates = [];
+const volunteerEventDates: Date[] = [];
 
 const isVolunteerEventDate = (date: Date) => {
   return volunteerEventDates.some(
