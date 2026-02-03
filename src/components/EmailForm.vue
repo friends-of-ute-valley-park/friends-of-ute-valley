@@ -6,39 +6,41 @@
         <input id="name" v-model="payload.name" type="text" name="name" :class="{
           'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': nameIsError,
         }"
-          class="mr-4 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 caret-green-400 shadow-xs focus:border-green-500 focus:ring-green-500 sm:flex-1"
+          class="mr-4 block w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-gray-900 placeholder-gray-500 caret-teal-500 shadow-lg focus:border-amber-400 focus:ring-amber-400 sm:flex-1"
           placeholder="Full name" :aria-invalid="nameIsError" aria-describedby="form-errors" @blur="validate" />
         <label for="email" class="sr-only">Email</label>
         <input id="email" v-model="payload.email" type="text" name="email" :class="{
           'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': emailIsError,
         }"
-          class="mt-3 block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 caret-green-400 shadow-xs focus:border-green-500 focus:ring-green-500 sm:mt-0 sm:flex-1"
+          class="mt-3 block w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-gray-900 placeholder-gray-500 caret-teal-500 shadow-lg focus:border-amber-400 focus:ring-amber-400 sm:mt-0 sm:flex-1"
           placeholder="Email" :aria-invalid="emailIsError" aria-describedby="form-errors" @blur="validate" />
         <button :disabled="isFetching" type="submit"
-          class="mt-3 w-full rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium text-green-50 shadow-xs hover:bg-green-800 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-hidden disabled:bg-green-600 sm:mt-0 sm:ml-3 sm:inline-flex sm:w-auto sm:shrink-0 sm:items-center">
+          class="mt-3 w-full rounded-md border border-transparent bg-amber-500 px-6 py-3 text-base font-semibold text-gray-900 shadow-lg transition-all duration-200 hover:bg-amber-400 hover:shadow-xl focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-green-800 focus:outline-hidden disabled:bg-amber-600 sm:mt-0 sm:ml-3 sm:inline-flex sm:w-auto sm:shrink-0 sm:items-center">
           <span>
-            <i-mdi-loading v-if="isFetching" class="mr-2 -ml-2 h-6 w-6 animate-spin text-white" />
+            <i-mdi-loading v-if="isFetching" class="mr-2 -ml-2 h-6 w-6 animate-spin text-gray-900" />
           </span>
           Notify me
         </button>
       </form>
-      <p v-if="nameValidationError || emailValidationError" id="form-errors" class="mt-2 text-sm text-red-600"
-        role="alert">
+      <p v-if="nameValidationError || emailValidationError" id="form-errors"
+        class="mt-2 text-sm text-red-300 font-medium" role="alert">
         {{ nameValidationError }}
         {{ emailValidationError }}
       </p>
-      <p class="mt-3 text-sm text-gray-500">
+      <p class="mt-3 text-sm text-green-100/80">
         We care about your data. Read our
-        <a href="/privacy/" class="font-medium text-gray-900 underline"> Privacy Policy</a>.
+        <a href="/privacy/"
+          class="font-medium text-white underline decoration-amber-400/50 hover:decoration-amber-400 transition-colors">
+          Privacy Policy</a>.
       </p>
     </div>
     <div v-if="isFinished && !error">
-      <p class="text-base font-medium text-gray-900">
+      <p class="text-base font-medium text-white">
         Thank you for signing up. Please check your email for a confirmation email.
       </p>
     </div>
-    <div v-if="error" class="mt-2 text-sm text-red-600">
-      <h2 class="text-3xl font-medium">Submit Error</h2>
+    <div v-if="error" class="mt-2 text-sm text-red-300">
+      <h2 class="text-3xl font-medium text-white">Submit Error</h2>
       {{ data?.message || 'An error occurred.' }}
     </div>
   </div>
