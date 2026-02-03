@@ -68,7 +68,7 @@ const meetingLocations = await getCollection("trailheads");
   </div>
 
   <div>
-    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <div class="py-8 sm:py-12">
       {
         upcomingVolunteerEvents.length > 0 && (
           <>
@@ -94,7 +94,9 @@ const meetingLocations = await getCollection("trailheads");
 
       <StaticCalendar />
 
-      <div class="overflow-hidden bg-white py-12 sm:py-16">
+      <div
+        class="overflow-hidden bg-white py-12 sm:py-16 mx-auto max-w-7xl px-6 lg:px-8"
+      >
         <div
           class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2"
         >
@@ -103,9 +105,7 @@ const meetingLocations = await getCollection("trailheads");
               <h2 class="text-base leading-7 font-semibold text-green-600">
                 Make a Difference, Make Friends, and Have Fun!
               </h2>
-              <p
-                class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
-              >
+              <p class="mt-2 text-3xl font-semibold text-gray-900 sm:text-4xl">
                 Join Ute Valley Park's Volunteer Team and Discover the Joy of
                 Giving Back
               </p>
@@ -158,17 +158,22 @@ const meetingLocations = await getCollection("trailheads");
         </p>
       </EmailFormWrapper>
 
-      <div class="mt-8 border-b border-gray-200 pt-4 pb-5" id="learnmore">
-        <h3 class="text-3xl leading-6 font-medium text-green-900">
+      <div
+        class="mt-8 border-b border-gray-200 pt-4 pb-5 mx-auto max-w-7xl px-6 lg:px-8"
+        id="learnmore"
+      >
+        <h3 class="text-3xl font-medium text-green-900">
           Learn More About Volunteering in Ute Valley Park
         </h3>
       </div>
-      <div class="border-gray-200 pt-8 xl:grid xl:grid-cols-3 xl:gap-x-8">
+      <div
+        class="border-gray-200 pt-8 xl:grid xl:grid-cols-3 xl:gap-x-8 mx-auto max-w-7xl px-6 lg:px-8"
+      >
         <div>
           <Image
             src={VolunteerInfoImage}
             alt=""
-            class="rounded-lg object-cover shadow-sm"
+            class="mx-auto rounded-lg object-cover shadow-sm"
             width={400}
           />
         </div>
@@ -199,14 +204,17 @@ const meetingLocations = await getCollection("trailheads");
               opportunities, meeting locations and updates.
             </li>
             <li class="py-4">
-              Volunteer and get a free beverage, stickers and buttons! After 4
-              hours of volunteer work you will receive a free beverage (beer or
-              non-alcoholic) at our end of year appreciation party.
+              Join the crew and enjoy refreshments, event tees, and exclusive
+              swag on us!
             </li>
-            <li class="py-4">All tools provided.</li>
+            <li class="py-4">
+              All tools provided. Never used a pick-mattock before? Don't worry,
+              our trained crew leaders will provide instruction and guidance.
+            </li>
             <li class="py-4 font-semibold">
-              You must wear pants and closed toed shoes and please bring gloves
-              and safety goggles or sunglasses.
+              Participants must wear pants and closed-toe shoes. Additionally,
+              please bring work gloves and eye protection (safety goggles or
+              sunglasses).
             </li>
           </ul>
         </div>
