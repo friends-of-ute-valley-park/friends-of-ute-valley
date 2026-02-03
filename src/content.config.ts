@@ -1,9 +1,9 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z, type SchemaContext } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const leavenotraceCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/leavenotrace' }),
-  schema: ({ image }) =>
+  schema: ({ image }: SchemaContext) =>
     z.object({
       title: z.string(),
       topText: z.string(),
@@ -14,7 +14,7 @@ const leavenotraceCollection = defineCollection({
 
 const newsCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/news' }),
-  schema: ({ image }) =>
+  schema: ({ image }: SchemaContext) =>
     z.object({
       title: z.string(),
       published: z.boolean(),
@@ -44,7 +44,7 @@ const eventsCollection = defineCollection({
 
 const trailheadsCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/trailheads' }),
-  schema: ({ image }) =>
+  schema: ({ image }: SchemaContext) =>
     z.object({
       id: z.number(),
       name: z.string(),
@@ -79,7 +79,7 @@ const linksCollection = defineCollection({
 
 const wishlistCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/wishlist' }),
-  schema: ({ image }) =>
+  schema: ({ image }: SchemaContext) =>
     z.object({
       title: z.string(),
       link: z.string(),
@@ -92,7 +92,7 @@ const wishlistCollection = defineCollection({
 
 const volunteerSpotlightCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/volunteer-spotlight' }),
-  schema: ({ image }) =>
+  schema: ({ image }: SchemaContext) =>
     z.object({
       intro: z.string(),
       instagram: z.string().optional(),

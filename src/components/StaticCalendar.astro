@@ -55,7 +55,7 @@ const getDaysInMonth = (year: number, month: number) => {
                   {day}
                 </div>
               ))}
-              {Array.from({ length: firstDayOfWeek }).map((_, i) => (
+              {Array.from({ length: firstDayOfWeek }).map((_) => (
                 <div class="h-6" />
               ))}
               {daysInMonth.map((day) => (

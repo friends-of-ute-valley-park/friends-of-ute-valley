@@ -58,7 +58,7 @@ const formattedDate = computed(() => {
 
 onMounted(() => {
   const locationInformation = MeetingLocationParser(props.volunteerEvent.data, props.meetingLocations);
-  meetingLocation.value = locationInformation.name;
-  directionsLink.value = locationInformation.directionsLink;
+  meetingLocation.value = locationInformation.name ?? '';
+  directionsLink.value = locationInformation.directionsLink ?? '';
 });
 </script>

@@ -30,13 +30,6 @@ const activities = [
   },
 ];
 
-interface TrailheadFile {
-  id: number;
-  name: string;
-  description: string;
-  url: URL;
-}
-
 import { getCollection } from "astro:content";
 const trailheads = await getCollection("trailheads");
 const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);

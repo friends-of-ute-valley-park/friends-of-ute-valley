@@ -1,7 +1,8 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { Picture } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const trailheadEntries = await getCollection('trailheads');
@@ -10,8 +11,12 @@ export async function getStaticPaths() {
     props: { entry },
   }));
 }
+
+interface Props {
+  entry: CollectionEntry<'trailheads'>;
+}
+
 const { entry } = Astro.props;
-const { Content } = await render(entry);
 ---
 
 <Layout title={entry.data.name}>
