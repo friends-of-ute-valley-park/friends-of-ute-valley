@@ -1,49 +1,67 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
-import Layout from '@layouts/Layout.astro';
-import VolunteerItem from '@components/VolunteerItem.vue';
-import LeaveNoTraceSmall from '@components/LeaveNoTraceSmall.astro';
-import ContactForm from '@components/ContactForm.vue';
-import EmailForm from '@components/EmailForm.vue';
-import StaticCalendar from '../components/StaticCalendar.astro';
+import Layout from "@layouts/Layout.astro";
+import VolunteerItem from "@components/VolunteerItem.vue";
+import LeaveNoTraceSmall from "@components/LeaveNoTraceSmall.astro";
+import ContactForm from "@components/ContactForm.vue";
+import EmailForm from "@components/EmailForm.vue";
+import StaticCalendar from "../components/StaticCalendar.astro";
+import SocialLinksInline from "@components/SocialLinksInline.astro";
 
-import { getCollection } from 'astro:content';
-import { isFuture, endOfDay } from 'date-fns';
-const upcomingVolunteerEvents = await getCollection('events', ({ data }) => {
+import { getCollection } from "astro:content";
+import { isFuture, endOfDay } from "date-fns";
+const upcomingVolunteerEvents = await getCollection("events", ({ data }) => {
   return isFuture(endOfDay(new Date(data.date)));
 });
 
-import VolunteerHeroImage from '../assets/images/volunteer-hero-mask.jpg';
-import VolunteerInfoImage from '../assets/images/volunteer-3.jpg';
-import VolunteerInfoImage2 from '../assets/images/volunteer-4.jpg';
-import { TURNSTILE_SITE_KEY } from 'astro:env/client';
+import VolunteerHeroImage from "../assets/images/volunteer-hero-mask.jpg";
+import VolunteerInfoImage from "../assets/images/volunteer-3.jpg";
+import VolunteerInfoImage2 from "../assets/images/volunteer-4.jpg";
+import { TURNSTILE_SITE_KEY } from "astro:env/client";
 
-const meetingLocations = await getCollection('trailheads');
+const meetingLocations = await getCollection("trailheads");
 ---
 
 <Layout title="Volunteer">
   <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
-    <Image src={VolunteerHeroImage} alt="" class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center" width={1500} />
+    <Image
+      src={VolunteerHeroImage}
+      alt=""
+      class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
+      width={1500}
+    />
 
-    <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
+    <div
+      class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
+      aria-hidden="true"
+    >
       <div
         class="aspect-1097/845 w-[68.5625rem] bg-linear-to-tr from-[#ff4694] to-[#776fff] opacity-20"
-        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+      >
       </div>
     </div>
-    <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu" aria-hidden="true">
+    <div
+      class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu"
+      aria-hidden="true"
+    >
       <div
         class="aspect-1097/845 w-[68.5625rem] bg-linear-to-tr from-[#ff4694] to-[#776fff] opacity-20"
-        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+      >
       </div>
     </div>
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto max-w-2xl lg:mx-0">
-        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Work with us</h2>
+        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+          Work with us
+        </h2>
         <p class="mt-6 text-lg leading-8 text-gray-200">
-          Join our dedicated team of volunteers and make a lasting impact on the park you love. Together, we'll maintain trails, connect with fellow nature enthusiasts, and give back to this cherished
-          community resource.
+          Join our dedicated team of volunteers and make a lasting impact on the
+          park you love. Together, we'll maintain trails, connect with fellow
+          nature enthusiasts, and give back to this cherished community
+          resource.
         </p>
       </div>
     </div>
@@ -54,12 +72,18 @@ const meetingLocations = await getCollection('trailheads');
       {
         upcomingVolunteerEvents.length > 0 && (
           <>
-            <h2 class="text-3xl font-bold tracking-tight text-green-800 sm:text-4xl">Upcoming volunteer events</h2>
+            <h2 class="text-3xl font-bold tracking-tight text-green-800 sm:text-4xl">
+              Upcoming volunteer events
+            </h2>
             <div class="px-4 py-5">
               <ul class="divide-y divide-gray-100">
                 {upcomingVolunteerEvents.map((volunteerEvent) => (
                   <li class="my-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-4 py-5 sm:flex-nowrap">
-                    <VolunteerItem meeting-locations={meetingLocations} volunteer-event={volunteerEvent} client:idle />
+                    <VolunteerItem
+                      meeting-locations={meetingLocations}
+                      volunteer-event={volunteerEvent}
+                      client:idle
+                    />
                   </li>
                 ))}
               </ul>
@@ -71,22 +95,44 @@ const meetingLocations = await getCollection('trailheads');
       <StaticCalendar />
 
       <div class="overflow-hidden bg-white py-12 sm:py-16">
-        <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+        <div
+          class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2"
+        >
           <div class="lg:pt-4 lg:pr-8">
             <div class="lg:max-w-lg">
-              <h2 class="text-base leading-7 font-semibold text-green-600">Make a Difference, Make Friends, and Have Fun!</h2>
-              <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Join Ute Valley Park's Volunteer Team and Discover the Joy of Giving Back</p>
+              <h2 class="text-base leading-7 font-semibold text-green-600">
+                Make a Difference, Make Friends, and Have Fun!
+              </h2>
+              <p
+                class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+              >
+                Join Ute Valley Park's Volunteer Team and Discover the Joy of
+                Giving Back
+              </p>
               <p class="mt-6 leading-8 text-gray-700">
-                Want to have fun while making a meaningful impact in your community? Become a volunteer at Ute Valley Park! Our team welcomes people of all ages and abilities, offering a variety of
-                rewarding tasks to suit your interests and skills. From maintaining trails, building drains and seeding native grass to closing rogue paths, there's something for everyone to
+                Want to have fun while making a meaningful impact in your
+                community? Become a volunteer at Ute Valley Park! Our team
+                welcomes people of all ages and abilities, offering a variety of
+                rewarding tasks to suit your interests and skills. From
+                maintaining trails, building drains and seeding native grass to
+                closing rogue paths, there's something for everyone to
                 contribute.
               </p>
               <p class="mt-6 leading-8 text-gray-700">
-                As a Ute Valley Park volunteer, you'll work alongside a friendly, diverse group of individuals who share your enthusiasm for preserving this beloved natural resource. Not only will you
-                forge new connections with fellow nature lovers, but you'll also take pride in knowing your efforts directly benefit the park and all who visit it. Experience the joy of giving back
-                and making a difference - volunteer at Ute Valley Park today! Your community will appreciate your dedication.
+                As a Ute Valley Park volunteer, you'll work alongside a
+                friendly, diverse group of individuals who share your enthusiasm
+                for preserving this beloved natural resource. Not only will you
+                forge new connections with fellow nature lovers, but you'll also
+                take pride in knowing your efforts directly benefit the park and
+                all who visit it. Experience the joy of giving back and making a
+                difference - volunteer at Ute Valley Park today! Your community
+                will appreciate your dedication.
               </p>
-              <a href="#learnmore" class="my-2 block font-semibold text-green-700 underline">Learn more<span aria-hidden="true">→</span> </a>
+              <a
+                href="#learnmore"
+                class="my-2 block font-semibold text-green-700 underline"
+                >Learn more<span aria-hidden="true">→</span>
+              </a>
             </div>
           </div>
           <Image
@@ -101,9 +147,16 @@ const meetingLocations = await getCollection('trailheads');
 
       <div class="bg-white py-16">
         <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
-          <div class="max-w-xl text-2xl font-bold text-gray-900 sm:text-4xl lg:col-span-6">
-            <h2 class="inline tracking-tight sm:block lg:inline xl:block">Get Notified!</h2>
-            <p class="inline text-base font-normal sm:block lg:inline xl:block">Sign up for our newsletter to receive volunteer events right in your inbox.</p>
+          <div
+            class="max-w-xl text-2xl font-bold text-gray-900 sm:text-4xl lg:col-span-6"
+          >
+            <h2 class="inline tracking-tight sm:block lg:inline xl:block">
+              Get Notified!
+            </h2>
+            <p class="inline text-base font-normal sm:block lg:inline xl:block">
+              Sign up for our newsletter to receive volunteer events right in
+              your inbox.
+            </p>
           </div>
           <div class="w-full md:max-w-xl lg:col-span-6 lg:max-w-md lg:pt-2">
             <EmailForm client:idle />
@@ -112,31 +165,55 @@ const meetingLocations = await getCollection('trailheads');
       </div>
 
       <div class="mt-8 border-b border-gray-200 pt-4 pb-5" id="learnmore">
-        <h3 class="text-3xl leading-6 font-medium text-green-900">Learn More About Volunteering in Ute Valley Park</h3>
+        <h3 class="text-3xl leading-6 font-medium text-green-900">
+          Learn More About Volunteering in Ute Valley Park
+        </h3>
       </div>
       <div class="border-gray-200 pt-8 xl:grid xl:grid-cols-3 xl:gap-x-8">
         <div>
-          <Image src={VolunteerInfoImage} alt="" class="rounded-lg object-cover shadow-sm" width={400} />
+          <Image
+            src={VolunteerInfoImage}
+            alt=""
+            class="rounded-lg object-cover shadow-sm"
+            width={400}
+          />
         </div>
         <div class="col-span-2">
           <ul class="ml-4 list-disc divide-y divide-gray-200 text-gray-700">
             <li class="py-4">
-              <span class="font-bold">Volunteer days:</span> Join us on the 1st and 3rd Wednesday of every month, 5:30-7:30 p.m., April through September. Whether you can attend one event, a few, or all
-              of them, your participation is valued and makes a difference. We understand that life can be busy, so feel free to volunteer based on your availability - every contribution counts!
+              <span class="font-bold">Volunteer Days:</span> Help us care for Ute
+              Valley Park from April through September. We host trail work and stewardship
+              events on select Wednesdays and weekends. Since the schedule varies
+              each month, sign up for our email list and follow us on social media
+              <SocialLinksInline /> to stay updated. Whether you can join us for one
+              event or the whole season, your time directly supports the health of
+              our local trails.
             </li>
             <li class="py-4">
-              Crew leaders may schedule additional volunteer days. Please check our website, the FUVP <a
+              Crew leaders may schedule additional volunteer days. Please check
+              our website, <a
                 href="https://www.facebook.com/FriendsOfUteValleyPark/"
-                class="font-semibold text-green-700 no-underline"
-                >Facebook
-              </a>
-              page or register for our newsletter for additional volunteer opportunities, meeting locations and updates.
+                class="font-semibold text-green-700 underline"
+                target="_blank"
+                rel="noopener noreferrer">Facebook</a
+              >, <a
+                href="https://www.instagram.com/FriendsOfUteValleyPark/"
+                class="font-semibold text-green-700 underline"
+                target="_blank"
+                rel="noopener noreferrer">Instagram</a
+              >, or register for our newsletter for additional volunteer
+              opportunities, meeting locations and updates.
             </li>
             <li class="py-4">
-              Volunteer and get a free beverage, stickers and buttons! After 4 hours of volunteer work you will receive a free beverage (beer or non-alcoholic) at our end of year appreciation party.
+              Volunteer and get a free beverage, stickers and buttons! After 4
+              hours of volunteer work you will receive a free beverage (beer or
+              non-alcoholic) at our end of year appreciation party.
             </li>
             <li class="py-4">All tools provided.</li>
-            <li class="py-4 font-semibold">You must wear pants and closed toed shoes and please bring gloves and safety goggles or sunglasses.</li>
+            <li class="py-4 font-semibold">
+              You must wear pants and closed toed shoes and please bring gloves
+              and safety goggles or sunglasses.
+            </li>
           </ul>
         </div>
       </div>
@@ -145,10 +222,22 @@ const meetingLocations = await getCollection('trailheads');
 
   <LeaveNoTraceSmall />
 
-  <ContactForm default-option="Volunteer" client:visible turnstileSiteKey={TURNSTILE_SITE_KEY}>
+  <ContactForm
+    default-option="Volunteer"
+    client:visible
+    turnstileSiteKey={TURNSTILE_SITE_KEY}
+  >
     <Fragment slot="title">
-      <h2 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">Contact us for more information!</h2>
+      <h2
+        class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10"
+      >
+        Contact us for more information!
+      </h2>
     </Fragment>
-    <Fragment slot="subtitle">We'd love to hear from you! Whether you have questions about volunteering or just want to share your thoughts on Ute Valley Park, feel free to get in touch.</Fragment>
+    <Fragment slot="subtitle"
+      >We'd love to hear from you! Whether you have questions about volunteering
+      or just want to share your thoughts on Ute Valley Park, feel free to get
+      in touch.</Fragment
+    >
   </ContactForm>
 </Layout>

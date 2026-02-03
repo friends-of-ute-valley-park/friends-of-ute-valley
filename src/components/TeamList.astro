@@ -1,34 +1,82 @@
 ---
-import { Image } from 'astro:assets';
-import UserCircleIcon from '~icons/heroicons/user-circle';
+import { Image } from "astro:assets";
+import UserCircleIcon from "~icons/heroicons/user-circle";
 
 const teamMembers = [
-  { name: 'Drew Town', title: 'Chair', image: import('@/assets/images/members/drew-town.png') },
-  { name: 'Christine Thomas', title: 'Vice-Chair', image: import('@/assets/images/members/christine-thomas.jpg') },
-  { name: 'Megan Town', title: 'Treasurer', image: import('@/assets/images/members/megan-town.jpg') },
-  { name: 'Molly Murrow', title: 'Secretary', image: import('@/assets/images/members/molly-murrow.jpg') },
-  { name: 'Phill Emmert', title: 'Communications', image: import('@/assets/images/members/phill-emmert.jpg') },
-  { name: 'Haley Kline Murphy', title: 'Outreach and Engagement Specialist', image: import('@/assets/images/members/haley-kline-murphy.jpg') },
-  { name: 'Pete Galeotti', title: 'Outreach and Engagement Specialist', image: import('@/assets/images/members/pete-galeotti.jpg') },
-  { name: 'Katie Gray', title: 'Nature and Trail Specialist', image: import('@/assets/images/members/katie-gray.jpg') },
-  { name: 'Nadine Lambert', title: 'Volunteer Coordinator', image: import('@/assets/images/members/nadine-lambert.jpg') },
+  {
+    name: "Drew Town",
+    title: "Chair",
+    image: import("@/assets/images/members/drew-town.png"),
+  },
+  {
+    name: "Christine Thomas",
+    title: "Vice-Chair",
+    image: import("@/assets/images/members/christine-thomas.jpg"),
+  },
+  {
+    name: "Megan Town",
+    title: "Treasurer",
+    image: import("@/assets/images/members/megan-town.jpg"),
+  },
+  {
+    name: "Phill Emmert",
+    title: "Communications",
+    image: import("@/assets/images/members/phill-emmert.jpg"),
+  },
+  {
+    name: "Haley Kline Murphy",
+    title: "Outreach and Engagement Specialist",
+    image: import("@/assets/images/members/haley-kline-murphy.jpg"),
+  },
+  {
+    name: "Pete Galeotti",
+    title: "Outreach and Engagement Specialist",
+    image: import("@/assets/images/members/pete-galeotti.jpg"),
+  },
+  {
+    name: "Katie Gray",
+    title: "Nature and Trail Specialist",
+    image: import("@/assets/images/members/katie-gray.jpg"),
+  },
+  {
+    name: "Nadine Lambert",
+    title: "Volunteer Coordinator",
+    image: import("@/assets/images/members/nadine-lambert.jpg"),
+  },
 ];
 ---
 
 <div class="bg-white py-18 sm:py-24">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:mx-0">
-      <h2 class="text-4xl font-semibold tracking-tight text-pretty text-green-900 sm:text-5xl">Get to Know Our Team</h2>
+      <h2
+        class="text-4xl font-semibold tracking-tight text-pretty text-green-900 sm:text-5xl"
+      >
+        Get to Know Our Team
+      </h2>
       <p class="mt-6 text-lg/8 text-gray-600">
-        Meet the dedicated team of Friends of Ute Valley Park, who work hard to preserve the natural beauty of this cherished community resource and make it enjoyable for everyone.
+        Meet the dedicated team of Friends of Ute Valley Park, who work hard to
+        preserve the natural beauty of this cherished community resource and
+        make it enjoyable for everyone.
       </p>
     </div>
-    <ul role="list" class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+    <ul
+      role="list"
+      class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+    >
       {
         teamMembers.map((teamMember) => (
           <li>
-            <Image height="368" width="368" class="aspect-square w-full rounded-2xl object-cover" src={teamMember.image} alt="" />
-            <h3 class="mt-6 text-lg/8 font-semibold tracking-tight text-gray-900">{teamMember.name}</h3>
+            <Image
+              height="368"
+              width="368"
+              class="aspect-square w-full rounded-2xl object-cover"
+              src={teamMember.image}
+              alt=""
+            />
+            <h3 class="mt-6 text-lg/8 font-semibold tracking-tight text-gray-900">
+              {teamMember.name}
+            </h3>
             <ul role="list" class="mt-4 flex gap-x-6">
               <li class="text-green-700">{teamMember.title}</li>
             </ul>

@@ -86,7 +86,7 @@
                     <h3 class="text-xl font-medium text-green-800">Volunteer Information</h3>
                     <div class="mt-2 text-sm text-green-700">
                       <p>
-                        We hold volunteer work events the first and third Wednesday of the month April through
+                        We hold volunteer work events on select Wednesdays and weekends from April through
                         September. You can find more information on our
                         <a class="text-green-800 underline" href="/volunteer/"> volunteer </a>
                         page. Also, consider following our

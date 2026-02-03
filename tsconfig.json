@@ -18,7 +18,7 @@
       "@components/*": ["./src/components/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@/*": ["./src/*"],
-      "@/typings/*": ["./typings/*"]
+      "@/typings": ["./typings/index.ts"]
     },
     "types": ["unplugin-icons/types/astro"]
   },
