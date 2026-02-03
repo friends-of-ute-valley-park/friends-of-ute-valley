@@ -15,6 +15,21 @@
   --color-winter-deep: #0369a1;
   --color-winter-slate: #475569;
   --color-winter-snow: #f8fafc;
+
+  --animate-shimmer: shimmer 4s ease-in-out infinite;
+  
+  @keyframes shimmer {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+@utility delay-2000 {
+  animation-delay: 2000ms;
 }
 
 /*

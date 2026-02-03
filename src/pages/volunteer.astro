@@ -5,7 +5,8 @@ import Layout from "@layouts/Layout.astro";
 import VolunteerItem from "@components/VolunteerItem.vue";
 import LeaveNoTraceSmall from "@components/LeaveNoTraceSmall.astro";
 import ContactForm from "@components/ContactForm.vue";
-import EmailFormWrapper from "@components/EmailFormWrapper.astro";
+import EngagementPanel from "@components/EngagementPanel.astro";
+import EmailForm from "@components/EmailForm.vue";
 import StaticCalendar from "../components/StaticCalendar.astro";
 import SocialLinksInline from "@components/SocialLinksInline.astro";
 
@@ -145,7 +146,7 @@ const meetingLocations = await getCollection("trailheads");
         </div>
       </div>
 
-      <EmailFormWrapper>
+      <EngagementPanel>
         <h2
           slot="heading"
           class="text-2xl font-bold tracking-tight text-white sm:text-4xl"
@@ -156,7 +157,8 @@ const meetingLocations = await getCollection("trailheads");
           Sign up for our newsletter to receive volunteer events right in your
           inbox.
         </p>
-      </EmailFormWrapper>
+        <EmailForm slot="main" client:idle />
+      </EngagementPanel>
 
       <div
         class="mt-8 border-b border-gray-200 pt-4 pb-5 mx-auto max-w-7xl px-6 lg:px-8"
