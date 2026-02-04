@@ -7,16 +7,16 @@
             <img class="block h-14 w-14" src="/images/logo-small.jpg" alt="Friends of Ute Valley Park" />
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-            <!-- Current: "border-green-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+            <!-- Current: "border-primary-light text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
             <a v-for="item in navigation" :key="item.name" :href="item.href"
               :aria-current="item.current ? 'page' : undefined" :class="[
-                item.current ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                item.current ? 'border-primary-light text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
                 'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium',
               ]">{{ item.name }}</a>
             <div class="flex h-full justify-center">
               <Popover class="relative flex">
                 <PopoverButton :class="[
-                  props.page.startsWith('/leavenotrace') === true ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                  props.page.startsWith('/leavenotrace') === true ? 'border-primary-light text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
                   'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium',
                 ]">
                   <span class="items-center">Leave No Trace</span>
@@ -34,7 +34,7 @@
                           class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
                           <div
                             class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                            <component :is="item.icon" class="h-6 w-6 text-gray-600 group-hover:text-green-600"
+                            <component :is="item.icon" class="h-6 w-6 text-gray-600 group-hover:text-primary-light"
                               aria-hidden="true" />
                           </div>
                           <div>
@@ -59,7 +59,7 @@
         <div class="-mr-2 flex items-center sm:hidden">
           <!-- Mobile menu button -->
           <DisclosureButton
-            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:ring-2 focus:ring-green-500 focus:outline-hidden focus:ring-inset">
+            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:ring-2 focus:ring-primary-light focus:outline-hidden focus:ring-inset">
             <span class="sr-only">Open main menu</span>
             <i-heroicons-bars-3 v-if="!open" class="block h-6 w-6" aria-hidden="true" />
             <i-heroicons-x-mark v-else class="block h-6 w-6" aria-hidden="true" />
@@ -70,16 +70,16 @@
 
     <DisclosurePanel class="sm:hidden">
       <div class="space-y-1 pt-2 pb-3">
-        <!-- Current: "bg-green-50 border-green-500 text-green-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
+        <!-- Current: "bg-primary-50 border-primary-light text-primary", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
         <DisclosureButton v-for="item in navigation" :key="item.name" as="a" :href="item.href" :class="[
-          item.current ? 'border-green-500 bg-green-50 text-green-700' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700',
+          item.current ? 'border-primary-light bg-primary-50 text-primary' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700',
           'block border-l-4 py-2 pr-4 pl-3 text-base font-medium sm:pr-6 sm:pl-5',
         ]">{{ item.name }}
         </DisclosureButton>
       </div>
       <div class="space-y-1 border-t border-gray-200 pt-6">
         <DisclosureButton v-for="item in leaveNoTraceMenuItems" :key="item.name" as="a" :href="item.href" :class="[
-          item.current ? 'border-green-500 bg-green-50 text-green-700' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700',
+          item.current ? 'border-primary-light bg-primary-50 text-primary' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700',
           'block border-l-4 py-2 pr-4 pl-3 text-base font-medium sm:pr-6 sm:pl-5',
         ]">{{ item.name }}
         </DisclosureButton>

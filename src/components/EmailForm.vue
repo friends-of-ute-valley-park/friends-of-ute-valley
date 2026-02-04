@@ -72,7 +72,7 @@ const submit = (e: SubmitEvent) => {
           :class="{
             'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': nameIsError,
           }"
-          class="mr-4 block w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-gray-900 placeholder-gray-500 caret-teal-500 shadow-lg focus:border-amber-400 focus:ring-amber-400 disabled:opacity-60 sm:flex-1"
+          class="mr-4 block w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-gray-900 placeholder-gray-500 caret-secondary shadow-lg focus:border-accent focus:ring-accent disabled:opacity-60 sm:flex-1"
           placeholder="Full name"
           :aria-invalid="nameIsError"
           aria-describedby="form-errors"
@@ -88,7 +88,7 @@ const submit = (e: SubmitEvent) => {
           :class="{
             'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': emailIsError,
           }"
-          class="mt-3 block w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-gray-900 placeholder-gray-500 caret-teal-500 shadow-lg focus:border-amber-400 focus:ring-amber-400 disabled:opacity-60 sm:mt-0 sm:flex-1"
+          class="mt-3 block w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-gray-900 placeholder-gray-500 caret-secondary shadow-lg focus:border-accent focus:ring-accent disabled:opacity-60 sm:mt-0 sm:flex-1"
           placeholder="Email"
           :aria-invalid="emailIsError"
           aria-describedby="form-errors"
@@ -97,7 +97,7 @@ const submit = (e: SubmitEvent) => {
         <button
           :disabled="isFetching"
           type="submit"
-          class="mt-3 w-full rounded-md border border-transparent bg-amber-500 px-6 py-3 text-base font-semibold text-gray-900 shadow-lg transition-all duration-200 hover:bg-amber-400 hover:shadow-xl focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-green-800 focus:outline-hidden disabled:bg-amber-600 sm:mt-0 sm:ml-3 sm:inline-flex sm:w-auto sm:shrink-0 sm:items-center"
+          class="mt-3 w-full rounded-md border border-transparent bg-accent-dark px-6 py-3 text-base font-semibold text-gray-900 shadow-lg transition-all duration-200 hover:bg-accent hover:shadow-xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary-dark focus:outline-hidden disabled:bg-amber-600 sm:mt-0 sm:ml-3 sm:inline-flex sm:w-auto sm:shrink-0 sm:items-center"
         >
           <span>
             <i-mdi-loading v-if="isFetching" class="mr-2 -ml-2 h-6 w-6 animate-spin text-gray-900" />
@@ -114,11 +114,11 @@ const submit = (e: SubmitEvent) => {
         {{ nameValidationError }}
         {{ emailValidationError }}
       </p>
-      <p class="mt-3 text-sm text-green-100/80">
+      <p class="mt-3 text-sm text-primary-100/80">
         We care about your data. Read our
         <a
           href="/privacy/"
-          class="font-medium text-white underline decoration-amber-400/50 transition-colors hover:decoration-amber-400"
+          class="font-medium text-white underline decoration-accent/50 transition-colors hover:decoration-accent"
         >
           Privacy Policy</a>.
       </p>

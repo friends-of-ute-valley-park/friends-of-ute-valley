@@ -29,7 +29,7 @@ const getDaysInMonth = (year: number, month: number) => {
 ---
 
 <div class="calendar-container mt-6 bg-gray-50 p-4 max-w-7xl mx-auto">
-  <h1 class="mb-6 text-center text-3xl font-bold text-green-800">
+  <h1 class="mb-6 text-center text-3xl font-bold text-primary-dark">
     Volunteer Calendar {currentYear}
   </h1>
 
@@ -61,13 +61,13 @@ const getDaysInMonth = (year: number, month: number) => {
               {daysInMonth.map((day) => (
                 <div class="relative flex h-6 items-center justify-center">
                   <span
-                    class={`text-sm ${isVolunteerEventDate(day) ? "font-bold text-green-600" : ""}`}
+                    class={`text-sm ${isVolunteerEventDate(day) ? "font-bold text-primary-light" : ""}`}
                   >
                     {format(day, "d")}
                   </span>
                   {isVolunteerEventDate(day) && (
                     <svg
-                      class="absolute h-8 w-8 text-green-400"
+                      class="absolute h-8 w-8 text-primary-light"
                       viewBox="0 0 100 100"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"

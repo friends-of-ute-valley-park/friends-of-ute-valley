@@ -32,7 +32,7 @@
       <div class="relative mx-auto max-w-xl">
         <div>
           <slot name="title">
-            <p class="text-base leading-7 font-semibold text-green-600">Need Help? Contact Us!</p>
+            <p class="text-base leading-7 font-semibold text-primary-light">Need Help? Contact Us!</p>
             <h1 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">Contact
               Friends of Ute Valley Park</h1>
           </slot>
@@ -40,7 +40,7 @@
             <slot name="subtitle">
               If you have a question, comment or concern, don't hesitate to reach out. Our team is always here to assist
               you in any way we can. Before contacting us, please take a moment to browse our
-              <a class="font-semibold text-green-700 no-underline" href="/faq/"> FAQ </a> page to see if your question
+              <a class="font-semibold text-primary no-underline" href="/faq/"> FAQ </a> page to see if your question
               has already been answered. We look forward to hearing from you!
             </slot>
           </p>
@@ -54,7 +54,7 @@
                   class="text-red-700">*</span></label>
               <div class="mt-1">
                 <input id="name" v-model="form.name" type="text" required name="name" autocomplete="given-name"
-                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-green-500 focus:ring-green-500" />
+                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-primary-light focus:ring-primary-light" />
               </div>
             </div>
             <div class="sm:col-span-2">
@@ -62,14 +62,14 @@
                   class="text-red-700">*</span></label>
               <div class="relative mt-1 rounded-md shadow-xs">
                 <input id="email" v-model="form.email" autocomplete="email" required type="email"
-                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-green-500 focus:ring-green-500" />
+                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-primary-light focus:ring-primary-light" />
               </div>
             </div>
             <div class="sm:col-span-2">
               <label for="category" class="mb-1 block text-sm font-semibold text-gray-700">Category <span
                   class="text-red-700">*</span></label>
               <select id="category" v-model="form.category"
-                class="block w-full rounded-md border-gray-300 px-3 py-3 shadow-xs focus:border-green-500 focus:ring-green-500">
+                class="block w-full rounded-md border-gray-300 px-3 py-3 shadow-xs focus:border-primary-light focus:ring-primary-light">
                 <option v-for="option in options" :key="option">
                   {{ option }}
                 </option>
@@ -77,23 +77,23 @@
             </div>
 
             <div v-if="form.category == 'Volunteer'" class="sm:col-span-2">
-              <div class="rounded-md bg-green-50/60 p-4">
+              <div class="rounded-md bg-primary-50/60 p-4">
                 <div class="flex">
                   <div class="shrink-0">
-                    <i-heroicons-exclamation-circle class="mt-1 h-6 w-6 text-green-800" aria-hidden="true" />
+                    <i-heroicons-exclamation-circle class="mt-1 h-6 w-6 text-primary-dark" aria-hidden="true" />
                   </div>
                   <div class="ml-3">
-                    <h3 class="text-xl font-medium text-green-800">Volunteer Information</h3>
-                    <div class="mt-2 text-sm text-green-700">
+                    <h3 class="text-xl font-medium text-primary-dark">Volunteer Information</h3>
+                    <div class="mt-2 text-sm text-primary">
                       <p>
                         We hold volunteer work events on select Wednesdays and weekends from April through
                         September. You can find more information on our
-                        <a class="text-green-800 underline" href="/volunteer/"> volunteer </a>
+                        <a class="text-primary-dark underline" href="/volunteer/"> volunteer </a>
                         page. Also, consider following our
-                        <a class="text-green-800 underline"
+                        <a class="text-primary-dark underline"
                           href="https://www.facebook.com/FriendsOfUteValleyPark">Facebook</a>
                         or
-                        <a class="text-green-800 underline"
+                        <a class="text-primary-dark underline"
                           href="https://www.instagram.com/friendsofutevalleypark/">Instagram</a>
                         for updates.
                       </p>
@@ -109,7 +109,7 @@
                   class="text-red-700">*</span></label>
               <div class="relative mt-1 rounded-md shadow-xs">
                 <textarea id="message" v-model="form.message" required rows="4"
-                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-green-500 focus:ring-green-500" />
+                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-primary-light focus:ring-primary-light" />
               </div>
             </div>
 
@@ -120,7 +120,7 @@
             <div class="sm:col-span-2">
               <span class="inline-flex w-full rounded-md shadow-xs">
                 <button :disabled="isFetching" type="submit"
-                  class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-green-700 px-6 py-3 text-base leading-6 font-medium text-white transition duration-150 ease-in-out hover:bg-green-500 focus:ring-2 focus:ring-green-500 focus:outline-hidden active:bg-green-700 disabled:opacity-25">
+                  class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-6 py-3 text-base leading-6 font-medium text-white transition duration-150 ease-in-out hover:bg-primary-light focus:ring-2 focus:ring-primary-light focus:outline-hidden active:bg-primary disabled:opacity-25">
                   <span>
                     <i-mdi-loading v-if="isFetching" class="mr-2 -ml-1 h-6 w-6 animate-spin text-white" />
                   </span>
@@ -132,15 +132,15 @@
         </div>
 
         <!-- notification banner -->
-        <div v-if="isFinished || error" class="my-8 rounded-md p-4" :class="[error ? 'bg-red-50' : 'bg-green-50']">
+        <div v-if="isFinished || error" class="my-8 rounded-md p-4" :class="[error ? 'bg-red-50' : 'bg-primary-50']">
           <div class="flex">
             <div class="shrink-0">
-              <i-heroicons-megaphone class="size-6" :class="error ? 'text-red-800' : 'text-green-800'" />
+              <i-heroicons-megaphone class="size-6" :class="error ? 'text-red-800' : 'text-primary-dark'" />
             </div>
             <div class="ml-3">
-              <h3 :class="[error ? 'text-red-800' : 'text-green-800', 'text-lg font-medium']">{{ error ?
+              <h3 :class="[error ? 'text-red-800' : 'text-primary-dark', 'text-lg font-medium']">{{ error ?
                 'There were errors with your submission' : 'Thank you for contacting us!' }}</h3>
-              <div :class="[error ? 'text-red-700' : 'text-green-700', 'mt-2 text-sm']">
+              <div :class="[error ? 'text-red-700' : 'text-primary', 'mt-2 text-sm']">
                 <p class="font-medium text-pretty">
                   <span v-if="displayMessage">{{ displayMessage }}</span>
                   <span v-else-if="error">There was an error processing your request: {{ error }}</span>

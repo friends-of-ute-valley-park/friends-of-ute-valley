@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text-sm leading-6 font-semibold text-green-800">
+    <p class="text-sm leading-6 font-semibold text-primary-dark">
       <a :href="'/events/' + volunteerEvent.id" class="hover:underline">{{ volunteerEvent.data.title }}</a>
     </p>
     <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
@@ -12,7 +12,7 @@
         <circle cx="1" cy="1" r="1" />
       </svg>
       <p>
-        <a :href="directionsLink" class="text-green-800 underline">{{ meetingLocation }}</a>
+        <a :href="directionsLink" class="text-primary-dark underline">{{ meetingLocation }}</a>
       </p>
       <svg v-if="volunteerEvent.data.meetingLocation.notes" viewBox="0 0 2 2" class="h-0.5 w-0.5 fill-current">
         <circle cx="1" cy="1" r="1" />
@@ -26,13 +26,13 @@
   <div class="flex w-full flex-none justify-between gap-x-4 sm:w-auto">
     <div class="flex h-12">
       <a :href="volunteerEvent.data.link"
-        class="inline-flex items-center rounded-md border border-transparent bg-green-600 px-2 py-1 text-sm font-medium text-green-50 shadow-xs transition duration-150 ease-in-out hover:bg-green-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
+        class="inline-flex items-center rounded-md border border-transparent bg-primary-light px-2 py-1 text-sm font-medium text-primary-50 shadow-xs transition duration-150 ease-in-out hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light">
         Register
       </a>
     </div>
     <div class="flex h-12 gap-x-2.5">
       <a href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
-        class="inline-flex items-center rounded-md border border-transparent bg-teal-600 px-2 py-1 text-sm font-medium text-teal-50 shadow-xs transition duration-150 ease-in-out hover:bg-teal-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">
+        class="inline-flex items-center rounded-md border border-transparent bg-secondary px-2 py-1 text-sm font-medium text-white shadow-xs transition duration-150 ease-in-out hover:bg-secondary-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary">
         Consent and Release Form
       </a>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <div v-if="hasUpcomingVolunteerEvent" class="mb-2">
     <div
-      class="relative isolate flex items-center gap-x-6 overflow-hidden bg-teal-900 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+      class="relative isolate flex items-center gap-x-6 overflow-hidden bg-secondary-dark px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
       <svg viewBox="0 0 577 310" aria-hidden="true"
         class="absolute top-1/2 left-[max(45rem,calc(50%+8rem))] -z-10 w-144.25 -translate-y-1/2 transform-gpu blur-2xl">
         <use href="#1d77c128-3ec1-4660-a7f6-26c7006705ad" />
@@ -12,7 +12,7 @@
           <strong class="font-semibold">Upcoming Volunteer Event {{ eventDates }}!</strong>
         </p>
         <a href="/volunteer/"
-          class="flex-none rounded-full bg-green-700 px-3.5 py-1 text-sm font-semibold text-white shadow-xs hover:bg-green-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">Learn
+          class="flex-none rounded-full bg-primary px-3.5 py-1 text-sm font-semibold text-white shadow-xs hover:bg-primary-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">Learn
           more <span aria-hidden="true">&rarr;</span></a>
       </div>
       <div class="flex flex-1 justify-end"></div>

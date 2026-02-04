@@ -8,18 +8,28 @@
   --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --background-image-grid-pattern: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
 
-  /* Winter Theme Colors */
-  --color-winter-ice: #e0f2fe;
-  --color-winter-sky: #7dd3fc;
-  --color-winter-frost: #0ea5e9;
-  --color-winter-deep: #0369a1;
-  --color-winter-slate: #475569;
-  --color-winter-snow: #f8fafc;
+  /* Brand Colors - Primary (Green) */
+  --color-primary-50: var(--color-green-50);
+  --color-primary-100: var(--color-green-100);
+  --color-primary-200: var(--color-green-200);
+  --color-primary-light: var(--color-green-600);
+  --color-primary: var(--color-green-700);
+  --color-primary-dark: var(--color-green-800);
+
+  /* Brand Colors - Secondary (Teal) */
+  --color-secondary-light: var(--color-teal-500);
+  --color-secondary: var(--color-teal-600);
+  --color-secondary-dark: var(--color-teal-800);
+
+  /* Brand Colors - Accent (Amber) */
+  --color-accent: var(--color-amber-400);
+  --color-accent-dark: var(--color-amber-500);
 
   --animate-shimmer: shimmer 4s ease-in-out infinite;
-  
+
   @keyframes shimmer {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 0.5;
     }
     50% {
