@@ -26,6 +26,9 @@
     "resend": "https://pkg.pr.new/resend/resend-node/resend@820",
     "typescript": "^5.9.3"
   },
+  "overrides": {
+    "lodash": "4.17.23"
+  },
   "devDependencies": {
     "@astrojs/vue": "^5.1.4",
     "@iconify/json": "^2.2.434",
