@@ -1,40 +1,50 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
-import Layout from '../layouts/Layout.astro';
-import CheckBadgeIcon from '~icons/heroicons/check-badge';
+import Layout from "../layouts/Layout.astro";
+import CheckBadgeIcon from "~icons/heroicons/check-badge";
 // New image imports for donation incentives
-import TshirtImage from '../assets/images/merch/tshirt.png';
-import HatImage from '../assets/images/merch/hat.png';
+import TshirtImage from "../assets/images/merch/tshirt.png";
+import HatImage from "../assets/images/merch/hat.png";
 
-const benefits = ['Expanded trails', 'Trail maintenance', 'Wayfinding signage and facilities', 'New tools', 'Educational programs', 'Volunteer appreciation'];
-import VolunteerHeroImage from '../assets/images/volunteer-hero.jpg';
+const benefits = [
+  "Expanded trails",
+  "Trail maintenance",
+  "Wayfinding signage and facilities",
+  "New tools",
+  "Educational programs",
+  "Volunteer appreciation",
+];
+import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
 // New: Donation Tiers Data
 const donationTiers = [
   {
-    name: 'Park Supporter',
-    incentive: 'Exclusive Supporter T-Shirt',
+    name: "Park Supporter",
+    incentive: "Exclusive Supporter T-Shirt",
     image: TshirtImage,
-    alt: 'Friends of Ute Valley Park Supporter T-Shirt',
-    description: 'Show your park pride with our comfortable and stylish supporter t-shirt. A perfect way to represent your commitment to Ute Valley Park.',
-    donationAmount: '$40',
+    alt: "Friends of Ute Valley Park Supporter T-Shirt",
+    description:
+      "Show your park pride with our comfortable and stylish supporter t-shirt. A perfect way to represent your commitment to Ute Valley Park.",
+    donationAmount: "$40",
   },
   {
-    name: 'Trail Guardian',
-    incentive: 'Stylish Guardian Hat',
+    name: "Trail Guardian",
+    incentive: "Stylish Guardian Hat",
     image: HatImage,
-    alt: 'Friends of Ute Valley Park Guardian Hat',
-    description: 'Protect yourself from the sun while showcasing your support with our durable and fashionable Guardian hat. Ideal for your park adventures.',
-    donationAmount: '$60',
+    alt: "Friends of Ute Valley Park Guardian Hat",
+    description:
+      "Protect yourself from the sun while showcasing your support with our durable and fashionable Guardian hat. Ideal for your park adventures.",
+    donationAmount: "$60",
   },
   {
-    name: 'Valley Champion',
-    incentive: 'Champion Swag Pack (T-Shirt, Hat & More)',
+    name: "Valley Champion",
+    incentive: "Champion Swag Pack (T-Shirt, Hat & More)",
     images: [TshirtImage, HatImage], // Array for multiple images
-    altTshirt: 'Friends of Ute Valley Park Champion T-Shirt',
-    altHat: 'Friends of Ute Valley Park Champion Hat',
-    description: 'Become a Valley Champion and receive the ultimate swag pack! Get both the exclusive t-shirt and the stylish hat, stickers and buttons to fully gear up for your park visits.',
-    donationAmount: '$100',
+    altTshirt: "Friends of Ute Valley Park Champion T-Shirt",
+    altHat: "Friends of Ute Valley Park Champion Hat",
+    description:
+      "Become a Valley Champion and receive the ultimate swag pack! Get both the exclusive t-shirt and the stylish hat, stickers and buttons to fully gear up for your park visits.",
+    donationAmount: "$100",
   },
 ];
 ---
@@ -42,35 +52,57 @@ const donationTiers = [
 <Layout title="Donate">
   <!-- Hero -->
   <div class="mt-1 bg-white">
-    <div class="relative isolate overflow-hidden bg-linear-to-b from-green-100/20">
-      <div class="mx-auto max-w-7xl pt-10 pb-24 sm:pb-16 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-20">
+    <div
+      class="relative isolate overflow-hidden bg-linear-to-b from-green-100/20"
+    >
+      <div
+        class="mx-auto max-w-7xl pt-10 pb-24 sm:pb-16 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-20"
+      >
         <div class="px-6 lg:px-0 lg:pt-4">
           <div class="mx-auto max-w-2xl">
             <div class="max-w-lg">
-              <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Dear Friends of Ute Valley Park,</h1>
-              <div class="mt-10 block flex justify-center lg:hidden">
+              <h1
+                class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+              >
+                Dear Friends of Ute Valley Park,
+              </h1>
+              <div class="mt-10 flex justify-center lg:hidden">
                 <a
                   href="https://trailsandopenspacecoalition-bloom.kindful.com/embeds/65db98e0-d794-4712-bf37-144689d58de3"
-                  class="group inline-block rounded-md bg-gradient-to-r from-primary-light via-secondary-light to-emerald-600 p-[2px] hover:text-white focus:ring-2 focus:ring-primary-light focus:ring-offset-2 focus:outline-none">
-                  <span class="block rounded-sm bg-white px-4 py-2 text-lg font-medium text-primary transition-colors duration-150 ease-in-out group-hover:bg-transparent group-hover:text-white">
+                  class="group inline-block rounded-md bg-linear-to-r from-primary-light via-secondary-light to-emerald-600 p-[2px] hover:text-white focus:ring-2 focus:ring-primary-light focus:ring-offset-2 focus:outline-none"
+                >
+                  <span
+                    class="block rounded-sm bg-white px-4 py-2 text-lg font-medium text-primary transition-colors duration-150 ease-in-out group-hover:bg-transparent group-hover:text-white"
+                  >
                     Donate Now
                   </span>
                 </a>
               </div>
               <p class="mt-6 text-lg leading-8 text-gray-600">
-                We need your help to continue our mission of maintaining and expanding the amazing trails and open spaces at Ute Valley Park. Your tax-deductible donation to the Friends of Ute Valley
-                Park will directly support critical initiatives such as building new trails, acquiring additional tools and resources for conservation, and providing educational programs that connect
+                We need your help to continue our mission of maintaining and
+                expanding the amazing trails and open spaces at Ute Valley Park.
+                Your tax-deductible donation to the Friends of Ute Valley Park
+                will directly support critical initiatives such as building new
+                trails, acquiring additional tools and resources for
+                conservation, and providing educational programs that connect
                 our community with nature.
               </p>
               <p class="mt-6 text-lg leading-8 text-gray-600">
-                Every contribution, no matter the size, makes a real difference in preserving this treasured resource for generations to come. Please consider making a donation today and becoming a
-                champion for Ute Valley Park. <span class="font-bold">Thank you for your generosity and support!</span>
+                Every contribution, no matter the size, makes a real difference
+                in preserving this treasured resource for generations to come.
+                Please consider making a donation today and becoming a champion
+                for Ute Valley Park. <span class="font-bold"
+                  >Thank you for your generosity and support!</span
+                >
               </p>
               <div class="mt-8">
                 <a
                   href="https://trailsandopenspacecoalition-bloom.kindful.com/embeds/65db98e0-d794-4712-bf37-144689d58de3"
-                  class="group inline-block rounded-md bg-gradient-to-r from-primary-light via-secondary-light to-emerald-600 p-[2px] hover:text-white focus:ring-2 focus:ring-primary-light focus:ring-offset-2 focus:outline-none">
-                  <span class="block rounded-sm bg-white px-4 py-2 text-lg font-medium text-primary transition-colors duration-150 ease-in-out group-hover:bg-transparent group-hover:text-white">
+                  class="group inline-block rounded-md bg-linear-to-r from-primary-light via-secondary-light to-emerald-600 p-[2px] hover:text-white focus:ring-2 focus:ring-primary-light focus:ring-offset-2 focus:outline-none"
+                >
+                  <span
+                    class="block rounded-sm bg-white px-4 py-2 text-lg font-medium text-primary transition-colors duration-150 ease-in-out group-hover:bg-transparent group-hover:text-white"
+                  >
                     Make a Donation Today »
                   </span>
                 </a>
@@ -78,42 +110,80 @@ const donationTiers = [
             </div>
           </div>
         </div>
-        <div class="mt-20 sm:mt-24 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-screen">
-          <Image src={VolunteerHeroImage} alt="" class="shadow-lg md:rounded-3xl" width={1000} />
+        <div
+          class="mt-20 sm:mt-24 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-screen"
+        >
+          <Image
+            src={VolunteerHeroImage}
+            alt=""
+            class="shadow-lg md:rounded-3xl"
+            width={1000}
+          />
         </div>
       </div>
-      <div class="absolute inset-x-0 bottom-0 -z-10 h-24 bg-linear-to-t from-white sm:h-32"></div>
+      <div
+        class="absolute inset-x-0 bottom-0 -z-10 h-24 bg-linear-to-t from-white sm:h-32"
+      >
+      </div>
     </div>
   </div>
   <!-- Donation Incentives Section -->
   <div class="bg-white py-16 sm:py-24">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-primary-dark sm:text-4xl">Support Our Park, Get Exclusive Swag!</h2>
+        <h2
+          class="text-3xl font-bold tracking-tight text-primary-dark sm:text-4xl"
+        >
+          Support Our Park, Get Exclusive Swag!
+        </h2>
         <p class="mt-6 text-lg leading-8 text-gray-700">
-          Your generous donations fuel our efforts to preserve and enhance Ute Valley Park. As a token of our deepest appreciation, we're excited to offer exclusive Friends of Ute Valley Park
-          merchandise for our dedicated supporters.
+          Your generous donations fuel our efforts to preserve and enhance Ute
+          Valley Park. As a token of our deepest appreciation, we're excited to
+          offer exclusive Friends of Ute Valley Park merchandise for our
+          dedicated supporters.
         </p>
       </div>
-      <div class="mt-16 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
+      <div
+        class="mt-16 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8"
+      >
         {
           donationTiers.map((tier) => (
             <div class="flex flex-col rounded-2xl bg-gray-50 shadow-lg ring-1 ring-gray-900/5 ring-inset">
-              <div class="flex flex-grow flex-col p-8 sm:p-10">
-                <h3 class="mb-1 text-2xl font-bold tracking-tight text-slate-800">{tier.name}</h3>
-                <p class="mb-2 text-lg font-medium text-primary-light">{tier.incentive}</p>
+              <div class="flex grow flex-col p-8 sm:p-10">
+                <h3 class="mb-1 text-2xl font-bold tracking-tight text-slate-800">
+                  {tier.name}
+                </h3>
+                <p class="mb-2 text-lg font-medium text-primary-light">
+                  {tier.incentive}
+                </p>
                 <p class="mb-3">
-                  <span class="text-3xl font-bold text-slate-900">{tier.donationAmount}</span>
-                  <span class="ml-1.5 text-sm font-medium text-slate-500">Suggested Donation</span>
+                  <span class="text-3xl font-bold text-slate-900">
+                    {tier.donationAmount}
+                  </span>
+                  <span class="ml-1.5 text-sm font-medium text-slate-500">
+                    Suggested Donation
+                  </span>
                 </p>
                 <div class="mt-6 flex h-48 items-center justify-center">
                   {tier.images ? (
                     <div class="flex space-x-4">
-                      <Image src={tier.images[0]} alt={tier.altTshirt} class="h-32 w-auto rounded-md shadow-md" />
-                      <Image src={tier.images[1]} alt={tier.altHat} class="h-32 w-auto rounded-md shadow-md" />
+                      <Image
+                        src={tier.images[0]}
+                        alt={tier.altTshirt}
+                        class="h-32 w-auto rounded-md shadow-md"
+                      />
+                      <Image
+                        src={tier.images[1]}
+                        alt={tier.altHat}
+                        class="h-32 w-auto rounded-md shadow-md"
+                      />
                     </div>
                   ) : (
-                    <Image src={tier.image} alt={tier.alt} class="h-48 w-auto rounded-md shadow-md" />
+                    <Image
+                      src={tier.image}
+                      alt={tier.alt}
+                      class="h-48 w-auto rounded-md shadow-md"
+                    />
                   )}
                 </div>
                 <div class="mt-auto text-base leading-relaxed text-slate-700">
@@ -121,7 +191,8 @@ const donationTiers = [
                   <div class="mt-6">
                     <a
                       href="https://trailsandopenspacecoalition-bloom.kindful.com/embeds/65db98e0-d794-4712-bf37-144689d58de3"
-                      class="group relative block w-full rounded-md bg-gradient-to-r from-primary-light via-secondary-light to-emerald-600 p-[2px] text-center hover:text-white focus:ring-2 focus:ring-primary-light focus:ring-offset-2 focus:outline-none">
+                      class="group relative block w-full rounded-md bg-linear-to-r from-primary-light via-secondary-light to-emerald-600 p-[2px] text-center hover:text-white focus:ring-2 focus:ring-primary-light focus:ring-offset-2 focus:outline-none"
+                    >
                       <span class="block w-full rounded-sm bg-white px-3.5 py-2.5 text-lg font-semibold text-primary transition-colors duration-150 ease-in-out group-hover:bg-transparent group-hover:text-white">
                         Donate {tier.donationAmount}
                       </span>
@@ -135,9 +206,11 @@ const donationTiers = [
       </div>
       <div class="mt-16 text-center">
         <p class="text-md leading-7 text-gray-700">
-          To receive your thank-you gift, please make your donation and then email a copy of your donation receipt to <a
+          To receive your thank-you gift, please make your donation and then
+          email a copy of your donation receipt to <a
             href="mailto:contact@friendsofutevalleypark.com"
-            class="font-semibold text-primary-light hover:text-secondary-light">contact@friendsofutevalleypark.com</a
+            class="font-semibold text-primary-light hover:text-secondary-light"
+            >contact@friendsofutevalleypark.com</a
           >. We will then coordinate the delivery of your swag.
         </p>
       </div>
@@ -147,22 +220,42 @@ const donationTiers = [
     <div class="pt-12 sm:pt-16 lg:pt-20">
       <div class="mx-auto max-w-(--breakpoint-xl) px-4 sm:px-6 lg:px-8">
         <div class="text-center">
-          <h2 class="text-3xl font-extrabold text-primary-dark sm:text-4xl lg:text-5xl">Donate to Friends of Ute Valley Park</h2>
-          <p class="mt-4 text-2xl text-primary">Your donation will help expand trails and protect open spaces for all to enjoy</p>
+          <h2
+            class="text-3xl font-extrabold text-primary-dark sm:text-4xl lg:text-5xl"
+          >
+            Donate to Friends of Ute Valley Park
+          </h2>
+          <p class="mt-4 text-2xl text-primary">
+            Your donation will help expand trails and protect open spaces for
+            all to enjoy
+          </p>
         </div>
       </div>
     </div>
     <div class="mt-8 bg-white pb-16 sm:mt-12 sm:pb-20 lg:pb-28">
       <div class="relative">
         <div class="absolute inset-0 h-1/2 bg-gray-100"></div>
-        <div class="relative mx-auto max-w-(--breakpoint-xl) px-4 sm:px-6 lg:px-8">
-          <div class="mx-auto max-w-lg overflow-hidden rounded-lg shadow-lg lg:flex lg:max-w-none">
+        <div
+          class="relative mx-auto max-w-(--breakpoint-xl) px-4 sm:px-6 lg:px-8"
+        >
+          <div
+            class="mx-auto max-w-lg overflow-hidden rounded-lg shadow-lg lg:flex lg:max-w-none"
+          >
             <div class="flex-1 bg-white px-6 py-8 lg:p-12">
-              <h3 class="text-2xl font-bold text-gray-900 sm:text-3xl">Support Ute Valley Park via Trails and Open Space Coalition</h3>
-              <p class="mt-6 text-base text-gray-500">Trails and Open Space Coalition is the fiscal sponsor of Friends Of Ute Valley Park.</p>
+              <h3 class="text-2xl font-bold text-gray-900 sm:text-3xl">
+                Support Ute Valley Park via Trails and Open Space Coalition
+              </h3>
+              <p class="mt-6 text-base text-gray-500">
+                Trails and Open Space Coalition is the fiscal sponsor of Friends
+                Of Ute Valley Park.
+              </p>
               <div class="mt-8">
                 <div class="flex items-center">
-                  <h4 class="shrink-0 bg-white pr-4 text-sm font-semibold tracking-wider text-primary uppercase">What you are supporting</h4>
+                  <h4
+                    class="shrink-0 bg-white pr-4 text-sm font-semibold tracking-wider text-primary uppercase"
+                  >
+                    What you are supporting
+                  </h4>
                   <div class="flex-1 border-t-2 border-gray-200"></div>
                 </div>
                 <ul class="mt-8 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5">
@@ -170,7 +263,10 @@ const donationTiers = [
                     benefits.map((benefit) => (
                       <li class="my-2 flex items-start md:mt-0 lg:col-span-1">
                         <div class="shrink-0">
-                          <CheckBadgeIcon class="h-6 w-6 text-primary-light" aria-hidden="true" />
+                          <CheckBadgeIcon
+                            class="h-6 w-6 text-primary-light"
+                            aria-hidden="true"
+                          />
                         </div>
                         <p class="ml-3 text-sm text-gray-700">{benefit}</p>
                       </li>
@@ -179,20 +275,37 @@ const donationTiers = [
                 </ul>
               </div>
             </div>
-            <div class="bg-gray-50 px-6 py-8 text-center lg:flex lg:shrink-0 lg:flex-col lg:justify-center lg:p-12">
-              <p class="text-xl font-bold text-primary">Be a park hero - donate today!</p>
+            <div
+              class="bg-gray-50 px-6 py-8 text-center lg:flex lg:shrink-0 lg:flex-col lg:justify-center lg:p-12"
+            >
+              <p class="text-xl font-bold text-primary">
+                Be a park hero - donate today!
+              </p>
               <div class="mt-6">
                 <div class="rounded-md shadow-sm">
                   <a
                     href="https://trailsandopenspacecoalition-bloom.kindful.com/embeds/65db98e0-d794-4712-bf37-144689d58de3"
-                    class="flex items-center justify-center rounded-md border border-transparent bg-primary-dark px-5 py-3 text-base font-medium text-white transition duration-150 ease-in-out hover:bg-primary focus:ring-3 focus:outline-hidden">
+                    class="flex items-center justify-center rounded-md border border-transparent bg-primary-dark px-5 py-3 text-base font-medium text-white transition duration-150 ease-in-out hover:bg-primary focus:ring-3 focus:outline-hidden"
+                  >
                     Donate Now
                   </a>
                 </div>
               </div>
               <div class="my-4 text-sm">
-                <a href="https://trailsandopenspacecoalition-bloom.kindful.com/embeds/65db98e0-d794-4712-bf37-144689d58de3" class="font-medium text-gray-900">
-                  <svg id="Layer_1" class="mx-auto w-64" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 484.2 201.5" xml:space="preserve">
+                <a
+                  href="https://trailsandopenspacecoalition-bloom.kindful.com/embeds/65db98e0-d794-4712-bf37-144689d58de3"
+                  class="font-medium text-gray-900"
+                >
+                  <svg
+                    id="Layer_1"
+                    class="mx-auto w-64"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0"
+                    y="0"
+                    viewBox="0 0 484.2 201.5"
+                    xml:space="preserve"
+                  >
                     <title>Trails and Open Space Logo</title>
                     <path
                       class="st0"
@@ -214,13 +327,20 @@ const donationTiers = [
                         class="st0"
                         d="M100.7 26.3c-42.2 0-76.3 34.2-76.3 76.3S58.6 179 100.7 179s76.3-34.2 76.3-76.3-34.1-76.4-76.3-76.4zm49.5 125.8c-6.4 6.4-13.9 11.5-22.3 15-8.6 3.7-17.8 5.5-27.3 5.5s-18.6-1.9-27.3-5.5c-8.3-3.5-15.8-8.6-22.3-15-6.4-6.4-11.5-13.9-15-22.3-3.7-8.6-5.5-17.8-5.5-27.3s1.9-18.6 5.5-27.3c3.5-8.3 8.6-15.8 15-22.3s13.9-11.5 22.3-15c8.6-3.7 17.8-5.5 27.3-5.5s18.6 1.9 27.3 5.5c8.3 3.5 15.8 8.6 22.3 15s11.5 13.9 15 22.3c3.7 8.6 5.5 17.8 5.5 27.3s-1.9 18.6-5.5 27.3c-3.5 8.4-8.5 15.9-15 22.3z"
                       ></path>
-                      <path class="st0" d="M83.2 121.6c-31.5-1.9-45-14.3-45.7-14.8 1.9 14.3 5.1 27.1 20.4 42.3 1.4-7.9 10.9-19.6 25.3-27.5z"></path>
+                      <path
+                        class="st0"
+                        d="M83.2 121.6c-31.5-1.9-45-14.3-45.7-14.8 1.9 14.3 5.1 27.1 20.4 42.3 1.4-7.9 10.9-19.6 25.3-27.5z"
+                      ></path>
                     </g>
                   </svg>
                 </a>
               </div>
               <p class="mt-4 text-sm font-medium text-gray-600">
-                Want to donate your time? <a href="/volunteer/" class="block font-semibold text-primary-light underline">Check out our volunteer opportunities!</a>
+                Want to donate your time? <a
+                  href="/volunteer/"
+                  class="block font-semibold text-primary-light underline"
+                  >Check out our volunteer opportunities!</a
+                >
               </p>
             </div>
           </div>
