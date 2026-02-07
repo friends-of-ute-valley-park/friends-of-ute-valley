@@ -8,30 +8,79 @@ export interface Props {
   canBeWide?: boolean | undefined;
 }
 
-const { title, image, publishedOn, href } = Astro.props as Props;
+const { title, image, publishedOn, href, previewText } = Astro.props as Props;
 
-export function getStaticPaths() {
-  return [{ params: { news: title } }];
-}
-
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 ---
 
-<article
-  class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 shadow-lg transition-all duration-200 ease-in-out hover:scale-105 hover:rotate-1 hover:shadow-xl sm:pt-48 lg:pt-80">
-  <Image src={image} width={600} quality="70" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover" />
-  <div class="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40"></div>
-  <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-gray-900/10 ring-inset"></div>
+<a href={"/news/" + href} class="group block space-y-6">
+  <article
+    class="relative aspect-16/10 overflow-hidden bg-stone-200 border border-stone-300 group-hover:border-primary-dark transition-colors"
+  >
+    <Image
+      src={image}
+      width={800}
+      quality="80"
+      alt={title}
+      class="w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100"
+    />
 
-  <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
-    <time datetime={publishedOn.toString()} class="mr-8">{new Intl.DateTimeFormat('en-US').format(new Date(publishedOn))}</time>
-  </div>
-  <h3 class="mt-3 text-lg leading-6 font-semibold text-white">
-    <a href={'/news/' + href}>
-      <span class="absolute inset-0"></span>
+    <div
+      class="absolute inset-0 border-[16px] border-white/10 pointer-events-none"
+    >
+    </div>
+
+    <div
+      class="absolute top-4 right-4 bg-primary-dark text-white px-2 py-1 font-mono text-[10px] uppercase tracking-widest"
+    >
+      {
+        new Intl.DateTimeFormat("en-US", {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+        }).format(new Date(publishedOn))
+      }
+    </div>
+
+    <div
+      class="absolute bottom-4 left-4 bg-white/90 px-3 py-1 border border-stone-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+    >
+      <span
+        class="font-mono text-[10px] font-black uppercase tracking-widest text-primary-dark"
+        >Read Dispatch →</span
+      >
+    </div>
+  </article>
+
+  <div class="space-y-3">
+    <div class="flex items-center gap-3">
+      <span
+        class="inline-block h-px w-6 bg-stone-300 group-hover:bg-primary-dark transition-colors"
+      ></span>
+      <span
+        class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-500 group-hover:text-primary-dark transition-colors"
+        >Dispatch No. {
+          String(Math.floor(Math.random() * 1000)).padStart(3, "0")
+        }</span
+      >
+    </div>
+    <h3
+      class="text-2xl font-serif font-black leading-tight text-stone-900 group-hover:text-primary-dark transition-colors uppercase tracking-tight"
+    >
       {title}
-    </a>
-  </h3>
-</article>
+    </h3>
+    <p class="text-sm text-stone-600 font-medium line-clamp-2 leading-relaxed">
+      {previewText}
+    </p>
+  </div>
+</a>
 
-<style></style>
+<style>
+  @font-face {
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
+  }
+  .font-serif {
+    font-family: "EditorialSerif", serif;
+  }
+</style>

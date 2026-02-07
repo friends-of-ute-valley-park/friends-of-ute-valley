@@ -21,126 +21,165 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
 ---
 
 <Layout title="Link in Bio">
-  <div class="my-2 w-full bg-primary-50 py-2">
-    <div class="mx-auto my-6 max-w-4xl bg-white px-6 pt-2 lg:px-8">
-      <div class="mx-2 my-8 border-b border-gray-100 pb-6">
-        <Image
-          src={Logo}
-          alt="Friends of Ute Valley Park logo"
-          width="100"
-          height="100"
-          class="mx-auto"
-        />
-        <h2
-          class="mt-2 text-center text-2xl font-bold tracking-tight text-primary-dark"
-        >
-          Friends of Ute Valley Park
-        </h2>
-        <div class="mx-auto mt-4 w-min">
-          <SocialLinks />
+  <main class="bg-stone-50 min-h-screen py-8">
+    <div
+      class="mx-auto max-w-xl bg-white border border-stone-300 shadow-sm overflow-hidden"
+    >
+      <!-- Header -->
+      <div class="p-8 border-b border-stone-300 bg-stone-50/50">
+        <div class="flex flex-col items-center gap-6 text-center">
+          <div class="p-1 border border-stone-300 bg-white shadow-sm">
+            <Image src={Logo} alt="FUVP Seal" width="80" height="80" class="" />
+          </div>
+          <div class="space-y-2">
+            <h1
+              class="text-3xl font-serif font-black uppercase tracking-tighter text-stone-900 leading-none"
+            >
+              Friends of <br />
+              <span class="text-primary-dark">Ute Valley Park.</span>
+            </h1>
+            <p
+              class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500"
+            >
+              Ute Valley Park — Quick Links
+            </p>
+          </div>
+          <div
+            class="pt-4 border-t border-stone-200 w-full flex justify-center"
+          >
+            <SocialLinks />
+          </div>
         </div>
       </div>
+
+      <!-- Active Operations -->
       {
         upcomingVolunteerEvents.length > 0 && (
-          <div class="mt-2">
-            <h2 class="text-center text-3xl font-bold tracking-tight text-primary-dark sm:text-2xl">
-              Upcoming volunteer events
-            </h2>
-            <div class="px-4 py-5">
-              <ul class="divide-y divide-gray-100">
-                {upcomingVolunteerEvents.map((volunteerEvent) => (
-                  <li class="my-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-4 py-5 sm:flex-nowrap">
-                    <VolunteerItem
-                      meetingLocations={meetingLocations}
-                      volunteerEvent={volunteerEvent}
-                      client:idle
-                    />
-                  </li>
-                ))}
-              </ul>
+          <div class="p-8 border-b border-stone-300 bg-white">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="inline-block h-px w-6 bg-accent-dark" />
+              <h2 class="font-mono text-[10px] font-black uppercase tracking-widest text-accent-dark">
+                Volunteer Opportunities
+              </h2>
+            </div>
+            <div class="space-y-8">
+              {upcomingVolunteerEvents.map((volunteerEvent) => (
+                <div class="border-l-2 border-stone-100 pl-4">
+                  <VolunteerItem
+                    meetingLocations={meetingLocations}
+                    volunteerEvent={volunteerEvent}
+                    client:idle
+                  />
+                </div>
+              ))}
             </div>
           </div>
         )
       }
-      <div>
-        <div class="px-4 py-4">
-          <ul class="divide-y divide-gray-100">
-            {
-              sortedLinks.map((link) => (
-                <li class="my-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
-                  <a
-                    href={link.data.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-full rounded-md border border-gray-300 bg-primary-50/10 px-4 py-3 text-center font-sans text-black transition-colors duration-200 hover:bg-primary-100"
-                  >
-                    <span class="font-semibold text-primary-dark">
-                      {link.data.title}
-                    </span>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
+
+      <!-- Tactical Links -->
+      <div class="p-8 border-b border-stone-300 bg-stone-50/30">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="inline-block h-px w-6 bg-primary-dark"></span>
+          <h2
+            class="font-mono text-[10px] font-black uppercase tracking-widest text-primary-dark"
+          >
+            Useful Links
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 gap-4">
+          {
+            sortedLinks.map((link) => (
+              <a
+                href={link.data.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex justify-between items-center p-5 border border-stone-300 bg-white hover:border-primary-dark transition-all active:scale-[0.98]"
+              >
+                <span class="font-mono text-xs font-black uppercase tracking-widest text-stone-900 group-hover:text-primary-dark transition-colors">
+                  {link.data.title}
+                </span>
+                <span class="text-stone-300 group-hover:text-primary-dark transition-colors">
+                  →
+                </span>
+              </a>
+            ))
+          }
         </div>
       </div>
 
-      <div class="mx-auto my-4 overflow-hidden py-4 sm:px-6 lg:px-8">
-        <h2
-          class="text-center text-3xl font-bold tracking-tight text-primary-dark sm:text-2xl"
+      <!-- Technical Wishlist -->
+      <div class="p-8 bg-white">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="inline-block h-px w-6 bg-stone-400"></span>
+          <h2
+            class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-500"
+          >
+            Our Wishlist
+          </h2>
+        </div>
+        <p
+          class="text-[10px] font-mono uppercase tracking-tighter text-stone-500 mb-8 leading-relaxed"
         >
-          Wishlist
-        </h2>
-        <p>
-          We gratefully accept donations of tools to support our mission and
-          help those in need. If you have tools you'd like to donate, please <a
+          The following assets are required for ongoing field operations. Please <a
             href="/contact/"
-            class="text-primary-light underline"
-            target="_blank"
-            rel="noopener noreferrer">contact us</a
-          > to arrange the best way to hand them off – your generosity can make a
-          real difference in our community!
+            class="text-primary-dark font-black underline">contact logistics</a
+          > to coordinate delivery.
         </p>
+
         <div
-          class="-mx-px mt-4 grid grid-cols-2 border-l border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4"
+          class="grid grid-cols-2 gap-px bg-stone-200 border border-stone-200"
         >
           {
-            wishlist.map((wishlistItem) => (
-              <div class="group relative border-b border-r border-gray-200 p-4 sm:p-6">
-                <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
+            wishlist.map((item) => (
+              <div class="bg-white p-4 space-y-4 hover:bg-stone-50 transition-colors group">
+                <div class="aspect-square bg-stone-100 border border-stone-100 overflow-hidden relative">
                   <Image
-                    src={wishlistItem.data.image}
-                    alt={wishlistItem.data.imageAlt}
+                    src={item.data.image}
+                    alt={item.data.imageAlt}
                     width="200"
                     height="200"
-                    class="h-full w-full object-cover object-center"
+                    class="w-full h-full object-cover transition-all duration-700"
                   />
+                  <div class="absolute bottom-2 left-2 bg-stone-900 text-white px-2 py-0.5 font-mono text-[8px] uppercase tracking-tighter">
+                    {item.data.quantityNeeded} REQUIRED
+                  </div>
                 </div>
-                <div class="pb-4 pt-10 text-center">
-                  <h3 class="text-sm font-medium text-gray-900">
+                <div class="space-y-1">
+                  <h3 class="font-mono text-[10px] font-black uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors">
                     <a
-                      href={wishlistItem.data.link}
+                      href={item.data.link}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span aria-hidden="true" class="absolute inset-0" />
-                      {wishlistItem.data.title}
+                      {item.data.title}
                     </a>
                   </h3>
-                  <div class="mt-3 flex flex-col items-center">
-                    <p class="mt-1 text-sm text-gray-500">
-                      {wishlistItem.data.quantityNeeded} needed
-                    </p>
-                  </div>
-                  <p class="mt-4 text-base font-medium text-gray-900">
-                    {wishlistItem.data.description}
-                  </p>
                 </div>
               </div>
             ))
           }
         </div>
       </div>
+
+      <!-- Footer -->
+      <div class="p-8 border-t border-stone-300 bg-stone-900 text-center">
+        <p
+          class="font-mono text-[8px] uppercase tracking-[0.4em] text-stone-500"
+        >
+          Friends of Ute Valley Park — 2026 Active Wildland
+        </p>
+      </div>
     </div>
-  </div>
+  </main>
 </Layout>
+
+<style>
+  @font-face {
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
+  }
+  .font-serif {
+    font-family: "EditorialSerif", serif;
+  }
+</style>

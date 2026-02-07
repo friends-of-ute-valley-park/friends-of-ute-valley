@@ -13,7 +13,7 @@ import heroImage3 from "../assets/images/ute-valley-park-hero-3.jpg";
 import cta from "../assets/images/volunteer-5.jpg";
 
 import { getCollection } from "astro:content";
-import StatsCard from "@components/StatsCard.astro";
+import trailConditions from "../data/trail-conditions/trail-conditions.json";
 const publishedNewsEntries = await getCollection("news", ({ data }) => {
   return data.published === true;
 });
@@ -76,7 +76,7 @@ const winterTips = [
                 <span
                   class="font-mono text-xs font-bold tracking-widest uppercase text-stone-500"
                 >
-                  Field Report No. 042 — Feb 2026
+                  Park Update — Feb 2026
                 </span>
               </div>
 
@@ -120,11 +120,11 @@ const winterTips = [
           <div class="lg:col-span-4 bg-stone-100/50 p-8 lg:p-12">
             <div class="sticky top-24 space-y-12">
               <div>
-                <h3
+                <h2
                   class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark mb-6 border-b border-stone-300 pb-2"
                 >
-                  Park Status Bulletin
-                </h3>
+                  Current Park Status
+                </h2>
                 <ul class="space-y-6">
                   <li class="flex justify-between items-start gap-4">
                     <span
@@ -136,15 +136,24 @@ const winterTips = [
                       >WINTER (DORMANT)</span
                     >
                   </li>
-                  <li class="flex justify-between items-start gap-4">
-                    <span
-                      class="font-mono text-sm text-stone-500 uppercase tracking-tighter"
-                      >Trail Conditions</span
-                    >
-                    <span
-                      class="font-mono text-sm font-bold text-right text-accent-dark underline decoration-2 underline-offset-4"
-                      >ICY</span
-                    >
+                  <li>
+                    <div class="flex justify-between items-start gap-4">
+                      <span
+                        class="font-mono text-sm text-stone-500 uppercase tracking-tighter"
+                        >Trail Conditions</span
+                      >
+                      <span
+                        class="font-mono text-sm font-bold text-right text-accent-dark underline decoration-2 underline-offset-4"
+                        >{trailConditions.status.toUpperCase()}</span
+                      >
+                    </div>
+                    {
+                      trailConditions.message && (
+                        <p class="font-mono text-[10px] text-stone-500 mt-1 leading-snug text-right">
+                          {trailConditions.message}
+                        </p>
+                      )
+                    }
                   </li>
                   <li class="flex justify-between items-start gap-4">
                     <span
@@ -187,7 +196,7 @@ const winterTips = [
                   <div
                     class="absolute bottom-4 left-4 bg-primary-dark text-white px-2 py-1 font-mono text-[10px] uppercase tracking-tighter"
                   >
-                    REF: SCENIC_VIEW_01.JPG
+                    REF: PIKES_PEAK_VIEW_01.JPG
                   </div>
                 </div>
               </div>
@@ -276,7 +285,7 @@ const winterTips = [
             winterTips.map((tip) => (
               <div class="bg-stone-50 p-8 space-y-6 flex flex-col justify-between hover:bg-white transition-colors group">
                 <div class="space-y-4">
-                  <span class="font-mono text-4xl font-black text-accent group-hover:text-accent-dark transition-colors">
+                  <span class="font-mono text-4xl font-black text-accent-dark group-hover:text-accent transition-colors">
                     {tip.id}
                   </span>
                   <h3 class="text-xl font-bold font-serif uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors">
@@ -305,15 +314,15 @@ const winterTips = [
           <div>
             <span
               class="font-mono text-xs font-bold uppercase tracking-[0.3em] text-stone-300 mb-4 block"
-              >Archive Data: 2024</span
+              >Our Impact: 2024</span
             >
             <h2
               class="text-5xl sm:text-7xl font-serif font-black uppercase tracking-tighter leading-none mb-8"
             >
-              Cumulative <br />
+              Our <br />
               <span class="text-primary-light">Impact.</span>
             </h2>
-            <p class="text-stone-400 text-lg max-w-md leading-relaxed">
+            <p class="text-stone-300 text-lg max-w-md leading-relaxed">
               Quantifiable metrics reflecting our commitment to the Ute Valley
               ecosystem and community engagement.
             </p>
@@ -332,7 +341,7 @@ const winterTips = [
                   <div class="text-4xl sm:text-6xl font-mono font-black tracking-tighter text-white group-hover:text-accent transition-colors">
                     {stat.value}
                   </div>
-                  <div class="text-[10px] font-mono uppercase tracking-widest text-stone-500">
+                  <div class="text-[10px] font-mono uppercase tracking-widest text-stone-300">
                     {stat.label}
                   </div>
                 </div>
@@ -453,7 +462,7 @@ const winterTips = [
               </h3>
               <EmailForm client:idle />
               <p
-                class="mt-4 text-[10px] font-mono text-stone-400 uppercase leading-tight"
+                class="mt-4 text-[10px] font-mono text-stone-500 uppercase leading-tight"
               >
                 Privacy Policy: We do not distribute subscriber data. Frequency:
                 Monthly dispatches.

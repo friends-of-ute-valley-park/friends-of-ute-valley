@@ -45,43 +45,53 @@ const teamMembers = [
 ];
 ---
 
-<div class="bg-white py-18 sm:py-24">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl lg:mx-0">
+<div class="py-24 border-b border-stone-300">
+  <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
+    <div class="mb-16">
+      <div class="flex items-center gap-4 mb-4">
+        <span class="inline-block h-px w-8 bg-primary-dark"></span>
+        <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500">Personnel Roster</span>
+      </div>
       <h2
-        class="text-4xl font-semibold tracking-tight text-pretty text-primary-dark sm:text-5xl"
+        class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900"
       >
-        Get to Know Our Team
+        Active <span class="text-primary-dark italic">Stewards.</span>
       </h2>
-      <p class="mt-6 text-lg/8 text-gray-600">
-        Meet the dedicated team of Friends of Ute Valley Park, who work hard to
-        preserve the natural beauty of this cherished community resource and
-        make it enjoyable for everyone.
+      <p class="mt-6 text-lg text-stone-600 font-medium max-w-2xl leading-relaxed">
+        The dedicated leadership team overseeing the preservation, community outreach, and technical operations of the Ute Valley urban wildland.
       </p>
     </div>
-    <ul
-      role="list"
-      class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-stone-300 border border-stone-300"
     >
       {
         teamMembers.map((teamMember) => (
-          <li>
-            <Image
-              height="368"
-              width="368"
-              class="aspect-square w-full rounded-2xl object-cover"
-              src={teamMember.image}
-              alt=""
-            />
-            <h3 class="mt-6 text-lg/8 font-semibold tracking-tight text-gray-900">
-              {teamMember.name}
-            </h3>
-            <ul role="list" class="mt-4 flex gap-x-6">
-              <li class="text-primary">{teamMember.title}</li>
-            </ul>
-          </li>
+          <div class="bg-white group hover:bg-stone-50 transition-colors">
+            <div class="aspect-square w-full overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700 relative">
+              <Image
+                height="600"
+                width="600"
+                class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
+                src={teamMember.image}
+                alt={teamMember.name}
+              />
+              <div class="absolute inset-0 border-[12px] border-white/20 pointer-events-none"></div>
+            </div>
+            <div class="p-6 space-y-2 border-t border-stone-200">
+              <h3 class="text-lg font-serif font-black uppercase tracking-tight text-stone-900 leading-tight">
+                {teamMember.name}
+              </h3>
+              <p class="font-mono text-[10px] font-black uppercase tracking-widest text-primary-dark">
+                {teamMember.title}
+              </p>
+              <div class="pt-4 flex justify-end">
+                <span class="font-mono text-[8px] uppercase tracking-tighter text-stone-300">REF: UNIT_{teamMember.name.split(' ')[0].toUpperCase()}</span>
+              </div>
+            </div>
+          </div>
         ))
       }
-    </ul>
+    </div>
   </div>
 </div>

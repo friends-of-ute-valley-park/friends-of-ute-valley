@@ -1,33 +1,128 @@
 ---
-import Layout from '@layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
+
+const logos = [
+  {
+    src: "/images/logo-small.jpg",
+    alt: "Small Logo",
+    ref: "LOG_SML_01",
+    desc: "Small utility logo",
+  },
+  {
+    src: "/images/logo-medium.jpg",
+    alt: "Medium Logo",
+    ref: "LOG_MED_01",
+    desc: "Medium report logo",
+  },
+  {
+    src: "/images/logo-full.jpg",
+    alt: "Full Size Logo",
+    ref: "LOG_FL_01",
+    desc: "Standard full size logo",
+  },
+  {
+    src: "/images/logo-full-uncompressed.jpg",
+    alt: "Uncompressed Logo",
+    ref: "LOG_FL_RAW",
+    desc: "High-resolution RAW asset",
+  },
+  {
+    src: "/images/logo-stickers.jpg",
+    alt: "Sticker Logo",
+    ref: "LOG_STK_01",
+    desc: "Sticker-optimized layout",
+  },
+];
 ---
 
 <Layout title="Assets">
-  <div class="mt-16 bg-white">
-    <div class="mx-auto max-w-7xl">
-      <h1 class="mb-8 mt-2 text-center text-3xl font-extrabold leading-8 tracking-tight text-green-900 sm:text-4xl sm:leading-10">Logos</h1>
-      <div class="grid-cols-2 gap-3 sm:grid">
-        <div>
-          <img class="mx-auto h-64" src="/images/logo-small.jpg" alt="small logo" />
-          <p class="text-center text-sm text-gray-600">Small logo</p>
+  <main class="bg-stone-50 text-stone-900">
+    <!-- Assets Header -->
+    <section class="border-b border-stone-300">
+      <div
+        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
+      >
+        <div class="flex items-center gap-4 mb-8">
+          <span class="inline-block h-px w-12 bg-primary-dark"></span>
+          <span
+            class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
+          >
+            Park Media — UVP_ASSET_LOG
+          </span>
         </div>
-        <div>
-          <img class="mx-auto h-64" src="/images/logo-medium.jpg" alt="small logo" />
-          <p class="text-center text-sm text-gray-600">Medium logo</p>
-        </div>
-        <div>
-          <img class="mx-auto h-64" src="/images/logo-full.jpg" alt="small logo" />
-          <p class="text-center text-sm text-gray-600">Full size logo</p>
-        </div>
-        <div>
-          <img class="mx-auto h-64" src="/images/logo-full-uncompressed.jpg" alt="small logo" />
-          <p class="text-center text-sm text-gray-600">Full size logo uncompressed</p>
-        </div>
-        <div>
-          <img class="mx-auto h-64" src="/images/logo-stickers.jpg" alt="small logo" />
-          <p class="text-center text-sm text-gray-600">Logo with text for stickers</p>
+
+        <h1
+          class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
+        >
+          Brand <br />
+          <span class="text-primary-dark">Assets.</span>
+        </h1>
+
+        <p
+          class="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-stone-700"
+        >
+          Official visual markers and logos for use in authorized
+          communications, field signage, and technical reports.
+        </p>
+      </div>
+    </section>
+
+    <!-- Assets Grid -->
+    <section class="border-b border-stone-300 bg-stone-100/50">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {
+            logos.map((logo) => (
+              <div class="bg-white border border-stone-300 group hover:border-primary-dark transition-colors">
+                <div class="aspect-square flex items-center justify-center p-12 bg-stone-50/50 border-b border-stone-200">
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    class="max-h-full w-auto transition-all duration-700"
+                  />
+                </div>
+                <div class="p-6 space-y-4">
+                  <div class="flex justify-between items-center">
+                    <span class="font-mono text-[10px] uppercase tracking-widest text-stone-500 font-bold">
+                      Ref: {logo.ref}
+                    </span>
+                    <span class="font-mono text-[10px] uppercase tracking-widest text-primary-dark font-black tracking-[0.2em]">
+                      Verified
+                    </span>
+                  </div>
+                  <div class="space-y-1">
+                    <h3 class="text-xl font-serif font-black uppercase tracking-tight text-stone-900">
+                      {logo.alt}
+                    </h3>
+                    <p class="text-xs text-stone-500 font-medium uppercase tracking-tighter">
+                      {logo.desc}
+                    </p>
+                  </div>
+                  <div class="pt-4">
+                    <a
+                      href={logo.src}
+                      download
+                      class="inline-block px-6 py-3 border border-stone-300 font-mono text-[10px] font-black uppercase tracking-widest text-stone-500 hover:bg-stone-900 hover:text-white transition-all"
+                    >
+                      Download Asset
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  @font-face {
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
+  }
+  .font-serif {
+    font-family: "EditorialSerif", serif;
+  }
+</style>

@@ -36,403 +36,341 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
 ---
 
 <Layout title="Visit">
-  <div class="mt-2 overflow-hidden bg-gray-50">
-    <div
-      class="relative mx-auto max-w-xl px-4 sm:px-6 lg:max-w-(--breakpoint-xl) lg:px-8"
-    >
-      <!-- Hero section -->
-      <div class="relative py-12 lg:py-24">
-        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-50"></div>
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div class="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
-            <div class="absolute inset-0">
-              <Picture
-                src={heroImage}
-                formats={["avif", "webp"]}
-                alt=""
-                width="1200"
-                height="1200"
-                class="h-full w-full object-cover"
-              />
-              <div
-                class="absolute inset-0 bg-linear-to-r from-primary to-secondary mix-blend-multiply"
+  <main class="bg-stone-50 text-stone-900">
+    <!-- Technical Hero Section -->
+    <section class="relative border-b border-stone-300 overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+        <!-- Identity Column -->
+        <div
+          class="lg:col-span-7 pt-12 pb-20 lg:pt-32 lg:pb-40 px-4 sm:px-6 lg:px-12 border-r border-stone-300"
+        >
+          <div class="space-y-8">
+            <div class="flex items-center gap-4">
+              <span class="inline-block h-px w-12 bg-primary-dark"></span>
+              <span
+                class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
               >
+                Getting Here — UVP_SEC_04
+              </span>
+            </div>
+
+            <h1
+              class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-[0.85] text-stone-900 uppercase"
+            >
+              Park <br /> Trail <br />
+              <span class="text-primary-dark">Heads.</span>
+            </h1>
+
+            <p
+              class="max-w-xl text-xl font-medium leading-relaxed text-stone-700"
+            >
+              Ute Valley Park is nestled between Centennial Blvd, Vindicator Dr
+              and I-25 in Colorado Springs. Access is provided via five primary
+              tactical parking locations.
+            </p>
+
+            <div class="pt-8 flex flex-wrap gap-12">
+              <div>
+                <p
+                  class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1"
+                >
+                  Primary Coords
+                </p>
+                <p class="font-mono text-sm font-black uppercase">
+                  38.9189° N, 104.8558° W
+                </p>
+              </div>
+              <div>
+                <p
+                  class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1"
+                >
+                  Elevation
+                </p>
+                <p class="font-mono text-sm font-black uppercase">
+                  6,400' - 6,800'
+                </p>
               </div>
             </div>
-            <div class="relative px-4 py-32 sm:px-6 sm:py-48 lg:px-8 lg:py-64">
-              <h1
-                class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
+          </div>
+        </div>
+
+        <!-- Visual Context Column -->
+        <div
+          class="lg:col-span-5 bg-stone-100/50 p-0 relative group overflow-hidden"
+        >
+          <Picture
+            src={heroImage}
+            formats={["avif", "webp"]}
+            alt="Biker in Ute Valley"
+            width="1200"
+            height="1200"
+            class="h-full w-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100"
+          />
+          <div
+            class="absolute inset-0 border-[24px] border-white/20 pointer-events-none"
+          >
+          </div>
+          <div
+            class="absolute bottom-8 left-8 bg-primary-dark text-white px-3 py-1 font-mono text-[10px] uppercase tracking-widest"
+          >
+            REF: ACCESS_B_ROLL.IMG
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map & Entry Points -->
+    <section class="border-b border-stone-300">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-0 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+          <!-- Entry Point Roster -->
+          <div
+            class="lg:col-span-5 py-16 lg:py-24 px-4 sm:px-6 lg:pr-12 border-r border-stone-300"
+          >
+            <div class="mb-12">
+              <h2
+                class="text-3xl font-serif font-black uppercase tracking-tight text-stone-900 mb-4"
               >
-                <span class="block text-white">Discover Ute Valley Park</span>
-              </h1>
-              <p
-                class="mx-auto mt-6 max-w-lg text-center text-2xl text-primary-50 sm:max-w-3xl"
-              >
-                Immerse yourself in the beauty of Ute Valley Park. Hike, run,
-                boulder or mountain bike and immerse yourself in the park's
-                stunning surroundings. Join us and experience the wonders of
-                nature firsthand.
+                Where to <span class="text-primary-dark italic">Park.</span>
+              </h2>
+              <p class="text-sm text-stone-600 font-medium leading-relaxed">
+                Select a designated trailhead for specific topographical data
+                and navigation directions.
               </p>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div
-        class="relative lg:mt-18 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8"
-      >
-        <div class="relative">
-          <h4
-            class="text-2xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-3xl sm:leading-9"
-          >
-            Getting There
-          </h4>
-
-          <p class="mt-3 text-lg leading-7 text-gray-500">
-            Ute Valley Park is nestled between Centennial Blvd, Vindicator Dr
-            and I-25 in Colorado Springs with 5 convenient parking locations.
-          </p>
-          <ul class="my-10">
-            {
-              sortedTrailheads.map((trailhead, i) => (
-                <li
-                  class:list={[
-                    "relative focus-within:ring-2 focus-within:ring-primary-light group",
-                    { "mt-6": i !== 0 },
-                  ]}
-                >
-                  <div class="flex items-center px-4 py-4 hover:bg-gray-100 sm:px-6">
-                    <div class="flex min-w-0 flex-1 items-center">
-                      <div class="shrink-0">
-                        <div class="flex h-12 w-12 items-center justify-center rounded-md bg-primary text-white">
-                          <svg
-                            class="h-6 w-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                            />
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div class="ml-4">
-                        <h5 class="text-lg font-semibold text-primary-dark hover:underline">
-                          <a
-                            class="block focus:outline-hidden"
-                            href={"/trailheads/" + trailhead.id + "/"}
-                          >
-                            <span class="absolute inset-0" aria-hidden="true" />
-                            {trailhead.data.name}
-                          </a>
-                        </h5>
-                        <p class="text-base text-gray-500">
-                          {trailhead.data.description}
-                        </p>
-                      </div>
-                    </div>
-                    <svg
-                      class="group h-8 w-8 text-accent group-hover:text-accent-dark"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <div class="sm:mx-auto sm:max-w-3xl sm:px-6">
-          <div
-            class="py-12 sm:isolate sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2"
-          >
-            <div
-              class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(40%-30rem)]"
-              aria-hidden="true"
-            >
-              <div
-                class="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-green-200 to-teal-200 opacity-90 sm:left-[calc(0%+36rem)] sm:w-288.75"
-                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-              >
-              </div>
-            </div>
-            <div
-              class="relative sm:mx-auto sm:max-w-3xl sm:px-0 lg:-mr-10 lg:h-full lg:max-w-none lg:pl-12"
-            >
-              <a
-                href="/images/maps/ute-valley-park-map-full.jpg"
-                target="_blank"
-              >
-                <Picture
-                  src={uteValleyParkMap}
-                  formats={["avif", "webp"]}
-                  alt="Map of Ute Valley Park"
-                  width="800"
-                  height="600"
-                  class="ring-opacity-5 mx-auto w-full rounded-md shadow-xl ring-1 ring-black lg:h-96 lg:w-auto lg:max-w-none"
-                />
-                <p class="mx-auto mt-1 w-1/2 text-center text-sm text-gray-700">
-                  Click to open fullsize map
-                </p>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <LeaveNoTrace />
-      <!-- Rules -->
-      <svg
-        class="absolute right-full hidden translate-x-1/2 translate-y-12 transform lg:block"
-        width="404"
-        height="784"
-        fill="none"
-        viewBox="0 0 404 784"
-      >
-        <defs>
-          <pattern
-            id="64e643ad-2176-4f86-b3d7-f2c5da3b6a6d"
-            x="0"
-            y="0"
-            width="20"
-            height="20"
-            patternUnits="userSpaceOnUse"
-          >
-            <rect
-              x="0"
-              y="0"
-              width="4"
-              height="4"
-              class="text-gray-200"
-              fill="currentColor"></rect>
-          </pattern>
-        </defs>
-        <rect
-          width="404"
-          height="784"
-          fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)"></rect>
-      </svg>
-
-      <div
-        class="relative mx-auto max-w-7xl bg-gray-50 px-4 py-8 sm:px-6 lg:px-8"
-      >
-        <div class="mx-auto text-base">
-          <h2
-            class="text-base font-semibold tracking-wide text-primary-light uppercase"
-          >
-            Rules
-          </h2>
-          <h3
-            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
-          >
-            Help keep Ute Valley Safe and Clean
-          </h3>
-        </div>
-        <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
-          <div class="mt-8 text-xl lg:mt-0">
-            For the safety and comfort of all visitors please read the
-            {" "}
-            <a
-              href="/rules/"
-              class="font-semibold underline decoration-accent/50 transition-colors hover:decoration-accent"
-            >
-              rules</a
-            >
-            {" "}
-            the city of Colorado Springs enforces for all city parks and open spaces.
-          </div>
-          <div class="relative mx-auto max-w-prose text-base lg:max-w-none">
-            <div
-              class="aspect-h-7 aspect-w-12 lg:aspect-none relative mt-8 lg:mt-0 lg:px-16"
-            >
-              <figure>
-                <Picture
-                  src={DogImage}
-                  formats={["avif", "webp"]}
-                  alt="dog in park in front of mountains"
-                  width="600"
-                  height="400"
-                  class="rounded-lg object-cover object-center shadow-lg"
-                />
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Activities -->
-      <div class="relative mt-12 mb-16 sm:mt-16 lg:mt-24">
-        <div
-          class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center lg:gap-8"
-        >
-          <div class="lg:col-start-2">
-            <h2
-              class="text-base font-semibold tracking-wide text-primary-light uppercase"
-            >
-              Activities
-            </h2>
-            <h4
-              class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
-            >
-              Do more at Ute Valley Park
-            </h4>
-
-            <ul class="mt-10">
+            <div class="divide-y divide-stone-200 border-t border-stone-200">
               {
-                activities.map((activity, i) => (
-                  <li class:list={[{ "mt-10": i !== 0 }]}>
-                    <div class="flex">
-                      <div class="shrink-0">
-                        <div class="flex h-12 w-12 items-center justify-center rounded-md bg-primary-light text-white">
-                          <svg
-                            class="h-6 w-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              stroke-Linecap="round"
-                              stroke-Linejoin="round"
-                              stroke-Width="2"
-                              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                            />
-                          </svg>
-                        </div>
+                sortedTrailheads.map((trailhead) => (
+                  <a
+                    href={`/trailheads/${trailhead.id}/`}
+                    class="group py-6 flex justify-between items-center hover:bg-white transition-colors"
+                  >
+                    <div class="space-y-1">
+                      <div class="flex items-center gap-3">
+                        <span class="font-mono text-xs font-black text-accent-dark">
+                          [{trailhead.data.id.toString().padStart(2, "0")}]
+                        </span>
+                        <h3 class="text-lg font-bold font-serif uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors">
+                          {trailhead.data.name}
+                        </h3>
                       </div>
-                      <div class="ml-4">
-                        <h5 class="text-lg font-medium text-gray-900">
-                          {activity.name}
-                        </h5>
-                        <p class="mt-2 text-base text-gray-500">
-                          {activity.description}
-                        </p>
-                      </div>
+                      <p class="text-xs text-stone-500 max-w-sm pl-8 font-medium">
+                        {trailhead.data.description}
+                      </p>
                     </div>
-                  </li>
+                    <span class="text-stone-300 group-hover:text-primary-dark transition-colors">
+                      →
+                    </span>
+                  </a>
                 ))
               }
-            </ul>
+            </div>
           </div>
 
-          <div class="relative mx-auto max-w-prose text-base lg:max-w-none">
-            <div
-              class="aspect-h-7 aspect-w-12 lg:aspect-none relative mt-8 lg:mt-0 lg:h-96 lg:px-16"
-            >
-              <figure>
-                <picture>
-                  <source srcset="/images/activities.webp" type="image/webp" />
-                  <source srcset="/images/activities.jpg" type="image/jpeg" />
-                  <img
-                    class="rounded-lg object-cover object-center shadow-lg"
-                    src="/images/activities.jpg"
-                    alt="Biker in the air at sunset"
+          <!-- Cartographic Context -->
+          <div class="lg:col-span-7 bg-stone-50 p-8 lg:p-12">
+            <div class="sticky top-24 space-y-8">
+              <div
+                class="border border-stone-300 bg-white p-4 shadow-sm relative group"
+              >
+                <a
+                  href="/images/maps/ute-valley-park-map-full.jpg"
+                  target="_blank"
+                >
+                  <Picture
+                    src={uteValleyParkMap}
+                    formats={["avif", "webp"]}
+                    alt="Map of Ute Valley Park"
+                    width="1200"
+                    height="900"
+                    class="w-full h-auto transition-all duration-700"
                   />
-                </picture>
-              </figure>
+                  <div
+                    class="mt-4 pt-4 border-t border-stone-100 flex justify-between items-center"
+                  >
+                    <span
+                      class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
+                      >Map Index: UVP_TOPO_2024</span
+                    >
+                    <span
+                      class="font-mono text-[10px] uppercase tracking-widest text-primary-dark font-black"
+                      >View Fullsize PDF</span
+                    >
+                  </div>
+                </a>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="p-6 border border-stone-200 bg-stone-100/50">
+                  <p
+                    class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-2"
+                  >
+                    Park Hours
+                  </p>
+                  <p
+                    class="font-mono text-sm font-black text-stone-900 uppercase"
+                  >
+                    5:00 AM — 9:00 PM Winter
+                  </p>
+                  <p
+                    class="font-mono text-sm font-black text-stone-900 uppercase"
+                  >
+                    5:00 AM — 10:00 PM Summer
+                  </p>
+                </div>
+                <div class="p-6 border border-stone-200 bg-stone-100/50">
+                  <p
+                    class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-2"
+                  >
+                    Entry Fee
+                  </p>
+                  <p
+                    class="font-mono text-sm font-black text-stone-900 uppercase"
+                  >
+                    NO CHARGE
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- trails -->
-    <div
-      class="relative mx-auto max-w-7xl bg-gray-50 px-4 py-16 sm:px-6 lg:px-8"
+    </section>
+
+    <!-- Operational Guidelines (Rules) -->
+    <section
+      class="py-24 border-b border-stone-300 bg-stone-900 text-white relative overflow-hidden"
     >
-      <div class="mx-auto text-base">
-        <h2
-          class="text-base font-semibold tracking-wide text-primary-light uppercase"
-        >
-          Trails
-        </h2>
-        <h3
-          class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
-        >
-          Discover the trails of Ute Valley Park
-        </h3>
+      <!-- Background technical markers -->
+      <div
+        class="absolute top-0 right-0 w-1/3 h-full border-l border-white/5 pointer-events-none hidden lg:block"
+      >
       </div>
-      <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
-        <div class="mt-8 lg:mt-0">
-          <div
-            class="prose prose-primary mx-auto mt-5 text-gray-500 lg:col-start-1 lg:row-start-1 lg:max-w-none"
-          >
-            <h4>BeaUTEiful Loop</h4>
-            <p class="text-lg text-gray-600">
-              Ridge top views of Pikes Peak, Black Forest and Rockrimmon as well
-              as meandering through dense forest and rocky outcrops.
+
+      <div
+        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 relative z-10"
+      >
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          <div class="lg:col-span-5 space-y-8">
+            <div class="flex items-center gap-4">
+              <span class="inline-block h-px w-12 bg-accent"></span>
+              <span
+                class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
+              >
+                Rules & Etiquette
+              </span>
+            </div>
+            <h2
+              class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight leading-none"
+            >
+              Park <br />
+              <span class="text-accent italic">Rules.</span>
+            </h2>
+            <p class="text-lg text-stone-500 font-medium leading-relaxed">
+              To maintain the ecological integrity of this urban wildland, all
+              visitors must adhere to municipal park codes and stewardship
+              guidelines.
             </p>
-            <h4>Rattlesnake Ridge</h4>
-            <p class="text-lg text-gray-600">
-              Breathtaking views on a razor ridge where you can see Pikes Peak,
-              Garden of the Gods, Piñon Valley as well as Black Forest. This is
-              a very technical, sharp, rocky trail, great for a challenging
-              hike, not recommended for most mountain bikers; only the most
-              experienced.
-            </p>
-            <h4>High Arches loop</h4>
-            <p class="text-lg text-gray-600">
-              This quick loop is close to Vindicator Parking Lot and will take
-              you through a rocky outcropping that overlooks a winding valley of
-              an old ranch that was once located here. The trail winds down to a
-              natural arch, ducking required. Also not recommended for beginning
-              mountain bikers.
-            </p>
-            <h4>Black and Blue Loop</h4>
-            <p class="text-lg text-gray-600">
-              This loop has earned its name for mountain bikers; not for
-              beginners. Located just off the Ute Valley Trail parking lot and
-              will take you above a drainage creek. The black side is ranked
-              black due to its challenging terrain of sharp rocks and steep
-              grades. You will have to walk along the Tech Center Drive parking
-              lot to make a full loop. The blue side of the loop is more flowing
-              and takes you over a natural arch, a monstrous bridge that had to
-              be built on site, mine tailings and a cave!
-            </p>
+            <a
+              href="/rules/"
+              class="inline-block px-8 py-4 border-2 border-accent text-accent font-mono text-sm font-black uppercase tracking-widest hover:bg-accent hover:text-stone-900 transition-all"
+            >
+              Review Full Rules
+            </a>
           </div>
-        </div>
-        <div class="relative mx-auto max-w-prose text-base lg:max-w-none">
-          <div
-            class="aspect-h-7 aspect-w-12 lg:aspect-none relative mt-8 lg:mt-0 lg:h-96 lg:px-16"
-          >
-            <figure>
-              <picture>
-                <source
-                  srcset="/images/ute-valley-park-arch.webp"
-                  type="image/webp"
-                />
-                <source
-                  srcset="/images/ute-valley-park-arch.jpg"
-                  type="image/jpeg"
-                />
-                <img
-                  class="rounded-lg object-cover object-center shadow-lg"
-                  src="/images/ute-valley-park-arch.jpg"
-                  alt="arch at ute valley park"
-                />
-              </picture>
-            </figure>
+
+          <div class="lg:col-span-7">
+            <div
+              class="aspect-16/9 bg-stone-800 border border-white/10 relative group overflow-hidden"
+            >
+              <Picture
+                src={DogImage}
+                formats={["avif", "webp"]}
+                alt="Dog in park"
+                width="800"
+                height="450"
+                class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000"
+              />
+
+              <div
+                class="absolute bottom-8 left-8 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] font-black"
+              >
+                Ref: K9_STAY_LEASHED
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Terrain Intelligence (Trails) -->
+    <section class="py-24 border-b border-stone-300">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
+        <div class="mb-16">
+          <h2
+            class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-6"
+          >
+            Our <span class="text-primary-dark italic">Trails.</span>
+          </h2>
+          <p class="max-w-2xl text-lg text-stone-600 font-medium">
+            The UVP trail network consists of diverse geological features
+            requiring varying levels of technical proficiency.
+          </p>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-stone-300 border border-stone-300"
+        >
+          {
+            [
+              {
+                name: "BeaUTEiful Loop",
+                desc: "Ridge top views of Pikes Peak, Black Forest and Rockrimmon as well as meandering through dense forest and rocky outcrops.",
+              },
+              {
+                name: "Rattlesnake Ridge",
+                desc: "Breathtaking views on a razor ridge. Extremely technical, sharp, rocky trail. recommended for expert navigators only.",
+              },
+              {
+                name: "High Arches loop",
+                desc: "Tactical access near Vindicator Parking Lot. Winding valley of an old ranch leading to a natural sandstone arch.",
+              },
+              {
+                name: "Black and Blue Loop",
+                desc: "Challenging terrain featuring sharp rock gardens, steep grades, and significant bridge infrastructure. High technicality.",
+              },
+            ].map((trail, i) => (
+              <div class="bg-white p-8 space-y-6 flex flex-col justify-between hover:bg-stone-50 transition-colors group">
+                <div class="space-y-4">
+                  <span class="font-mono text-xs font-black text-stone-300 group-hover:text-primary-dark transition-colors">
+                    SECTION_{String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 class="text-xl font-bold font-serif uppercase tracking-tight text-stone-900">
+                    {trail.name}
+                  </h3>
+                  <p class="text-sm leading-relaxed text-stone-600 font-medium">
+                    {trail.desc}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <div class="bg-stone-50">
+      <LeaveNoTrace />
     </div>
-  </div>
+  </main>
 </Layout>
+
+<style>
+  @font-face {
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
+  }
+  .font-serif {
+    font-family: "EditorialSerif", serif;
+  }
+</style>

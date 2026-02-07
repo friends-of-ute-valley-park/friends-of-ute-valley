@@ -23,7 +23,7 @@
 
   /* Brand Colors - Accent (Amber) */
   --color-accent: var(--color-amber-400);
-  --color-accent-dark: var(--color-amber-500);
+  --color-accent-dark: var(--color-amber-600);
 
   --animate-shimmer: shimmer 4s ease-in-out infinite;
 
@@ -56,7 +56,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
+    border-color: var(--color-stone-200, currentcolor);
   }
 }
 

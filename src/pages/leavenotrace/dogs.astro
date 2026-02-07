@@ -1,213 +1,303 @@
 ---
-import { Picture } from 'astro:assets';
+import { Picture } from "astro:assets";
 
-import DogImages from '@components/DogImages.vue';
-import Layout from '@layouts/Layout.astro';
+import DogImages from "@components/DogImages.vue";
+import Layout from "@layouts/Layout.astro";
 
-import DogImage from '../../assets/images/dog.jpg';
+import DogImage from "../../assets/images/dog.jpg";
 
 const otherParks = [
   {
-    name: 'Red Rock Canyon Open Space',
-    image: '/images/other-parks/red-rock-canyon-open-space.jpg',
-    type: 'Unfenced',
-    distance: '7.5 miles',
-    time: '15 minutes',
-    mapLink: 'https://goo.gl/maps/qAKchVJRqyTYUc8v9',
-    cityLink: 'https://coloradosprings.gov/parks/page/red-rock-canyon-open-space',
+    name: "Red Rock Canyon Open Space",
+    image: "/images/other-parks/red-rock-canyon-open-space.jpg",
+    type: "Unfenced",
+    distance: "7.5 miles",
+    time: "15 minutes",
+    mapLink: "https://goo.gl/maps/qAKchVJRqyTYUc8v9",
+    cityLink:
+      "https://coloradosprings.gov/parks/page/red-rock-canyon-open-space",
   },
   {
-    name: 'Palmer Park',
-    image: '/images/other-parks/palmer-park.jpg',
-    type: 'Fenced',
-    distance: '9.8 miles',
-    time: '20 minutes',
-    mapLink: 'https://goo.gl/maps/sgxAgR8Mnjr86Qt98',
-    cityLink: 'https://coloradosprings.gov/parks/page/palmer-park',
+    name: "Palmer Park",
+    image: "/images/other-parks/palmer-park.jpg",
+    type: "Fenced",
+    distance: "9.8 miles",
+    time: "20 minutes",
+    mapLink: "https://goo.gl/maps/sgxAgR8Mnjr86Qt98",
+    cityLink: "https://coloradosprings.gov/parks/page/palmer-park",
   },
   {
-    name: 'Garden of the Gods',
-    image: '/images/other-parks/garden-of-the-gods.jpg',
-    type: 'Unfenced',
-    distance: '6.9 miles',
-    time: '14 minutes',
-    mapLink: 'https://goo.gl/maps/Vj2851x6X2JSNeX76',
-    cityLink: 'https://coloradosprings.gov/parks/page/garden-gods',
+    name: "Garden of the Gods",
+    image: "/images/other-parks/garden-of-the-gods.jpg",
+    type: "Unfenced",
+    distance: "6.9 miles",
+    time: "14 minutes",
+    mapLink: "https://goo.gl/maps/Vj2851x6X2JSNeX76",
+    cityLink: "https://coloradosprings.gov/parks/page/garden-gods",
   },
   {
-    name: 'Rampart Dog Park',
-    image: '/images/other-parks/rampart-dog-park.jpg',
-    type: 'Fenced',
-    distance: '6.6 miles',
-    time: '15 minutes',
-    mapLink: 'https://goo.gl/maps/UEAzoaFGxCTFi7Qo9',
-    cityLink: 'https://coloradosprings.gov/parks/page/rampart-park',
+    name: "Rampart Dog Park",
+    image: "/images/other-parks/rampart-dog-park.jpg",
+    type: "Fenced",
+    distance: "6.6 miles",
+    time: "15 minutes",
+    mapLink: "https://goo.gl/maps/UEAzoaFGxCTFi7Qo9",
+    cityLink: "https://coloradosprings.gov/parks/page/rampart-park",
   },
 ];
 const reasons = [
-  "It's the law! <a class='text-primary-light underline' href='https://codelibrary.amlegal.com/codes/coloradospringsco/latest/coloradosprings_co/0-0-0-7038'>6.7.107</a>. The fine can be $50, $100 or $150 for a first, second and third offense respectively.",
-  'Ute Valley Park is visited by many people and not everyone is a dog person.',
-  'Not all dogs are friendly, even if your dog is.',
-  'Ute Valley Park is infamous for rattlesnakes.  Keep your dog and wildlife safe by keeping them leashed.',
+  "Municipal Ordinance Compliance: Ordinance 6.7.107 mandates physical leashes. Fines are levied for non-compliance ($50—$150).",
+  "User Safety Protocols: Not all visitors are comfortable with unrestrained animals. Shared use requires constant control.",
+  "Fauna Agitation: Leashed animals prevent aggressive interactions with other domestic pets and local wildlife.",
+  "Rattlesnake Hazards: UVP is an active habitat for venomous reptiles. Leashing minimizes the risk of K9 envenomation.",
 ];
 const rules = [
-  "Ute Valley Park is not an off-leash dog park. Please see the available off-leash dog parks in <a class='underline text-primary-light' href='#off-leash'>Colorado Springs</a>.",
-  "Follow the  <a class='text-primary-light underline' href='https://coloradosprings.gov/parks/page/ute-valley-park'>Leave No Trace</a> principles",
-  'Always clean up and dispose of pet waste properly in a trashcan.',
-  'Please see other park rules for <a class="underline text-primary-light" href="/rules/">Ute Valley Park</a>.',
+  "Zero-Tolerance Off-Leash Policy: UVP contains no designated off-leash zones.",
+  "Waste Removal Mandate: Immediate removal and disposal of all pet waste is required for soil integrity.",
+  "Trail Adherence: Dogs must remain on designated trail systems at all times.",
+  "General Ordinance: Review full park regulations for broader municipal compliance.",
 ];
 ---
 
-<Layout title="Dogs at Ute Valley Park">
-  <div class="relative mt-12 overflow-hidden bg-white">
-    <div class="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
-      <div class="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
-        <div class="sm:max-w-lg">
-          <h1 class="font text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl">
-            We
-            <svg class="inline-block h-32 w-32 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-              ><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-            </svg>
-            Dogs!
-          </h1>
-          <p class="mt-4 text-xl text-gray-500">
-            Dogs are always welcome in Ute Valley Park but please remember you <span class="font-semibold uppercase text-primary-light">must</span> leash your furry friend. Ute Valley Park <span
-              class="font-semibold uppercase text-primary-light">does not have an off-leash dog area</span
-            > and dogs are required to be leashed at all times.
-          </p>
-          <p class="mt-2 text-gray-500">Also, please follow the rest of the simple rules below to keep other guests, your dog and the wildlife safe.</p>
+<Layout title="K9 Protocols">
+  <main class="bg-stone-50 text-stone-900">
+    <!-- K9 Protocol Hero -->
+    <section class="relative border-b border-stone-300 overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+        <!-- Identity Column -->
+        <div
+          class="lg:col-span-7 pt-12 pb-20 lg:pt-32 lg:pb-40 px-4 sm:px-6 lg:px-12 border-r border-stone-300"
+        >
+          <div class="space-y-8">
+            <div class="flex items-center gap-4">
+              <span class="inline-block h-px w-12 bg-primary-dark"></span>
+              <span
+                class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
+              >
+                Visiting With Dogs — UVP_SEC_K9
+              </span>
+            </div>
+
+            <h1
+              class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-[0.85] text-stone-900 uppercase"
+            >
+              Visiting <br /> With <br />
+              <span class="text-primary-dark">Dogs.</span>
+            </h1>
+
+            <p
+              class="max-w-xl text-xl font-medium leading-relaxed text-stone-700"
+            >
+              Dogs are permitted within the Ute Valley wildland strictly under
+              physical leash restraint. Ute Valley Park maintains a
+              zero-tolerance policy regarding off-leash operations.
+            </p>
+
+            <div class="flex flex-wrap gap-4 pt-4">
+              <a
+                href="#rules"
+                class="px-8 py-4 bg-primary-dark text-white font-mono text-xs font-black uppercase tracking-widest hover:bg-stone-900 transition-all shadow-[4px_4px_0px_0px_var(--color-accent)]"
+              >
+                Review Protocols
+              </a>
+              <a
+                href="#off-leash"
+                class="px-8 py-4 border-2 border-stone-900 font-mono text-xs font-black uppercase tracking-widest hover:bg-stone-50 transition-all"
+              >
+                External Off-Leash Zones
+              </a>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="mt-10">
-            <div aria-hidden="true" class="lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl">
-              <div class="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
-                <DogImages client:idle />
+
+        <!-- Visual Context -->
+        <div
+          class="lg:col-span-5 bg-stone-50 p-0 relative group overflow-hidden min-h-[400px]"
+        >
+          <div class="absolute inset-0 transition-all duration-1000">
+            <DogImages client:idle />
+          </div>
+          <div
+            class="absolute bottom-8 left-8 z-10 px-4 py-2 bg-primary-dark border border-primary-dark font-mono text-[10px] uppercase tracking-[0.2em] text-white font-black shadow-[4px_4px_0px_0px_var(--color-accent)]"
+          >
+            Ref: Registered_UVP_K9s
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Operational Reasoning -->
+    <section class="py-24 border-b border-stone-300 bg-white">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          <div class="lg:col-span-5">
+            <h2
+              class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 leading-none mb-8"
+            >
+              Security <br />
+              <span class="text-primary-dark italic">Briefing.</span>
+            </h2>
+            <div
+              class="aspect-square bg-stone-100 border border-stone-300 relative group overflow-hidden"
+            >
+              <Picture
+                src={DogImage}
+                formats={["avif", "webp"]}
+                alt="Dog in park"
+                width="800"
+                class="w-full h-full object-cover transition-all duration-1000"
+              />
+              <div
+                class="absolute bottom-4 left-4 bg-stone-900 text-white px-2 py-0.5 font-mono text-[8px] uppercase"
+              >
+                REF: FIELD_K9_01
               </div>
             </div>
-            <div class="relative z-50 flex w-60 flex-wrap sm:w-full">
-              <a href="#off-leash" class="inline-block grow-0 rounded-md border border-transparent bg-primary-light px-8 py-3 text-center font-medium text-white hover:bg-primary">Off-leash Parks</a>
-              <a href="#rules" class="ml-0 mt-2 inline-block grow-0 rounded-md border border-transparent bg-secondary px-8 py-3 text-center font-medium text-white hover:bg-secondary-dark sm:ml-2 sm:mt-0"
-                >Rules</a
+          </div>
+
+          <div class="lg:col-span-7 space-y-12">
+            <div>
+              <p
+                class="font-mono text-[10px] uppercase tracking-widest text-stone-500 font-bold mb-4"
               >
+                Mandatory Compliance Reasoning
+              </p>
+              <div class="grid grid-cols-1 gap-4">
+                {
+                  reasons.map((reason, i) => (
+                    <div class="p-6 border border-stone-200 bg-stone-50 flex gap-4 items-start">
+                      <span class="font-mono text-xs font-black text-primary-dark">
+                        [0{i + 1}]
+                      </span>
+                      <p class="text-sm font-medium text-stone-700 leading-relaxed">
+                        {reason}
+                      </p>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+
+            <div id="rules">
+              <p
+                class="font-mono text-[10px] uppercase tracking-widest text-stone-500 font-bold mb-4"
+              >
+                Directive List
+              </p>
+              <div class="border border-stone-300 divide-y divide-stone-300">
+                {
+                  rules.map((rule) => (
+                    <div class="p-6 flex items-center gap-6 hover:bg-stone-50 transition-colors">
+                      <div class="w-2 h-2 bg-accent shrink-0" />
+                      <p class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-900">
+                        {rule}
+                      </p>
+                    </div>
+                  ))
+                }
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div id="off-leash" class="mx-auto max-w-xl px-4 pt-24 sm:px-6 sm:pt-32 lg:max-w-7xl lg:px-8">
-    <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">Off-leash dog parks in Colorado Springs</h2>
-    <ul role="list" class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
-      {
-        otherParks.map((park) => (
-          <li class="col-span-1 mx-16 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow-lg sm:mx-0">
-            <div class="flex flex-1 flex-col">
-              <img class="h-48 w-full overflow-hidden rounded-t-lg" src={park.image} alt="" />
-              <div class="px-8 py-6">
-                <h3 class="mt-6 text-sm font-medium text-gray-900">{park.name}</h3>
-                <dl class="mt-1 flex grow flex-col justify-between">
-                  <dt class="sr-only">Park Type</dt>
-                  <dd class="text-sm text-gray-500">{park.type} off-leash park</dd>
-                </dl>
-                <h4 class="mt-4 text-gray-800">
-                  How close is this park to <span class="text-primary-dark">Ute Valley Park?</span>
-                </h4>
-                <dl class="flex justify-center">
-                  <dt class="sr-only">Distance</dt>
-                  <dd class="mx-2 mt-3">
-                    <span class="whitespace-nowrap rounded-full bg-primary-100 px-2 py-1 text-xs font-medium text-primary-dark">{park.distance}</span>
-                  </dd>
-                  <dt class="sr-only">Time</dt>
-                  <dd class="mx-2 mt-3">
-                    <span class="whitespace-nowrap rounded-full bg-secondary-light/20 px-2 py-1 text-xs font-medium text-secondary-dark">{park.time}</span>
-                  </dd>
-                </dl>
-              </div>
-            </div>
-            <div>
-              <div class="-mt-px flex divide-x divide-gray-200">
-                <div class="flex w-0 flex-1">
-                  <a
-                    href={park.mapLink}
-                    class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500">
-                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span class="ml-3">Visit</span>
-                  </a>
-                </div>
-                <div class="-ml-px flex w-0 flex-1">
-                  <a
-                    href={park.cityLink}
-                    class="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500">
-                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span class="ml-3">Info</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </li>
-        ))
-      }
-    </ul>
-    <div id="rules" class="flex w-full items-center justify-center">
-      <a
-        class="my-8 inline-flex items-center rounded-full border border-transparent bg-primary-light px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-primary focus:outline-hidden focus:ring-2 focus:ring-primary-light focus:ring-offset-2"
-        href="https://coloradosprings.gov/parks/page/dog-parks?mlid=4736">
-        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-          ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-        </svg>
-        All Colorado Springs Off-leash dog parks</a
-      >
-    </div>
-  </div>
-  <div class="mx-auto max-w-xl px-4 pt-24 sm:px-6 sm:pt-32 lg:max-w-7xl lg:px-8">
-    <div class="flex flex-wrap">
-      <div class="w-full lg:w-3/5">
-        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">Top reasons to keep your dog on a leash at all times</h2>
-        <ul role="list" class="mt-8 space-y-3">
+    <!-- Alternative Off-Leash Logistics -->
+    <section id="off-leash" class="py-24 bg-stone-100">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
+        <div
+          class="mb-16 flex flex-col md:flex-row justify-between items-end gap-8"
+        >
+          <div>
+            <h2
+              class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 leading-none"
+            >
+              External <span class="text-primary-dark italic">Facilities.</span>
+            </h2>
+            <p class="mt-4 text-stone-500 font-medium">
+              Alternative regional deployment zones supporting off-leash
+              operations.
+            </p>
+          </div>
+          <a
+            href="https://coloradosprings.gov/parks/page/dog-parks?mlid=4736"
+            class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark underline decoration-accent decoration-2 underline-offset-8"
+            >All CS Off-Leash Parks</a
+          >
+        </div>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-stone-300 border border-stone-300"
+        >
           {
-            reasons.map((reason) => (
-              <li class="overflow-hidden bg-white px-4 py-4 shadow-sm sm:rounded-md sm:px-6">
-                <svg class="inline-block h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-                <span set:html={reason} />
-              </li>
+            otherParks.map((park) => (
+              <div class="bg-white flex flex-col group">
+                <div class="aspect-16/10 overflow-hidden bg-stone-200 border-b border-stone-200">
+                  <img
+                    class="w-full h-full object-cover transition-all duration-700"
+                    src={park.image}
+                    alt={park.name}
+                  />
+                </div>
+                <div class="p-8 space-y-6 flex flex-col flex-1">
+                  <div class="space-y-1">
+                    <p class="font-mono text-[10px] uppercase tracking-widest text-stone-500 font-bold">
+                      {park.type} Park
+                    </p>
+                    <h3 class="text-xl font-serif font-black uppercase tracking-tight text-stone-900 leading-tight">
+                      {park.name}
+                    </h3>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-4 border-y border-stone-100 py-4">
+                    <div class="space-y-1">
+                      <p class="font-mono text-[8px] uppercase tracking-widest text-stone-500">
+                        Dist
+                      </p>
+                      <p class="font-mono text-[10px] font-black uppercase">
+                        {park.distance}
+                      </p>
+                    </div>
+                    <div class="space-y-1">
+                      <p class="font-mono text-[8px] uppercase tracking-widest text-stone-500">
+                        Time
+                      </p>
+                      <p class="font-mono text-[10px] font-black uppercase">
+                        {park.time}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="pt-4 flex flex-col gap-2">
+                    <a
+                      href={park.mapLink}
+                      class="flex justify-between items-center px-4 py-3 bg-stone-50 border border-stone-200 font-mono text-[10px] font-black uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all"
+                    >
+                      Visit Site <span>→</span>
+                    </a>
+                    <a
+                      href={park.cityLink}
+                      class="flex justify-between items-center px-4 py-3 bg-transparent border border-stone-200 font-mono text-[10px] font-black uppercase tracking-widest hover:bg-stone-50 transition-all"
+                    >
+                      Information <span>→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
             ))
           }
-        </ul>
+        </div>
       </div>
-      <div class="mx-auto mt-16 w-4/5 lg:m-0 lg:w-2/5 lg:p-8">
-        <Picture src={DogImage} formats={['avif', 'webp']} alt="dog in park in front of mountains" width="600" height="400" class="rounded-sm shadow-sm" />
-      </div>
-    </div>
-  </div>
-  <div class="mx-auto max-w-xl px-4 pt-24 sm:px-6 sm:pt-32 lg:max-w-7xl lg:px-8">
-    <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">Rules for dogs at Ute Valley Park</h2>
-    <ul role="list" class="my-8 space-y-3">
-      {
-        rules.map((rule) => (
-          <li class="overflow-hidden bg-white px-4 py-4 shadow-sm sm:rounded-md sm:px-6">
-            <svg class="inline-block h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-            <span set:html={rule} />
-          </li>
-        ))
-      }
-    </ul>
-  </div>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  @font-face {
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
+  }
+  .font-serif {
+    font-family: "EditorialSerif", serif;
+  }
+</style>

@@ -46,15 +46,15 @@
                         class="group flex items-center gap-4 p-4 hover:bg-secondary/5 transition-colors">
                         <div
                           class="flex h-10 w-10 shrink-0 items-center justify-center border border-stone-200 bg-stone-50 group-hover:bg-white group-hover:border-secondary transition-colors">
-                          <component :is="item.icon" class="h-5 w-5 text-stone-400 group-hover:text-secondary"
+                          <component :is="item.icon" class="h-5 w-5 text-stone-500 group-hover:text-secondary"
                             aria-hidden="true" />
                         </div>
                         <div>
                           <p
                             class="text-[10px] font-mono font-black uppercase tracking-widest text-stone-900 group-hover:text-secondary transition-colors">
                             {{ item.name }}</p>
-                          <p class="text-[10px] font-mono text-stone-400 uppercase tracking-tighter">{{ item.description
-                            }}</p>
+                          <p class="text-[10px] font-mono text-stone-500 uppercase tracking-tighter">{{ item.description
+                          }}</p>
                         </div>
                       </a>
                     </div>

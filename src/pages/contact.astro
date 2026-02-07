@@ -6,8 +6,11 @@ import { TURNSTILE_SITE_KEY } from 'astro:env/client';
 ---
 
 <Layout title="Contact">
-  <div class="mt-2">
+  <main class="bg-stone-50">
     <ContactForm client:idle turnstileSiteKey={TURNSTILE_SITE_KEY} />
-    <TeamList />
-  </div>
+    
+    <div class="border-t border-stone-300">
+      <TeamList />
+    </div>
+  </main>
 </Layout>

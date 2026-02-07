@@ -7,40 +7,39 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 <EngagementPanel>
   <h2
     slot="heading"
-    class="block text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+    class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-white leading-none"
   >
-    Leave No Trace
+    Leave <br /> No <span class="text-accent italic">Trace.</span>
   </h2>
   <Fragment slot="description">
-    <p
-      class="border-b-2 border-accent/30 pb-2 text-xl font-semibold text-primary-100"
-    >
+    <p class="text-lg text-stone-500 font-medium leading-relaxed">
       Ute Valley Park proudly supports The 7 Principles of Leave No Trace.
+      Adherence to these protocols is mandatory for ecosystem stability.
     </p>
-    <p class="mt-3 text-base text-primary-50/90">
-      Please read and always obey the
+    <div class="pt-6">
       <a
         href="/rules/"
-        class="inline-block font-bold text-accent underline decoration-accent/50 hover:text-accent"
+        class="inline-block font-mono text-[10px] font-black uppercase tracking-widest text-accent underline decoration-accent/30 hover:decoration-accent"
       >
-        rules</a
-      >
-      of Ute Valley Park.
-    </p>
+        Access Regulatory Code →
+      </a>
+    </div>
   </Fragment>
 
   <div
     slot="main"
-    class="mx-auto w-64 rounded-md bg-white p-8 shadow-sm focus-within:ring-2 focus-within:ring-primary-100"
+    class="flex flex-col items-center justify-center space-y-6 py-4"
   >
-    <a href="https://www.lnt.org">
+    <a href="https://www.lnt.org" class="block transition-all duration-700">
       <Picture
         src={lntLogo}
         alt="Leave No Trace logo"
-        width="192"
-        height="100"
-        class="h-auto w-64"
+        width="240"
+        class="h-auto w-48"
       />
     </a>
+    <span class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
+      >Certified Stewardship Partner</span
+    >
   </div>
 </EngagementPanel>

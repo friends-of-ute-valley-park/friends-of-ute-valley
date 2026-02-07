@@ -1,39 +1,45 @@
 <template>
-  <div>
-    <p class="text-sm leading-6 font-semibold text-primary-dark">
-      <a :href="'/events/' + volunteerEvent.id" class="hover:underline">{{ volunteerEvent.data.title }}</a>
-    </p>
-    <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
-      <p>
-        <time :datetime="formattedDate + ' ' + volunteerEvent.data.time">{{ formattedDate }} {{ volunteerEvent.data.time
-        }}</time>
-      </p>
-      <svg viewBox="0 0 2 2" class="h-0.5 w-0.5 fill-current">
-        <circle cx="1" cy="1" r="1" />
-      </svg>
-      <p>
-        <a :href="directionsLink" class="text-primary-dark underline">{{ meetingLocation }}</a>
-      </p>
-      <svg v-if="volunteerEvent.data.meetingLocation.notes" viewBox="0 0 2 2" class="h-0.5 w-0.5 fill-current">
-        <circle cx="1" cy="1" r="1" />
-      </svg>
-      <p v-if="volunteerEvent.data.meetingLocation.notes" :title="volunteerEvent.data.meetingLocation.notes"
-        class="mx-2 max-w-xs text-sm wrap-break-word text-gray-500">
-        {{ volunteerEvent.data.meetingLocation.notes }}
-      </p>
+  <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 w-full">
+    <div class="space-y-4 flex-1">
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-accent-dark">Operation</span>
+        <h3 class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900 leading-none">
+          <a :href="'/events/' + volunteerEvent.id" class="hover:text-primary-dark transition-colors">{{
+            volunteerEvent.data.title }}</a>
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-2">
+        <div class="space-y-1">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-stone-500">Date & Time</p>
+          <p class="font-mono text-sm font-black uppercase text-stone-700">
+            <time :datetime="formattedDate + ' ' + volunteerEvent.data.time">{{ formattedDate }} — {{
+              volunteerEvent.data.time }}</time>
+          </p>
+        </div>
+        <div class="space-y-1">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-stone-500">Meeting Point</p>
+          <p class="font-mono text-sm font-black uppercase text-stone-700">
+            <a :href="directionsLink" class="underline hover:text-primary-dark">{{ meetingLocation }}</a>
+          </p>
+        </div>
+      </div>
+
+      <div v-if="volunteerEvent.data.meetingLocation.notes" class="mt-4 p-4 bg-stone-100 border-l-2 border-stone-300">
+        <p class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1">Intelligence Notes</p>
+        <p class="text-xs font-medium text-stone-600 leading-relaxed">{{ volunteerEvent.data.meetingLocation.notes }}
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="flex w-full flex-none justify-between gap-x-4 sm:w-auto">
-    <div class="flex h-12">
+
+    <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
       <a :href="volunteerEvent.data.link"
-        class="inline-flex items-center rounded-md border border-transparent bg-primary-light px-2 py-1 text-sm font-medium text-primary-50 shadow-xs transition duration-150 ease-in-out hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light">
-        Register
+        class="inline-flex items-center justify-center px-6 py-4 bg-primary-dark text-white font-mono text-xs font-black uppercase tracking-widest transition-all hover:bg-stone-900 active:scale-95 border border-primary-dark">
+        Register for Dispatch
       </a>
-    </div>
-    <div class="flex h-12 gap-x-2.5">
       <a href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
-        class="inline-flex items-center rounded-md border border-transparent bg-secondary px-2 py-1 text-sm font-medium text-white shadow-xs transition duration-150 ease-in-out hover:bg-secondary-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary">
-        Consent and Release Form
+        class="inline-flex items-center justify-center px-6 py-4 bg-transparent border border-stone-300 text-stone-500 font-mono text-xs font-black uppercase tracking-widest transition-all hover:bg-stone-100 active:scale-95">
+        Release Form
       </a>
     </div>
   </div>
@@ -53,7 +59,7 @@ const meetingLocation = ref('');
 const directionsLink = ref('');
 
 const formattedDate = computed(() => {
-  return new Intl.DateTimeFormat('en-US').format(new Date(props.volunteerEvent.data.date));
+  return new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(new Date(props.volunteerEvent.data.date));
 });
 
 onMounted(() => {
@@ -62,3 +68,9 @@ onMounted(() => {
   directionsLink.value = locationInformation.directionsLink ?? '';
 });
 </script>
+
+<style scoped>
+.font-serif {
+  font-family: 'EditorialSerif', serif;
+}
+</style>
