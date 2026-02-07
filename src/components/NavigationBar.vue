@@ -30,7 +30,7 @@
                 props.page.startsWith('/leavenotrace') ? 'bg-stone-100 text-stone-900' : 'text-stone-500 hover:bg-stone-100 hover:text-stone-900',
                 'flex items-center px-6 h-full text-[10px] font-mono font-black uppercase tracking-[0.2em] transition-colors focus:outline-none',
               ]">
-                <span>Environmental Protocol</span>
+                <span>Environmental Stewardship</span>
                 <i-heroicons-chevron-down class="ml-2 h-4 w-4 opacity-50" aria-hidden="true" />
               </PopoverButton>
 
@@ -52,7 +52,7 @@
                           <p class="text-[10px] font-mono font-black uppercase tracking-widest text-stone-900">{{
                             item.name }}</p>
                           <p class="text-[10px] font-mono text-stone-400 uppercase tracking-tighter">{{ item.description
-                            }}</p>
+                          }}</p>
                         </div>
                       </a>
                     </div>
@@ -90,7 +90,7 @@
 
         <div class="bg-stone-50 px-6 py-2">
           <span class="text-[8px] font-mono font-black uppercase tracking-[0.3em] text-stone-400">Environmental
-            Protocols</span>
+            Stewardship</span>
         </div>
 
         <DisclosureButton v-for="item in leaveNoTraceMenuItems" :key="item.name" as="a" :href="item.href" :class="[
