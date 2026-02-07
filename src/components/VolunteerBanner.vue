@@ -1,21 +1,20 @@
 <template>
-  <div v-if="hasUpcomingVolunteerEvent" class="mb-2">
-    <div
-      class="relative isolate flex items-center gap-x-6 overflow-hidden bg-secondary-dark px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
-      <svg viewBox="0 0 577 310" aria-hidden="true"
-        class="absolute top-1/2 left-[max(45rem,calc(50%+8rem))] -z-10 w-144.25 -translate-y-1/2 transform-gpu blur-2xl">
-        <use href="#1d77c128-3ec1-4660-a7f6-26c7006705ad" />
-      </svg>
-      <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <p class="text-sm text-white">
-          <i-heroicons-megaphone class="mr-2 inline-block h-6 w-6 text-white" />
-          <strong class="font-semibold">Upcoming Volunteer Event {{ eventDates }}!</strong>
-        </p>
+  <div v-if="hasUpcomingVolunteerEvent" class="bg-stone-900 border-b border-stone-800 relative z-50">
+    <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between py-3 gap-4">
+        <div class="flex items-center gap-3">
+          <div class="h-2 w-2 bg-green-500 animate-pulse rounded-full"></div>
+          <p class="text-[10px] font-mono font-black uppercase tracking-[0.2em] text-stone-100">
+            Active Mobilization: <span class="text-stone-400">Scheduled for {{ eventDates }}</span>
+          </p>
+        </div>
+        
         <a href="/volunteer/"
-          class="flex-none rounded-full bg-primary px-3.5 py-1 text-sm font-semibold text-white shadow-xs hover:bg-primary-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">Learn
-          more <span aria-hidden="true">&rarr;</span></a>
+          class="inline-flex items-center gap-2 border border-stone-700 bg-stone-800 px-4 py-1.5 text-[10px] font-mono font-black uppercase tracking-widest text-stone-100 hover:bg-stone-700 hover:border-stone-600 transition-all group">
+          Join Field Crew
+          <i-heroicons-arrow-right class="h-3 w-3 transition-transform group-hover:translate-x-1" />
+        </a>
       </div>
-      <div class="flex flex-1 justify-end"></div>
     </div>
   </div>
 </template>
@@ -37,19 +36,16 @@ const hasUpcomingVolunteerEvent = computed(() => {
 
 const eventDates = computed(() => {
   if (props.events === undefined) {
-    return;
+    return '';
   }
 
-  let dateString = 'day' + (props.events.length > 1 ? 's' : '') + ' on ';
-
-  dateString += [...props.events]
+  return [...props.events]
     .sort((a, b) => {
       return new Date(a.date).getTime() - new Date(b.date).getTime();
     })
     .map((item) => {
-      return new Intl.DateTimeFormat('en-US').format(new Date(item.date));
+      return new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit' }).format(new Date(item.date));
     })
-    .join(' and ');
-  return dateString;
+    .join(' + ');
 });
 </script>
