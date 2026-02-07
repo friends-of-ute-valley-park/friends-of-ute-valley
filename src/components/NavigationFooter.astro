@@ -20,7 +20,7 @@ const footerItems = [
     >
       <!-- Branding & Legal -->
       <div
-        class="lg:col-span-5 p-8 lg:p-12 border-b lg:border-b-0 lg:border-r border-stone-300"
+        class="lg:col-span-5 p-8 lg:p-12 border-b lg:border-b-0 lg:border-r border-stone-300 bg-white"
       >
         <div class="space-y-8">
           <div>
@@ -28,7 +28,7 @@ const footerItems = [
               class="font-serif font-black text-3xl uppercase tracking-tighter leading-none text-stone-900"
             >
               Friends of <br />
-              <span class="text-green-800">Ute Valley Park.</span>
+              <span class="text-primary">Ute Valley Park.</span>
             </h2>
             <p
               class="mt-6 text-sm text-stone-500 font-medium leading-relaxed max-w-sm"
@@ -50,7 +50,7 @@ const footerItems = [
               (501(c)(3)). Contributions are tax-deductible as permitted by law.
             </p>
             <p
-              class="text-[10px] font-mono uppercase tracking-widest text-stone-500 font-black"
+              class="text-[10px] font-mono uppercase tracking-widest text-primary font-black"
             >
               © 2026 FUVP — ALL RIGHTS RESERVED.
             </p>
@@ -68,11 +68,11 @@ const footerItems = [
               href={item.link}
               class="group p-8 flex flex-col justify-between hover:bg-white transition-colors"
             >
-              <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-400 group-hover:text-stone-900 transition-colors">
+              <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-400 group-hover:text-primary transition-colors">
                 {item.name}
               </span>
               <div class="mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-                <span class="text-stone-900">→</span>
+                <span class="text-primary">→</span>
               </div>
             </a>
           ))
@@ -82,14 +82,14 @@ const footerItems = [
           class="group p-8 flex flex-col justify-between hover:bg-white transition-colors col-span-2 md:col-span-1"
         >
           <span
-            class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-400 group-hover:text-stone-900 transition-colors"
+            class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-400 group-hover:text-secondary transition-colors"
           >
             System Sitemap
           </span>
           <div
             class="mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity"
           >
-            <span class="text-stone-900">→</span>
+            <span class="text-secondary">→</span>
           </div>
         </a>
       </div>
@@ -99,11 +99,11 @@ const footerItems = [
     <div
       class="mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] font-mono uppercase tracking-[0.3em] text-stone-400"
     >
-      <span>Loc: 38.9189° N, 104.8558° W</span>
+      <span class="text-secondary font-bold">Loc: 38.9189° N, 104.8558° W</span>
       <span class="hidden md:block border-x border-stone-200 px-8"
         >Colorado Springs, CO</span
       >
-      <span>Status: Active Wildland</span>
+      <span class="text-primary font-bold">Status: Active Wildland</span>
     </div>
   </div>
 </footer>
