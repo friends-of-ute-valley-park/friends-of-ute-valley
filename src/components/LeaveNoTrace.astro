@@ -58,31 +58,48 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 <section class="border-t border-stone-300 bg-stone-50 overflow-hidden">
   <div class="mx-auto max-w-(--breakpoint-2xl)">
     <div class="grid grid-cols-1 lg:grid-cols-12">
-      
       <!-- Identity Column: Official Stance -->
-      <div class="lg:col-span-4 p-8 lg:p-16 border-b lg:border-b-0 lg:border-r border-stone-300 bg-stone-100/50">
+      <div
+        class="lg:col-span-4 p-8 lg:p-16 border-b lg:border-b-0 lg:border-r border-stone-300 bg-stone-100/50"
+      >
         <div class="sticky top-24 space-y-12">
           <div class="space-y-6">
             <div class="flex items-center gap-3">
               <span class="inline-block h-px w-8 bg-stone-900"></span>
-              <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500">
-                Environmental Protocol
+              <span
+                class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500"
+              >
+                Environmental Stewardship
               </span>
             </div>
-            
-            <h2 class="text-5xl sm:text-6xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase">
-              Leave <br/> No <br/> <span class="text-green-800">Trace.</span>
+
+            <h2
+              class="text-5xl sm:text-6xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
+            >
+              Leave <br /> No <br />
+              <span class="text-green-800">Trace.</span>
             </h2>
-            
+
             <p class="text-lg font-medium leading-relaxed text-stone-700">
-              Ute Valley Park is a high-traffic urban wildland. Adherence to the Seven Principles is the primary mechanism for long-term ecological viability.
+              Ute Valley Park is a high-traffic urban wildland. Adherence to the
+              Seven Principles is the primary mechanism for long-term ecological
+              viability.
             </p>
           </div>
 
           <div class="pt-12 border-t border-stone-300 space-y-8">
-            <div class="bg-white border border-stone-200 p-8 shadow-sm relative group grayscale hover:grayscale-0 transition-all duration-500">
-              <span class="absolute top-2 right-2 font-mono text-[8px] text-stone-300 uppercase">Endorsement_ID: LNT_ORG</span>
-              <a href="https://www.lnt.org" target="_blank" rel="noopener noreferrer">
+            <div
+              class="bg-white border border-stone-200 p-8 shadow-sm relative group grayscale hover:grayscale-0 transition-all duration-500"
+            >
+              <span
+                class="absolute top-2 right-2 font-mono text-[8px] text-stone-300 uppercase"
+                >Endorsement_ID: LNT_ORG</span
+              >
+              <a
+                href="https://www.lnt.org"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Picture
                   src={lntLogo}
                   alt="Leave No Trace Official Logo"
@@ -91,11 +108,17 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
                 />
               </a>
               <div class="mt-6 text-center">
-                <span class="font-mono text-[10px] uppercase font-bold text-stone-400">Certified Partner</span>
+                <span
+                  class="font-mono text-[10px] uppercase font-bold text-stone-400"
+                  >Certified Partner</span
+                >
               </div>
             </div>
-            
-            <a href="/rules/" class="block p-4 border border-stone-900 bg-stone-900 text-stone-50 font-mono text-xs font-bold uppercase text-center tracking-widest hover:bg-stone-800 transition-colors">
+
+            <a
+              href="/rules/"
+              class="block p-4 border border-stone-900 bg-stone-900 text-stone-50 font-mono text-xs font-bold uppercase text-center tracking-widest hover:bg-stone-800 transition-colors"
+            >
               Access Full Park Rules
             </a>
           </div>
@@ -105,50 +128,58 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
       <!-- Principles Column: Directive Grid -->
       <div class="lg:col-span-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone-300">
-          {principles.map((principle) => (
-            <div class="bg-stone-50 p-8 lg:p-12 space-y-8 flex flex-col group hover:bg-white transition-colors">
-              <div class="space-y-4">
-                <div class="flex justify-between items-start">
-                  <span class="font-mono text-4xl font-black text-stone-200 group-hover:text-green-800/10 transition-colors">{principle.id}</span>
-                  <div class="w-12 h-px bg-stone-200 mt-5 group-hover:bg-green-800 transition-all"></div>
+          {
+            principles.map((principle) => (
+              <div class="bg-stone-50 p-8 lg:p-12 space-y-8 flex flex-col group hover:bg-white transition-colors">
+                <div class="space-y-4">
+                  <div class="flex justify-between items-start">
+                    <span class="font-mono text-4xl font-black text-stone-200 group-hover:text-green-800/10 transition-colors">
+                      {principle.id}
+                    </span>
+                    <div class="w-12 h-px bg-stone-200 mt-5 group-hover:bg-green-800 transition-all" />
+                  </div>
+                  <h3 class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900 group-hover:text-green-800 transition-colors">
+                    {principle.name}
+                  </h3>
                 </div>
-                <h3 class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900 group-hover:text-green-800 transition-colors">
-                  {principle.name}
-                </h3>
-              </div>
-              
-              <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-200 grayscale group-hover:grayscale-0 transition-all duration-700">
-                <Picture
-                  class="w-full h-full object-cover"
-                  src={principle.image}
-                  alt={principle.altText}
-                  width={600}
-                />
-              </div>
 
-              <div class="space-y-4">
-                <p class="text-sm leading-relaxed text-stone-600 font-medium" set:html={principle.text} />
+                <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-200 grayscale group-hover:grayscale-0 transition-all duration-700">
+                  <Picture
+                    class="w-full h-full object-cover"
+                    src={principle.image}
+                    alt={principle.altText}
+                    width={600}
+                  />
+                </div>
+
+                <div class="space-y-4">
+                  <p
+                    class="text-sm leading-relaxed text-stone-600 font-medium"
+                    set:html={principle.text}
+                  />
+                </div>
+
+                <div class="mt-auto pt-6 border-t border-stone-100">
+                  <span class="font-mono text-[9px] uppercase tracking-widest text-stone-400">
+                    Section Reference: LNT_DIRECTIVE_{principle.id}
+                  </span>
+                </div>
               </div>
-              
-              <div class="mt-auto pt-6 border-t border-stone-100">
-                <span class="font-mono text-[9px] uppercase tracking-widest text-stone-400">Section Reference: LNT_DIRECTIVE_{principle.id}</span>
-              </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <style>
   @font-face {
-    font-family: 'EditorialSerif';
-    src: local('Georgia'), local('Times New Roman'), serif;
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
   }
-  
+
   .font-serif {
-    font-family: 'EditorialSerif', serif;
+    font-family: "EditorialSerif", serif;
   }
 </style>
