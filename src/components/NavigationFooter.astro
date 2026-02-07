@@ -1,38 +1,120 @@
 ---
-import SocialLinks from './SocialLinks.astro';
+import SocialLinks from "./SocialLinks.astro";
 
 const footerItems = [
-  { name: 'About', link: '/about/' },
-  { name: 'News', link: '/news/' },
-  { name: 'Volunteer', link: '/volunteer/' },
-  { name: 'FAQ', link: '/faq/' },
-  { name: 'Privacy', link: '/privacy/' },
-  { name: 'Donate', link: '/donate/' },
-  { name: 'Rules', link: '/rules/' },
-  { name: 'Assets', link: '/assets/' },
-  { name: 'Sitemap', link: '/sitemap-index.xml' },
+  { name: "Identity & About", link: "/about/" },
+  { name: "Latest Dispatches", link: "/news/" },
+  { name: "Volunteer", link: "/volunteer/" },
+  { name: "Technical FAQ", link: "/faq/" },
+  { name: "Privacy Protocol", link: "/privacy/" },
+  { name: "Fiscal Support", link: "/donate/" },
+  { name: "Park Regulations", link: "/rules/" },
+  { name: "Brand Assets", link: "/assets/" },
 ];
 ---
 
-<footer class="bg-white">
-  <div class="mx-auto max-w-(--breakpoint-xl) space-y-8 overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
-    <nav class="-mx-5 -my-2 flex flex-wrap justify-center">
-      {
-        footerItems.map((item) => (
-          <div class="px-5 py-2">
-            <a href={item.link} class="text-base text-gray-500 hover:text-primary-dark hover:underline focus:text-primary-dark focus:underline focus:outline-hidden">
-              {item.name}
-            </a>
+<footer class="bg-stone-50 border-t border-stone-300 pt-20 pb-12">
+  <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
+    <div
+      class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 border border-stone-300"
+    >
+      <!-- Branding & Legal -->
+      <div
+        class="lg:col-span-5 p-8 lg:p-12 border-b lg:border-b-0 lg:border-r border-stone-300"
+      >
+        <div class="space-y-8">
+          <div>
+            <h2
+              class="font-serif font-black text-3xl uppercase tracking-tighter leading-none text-stone-900"
+            >
+              Friends of <br />
+              <span class="text-green-800">Ute Valley Park.</span>
+            </h2>
+            <p
+              class="mt-6 text-sm text-stone-500 font-medium leading-relaxed max-w-sm"
+            >
+              Established for the preservation, maintenance, and community
+              education of the 338-acre Ute Valley urban wildland.
+            </p>
           </div>
-        ))
-      }
-    </nav>
-    <div class="mt-8 flex justify-center space-x-6">
-      <SocialLinks />
+
+          <div class="pt-8 border-t border-stone-200">
+            <SocialLinks />
+          </div>
+
+          <div class="space-y-4">
+            <p
+              class="text-[10px] font-mono uppercase tracking-widest text-stone-400 leading-tight"
+            >
+              Fiscally sponsored fund of the Trails and Open Space Coalition
+              (501(c)(3)). Contributions are tax-deductible as permitted by law.
+            </p>
+            <p
+              class="text-[10px] font-mono uppercase tracking-widest text-stone-500 font-black"
+            >
+              © 2026 FUVP — ALL RIGHTS RESERVED.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <div
+        class="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 divide-x divide-y divide-stone-300"
+      >
+        {
+          footerItems.map((item) => (
+            <a
+              href={item.link}
+              class="group p-8 flex flex-col justify-between hover:bg-white transition-colors"
+            >
+              <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-400 group-hover:text-stone-900 transition-colors">
+                {item.name}
+              </span>
+              <div class="mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                <span class="text-stone-900">→</span>
+              </div>
+            </a>
+          ))
+        }
+        <a
+          href="/sitemap-index.xml"
+          class="group p-8 flex flex-col justify-between hover:bg-white transition-colors col-span-2 md:col-span-1"
+        >
+          <span
+            class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-400 group-hover:text-stone-900 transition-colors"
+          >
+            System Sitemap
+          </span>
+          <div
+            class="mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity"
+          >
+            <span class="text-stone-900">→</span>
+          </div>
+        </a>
+      </div>
     </div>
-    <p class="mt-8 text-center text-base text-gray-600">&copy; 2026 Friend of Ute Valley Park. All rights reserved.</p>
-    <p class="mt-2 text-center text-base text-gray-600">
-      A fiscally sponsored fund of the Trails and Open Space Coalition, a 501(c)(3) organization. Contributions are tax deductible to the extent allowed by law.
-    </p>
+
+    <!-- Coordinate Detail -->
+    <div
+      class="mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] font-mono uppercase tracking-[0.3em] text-stone-400"
+    >
+      <span>Loc: 38.9189° N, 104.8558° W</span>
+      <span class="hidden md:block border-x border-stone-200 px-8"
+        >Colorado Springs, CO</span
+      >
+      <span>Status: Active Wildland</span>
+    </div>
   </div>
 </footer>
+
+<style>
+  @font-face {
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
+  }
+
+  .font-serif {
+    font-family: "EditorialSerif", serif;
+  }
+</style>

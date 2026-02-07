@@ -10,6 +10,28 @@ Astro-based static site with Vue components for the Friends of Ute Valley Park n
 - **Forms**: Vue components with VueUse for fetch operations
 - **Colors**: Green/teal brand palette (green-700, teal-600, etc.)
 
+## Design Identity: Modern Field Journal (Established Feb 2026)
+
+### Core Aesthetic Mandate
+A rugged, editorial, and utilitarian "Ranger's Report" style. This direction moves away from generic SaaS-style UI in favor of a structural, archival look that reflects the authoritative stewardship of the park.
+
+### Visual Pillars
+- **Structural Grids**: Use visible borders (`border-stone-300`) and rigid grid systems to create a "technical report" layout. Avoid soft shadows or rounded corners (use `rounded-none` or `rounded-sm`).
+- **The "Stone" Foundation**: The primary background is `stone-50` (paper-like), not white. Containers often use `stone-100/50` for subtle depth.
+- **Grayscale to Color**: Images should default to grayscale (or high-contrast muted tones) and transition to full color on hover to emphasize the "archival" feel.
+- **Metadata Flourishes**: Add technical labels (e.g., "REF: 042", "STATION_COORDS", "DISPATCH_DATE") in small monospace fonts to reinforce the field-notes narrative.
+
+### Typography Hierarchy
+- **Headings (Editorial Serif)**: Use heavy, high-contrast serif fonts (fallback: `Georgia` or `Times New Roman`) with `font-black`, `uppercase`, and `tracking-tighter`.
+- **Technical/Labels (Technical Monospace)**: Use monospace for all navigation, tags, and data. Use `text-[10px]`, `font-black`, `uppercase`, and high letter-spacing (`tracking-[0.2em]`).
+- **Body (Inter Sans)**: Clean, functional sans-serif for readability.
+
+### Color Palette (v4 Utilities)
+- **Base**: `bg-stone-50`
+- **Ink**: `text-stone-900` (Headings), `text-stone-600` (Body)
+- **Primary Accent**: `text-green-800` (Used for "Wildland" elements and emphasis)
+- **Technical Border**: `border-stone-300`
+
 ## Key Patterns & Conventions
 
 ### Styling Approach
