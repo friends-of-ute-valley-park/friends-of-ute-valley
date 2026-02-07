@@ -194,6 +194,14 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"trail-conditions": Record<string, {
+  id: string;
+  body?: string;
+  collection: "trail-conditions";
+  data: InferEntrySchema<"trail-conditions">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 "trailheads": Record<string, {
   id: string;
   body?: string;
