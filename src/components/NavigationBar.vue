@@ -4,12 +4,13 @@
       <div class="flex h-20 justify-between items-center">
         <div class="flex items-center">
           <a href="/" class="flex shrink-0 items-center gap-3 group">
-            <div class="p-1 border border-stone-300 bg-white grayscale group-hover:grayscale-0 transition-all">
+            <div
+              class="p-1 border border-stone-300 bg-white transition-all group-hover:border-primary group-hover:scale-105">
               <img class="block h-10 w-10" src="/images/logo-small.jpg" alt="FUVP" />
             </div>
             <div class="hidden md:block">
               <span
-                class="block font-serif font-black text-stone-900 leading-none uppercase text-lg tracking-tighter">Friends
+                class="block font-serif font-black text-stone-900 leading-none uppercase text-lg tracking-tighter group-hover:text-primary transition-colors">Friends
                 of <br /> Ute Valley Park</span>
             </div>
           </a>
@@ -20,14 +21,14 @@
           <div class="flex h-full border-l border-stone-300">
             <a v-for="item in navigation" :key="item.name" :href="item.href"
               :aria-current="item.current ? 'page' : undefined" :class="[
-                item.current ? 'bg-stone-100 text-stone-900 border-b-2 border-stone-900' : 'text-stone-500 hover:bg-stone-100 hover:text-stone-900',
+                item.current ? 'bg-white text-primary border-b-2 border-primary' : 'text-stone-500 hover:bg-stone-100 hover:text-primary',
                 'inline-flex items-center px-6 h-full text-[10px] font-mono font-black uppercase tracking-[0.2em] border-r border-stone-300 transition-colors',
               ]">{{ item.name }}</a>
 
             <!-- Leave No Trace Dropdown -->
             <Popover class="relative h-full border-r border-stone-300">
               <PopoverButton :class="[
-                props.page.startsWith('/leavenotrace') ? 'bg-stone-100 text-stone-900' : 'text-stone-500 hover:bg-stone-100 hover:text-stone-900',
+                props.page.startsWith('/leavenotrace') ? 'bg-white text-secondary' : 'text-stone-500 hover:bg-stone-100 hover:text-secondary',
                 'flex items-center px-6 h-full text-[10px] font-mono font-black uppercase tracking-[0.2em] transition-colors focus:outline-none',
               ]">
                 <span>Environmental Stewardship</span>
@@ -39,18 +40,19 @@
                 leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0"
                 leave-to-class="opacity-0 translate-y-1">
                 <PopoverPanel class="absolute right-0 z-10 mt-px w-screen max-w-sm">
-                  <div class="overflow-hidden border border-stone-300 bg-white shadow-2xl">
+                  <div class="overflow-hidden border-2 border-primary bg-white shadow-2xl">
                     <div class="grid grid-cols-1 divide-y divide-stone-200">
                       <a v-for="item in leaveNoTraceMenuItems" :key="item.name" :href="item.href"
-                        class="group flex items-center gap-4 p-4 hover:bg-stone-50 transition-colors">
+                        class="group flex items-center gap-4 p-4 hover:bg-secondary/5 transition-colors">
                         <div
-                          class="flex h-10 w-10 shrink-0 items-center justify-center border border-stone-200 bg-stone-50 group-hover:bg-white group-hover:border-stone-900 transition-colors">
-                          <component :is="item.icon" class="h-5 w-5 text-stone-400 group-hover:text-stone-900"
+                          class="flex h-10 w-10 shrink-0 items-center justify-center border border-stone-200 bg-stone-50 group-hover:bg-white group-hover:border-secondary transition-colors">
+                          <component :is="item.icon" class="h-5 w-5 text-stone-400 group-hover:text-secondary"
                             aria-hidden="true" />
                         </div>
                         <div>
-                          <p class="text-[10px] font-mono font-black uppercase tracking-widest text-stone-900">{{
-                            item.name }}</p>
+                          <p
+                            class="text-[10px] font-mono font-black uppercase tracking-widest text-stone-900 group-hover:text-secondary transition-colors">
+                            {{ item.name }}</p>
                           <p class="text-[10px] font-mono text-stone-400 uppercase tracking-tighter">{{ item.description
                             }}</p>
                         </div>
@@ -70,7 +72,7 @@
         <!-- Mobile menu button -->
         <div class="flex lg:hidden">
           <DisclosureButton
-            class="inline-flex items-center justify-center border border-stone-300 p-2 text-stone-500 hover:bg-stone-100 hover:text-stone-900 focus:outline-none">
+            class="inline-flex items-center justify-center border border-stone-300 p-2 text-stone-500 hover:bg-stone-100 hover:text-primary focus:outline-none">
             <span class="sr-only">Open main menu</span>
             <i-heroicons-bars-3 v-if="!open" class="block h-6 w-6" aria-hidden="true" />
             <i-heroicons-x-mark v-else class="block h-6 w-6" aria-hidden="true" />
@@ -83,18 +85,18 @@
     <DisclosurePanel class="lg:hidden border-t border-stone-300 bg-white">
       <div class="divide-y divide-stone-200">
         <DisclosureButton v-for="item in navigation" :key="item.name" as="a" :href="item.href" :class="[
-          item.current ? 'bg-stone-50 text-stone-900 border-l-4 border-stone-900' : 'text-stone-600 hover:bg-stone-50',
+          item.current ? 'bg-primary/5 text-primary border-l-4 border-primary' : 'text-stone-600 hover:bg-stone-50 hover:text-primary',
           'block py-4 px-6 text-[10px] font-mono font-black uppercase tracking-widest',
         ]">{{ item.name }}
         </DisclosureButton>
 
         <div class="bg-stone-50 px-6 py-2">
-          <span class="text-[8px] font-mono font-black uppercase tracking-[0.3em] text-stone-400">Environmental
+          <span class="text-[8px] font-mono font-black uppercase tracking-[0.3em] text-secondary">Environmental
             Stewardship</span>
         </div>
 
         <DisclosureButton v-for="item in leaveNoTraceMenuItems" :key="item.name" as="a" :href="item.href" :class="[
-          item.current ? 'bg-stone-50 text-stone-900 border-l-4 border-stone-900' : 'text-stone-600 hover:bg-stone-50',
+          item.current ? 'bg-secondary/5 text-secondary border-l-4 border-secondary' : 'text-stone-600 hover:bg-stone-50 hover:text-secondary',
           'block py-4 px-8 text-[10px] font-mono font-black uppercase tracking-widest',
         ]">{{ item.name }}
         </DisclosureButton>

@@ -11,35 +11,35 @@ const principles = [
   {
     id: "01",
     name: "Plan Ahead & Prepare",
-    text: "Review current forecasts and terrain data. Familiarity with <a class='font-bold underline decoration-stone-300 hover:text-green-800 transition-colors' href='/rules/'>Park Regulations</a> is mandatory for safe exploration.",
+    text: "Review current forecasts and terrain data. Familiarity with <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/rules/'>Park Regulations</a> is mandatory for safe exploration.",
     image: PlanAhead,
     altText: "A lone tree in Ute Valley Park",
   },
   {
     id: "02",
     name: "Travel on Durable Surfaces",
-    text: "<a class='font-bold underline decoration-stone-300 hover:text-green-800 transition-colors' href='/leavenotrace/travel-on-durable-surfaces/'>Maintain trail integrity</a>. Minimize soil displacement by adhering strictly to designated paths and respecting Natural Preservation Area closures.",
+    text: "<a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/travel-on-durable-surfaces/'>Maintain trail integrity</a>. Minimize soil displacement by adhering strictly to designated paths and respecting Natural Preservation Area closures.",
     image: TravelOnDurableSurfaces,
     altText: "Ute Valley Park trail",
   },
   {
     id: "03",
     name: "Dispose of Waste Properly",
-    text: "Execute a 'Pack-In, Pack-Out' policy. All refuse, including <a class='font-bold underline decoration-stone-300 hover:text-green-800 transition-colors' href='/leavenotrace/dogs/'>canine waste</a>, must be removed from the ecosystem immediately.",
+    text: "Execute a 'Pack-In, Pack-Out' policy. All refuse, including <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/dogs/'>canine waste</a>, must be removed from the ecosystem immediately.",
     image: DisposeOfWasteProperly,
     altText: "Rubbish in the dirt",
   },
   {
     id: "04",
     name: "Leave What You Find",
-    text: "Preserve the archaeological and biological record. <a class='font-bold underline decoration-stone-300 hover:text-green-800 transition-colors' href='/leavenotrace/leave-what-you-find/'>Capture images</a> but leave all natural artifacts in situ for ongoing observation.",
+    text: "Preserve the archaeological and biological record. <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/leave-what-you-find/'>Capture images</a> but leave all natural artifacts in situ for ongoing observation.",
     image: LeaveWhatYouFind,
     altText: "Flowers",
   },
   {
     id: "05",
     name: "Respect Wildlife",
-    text: "Observe fauna from a non-intrusive distance. UVP provides critical habitat; <a class='font-bold underline decoration-stone-300 hover:text-green-800 transition-colors' href='/leavenotrace/respect-wildlife/'>leash requirements</a> are strictly enforced to prevent habitat stress.",
+    text: "Observe fauna from a non-intrusive distance. UVP provides critical habitat; <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/respect-wildlife/'>leash requirements</a> are strictly enforced to prevent habitat stress.",
     image: RespectWildlife,
     altText: "A deer in Ute Valley Park",
   },
@@ -65,7 +65,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
         <div class="sticky top-24 space-y-12">
           <div class="space-y-6">
             <div class="flex items-center gap-3">
-              <span class="inline-block h-px w-8 bg-stone-900"></span>
+              <span class="inline-block h-px w-8 bg-primary-dark"></span>
               <span
                 class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500"
               >
@@ -77,7 +77,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
               class="text-5xl sm:text-6xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
             >
               Leave <br /> No <br />
-              <span class="text-green-800">Trace.</span>
+              <span class="text-primary-dark">Trace.</span>
             </h2>
 
             <p class="text-lg font-medium leading-relaxed text-stone-700">
@@ -89,7 +89,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
           <div class="pt-12 border-t border-stone-300 space-y-8">
             <div
-              class="bg-white border border-stone-200 p-8 shadow-sm relative group grayscale hover:grayscale-0 transition-all duration-500"
+              class="bg-white border-2 border-primary-dark p-8 shadow-sm relative group transition-all duration-500 hover:shadow-[8px_8px_0px_0px_var(--color-accent)]"
             >
               <span
                 class="absolute top-2 right-2 font-mono text-[8px] text-stone-300 uppercase"
@@ -109,7 +109,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
               </a>
               <div class="mt-6 text-center">
                 <span
-                  class="font-mono text-[10px] uppercase font-bold text-stone-400"
+                  class="font-mono text-[10px] uppercase font-bold text-primary-dark"
                   >Certified Partner</span
                 >
               </div>
@@ -117,7 +117,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
             <a
               href="/rules/"
-              class="block p-4 border border-stone-900 bg-stone-900 text-stone-50 font-mono text-xs font-bold uppercase text-center tracking-widest hover:bg-stone-800 transition-colors"
+              class="block p-4 border-2 border-primary-dark bg-primary-dark text-white font-mono text-xs font-bold uppercase text-center tracking-widest hover:bg-stone-900 transition-colors"
             >
               Access Full Park Rules
             </a>
@@ -133,19 +133,19 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
               <div class="bg-stone-50 p-8 lg:p-12 space-y-8 flex flex-col group hover:bg-white transition-colors">
                 <div class="space-y-4">
                   <div class="flex justify-between items-start">
-                    <span class="font-mono text-4xl font-black text-stone-200 group-hover:text-green-800/10 transition-colors">
+                    <span class="font-mono text-4xl font-black text-accent group-hover:text-accent-dark transition-colors">
                       {principle.id}
                     </span>
-                    <div class="w-12 h-px bg-stone-200 mt-5 group-hover:bg-green-800 transition-all" />
+                    <div class="w-12 h-px bg-stone-200 mt-5 group-hover:bg-primary-dark transition-all" />
                   </div>
-                  <h3 class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900 group-hover:text-green-800 transition-colors">
+                  <h3 class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors">
                     {principle.name}
                   </h3>
                 </div>
 
-                <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-200 grayscale group-hover:grayscale-0 transition-all duration-700">
+                <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-200 transition-all duration-700">
                   <Picture
-                    class="w-full h-full object-cover"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     src={principle.image}
                     alt={principle.altText}
                     width={600}
@@ -160,7 +160,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
                 </div>
 
                 <div class="mt-auto pt-6 border-t border-stone-100">
-                  <span class="font-mono text-[9px] uppercase tracking-widest text-stone-400">
+                  <span class="font-mono text-[9px] uppercase tracking-widest text-primary-dark font-bold">
                     Section Reference: LNT_DIRECTIVE_{principle.id}
                   </span>
                 </div>
