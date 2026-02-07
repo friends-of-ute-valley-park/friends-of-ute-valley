@@ -22,14 +22,16 @@ const { title } = Astro.props as Props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" style="color-scheme: light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title} - Friends of Ute Valley Park</title>
+    <link rel="preconnect" href="https://challenges.cloudflare.com" />
     <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   </head>
   <ClientRouter />

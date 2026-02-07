@@ -68,12 +68,13 @@ const submit = (e: SubmitEvent) => {
           v-model="payload.name"
           type="text"
           name="name"
+          autocomplete="name"
           :disabled="isFetching"
           :class="{
             'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': nameIsError,
           }"
           class="mr-4 block w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-gray-900 placeholder-gray-500 caret-secondary shadow-lg focus:border-accent focus:ring-accent disabled:opacity-60 sm:flex-1"
-          placeholder="Full name"
+          placeholder="Full name…"
           :aria-invalid="nameIsError"
           aria-describedby="form-errors"
           @blur="validateName(false)"
@@ -84,12 +85,14 @@ const submit = (e: SubmitEvent) => {
           v-model="payload.email"
           type="email"
           name="email"
+          autocomplete="email"
+          spellcheck="false"
           :disabled="isFetching"
           :class="{
             'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': emailIsError,
           }"
           class="mt-3 block w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-gray-900 placeholder-gray-500 caret-secondary shadow-lg focus:border-accent focus:ring-accent disabled:opacity-60 sm:mt-0 sm:flex-1"
-          placeholder="Email"
+          placeholder="Email…"
           :aria-invalid="emailIsError"
           aria-describedby="form-errors"
           @blur="validateEmail(false)"
