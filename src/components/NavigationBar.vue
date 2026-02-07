@@ -52,7 +52,7 @@
                           <p class="text-[10px] font-mono font-black uppercase tracking-widest text-stone-900">{{
                             item.name }}</p>
                           <p class="text-[10px] font-mono text-stone-400 uppercase tracking-tighter">{{ item.description
-                          }}</p>
+                            }}</p>
                         </div>
                       </a>
                     </div>
@@ -142,7 +142,7 @@ const leaveNoTraceMenuItems = [
 ];
 
 const navigation = [
-  { href: '/', name: 'Log', current: props.page === '/' },
+  { href: '/', name: 'Home', current: props.page === '/' },
   { href: '/visit/', name: 'Visit', current: props.page === '/visit/' },
   { href: '/volunteer/', name: 'Volunteer', current: props.page === '/volunteer/' },
   { href: '/donate/', name: 'Donate', current: props.page === '/donate/' },
