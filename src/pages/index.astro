@@ -90,7 +90,7 @@ const winterTips = [
               <p
                 class="max-w-xl text-xl sm:text-2xl font-medium leading-relaxed text-stone-700"
               >
-                A 338-acre urban wildland in Colorado Springs. We are the
+                A 550-acre urban wildland in Colorado Springs. We are the
                 stewards dedicated to its preservation, maintenance, and
                 community education.
               </p>
@@ -370,7 +370,10 @@ const winterTips = [
               )
               .slice(0, 3)
               .map((post) => (
-                <a href={`/news/${post.id}`} class="group space-y-6 rounded-sm focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:outline-none">
+                <a
+                  href={`/news/${post.id}`}
+                  class="group space-y-6 rounded-sm focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:outline-none"
+                >
                   <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-300 relative">
                     <Picture
                       src={post.data.coverImage}
