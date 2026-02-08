@@ -43,18 +43,18 @@
                   <div class="overflow-hidden border-2 border-primary bg-white shadow-2xl">
                     <div class="grid grid-cols-1 divide-y divide-stone-200">
                       <a v-for="item in leaveNoTraceMenuItems" :key="item.name" :href="item.href"
-                        class="group flex items-center gap-4 p-4 hover:bg-secondary/5 transition-colors">
+                        class="group flex items-center gap-4 p-4 hover:bg-primary/5 transition-colors">
                         <div
-                          class="flex h-10 w-10 shrink-0 items-center justify-center border border-stone-200 bg-stone-50 group-hover:bg-white group-hover:border-secondary transition-colors">
-                          <component :is="item.icon" class="h-5 w-5 text-stone-500 group-hover:text-secondary"
+                          class="flex h-10 w-10 shrink-0 items-center justify-center border border-stone-200 bg-stone-50 group-hover:bg-white group-hover:border-primary transition-colors">
+                          <component :is="item.icon" class="h-5 w-5 text-stone-500 group-hover:text-primary"
                             aria-hidden="true" />
                         </div>
                         <div>
                           <p
-                            class="text-[10px] font-mono font-black uppercase tracking-widest text-stone-900 group-hover:text-secondary transition-colors">
+                            class="text-[10px] font-mono font-black uppercase tracking-widest text-stone-900 group-hover:text-primary transition-colors">
                             {{ item.name }}</p>
                           <p class="text-[10px] font-mono text-stone-500 uppercase tracking-tighter">{{ item.description
-                            }}</p>
+                          }}</p>
                         </div>
                       </a>
                     </div>
@@ -91,12 +91,12 @@
         </DisclosureButton>
 
         <div class="bg-stone-50 px-6 py-2">
-          <span class="text-[8px] font-mono font-black uppercase tracking-[0.3em] text-secondary">Leave No
+          <span class="text-[8px] font-mono font-black uppercase tracking-[0.3em] text-primary">Leave No
             Trace</span>
         </div>
 
         <DisclosureButton v-for="item in leaveNoTraceMenuItems" :key="item.name" as="a" :href="item.href" :class="[
-          item.current ? 'bg-secondary/5 text-secondary border-l-4 border-secondary' : 'text-stone-600 hover:bg-stone-50 hover:text-secondary',
+          item.current ? 'bg-primary/5 text-primary border-l-4 border-primary' : 'text-stone-600 hover:bg-stone-50 hover:text-primary',
           'block py-4 px-8 text-[10px] font-mono font-black uppercase tracking-widest',
         ]">{{ item.name }}
         </DisclosureButton>
