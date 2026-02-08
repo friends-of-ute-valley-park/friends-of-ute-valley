@@ -31,7 +31,7 @@
                 props.page.startsWith('/leavenotrace') ? 'bg-white text-secondary' : 'text-stone-500 hover:bg-stone-100 hover:text-secondary',
                 'flex items-center px-6 h-full text-[10px] font-mono font-black uppercase tracking-[0.2em] transition-colors focus:outline-none',
               ]">
-                <span>Environmental Stewardship</span>
+                <span>Leave No Trace</span>
                 <i-heroicons-chevron-down class="ml-2 h-4 w-4 opacity-50" aria-hidden="true" />
               </PopoverButton>
 
@@ -91,8 +91,8 @@
         </DisclosureButton>
 
         <div class="bg-stone-50 px-6 py-2">
-          <span class="text-[8px] font-mono font-black uppercase tracking-[0.3em] text-secondary">Environmental
-            Stewardship</span>
+          <span class="text-[8px] font-mono font-black uppercase tracking-[0.3em] text-secondary">Leave No
+            Trace</span>
         </div>
 
         <DisclosureButton v-for="item in leaveNoTraceMenuItems" :key="item.name" as="a" :href="item.href" :class="[
@@ -119,24 +119,24 @@ import LucideMap from 'virtual:icons/lucide/map';
 const props = defineProps(['page']);
 
 const leaveNoTraceMenuItems = [
-  { name: 'Dogs', description: 'Rules & Etiquette', href: '/leavenotrace/dogs/', current: props.page === '/leavenotrace/dogs/', icon: LucidePawPrint },
+  { name: 'Dog Etiquette', description: 'Rules & Etiquette', href: '/leavenotrace/dogs/', current: props.page === '/leavenotrace/dogs/', icon: LucidePawPrint },
   {
-    name: 'Surfaces',
+    name: 'Travel on Durable Surfaces',
     description: 'Durable Travel',
     href: '/leavenotrace/travel-on-durable-surfaces/',
     current: props.page === '/leavenotrace/travel-on-durable-surfaces/',
     icon: LucideMap,
   },
   {
-    name: 'Preservation',
+    name: 'Leave What You Find',
     description: 'Leave What You Find',
     href: '/leavenotrace/leave-what-you-find/',
     current: props.page === '/leavenotrace/leave-what-you-find/',
     icon: LucideCamera,
   },
   {
-    name: 'Wildlife',
-    description: 'Fauna Protection',
+    name: 'Respect Wildlife',
+    description: 'Respecting Wildlife',
     href: '/leavenotrace/respect-wildlife/',
     current: props.page === '/leavenotrace/respect-wildlife/',
     icon: LucideBird,
@@ -149,6 +149,7 @@ const navigation = [
   { href: '/volunteer/', name: 'Volunteer', current: props.page === '/volunteer/' },
   { href: '/donate/', name: 'Donate', current: props.page === '/donate/' },
   { href: '/contact/', name: 'Contact', current: props.page === '/contact/' },
+  { href: '/volunteerspotlight/', name: 'Volunteer Spotlight', current: props.page === '/volunteerspotlight/' },
 ];
 </script>
 

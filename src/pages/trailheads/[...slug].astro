@@ -31,9 +31,7 @@ const { entry } = Astro.props;
           <span
             class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
           >
-            Trailhead Info — UVP_TRLHD_{
-              entry.id.toUpperCase().replace(/-/g, "_")
-            }
+            Trailhead Info
           </span>
         </div>
 
@@ -59,7 +57,7 @@ const { entry } = Astro.props;
     <section class="border-b border-stone-300">
       <div class="mx-auto max-w-(--breakpoint-2xl) px-0 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
-          <!-- Tactical Info -->
+          <!-- Details -->
           <div
             class="lg:col-span-5 py-16 lg:py-24 px-4 sm:px-6 lg:pr-12 border-r border-stone-300"
           >
@@ -68,7 +66,7 @@ const { entry } = Astro.props;
                 <h3
                   class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark border-b border-stone-200 pb-2 mb-6"
                 >
-                  Location Intel
+                  Location Info
                 </h3>
                 <p
                   class="text-lg font-medium text-stone-700 leading-relaxed italic"
@@ -110,7 +108,7 @@ const { entry } = Astro.props;
                   target="_blank"
                   class="inline-flex items-center justify-center w-full px-8 py-5 bg-stone-900 text-white font-mono text-xs font-black uppercase tracking-widest transition-all hover:bg-primary-dark active:scale-95 shadow-[4px_4px_0px_0px_var(--color-accent)]"
                 >
-                  Initiate Navigation →
+                  Get Directions →
                 </a>
               </div>
             </div>
@@ -134,9 +132,7 @@ const { entry } = Astro.props;
               >
                 <span
                   class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
-                  >REF: TOPO_SEC_{
-                    entry.id.toUpperCase().replace(/-/g, "_")
-                  }</span
+                  ></span
                 >
                 <span
                   class="font-mono text-[10px] uppercase tracking-widest text-primary-dark font-black tracking-[0.2em]"
@@ -173,7 +169,6 @@ const { entry } = Astro.props;
                   />
                   <div class="absolute inset-0 border-[16px] border-white/10 pointer-events-none" />
                   <div class="absolute bottom-4 left-4 bg-stone-900 text-white px-2 py-0.5 font-mono text-[8px] uppercase">
-                    REF: FIELD_IMG_{String(i + 1).padStart(2, "0")}
                   </div>
                 </div>
                 <p class="font-mono text-[10px] uppercase tracking-widest text-stone-500 text-center font-bold">

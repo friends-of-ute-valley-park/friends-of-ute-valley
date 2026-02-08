@@ -46,22 +46,22 @@ const otherParks = [
   },
 ];
 const reasons = [
-  "Municipal Ordinance Compliance: Ordinance 6.7.107 mandates physical leashes. Fines are levied for non-compliance ($50—$150).",
-  "User Safety Protocols: Not all visitors are comfortable with unrestrained animals. Shared use requires constant control.",
-  "Fauna Agitation: Leashed animals prevent aggressive interactions with other domestic pets and local wildlife.",
-  "Rattlesnake Hazards: UVP is an active habitat for venomous reptiles. Leashing minimizes the risk of K9 envenomation.",
+  "City Ordinance: Colorado Springs Ordinance 6.7.107 requires dogs to be on a leash. Fines range from $50 to $150.",
+  "Courtesy to Others: Not all visitors are comfortable around dogs. Keeping your pup on a leash helps everyone enjoy the trails.",
+  "Wildlife Safety: A leash keeps your dog from chasing or disturbing other pets and the wildlife that call the park home.",
+  "Rattlesnake Risk: Ute Valley Park is home to rattlesnakes. A leash helps keep your dog safe from a dangerous encounter.",
 ];
 const rules = [
-  "Zero-Tolerance Off-Leash Policy: UVP contains no designated off-leash zones.",
-  "Waste Removal Mandate: Immediate removal and disposal of all pet waste is required for soil integrity.",
-  "Trail Adherence: Dogs must remain on designated trail systems at all times.",
-  "General Ordinance: Review full park regulations for broader municipal compliance.",
+  "Leash Required: There are no off-leash areas in Ute Valley Park. Dogs must be on a leash at all times.",
+  "Pick Up After Your Dog: Please bag and dispose of pet waste to keep the trails clean for everyone.",
+  "Stay on the Trail: Dogs should stay on designated trails at all times to protect the natural landscape.",
+  "Know the Rules: Check out the full park regulations so you and your dog can have a great visit.",
 ];
 ---
 
-<Layout title="K9 Protocols">
+<Layout title="Dogs at Ute Valley Park">
   <main class="bg-stone-50 text-stone-900">
-    <!-- K9 Protocol Hero -->
+    <!-- Dogs Hero -->
     <section class="relative border-b border-stone-300 overflow-hidden">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
         <!-- Identity Column -->
@@ -74,7 +74,7 @@ const rules = [
               <span
                 class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
               >
-                Visiting With Dogs — UVP_SEC_K9
+                Visiting With Dogs
               </span>
             </div>
 
@@ -88,9 +88,9 @@ const rules = [
             <p
               class="max-w-xl text-xl font-medium leading-relaxed text-stone-700"
             >
-              Dogs are permitted within the Ute Valley wildland strictly under
-              physical leash restraint. Ute Valley Park maintains a
-              zero-tolerance policy regarding off-leash operations.
+              We love dogs at Ute Valley Park! For the safety of your furry
+              friend, other visitors, and local wildlife, dogs must be on a
+              leash at all times.
             </p>
 
             <div class="flex flex-wrap gap-4 pt-4">
@@ -98,13 +98,13 @@ const rules = [
                 href="#rules"
                 class="px-8 py-4 bg-primary-dark text-white font-mono text-xs font-black uppercase tracking-widest hover:bg-stone-900 transition-all shadow-[4px_4px_0px_0px_var(--color-accent)]"
               >
-                Review Protocols
+                Leash Rules
               </a>
               <a
                 href="#off-leash"
                 class="px-8 py-4 border-2 border-stone-900 font-mono text-xs font-black uppercase tracking-widest hover:bg-stone-50 transition-all"
               >
-                External Off-Leash Zones
+                Off-Leash Dog Parks
               </a>
             </div>
           </div>
@@ -120,13 +120,13 @@ const rules = [
           <div
             class="absolute bottom-8 left-8 z-10 px-4 py-2 bg-primary-dark border border-primary-dark font-mono text-[10px] uppercase tracking-[0.2em] text-white font-black shadow-[4px_4px_0px_0px_var(--color-accent)]"
           >
-            Ref: Registered_UVP_K9s
+            Dogs of Ute Valley
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Operational Reasoning -->
+    <!-- Leash Rules -->
     <section class="py-24 border-b border-stone-300 bg-white">
       <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
@@ -134,8 +134,8 @@ const rules = [
             <h2
               class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 leading-none mb-8"
             >
-              Security <br />
-              <span class="text-primary-dark italic">Briefing.</span>
+              Leash <br />
+              <span class="text-primary-dark italic">Rules.</span>
             </h2>
             <div
               class="aspect-square bg-stone-100 border border-stone-300 relative group overflow-hidden"
@@ -150,7 +150,7 @@ const rules = [
               <div
                 class="absolute bottom-4 left-4 bg-stone-900 text-white px-2 py-0.5 font-mono text-[8px] uppercase"
               >
-                REF: FIELD_K9_01
+                Good dog!
               </div>
             </div>
           </div>
@@ -160,7 +160,7 @@ const rules = [
               <p
                 class="font-mono text-[10px] uppercase tracking-widest text-stone-500 font-bold mb-4"
               >
-                Mandatory Compliance Reasoning
+                Why Leash Rules Matter
               </p>
               <div class="grid grid-cols-1 gap-4">
                 {
@@ -182,7 +182,7 @@ const rules = [
               <p
                 class="font-mono text-[10px] uppercase tracking-widest text-stone-500 font-bold mb-4"
               >
-                Directive List
+                Here's Why
               </p>
               <div class="border border-stone-300 divide-y divide-stone-300">
                 {
@@ -202,7 +202,7 @@ const rules = [
       </div>
     </section>
 
-    <!-- Alternative Off-Leash Logistics -->
+    <!-- Off-Leash Dog Parks Nearby -->
     <section id="off-leash" class="py-24 bg-stone-100">
       <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
         <div
@@ -212,11 +212,10 @@ const rules = [
             <h2
               class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 leading-none"
             >
-              External <span class="text-primary-dark italic">Facilities.</span>
+              Off-Leash Dog <span class="text-primary-dark italic">Parks Nearby.</span>
             </h2>
             <p class="mt-4 text-stone-500 font-medium">
-              Alternative regional deployment zones supporting off-leash
-              operations.
+              Nearby off-leash dog parks where your pup can run free.
             </p>
           </div>
           <a

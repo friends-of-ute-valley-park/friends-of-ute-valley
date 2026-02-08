@@ -50,15 +50,15 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
               <span
                 class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
               >
-                Getting Here — UVP_SEC_04
+                Getting Here
               </span>
             </div>
 
             <h1
               class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-[0.85] text-stone-900 uppercase"
             >
-              Park <br /> Trail <br />
-              <span class="text-primary-dark">Heads.</span>
+              Visit Ute<br /> Valley <br />
+              <span class="text-primary-dark">Park.</span>
             </h1>
 
             <p
@@ -66,7 +66,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
             >
               Ute Valley Park is nestled between Centennial Blvd, Vindicator Dr
               and I-25 in Colorado Springs. Access is provided via five primary
-              tactical parking locations.
+              parking areas.
             </p>
 
             <div class="pt-8 flex flex-wrap gap-12">
@@ -74,7 +74,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
                 <p
                   class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1"
                 >
-                  Primary Coords
+                  Park Coordinates
                 </p>
                 <p class="font-mono text-sm font-black uppercase">
                   38.9189° N, 104.8558° W
@@ -113,7 +113,6 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
           <div
             class="absolute bottom-8 left-8 bg-primary-dark text-white px-3 py-1 font-mono text-[10px] uppercase tracking-widest"
           >
-            REF: ACCESS_B_ROLL.IMG
           </div>
         </div>
       </div>
@@ -123,7 +122,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
     <section class="border-b border-stone-300">
       <div class="mx-auto max-w-(--breakpoint-2xl) px-0 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
-          <!-- Entry Point Roster -->
+          <!-- Trailheads -->
           <div
             class="lg:col-span-5 py-16 lg:py-24 px-4 sm:px-6 lg:pr-12 border-r border-stone-300"
           >
@@ -134,8 +133,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
                 Where to <span class="text-primary-dark italic">Park.</span>
               </h2>
               <p class="text-sm text-stone-600 font-medium leading-relaxed">
-                Select a designated trailhead for specific topographical data
-                and navigation directions.
+                Find your trailhead and get directions.
               </p>
             </div>
 
@@ -191,7 +189,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
                   >
                     <span
                       class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
-                      >Map Index: UVP_TOPO_2024</span
+                      >Trail Map</span
                     >
                     <span
                       class="font-mono text-[10px] uppercase tracking-widest text-primary-dark font-black"
@@ -237,7 +235,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
       </div>
     </section>
 
-    <!-- Operational Guidelines (Rules) -->
+    <!-- Park Rules -->
     <section
       class="py-24 border-b border-stone-300 bg-stone-900 text-white relative overflow-hidden"
     >
@@ -295,7 +293,6 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
               <div
                 class="absolute bottom-8 left-8 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] font-black"
               >
-                Ref: K9_STAY_LEASHED
               </div>
             </div>
           </div>
@@ -303,7 +300,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
       </div>
     </section>
 
-    <!-- Terrain Intelligence (Trails) -->
+    <!-- Our Trails -->
     <section class="py-24 border-b border-stone-300">
       <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
         <div class="mb-16">
@@ -313,8 +310,8 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
             Our <span class="text-primary-dark italic">Trails.</span>
           </h2>
           <p class="max-w-2xl text-lg text-stone-600 font-medium">
-            The UVP trail network consists of diverse geological features
-            requiring varying levels of technical proficiency.
+            Ute Valley Park offers trails for every skill level, from easy
+            strolls to technical challenges.
           </p>
         </div>
 
@@ -329,21 +326,21 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
               },
               {
                 name: "Rattlesnake Ridge",
-                desc: "Breathtaking views on a razor ridge. Extremely technical, sharp, rocky trail. recommended for expert navigators only.",
+                desc: "Breathtaking views on a razor ridge. Extremely technical, sharp, rocky trail. recommended for experienced hikers and bikers only.",
               },
               {
                 name: "High Arches loop",
-                desc: "Tactical access near Vindicator Parking Lot. Winding valley of an old ranch leading to a natural sandstone arch.",
+                desc: "Quick loop near Vindicator Parking Lot. Winding valley of an old ranch leading to a natural sandstone arch.",
               },
               {
                 name: "Black and Blue Loop",
-                desc: "Challenging terrain featuring sharp rock gardens, steep grades, and significant bridge infrastructure. High technicality.",
+                desc: "Challenging terrain featuring sharp rock gardens, steep grades, and a massive bridge, mine tailings, and a cave! Very technical.",
               },
             ].map((trail, i) => (
               <div class="bg-white p-8 space-y-6 flex flex-col justify-between hover:bg-stone-50 transition-colors group">
                 <div class="space-y-4">
                   <span class="font-mono text-xs font-black text-stone-300 group-hover:text-primary-dark transition-colors">
-                    SECTION_{String(i + 1).padStart(2, "0")}
+                    Trail {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 class="text-xl font-bold font-serif uppercase tracking-tight text-stone-900">
                     {trail.name}

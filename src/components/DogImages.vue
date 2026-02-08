@@ -4,13 +4,13 @@
       <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
         <div class="relative h-64 w-44 overflow-hidden border border-stone-300 bg-white group">
           <a :href="'https://instagram.com/' + dogs[0]" target="_blank">
-            <img :src="'/images/dogs/' + dogs[0] + '.jpg'" alt="Registered K9" class="h-full w-full object-cover object-center transition-all duration-700" />
+            <img :src="'/images/dogs/' + dogs[0] + '.jpg'" alt="Dog at Ute Valley Park" class="h-full w-full object-cover object-center transition-all duration-700" />
             <p class="absolute bottom-0 left-0 bg-white/90 text-[8px] font-mono uppercase tracking-widest text-stone-900 px-2 py-1 border-t border-r border-stone-200">@{{ dogs[0] }}</p>
           </a>
         </div>
         <div class="relative h-64 w-44 overflow-hidden border border-stone-300 bg-white group">
           <a :href="'https://instagram.com/' + dogs[1]" target="_blank">
-            <img :src="'/images/dogs/' + dogs[1] + '.jpg'" alt="Registered K9" class="h-full w-full object-cover object-center transition-all duration-700" />
+            <img :src="'/images/dogs/' + dogs[1] + '.jpg'" alt="Dog at Ute Valley Park" class="h-full w-full object-cover object-center transition-all duration-700" />
             <p class="absolute bottom-0 left-0 bg-white/90 text-[8px] font-mono uppercase tracking-widest text-stone-900 px-2 py-1 border-t border-r border-stone-200">@{{ dogs[1] }}</p>
           </a>
         </div>
@@ -18,19 +18,19 @@
       <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
         <div class="relative h-64 w-44 overflow-hidden border border-stone-300 bg-white group">
           <a :href="'https://instagram.com/' + dogs[2]" target="_blank">
-            <img :src="'/images/dogs/' + dogs[2] + '.jpg'" alt="Registered K9" class="h-full w-full object-cover object-center transition-all duration-700" />
+            <img :src="'/images/dogs/' + dogs[2] + '.jpg'" alt="Dog at Ute Valley Park" class="h-full w-full object-cover object-center transition-all duration-700" />
             <p class="absolute bottom-0 left-0 bg-white/90 text-[8px] font-mono uppercase tracking-widest text-stone-900 px-2 py-1 border-t border-r border-stone-200">@{{ dogs[2] }}</p>
           </a>
         </div>
         <div class="relative h-64 w-44 overflow-hidden border border-stone-300 bg-white group">
           <a :href="'https://instagram.com/' + dogs[3]" target="_blank">
-            <img :src="'/images/dogs/' + dogs[3] + '.jpg'" alt="Registered K9" class="h-full w-full object-cover object-center transition-all duration-700" />
+            <img :src="'/images/dogs/' + dogs[3] + '.jpg'" alt="Dog at Ute Valley Park" class="h-full w-full object-cover object-center transition-all duration-700" />
             <p class="absolute bottom-0 left-0 bg-white/90 text-[8px] font-mono uppercase tracking-widest text-stone-900 px-2 py-1 border-t border-r border-stone-200">@{{ dogs[3] }}</p>
           </a>
         </div>
         <div class="relative h-64 w-44 overflow-hidden border border-stone-300 bg-white group">
           <a :href="'https://instagram.com/' + dogs[4]" target="_blank">
-            <img :src="'/images/dogs/' + dogs[4] + '.jpg'" alt="Registered K9" class="h-full w-full object-cover object-center transition-all duration-700" />
+            <img :src="'/images/dogs/' + dogs[4] + '.jpg'" alt="Dog at Ute Valley Park" class="h-full w-full object-cover object-center transition-all duration-700" />
             <p class="absolute bottom-0 left-0 bg-white/90 text-[8px] font-mono uppercase tracking-widest text-stone-900 px-2 py-1 border-t border-r border-stone-200">@{{ dogs[4] }}</p>
           </a>
         </div>
@@ -38,13 +38,13 @@
       <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
         <div class="relative h-64 w-44 overflow-hidden border border-stone-300 bg-white group">
           <a :href="'https://instagram.com/' + dogs[1]" target="_blank">
-            <img :src="'/images/dogs/' + dogs[1] + '.jpg'" alt="Registered K9" class="h-full w-full object-cover object-center transition-all duration-700" />
+            <img :src="'/images/dogs/' + dogs[1] + '.jpg'" alt="Dog at Ute Valley Park" class="h-full w-full object-cover object-center transition-all duration-700" />
             <p class="absolute bottom-0 left-0 bg-white/90 text-[8px] font-mono uppercase tracking-widest text-stone-900 px-2 py-1 border-t border-r border-stone-200">@{{ dogs[1] }}</p>
           </a>
         </div>
         <div class="relative h-64 w-44 overflow-hidden border border-stone-300 bg-white group">
           <a :href="'https://instagram.com/' + dogs[2]" target="_blank">
-            <img :src="'/images/dogs/' + dogs[2] + '.jpg'" alt="Registered K9" class="h-full w-full object-cover object-center transition-all duration-700" />
+            <img :src="'/images/dogs/' + dogs[2] + '.jpg'" alt="Dog at Ute Valley Park" class="h-full w-full object-cover object-center transition-all duration-700" />
             <p class="absolute bottom-0 left-0 bg-white/90 text-[8px] font-mono uppercase tracking-widest text-stone-900 px-2 py-1 border-t border-r border-stone-200">@{{ dogs[2] }}</p>
           </a>
         </div>

@@ -11,42 +11,42 @@ const principles = [
   {
     id: "01",
     name: "Plan Ahead & Prepare",
-    text: "Review current forecasts and terrain data. Familiarity with <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/rules/'>Park Regulations</a> is mandatory for safe exploration.",
+    text: "A little preparation goes a long way! Check the forecast, plan your route, and review the <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/rules/'>park rules</a> before heading out.",
     image: PlanAhead,
     altText: "A lone tree in Ute Valley Park",
   },
   {
     id: "02",
     name: "Travel on Durable Surfaces",
-    text: "<a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/travel-on-durable-surfaces/'>Maintain trail integrity</a>. Minimize soil displacement by adhering strictly to designated paths and respecting Natural Preservation Area closures.",
+    text: "<a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/travel-on-durable-surfaces/'>Stay on the trail</a> to protect the landscape around you. Stick to marked paths and respect Natural Preservation Area closures so plants and soil can thrive.",
     image: TravelOnDurableSurfaces,
     altText: "Ute Valley Park trail",
   },
   {
     id: "03",
     name: "Dispose of Waste Properly",
-    text: "Execute a 'Pack-In, Pack-Out' policy. All refuse, including <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/dogs/'>canine waste</a>, must be removed from the ecosystem immediately.",
+    text: "Follow a Pack-In, Pack-Out approach — carry out everything you carry in, including <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/dogs/'>pet waste</a>. This keeps Ute Valley Park looking (and smelling) bea-UTE-iful!",
     image: DisposeOfWasteProperly,
     altText: "Rubbish in the dirt",
   },
   {
     id: "04",
     name: "Leave What You Find",
-    text: "Preserve the archaeological and biological record. <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/leave-what-you-find/'>Capture images</a> but leave all natural artifacts in situ for ongoing observation.",
+    text: "Take only photos, leave only footprints! <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/leave-what-you-find/'>Snap all the pictures you like</a>, but please leave rocks, plants, and other natural treasures for the next visitor to enjoy.",
     image: LeaveWhatYouFind,
     altText: "Flowers",
   },
   {
     id: "05",
     name: "Respect Wildlife",
-    text: "Observe fauna from a non-intrusive distance. UVP provides critical habitat; <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/respect-wildlife/'>leash requirements</a> are strictly enforced to prevent habitat stress.",
+    text: "Observe all wildlife from a safe distance and never feed them. Keep dogs on leash to protect wildlife habitat — learn more about our <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/respect-wildlife/'>leash guidelines</a>.",
     image: RespectWildlife,
     altText: "A deer in Ute Valley Park",
   },
   {
     id: "06",
-    name: "Considerate Interaction",
-    text: "Practice recreational empathy. Yield to appropriate trail users and maintain situational awareness. Shared use requires constant communication and control.",
+    name: "Be Considerate of Other Visitors",
+    text: "A friendly hello goes a long way! Yield to other trail users, keep noise levels down, and share the trail so everyone can have a great time in the park.",
     image: BeConsiderateOfOtherVisitors,
     altText: "Hikers walking on snow in the park",
   },
@@ -58,7 +58,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 <section class="border-t border-stone-300 bg-stone-50 overflow-hidden">
   <div class="mx-auto max-w-(--breakpoint-2xl)">
     <div class="grid grid-cols-1 lg:grid-cols-12">
-      <!-- Identity Column: Official Stance -->
+      <!-- Left Column: About Leave No Trace -->
       <div
         class="lg:col-span-4 p-8 lg:p-16 border-b lg:border-b-0 lg:border-r border-stone-300 bg-stone-100/50"
       >
@@ -81,9 +81,9 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
             </h2>
 
             <p class="text-lg font-medium leading-relaxed text-stone-700">
-              Ute Valley Park is a high-traffic urban wildland. Adherence to the
-              Seven Principles is the primary mechanism for long-term ecological
-              viability.
+              Ute Valley Park is a treasured urban wildland. Please help keep
+              the park safe and clean for all visitors by following the Seven
+              Principles.
             </p>
           </div>
 
@@ -91,10 +91,6 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
             <div
               class="bg-white border-2 border-primary-dark p-8 shadow-sm relative group transition-all duration-500 hover:shadow-[8px_8px_0px_0px_var(--color-accent)]"
             >
-              <span
-                class="absolute top-2 right-2 font-mono text-[8px] text-stone-300 uppercase"
-                >Endorsement_ID: LNT_ORG</span
-              >
               <a
                 href="https://www.lnt.org"
                 target="_blank"
@@ -119,13 +115,13 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
               href="/rules/"
               class="block p-4 border-2 border-primary-dark bg-primary-dark text-white font-mono text-xs font-bold uppercase text-center tracking-widest hover:bg-stone-900 transition-colors"
             >
-              Access Full Park Rules
+              View Park Rules
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Principles Column: Directive Grid -->
+      <!-- Principles Column -->
       <div class="lg:col-span-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone-300">
           {
@@ -161,7 +157,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
                 <div class="mt-auto pt-6 border-t border-stone-100">
                   <span class="font-mono text-[9px] uppercase tracking-widest text-primary-dark font-bold">
-                    Section Reference: LNT_DIRECTIVE_{principle.id}
+                    Principle {principle.id}
                   </span>
                 </div>
               </div>

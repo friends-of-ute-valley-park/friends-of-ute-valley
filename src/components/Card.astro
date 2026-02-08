@@ -47,7 +47,7 @@ import { Image } from "astro:assets";
     >
       <span
         class="font-mono text-[10px] font-black uppercase tracking-widest text-primary-dark"
-        >Read Dispatch →</span
+        >Read More →</span
       >
     </div>
   </article>
@@ -59,8 +59,11 @@ import { Image } from "astro:assets";
       ></span>
       <span
         class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-500 group-hover:text-primary-dark transition-colors"
-        >Dispatch No. {
-          String(Math.floor(Math.random() * 1000)).padStart(3, "0")
+        >{
+          new Intl.DateTimeFormat("en-US", {
+            month: "short",
+            year: "numeric",
+          }).format(new Date(publishedOn))
         }</span
       >
     </div>

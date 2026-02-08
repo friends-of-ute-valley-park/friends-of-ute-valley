@@ -2,7 +2,7 @@
   <div class="space-y-12">
     <div class="flex items-center gap-4 mb-8">
       <span class="inline-block h-px w-8 bg-stone-300"></span>
-      <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500">Historical Archives</span>
+      <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500">Park History</span>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-stone-300 border border-stone-300">
@@ -13,7 +13,6 @@
         />
         <div class="absolute inset-0 border-[12px] border-white/20 pointer-events-none"></div>
         <div class="absolute bottom-4 left-4 bg-stone-900 text-white px-2 py-0.5 font-mono text-[8px] uppercase">
-          REF: HIST_ARCH_00{{i}}
         </div>
       </div>
     </div>
@@ -23,7 +22,7 @@
         class="px-8 py-4 border-2 border-stone-900 font-mono text-xs font-black uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all active:scale-95" 
         @click="viewMore = true"
       >
-        Expand Full Archive
+        View More Photos
       </button>
     </div>
 
@@ -36,7 +35,6 @@
           />
           <div class="absolute inset-0 border-[12px] border-white/20 pointer-events-none"></div>
           <div class="absolute bottom-4 left-4 bg-stone-900 text-white px-2 py-0.5 font-mono text-[8px] uppercase">
-            REF: HIST_ARCH_0{{i + 6}}
           </div>
         </div>
       </div>

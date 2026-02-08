@@ -5,13 +5,13 @@
         <div class="flex items-center gap-3">
           <div class="h-2 w-2 bg-accent animate-pulse rounded-full"></div>
           <p class="text-[10px] font-mono font-black uppercase tracking-[0.2em] text-white">
-            Active Mobilization: <span class="text-primary-100">Scheduled for {{ eventDates }}</span>
+            Upcoming Volunteer Event: <span class="text-primary-100">Scheduled for {{ eventDates }}</span>
           </p>
         </div>
         
         <a href="/volunteer/"
           class="inline-flex items-center gap-2 border border-primary-light bg-primary px-4 py-1.5 text-[10px] font-mono font-black uppercase tracking-widest text-white hover:bg-primary-light hover:border-white transition-all group shadow-[4px_4px_0px_0px_var(--color-accent)]">
-          Join Field Crew
+          Learn More
           <i-heroicons-arrow-right class="h-3 w-3 transition-transform group-hover:translate-x-1" />
         </a>
       </div>

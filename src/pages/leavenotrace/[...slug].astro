@@ -17,7 +17,7 @@ const { Content } = await render(entry);
 
 <Layout title={entry.data.title}>
   <main class="bg-stone-50 text-stone-900">
-    <!-- Stewardship Briefing Header -->
+    <!-- Leave No Trace Guide -->
     <section class="border-b border-stone-300">
       <div
         class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
@@ -27,9 +27,7 @@ const { Content } = await render(entry);
           <span
             class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
           >
-            Stewardship Guide — LNT_P_{
-              entry.id.toUpperCase().replace(/-/g, "_")
-            }
+            Leave No Trace Guide
           </span>
         </div>
 
@@ -49,11 +47,11 @@ const { Content } = await render(entry);
       </div>
     </section>
 
-    <!-- Directive Content -->
+    <!-- Content -->
     <section class="border-b border-stone-300">
       <div class="mx-auto max-w-(--breakpoint-2xl) px-0 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
-          <!-- Textual Intelligence -->
+          <!-- Content -->
           <div
             class="lg:col-span-7 py-16 lg:py-24 px-4 sm:px-6 lg:pr-12 border-r border-stone-300"
           >
@@ -64,7 +62,7 @@ const { Content } = await render(entry);
             </div>
           </div>
 
-          <!-- Visual Evidence -->
+          <!-- Photos -->
           <div class="lg:col-span-5 bg-stone-100/50 p-8 lg:p-12">
             <div class="sticky top-24 space-y-8">
               <div
@@ -83,9 +81,7 @@ const { Content } = await render(entry);
                 >
                   <span
                     class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
-                    >REF: FIELD_OBS_{
-                      entry.id.toUpperCase().replace(/-/g, "_")
-                    }</span
+                    >Photos</span
                   >
                   <span
                     class="font-mono text-[10px] uppercase tracking-widest text-primary-dark font-black tracking-[0.2em]"
@@ -98,14 +94,14 @@ const { Content } = await render(entry);
                 <h3
                   class="font-mono text-xs font-black uppercase tracking-widest text-accent mb-4"
                 >
-                  Official Mandate
+                  Why It Matters
                 </h3>
                 <p
                   class="text-sm font-medium leading-relaxed text-stone-300 italic"
                 >
-                  "Adherence to the Seven Principles is the primary mechanism
-                  for long-term ecological viability in the Ute Valley urban
-                  wildland."
+                  "Following the Seven Principles of Leave No Trace is the
+                  best way we can all help in protecting the park for future
+                  generations."
                 </p>
               </div>
             </div>

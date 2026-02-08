@@ -26,7 +26,7 @@ const meetingLocations = await getCollection("trailheads");
 
 <Layout title="Volunteer">
   <main class="bg-stone-50 text-stone-900">
-    <!-- Operational Hero -->
+    <!-- Hero Section -->
     <section
       class="relative border-b border-stone-300 bg-stone-900 overflow-hidden"
     >
@@ -50,7 +50,7 @@ const meetingLocations = await getCollection("trailheads");
             <span
               class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-300"
             >
-              How You Can Help — UVP_VOL_2026
+              How You Can Help
             </span>
           </div>
 
@@ -85,7 +85,7 @@ const meetingLocations = await getCollection("trailheads");
           </div>
           <div class="flex justify-between gap-12">
             <span class="font-mono text-[10px] uppercase text-stone-500"
-              >Next Operation</span
+              >Next Event</span
             >
             <span class="font-mono text-[10px] uppercase text-white font-black">
               {
@@ -117,14 +117,14 @@ const meetingLocations = await getCollection("trailheads");
       ) : (
         <div class="p-12 border border-stone-200 bg-stone-50 text-center">
           <p class="font-mono text-sm uppercase tracking-widest text-stone-600">
-            No scheduled operations at this time. Check back for seasonal
+            No scheduled events at this time. Check back for seasonal
             updates.
           </p>
         </div>
       )
     }
 
-    <!-- Operations Bulletin -->
+    <!-- Volunteer Opportunities -->
     <section class="border-b border-stone-300 bg-white">
       <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-18">
         <div
@@ -141,7 +141,7 @@ const meetingLocations = await getCollection("trailheads");
               Preserving the 550-acre Ute Valley urban wildland is a collective
               effort. From April through September, we host scheduled trail
               maintenance and stewardship events on select Wednesdays and
-              weekends. As our operational calendar fluctuates monthly, we
+              weekends. As our schedule varies each month, we
               encourage you to join our update list and follow us
               <SocialLinksInline /> for the latest news. Whether you join us for one
               session or the full season, your contribution is vital to the health
@@ -216,7 +216,7 @@ const meetingLocations = await getCollection("trailheads");
             >
               <span
                 class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
-                >Archive: FIELD_OPS_042</span
+                >Volunteers working on trail maintenance</span
               >
               <span
                 class="font-mono text-[10px] uppercase tracking-widest text-primary-dark font-black tracking-[0.2em]"
@@ -258,13 +258,13 @@ const meetingLocations = await getCollection("trailheads");
               <h3
                 class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark mb-6 border-b border-stone-200 pb-2"
               >
-                Operational Subscription
+                Stay Updated
               </h3>
               <EmailForm client:idle />
               <p
                 class="mt-4 text-[10px] font-mono text-stone-500 uppercase leading-tight"
               >
-                Data Policy: Internal distribution only. No third-party access.
+                We respect your privacy. Your email will only be used for volunteer updates.
               </p>
             </div>
           </div>

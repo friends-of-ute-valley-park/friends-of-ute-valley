@@ -2,7 +2,7 @@
   <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 w-full">
     <div class="space-y-4 flex-1">
       <div class="flex items-center gap-3">
-        <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-accent-dark">Operation</span>
+        <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-accent-dark">Event</span>
         <h3 class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900 leading-none">
           <a :href="'/events/' + volunteerEvent.id" class="hover:text-primary-dark transition-colors">{{
             volunteerEvent.data.title }}</a>
@@ -26,7 +26,7 @@
       </div>
 
       <div v-if="volunteerEvent.data.meetingLocation.notes" class="mt-4 p-4 bg-stone-100 border-l-2 border-stone-300">
-        <p class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1">Intelligence Notes</p>
+        <p class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1">Meeting Details</p>
         <p class="text-xs font-medium text-stone-600 leading-relaxed">{{ volunteerEvent.data.meetingLocation.notes }}
         </p>
       </div>
@@ -35,11 +35,11 @@
     <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
       <a :href="volunteerEvent.data.link"
         class="inline-flex items-center justify-center px-6 py-4 bg-primary-dark text-white font-mono text-xs font-black uppercase tracking-widest transition-all hover:bg-stone-900 active:scale-95 border border-primary-dark">
-        Register for Dispatch
+        Register
       </a>
       <a href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
         class="inline-flex items-center justify-center px-6 py-4 bg-transparent border border-stone-300 text-stone-500 font-mono text-xs font-black uppercase tracking-widest transition-all hover:bg-stone-100 active:scale-95">
-        Release Form
+        Consent and Release Form
       </a>
     </div>
   </div>
