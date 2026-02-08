@@ -98,7 +98,7 @@ const winterTips = [
               <div class="flex flex-wrap gap-4 pt-4">
                 <a
                   href="/visit/"
-                  class="group relative px-8 py-4 bg-primary-dark text-white font-mono text-sm font-bold uppercase transition-all hover:bg-stone-900 active:scale-95 shadow-[4px_4px_0px_0px_var(--color-accent)]"
+                  class="group relative px-8 py-4 bg-primary-dark text-white font-mono text-sm font-bold uppercase transition-all duration-300 hover:bg-primary hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_0px_var(--color-accent)] active:scale-95 shadow-[4px_4px_0px_0px_var(--color-accent)]"
                 >
                   <span class="relative z-10 flex items-center gap-2">
                     Plan Visit <ChevronRightIcon
@@ -454,20 +454,23 @@ const winterTips = [
                 </a>
               </div>
             </div>
-            <div class="pt-16 lg:pt-0 lg:pl-16 border-t lg:border-t-0 lg:border-l border-stone-200">
-            <div class="bg-stone-50 p-8 border border-stone-200">
-              <h3
-                class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark mb-6 border-b border-stone-200 pb-2"
-              >
-                Newsletter Subscription
-              </h3>
-              <EmailForm client:idle />
-              <p
-                class="mt-4 text-[10px] font-mono text-stone-500 uppercase leading-tight"
-              >
-                We respect your privacy. Your email will only be used for park updates.
-              </p>
-            </div>
+            <div
+              class="pt-16 lg:pt-0 lg:pl-16 border-t lg:border-t-0 lg:border-l border-stone-200"
+            >
+              <div class="bg-stone-50 p-8 border border-stone-200">
+                <h3
+                  class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark mb-6 border-b border-stone-200 pb-2"
+                >
+                  Newsletter Subscription
+                </h3>
+                <EmailForm client:idle />
+                <p
+                  class="mt-4 text-[10px] font-mono text-stone-500 uppercase leading-tight"
+                >
+                  We respect your privacy. Your email will only be used for park
+                  updates.
+                </p>
+              </div>
             </div>
           </div>
         </div>
