@@ -34,7 +34,7 @@
 
     <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
       <a :href="volunteerEvent.data.link"
-        class="group relative inline-flex items-center justify-center px-8 py-4 bg-primary-dark text-white font-mono text-sm font-bold uppercase transition-all duration-300 hover:bg-primary hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_0px_var(--color-accent)] active:scale-95 shadow-[4px_4px_0px_0px_var(--color-accent)]">
+        class="btn-primary-cta inline-flex items-center justify-center">
         Register
       </a>
       <a href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"

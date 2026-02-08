@@ -24,6 +24,7 @@
   /* Brand Colors - Accent (Amber) */
   --color-accent: var(--color-amber-400);
   --color-accent-dark: var(--color-amber-600);
+  --color-accent-darker: var(--color-amber-700);
 
   --animate-shimmer: shimmer 4s ease-in-out infinite;
 
@@ -57,6 +58,12 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-stone-200, currentcolor);
+  }
+}
+
+@layer components {
+  .btn-primary-cta {
+    @apply relative px-8 py-4 bg-primary-dark text-white font-mono text-sm font-bold uppercase transition-all duration-300 hover:bg-primary hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_0px_var(--color-accent)] active:scale-95 shadow-[4px_4px_0px_0px_var(--color-accent)];
   }
 }
 

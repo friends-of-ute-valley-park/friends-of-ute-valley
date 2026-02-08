@@ -111,7 +111,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
             class="h-full w-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100"
           />
           <div
-            class="absolute inset-0 border-[24px] border-white/20 pointer-events-none"
+            class="absolute inset-0 border-24 border-white/20 pointer-events-none"
           >
           </div>
         </div>
@@ -142,11 +142,11 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
                 sortedTrailheads.map((trailhead) => (
                   <a
                     href={`/trailheads/${trailhead.id}/`}
-                    class="group py-6 flex justify-between items-center hover:bg-white transition-colors"
+                    class="group py-6 flex justify-between items-center hover:bg-stone-100 transition-colors px-2"
                   >
                     <div class="space-y-1">
                       <div class="flex items-center gap-3">
-                        <span class="font-mono text-xs font-black text-accent-dark">
+                        <span class="font-mono text-xs font-black text-accent-darker">
                           [{trailhead.data.id.toString().padStart(2, "0")}]
                         </span>
                         <h3 class="text-lg font-bold font-serif uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors underline decoration-primary-dark decoration-4 underline-offset-2">
@@ -253,7 +253,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
             <div class="flex items-center gap-4">
               <span class="inline-block h-px w-12 bg-accent"></span>
               <span
-                class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
+                class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-300"
               >
                 Rules & Etiquette
               </span>
@@ -264,7 +264,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
               Park <br />
               <span class="text-accent italic">Rules.</span>
             </h2>
-            <p class="text-lg text-stone-500 font-medium leading-relaxed">
+            <p class="text-lg text-stone-400 font-medium leading-relaxed">
               To maintain the ecological integrity of this urban wildland, all
               visitors must adhere to municipal park codes and stewardship
               guidelines.
@@ -334,7 +334,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
             ].map((trail, i) => (
               <div class="bg-white p-8 space-y-6 flex flex-col justify-between hover:bg-stone-50 transition-colors group">
                 <div class="space-y-4">
-                  <span class="font-mono text-xs font-black text-stone-300 group-hover:text-primary-dark transition-colors">
+                  <span class="font-mono text-xs font-black text-stone-500 group-hover:text-primary-dark transition-colors">
                     Trail {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 class="text-xl font-bold font-serif uppercase tracking-tight text-stone-900">
