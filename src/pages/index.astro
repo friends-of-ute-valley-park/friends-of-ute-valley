@@ -85,7 +85,7 @@ const winterTips = [
               </div>
 
               <h1
-                class="text-7xl sm:text-9xl font-serif font-black tracking-tighter leading-[0.85] text-stone-900 uppercase"
+                class="text-7xl sm:text-9xl font-serif font-black tracking-tighter leading-[0.85] text-stone-900 uppercase text-balance"
               >
                 Ute <br /> Valley <br />
                 <span class="text-primary-dark">Park.</span>
@@ -107,7 +107,7 @@ const winterTips = [
                 </a>
                 <a
                   href="/volunteer/"
-                  class="group relative px-8 py-4 border-2 border-primary-dark bg-transparent text-primary-dark font-mono text-sm font-bold uppercase transition-all hover:bg-primary/5 active:scale-95"
+                  class="group relative px-8 py-4 border-2 border-primary-dark bg-transparent text-primary-dark font-mono text-sm font-bold uppercase transition-all hover:bg-primary/5 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   Volunteer
                 </a>
@@ -125,20 +125,10 @@ const winterTips = [
                   Current Park Status
                 </h2>
                 <ul class="space-y-6">
-                  <li class="flex justify-between items-start gap-4">
-                    <span
-                      class="font-mono text-sm text-stone-500 uppercase tracking-tighter"
-                      >Current Season</span
-                    >
-                    <span
-                      class="font-mono text-sm font-bold text-right text-stone-900"
-                      >WINTER (DORMANT)</span
-                    >
-                  </li>
                   <li>
                     <div class="flex justify-between items-start gap-4">
                       <span
-                        class="font-mono text-sm text-stone-500 uppercase tracking-tighter"
+                        class="font-mono text-sm text-stone-500 uppercase tracking-tighter whitespace-nowrap shrink-0"
                         >Trail Conditions</span
                       >
                       <span
@@ -146,17 +136,22 @@ const winterTips = [
                         >{trailConditions.status.toUpperCase()}</span
                       >
                     </div>
-                    {
-                      trailConditions.message && (
-                        <p class="font-mono text-[10px] text-stone-500 mt-1 leading-snug text-right">
-                          {trailConditions.message}
-                        </p>
-                      )
-                    }
                   </li>
+                  {
+                    trailConditions.message && (
+                      <li class="flex justify-between items-start gap-4">
+                        <span class="font-mono text-sm text-stone-500 uppercase tracking-tighter whitespace-nowrap shrink-0">
+                          Condition Notes
+                        </span>
+                        <span class="min-w-0 text-right font-mono text-sm font-bold text-stone-900 break-words">
+                          {trailConditions.message}
+                        </span>
+                      </li>
+                    )
+                  }
                   <li class="flex justify-between items-start gap-4">
                     <span
-                      class="font-mono text-sm text-stone-500 uppercase tracking-tighter"
+                      class="font-mono text-sm text-stone-500 uppercase tracking-tighter whitespace-nowrap shrink-0"
                       >Winter Park Hours</span
                     >
                     <span class="font-mono text-sm font-bold text-right"
@@ -165,7 +160,7 @@ const winterTips = [
                   </li>
                   <li class="flex justify-between items-start gap-4">
                     <span
-                      class="font-mono text-sm text-stone-500 uppercase tracking-tighter"
+                      class="font-mono text-sm text-stone-500 uppercase tracking-tighter whitespace-nowrap shrink-0"
                       >Dog Policy</span
                     >
                     <span
@@ -262,7 +257,7 @@ const winterTips = [
       <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
         <div class="mb-16">
           <h2
-            class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-6"
+            class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-6 text-balance"
           >
             Winter <span class="text-primary-dark italic">Essentials.</span>
           </h2>
@@ -354,7 +349,7 @@ const winterTips = [
         >
           <div>
             <h2
-              class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-4"
+              class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-4 text-balance"
             >
               Latest <span class="text-primary-dark italic">News.</span>
             </h2>
@@ -364,7 +359,7 @@ const winterTips = [
           </div>
           <a
             href="/news"
-            class="font-mono text-sm font-bold uppercase underline decoration-accent decoration-2 underline-offset-8 hover:text-primary transition-colors"
+            class="font-mono text-sm font-bold uppercase underline decoration-accent decoration-2 underline-offset-8 hover:text-primary transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             View All News
           </a>
@@ -380,7 +375,10 @@ const winterTips = [
               )
               .slice(0, 3)
               .map((post) => (
-                <a href={`/news/${post.id}`} class="group space-y-6">
+                <a
+                  href={`/news/${post.id}`}
+                  class="group space-y-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                >
                   <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-300 relative">
                     <Picture
                       src={post.data.coverImage}
@@ -434,7 +432,7 @@ const winterTips = [
                 Donate
               </h3>
               <h2
-                class="text-4xl sm:text-5xl font-serif font-black uppercase tracking-tight text-stone-900"
+                class="text-4xl sm:text-5xl font-serif font-black uppercase tracking-tight text-stone-900 text-balance"
               >
                 Support the <br />
                 <span class="text-primary-dark">Ute Valley Wildland.</span>
