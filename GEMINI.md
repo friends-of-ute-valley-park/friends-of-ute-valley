@@ -18,7 +18,6 @@ A rugged, editorial, and utilitarian "Ranger's Report" style. This direction mov
 ### Visual Pillars
 - **Structural Grids**: Use visible borders (`border-stone-300`) and rigid grid systems to create a "technical report" layout. Avoid soft shadows or rounded corners (use `rounded-none` or `rounded-sm`).
 - **The "Stone" Foundation**: The primary background is `stone-50` (paper-like), not white. Containers often use `stone-100/50` for subtle depth.
-- **Grayscale to Color**: Images should default to grayscale (or high-contrast muted tones) and transition to full color on hover to emphasize the "archival" feel.
 - **Metadata Flourishes**: Add technical labels (e.g., "REF: 042", "STATION_COORDS", "DISPATCH_DATE") in small monospace fonts to reinforce the field-notes narrative.
 
 ### Typography Hierarchy

@@ -67,28 +67,28 @@ const { Content } = await render(entry);
             >
               <span>← Back to Spotlights</span>
             </a>
-            <div class="flex gap-4 p-4 border border-stone-200 bg-white">
-              {
-                entry.data.instagram && (
-                  <a
-                    href={"https://instagram.com/" + entry.data.instagram}
-                    class="text-stone-500 hover:text-primary-dark transition-colors"
-                  >
-                    <InstagramIcon class="h-5 w-5" aria-hidden="true" />
-                  </a>
-                )
-              }
-              {
-                entry.data.website && (
-                  <a
-                    href={entry.data.website}
-                    class="text-stone-500 hover:text-primary-dark transition-colors"
-                  >
-                    <WebsiteIcon class="h-5 w-5" aria-hidden="true" />
-                  </a>
-                )
-              }
-            </div>
+            {
+              (entry.data.instagram || entry.data.website) && (
+                <div class="flex gap-4 p-4 border border-stone-200 bg-white">
+                  {entry.data.instagram && (
+                    <a
+                      href={"https://instagram.com/" + entry.data.instagram}
+                      class="text-stone-500 hover:text-primary-dark transition-colors"
+                    >
+                      <InstagramIcon class="h-5 w-5" aria-hidden="true" />
+                    </a>
+                  )}
+                  {entry.data.website && (
+                    <a
+                      href={entry.data.website}
+                      class="text-stone-500 hover:text-primary-dark transition-colors"
+                    >
+                      <WebsiteIcon class="h-5 w-5" aria-hidden="true" />
+                    </a>
+                  )}
+                </div>
+              )
+            }
           </div>
         </div>
       </div>
