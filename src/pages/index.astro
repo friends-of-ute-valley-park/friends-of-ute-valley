@@ -107,7 +107,7 @@ const winterTips = [
                 </a>
                 <a
                   href="/volunteer/"
-                  class="group relative px-8 py-4 border-2 border-primary-dark bg-transparent text-primary-dark font-mono text-sm font-bold uppercase transition-all hover:bg-primary/5 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  class="group relative px-8 py-4 border-2 border-primary-dark bg-transparent text-primary-dark font-mono text-sm font-bold uppercase transition-all hover:bg-primary/5 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   Volunteer
                 </a>
@@ -143,7 +143,7 @@ const winterTips = [
                         <span class="font-mono text-sm text-stone-500 uppercase tracking-tighter whitespace-nowrap shrink-0">
                           Condition Notes
                         </span>
-                        <span class="min-w-0 text-right font-mono text-sm font-bold text-stone-900 break-words">
+                        <span class="min-w-0 text-right font-mono text-sm font-bold text-stone-900 wrap-break-word">
                           {trailConditions.message}
                         </span>
                       </li>
@@ -184,7 +184,7 @@ const winterTips = [
                     class="object-cover w-full h-full transition-all duration-700 scale-110 group-hover:scale-100"
                   />
                   <div
-                    class="absolute inset-0 border-[16px] border-white/30 pointer-events-none"
+                    class="absolute inset-0 border-16 border-white/30 pointer-events-none"
                   >
                   </div>
                 </div>
@@ -359,7 +359,7 @@ const winterTips = [
           </div>
           <a
             href="/news"
-            class="font-mono text-sm font-bold uppercase underline decoration-accent decoration-2 underline-offset-8 hover:text-primary transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            class="font-mono text-sm font-bold uppercase underline decoration-accent decoration-2 underline-offset-8 hover:text-primary transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             View All News
           </a>
@@ -377,7 +377,7 @@ const winterTips = [
               .map((post) => (
                 <a
                   href={`/news/${post.id}`}
-                  class="group space-y-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  class="group space-y-6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-300 relative">
                     <Picture
