@@ -17,6 +17,10 @@ import trailConditions from "../data/trail-conditions/trail-conditions.json";
 const publishedNewsEntries = await getCollection("news", ({ data }) => {
   return data.published === true;
 });
+const currentMonthYear = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  year: "numeric",
+}).format(new Date());
 
 const winterTips = [
   {
@@ -76,7 +80,7 @@ const winterTips = [
                 <span
                   class="font-mono text-xs font-bold tracking-widest uppercase text-stone-500"
                 >
-                  Park Update — Feb 2026
+                  Park Update — {currentMonthYear}
                 </span>
               </div>
 

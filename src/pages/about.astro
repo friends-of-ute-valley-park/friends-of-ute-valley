@@ -18,7 +18,7 @@ import StatsCard from "@components/StatsCard.astro";
           <span
             class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
           >
-            Our Story & Mission
+            About Us
           </span>
         </div>
 
@@ -73,7 +73,7 @@ import StatsCard from "@components/StatsCard.astro";
               >
                 About Our Work
               </h3>
-              <nav class="flex flex-col gap-4">
+              <nav class="flex flex-col gap-4" data-about-toc>
                 <a
                   href="#history"
                   class="font-mono text-xs uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors"
@@ -167,7 +167,8 @@ import StatsCard from "@components/StatsCard.astro";
                   [
                     {
                       year: "2023",
-                      title: "Drew Town Parks, Recreation, and Cultural Services Volunteer of the Year Nomination",
+                      title:
+                        "Drew Town Parks, Recreation, and Cultural Services Volunteer of the Year Nomination",
                     },
                     { year: "2022", title: "TOSC Best Friends group" },
                     {
@@ -330,6 +331,63 @@ import StatsCard from "@components/StatsCard.astro";
     </div>
   </main>
 </Layout>
+
+<script>
+  const toc = document.querySelector<HTMLElement>("[data-about-toc]");
+  if (toc) {
+    const links = Array.from(
+      toc.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'),
+    );
+    const linkById = new Map<string, HTMLAnchorElement>();
+    for (const link of links) {
+      const href = link.getAttribute("href");
+      const id = href ? href.slice(1) : "";
+      if (id) {
+        linkById.set(id, link);
+      }
+    }
+
+    const setActive = (id: string) => {
+      links.forEach((link) => {
+        link.classList.remove("text-primary");
+        link.classList.add("text-stone-500");
+        link.removeAttribute("aria-current");
+      });
+      const active = linkById.get(id);
+      if (active) {
+        active.classList.add("text-primary");
+        active.classList.remove("text-stone-500");
+        active.setAttribute("aria-current", "location");
+      }
+    };
+
+    const sections = Array.from(linkById.keys())
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null);
+
+    if (sections.length > 0) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        },
+        {
+          rootMargin: "-30% 0px -70% 0px",
+          threshold: 0,
+        },
+      );
+
+      sections.forEach((section) => observer.observe(section));
+
+      const initialId =
+        (location.hash && location.hash.slice(1)) || sections[0].id;
+      setActive(initialId);
+    }
+  }
+</script>
 
 <style>
   @font-face {

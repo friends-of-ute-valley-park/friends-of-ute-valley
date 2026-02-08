@@ -11,6 +11,7 @@ const footerItems = [
   { name: "Park Regulations", link: "/rules/" },
   { name: "Brand Assets", link: "/assets/" },
 ];
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-stone-50 border-t border-stone-300 pt-20 pb-12">
@@ -52,7 +53,7 @@ const footerItems = [
             <p
               class="text-[10px] font-mono uppercase tracking-widest text-primary font-black"
             >
-              © 2026 Friends of Ute Valley Park — ALL RIGHTS RESERVED.
+              © {currentYear} Friends of Ute Valley Park — ALL RIGHTS RESERVED.
             </p>
           </div>
         </div>
