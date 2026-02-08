@@ -22,6 +22,12 @@ const currentMonthYear = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
 }).format(new Date());
 
+// Park hours by season (from FAQ: Winter Nov 1–Apr 30, Summer May 1–Oct 31)
+const currentMonth = new Date().getMonth() + 1; // 1-12
+const isWinter = currentMonth >= 11 || currentMonth <= 4;
+const parkSeason = isWinter ? "Winter" : "Summer";
+const parkHours = isWinter ? "5AM to 9PM" : "5AM to 10PM";
+
 const winterTips = [
   {
     id: "01",
@@ -152,10 +158,10 @@ const winterTips = [
                   <li class="flex justify-between items-start gap-4">
                     <span
                       class="font-mono text-sm text-stone-500 uppercase tracking-tighter whitespace-nowrap shrink-0"
-                      >Winter Park Hours</span
+                      >{parkSeason} Park Hours</span
                     >
                     <span class="font-mono text-sm font-bold text-right"
-                      >5AM to 9PM</span
+                      >{parkHours}</span
                     >
                   </li>
                   <li class="flex justify-between items-start gap-4">
