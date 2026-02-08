@@ -48,6 +48,20 @@ Dynamic pages use `[...slug].astro` pattern (e.g., `pages/events/[...slug].astro
 - `@/*` → `./src/*`
 - `@/typings` → `./typings/index.ts`
 
+## Design Identity: Modern Field Journal
+
+A rugged, editorial, and utilitarian "Ranger's Report" style. Structural and archival, reflecting authoritative stewardship of the park.
+
+### Visual Pillars
+- **Structural Grids**: Use visible borders (`border-stone-300`) and rigid grid systems for a "technical report" layout. Avoid soft shadows or rounded corners (`rounded-none` or `rounded-sm`). Exception: small rounding on form inputs for usability.
+- **The "Stone" Foundation**: Primary background is `stone-50` (paper-like), not white. Containers use `stone-100/50` for subtle depth.
+- **High-Contrast Sections**: Use `bg-stone-900` sections with subtle overlays for emphasis. Keep overlays linear and minimal.
+
+### Typography Hierarchy
+- **Headings (Editorial Serif)**: Heavy, high-contrast serif fonts (fallback: `Georgia`/`Times New Roman`) with `font-black`, `uppercase`, `tracking-tighter`.
+- **Technical/Labels (Monospace)**: Monospace for navigation, tags, and data. Use `text-[10px]`, `font-black`, `uppercase`, `tracking-[0.2em]`.
+- **Body (Inter Sans)**: Clean, functional sans-serif for readability.
+
 ## Styling Conventions
 
 **Tailwind-first**: Only use custom CSS for features Tailwind doesn't support:
@@ -65,6 +79,7 @@ Always use semantic tokens (e.g., `text-primary`, `bg-secondary-dark`) instead o
 **Common patterns**:
 - Gradients: `bg-gradient-to-br from-primary-dark via-secondary-dark to-secondary`
 - Opacity modifiers: `text-primary-100/90`, `via-accent/70`
+- **Primary CTA**: Use the shared `.btn-primary-cta` class for primary buttons (accent shadow, hover translation, uppercase mono styling).
 
 ## Key Patterns
 
