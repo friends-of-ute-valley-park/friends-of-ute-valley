@@ -28,7 +28,7 @@
             <!-- Leave No Trace Dropdown -->
             <Popover class="relative h-full border-r border-stone-300">
               <PopoverButton :class="[
-                props.page.startsWith('/leavenotrace') ? 'bg-white text-secondary' : 'text-stone-500 hover:bg-stone-100 hover:text-secondary',
+                props.page.startsWith('/leavenotrace') ? 'bg-white text-primary' : 'text-stone-500 hover:bg-stone-100 hover:text-primary',
                 'flex items-center px-6 h-full text-[10px] font-mono font-black uppercase tracking-[0.2em] transition-colors focus:outline-none',
               ]">
                 <span>Leave No Trace</span>
@@ -54,7 +54,7 @@
                             class="text-[10px] font-mono font-black uppercase tracking-widest text-stone-900 group-hover:text-secondary transition-colors">
                             {{ item.name }}</p>
                           <p class="text-[10px] font-mono text-stone-500 uppercase tracking-tighter">{{ item.description
-                          }}</p>
+                            }}</p>
                         </div>
                       </a>
                     </div>
