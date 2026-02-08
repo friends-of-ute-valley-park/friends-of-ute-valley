@@ -1,5 +1,76 @@
+<script setup lang="ts">
+import { shallowRef } from 'vue';
+import { Disclosure, DisclosureButton, DisclosurePanel, Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
+import { useScroll } from '@vueuse/core';
+import LucidePawPrint from 'virtual:icons/lucide/paw-print';
+import LucideBird from 'virtual:icons/lucide/bird';
+import LucideCamera from 'virtual:icons/lucide/camera';
+import LucideMap from 'virtual:icons/lucide/map';
+
+const { page } = defineProps<{ page: string }>();
+
+const menuOpen = shallowRef(false);
+const navHidden = shallowRef(false);
+let lastScrollY = 0;
+const { y } = useScroll(globalThis.window, {
+  throttle: 50,
+  onScroll() {
+    if (menuOpen.value) return;
+    if (y.value > lastScrollY && y.value > 80) {
+      navHidden.value = true;
+    } else if (y.value < lastScrollY) {
+      navHidden.value = false;
+    }
+    lastScrollY = y.value;
+  },
+});
+
+function toggleMenu() {
+  menuOpen.value = !menuOpen.value;
+  navHidden.value = false;
+}
+
+const leaveNoTraceMenuItems = [
+  { name: 'Dog Etiquette', description: 'Rules & Etiquette', href: '/leavenotrace/dogs/', current: page === '/leavenotrace/dogs/', icon: LucidePawPrint },
+  {
+    name: 'Travel on Durable Surfaces',
+    description: 'Durable Travel',
+    href: '/leavenotrace/travel-on-durable-surfaces/',
+    current: page === '/leavenotrace/travel-on-durable-surfaces/',
+    icon: LucideMap,
+  },
+  {
+    name: 'Leave What You Find',
+    description: 'Leave What You Find',
+    href: '/leavenotrace/leave-what-you-find/',
+    current: page === '/leavenotrace/leave-what-you-find/',
+    icon: LucideCamera,
+  },
+  {
+    name: 'Respect Wildlife',
+    description: 'Respecting Wildlife',
+    href: '/leavenotrace/respect-wildlife/',
+    current: page === '/leavenotrace/respect-wildlife/',
+    icon: LucideBird,
+  },
+];
+
+const navigation = [
+  { href: '/', name: 'Home', current: page === '/' },
+  { href: '/visit/', name: 'Visit', current: page === '/visit/' },
+  { href: '/volunteer/', name: 'Volunteer', current: page === '/volunteer/' },
+  { href: '/donate/', name: 'Donate', current: page === '/donate/' },
+  { href: '/contact/', name: 'Contact', current: page === '/contact/' },
+  { href: '/volunteerspotlight/', name: 'Volunteer Spotlight', current: page === '/volunteerspotlight/' },
+];
+</script>
+
 <template>
-  <Disclosure v-slot="{ open }" as="nav" class="bg-stone-50 border-b border-stone-300 relative z-50">
+  <div :class="[
+    'sticky top-0 z-50 transition-transform duration-300 lg:translate-y-0',
+    navHidden ? '-translate-y-full' : 'translate-y-0',
+  ]">
+  <Disclosure v-slot="{ open }" as="nav" class="bg-stone-50 border-b border-stone-300">
     <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
       <div class="flex h-20 justify-between items-center">
         <div class="flex items-center">
@@ -28,7 +99,7 @@
             <!-- Leave No Trace Dropdown -->
             <Popover class="relative h-full border-r border-stone-300">
               <PopoverButton :class="[
-                props.page.startsWith('/leavenotrace') ? 'bg-white text-primary' : 'text-stone-500 hover:bg-stone-100 hover:text-primary',
+                page.startsWith('/leavenotrace') ? 'bg-white text-primary' : 'text-stone-500 hover:bg-stone-100 hover:text-primary',
                 'flex items-center px-6 h-full text-[10px] font-mono font-black uppercase tracking-[0.2em] transition-colors focus:outline-none',
               ]">
                 <span>Leave No Trace</span>
@@ -72,7 +143,8 @@
         <!-- Mobile menu button -->
         <div class="flex lg:hidden">
           <DisclosureButton
-            class="inline-flex items-center justify-center border border-stone-300 p-2 text-stone-500 hover:bg-stone-100 hover:text-primary focus:outline-none">
+            class="inline-flex items-center justify-center border border-stone-300 p-2 text-stone-500 hover:bg-stone-100 hover:text-primary focus:outline-none"
+            @click="toggleMenu">
             <span class="sr-only">Open main menu</span>
             <i-heroicons-bars-3 v-if="!open" class="block h-6 w-6" aria-hidden="true" />
             <i-heroicons-x-mark v-else class="block h-6 w-6" aria-hidden="true" />
@@ -107,51 +179,8 @@
       </div>
     </DisclosurePanel>
   </Disclosure>
+  </div>
 </template>
-
-<script setup lang="ts">
-import { Disclosure, DisclosureButton, DisclosurePanel, Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
-import LucidePawPrint from 'virtual:icons/lucide/paw-print';
-import LucideBird from 'virtual:icons/lucide/bird';
-import LucideCamera from 'virtual:icons/lucide/camera';
-import LucideMap from 'virtual:icons/lucide/map';
-
-const props = defineProps(['page']);
-
-const leaveNoTraceMenuItems = [
-  { name: 'Dog Etiquette', description: 'Rules & Etiquette', href: '/leavenotrace/dogs/', current: props.page === '/leavenotrace/dogs/', icon: LucidePawPrint },
-  {
-    name: 'Travel on Durable Surfaces',
-    description: 'Durable Travel',
-    href: '/leavenotrace/travel-on-durable-surfaces/',
-    current: props.page === '/leavenotrace/travel-on-durable-surfaces/',
-    icon: LucideMap,
-  },
-  {
-    name: 'Leave What You Find',
-    description: 'Leave What You Find',
-    href: '/leavenotrace/leave-what-you-find/',
-    current: props.page === '/leavenotrace/leave-what-you-find/',
-    icon: LucideCamera,
-  },
-  {
-    name: 'Respect Wildlife',
-    description: 'Respecting Wildlife',
-    href: '/leavenotrace/respect-wildlife/',
-    current: props.page === '/leavenotrace/respect-wildlife/',
-    icon: LucideBird,
-  },
-];
-
-const navigation = [
-  { href: '/', name: 'Home', current: props.page === '/' },
-  { href: '/visit/', name: 'Visit', current: props.page === '/visit/' },
-  { href: '/volunteer/', name: 'Volunteer', current: props.page === '/volunteer/' },
-  { href: '/donate/', name: 'Donate', current: props.page === '/donate/' },
-  { href: '/contact/', name: 'Contact', current: props.page === '/contact/' },
-  { href: '/volunteerspotlight/', name: 'Volunteer Spotlight', current: props.page === '/volunteerspotlight/' },
-];
-</script>
 
 <style scoped>
 .font-serif {
