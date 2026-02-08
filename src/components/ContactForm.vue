@@ -1,152 +1,117 @@
 <template>
-  <div>
-    <!-- contact form -->
-    <div class="isolate overflow-hidden bg-white px-4 py-16 sm:px-6 lg:px-8">
-      <div class="relative mx-auto max-w-7xl">
-        <div class="absolute inset-x-0 -top-20 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-60"
-          aria-hidden="true">
-          <div
-            class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/4 rotate-30 bg-linear-to-tr from-green-200 to-teal-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"
-            style="
-              clip-path: polygon(
-                74.1% 44.1%,
-                100% 61.6%,
-                97.5% 26.9%,
-                85.5% 0.1%,
-                80.7% 2%,
-                72.5% 32.5%,
-                60.2% 62.4%,
-                52.4% 68.1%,
-                47.5% 58.3%,
-                45.2% 34.5%,
-                27.5% 76.7%,
-                0.1% 64.9%,
-                17.9% 100%,
-                27.6% 76.8%,
-                76.1% 97.7%,
-                74.1% 44.1%
-              );
-            " />
-        </div>
-      </div>
-      <div class="relative mx-auto max-w-xl">
-        <div>
-          <slot name="title">
-            <p class="text-base leading-7 font-semibold text-primary-light">Need Help? Contact Us!</p>
-            <h1 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">Contact
-              Friends of Ute Valley Park</h1>
-          </slot>
-          <p class="mt-4 text-base leading-6 text-gray-500">
-            <slot name="subtitle">
-              If you have a question, comment or concern, don't hesitate to reach out. Our team is always here to assist
-              you in any way we can. Before contacting us, please take a moment to browse our
-              <a class="font-semibold text-primary no-underline" href="/faq/"> FAQ </a> page to see if your question
-              has already been answered. We look forward to hearing from you!
-            </slot>
-          </p>
-        </div>
-        <div class="mt-8">
-          <p class="mb-1"><span class="text-red-700">*</span> indicates a required field</p>
-          <form action="/contact-form" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-            @submit.prevent="submit">
-            <div class="sm:col-span-2">
-              <label for="name" class="block text-sm font-semibold text-gray-700">Name <span
-                  class="text-red-700">*</span></label>
-              <div class="mt-1">
-                <input id="name" v-model="form.name" type="text" required name="name" autocomplete="given-name"
-                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-primary-light focus:ring-primary-light" />
-              </div>
-            </div>
-            <div class="sm:col-span-2">
-              <label for="email" class="block text-sm font-semibold text-gray-700">Email <span
-                  class="text-red-700">*</span></label>
-              <div class="relative mt-1 rounded-md shadow-xs">
-                <input id="email" v-model="form.email" autocomplete="email" required type="email"
-                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-primary-light focus:ring-primary-light" />
-              </div>
-            </div>
-            <div class="sm:col-span-2">
-              <label for="category" class="mb-1 block text-sm font-semibold text-gray-700">Category <span
-                  class="text-red-700">*</span></label>
-              <select id="category" v-model="form.category"
-                class="block w-full rounded-md border-gray-300 px-3 py-3 shadow-xs focus:border-primary-light focus:ring-primary-light">
-                <option v-for="option in options" :key="option">
-                  {{ option }}
-                </option>
-              </select>
+  <div class="bg-stone-50">
+    <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <!-- Technical Label & Title -->
+        <div class="lg:col-span-5 space-y-8">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <span class="inline-block h-px w-12 bg-primary-dark"></span>
+              <span class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500">
+                Contact Us
+              </span>
             </div>
 
-            <div v-if="form.category == 'Volunteer'" class="sm:col-span-2">
-              <div class="rounded-md bg-primary-50/60 p-4">
-                <div class="flex">
+            <slot name="title">
+              <h1
+                class="text-5xl sm:text-7xl font-serif font-black uppercase tracking-tight text-stone-900 leading-none">
+                Get In <br /> <span class="text-primary-dark">Touch.</span>
+              </h1>
+            </slot>
+          </div>
+
+          <p class="text-lg text-stone-600 font-medium leading-relaxed">
+            <slot name="subtitle">
+              Have a question, comment, or concern? We'd love to hear from you!
+            </slot>
+          </p>
+
+          <div class="pt-8 border-t border-stone-200 space-y-4">
+            <p class="font-mono text-[10px] uppercase tracking-widest text-stone-500 font-bold">
+              We typically respond within 2–3 business days.
+            </p>
+          </div>
+        </div>
+
+        <!-- Form Interface -->
+        <div class="lg:col-span-7">
+          <div class="bg-white border border-stone-300 p-8 md:p-12 shadow-sm">
+            <form action="/contact-form" method="POST" class="space-y-8" @submit.prevent="submit">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div class="space-y-2">
+                  <label for="name"
+                    class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-500">Name *</label>
+                  <input id="name" v-model="form.name" type="text" required name="name"
+                    class="block w-full border-stone-300 px-4 py-3 font-mono text-sm focus:border-primary-dark focus:ring-0 rounded-none bg-stone-50/50" />
+                </div>
+                <div class="space-y-2">
+                  <label for="email"
+                    class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-500">Email *</label>
+                  <input id="email" v-model="form.email" autocomplete="email" required type="email"
+                    class="block w-full border-stone-300 px-4 py-3 font-mono text-sm focus:border-primary-dark focus:ring-0 rounded-none bg-stone-50/50" />
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label for="category"
+                  class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-500">Category *</label>
+                <select id="category" v-model="form.category"
+                  class="block w-full border-stone-300 px-4 py-3 font-mono text-sm focus:border-primary-dark focus:ring-0 rounded-none bg-stone-50/50 appearance-none">
+                  <option v-for="option in options" :key="option">
+                    {{ option.toUpperCase() }}
+                  </option>
+                </select>
+              </div>
+
+              <div v-if="form.category == 'Volunteer'" class="p-6 bg-primary-dark text-white border-l-4 border-accent">
+                <h3 class="font-mono text-[10px] font-black uppercase tracking-widest mb-2">Volunteer Info</h3>
+                <p class="text-xs leading-relaxed text-stone-300">
+                  We host volunteer events April through September. Check out the <a
+                    class="underline decoration-accent/50 transition-colors hover:decoration-accent font-bold"
+                    href="/volunteer/">volunteer page</a> for details and upcoming events.
+                </p>
+              </div>
+
+              <div class="space-y-2">
+                <label for="message"
+                  class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-500">Your Message *</label>
+                <textarea id="message" v-model="form.message" required rows="6"
+                  class="block w-full border-stone-300 px-4 py-3 font-mono text-sm focus:border-primary-dark focus:ring-0 rounded-none bg-stone-50/50" />
+              </div>
+
+              <div class="cf-turnstile" :data-sitekey="turnstileSiteKey" data-size="flexible" data-theme="light"></div>
+
+              <div>
+                <button :disabled="isFetching" type="submit"
+                  class="btn-primary-cta w-full sm:w-auto inline-flex items-center justify-center disabled:opacity-50">
+                  <i-mdi-loading v-if="isFetching" class="mr-2 h-4 w-4 animate-spin" />
+                  Send Message
+                </button>
+              </div>
+            </form>
+
+            <!-- Notification Banner -->
+            <transition enter-active-class="transition duration-300 ease-out" enter-from-class="opacity-0 translate-y-4"
+              enter-to-class="opacity-100 translate-y-0">
+              <div v-if="isFinished || error" class="mt-8 p-6 border"
+                :class="[error ? 'bg-red-50 border-red-200' : 'bg-primary/5 border-primary-dark']">
+                <div class="flex gap-4">
                   <div class="shrink-0">
-                    <i-heroicons-exclamation-circle class="mt-1 h-6 w-6 text-primary-dark" aria-hidden="true" />
+                    <i-heroicons-megaphone class="h-6 w-6" :class="error ? 'text-red-700' : 'text-primary-dark'" />
                   </div>
-                  <div class="ml-3">
-                    <h3 class="text-xl font-medium text-primary-dark">Volunteer Information</h3>
-                    <div class="mt-2 text-sm text-primary">
-                      <p>
-                        We hold volunteer work events on select Wednesdays and weekends from April through
-                        September. You can find more information on our
-                        <a class="text-primary-dark underline" href="/volunteer/"> volunteer </a>
-                        page. Also, consider following our
-                        <a class="text-primary-dark underline"
-                          href="https://www.facebook.com/FriendsOfUteValleyPark">Facebook</a>
-                        or
-                        <a class="text-primary-dark underline"
-                          href="https://www.instagram.com/friendsofutevalleypark/">Instagram</a>
-                        for updates.
-                      </p>
-                      <p class="mt-2">If you have any questions regarding volunteering or organizing a volunteer event
-                        please contact us.</p>
-                    </div>
+                  <div>
+                    <h3
+                      :class="[error ? 'text-red-800' : 'text-primary-dark', 'font-mono text-xs font-black uppercase tracking-widest']">
+                      {{ error ? 'Something Went Wrong' : 'Message Sent' }}
+                    </h3>
+                    <p :class="[error ? 'text-red-700' : 'text-stone-600', 'mt-2 text-xs font-medium']">
+                      <span v-if="displayMessage">{{ displayMessage }}</span>
+                      <span v-else-if="error">There was an error: {{ error }}</span>
+                    </p>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="sm:col-span-2">
-              <label for="message" class="block text-sm font-semibold text-gray-700">Message <span
-                  class="text-red-700">*</span></label>
-              <div class="relative mt-1 rounded-md shadow-xs">
-                <textarea id="message" v-model="form.message" required rows="4"
-                  class="block w-full rounded-md border-gray-300 px-4 py-3 shadow-xs focus:border-primary-light focus:ring-primary-light" />
-              </div>
-            </div>
-
-            <div class="sm:col-span-2">
-              <div class="cf-turnstile" :data-sitekey="turnstileSiteKey" data-size="flexible" data-theme="light"></div>
-            </div>
-
-            <div class="sm:col-span-2">
-              <span class="inline-flex w-full rounded-md shadow-xs">
-                <button :disabled="isFetching" type="submit"
-                  class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-6 py-3 text-base leading-6 font-medium text-white transition duration-150 ease-in-out hover:bg-primary-light focus:ring-2 focus:ring-primary-light focus:outline-hidden active:bg-primary disabled:opacity-25">
-                  <span>
-                    <i-mdi-loading v-if="isFetching" class="mr-2 -ml-1 h-6 w-6 animate-spin text-white" />
-                  </span>
-                  Submit
-                </button>
-              </span>
-            </div>
-          </form>
-        </div>
-
-        <!-- notification banner -->
-        <div v-if="isFinished || error" class="my-8 rounded-md p-4" :class="[error ? 'bg-red-50' : 'bg-primary-50']">
-          <div class="flex">
-            <div class="shrink-0">
-              <i-heroicons-megaphone class="size-6" :class="error ? 'text-red-800' : 'text-primary-dark'" />
-            </div>
-            <div class="ml-3">
-              <h3 :class="[error ? 'text-red-800' : 'text-primary-dark', 'text-lg font-medium']">{{ error ?
-                'There were errors with your submission' : 'Thank you for contacting us!' }}</h3>
-              <div :class="[error ? 'text-red-700' : 'text-primary', 'mt-2 text-sm']">
-                <p class="font-medium text-pretty">
-                  <span v-if="displayMessage">{{ displayMessage }}</span>
-                  <span v-else-if="error">There was an error processing your request: {{ error }}</span>
-                </p>
-              </div>
-            </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -176,39 +141,30 @@ const form = ref({
   message: '',
 });
 
-// 1. Create a ref to hold the payload.
-// We must explicitly type it so TypeScript/Vue knows it will hold FormData.
 const formPayload = ref<FormData | null>(null);
 
-// 2. Pass the PAYLOAD REF to the .post() method.
-//    .json() is correct for parsing the *response*.
 const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form', {
-  immediate: false, // Don't run on load
+  immediate: false,
 })
-  .post(formPayload) // Pass the ref here
-  .json(); // Parse the server's JSON response
+  .post(formPayload)
+  .json();
 
-// 3. The submit function now updates the ref, then executes.
 function submit() {
-  // Reset state on new submission
   error.value = null;
-  // --- Form Validation ---
   if (form.value.name === '' || form.value.email === '' || form.value.message === '') {
-    error.value = 'Please fill out the form completely';
-    displayMessage.value = 'All required fields must be filled out before submitting the form.';
+    error.value = 'Incomplete form';
+    displayMessage.value = 'Please fill out all required fields.';
     return;
   }
 
-  // --- Token Validation ---
   const turnstileToken = (document.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement | null)?.value;
 
   if (!turnstileToken || turnstileToken === '') {
-    error.value = 'Turnstile verification failed. Please try again.';
+    error.value = 'Verification failure';
     displayMessage.value = 'Please verify you are not a robot and try again.';
     return;
   }
 
-  // --- Create FormData ---
   const formData = new FormData();
   formData.append('name', form.value.name);
   formData.append('email', form.value.email);
@@ -216,17 +172,20 @@ function submit() {
   formData.append('message', form.value.message);
   formData.append('cf-turnstile-response', turnstileToken);
 
-  // 4. Update the payload ref's value.
   formPayload.value = formData;
-
-  // 5. Call execute(), which will now use the new value of formPayload.
   execute();
 }
 
 watch(data, () => {
-  displayMessage.value = "Thank you for contacting Friends of Ute Valley Park! We'll review your message shortly.";
+  displayMessage.value = "Thank you for contacting Friends of Ute Valley Park! We'll get back to you soon.";
   form.value.name = '';
   form.value.email = '';
   form.value.message = '';
 });
 </script>
+
+<style scoped>
+.font-serif {
+  font-family: 'EditorialSerif', serif;
+}
+</style>

@@ -1,59 +1,136 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import LeaveNoTraceSmall from '@components/LeaveNoTraceSmall.astro';
+import Layout from "@layouts/Layout.astro";
+import LeaveNoTraceSmall from "@components/LeaveNoTraceSmall.astro";
 
 const faqs = [
   {
-    question: 'How do I find my way around UVP? I am always getting lost.',
+    id: "01",
+    tag: "Getting Around",
+    question: "How do I find my way around UVP? I am always getting lost.",
     answer:
-      'Please download the <a class="font-semibold text-primary-light no-underline" href="/visit/">map</a> or take a picture of our new trail map before you head out on the trail and always remember the parking lot that you parked in; we have several to choose from.',
+      'Please download the <a class="font-bold text-primary-dark underline" href="/visit/">map</a> or take a picture of our trail map before you head out. Always note your specific parking lot location.',
   },
   {
-    question: 'What are the park hours?',
-    answer: '5am - 9pm from Nov 1 through April 30. 5am - 10pm May 1 through Oct 31',
-  },
-  {
-    question: 'Where can I park my car?',
-    answer: 'Please see our <a class="font-semibold text-primary-light no-underline" href="/visit/">visit</a> page for trailhead information.',
-  },
-  {
-    question: 'Are there bathroom facilities available?',
-    answer: 'There is a portable bathroom available at the Vindicator and South Rockrimmon parking lots.',
-  },
-  {
-    question: 'What wildlife will I see?',
+    id: "02",
+    tag: "Planning",
+    question: "What are the official park hours?",
     answer:
-      'We have abundant wildlife to watch out for; deer, bobcat, bear, mountain lions, pack rats, mice and we are famous for our Rattlesnakes.  Please respect their habitat by staying on the trails at all times, giving wildlife abundant space, NEVER try to engage with our wild family.',
+      "WINTER (Nov 1 — Apr 30): 5 a.m. to 9 p.m. SUMMER (May 1 — Oct 31): 5 a.m. to 10 p.m.",
   },
   {
-    question: 'I saw a rattlesnake. What should I do?',
-    answer: 'Ute Valley Park is a open space and wildlife lives there. Stay calm, back away and do not agitate it. Please stay on the trails!',
+    id: "03",
+    tag: "Planning",
+    question: "Where can I park my car?",
+    answer:
+      'Consult the <a class="font-bold text-primary-dark underline" href="/visit/">visit</a> page for verified trailhead coordinates and parking capacity.',
   },
   {
-    question: 'How do I get involved with Ute Valley Park?',
-    answer: 'Please see our <a class="font-semibold text-primary-light no-underline" href="/volunteer/">volunteer</a> page.',
+    id: "04",
+    tag: "Amenities",
+    question: "Are there bathroom facilities available?",
+    answer:
+      "Portable restrooms are available at Vindicator and South Rockrimmon parking lots.",
+  },
+  {
+    id: "05",
+    tag: "Wildlife",
+    question: "What wildlife will I encounter?",
+    answer:
+      "Deer, bobcat, bear, mountain lions, and rattlesnakes are active within the wildland. Never engage with wildlife. Respect their habitat by staying on trails and giving abundant space.",
+  },
+  {
+    id: "06",
+    tag: "Safety",
+    question: "What should I do if I see a rattlesnake?",
+    answer:
+      "Stay calm, maintain distance, and do not agitate. UVP is an active wildlife habitat; stay on designated trails to minimize encounters.",
+  },
+  {
+    id: "07",
+    tag: "Getting Involved",
+    question: "How do I get involved with Ute Valley Park?",
+    answer:
+      'Visit our <a class="font-bold text-primary-dark underline" href="/volunteer/">volunteer</a> page to register for upcoming volunteer events.',
   },
 ];
 ---
 
 <Layout title="FAQ">
-  <div class="mt-16 bg-white">
-    <div class="mx-auto max-w-(--breakpoint-xl) px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-extrabold text-gray-900">Frequently asked questions</h2>
+  <main class="bg-stone-50 text-stone-900">
+    <!-- FAQ Header -->
+    <section class="border-b border-stone-300">
+      <div
+        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
+      >
+        <div class="flex items-center gap-4 mb-8">
+          <span class="inline-block h-px w-12 bg-primary-dark"></span>
+          <span
+            class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
+          >
+            Common Questions
+          </span>
+        </div>
 
-      <div class="mt-6 border-t border-gray-200 pt-10">
-        <dl class="space-y-10 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-x-8 md:gap-y-12 md:space-y-0">
+        <h1
+          class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
+        >
+          Frequently <br /> Asked <br />
+          <span class="text-primary-dark">Questions.</span>
+        </h1>
+
+        <p
+          class="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-stone-700"
+        >
+          Common questions about visiting and enjoying Ute Valley Park.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ Grid -->
+    <section class="border-b border-stone-300 bg-stone-100/50">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-0 lg:px-8 py-24">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-stone-300 border border-stone-300"
+        >
           {
             faqs.map((faq) => (
-              <div class="space-y-2">
-                <dt class="text-xl font-medium text-gray-900">{faq.question}</dt>
-                <dd class="text-base text-gray-500" set:html={faq.answer} />
+              <div class="bg-white p-8 space-y-6 flex flex-col justify-between hover:bg-stone-50 transition-colors group">
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <span class="font-mono text-xs font-black text-stone-300 group-hover:text-primary-dark transition-colors">
+                      [{faq.id}]
+                    </span>
+                    <span class="font-mono text-[8px] font-black uppercase tracking-widest px-2 py-0.5 border border-stone-200 text-stone-500 group-hover:border-primary-dark group-hover:text-primary-dark transition-colors">
+                      {faq.tag}
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-serif font-black uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors">
+                    {faq.question}
+                  </h3>
+                  <div
+                    class="text-sm leading-relaxed text-stone-600 font-medium prose prose-sm prose-stone"
+                    set:html={faq.answer}
+                  />
+                </div>
               </div>
             ))
           }
-        </dl>
+        </div>
       </div>
+    </section>
+
+    <div class="bg-stone-50">
       <LeaveNoTraceSmall />
     </div>
-  </div>
+  </main>
 </Layout>
+
+<style>
+  @font-face {
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
+  }
+  .font-serif {
+    font-family: "EditorialSerif", serif;
+  }
+</style>

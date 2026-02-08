@@ -9,15 +9,56 @@ const publishedNewsEntries = await getCollection('news', ({ data }) => {
 ---
 
 <Layout title="News">
-  <div class="mx-2 bg-white">
-    <h1 class="mt-16 mb-8 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">News From Ute Valley Park</h1>
-    <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-      {
-        publishedNewsEntries
-          .sort((a, b) => new Date(a.data.publishedOn).getTime() - new Date(b.data.publishedOn).getTime())
-          .reverse()
-          .map((post) => <Card title={post.data.title} previewText={post.data.previewText} image={post.data.coverImage} href={post.id} publishedOn={post.data.publishedOn} />)
-      }
-    </div>
-  </div>
+  <main class="bg-stone-50 text-stone-900">
+    <!-- News Header -->
+    <section class="border-b border-stone-300">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <div class="flex items-center gap-4 mb-8">
+          <span class="inline-block h-px w-12 bg-primary-dark"></span>
+          <span class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500">
+            News & Updates
+          </span>
+        </div>
+        
+        <h1 class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase">
+          Latest <br /> <span class="text-primary-dark">News.</span>
+        </h1>
+
+        <p class="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-stone-700">
+          News and updates from Ute Valley Park.
+        </p>
+      </div>
+    </section>
+
+    <!-- News Grid -->
+    <section class="border-b border-stone-300 bg-stone-100/50">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+          {
+            publishedNewsEntries
+              .sort((a, b) => new Date(b.data.publishedOn).getTime() - new Date(a.data.publishedOn).getTime())
+              .map((post) => (
+                <Card 
+                  title={post.data.title} 
+                  previewText={post.data.previewText} 
+                  image={post.data.coverImage} 
+                  href={post.id} 
+                  publishedOn={post.data.publishedOn} 
+                />
+              ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  @font-face {
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
+  }
+  .font-serif {
+    font-family: "EditorialSerif", serif;
+  }
+</style>

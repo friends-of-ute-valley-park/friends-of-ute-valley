@@ -5,7 +5,6 @@ import Layout from "@layouts/Layout.astro";
 import VolunteerItem from "@components/VolunteerItem.vue";
 import LeaveNoTraceSmall from "@components/LeaveNoTraceSmall.astro";
 import ContactForm from "@components/ContactForm.vue";
-import EngagementPanel from "@components/EngagementPanel.astro";
 import EmailForm from "@components/EmailForm.vue";
 import StaticCalendar from "../components/StaticCalendar.astro";
 import SocialLinksInline from "@components/SocialLinksInline.astro";
@@ -17,7 +16,6 @@ const upcomingVolunteerEvents = await getCollection("events", ({ data }) => {
 });
 
 import VolunteerHeroImage from "../assets/images/volunteer-hero-mask.jpg";
-import VolunteerInfoImage from "../assets/images/volunteer-3.jpg";
 import VolunteerInfoImage2 from "../assets/images/volunteer-4.jpg";
 import { TURNSTILE_SITE_KEY } from "astro:env/client";
 
@@ -25,223 +23,284 @@ const meetingLocations = await getCollection("trailheads");
 ---
 
 <Layout title="Volunteer">
-  <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
-    <Image
-      src={VolunteerHeroImage}
-      alt=""
-      class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
-      width={1500}
-    />
-
-    <div
-      class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
-      aria-hidden="true"
+  <main class="bg-stone-50 text-stone-900">
+    <!-- Hero Section -->
+    <section
+      class="relative border-b border-stone-300 bg-stone-900 overflow-hidden"
     >
+      <Image
+        src={VolunteerHeroImage}
+        alt="Volunteers in the field"
+        class="absolute inset-0 h-full w-full object-cover opacity-40"
+        width={1800}
+      />
       <div
-        class="aspect-1097/845 w-274.25 bg-linear-to-tr from-[#ff4694] to-[#776fff] opacity-20"
-        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+        class="absolute inset-0 bg-linear-to-t from-stone-900 via-transparent to-transparent"
       >
       </div>
-    </div>
-    <div
-      class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:-top-112 sm:ml-16 sm:translate-x-0 sm:transform-gpu"
-      aria-hidden="true"
-    >
-      <div
-        class="aspect-1097/845 w-274.25 bg-linear-to-tr from-[#ff4694] to-[#776fff] opacity-20"
-        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-      >
-      </div>
-    </div>
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl lg:mx-0">
-        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-          Work with us
-        </h2>
-        <p class="mt-6 text-lg leading-8 text-gray-200">
-          Join our dedicated team of volunteers and make a lasting impact on the
-          park you love. Together, we'll maintain trails, connect with fellow
-          nature enthusiasts, and give back to this cherished community
-          resource.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <div class="py-8 sm:py-12">
-      {
-        upcomingVolunteerEvents.length > 0 && (
-          <>
-            <h2 class="text-3xl font-bold tracking-tight text-primary-dark sm:text-4xl">
-              Upcoming volunteer events
-            </h2>
-            <div class="px-4 py-5">
-              <ul class="divide-y divide-gray-100">
-                {upcomingVolunteerEvents.map((volunteerEvent) => (
-                  <li class="my-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-4 py-5 sm:flex-nowrap">
-                    <VolunteerItem
-                      meetingLocations={meetingLocations}
-                      volunteerEvent={volunteerEvent}
-                      client:idle
-                    />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </>
-        )
-      }
-
-      <StaticCalendar />
 
       <div
-        class="overflow-hidden bg-white py-12 sm:py-16 mx-auto max-w-7xl px-6 lg:px-8"
+        class="relative mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-24 lg:py-40"
       >
+        <div class="max-w-3xl">
+          <div class="flex items-center gap-4 mb-8">
+            <span class="inline-block h-px w-12 bg-accent"></span>
+            <span
+              class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-300"
+            >
+              How You Can Help
+            </span>
+          </div>
+
+          <h1
+            class="text-5xl sm:text-9xl font-serif font-black tracking-tighter leading-none text-white uppercase"
+          >
+            Volunteer <br />
+            <span class="text-accent">With Us.</span>
+          </h1>
+
+          <p
+            class="mt-8 text-xl font-medium leading-relaxed text-stone-300 max-w-xl"
+          >
+            Join our community of dedicated park stewards. We provide the
+            expertise and tools; your hands-on help is what makes the continued
+            preservation of this urban wildland possible.
+          </p>
+        </div>
+      </div>
+
+      <div class="absolute bottom-0 right-0 p-8 hidden lg:block">
         <div
-          class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2"
+          class="bg-white/10 backdrop-blur-md border border-white/20 p-6 space-y-4"
         >
-          <div class="lg:pt-4 lg:pr-8">
-            <div class="lg:max-w-lg">
-              <h2 class="text-base leading-7 font-semibold text-primary-light">
-                Make a Difference, Make Friends, and Have Fun!
+          <div class="flex justify-between gap-12">
+            <span class="font-mono text-[10px] uppercase text-stone-500"
+              >Current Status</span
+            >
+            <span class="font-mono text-[10px] uppercase text-accent font-black"
+              >Recruiting</span
+            >
+          </div>
+          <div class="flex justify-between gap-12">
+            <span class="font-mono text-[10px] uppercase text-stone-500"
+              >Next Event</span
+            >
+            <span class="font-mono text-[10px] uppercase text-white font-black">
+              {
+                upcomingVolunteerEvents.length > 0
+                  ? new Date(
+                      upcomingVolunteerEvents[0].data.date,
+                    ).toLocaleDateString()
+                  : "TBD"
+              }
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {
+      upcomingVolunteerEvents.length > 0 ? (
+        <div class="border border-stone-300 divide-y divide-stone-300">
+          {upcomingVolunteerEvents.map((volunteerEvent) => (
+            <div class="p-8 hover:bg-stone-50 transition-colors">
+              <VolunteerItem
+                meetingLocations={meetingLocations}
+                volunteerEvent={volunteerEvent}
+                client:idle
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="p-12 border border-stone-200 bg-stone-50 text-center">
+          <p class="font-mono text-sm uppercase tracking-widest text-stone-600">
+            No scheduled events at this time. Check back for seasonal updates.
+          </p>
+        </div>
+      )
+    }
+
+    <!-- Volunteer Opportunities -->
+    <section class="border-b border-stone-300 bg-white">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-18">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16"
+        >
+          <div class="max-w-4xl">
+            <h2
+              class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-6"
+            >
+              Volunteer{" "}
+              <span class="text-primary-dark italic">Opportunities.</span>
+            </h2>
+            <p class="text-lg text-stone-600 font-medium leading-relaxed">
+              Preserving the 550-acre Ute Valley urban wildland is a collective
+              effort. From April through September, we host scheduled trail
+              maintenance and stewardship events on select Wednesdays and
+              weekends. As our schedule varies each month, we encourage you to
+              join our update list and follow us
+              <SocialLinksInline /> for the latest news. Whether you join us for one
+              session or the full season, your contribution is vital to the health
+              of our local trails.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seasonal Calendar -->
+    <section class="py-24 border-b border-stone-300 bg-stone-100/50">
+      <StaticCalendar />
+    </section>
+
+    <!-- Field Manual / Info -->
+    <section class="border-b border-stone-300">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-18">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div class="lg:col-span-6 space-y-12">
+            <div>
+              <h2
+                class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900 mb-8"
+              >
+                What to <span class="text-primary-dark italic">Expect.</span>
               </h2>
-              <p class="mt-2 text-3xl font-semibold text-gray-900 sm:text-4xl">
-                Join Ute Valley Park's Volunteer Team and Discover the Joy of
-                Giving Back
+              <p class="text-lg text-stone-700 leading-relaxed font-medium">
+                Our team welcomes individuals of all abilities. We offer tasks
+                ranging from trail restoration and drainage construction to
+                native seeding and path maintenance.
               </p>
-              <p class="mt-6 leading-8 text-gray-700">
-                Want to have fun while making a meaningful impact in your
-                community? Become a volunteer at Ute Valley Park! Our team
-                welcomes people of all ages and abilities, offering a variety of
-                rewarding tasks to suit your interests and skills. From
-                maintaining trails, building drains and seeding native grass to
-                closing rogue paths, there's something for everyone to
-                contribute.
-              </p>
-              <p class="mt-6 leading-8 text-gray-700">
-                As a Ute Valley Park volunteer, you'll work alongside a
-                friendly, diverse group of individuals who share your enthusiasm
-                for preserving this beloved natural resource. Not only will you
-                forge new connections with fellow nature lovers, but you'll also
-                take pride in knowing your efforts directly benefit the park and
-                all who visit it. Experience the joy of giving back and making a
-                difference - volunteer at Ute Valley Park today! Your community
-                will appreciate your dedication.
-              </p>
-              <a
-                href="#learnmore"
-                class="my-2 block font-semibold text-primary underline"
-                >Learn more<span aria-hidden="true">→</span>
-              </a>
+            </div>
+
+            <div class="space-y-6">
+              {
+                [
+                  {
+                    title: "Technical Training",
+                    desc: "No prior experience required. Crew leaders provide on-site instruction for all specialized tools.",
+                  },
+                  {
+                    title: "Logistics",
+                    desc: "FUVP provides all necessary heavy tools and infrastructure support.",
+                  },
+                  {
+                    title: "Field Gear",
+                    desc: "Volunteers must wear pants and closed-toe footwear. Gloves and eye protection are mandatory.",
+                  },
+                ].map((item, i) => (
+                  <div class="border-l-4 border-primary-dark pl-6 py-2">
+                    <h3 class="font-mono text-sm font-black uppercase tracking-widest text-stone-900 mb-2">
+                      0{i + 1}. {item.title}
+                    </h3>
+                    <p class="text-sm text-stone-600 leading-relaxed font-medium">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))
+              }
             </div>
           </div>
-          <Image
-            src={VolunteerInfoImage2}
-            alt="Volunteers working on a trail in Ute Valley Park"
-            class="w-3xl max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-228 md:-ml-4 lg:ml-0"
-            width="1100"
-            height="700"
-          />
+
+          <div class="lg:col-span-6 border border-stone-300 bg-white p-4">
+            <Image
+              src={VolunteerInfoImage2}
+              alt="Volunteers in action"
+              class="w-full h-auto transition-all duration-1000"
+              width={1000}
+            />
+            <div
+              class="mt-4 pt-4 border-t border-stone-100 flex justify-between items-center"
+            >
+              <span
+                class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
+                >Volunteers working on trail maintenance</span
+              >
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <EngagementPanel>
-        <h2
-          slot="heading"
-          class="text-2xl font-bold tracking-tight text-white sm:text-4xl"
+    <!-- Recruitment (Engagement) -->
+    <section class="py-24 bg-stone-900 relative overflow-hidden">
+      <div
+        class="absolute top-0 right-0 w-64 h-64 bg-accent/5 -translate-y-1/2 translate-x-1/2 rotate-45 border border-accent/10"
+      >
+      </div>
+
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div
+          class="border-2 border-accent bg-stone-900 p-8 md:p-16 shadow-[16px_16px_0px_0px_var(--color-accent)]"
         >
-          Get Notified!
-        </h2>
-        <p slot="description" class="mt-2 text-lg text-primary-100/90">
-          Sign up for our newsletter to receive volunteer events right in your
-          inbox.
-        </p>
-        <EmailForm slot="main" client:idle />
-      </EngagementPanel>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+              <h2
+                class="text-4xl font-serif font-black uppercase tracking-tight text-white leading-none"
+              >
+                Stay <br />
+                <span class="text-accent italic">Updated.</span>
+              </h2>
+              <p class="text-lg text-stone-400 leading-relaxed font-medium">
+                Our crew leaders often schedule additional volunteer sessions.
+                Stay connected through our newsletter or social media for the
+                latest on volunteer opportunities, meeting locations, and park
+                updates.
+              </p>
+            </div>
+            <div class="bg-white p-8 border border-stone-300">
+              <h3
+                class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark mb-6 border-b border-stone-200 pb-2"
+              >
+                Stay Updated
+              </h3>
+              <EmailForm client:idle />
+              <p
+                class="mt-4 text-[10px] font-mono text-stone-500 uppercase leading-tight"
+              >
+                We respect your privacy. Your email will only be used for
+                volunteer updates.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <div
-        class="mt-8 border-b border-gray-200 pt-4 pb-5 mx-auto max-w-7xl px-6 lg:px-8"
-        id="learnmore"
-      >
-        <h3 class="text-3xl font-medium text-primary-dark">
-          Learn More About Volunteering in Ute Valley Park
-        </h3>
+    <!-- Communication Link -->
+    <section class="py-24 border-b border-stone-300">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ContactForm
+          default-option="Volunteer"
+          client:visible
+          turnstileSiteKey={TURNSTILE_SITE_KEY}
+        >
+          <Fragment slot="title">
+            <h2
+              class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900"
+            >
+              Get in <span class="text-primary-dark italic">Touch.</span>
+            </h2>
+          </Fragment>
+          <Fragment slot="subtitle">
+            For specific inquiries regarding group volunteer events or technical
+            project coordination, please submit an official request below.
+          </Fragment>
+        </ContactForm>
       </div>
-      <div
-        class="border-gray-200 pt-8 xl:grid xl:grid-cols-3 xl:gap-x-8 mx-auto max-w-7xl px-6 lg:px-8"
-      >
-        <div>
-          <Image
-            src={VolunteerInfoImage}
-            alt=""
-            class="mx-auto rounded-lg object-cover shadow-sm"
-            width={400}
-          />
-        </div>
-        <div class="col-span-2">
-          <ul class="ml-4 list-disc divide-y divide-gray-200 text-gray-700">
-            <li class="py-4">
-              <span class="font-bold">Volunteer Days:</span> Help us care for Ute
-              Valley Park from April through September. We host trail work and stewardship
-              events on select Wednesdays and weekends. Since the schedule varies
-              each month, sign up for our email list and follow us on social media
-              <SocialLinksInline /> to stay updated. Whether you can join us for one
-              event or the whole season, your time directly supports the health of
-              our local trails.
-            </li>
-            <li class="py-4">
-              Crew leaders may schedule additional volunteer days. Please check
-              our website, <a
-                href="https://www.facebook.com/FriendsOfUteValleyPark/"
-                class="font-semibold text-primary underline"
-                target="_blank"
-                rel="noopener noreferrer">Facebook</a
-              >, <a
-                href="https://www.instagram.com/FriendsOfUteValleyPark/"
-                class="font-semibold text-primary underline"
-                target="_blank"
-                rel="noopener noreferrer">Instagram</a
-              >, or register for our newsletter for additional volunteer
-              opportunities, meeting locations and updates.
-            </li>
-            <li class="py-4">
-              Join the crew and enjoy refreshments, outdoor gear, and exclusive
-              swag on us!
-            </li>
-            <li class="py-4">
-              All tools provided. Never used a pick-mattock before? Don't worry,
-              our trained crew leaders will provide instruction and guidance.
-            </li>
-            <li class="py-4 font-semibold">
-              Participants must wear pants and closed-toe shoes. Additionally,
-              please bring work gloves and eye protection (safety goggles or
-              sunglasses).
-            </li>
-          </ul>
-        </div>
-      </div>
+    </section>
+
+    <div class="bg-stone-50 border-t border-stone-300">
+      <LeaveNoTraceSmall />
     </div>
-  </div>
-
-  <LeaveNoTraceSmall />
-
-  <ContactForm
-    default-option="Volunteer"
-    client:visible
-    turnstileSiteKey={TURNSTILE_SITE_KEY}
-  >
-    <Fragment slot="title">
-      <h2
-        class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10"
-      >
-        Contact us for more information!
-      </h2>
-    </Fragment>
-    <Fragment slot="subtitle"
-      >We'd love to hear from you! Whether you have questions about volunteering
-      or just want to share your thoughts on Ute Valley Park, feel free to get
-      in touch.</Fragment
-    >
-  </ContactForm>
+  </main>
 </Layout>
+
+<style>
+  @font-face {
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
+  }
+  .font-serif {
+    font-family: "EditorialSerif", serif;
+  }
+</style>

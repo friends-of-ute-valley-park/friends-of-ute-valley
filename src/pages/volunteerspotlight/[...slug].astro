@@ -1,14 +1,14 @@
 ---
-import { getCollection, render } from 'astro:content';
-import Layout from '@layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
 
-import InstagramIcon from '~icons/mdi/instagram';
-import WebsiteIcon from '~icons/mdi/computer';
+import InstagramIcon from "~icons/mdi/instagram";
+import WebsiteIcon from "~icons/mdi/computer";
 
 export async function getStaticPaths() {
-  const volunteerSpotlights = await getCollection('volunteer-spotlight');
+  const volunteerSpotlights = await getCollection("volunteer-spotlight");
   return volunteerSpotlights.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  entry: CollectionEntry<'volunteer-spotlight'>;
+  entry: CollectionEntry<"volunteer-spotlight">;
 }
 
 const { entry } = Astro.props;
@@ -24,43 +24,124 @@ const { Content } = await render(entry);
 ---
 
 <Layout title={`Volunteer Spotlight: ${entry.data.name}`}>
-  <div class="mt-2 bg-white py-12 sm:py-16">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div>
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{entry.data.name} - Volunteer Spotlight</h2>
-        <a href="/volunteerspotlight/" class="mt-2 inline-flex items-center text-sm font-medium text-primary-light hover:text-secondary-light">
-          <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
-          </svg>
-          Back to Volunteer Spotlight
-        </a>
-        <div class="mt-2 ml-2 flex gap-x-2">
-          {
-            entry.data.instagram && (
-              <a href={'https://instagram.com/' + entry.data.instagram}>
-                <InstagramIcon class="h-5 w-5 text-red-400" aria-hidden="true" />
-              </a>
-            )
-          }
-          {
-            entry.data.website && (
-              <a href={entry.data.website}>
-                <WebsiteIcon class="h-5 w-5" aria-hidden="true" />
-              </a>
-            )
-          }
-        </div>
+  <main class="bg-stone-50 text-stone-900">
+    <!-- Volunteer Spotlight Header -->
+    <section class="border-b border-stone-300">
+      <div
+        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
+      >
+        <div
+          class="flex flex-col md:flex-row justify-between items-start gap-8"
+        >
+          <div class="space-y-8">
+            <div class="flex items-center gap-4">
+              <span class="inline-block h-px w-12 bg-primary-dark"></span>
+              <span
+                class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
+              >
+                Volunteer Spotlight — {entry.data.name}
+              </span>
+            </div>
 
-        <p class="mt-2 text-lg leading-8 text-gray-600">{entry.data.intro}</p>
-      </div>
-      <div class="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-        <div>
-          {entry.data.images.map((image) => <Image src={image.image} alt={entry.data.name} width="500" height="500" class="mb-8" />)}
+            <h1
+              class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
+            >
+              {entry.data.name.split(" ")[0]}
+              <br />
+              <span class="text-primary-dark"
+                >{entry.data.name.split(" ").slice(1).join(" ")}</span
+              >
+            </h1>
+
+            <p
+              class="max-w-xl text-xl font-medium leading-relaxed text-stone-700"
+            >
+              {entry.data.intro}
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <a
+              href="/volunteerspotlight/"
+              class="inline-flex items-center gap-2 font-mono text-[10px] font-black uppercase tracking-widest text-stone-500 hover:text-primary-dark transition-colors"
+            >
+              <span>← Back to Spotlights</span>
+            </a>
+            {
+              (entry.data.instagram || entry.data.website) && (
+                <div class="flex gap-4 p-4 border border-stone-200 bg-white">
+                  {entry.data.instagram && (
+                    <a
+                      href={"https://instagram.com/" + entry.data.instagram}
+                      class="text-stone-500 hover:text-primary-dark transition-colors"
+                    >
+                      <InstagramIcon class="h-5 w-5" aria-hidden="true" />
+                    </a>
+                  )}
+                  {entry.data.website && (
+                    <a
+                      href={entry.data.website}
+                      class="text-stone-500 hover:text-primary-dark transition-colors"
+                    >
+                      <WebsiteIcon class="h-5 w-5" aria-hidden="true" />
+                    </a>
+                  )}
+                </div>
+              )
+            }
+          </div>
         </div>
-        <div class="prose max-w-xl">
-          <Content />
+      </div>
+    </section>
+
+    <!-- Story & Photos -->
+    <section class="border-b border-stone-300">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-0 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+          <!-- Their Story -->
+          <div
+            class="lg:col-span-7 py-16 lg:py-24 px-4 sm:px-6 lg:pr-12 border-r border-stone-300"
+          >
+            <div
+              class="prose prose-stone lg:prose-xl font-medium text-stone-600 leading-relaxed max-w-none"
+            >
+              <Content />
+            </div>
+          </div>
+
+          <!-- Photographic Records -->
+          <div class="lg:col-span-5 bg-stone-100/50 p-8 lg:p-12 space-y-12">
+            {
+              entry.data.images.map((image, i) => (
+                <div class="border border-stone-300 bg-white p-4 group overflow-hidden">
+                  <Image
+                    src={image.image}
+                    alt={`${entry.data.name} action photo ${i + 1}`}
+                    width={800}
+                    height={800}
+                    class="w-full h-auto transition-all duration-1000 scale-105 group-hover:scale-100"
+                  />
+                  <div class="mt-4 pt-4 border-t border-stone-100 flex justify-between items-center">
+                    <span class="font-mono text-[10px] uppercase tracking-widest text-stone-500">
+                      Photo {i + 1}
+                    </span>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  @font-face {
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
+  }
+  .font-serif {
+    font-family: "EditorialSerif", serif;
+  }
+</style>

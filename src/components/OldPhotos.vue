@@ -1,41 +1,35 @@
 <template>
-  <div>
-    <h2
-      class="mt-2 mb-8 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-      Old Photos from Ute Valley Park</h2>
-    <div class="grid gap-3 md:grid-cols-3">
-      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-1.jpg" />
-      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-2.jpg" />
-      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-3.jpg" />
-      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-4.jpg" />
-      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-5.jpg" />
-      <img class="image" src="/images/old-ute-valley-park-photos/old-ute-6.jpg" />
+  <div class="space-y-12">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="inline-block h-px w-8 bg-stone-300"></span>
+      <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500">Park History</span>
     </div>
-    <div v-if="!viewMore">
-      <button class="my-2 ml-1 rounded-sm px-2 py-1 text-base text-green-900 underline" @click="viewMore = true">
-        View More
-        <i-heroicons-chevron-down class="ml-1 inline-block h-6 w-6" />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-stone-300 border border-stone-300">
+      <div v-for="i in 6" :key="i" class="relative aspect-square overflow-hidden bg-white group">
+        <img :src="`/images/old-ute-valley-park-photos/old-ute-${i}.jpg`"
+          class="w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100" />
+        <div class="absolute inset-0 border-12 border-white/20 pointer-events-none"></div>
+      </div>
+    </div>
+
+    <div v-if="!viewMore" class="flex justify-center pt-8">
+      <button
+        class="px-8 py-4 border-2 border-stone-900 font-mono text-xs font-black uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all active:scale-95"
+        @click="viewMore = true">
+        View More Photos
       </button>
     </div>
-    <div v-else>
-      <div class="mt-3 grid gap-3 md:grid-cols-3">
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-7.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-8.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-9.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-10.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-11.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-12.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-13.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-14.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-15.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-16.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-17.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-18.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-19.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-20.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-21.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-22.jpg" />
-        <img class="image" src="/images/old-ute-valley-park-photos/old-ute-23.jpg" />
+
+    <div v-else class="space-y-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-stone-300 border border-stone-300">
+        <div v-for="i in 17" :key="i + 6" class="relative aspect-square overflow-hidden bg-white group">
+          <img :src="`/images/old-ute-valley-park-photos/old-ute-${i + 6}.jpg`"
+            class="w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100" />
+          <div class="absolute inset-0 border-12 border-white/20 pointer-events-none"></div>
+          <div class="absolute bottom-4 left-4 bg-stone-900 text-white px-2 py-0.5 font-mono text-[8px] uppercase">
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -45,3 +39,9 @@
 import { ref } from 'vue';
 const viewMore = ref(false);
 </script>
+
+<style scoped>
+.font-serif {
+  font-family: 'EditorialSerif', serif;
+}
+</style>

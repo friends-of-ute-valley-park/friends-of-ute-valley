@@ -1,97 +1,400 @@
 ---
-import LeaveNoTraceSmall from '@components/LeaveNoTraceSmall.astro';
-import TeamList from '@components/TeamList.astro';
-import Layout from '@layouts/Layout.astro';
-import OldPhotos from '@components/OldPhotos.vue';
-import StatsCard from '@components/StatsCard.astro';
+import LeaveNoTraceSmall from "@components/LeaveNoTraceSmall.astro";
+import TeamList from "@components/TeamList.astro";
+import Layout from "@layouts/Layout.astro";
+import OldPhotos from "@components/OldPhotos.vue";
+import StatsCard from "@components/StatsCard.astro";
 ---
 
 <Layout title="About">
-  <div class="relative mt-16 px-4 sm:px-6 lg:px-8">
-    <h1 class="mt-2 mb-8 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">About Friends of Ute Valley Park</h1>
-    <img class="mx-auto my-12 block h-64 w-auto" src="/images/logo-medium.jpg" alt="Friends of Ute Valley logo" />
-    <StatsCard />
-    <div class="mx-auto mt-12 mb-6 max-w-prose text-lg">
-      <div class="prose lg:prose-xl">
-        <h2>Our Mission</h2>
-        <p>
-          Friends of Ute Valley Park (FUVP) is an officially recognized "Friends" organization dedicated to maintaining, preserving, and providing education for Ute Valley Park in Colorado Springs. We
-          work in partnership with the city's Parks, Recreation, and Cultural Services Department to care for this treasured community resource.
-        </p>
-        <h2>History of FUVP</h2>
-        <p>
-          FUVP was formed in 2012 when we learned the City had an opportunity to purchase an additional 205 acres to expand Ute Valley Park. The City hoped to fund the purchase through the Trails,
-          Open Spaces, and Parks (TOPS) program, and saw having a "Friends" group in place as a way to demonstrate community support. With the help of FUVP, the Trust for Public Land, and TOPS, the
-          city was able to acquire the land in 2014-15. FUVP raised $110,000 in just 3.5 months to contribute to the purchase.
-        </p>
+  <main class="bg-stone-50 text-stone-900">
+    <!-- Archival Header -->
+    <section class="border-b border-stone-300">
+      <div
+        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
+      >
+        <div class="flex items-center gap-4 mb-8">
+          <span class="inline-block h-px w-12 bg-primary-dark"></span>
+          <span
+            class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
+          >
+            About Us
+          </span>
+        </div>
 
-        <h2>What We Do</h2>
-        <p>
-          Under the guidance of the community-created <a href="https://coloradosprings.gov/sites/default/files/parks_recreation_and_cultural_services/parks/15.03.12_ute_mmp.pdf"
-            >Ute Valley Park Master & Management Plan</a
-          >, FUVP:
-        </p>
+        <h1
+          class="text-6xl sm:text-8xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase mb-12"
+        >
+          Our Story <br /> & <span class="text-primary-dark">Mission.</span>
+        </h1>
 
-        <ul>
-          <li>Conducts trail maintenance twice a month</li>
-          <li>Leads special maintenance and cleanup projects</li>
-          <li>Raises funds to support park improvements</li>
-          <li>Provides education about the park's ecology and history</li>
-          <li>Advocates for the protection and stewardship of UVP</li>
-        </ul>
-
-        <h2>Community Support</h2>
-        <p>Since our formation, support for our efforts in maintaining the entire 550 acres of park land, has been both passionate and overwhelming.</p>
-        <p>
-          The outpouring of community support for our work has been both passionate and overwhelming. People love UVP for the beauty, serenity, and recreational opportunities it offers, from hiking to
-          biking and beyond.
-        </p>
-        <h2>Awards and Recognition</h2>
-        <p>Over the years, FUVP has been honored to receive numerous awards recognizing our impactful work in the park.</p>
-        <ul>
-          <li>2022 - TOSC Best Friends group</li>
-          <li>2020 - Christine Thomas Parks, Recreation, and Cultural Services Volunteer of the Year Winner</li>
-
-          <li>2023 - Drew Town Parks, Recreation, and Cultural Services Volunteer of the Year Nomination</li>
-          <li>2019 - David J Collas Community Service Award from the Colorado Springs Fire Department</li>
-          <li>2014 - Friends Group of the Year by Parks, Recreation, and Cultural Services</li>
-          <li>2014 - City Council Resolution Thanking FUVP for their part in helping to acquire the 203 Ute Valley Open Space</li>
-          <li>2013 - TOSC Stewardship Award</li>
-          <li>Dan Woods SuperGroup MVP Award</li>
-        </ul>
-        <h2>Our Structure</h2>
-        <p>
-          FUVP operates as a committee under the fiscal sponsorship of the Trails and Open Spaces Coalition (TOSC). This arrangement minimizes our operating costs and allows us to utilize TOSC's
-          501(C)(3) non-profit status as we pursue our mission.
-        </p>
-        <h2>How You Can Help</h2>
-        <p>Join us in being a steward of Ute Valley Park! Here are two key ways you can support our efforts:</p>
-
-        <ul>
-          <li><a href="/volunteer/">Volunteer</a>: Check out our upcoming park maintenance events and fundraisers on the Volunteer page. We'd love to have you join us in the park!</li>
-          <li>
-            <a href="/donate/">Donate</a>: Help fund our park improvement projects and educational work by making a donation today. It's easy to contribute on our Donate page. Every gift makes a
-            difference!
-          </li>
-        </ul>
-
-        <p>
-          As a local community organization, we volunteer our time to care for Ute Valley Park for the benefit of our whole community and the entire Pikes Peak region. Thank you for your support as we
-          work together to steward this land we all love.
-        </p>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div
+            class="lg:col-span-7 prose prose-stone lg:prose-xl font-medium text-stone-700 leading-relaxed"
+          >
+            <p>
+              Friends of Ute Valley Park (FUVP) is an officially recognized
+              "Friends" organization dedicated to maintaining, preserving, and
+              providing education for Ute Valley Park in Colorado Springs.
+            </p>
+            <p>
+              We work in partnership with the city's Parks, Recreation, and
+              Cultural Services Department to care for this treasured community
+              resource, ensuring its wildland character remains intact for
+              future generations.
+            </p>
+          </div>
+          <div class="lg:col-span-5 border border-stone-300 bg-white p-8">
+            <img
+              class="block w-full h-auto transition-all duration-700"
+              src="/images/logo-medium.jpg"
+              alt="Friends of Ute Valley logo"
+            />
+          </div>
+        </div>
       </div>
-    </div>
-    <TeamList />
-    <OldPhotos client:visible />
+    </section>
 
-    <div class="mt-8">
-      <h2 class="mt-2 mb-8 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">1983 Colorado Front Range Inactive Coal Mine Data (El Paso County)</h2>
-      <img src="/images/colorado-land-survey-preview.jpg" />
-      <div class="mt-1 text-center text-sm text-gray-600">
-        <a href="/images/maps/colorado-springs-coal-mine-survey.pdf" download>Download (14.8 mb)</a>
+    <!-- Impact Data -->
+    <section class="border-b border-stone-300 bg-stone-100/50">
+      <StatsCard />
+    </section>
+
+    <!-- Structural Records -->
+    <section class="border-b border-stone-300">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div
+            class="lg:col-span-4 border-r border-stone-300 pr-12 hidden lg:block"
+          >
+            <div class="sticky top-24 space-y-8">
+              <h3
+                class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-primary-dark"
+              >
+                About Our Work
+              </h3>
+              <nav class="flex flex-col gap-4" data-about-toc>
+                <a
+                  href="#history"
+                  class="font-mono text-xs uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors"
+                  >01. Our History</a
+                >
+                <a
+                  href="#stewardship"
+                  class="font-mono text-xs uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors"
+                  >02. How We Care for the Park</a
+                >
+                <a
+                  href="#awards"
+                  class="font-mono text-xs uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors"
+                  >03. Awards & Recognition</a
+                >
+                <a
+                  href="#structure"
+                  class="font-mono text-xs uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors"
+                  >04. Our Structure</a
+                >
+              </nav>
+            </div>
+          </div>
+
+          <div class="lg:col-span-8 space-y-24">
+            <!-- History -->
+            <div id="history" class="scroll-mt-24 space-y-8">
+              <h2
+                class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900"
+              >
+                Our <span class="italic text-primary-dark">History.</span>
+              </h2>
+              <div class="prose prose-stone leading-relaxed text-stone-600">
+                <p>
+                  FUVP was formed in 2012 when we learned the City had an
+                  opportunity to purchase an additional 205 acres to expand Ute
+                  Valley Park. The City hoped to fund the purchase through the
+                  Trails, Open Spaces, and Parks (TOPS) program.
+                </p>
+                <p>
+                  With the help of FUVP, the Trust for Public Land, and TOPS,
+                  the city was able to acquire the land in 2014-15. FUVP raised
+                  $110,000 in just 3.5 months to contribute to the purchase,
+                  demonstrating unprecedented community support.
+                </p>
+              </div>
+            </div>
+
+            <!-- Stewardship -->
+            <div id="stewardship" class="scroll-mt-24 space-y-8">
+              <h2
+                class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900"
+              >
+                How We <span class="italic text-primary-dark"
+                  >Care for the Park.</span
+                >
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {
+                  [
+                    "Conducts trail maintenance twice a month",
+                    "Leads special maintenance and cleanup projects",
+                    "Raises funds to support park improvements",
+                    "Provides education about the park's ecology and history",
+                    "Advocates for the protection of UVP",
+                  ].map((item, i) => (
+                    <div class="border border-stone-300 bg-white p-6 flex gap-4 items-start hover:border-primary-dark transition-colors">
+                      <span class="font-mono text-xs font-black text-accent-dark">
+                        [{String(i + 1).padStart(2, "0")}]
+                      </span>
+                      <p class="text-sm font-bold text-stone-800 uppercase tracking-tight">
+                        {item}
+                      </p>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+
+            <!-- Awards -->
+            <div id="awards" class="scroll-mt-24 space-y-8">
+              <h2
+                class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900"
+              >
+                Awards & <span class="italic text-primary-dark"
+                  >Recognition.</span
+                >
+              </h2>
+              <div class="border border-stone-300 divide-y divide-stone-300">
+                {
+                  [
+                    {
+                      year: "2023",
+                      title:
+                        "Drew Town Parks, Recreation, and Cultural Services Volunteer of the Year Nomination",
+                    },
+                    { year: "2022", title: "TOSC Best Friends group" },
+                    {
+                      year: "2020",
+                      title: "Great Outdoors Colorado (GOCO) Award",
+                    },
+                    {
+                      year: "2020",
+                      title: "Parks & Recreation Volunteer of the Year",
+                    },
+                    {
+                      year: "2019",
+                      title: "David J Collas Community Service Award",
+                    },
+                    {
+                      year: "2014",
+                      title: "City Council Resolution Thanking FUVP",
+                    },
+                    { year: "2014", title: "Friends Group of the Year" },
+                    { year: "2013", title: "TOSC Stewardship Award" },
+                    {
+                      year: "",
+                      title: "Dan Woods SuperGroup MVP Award",
+                    },
+                  ].map((award) => (
+                    <div class="flex items-center gap-8 p-6 hover:bg-white transition-colors">
+                      <span class="font-mono text-lg font-black text-primary-dark">
+                        {award.year}
+                      </span>
+                      <span class="font-mono text-xs uppercase tracking-[0.1em] font-bold text-stone-700">
+                        {award.title}
+                      </span>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+
+            <!-- Structure -->
+            <div id="structure" class="scroll-mt-24 space-y-8">
+              <h2
+                class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900"
+              >
+                Our <span class="italic text-primary-dark">Structure.</span>
+              </h2>
+              <div
+                class="bg-stone-900 text-white p-12 relative overflow-hidden"
+              >
+                <div class="relative z-10 space-y-6">
+                  <p class="text-lg font-medium leading-relaxed text-stone-300">
+                    FUVP operates as a committee under the fiscal sponsorship of
+                    the Trails and Open Spaces Coalition (TOSC).
+                  </p>
+                  <p class="text-stone-500">
+                    This arrangement minimizes our operating costs and allows us
+                    to utilize TOSC's 501(C)(3) non-profit status as we pursue
+                    our mission.
+                  </p>
+                  <div
+                    class="pt-8 border-t border-stone-800 flex flex-wrap gap-8"
+                  >
+                    <div>
+                      <p
+                        class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1"
+                      >
+                        Status
+                      </p>
+                      <p class="font-mono text-xs font-black uppercase">
+                        501(C)(3) Sponsored
+                      </p>
+                    </div>
+                    <div>
+                      <p
+                        class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1"
+                      >
+                        Entity
+                      </p>
+                      <p class="font-mono text-xs font-black uppercase">
+                        TOSC Fiscal Committee
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="absolute top-0 right-0 w-32 h-32 bg-primary-dark/20 -translate-y-1/2 translate-x-1/2 rotate-45"
+                >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <LeaveNoTraceSmall />
-  </div>
+    <!-- Our Team -->
+    <section class="border-b border-stone-300 bg-stone-50">
+      <TeamList />
+    </section>
+
+    <!-- Photographic Evidence -->
+    <section class="border-b border-stone-300 py-24">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-4 mb-12">
+          <h2
+            class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900"
+          >
+            Park <span class="text-primary-dark italic">Gallery.</span>
+          </h2>
+        </div>
+        <OldPhotos client:visible />
+      </div>
+    </section>
+
+    <!-- Technical Surveys -->
+    <section class="py-24 bg-stone-100">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="border-2 border-stone-900 bg-white p-8 md:p-12 relative">
+          <div
+            class="absolute top-4 right-4 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500"
+          >
+          </div>
+          <h2
+            class="text-3xl font-serif font-black uppercase tracking-tight text-stone-900 mb-8 border-b border-stone-200 pb-4"
+          >
+            Coal Mine <span class="text-primary-dark">Survey Report.</span>
+          </h2>
+          <div
+            class="aspect-video bg-stone-200 border border-stone-300 overflow-hidden mb-8"
+          >
+            <img
+              src="/images/colorado-land-survey-preview.jpg"
+              class="w-full h-full object-cover transition-all duration-700"
+              alt="Coal mine survey"
+            />
+          </div>
+          <div
+            class="flex flex-col md:flex-row justify-between items-end gap-8"
+          >
+            <div class="space-y-4 max-w-md">
+              <p class="text-sm font-medium text-stone-600 leading-relaxed">
+                1983 Colorado Front Range Inactive Coal Mine Data (El Paso
+                County). Historical geological report regarding subsurface
+                conditions and previous industrial operations.
+              </p>
+            </div>
+            <a
+              href="/images/maps/colorado-springs-coal-mine-survey.pdf"
+              download
+              class="btn-primary-cta"
+            >
+              Download Report (14.8MB)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="bg-stone-50 border-t border-stone-300">
+      <LeaveNoTraceSmall />
+    </div>
+  </main>
 </Layout>
+
+<script>
+  const toc = document.querySelector<HTMLElement>("[data-about-toc]");
+  if (toc) {
+    const links = Array.from(
+      toc.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'),
+    );
+    const linkById = new Map<string, HTMLAnchorElement>();
+    for (const link of links) {
+      const href = link.getAttribute("href");
+      const id = href ? href.slice(1) : "";
+      if (id) {
+        linkById.set(id, link);
+      }
+    }
+
+    const setActive = (id: string) => {
+      links.forEach((link) => {
+        link.classList.remove("text-primary");
+        link.classList.add("text-stone-500");
+        link.removeAttribute("aria-current");
+      });
+      const active = linkById.get(id);
+      if (active) {
+        active.classList.add("text-primary");
+        active.classList.remove("text-stone-500");
+        active.setAttribute("aria-current", "location");
+      }
+    };
+
+    const sections = Array.from(linkById.keys())
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null);
+
+    if (sections.length > 0) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        },
+        {
+          rootMargin: "-30% 0px -70% 0px",
+          threshold: 0,
+        },
+      );
+
+      sections.forEach((section) => observer.observe(section));
+
+      const initialId =
+        (location.hash && location.hash.slice(1)) || sections[0].id;
+      setActive(initialId);
+    }
+  }
+</script>
+
+<style>
+  @font-face {
+    font-family: "EditorialSerif";
+    src: local("Georgia"), local("Times New Roman"), serif;
+  }
+  .font-serif {
+    font-family: "EditorialSerif", serif;
+  }
+</style>
