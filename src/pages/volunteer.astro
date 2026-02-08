@@ -64,9 +64,9 @@ const meetingLocations = await getCollection("trailheads");
           <p
             class="mt-8 text-xl font-medium leading-relaxed text-stone-300 max-w-xl"
           >
-            Join our dedicated network of field stewards. We provide the
-            technical guidance and tools; you provide the labor necessary for
-            the preservation of this urban wildland.
+            Join our community of dedicated park stewards. We provide the
+            expertise and tools; your hands-on help is what makes the
+            continued preservation of this urban wildland possible.
           </p>
         </div>
       </div>
@@ -101,38 +101,56 @@ const meetingLocations = await getCollection("trailheads");
       </div>
     </section>
 
-    <!-- Operations Bulletin -->
     {
-      upcomingVolunteerEvents.length > 0 && (
-        <section class="border-b border-stone-300 bg-white">
-          <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-24">
-            <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
-              <div>
-                <h2 class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900">
-                  Volunteer{" "}
-                  <span class="text-primary-dark italic">Opportunities.</span>
-                </h2>
-                <p class="mt-4 text-stone-500 font-medium">
-                  Upcoming trail maintenance events and stewardship projects.
-                </p>
-              </div>{" "}
+      upcomingVolunteerEvents.length > 0 ? (
+        <div class="border border-stone-300 divide-y divide-stone-300">
+          {upcomingVolunteerEvents.map((volunteerEvent) => (
+            <div class="p-8 hover:bg-stone-50 transition-colors">
+              <VolunteerItem
+                meetingLocations={meetingLocations}
+                volunteerEvent={volunteerEvent}
+                client:idle
+              />
             </div>
-
-            <div class="border border-stone-300 divide-y divide-stone-300">
-              {upcomingVolunteerEvents.map((volunteerEvent) => (
-                <div class="p-8 hover:bg-stone-50 transition-colors">
-                  <VolunteerItem
-                    meetingLocations={meetingLocations}
-                    volunteerEvent={volunteerEvent}
-                    client:idle
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+          ))}
+        </div>
+      ) : (
+        <div class="p-12 border border-stone-200 bg-stone-50 text-center">
+          <p class="font-mono text-sm uppercase tracking-widest text-stone-600">
+            No scheduled operations at this time. Check back for seasonal
+            updates.
+          </p>
+        </div>
       )
     }
+
+    <!-- Operations Bulletin -->
+    <section class="border-b border-stone-300 bg-white">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-18">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16"
+        >
+          <div class="max-w-4xl">
+            <h2
+              class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-6"
+            >
+              Volunteer{" "}
+              <span class="text-primary-dark italic">Opportunities.</span>
+            </h2>
+            <p class="text-lg text-stone-600 font-medium leading-relaxed">
+              Preserving the 550-acre Ute Valley urban wildland is a collective
+              effort. From April through September, we host scheduled trail
+              maintenance and stewardship events on select Wednesdays and
+              weekends. As our operational calendar fluctuates monthly, we
+              encourage you to join our update list and follow us
+              <SocialLinksInline /> for the latest news. Whether you join us for one
+              session or the full season, your contribution is vital to the health
+              of our local trails.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Seasonal Calendar -->
     <section class="py-24 border-b border-stone-300 bg-stone-100/50">
@@ -141,7 +159,7 @@ const meetingLocations = await getCollection("trailheads");
 
     <!-- Field Manual / Info -->
     <section class="border-b border-stone-300">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-24">
+      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-18">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
           <div class="lg:col-span-6 space-y-12">
             <div>
@@ -170,14 +188,14 @@ const meetingLocations = await getCollection("trailheads");
                   },
                   {
                     title: "Field Gear",
-                    desc: "Personnel must wear pants and closed-toe footwear. Gloves and eye protection are mandatory.",
+                    desc: "Volunteers must wear pants and closed-toe footwear. Gloves and eye protection are mandatory.",
                   },
                 ].map((item, i) => (
                   <div class="border-l-4 border-primary-dark pl-6 py-2">
                     <h3 class="font-mono text-sm font-black uppercase tracking-widest text-stone-900 mb-2">
                       0{i + 1}. {item.title}
                     </h3>
-                    <p class="text-sm text-stone-600 leading-relaxed">
+                    <p class="text-sm text-stone-600 leading-relaxed font-medium">
                       {item.desc}
                     </p>
                   </div>
@@ -229,9 +247,11 @@ const meetingLocations = await getCollection("trailheads");
                 Stay <br />
                 <span class="text-accent italic">Updated.</span>
               </h2>
-              <p class="text-lg text-stone-400 leading-relaxed">
-                Sign up for our newsletter to receive notifications about
-                upcoming volunteer events and park updates.
+              <p class="text-lg text-stone-400 leading-relaxed font-medium">
+                Our crew leaders often schedule additional volunteer sessions.
+                Stay connected through our newsletter or social media for
+                the latest on volunteer opportunities, meeting locations, and
+                park updates.
               </p>
             </div>
             <div class="bg-white p-8 border border-stone-300">
