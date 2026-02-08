@@ -16,9 +16,9 @@ Astro-based static site with Vue components for the Friends of Ute Valley Park n
 A rugged, editorial, and utilitarian "Ranger's Report" style. This direction moves away from generic SaaS-style UI in favor of a structural, archival look that reflects the authoritative stewardship of the park.
 
 ### Visual Pillars
-- **Structural Grids**: Use visible borders (`border-stone-300`) and rigid grid systems to create a "technical report" layout. Avoid soft shadows or rounded corners (use `rounded-none` or `rounded-sm`).
+- **Structural Grids**: Use visible borders (`border-stone-300`) and rigid grid systems to create a "technical report" layout. Avoid soft shadows or rounded corners (use `rounded-none` or `rounded-sm`). Exception: small rounding on form inputs is acceptable for usability.
 - **The "Stone" Foundation**: The primary background is `stone-50` (paper-like), not white. Containers often use `stone-100/50` for subtle depth.
-- **Metadata Flourishes**: Add technical labels (e.g., "REF: 042", "STATION_COORDS", "DISPATCH_DATE") in small monospace fonts to reinforce the field-notes narrative.
+- **High-Contrast Sections**: Use `bg-stone-900` sections with subtle overlays for emphasis (as in Volunteer/Engagement panels). Keep overlays linear and minimal.
 
 ### Typography Hierarchy
 - **Headings (Editorial Serif)**: Use heavy, high-contrast serif fonts (fallback: `Georgia` or `Times New Roman`) with `font-black`, `uppercase`, and `tracking-tighter`.
@@ -26,6 +26,7 @@ A rugged, editorial, and utilitarian "Ranger's Report" style. This direction mov
 - **Body (Inter Sans)**: Clean, functional sans-serif for readability.
 
 ### Color Palette (v4 Utilities)
+Prefer to use semantic colors found in `src/assets/css/global.css`
 - **Base**: `bg-stone-50`
 - **Ink**: `text-stone-900` (Headings), `text-stone-600` (Body)
 - **Primary Accent**: `text-green-800` (Used for "Wildland" elements and emphasis)
@@ -38,8 +39,9 @@ A rugged, editorial, and utilitarian "Ranger's Report" style. This direction mov
   - `clip-path` for angled/shaped sections
   - Complex `@keyframes` animations
   - Percentage-based positioning (`top: 15%`)
-- Use Tailwind's gradient utilities: `bg-gradient-to-br from-green-800 via-teal-800 to-teal-600`
+- Use Tailwind's gradient utilities sparingly for hero overlays: `bg-gradient-to-br from-green-800 via-teal-800 to-teal-600`
 - Use opacity modifiers: `text-green-100/90`, `via-amber-400/70`
+- **Primary CTA**: Use the shared `.btn-primary-cta` class for primary buttons. It encodes the accent shadow, hover translation, and uppercase mono styling used on `index.astro`.
 
 ### Component Architecture
 - **Vue for interactivity**: Use `.vue` components for forms, interactive elements requiring state
@@ -51,21 +53,6 @@ A rugged, editorial, and utilitarian "Ranger's Report" style. This direction mov
 - `src/pages/` - Page routes
 - `src/layouts/` - Layout templates
 - `src/assets/images/` - Image assets
-
-## Lessons Learned
-
-### 2026-02-03: Email Form Wrapper Styling
-**Context**: Adding angled background styling to email signup section
-
-**Friction Points Encountered**:
-1. Initially embedded wrapper styling inside `EmailForm.vue` when a separate `EmailFormWrapper.astro` component was needed to span both heading text AND form
-2. Used extensive custom CSS when Tailwind utilities would suffice
-
-**Actionable Lessons**:
-1. **Clarify scope before implementing**: When styling a "section", ask whether it wraps just one component or multiple elements together
-2. **Check component usage context first**: Look at how/where components are used in pages before adding wrapper styles
-3. **Tailwind-first CSS**: Convert custom CSS to Tailwind utilities during initial implementation, not as a follow-up refactor
-4. **Create wrapper components for cross-cutting styles**: Styled sections that span multiple content areas should be their own wrapper component
 
 ---
 
