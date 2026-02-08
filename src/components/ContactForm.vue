@@ -83,7 +83,7 @@
 
               <div>
                 <button :disabled="isFetching" type="submit"
-                  class="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 bg-stone-900 text-white font-mono text-xs font-black uppercase tracking-widest transition-all hover:bg-primary-dark active:scale-95 shadow-[4px_4px_0px_0px_var(--color-accent)] disabled:opacity-50">
+                  class="group relative w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-primary-dark text-white font-mono text-sm font-bold uppercase transition-all duration-300 hover:bg-primary hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_0px_var(--color-accent)] active:scale-95 shadow-[4px_4px_0px_0px_var(--color-accent)] disabled:opacity-50">
                   <i-mdi-loading v-if="isFetching" class="mr-2 h-4 w-4 animate-spin" />
                   Send Message
                 </button>

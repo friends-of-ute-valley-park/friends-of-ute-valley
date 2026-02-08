@@ -79,7 +79,7 @@ const submit = (e: SubmitEvent) => {
           placeholder="Email…" :aria-invalid="emailIsError" aria-describedby="form-errors"
           @blur="validateEmail(false)" />
         <button :disabled="isFetching" type="submit"
-          class="mt-3 w-full rounded-md border border-transparent bg-accent-dark px-6 py-3 text-base font-semibold text-stone-900 shadow-lg transition-[background-color,box-shadow] duration-200 hover:bg-accent hover:shadow-xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary-dark focus:outline-hidden disabled:bg-accent-dark sm:mt-0 sm:ml-3 sm:inline-flex sm:w-auto sm:shrink-0 sm:items-center">
+          class="mt-3 w-full rounded-md border border-transparent bg-accent-dark px-6 py-3 text-base font-semibold text-stone-900 shadow-lg transition-[background-color,box-shadow] duration-200 hover:bg-accent hover:shadow-xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary-dark focus:outline-hidden cursor-pointer disabled:cursor-not-allowed disabled:bg-accent-dark sm:mt-0 sm:ml-3 sm:inline-flex sm:w-auto sm:shrink-0 sm:items-center">
           <span>
             <i-mdi-loading v-if="isFetching" class="mr-2 -ml-2 h-6 w-6 animate-spin text-stone-900" />
           </span>
