@@ -94,11 +94,11 @@ const wishlistCollection = defineCollection({
 const trailConditionsCollection = defineCollection({
   loader: {
     name: 'trail-conditions',
-    load: async ({ store, parseData }) => {
+    load: async (context) => {
       const raw = await readFile('./src/data/trail-conditions/trail-conditions.json', 'utf-8');
       const data = JSON.parse(raw);
-      const parsed = await parseData({ id: 'current', data });
-      store.set({ id: 'current', data: parsed });
+      const parsed = await context.parseData({ id: 'current', data });
+      context.store.set({ id: 'current', data: parsed });
     },
   },
   schema: () =>
