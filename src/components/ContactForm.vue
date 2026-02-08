@@ -54,7 +54,7 @@
 
               <div class="space-y-2">
                 <label for="category"
-                  class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-500">Category</label>
+                  class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-500">Category *</label>
                 <select id="category" v-model="form.category"
                   class="block w-full border-stone-300 px-4 py-3 font-mono text-sm focus:border-primary-dark focus:ring-0 rounded-none bg-stone-50/50 appearance-none">
                   <option v-for="option in options" :key="option">

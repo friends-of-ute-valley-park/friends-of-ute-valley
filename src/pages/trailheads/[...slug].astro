@@ -127,18 +127,6 @@ const { entry } = Astro.props;
                 src={entry.data.map}
                 alt={`${entry.data.name} map section`}
               />
-              <div
-                class="mt-4 pt-4 border-t border-stone-100 flex justify-between items-center"
-              >
-                <span
-                  class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
-                  ></span
-                >
-                <span
-                  class="font-mono text-[10px] uppercase tracking-widest text-primary-dark font-black tracking-[0.2em]"
-                  >Verified</span
-                >
-              </div>
             </div>
           </div>
         </div>
@@ -168,8 +156,6 @@ const { entry } = Astro.props;
                     width={800}
                   />
                   <div class="absolute inset-0 border-[16px] border-white/10 pointer-events-none" />
-                  <div class="absolute bottom-4 left-4 bg-stone-900 text-white px-2 py-0.5 font-mono text-[8px] uppercase">
-                  </div>
                 </div>
                 <p class="font-mono text-[10px] uppercase tracking-widest text-stone-500 text-center font-bold">
                   {photo.caption}

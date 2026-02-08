@@ -110,10 +110,6 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
             class="absolute inset-0 border-[24px] border-white/20 pointer-events-none"
           >
           </div>
-          <div
-            class="absolute bottom-8 left-8 bg-primary-dark text-white px-3 py-1 font-mono text-[10px] uppercase tracking-widest"
-          >
-          </div>
         </div>
       </div>
     </section>
@@ -149,7 +145,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
                         <span class="font-mono text-xs font-black text-accent-dark">
                           [{trailhead.data.id.toString().padStart(2, "0")}]
                         </span>
-                        <h3 class="text-lg font-bold font-serif uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors">
+                        <h3 class="text-lg font-bold font-serif uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors underline decoration-primary-dark decoration-4 underline-offset-2">
                           {trailhead.data.name}
                         </h3>
                       </div>
@@ -157,7 +153,7 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
                         {trailhead.data.description}
                       </p>
                     </div>
-                    <span class="text-stone-300 group-hover:text-primary-dark transition-colors">
+                    <span class="text-accent-dark group-hover:text-accent-light transition-colors">
                       →
                     </span>
                   </a>
@@ -289,11 +285,6 @@ const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
                 height="450"
                 class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000"
               />
-
-              <div
-                class="absolute bottom-8 left-8 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] font-black"
-              >
-              </div>
             </div>
           </div>
         </div>

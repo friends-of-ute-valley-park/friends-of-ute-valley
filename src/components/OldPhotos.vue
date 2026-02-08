@@ -12,8 +12,6 @@
           class="w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100" 
         />
         <div class="absolute inset-0 border-[12px] border-white/20 pointer-events-none"></div>
-        <div class="absolute bottom-4 left-4 bg-stone-900 text-white px-2 py-0.5 font-mono text-[8px] uppercase">
-        </div>
       </div>
     </div>
 
