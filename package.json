@@ -23,7 +23,7 @@
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
     "inter-ui": "^4.1.1",
-    "resend": "https://pkg.pr.new/resend/resend-node/resend@820",
+    "resend": "github:resend/resend-node#chore/use-postal-mime",
     "typescript": "^5.9.3"
   },
   "overrides": {
