@@ -2,7 +2,7 @@ export async function onRequestPost(context) {
   const { request, env } = context;
 
   const data = await generateRequestData(request);
-  console.log(data);
+  console.log('Signup request received');
 
   if (!data.email) {
     return new Response(JSON.stringify({ status: false, message: 'Email address required' }), {
