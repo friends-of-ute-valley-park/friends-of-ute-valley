@@ -7,19 +7,11 @@ import {
   getDay,
 } from "date-fns";
 import SocialLinksInline from "./SocialLinksInline.astro";
+import { isDateInList } from "../utils/date";
 
 const currentYear = new Date().getFullYear();
 const months = ["April", "May", "June", "July", "August", "September"];
 const volunteerEventDates: Date[] = [];
-
-const isVolunteerEventDate = (date: Date) => {
-  return volunteerEventDates.some(
-    (eventDate) =>
-      eventDate.getDate() === date.getDate() &&
-      eventDate.getMonth() === date.getMonth() &&
-      eventDate.getFullYear() === date.getFullYear(),
-  );
-};
 
 const getDaysInMonth = (year: number, month: number) => {
   const start = startOfMonth(new Date(year, month));
@@ -82,14 +74,14 @@ const getDaysInMonth = (year: number, month: number) => {
               ))}
               {daysInMonth.map((day) => (
                 <div
-                  class={`relative flex h-10 items-center justify-center bg-white ${isVolunteerEventDate(day) ? "bg-primary/5" : ""}`}
+                  class={`relative flex h-10 items-center justify-center bg-white ${isDateInList(day, volunteerEventDates) ? "bg-primary/5" : ""}`}
                 >
                   <span
-                    class={`font-mono text-xs ${isVolunteerEventDate(day) ? "font-black text-primary-dark" : "text-stone-600"}`}
+                    class={`font-mono text-xs ${isDateInList(day, volunteerEventDates) ? "font-black text-primary-dark" : "text-stone-600"}`}
                   >
                     {format(day, "d")}
                   </span>
-                  {isVolunteerEventDate(day) && (
+                  {isDateInList(day, volunteerEventDates) && (
                     <div class="absolute inset-0 border-2 border-primary-dark/20" />
                   )}
                 </div>
