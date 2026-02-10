@@ -1,21 +1,31 @@
 ---
-import InstagramIcon from "~icons/mdi/instagram";
-import FacebookIcon from "~icons/mdi/facebook";
+import { getCollection } from 'astro:content';
+import InstagramIcon from '~icons/mdi/instagram';
+import FacebookIcon from '~icons/mdi/facebook';
+import GithubIcon from '~icons/mdi/github';
+
+const iconComponents: Record<string, typeof FacebookIcon> = {
+  facebook: FacebookIcon,
+  instagram: InstagramIcon,
+  github: GithubIcon,
+};
+
+const socialLinks = (await getCollection('social-links'))
+  .filter((entry) => entry.data.showInline)
+  .sort((a, b) => a.data.priority - b.data.priority);
 ---
 
 <span class="mx-1 inline-flex space-x-2">
-  <a
-    href="https://www.facebook.com/FriendsOfUteValleyPark"
-    class="text-primary-dark focus-within:ring-2 focus-within:ring-primary-light hover:text-primary-light focus:outline-hidden"
-  >
-    <span class="sr-only">Facebook</span>
-    <FacebookIcon class="h-4 w-4" aria-hidden="true" />
-  </a>
-  <a
-    href="https://www.instagram.com/friendsofutevalleypark/"
-    class="text-primary-dark focus-within:ring-2 focus-within:ring-primary-light hover:text-primary-light focus:outline-hidden"
-  >
-    <span class="sr-only">Instagram</span>
-    <InstagramIcon class="h-4 w-4" aria-hidden="true" />
-  </a>
+  {socialLinks.map((entry) => {
+    const Icon = iconComponents[entry.data.icon];
+    return (
+      <a
+        href={entry.data.link}
+        class="text-primary-dark focus-within:ring-2 focus-within:ring-primary-light hover:text-primary-light focus:outline-hidden"
+      >
+        <span class="sr-only">{entry.data.title}</span>
+        <Icon class="h-4 w-4" aria-hidden="true" />
+      </a>
+    );
+  })}
 </span>

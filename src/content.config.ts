@@ -110,6 +110,18 @@ const trailConditionsCollection = defineCollection({
     }),
 });
 
+const socialLinksCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/social-links' }),
+  schema: () =>
+    z.object({
+      title: z.string(),
+      link: z.string(),
+      icon: z.string(),
+      priority: z.number(),
+      showInline: z.boolean(),
+    }),
+});
+
 const volunteerSpotlightCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/volunteer-spotlight' }),
   schema: ({ image }: SchemaContext) =>
@@ -135,4 +147,5 @@ export const collections = {
   wishlist: wishlistCollection,
   'volunteer-spotlight': volunteerSpotlightCollection,
   'trail-conditions': trailConditionsCollection,
+  'social-links': socialLinksCollection,
 };
