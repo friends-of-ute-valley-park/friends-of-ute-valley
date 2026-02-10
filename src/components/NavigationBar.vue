@@ -100,14 +100,14 @@ const navigation = [
             <a v-for="item in navigation" :key="item.name" :href="item.href"
               :aria-current="item.current ? 'page' : undefined" :class="[
                 item.current ? 'bg-white text-primary border-b-2 border-primary' : 'text-stone-500 hover:bg-stone-100 hover:text-primary',
-                'inline-flex items-center px-3 h-full text-[10px] font-mono font-black uppercase tracking-[0.2em] border-r border-stone-300 transition-colors',
+                'inline-flex items-center px-4 h-full text-[10px] font-mono font-black uppercase tracking-[0.2em] border-r border-stone-300 transition-colors',
               ]">{{ item.name }}</a>
 
             <!-- Leave No Trace Dropdown -->
             <Popover class="relative h-full border-r border-stone-300">
               <PopoverButton :class="[
                 props.page.startsWith('/leavenotrace') ? 'bg-white text-primary' : 'text-stone-500 hover:bg-stone-100 hover:text-primary',
-                'flex items-center px-3 h-full text-[10px] font-mono font-black uppercase tracking-[0.2em] transition-colors focus:outline-none',
+                'flex items-center px-4 h-full text-[10px] font-mono font-black uppercase tracking-[0.2em] transition-colors focus:outline-none',
               ]">
                 <span>Leave No Trace</span>
                 <i-heroicons-chevron-down class="ml-2 h-4 w-4 opacity-50" aria-hidden="true" />
