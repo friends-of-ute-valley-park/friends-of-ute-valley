@@ -12,8 +12,12 @@ import heroImage2 from "../assets/images/ute-valley-park-hero-2.jpg";
 import heroImage3 from "../assets/images/ute-valley-park-hero-3.jpg";
 import cta from "../assets/images/volunteer-5.jpg";
 
-import { getCollection } from "astro:content";
-import trailConditions from "../data/trail-conditions/trail-conditions.json";
+import { getCollection, getEntry } from "astro:content";
+const trailConditionsEntry = await getEntry("trail-conditions", "current");
+if (!trailConditionsEntry) {
+  throw new Error("Trail conditions data missing");
+}
+const trailConditions = trailConditionsEntry.data;
 const publishedNewsEntries = await getCollection("news", ({ data }) => {
   return data.published === true;
 });
