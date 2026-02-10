@@ -2,6 +2,8 @@
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import { MeetingLocationParser } from "../../utils/EventData";
+import { Image } from "astro:assets";
+import volunteerImage from "../../assets/images/volunteer.jpg";
 
 export async function getStaticPaths() {
   const eventsEntries = await getCollection("events");
@@ -121,10 +123,9 @@ const locationInformation = MeetingLocationParser(entry.data, meetingLocations);
         >
           {entry.data.title}
         </h1>
-        <img
-          loading="lazy"
+        <Image
+          src={volunteerImage}
           class="h-96 w-full rounded-lg object-cover shadow-lg"
-          src="/images/volunteer.jpg"
           alt="volunteers working in Ute Valley Park"
         />
         <div class="mt-6">
