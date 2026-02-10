@@ -39,7 +39,7 @@
     "@typescript-eslint/parser": "^8.54.0",
     "oxfmt": "^0.28.0",
     "oxlint": "^1.43.0",
-    "oxlint-tsgolint": "^0.11.4",
+    "oxlint-tsgolint": "^0.11.5",
     "tailwindcss": "^4.1.18",
     "unplugin-icons": "^23.0.1",
     "unplugin-vue-components": "^31.0.0",
