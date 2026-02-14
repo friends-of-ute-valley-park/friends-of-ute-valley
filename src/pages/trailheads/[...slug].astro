@@ -19,7 +19,7 @@ interface Props {
 const { entry } = Astro.props;
 ---
 
-<Layout title={entry.data.name}>
+<Layout title={entry.data.name} description={entry.data.description}>
   <main class="bg-stone-50 text-stone-900">
     <!-- Trailhead Header -->
     <section class="border-b border-stone-300">

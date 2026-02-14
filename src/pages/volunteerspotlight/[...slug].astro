@@ -23,7 +23,10 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<Layout title={`Volunteer Spotlight: ${entry.data.name}`}>
+<Layout
+  title={`Volunteer Spotlight: ${entry.data.name}`}
+  description={entry.data.intro}
+>
   <main class="bg-stone-50 text-stone-900">
     <!-- Volunteer Spotlight Header -->
     <section class="border-b border-stone-300">

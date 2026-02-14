@@ -22,7 +22,10 @@ import { TURNSTILE_SITE_KEY } from "astro:env/client";
 const meetingLocations = await getCollection("trailheads");
 ---
 
-<Layout title="Volunteer">
+<Layout
+  title="Volunteer"
+  description="Volunteer with Friends of Ute Valley Park and join trail maintenance and stewardship events in Colorado Springs."
+>
   <main class="bg-stone-50 text-stone-900">
     <!-- Hero Section -->
     <section

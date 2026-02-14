@@ -5,7 +5,10 @@ import TeamList from '@components/TeamList.astro';
 import { TURNSTILE_SITE_KEY } from 'astro:env/client';
 ---
 
-<Layout title="Contact">
+<Layout
+  title="Contact"
+  description="Contact Friends of Ute Valley Park for questions about volunteering, park stewardship, partnerships, or general inquiries."
+>
   <main class="bg-stone-50">
     <ContactForm client:idle turnstileSiteKey={TURNSTILE_SITE_KEY} />
     

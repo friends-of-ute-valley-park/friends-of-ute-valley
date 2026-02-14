@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.friendsofutevalleypark.com/sitemap-index.xml

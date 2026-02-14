@@ -6,7 +6,10 @@ import { getCollection } from "astro:content";
 const volunteerSpotlights = await getCollection("volunteer-spotlight");
 ---
 
-<Layout title="Volunteer Spotlight">
+<Layout
+  title="Volunteer Spotlight"
+  description="Meet the volunteers behind Friends of Ute Valley Park and read spotlight stories from community stewards."
+>
   <main class="bg-stone-50 text-stone-900">
     <!-- Volunteer Spotlight Header -->
     <section class="border-b border-stone-300">
