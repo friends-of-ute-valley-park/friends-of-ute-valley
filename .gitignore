@@ -44,7 +44,9 @@ examples/**/env.d.ts
 *.code-workspace
 packages/astro/e2e/fixtures/cloudflare/.wrangler/deploy/config.json
 
-.agent/
-.agents/
-.claude/
-.gemini/
+
+.agent
+.agents
+.claude
+.gemini
+.github/skills
