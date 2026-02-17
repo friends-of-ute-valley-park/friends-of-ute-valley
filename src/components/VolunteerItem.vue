@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue';
+import { computed } from 'vue';
 import { MeetingLocationParser } from '@/utils/EventData';
 import { MeetingLocation, VolunteerEvent } from '@/typings';
 
@@ -54,17 +54,12 @@ const props = defineProps<{
   meetingLocations: MeetingLocation[];
 }>();
 
-const meetingLocation = ref('');
-const directionsLink = ref('');
+const locationInformation = computed(() => MeetingLocationParser(props.volunteerEvent.data, props.meetingLocations));
+const meetingLocation = computed(() => locationInformation.value.name ?? '');
+const directionsLink = computed(() => locationInformation.value.directionsLink ?? '');
 
 const formattedDate = computed(() => {
   return new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(new Date(props.volunteerEvent.data.date));
-});
-
-onMounted(() => {
-  const locationInformation = MeetingLocationParser(props.volunteerEvent.data, props.meetingLocations);
-  meetingLocation.value = locationInformation.name ?? '';
-  directionsLink.value = locationInformation.directionsLink ?? '';
 });
 </script>
 
