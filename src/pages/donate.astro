@@ -3,9 +3,6 @@ import { Image } from "astro:assets";
 
 import Layout from "../layouts/Layout.astro";
 import CheckBadgeIcon from "~icons/heroicons/check-badge";
-// New image imports for donation incentives
-import TshirtImage from "../assets/images/merch/tshirt.png";
-import HatImage from "../assets/images/merch/hat.png";
 
 const benefits = [
   "Expanded trails",
@@ -16,35 +13,6 @@ const benefits = [
   "Volunteer appreciation",
 ];
 import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
-
-// New: Donation Tiers Data
-const donationTiers = [
-  {
-    name: "Park Supporter",
-    incentive: "Supporter T-Shirt",
-    image: TshirtImage,
-    alt: "Friends of Ute Valley Park Supporter T-Shirt",
-    description: "Show your park pride with a Ute Valley Park t-shirt!",
-    donationAmount: "$40",
-  },
-  {
-    name: "Trail Guardian",
-    incentive: "Guardian Hat",
-    image: HatImage,
-    alt: "Friends of Ute Valley Park Guardian Hat",
-    description: "Rep your favorite park with a Ute Valley Park hat!",
-    donationAmount: "$60",
-  },
-  {
-    name: "Valley Champion",
-    incentive: "Champion Swag Pack",
-    images: [TshirtImage, HatImage], // Array for multiple images
-    altTshirt: "Friends of Ute Valley Park Champion T-Shirt",
-    altHat: "Friends of Ute Valley Park Champion Hat",
-    description: "The complete package — t-shirt, hat, and stickers/buttons!",
-    donationAmount: "$100",
-  },
-];
 ---
 
 <Layout
@@ -114,99 +82,6 @@ const donationTiers = [
             class="absolute inset-0 border-24 border-white/20 pointer-events-none"
           >
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Donation Tiers -->
-    <section class="py-24 border-b border-stone-300">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-        <div class="mb-16">
-          <h2
-            class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-6"
-          >
-            Supporter <span class="text-primary-dark italic">Gifts.</span>
-          </h2>
-          <p
-            class="max-w-2xl text-lg text-stone-600 font-medium leading-relaxed"
-          >
-            As a thank you for your support, we offer exclusive field apparel
-            and stickers for specific donation levels.
-          </p>
-        </div>
-
-        <div
-          class="grid grid-cols-1 md:grid-cols-3 gap-px bg-stone-300 border border-stone-300"
-        >
-          {
-            donationTiers.map((tier) => (
-              <div class="bg-white p-8 flex flex-col justify-between hover:bg-stone-50 transition-colors group">
-                <div class="space-y-6">
-                  <div class="flex justify-between items-start">
-                    <div class="space-y-1">
-                      <p class="font-mono text-[10px] font-black uppercase tracking-widest text-primary-dark">
-                        {tier.name}
-                      </p>
-                      <h3 class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900 leading-tight">
-                        {tier.incentive}
-                      </h3>
-                    </div>
-                    <div class="text-3xl font-mono font-black tracking-tighter text-stone-900">
-                      {tier.donationAmount}
-                    </div>
-                  </div>
-
-                  <div class="aspect-square bg-stone-100 border border-stone-200 flex items-center justify-center overflow-hidden p-8">
-                    {tier.images ? (
-                      <div class="grid grid-cols-2 gap-4">
-                        <Image
-                          src={tier.images[0]}
-                          alt={tier.altTshirt}
-                          class="w-full h-auto transition-all duration-700"
-                        />
-                        <Image
-                          src={tier.images[1]}
-                          alt={tier.altHat}
-                          class="w-full h-auto transition-all duration-700"
-                        />
-                      </div>
-                    ) : (
-                      <Image
-                        src={tier.image}
-                        alt={tier.alt}
-                        class="w-full h-auto transition-all duration-700"
-                      />
-                    )}
-                  </div>
-
-                  <p class="text-sm text-stone-600 leading-relaxed font-medium">
-                    {tier.description}
-                  </p>
-                </div>
-
-                <div class="pt-8">
-                  <a
-                    href="https://trailsandopenspacecoalition-bloom.kindful.com/embeds/65db98e0-d794-4712-bf37-144689d58de3"
-                    class="block w-full py-4 bg-stone-900 text-white text-center font-mono text-xs font-black uppercase tracking-widest hover:bg-primary-dark transition-colors"
-                  >
-                    Select Tier
-                  </a>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-
-        <div class="mt-12 p-8 border border-stone-200 bg-stone-100/50">
-          <p
-            class="text-xs font-mono uppercase tracking-widest text-stone-500 text-center leading-relaxed"
-          >
-            Note: To receive your thank-you gift, email your donation receipt to <a
-              href="mailto:contact@friendsofutevalleypark.com"
-              class="text-primary-dark font-black underline"
-              >contact@friendsofutevalleypark.com</a
-            > for coordination of delivery.
-          </p>
         </div>
       </div>
     </section>
