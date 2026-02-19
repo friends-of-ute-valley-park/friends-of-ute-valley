@@ -1,3 +1,22 @@
+<script setup lang="ts">
+import { computed } from 'vue';
+import { MeetingLocationParser } from '@/utils/EventData';
+import { MeetingLocation, VolunteerEvent } from '@/typings';
+
+const props = defineProps<{
+  volunteerEvent: VolunteerEvent;
+  meetingLocations: MeetingLocation[];
+}>();
+
+const locationInformation = computed(() => MeetingLocationParser(props.volunteerEvent.data, props.meetingLocations));
+const meetingLocation = computed(() => locationInformation.value.name ?? '');
+const directionsLink = computed(() => locationInformation.value.directionsLink ?? '');
+
+const formattedDate = computed(() => {
+  return new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(new Date(props.volunteerEvent.data.date));
+});
+</script>
+
 <template>
   <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 w-full">
     <div class="space-y-4 flex-1">
@@ -43,25 +62,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { computed } from 'vue';
-import { MeetingLocationParser } from '@/utils/EventData';
-import { MeetingLocation, VolunteerEvent } from '@/typings';
-
-const props = defineProps<{
-  volunteerEvent: VolunteerEvent;
-  meetingLocations: MeetingLocation[];
-}>();
-
-const locationInformation = computed(() => MeetingLocationParser(props.volunteerEvent.data, props.meetingLocations));
-const meetingLocation = computed(() => locationInformation.value.name ?? '');
-const directionsLink = computed(() => locationInformation.value.directionsLink ?? '');
-
-const formattedDate = computed(() => {
-  return new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(new Date(props.volunteerEvent.data.date));
-});
-</script>
 
 <style scoped>
 .font-serif {
