@@ -1,16 +1,17 @@
 ---
-import '../styles/global.css';
-import { ClientRouter } from 'astro:transitions';
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 
-import NavigationBar from '@components/NavigationBar.vue';
-import NavigationFooter from '@components/NavigationFooter.astro';
-import SocialLinks from '@components/SocialLinks.astro';
-import VolunteerBanner from '@components/VolunteerBanner.vue';
-import 'inter-ui/inter.css';
+import NavigationBar from "@components/NavigationBar.vue";
+import NavigationFooter from "@components/NavigationFooter.astro";
+import SocialLinks from "@components/SocialLinks.astro";
+import VolunteerBanner from "@components/VolunteerBanner.vue";
+import DomainChange from "@components/DomainChange.astro";
+import "inter-ui/inter.css";
 
-import { getCollection } from 'astro:content';
-import { isFuture, endOfDay } from 'date-fns';
-const upcomingVolunteerEvents = await getCollection('events', ({ data }) => {
+import { getCollection } from "astro:content";
+import { isFuture, endOfDay } from "date-fns";
+const upcomingVolunteerEvents = await getCollection("events", ({ data }) => {
   return isFuture(endOfDay(new Date(data.date)));
 });
 
@@ -19,7 +20,10 @@ export interface Props {
   description?: string;
 }
 
-const { title, description = 'Friends of Ute Valley Park is a volunteer-led nonprofit helping protect, restore, and advocate for Ute Valley Park in Colorado Springs.' } = Astro.props as Props;
+const {
+  title,
+  description = "Friends of Ute Valley Park is a volunteer-led nonprofit helping protect, restore, and advocate for Ute Valley Park in Colorado Springs.",
+} = Astro.props as Props;
 ---
 
 <!doctype html>
@@ -34,14 +38,28 @@ const { title, description = 'Friends of Ute Valley Park is a volunteer-led nonp
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title} - Friends of Ute Valley Park</title>
     <link rel="preconnect" href="https://challenges.cloudflare.com" />
-    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script
+      is:inline
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer></script>
   </head>
   <ClientRouter />
 
-  <body class="font-sans bg-stone-50 selection:bg-accent/30 selection:text-primary-dark">
-    <a href="#main-content" class="sr-only bg-white text-black underline focus:not-sr-only">Skip to main content</a>
+  <body
+    class="font-sans bg-stone-50 selection:bg-accent/30 selection:text-primary-dark"
+  >
+    <a
+      href="#main-content"
+      class="sr-only bg-white text-black underline focus:not-sr-only"
+      >Skip to main content</a
+    >
     <div class="min-h-screen bg-stone-50">
-      <VolunteerBanner events={upcomingVolunteerEvents.map((event) => event.data)} client:idle />
+      <DomainChange />
+      <VolunteerBanner
+        events={upcomingVolunteerEvents.map((event) => event.data)}
+        client:idle
+      />
       <NavigationBar page={Astro.url.pathname} client:idle>
         <Fragment slot="social-links">
           <SocialLinks />

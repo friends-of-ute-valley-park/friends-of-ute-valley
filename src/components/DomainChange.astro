@@ -1,0 +1,58 @@
+---
+// src/components/DomainChange.astro
+---
+
+<div class="bg-stone-900 border-b border-stone-700 relative z-60">
+    <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
+        <div
+            class="flex flex-col sm:flex-row items-start sm:items-center justify-between py-3 sm:py-4 gap-4"
+        >
+            <div class="flex items-center gap-4">
+                <!-- Structural icon container -->
+                <div
+                    class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 border border-stone-600 bg-stone-800 shrink-0 shadow-[2px_2px_0px_0px_rgba(251,191,36,0.3)]"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-4 h-4 sm:w-5 sm:h-5 text-amber-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path
+                            stroke-linecap="square"
+                            stroke-linejoin="miter"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <h2
+                        class="font-serif font-black uppercase tracking-tighter text-stone-100 text-sm sm:text-base leading-none mb-1.5"
+                    >
+                        Website Domain Notice
+                    </h2>
+                    <p
+                        class="font-sans text-xs sm:text-sm text-stone-300 font-medium"
+                    >
+                        Friends of Ute Valley Park is now at <a
+                            href="https://fuvp.org"
+                            class="text-amber-400 font-bold underline decoration-amber-400/50 hover:decoration-amber-400 transition-colors"
+                            >fuvp.org</a
+                        >. Please update your bookmarks.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Technical label -->
+            <div class="pl-12 sm:pl-0">
+                <div
+                    class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500 border border-stone-700 px-2 py-1 bg-stone-800/50 inline-block"
+                >
+                    System Update
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
