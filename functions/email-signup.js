@@ -46,7 +46,7 @@ export async function onRequestPost(context) {
         },
       ],
       confirmation: 'force',
-      sender_email: 'contact@friendsofutevalleypark.com',
+      sender_email: 'contact@fuvp.org',
       template_id: env.SENDPULSE_CONFIRMATION_ID,
       message_lang: 'en',
     }),

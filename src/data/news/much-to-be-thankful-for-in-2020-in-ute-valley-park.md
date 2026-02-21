@@ -27,6 +27,6 @@ With the guidance help of the Colorado Springs Park, Recreation, and Cultural Se
 
 Also, Dillon Strub and 18 volunteers joined in to help him on an Eagle Scout project. Their combined efforts totaled 81 hours of work, resulting in 200 feet of trail being decommissioned and/or restored, along with 60 feet of split raill fencing installed and five drains constructed. Many thanks to Dillon and his team for their efforts to improve UVP for everyone.
 
-Looking ahead, the FUVP is in the process of revamping our website (friendsofutevalleypark.com) to provide a new map, volunteer workday signup information, other news, alerts, and UVP safety and usage tips. Keep an eye on this space and the FUVP website for updates as changes will come about early next year.
+Looking ahead, the FUVP is in the process of revamping our website (fuvp.org) to provide a new map, volunteer workday signup information, other news, alerts, and UVP safety and usage tips. Keep an eye on this space and the FUVP website for updates as changes will come about early next year.
 
 Which brings us back to how this piece started. But I am so hopeful that in my offering of a Happy New Year wish to everyone, that there is an overly significant amount of HAPPY included for us all in 2021!

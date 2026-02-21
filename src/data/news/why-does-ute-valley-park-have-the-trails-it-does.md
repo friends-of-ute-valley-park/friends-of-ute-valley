@@ -10,7 +10,7 @@ The Friends of Ute Valley Park receives many inquiries over the year about Ute V
 
 ## The Master Plan (2015)
 
-For those unaware Friends of Ute Valley Park is a volunteer organization consisting of [8 volunteer committee members](https://www.friendsofutevalleypark.com/about/) who are tasked with the stewardship and educating users about Ute Valley Park and the [7 Principles of Leave No Trace](https://lnt.org/why/7-principles/). Additionally, we organize and recruit volunteers for our bi-monthly volunteer evenings and special volunteer events. During these events volunteers assist the city of Colorado Springs park ranger in implementing the [2015 Master Plan](https://coloradosprings.gov/sites/default/files/parks_recreation_and_cultural_services/parks/15.03.12_ute_mmp.pdf).
+For those unaware Friends of Ute Valley Park is a volunteer organization consisting of [8 volunteer committee members](https://fuvp.org/about/) who are tasked with the stewardship and educating users about Ute Valley Park and the [7 Principles of Leave No Trace](https://lnt.org/why/7-principles/). Additionally, we organize and recruit volunteers for our bi-monthly volunteer evenings and special volunteer events. During these events volunteers assist the city of Colorado Springs park ranger in implementing the [2015 Master Plan](https://coloradosprings.gov/sites/default/files/parks_recreation_and_cultural_services/parks/15.03.12_ute_mmp.pdf).
 
 In 2015 the city of Colorado Springs in coordination with the community developed the Ute Valley Park Master Plan. The Master Plan establishes a plan for how the park is laid out to protect wilife, prevent damaged resources and allow the community to enjoy its natural beauty.
 

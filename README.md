@@ -1,4 +1,4 @@
-# Welcome to [Friends of Ute Valley Park](https://www.friendsofutevalleypark.com)
+# Welcome to [Friends of Ute Valley Park](https://fuvp.org)
 
 This is the public repository of Friends of Ute Valley Park.
 

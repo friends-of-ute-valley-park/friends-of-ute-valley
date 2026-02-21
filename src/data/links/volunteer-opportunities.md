@@ -1,5 +1,5 @@
 ---
 title: Volunteer Opportunities
-link: https://www.friendsofutevalleypark.com/volunteer/
+link: https://fuvp.org/volunteer/
 priority: 99
 ---

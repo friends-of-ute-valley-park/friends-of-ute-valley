@@ -14,11 +14,11 @@ As we go through our life, we come to realize that change is and will always be 
 
 Some change we initiate, some we are good to accept, and some we really resist. Change is inevitable, time for a change, and change is good are all expressions we commonly hear on the subject. We recently changed seasons from winter to spring, although with our winter weather of late it is often difficult to discern there was a change.
 
-Some good changes have happened recently on The Friends of Ute Valley Park website ([www.friendsofutevalleypark.com](https://www.friendsofutevalleypark.com/)). We invite you to come visit the site to see our fresh new look that provides current news, park use rules, volunteering opportunities, and other key details. On the site we have also included the Leave No Trace 7 principles to encourage all of us to do our very best when enjoying other parks.
+Some good changes have happened recently on The Friends of Ute Valley Park website ([fuvp.org](https://fuvp.org/)). We invite you to come visit the site to see our fresh new look that provides current news, park use rules, volunteering opportunities, and other key details. On the site we have also included the Leave No Trace 7 principles to encourage all of us to do our very best when enjoying other parks.
 
 Warmer, drier weather will eventually arrive, and along with it the Friends of Ute Valley Park are beginning our Volunteer Evening Work Sessions. They get underway on Wednesday, April 7. Those sessions take place, weather permitting, the first and third Wednesday of the month, from April through September. Last year we were challenged by the effects of COVID in not allowing us the number of volunteers that were willing to turn out. This year, with good guidance from the [Colorado Springs Park, Recreation and Cultural Services](https://coloradosprings.gov/parks), one change has been made. If the volunteer group grows larger, then multiple groups can be created, which will allow for work to be done on different projects in separate areas to provide the necessary social distancing.
 
-Registration is done via the CERVIS site. To sign-up and learn all the details go to [www.friendsofutevalleypark.com](http://www.friendsofutevalleypark.com).
+Registration is done via the CERVIS site. To sign-up and learn all the details go to [fuvp.org](http://fuvp.org).
 
 Listed below are some of the tentatively scheduled work projects for this year:
 

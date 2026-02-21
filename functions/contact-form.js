@@ -48,8 +48,8 @@ export const onRequestPost = [
 
       // Send email using Resend
       await resend.emails.send({
-        from: 'contact@friendsofutevalleypark.com',
-        to: 'contact@friendsofutevalleypark.com',
+        from: 'contact@fuvp.org',
+        to: 'contact@fuvp.org',
         subject: `New Contact Form Submission from ${data.name}`,
         text: emailContent,
       });

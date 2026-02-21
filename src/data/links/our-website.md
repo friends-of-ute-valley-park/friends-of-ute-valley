@@ -1,5 +1,5 @@
 ---
 title: Our Website
-link: https://www.friendsofutevalleypark.com
+link: https://fuvp.org
 priority: 100
 ---

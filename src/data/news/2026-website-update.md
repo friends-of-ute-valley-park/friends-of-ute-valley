@@ -1,12 +1,12 @@
 ---
-title: A fresh look for friendsofutevalleypark.com
+title: A fresh look for fuvp.org
 published: true
 publishedOn: 2026-02-09T12:00:00.000Z
 coverImage: /src/data/news/ute-news-2026-02-09.jpg
 previewText: The Friends of Ute Valley Park website got a fresh coat of paint. Here's what changed and why.
 ---
 
-If you've visited our site recently, you probably noticed things look a little different around here. We gave friendsofutevalleypark.com a pretty thorough refresh, and we wanted to walk you through what changed and why.
+If you've visited our site recently, you probably noticed things look a little different around here. We gave fuvp.org a pretty thorough refresh, and we wanted to walk you through what changed and why.
 
 ## What's new
 

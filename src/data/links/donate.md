@@ -1,5 +1,5 @@
 ---
 title: Donate
-link: https://www.friendsofutevalleypark.com/donate/
+link: https://fuvp.org/donate/
 priority: 97
 ---

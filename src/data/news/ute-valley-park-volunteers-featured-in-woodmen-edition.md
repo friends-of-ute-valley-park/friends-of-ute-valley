@@ -41,4 +41,4 @@ Another volunteer chimes in: "Party pooper."
 
 Cirincione replies: "No, the party pooper is the jobs that we all have, otherwise we could have been out here at 8 o’clock this morning having fun."
 
-To help build trails and maintain Ute Valley Park, volunteer your time by coming out on the first and third Wednesdays through the fall. Sign up on the Friends of Ute Valley Park Facebook page or email dan@friendsofutevalleypark.com .
+To help build trails and maintain Ute Valley Park, volunteer your time by coming out on the first and third Wednesdays through the fall. Sign up on the Friends of Ute Valley Park Facebook page or email contact@fuvp.org .
