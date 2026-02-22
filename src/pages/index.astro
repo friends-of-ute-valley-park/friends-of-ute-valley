@@ -218,8 +218,8 @@ const winterTips = [
         <Picture
           src={heroImage2}
           formats={["avif", "webp"]}
-          width="800"
-          height="800"
+          width="600"
+          height="600"
           alt="Trail"
           class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
         />
@@ -235,8 +235,8 @@ const winterTips = [
         <Picture
           src={heroImage3}
           formats={["avif", "webp"]}
-          width="800"
-          height="800"
+          width="600"
+          height="600"
           alt="Vista"
           class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
         />
@@ -252,8 +252,8 @@ const winterTips = [
         <Picture
           src={cta}
           formats={["avif", "webp"]}
-          width="800"
-          height="800"
+          width="600"
+          height="600"
           alt="Volunteer"
           class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
         />
@@ -266,7 +266,7 @@ const winterTips = [
     </section>
 
     <!-- Winter Stewardship: Technical Guidelines -->
-    <section class="py-24 border-b border-stone-300">
+    <section class="py-24 border-b border-stone-300 content-defer">
       <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
         <div class="mb-16">
           <h2
@@ -310,7 +310,7 @@ const winterTips = [
     </section>
 
     <!-- Stats Section: Redesigned in place -->
-    <section class="py-24 bg-stone-900 text-white">
+    <section class="py-24 bg-stone-900 text-white content-defer">
       <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
@@ -355,7 +355,7 @@ const winterTips = [
     </section>
 
     <!-- News Section: The Bulletin Board -->
-    <section class="py-24 border-b border-stone-300">
+    <section class="py-24 border-b border-stone-300 content-defer">
       <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
         <div
           class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16"
@@ -424,7 +424,7 @@ const winterTips = [
     </section>
 
     <!-- Engagement: Direct Action -->
-    <section class="py-24 bg-stone-100">
+    <section class="py-24 bg-stone-100 content-defer">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           class="bg-white border-2 border-primary-dark p-8 md:p-16 shadow-[16px_16px_0px_0px_var(--color-accent)] relative overflow-hidden"
@@ -482,7 +482,7 @@ const winterTips = [
       </div>
     </section>
 
-    <div class="bg-stone-50 border-t border-stone-300">
+    <div class="bg-stone-50 border-t border-stone-300 content-defer">
       <LeaveNoTrace />
     </div>
   </main>
@@ -497,6 +497,12 @@ const winterTips = [
 
   .font-serif {
     font-family: "EditorialSerif", serif;
+  }
+
+  /* Defer layout of below-fold sections until near viewport */
+  .content-defer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
   }
 
   /* Grid pattern overlay for that technical field-notes look */
