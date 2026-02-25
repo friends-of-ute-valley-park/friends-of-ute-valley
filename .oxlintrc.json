@@ -1,0 +1,11 @@
+{
+  "rules": {},
+  "overrides": [
+    {
+      "files": ["**/*.vue"],
+      "rules": {
+        "max-lines": ["error", { "max": 500 }]
+      }
+    }
+  ]
+}
