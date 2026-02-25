@@ -1,10 +1,22 @@
 ---
 import { Picture } from "astro:assets";
 
-import DogImages from "@components/DogImages.vue";
 import Layout from "@layouts/Layout.astro";
 
 import DogImage from "../../assets/images/dog.jpg";
+import FreyjaPup from "../../assets/images/dogs/freyja_pup.jpg";
+import SweetLife from "../../assets/images/dogs/the.sweet.life.of.five.jpg";
+import LoganRescue from "../../assets/images/dogs/logan.and.the.rescue.crew.jpg";
+import Marisslh from "../../assets/images/dogs/marisslh.jpg";
+import QueenPadme from "../../assets/images/dogs/queen_padme_21.jpg";
+
+const dogs = [
+  { src: FreyjaPup, handle: "freyja_pup" },
+  { src: SweetLife, handle: "the.sweet.life.of.five" },
+  { src: LoganRescue, handle: "logan.and.the.rescue.crew" },
+  { src: Marisslh, handle: "marisslh" },
+  { src: QueenPadme, handle: "queen_padme_21" },
+];
 
 const otherParks = [
   {
@@ -97,12 +109,7 @@ const rules = [
             </p>
 
             <div class="flex flex-wrap gap-4 pt-4">
-              <a
-                href="#rules"
-                class="btn-primary-cta"
-              >
-                Leash Rules
-              </a>
+              <a href="#rules" class="btn-primary-cta"> Leash Rules </a>
               <a
                 href="#off-leash"
                 class="px-8 py-4 border-2 border-stone-900 font-mono text-xs font-black uppercase tracking-widest hover:bg-stone-50 transition-all"
@@ -117,8 +124,53 @@ const rules = [
         <div
           class="lg:col-span-5 bg-stone-50 p-0 relative group overflow-hidden min-h-[400px]"
         >
-          <div class="absolute inset-0 transition-all duration-1000">
-            <DogImages client:idle />
+          <div class="absolute inset-0 grid grid-cols-2 gap-3 p-3">
+            <div class="grid grid-cols-1 gap-3 content-center">
+              {
+                dogs.slice(0, 2).map((dog) => (
+                  <div class="group relative aspect-square overflow-hidden border border-stone-300 bg-white">
+                    <a
+                      href={`https://instagram.com/${dog.handle}`}
+                      target="_blank"
+                    >
+                      <Picture
+                        src={dog.src}
+                        formats={["avif", "webp"]}
+                        alt="Dog at Ute Valley Park"
+                        width={400}
+                        class="h-full w-full object-cover object-center"
+                      />
+                      <p class="absolute bottom-0 left-0 border-t border-r border-stone-200 bg-white/90 px-2 py-1 font-mono text-[8px] tracking-widest text-stone-900 uppercase">
+                        @{dog.handle}
+                      </p>
+                    </a>
+                  </div>
+                ))
+              }
+            </div>
+            <div class="grid grid-cols-1 gap-3 content-center">
+              {
+                dogs.slice(2, 5).map((dog) => (
+                  <div class="group relative aspect-square overflow-hidden border border-stone-300 bg-white">
+                    <a
+                      href={`https://instagram.com/${dog.handle}`}
+                      target="_blank"
+                    >
+                      <Picture
+                        src={dog.src}
+                        formats={["avif", "webp"]}
+                        alt="Dog at Ute Valley Park"
+                        width={400}
+                        class="h-full w-full object-cover object-center"
+                      />
+                      <p class="absolute bottom-0 left-0 border-t border-r border-stone-200 bg-white/90 px-2 py-1 font-mono text-[8px] tracking-widest text-stone-900 uppercase">
+                        @{dog.handle}
+                      </p>
+                    </a>
+                  </div>
+                ))
+              }
+            </div>
           </div>
           <div
             class="absolute bottom-8 left-8 z-10 px-4 py-2 bg-primary-dark border border-primary-dark font-mono text-[10px] uppercase tracking-[0.2em] text-white font-black shadow-[4px_4px_0px_0px_var(--color-accent)]"
@@ -215,7 +267,9 @@ const rules = [
             <h2
               class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 leading-none"
             >
-              Off-Leash Dog <span class="text-primary-dark italic">Parks Nearby.</span>
+              Off-Leash Dog <span class="text-primary-dark italic"
+                >Parks Nearby.</span
+              >
             </h2>
             <p class="mt-4 text-stone-500 font-medium">
               Nearby off-leash dog parks where your pup can run free.
