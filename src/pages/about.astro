@@ -2,7 +2,7 @@
 import LeaveNoTraceSmall from "@components/LeaveNoTraceSmall.astro";
 import TeamList from "@components/TeamList.astro";
 import Layout from "@layouts/Layout.astro";
-import OldPhotos from "@components/OldPhotos.vue";
+import OldPhotos from "@components/OldPhotos.astro";
 import StatsCard from "@components/StatsCard.astro";
 ---
 
@@ -281,7 +281,7 @@ import StatsCard from "@components/StatsCard.astro";
             Park <span class="text-primary-dark italic">Gallery.</span>
           </h2>
         </div>
-        <OldPhotos client:visible />
+        <OldPhotos />
       </div>
     </section>
 

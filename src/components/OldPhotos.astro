@@ -1,0 +1,90 @@
+---
+import { Picture } from "astro:assets";
+
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/images/old-ute-valley-park-photos/old-ute-*.jpg",
+  { eager: true },
+);
+
+const sorted = Object.entries(allImages)
+  .map(([path, mod]) => {
+    const match = path.match(/old-ute-(\d+)\.jpg$/);
+    return { num: match ? parseInt(match[1]) : 0, image: mod.default };
+  })
+  .sort((a, b) => a.num - b.num);
+
+const initialPhotos = sorted.slice(0, 6);
+const morePhotos = sorted.slice(6);
+---
+
+<div class="space-y-12">
+  <div class="mb-8 flex items-center gap-4">
+    <span class="inline-block h-px w-8 bg-stone-300"></span>
+    <span
+      class="font-mono text-[10px] font-black tracking-[0.2em] text-stone-500 uppercase"
+      >Park History</span
+    >
+  </div>
+
+  <div
+    class="grid grid-cols-1 gap-px border border-stone-300 bg-stone-300 sm:grid-cols-2 lg:grid-cols-3"
+  >
+    {
+      initialPhotos.map(({ image, num }) => (
+        <div class="group relative aspect-square overflow-hidden bg-white">
+          <Picture
+            src={image}
+            alt={`Historic Ute Valley Park photo ${num}`}
+            widths={[400, 600, 800]}
+            formats={["avif", "webp"]}
+            class="h-full w-full scale-105 object-cover transition-all duration-1000 group-hover:scale-100"
+            loading="lazy"
+          />
+          <div class="pointer-events-none absolute inset-0 border-12 border-white/20" />
+        </div>
+      ))
+    }
+  </div>
+
+  <div id="view-more-btn" class="flex justify-center pt-8">
+    <button
+      class="border-2 border-stone-900 px-8 py-4 font-mono text-xs font-black tracking-widest uppercase transition-all hover:bg-stone-900 hover:text-white active:scale-95"
+      data-toggle-photos
+    >
+      View More Photos
+    </button>
+  </div>
+
+  <div id="more-photos" class="hidden space-y-12">
+    <div
+      class="grid grid-cols-1 gap-px border border-stone-300 bg-stone-300 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      {
+        morePhotos.map(({ image, num }) => (
+          <div class="group relative aspect-square overflow-hidden bg-white">
+            <Picture
+              src={image}
+              alt={`Historic Ute Valley Park photo ${num}`}
+              widths={[400, 600, 800]}
+              formats={["avif", "webp"]}
+              class="h-full w-full scale-105 object-cover transition-all duration-1000 group-hover:scale-100"
+              loading="lazy"
+            />
+            <div class="pointer-events-none absolute inset-0 border-12 border-white/20" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  const btn = document.querySelector("[data-toggle-photos]");
+  const btnWrapper = document.getElementById("view-more-btn");
+  const morePhotos = document.getElementById("more-photos");
+
+  btn?.addEventListener("click", () => {
+    morePhotos?.classList.remove("hidden");
+    btnWrapper?.remove();
+  });
+</script>
