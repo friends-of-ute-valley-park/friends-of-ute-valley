@@ -43,6 +43,13 @@
   }
 }
 
+@layer utilities {
+  .content-defer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
