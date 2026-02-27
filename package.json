@@ -21,7 +21,7 @@
     "@vueuse/core": "^14.2.0",
     "astro": "5.17.1",
     "date-fns": "^4.1.0",
-    "dotenv": "^17.2.3",
+    "dotenv": "^17.2.4",
     "inter-ui": "^4.1.1",
     "resend": "https://pkg.pr.new/resend/resend-node/resend@820",
     "typescript": "^5.9.3"
