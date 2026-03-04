@@ -12,8 +12,9 @@ import { TURNSTILE_SITE_KEY } from 'astro:env/client';
   <main class="bg-stone-50">
     <ContactForm client:idle turnstileSiteKey={TURNSTILE_SITE_KEY} />
     
-    <div class="border-t border-stone-300">
+    <div class="border-t border-stone-300 content-defer">
       <TeamList />
     </div>
   </main>
 </Layout>
+

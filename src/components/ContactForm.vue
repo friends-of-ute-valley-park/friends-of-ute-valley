@@ -30,7 +30,7 @@
         <!-- Form Interface -->
         <div class="lg:col-span-7">
           <div class="border border-stone-300 bg-white p-8 shadow-sm md:p-12">
-            <form action="/contact-form" method="POST" class="space-y-8" @submit.prevent="submit">
+            <form ref="formElement" action="/contact-form" method="POST" class="space-y-8" @submit.prevent="submit">
               <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
                 <div class="space-y-2">
                   <label for="name" class="font-mono text-[10px] font-black tracking-widest text-stone-500 uppercase">Name *</label>
@@ -84,7 +84,7 @@
                   class="block w-full rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm focus:border-primary-dark focus:ring-0" />
               </div>
 
-              <div class="cf-turnstile" :data-sitekey="turnstileSiteKey" data-size="flexible" data-theme="light"></div>
+              <div ref="turnstileContainer" class="cf-turnstile"></div>
 
               <div>
                 <button :disabled="isFetching" type="submit" class="btn-primary-cta inline-flex w-full items-center justify-center disabled:opacity-50 sm:w-auto">
@@ -121,8 +121,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
 import { useFetch } from '@vueuse/core';
+
+interface TurnstileAPI {
+  render(container: HTMLElement | string, options: { sitekey: string; theme?: 'light' | 'dark' | 'auto'; size?: 'normal' | 'compact' | 'flexible' }): string;
+  remove?(widgetId: string): void;
+}
+
+declare global {
+  interface Window {
+    turnstile?: TurnstileAPI;
+    __turnstileLoadPromise?: Promise<void>;
+  }
+}
 
 export interface Props {
   defaultOption?: string | null;
@@ -142,6 +154,9 @@ const form = ref({
   message: '',
 });
 
+const formElement = ref<HTMLFormElement | null>(null);
+const turnstileContainer = ref<HTMLElement | null>(null);
+const turnstileWidgetId = ref<string | null>(null);
 const formPayload = ref<FormData | null>(null);
 
 const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form', {
@@ -149,6 +164,56 @@ const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form
 })
   .post(formPayload)
   .json();
+
+async function ensureTurnstileScript(): Promise<void> {
+  if (typeof window === 'undefined' || window.turnstile) {
+    return;
+  }
+
+  if (!window.__turnstileLoadPromise) {
+    window.__turnstileLoadPromise = new Promise((resolve, reject) => {
+      const existingScript = document.querySelector<HTMLScriptElement>('script[src*="challenges.cloudflare.com/turnstile/v0/api.js"]');
+      if (existingScript) {
+        if (window.turnstile) {
+          resolve();
+          return;
+        }
+
+        existingScript.addEventListener('load', () => resolve(), { once: true });
+        existingScript.addEventListener('error', () => reject(new Error('Failed to load Turnstile script')), { once: true });
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('Failed to load Turnstile script'));
+      document.head.append(script);
+    });
+  }
+
+  await window.__turnstileLoadPromise;
+}
+
+async function loadAndRenderTurnstile() {
+  try {
+    await ensureTurnstileScript();
+
+    if (!window.turnstile || !turnstileContainer.value || turnstileWidgetId.value) {
+      return;
+    }
+
+    turnstileWidgetId.value = window.turnstile.render(turnstileContainer.value, {
+      sitekey: props.turnstileSiteKey,
+      size: 'flexible',
+      theme: 'light',
+    });
+  } catch (err) {
+    console.error('Turnstile failed to initialize', err);
+  }
+}
 
 function submit() {
   error.value = null;
@@ -158,7 +223,7 @@ function submit() {
     return;
   }
 
-  const turnstileToken = (document.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement | null)?.value;
+  const turnstileToken = formElement.value?.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]')?.value;
 
   if (!turnstileToken || turnstileToken === '') {
     error.value = 'Verification failure';
@@ -176,6 +241,16 @@ function submit() {
   formPayload.value = formData;
   execute();
 }
+
+onMounted(() => {
+  void loadAndRenderTurnstile();
+});
+
+onBeforeUnmount(() => {
+  if (turnstileWidgetId.value && window.turnstile?.remove) {
+    window.turnstile.remove(turnstileWidgetId.value);
+  }
+});
 
 watch(data, () => {
   displayMessage.value = "Thank you for contacting Friends of Ute Valley Park! We'll get back to you soon.";
