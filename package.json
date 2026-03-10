@@ -14,12 +14,12 @@
     "format": "oxfmt"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/check": "^0.9.7",
+    "@astrojs/sitemap": "^3.7.1",
     "@cloudflare/pages-plugin-turnstile": "^1.0.2",
     "@tailwindcss/vite": "^4.1.18",
     "@vueuse/core": "^14.2.0",
-    "astro": "5.17.1",
+    "astro": "^6.0.1",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
     "inter-ui": "^4.1.1",
@@ -27,7 +27,7 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@astrojs/vue": "^5.1.4",
+    "@astrojs/vue": "^6.0.0",
     "@iconify/json": "^2.2.434",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.11",
