@@ -2,48 +2,24 @@
 // src/components/DomainChange.astro
 ---
 
-<div class="bg-stone-900 border-b border-stone-700 relative z-60">
-    <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-        <div
-            class="flex flex-col sm:flex-row items-start sm:items-center justify-between py-3 sm:py-4 gap-4"
-        >
-            <div class="flex items-center gap-4">
-                <!-- Structural icon container -->
-                <div
-                    class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 border border-stone-600 bg-stone-800 shrink-0 shadow-[2px_2px_0px_0px_rgba(251,191,36,0.3)]"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-4 h-4 sm:w-5 sm:h-5 text-amber-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                    >
-                        <path
-                            stroke-linecap="square"
-                            stroke-linejoin="miter"
-                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        ></path>
-                    </svg>
-                </div>
-                <div class="flex flex-col">
-                    <h2
-                        class="font-serif font-black uppercase tracking-tighter text-stone-100 text-sm sm:text-base leading-none mb-1.5"
-                    >
-                        Website Domain Notice
-                    </h2>
-                    <p
-                        class="font-sans text-xs sm:text-sm text-stone-300 font-medium"
-                    >
-                        Friends of Ute Valley Park is now at <a
-                            href="https://fuvp.org"
-                            class="text-amber-400 font-bold underline decoration-amber-400/50 hover:decoration-amber-400 transition-colors"
-                            >fuvp.org</a
-                        >
-                    </p>
-                </div>
-            </div>
-        </div>
+<div class="relative z-60 border-b border-stone-700/80 bg-stone-900">
+  <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
+    <div
+      class="flex flex-wrap items-center gap-x-3 gap-y-2 py-2.5 text-xs sm:text-sm"
+    >
+      <span
+        class="inline-flex items-center border border-stone-700 bg-stone-800 px-2 py-1 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-amber-300"
+      >
+        Domain Update
+      </span>
+      <p class="font-medium text-stone-300">
+        Friends of Ute Valley Park is now at
+        <a
+          href="https://fuvp.org"
+          class="font-bold text-amber-300 underline decoration-amber-300/50 underline-offset-4 transition-colors hover:decoration-amber-300"
+          >fuvp.org</a
+        >.
+      </p>
     </div>
+  </div>
 </div>

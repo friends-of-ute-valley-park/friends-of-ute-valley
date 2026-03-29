@@ -1,17 +1,45 @@
 ---
 import {
-  format,
   eachDayOfInterval,
-  startOfMonth,
   endOfMonth,
+  format,
   getDay,
+  startOfMonth,
 } from "date-fns";
-import SocialLinksInline from "./SocialLinksInline.astro";
 import { isDateInList } from "../utils/date";
 
+export interface Props {
+  eventDates?: string[];
+}
+
+const { eventDates = [] } = Astro.props as Props;
+
+const toLocalDate = (dateString: string) => {
+  const [year, month, day] = dateString.split("-").map(Number);
+  return new Date(year, month - 1, day);
+};
+
+const volunteerEventDates = eventDates.map(toLocalDate);
 const currentYear = new Date().getFullYear();
-const months = ["April", "May", "June", "July", "August", "September"];
-const volunteerEventDates: Date[] = [];
+const allMonths = [
+  { label: "April", monthIndex: 3 },
+  { label: "May", monthIndex: 4 },
+  { label: "June", monthIndex: 5 },
+  { label: "July", monthIndex: 6 },
+  { label: "August", monthIndex: 7 },
+  { label: "September", monthIndex: 8 },
+];
+
+const eventMonthIndexes = volunteerEventDates.map((date) => date.getMonth());
+const firstVisibleMonth =
+  eventMonthIndexes.length > 0 ? Math.min(...eventMonthIndexes) : 3;
+const lastVisibleMonth =
+  eventMonthIndexes.length > 0 ? Math.max(...eventMonthIndexes) : 8;
+
+const months = allMonths.filter(
+  ({ monthIndex }) =>
+    monthIndex >= firstVisibleMonth && monthIndex <= lastVisibleMonth,
+);
 
 const getDaysInMonth = (year: number, month: number) => {
   const start = startOfMonth(new Date(year, month));
@@ -21,11 +49,13 @@ const getDaysInMonth = (year: number, month: number) => {
 ---
 
 <div
-  class="calendar-container mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-12"
+  class="calendar-container mx-auto max-w-(--breakpoint-2xl) px-4 py-12 sm:px-6 lg:px-8"
 >
-  <div class="mb-12 flex flex-col md:flex-row justify-between items-end gap-8">
-    <div>
-      <div class="flex items-center gap-4 mb-4">
+  <div
+    class="mb-12 grid items-end gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)]"
+  >
+    <div class="space-y-4">
+      <div class="flex items-center gap-4">
         <span class="inline-block h-px w-8 bg-primary-dark"></span>
         <span
           class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500"
@@ -33,64 +63,76 @@ const getDaysInMonth = (year: number, month: number) => {
         >
       </div>
       <h2
-        class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 leading-none"
+        class="text-4xl font-serif font-black uppercase leading-none tracking-tight text-stone-900 sm:text-6xl"
       >
-        Volunteer <span class="text-primary-dark italic">Calendar.</span>
+        Posted <span class="italic text-primary-dark">Workdays.</span>
       </h2>
     </div>
     <div class="max-w-md">
-      <p class="text-sm font-medium text-stone-500 leading-relaxed">
-        <span
-          class="font-mono text-[10px] font-black uppercase tracking-widest text-primary-dark block mb-2"
-          >Seasonal Note</span
-        >
-        Official volunteer events are scheduled from April through September. Sign up for our email list to get reminders about upcoming events.
+      <p class="text-sm font-medium leading-relaxed text-stone-600">
+        Highlighted dates show currently posted volunteer sessions. Choose a day
+        from the list above for full meeting details and registration.
       </p>
     </div>
   </div>
 
   <div
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-stone-300 border border-stone-300"
+    class="grid grid-cols-1 gap-px border border-stone-300 bg-stone-300 md:grid-cols-2 xl:grid-cols-3"
   >
     {
-      months.map((month, index) => {
-        const monthIndex = index + 3; // April is index 3
+      months.map(({ label, monthIndex }) => {
         const daysInMonth = getDaysInMonth(currentYear, monthIndex);
         const firstDayOfWeek = getDay(daysInMonth[0]);
 
         return (
           <div class="bg-white p-8">
-            <h3 class="mb-6 font-serif font-black uppercase text-xl text-stone-900 border-b border-stone-100 pb-2">
-              {month}
+            <h3 class="mb-6 border-b border-stone-100 pb-2 font-serif text-xl font-black uppercase text-stone-900">
+              {label}
             </h3>
-            <div class="grid grid-cols-7 gap-px bg-stone-100 border border-stone-100">
+            <div class="grid grid-cols-7 gap-px border border-stone-100 bg-stone-100">
               {["S", "M", "T", "W", "T", "F", "S"].map((day) => (
                 <div class="bg-stone-50 py-2 text-center font-mono text-[10px] font-black uppercase text-stone-500">
                   {day}
                 </div>
               ))}
-              {Array.from({ length: firstDayOfWeek }).map((_) => (
-                <div class="bg-white h-10" />
+
+              {Array.from({ length: firstDayOfWeek }).map(() => (
+                <div class="h-10 bg-white" />
               ))}
-              {daysInMonth.map((day) => (
-                <div
-                  class={`relative flex h-10 items-center justify-center bg-white ${isDateInList(day, volunteerEventDates) ? "bg-primary/5" : ""}`}
-                >
-                  <span
-                    class={`font-mono text-xs ${isDateInList(day, volunteerEventDates) ? "font-black text-primary-dark" : "text-stone-600"}`}
+
+              {daysInMonth.map((day) => {
+                const isVolunteerDay = isDateInList(day, volunteerEventDates);
+
+                return (
+                  <div
+                    class:list={[
+                      "relative flex h-10 items-center justify-center bg-white",
+                      isVolunteerDay && "bg-primary/6",
+                    ]}
                   >
-                    {format(day, "d")}
-                  </span>
-                  {isDateInList(day, volunteerEventDates) && (
-                    <div class="absolute inset-0 border-2 border-primary-dark/20" />
-                  )}
-                </div>
-              ))}
-              {/* Fill remaining cells */}
+                    <span
+                      class:list={[
+                        "font-mono text-xs",
+                        isVolunteerDay
+                          ? "font-black text-primary-dark"
+                          : "text-stone-600",
+                      ]}
+                    >
+                      {format(day, "d")}
+                    </span>
+                    {
+                      isVolunteerDay && (
+                        <div class="absolute inset-1 border border-primary-dark/40" />
+                      )
+                    }
+                  </div>
+                );
+              })}
+
               {Array.from({
                 length: (7 - ((daysInMonth.length + firstDayOfWeek) % 7)) % 7,
-              }).map((_) => (
-                <div class="bg-white h-10" />
+              }).map(() => (
+                <div class="h-10 bg-white" />
               ))}
             </div>
           </div>
@@ -105,6 +147,7 @@ const getDaysInMonth = (year: number, month: number) => {
     font-family: "EditorialSerif";
     src: local("Georgia"), local("Times New Roman"), serif;
   }
+
   .font-serif {
     font-family: "EditorialSerif", serif;
   }
