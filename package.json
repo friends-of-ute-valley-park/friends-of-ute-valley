@@ -14,33 +14,31 @@
     "format": "oxfmt"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.7",
+    "@astrojs/check": "^0.9.8",
     "@astrojs/sitemap": "^3.7.1",
     "@cloudflare/pages-plugin-turnstile": "^1.0.2",
-    "@tailwindcss/vite": "^4.1.18",
-    "@vueuse/core": "^14.2.0",
-    "astro": "^6.0.1",
+    "@tailwindcss/vite": "^4.2.2",
+    "@vueuse/core": "^14.2.1",
+    "astro": "^6.0.8",
     "date-fns": "^4.1.0",
-    "dotenv": "^17.2.3",
+    "dotenv": "^17.3.1",
     "inter-ui": "^4.1.1",
     "resend": "https://pkg.pr.new/resend/resend-node/resend@820",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@astrojs/vue": "^6.0.0",
-    "@iconify/json": "^2.2.434",
+    "@astrojs/vue": "^6.0.1",
+    "@iconify/json": "^2.2.454",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19",
-    "@typescript-eslint/eslint-plugin": "^8.54.0",
-    "@typescript-eslint/parser": "^8.54.0",
-    "oxfmt": "^0.28.0",
-    "oxlint": "^1.43.0",
-    "oxlint-tsgolint": "^0.11.4",
-    "tailwindcss": "^4.1.18",
+    "oxfmt": "^0.42.0",
+    "oxlint": "^1.57.0",
+    "oxlint-tsgolint": "^0.17.4",
+    "tailwindcss": "^4.2.2",
     "unplugin-icons": "^23.0.1",
-    "unplugin-vue-components": "^31.0.0",
-    "vue": "^3.5.27"
+    "unplugin-vue-components": "^32.0.0",
+    "vue": "^3.5.31"
   },
   "overrides": {
     "lodash": "4.17.23"
