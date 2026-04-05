@@ -3,10 +3,7 @@ import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useFetch } from '@vueuse/core';
 
 interface TurnstileAPI {
-  render(
-    container: HTMLElement | string,
-    options: { sitekey: string; theme?: 'light' | 'dark' | 'auto'; size?: 'normal' | 'compact' | 'flexible' },
-  ): string;
+  render(container: HTMLElement | string, options: { sitekey: string; theme?: 'light' | 'dark' | 'auto'; size?: 'normal' | 'compact' | 'flexible' }): string;
   remove?(widgetId: string): void;
 }
 

@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+staged_files=$(mktemp)
+trap 'rm -f "$staged_files"' EXIT HUP INT TERM
+
+git diff --cached --name-only --diff-filter=ACMR -z > "$staged_files"
+
+echo "Running Astro checks..."
+npx @astrojs/check check
+
+echo "Running TypeScript checks..."
+npm run typecheck
+
+echo "Running lint autofixes..."
+npm run lint:fix
+
+echo "Running formatter..."
+npm run format
+
+if [ -s "$staged_files" ]; then
+  git add --pathspec-from-file="$staged_files" --pathspec-file-nul
+fi

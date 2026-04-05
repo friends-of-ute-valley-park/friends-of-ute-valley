@@ -146,7 +146,7 @@ const { entry } = Astro.props;
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
           {
-            entry.data.photos.map((photo, i) => (
+            entry.data.photos.map((photo) => (
               <div class="space-y-6 group">
                 <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-300 relative">
                   <Picture

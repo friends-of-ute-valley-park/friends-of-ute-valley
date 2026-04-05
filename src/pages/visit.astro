@@ -7,29 +7,6 @@ import DogImage from "../assets/images/dog.jpg";
 import uteValleyParkMap from "../assets/images/maps/ute-valley-park-map-full.jpg";
 
 import LeaveNoTrace from "@components/LeaveNoTrace.astro";
-const activities = [
-  {
-    name: "Hiking",
-    description:
-      "Explore the serene nature within a bustling city. Hike your way through forest and meadow while taking in the fresh air.",
-  },
-  {
-    name: "Mountain Biking",
-    description:
-      "Ute Valley Park offers a variety of tails suitable to mountain bikers as well as the designated downhill area for the adventurous.",
-  },
-  {
-    name: "Running",
-    description:
-      "Numerous trails from wide and flat to steep rocky offer joggers and trail runners the perfect opportunity to get outside.",
-  },
-  {
-    name: "Bouldering",
-    description:
-      "Located in the Southwest corner of the park, near Piñon Park Dr., you can explore the variety of climbing challenges.",
-  },
-];
-
 import { getCollection } from "astro:content";
 const trailheads = await getCollection("trailheads");
 const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
