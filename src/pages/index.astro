@@ -7,7 +7,7 @@ import ChevronRightIcon from "~icons/heroicons/chevron-right";
 import { Picture } from "astro:assets";
 import heroImage from "../assets/images/ute-valley-park-hero.jpg";
 import heroImage2 from "../assets/images/ute-valley-park-hero-2.jpg";
-import heroImage3 from "../assets/images/ute-valley-park-hero-3.jpg";
+import mountainViewsImage from "../assets/images/volunteer-7.jpg";
 import cta from "../assets/images/volunteer-5.jpg";
 
 import { getCollection, getEntry } from "astro:content";
@@ -36,33 +36,33 @@ const isWinter = currentMonth >= 11 || currentMonth <= 4;
 const parkSeason = isWinter ? "Winter" : "Summer";
 const parkHours = isWinter ? "5AM to 9PM" : "5AM to 10PM";
 
-const winterTips = [
+const springTips = [
   {
     id: "01",
-    title: "Stay on Marked Trails",
+    title: "Avoid Muddy Trails",
     description:
-      "Stick to visible paths to protect dormant vegetation and avoid disturbing wildlife habitats.",
-    tag: "VEGETATION PROTECTION",
+      "Spring thaw softens the ground. Walking muddy trails causes erosion and lasting damage—turn back or stick to drier routes.",
+    tag: "EROSION CONTROL",
   },
   {
     id: "02",
-    title: "Dress in Layers",
+    title: "Dress for Shifting Weather",
     description:
-      "Colorado weather changes quickly. Bring layers, waterproof footwear, and traction devices.",
+      "Spring in Colorado swings from sun to snow. Bring layers, sun protection, and extra water on every outing.",
     tag: "SAFETY FIRST",
   },
   {
     id: "03",
-    title: "Respect Wildlife",
+    title: "Give Wildlife Space",
     description:
-      "Winter is stressful for animals. Keep dogs leashed and give wildlife extra space.",
+      "Nesting birds and newborn animals are active this season. Keep dogs leashed and stay well back from wildlife.",
     tag: "HABITAT PRESERVATION",
   },
   {
     id: "04",
     title: "Pack Out Everything",
     description:
-      "Even in snow, please carry out all trash and pet waste. Frozen waste thaws in spring.",
+      "Melting snow exposes trash and pet waste left behind over winter. Carry out everything you bring in.",
     tag: "WASTE MGMT",
   },
 ];
@@ -247,7 +247,7 @@ const winterTips = [
         class="aspect-video lg:aspect-square border-r border-stone-300 overflow-hidden relative group hidden md:block"
       >
         <Picture
-          src={heroImage3}
+          src={mountainViewsImage}
           formats={["avif", "webp"]}
           width="600"
           height="600"
@@ -279,18 +279,18 @@ const winterTips = [
       </div>
     </section>
 
-    <!-- Winter Stewardship: Technical Guidelines -->
+    <!-- Spring Stewardship: Technical Guidelines -->
     <section class="py-24 border-b border-stone-300 content-defer">
       <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
         <div class="mb-16">
           <h2
             class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-6 text-balance"
           >
-            Winter <span class="text-primary-dark italic">Essentials.</span>
+            Spring <span class="text-primary-dark italic">Essentials.</span>
           </h2>
           <p class="max-w-2xl text-lg text-stone-600 font-medium">
-            The park is fragile in winter. Here is how you can help keep it
-            healthy for spring.
+            The park is fragile as it emerges from winter. Here is how you can
+            help keep it healthy through the thaw.
           </p>
         </div>
 
@@ -298,7 +298,7 @@ const winterTips = [
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-stone-300 border border-stone-300"
         >
           {
-            winterTips.map((tip) => (
+            springTips.map((tip) => (
               <div class="bg-stone-50 p-8 space-y-6 flex flex-col justify-between hover:bg-white transition-colors group">
                 <div class="space-y-4">
                   <span class="font-mono text-4xl font-black text-accent-dark group-hover:text-accent transition-colors">
@@ -330,7 +330,7 @@ const winterTips = [
           <div>
             <span
               class="font-mono text-xs font-bold uppercase tracking-[0.3em] text-stone-300 mb-4 block"
-              >Our Impact: 2024</span
+              >Our Impact: 2025</span
             >
             <h2
               class="text-5xl sm:text-7xl font-serif font-black uppercase tracking-tighter leading-none mb-8"
@@ -339,26 +339,50 @@ const winterTips = [
               <span class="text-primary-light">Impact.</span>
             </h2>
             <p class="text-stone-300 text-lg max-w-md leading-relaxed">
-              Quantifiable metrics reflecting our commitment to the Ute Valley
-              ecosystem and community engagement.
+              A year of boots-on-the-ground stewardship and a growing community
+              of people who care about Ute Valley.
             </p>
           </div>
           <div
-            class="grid grid-cols-2 gap-8 border-l border-stone-800 pl-8 lg:pl-16"
+            class="space-y-10 border-l border-stone-800 pl-8 lg:pl-16"
           >
             {
               [
-                { label: "Volunteers", value: "130" },
-                { label: "Field Hours", value: "538" },
-                { label: "Community Members", value: "1,900" },
-                { label: "Survey Responses", value: "105" },
-              ].map((stat) => (
-                <div class="space-y-1">
-                  <div class="text-4xl sm:text-6xl font-mono font-black tracking-tighter text-white group-hover:text-accent transition-colors">
-                    {stat.value}
+                {
+                  group: "On the Ground",
+                  stats: [
+                    { label: "Volunteers", value: "76" },
+                    { label: "Field Hours", value: "331" },
+                    { label: "Stewardship Days", value: "7" },
+                  ],
+                },
+                {
+                  group: "Community Reach",
+                  stats: [
+                    { label: "Instagram", value: "2,500" },
+                    { label: "Facebook", value: "2,100" },
+                    { label: "Subscribers", value: "600" },
+                  ],
+                },
+              ].map((section) => (
+                <div>
+                  <div class="flex items-center gap-3 mb-5">
+                    <span class="inline-block h-px w-6 bg-primary-light" />
+                    <span class="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-primary-light">
+                      {section.group}
+                    </span>
                   </div>
-                  <div class="text-[10px] font-mono uppercase tracking-widest text-stone-300">
-                    {stat.label}
+                  <div class="grid grid-cols-3 gap-6">
+                    {section.stats.map((stat) => (
+                      <div class="space-y-1">
+                        <div class="text-3xl sm:text-5xl font-mono font-black tracking-tighter text-white">
+                          {stat.value}
+                        </div>
+                        <div class="text-[10px] font-mono uppercase tracking-widest text-stone-300">
+                          {stat.label}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))
