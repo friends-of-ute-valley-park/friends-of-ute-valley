@@ -244,9 +244,3 @@ const navigation = [
     </nav>
   </div>
 </template>
-
-<style scoped>
-.font-serif {
-  font-family: 'EditorialSerif', serif;
-}
-</style>

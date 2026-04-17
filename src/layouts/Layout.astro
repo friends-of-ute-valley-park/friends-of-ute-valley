@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 
 import NavigationBar from "@components/NavigationBar.vue";
@@ -7,7 +8,6 @@ import NavigationFooter from "@components/NavigationFooter.astro";
 import SocialLinks from "@components/SocialLinks.astro";
 import VolunteerBanner from "@components/VolunteerBanner.vue";
 import DomainChange from "@components/DomainChange.astro";
-import "inter-ui/inter.css";
 
 import { getCollection } from "astro:content";
 import { isFuture, endOfDay } from "date-fns";
@@ -37,6 +37,7 @@ const {
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <Font cssVariable="--font-editorial-serif" preload />
     <title>{title} - Friends of Ute Valley Park</title>
   </head>
   <ClientRouter />
