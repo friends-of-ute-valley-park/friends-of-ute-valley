@@ -269,9 +269,3 @@ watch(data, (response) => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.font-serif {
-  font-family: 'EditorialSerif', serif;
-}
-</style>

@@ -1,4 +1,4 @@
-import { defineConfig, envField } from 'astro/config';
+import { defineConfig, envField, fontProviders } from 'astro/config';
 import vue from '@astrojs/vue';
 import Components from 'unplugin-vue-components/vite';
 import Icons from 'unplugin-icons/vite';
@@ -13,6 +13,24 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://fuvp.org',
   //trailingSlash: 'always',
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: 'Playfair Display Variable',
+      cssVariable: '--font-editorial-serif',
+      fallbacks: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
+      display: 'swap',
+      options: {
+        variants: [
+          {
+            src: ['@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2'],
+            weight: '400 900',
+            style: 'normal',
+          },
+        ],
+      },
+    },
+  ],
   integrations: [
     vue({
       //workaround for https://github.com/withastro/astro/issues/9328
