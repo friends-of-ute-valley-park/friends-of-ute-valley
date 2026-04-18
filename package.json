@@ -18,7 +18,7 @@
     "@astrojs/check": "^0.9.8",
     "@astrojs/sitemap": "^3.7.1",
     "@cloudflare/pages-plugin-turnstile": "^1.0.2",
-    "@fontsource-variable/source-serif-4": "^5.2.9",
+    "@fontsource-variable/playfair-display": "^5.2.8",
     "@tailwindcss/vite": "^4.2.2",
     "@vueuse/core": "^14.2.1",
     "astro": "^6.0.8",

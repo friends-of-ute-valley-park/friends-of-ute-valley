@@ -16,15 +16,15 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.local(),
-      name: 'Source Serif 4 Variable',
+      name: 'Playfair Display Variable',
       cssVariable: '--font-editorial-serif',
-      fallbacks: ['serif'],
+      fallbacks: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
       display: 'swap',
       options: {
         variants: [
           {
-            src: ['@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2'],
-            weight: '200 900',
+            src: ['@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2'],
+            weight: '400 900',
             style: 'normal',
           },
         ],
