@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, shallowRef } from 'vue';
 import { useFetch } from '@vueuse/core';
 
-const nameIsError = ref(false);
-const emailIsError = ref(false);
-const emailValidationError = ref('');
-const nameValidationError = ref('');
+const nameIsError = shallowRef(false);
+const emailIsError = shallowRef(false);
+const emailValidationError = shallowRef('');
+const nameValidationError = shallowRef('');
 const payload = ref({ name: '', email: '' });
 
 const requestBody = computed(() => ({ payload: payload.value }));
@@ -72,7 +72,7 @@ const submit = (event: SubmitEvent) => {
           :class="{
             'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': nameIsError,
           }"
-          class="block w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-stone-900 placeholder-stone-500 caret-secondary shadow-lg focus:border-accent focus:ring-accent disabled:opacity-60"
+          class="block min-h-10 w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-stone-900 placeholder-stone-500 caret-secondary shadow-lg transition-[background-color,border-color,box-shadow] duration-200 focus:border-accent focus:ring-accent disabled:opacity-60"
           placeholder="Your name..."
           :aria-invalid="nameIsError"
           aria-describedby="form-errors"
@@ -89,7 +89,7 @@ const submit = (event: SubmitEvent) => {
           :class="{
             'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': emailIsError,
           }"
-          class="mt-3 block w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-stone-900 placeholder-stone-500 caret-secondary shadow-lg focus:border-accent focus:ring-accent disabled:opacity-60"
+          class="mt-3 block min-h-10 w-full rounded-md border-white/20 bg-white/95 py-3 text-base text-stone-900 placeholder-stone-500 caret-secondary shadow-lg transition-[background-color,border-color,box-shadow] duration-200 focus:border-accent focus:ring-accent disabled:opacity-60"
           placeholder="Email address..."
           :aria-invalid="emailIsError"
           aria-describedby="form-errors"
@@ -97,7 +97,7 @@ const submit = (event: SubmitEvent) => {
         <button
           :disabled="isFetching"
           type="submit"
-          class="mt-3 inline-flex w-full shrink-0 cursor-pointer items-center justify-center rounded-md border border-transparent bg-accent-dark px-6 py-3 text-base font-semibold text-stone-900 shadow-lg transition-[background-color,box-shadow] duration-200 hover:bg-accent hover:shadow-xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary-dark focus:outline-hidden disabled:cursor-not-allowed disabled:bg-accent-dark">
+          class="mt-3 inline-flex min-h-10 w-full shrink-0 cursor-pointer items-center justify-center rounded-md border border-transparent bg-accent-dark px-6 py-3 text-base font-semibold text-stone-900 shadow-lg transition-[background-color,box-shadow,transform] duration-200 hover:bg-accent hover:shadow-xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary-dark focus:outline-hidden active:scale-[0.96] disabled:cursor-not-allowed disabled:bg-accent-dark">
           <i-mdi-loading v-if="isFetching" class="mr-2 h-6 w-6 animate-spin text-stone-900" />
           Get updates
         </button>

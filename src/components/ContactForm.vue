@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { onBeforeUnmount, onMounted, reactive, shallowRef, useTemplateRef, watch } from 'vue';
 import { useFetch } from '@vueuse/core';
 
 interface TurnstileAPI {
@@ -30,18 +30,18 @@ const getInitialCategory = (defaultOption: string | null): ContactOption => {
   return contactOptions.find((option) => option === defaultOption) ?? contactOptions[0];
 };
 
-const displayMessage = ref('');
-const form = ref({
+const displayMessage = shallowRef('');
+const form = reactive({
   name: '',
   email: '',
   category: getInitialCategory(props.defaultOption),
   message: '',
 });
 
-const formElement = ref<HTMLFormElement | null>(null);
-const turnstileContainer = ref<HTMLElement | null>(null);
-const turnstileWidgetId = ref<string | null>(null);
-const formPayload = ref<FormData | null>(null);
+const formElement = useTemplateRef<HTMLFormElement>('formElement');
+const turnstileContainer = useTemplateRef<HTMLElement>('turnstileContainer');
+const turnstileWidgetId = shallowRef<string | null>(null);
+const formPayload = shallowRef<FormData | null>(null);
 
 const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form', {
   immediate: false,
@@ -103,7 +103,7 @@ function submit() {
   error.value = null;
   displayMessage.value = '';
 
-  if (form.value.name === '' || form.value.email === '' || form.value.message === '') {
+  if (form.name === '' || form.email === '' || form.message === '') {
     error.value = 'Incomplete form';
     displayMessage.value = 'Please fill out your name, email, and message before sending.';
     return;
@@ -118,10 +118,10 @@ function submit() {
   }
 
   const nextPayload = new FormData();
-  nextPayload.append('name', form.value.name);
-  nextPayload.append('email', form.value.email);
-  nextPayload.append('category', form.value.category);
-  nextPayload.append('message', form.value.message);
+  nextPayload.append('name', form.name);
+  nextPayload.append('email', form.email);
+  nextPayload.append('category', form.category);
+  nextPayload.append('message', form.message);
   nextPayload.append('cf-turnstile-response', turnstileToken);
 
   formPayload.value = nextPayload;
@@ -142,10 +142,10 @@ watch(data, (response) => {
   if (!response) return;
 
   displayMessage.value = "Thanks for reaching out. We'll reply within 2–3 business days.";
-  form.value.name = '';
-  form.value.email = '';
-  form.value.message = '';
-  form.value.category = getInitialCategory(props.defaultOption);
+  form.name = '';
+  form.email = '';
+  form.message = '';
+  form.category = getInitialCategory(props.defaultOption);
 });
 </script>
 
@@ -178,7 +178,7 @@ watch(data, (response) => {
         </div>
 
         <div class="lg:col-span-7">
-          <div class="border border-stone-300 bg-white p-8 shadow-sm md:p-12">
+          <div class="border border-stone-300 bg-white p-8 shadow-[0_1px_2px_rgba(0,0,0,0.05),0_18px_48px_rgba(28,25,23,0.08)] md:p-12">
             <form ref="formElement" action="/contact-form" method="POST" class="space-y-8" @submit.prevent="submit">
               <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
                 <div class="space-y-2">
@@ -189,7 +189,7 @@ watch(data, (response) => {
                     name="name"
                     type="text"
                     required
-                    class="block w-full rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm focus:border-primary-dark focus:ring-0" />
+                    class="block min-h-10 w-full rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0" />
                 </div>
                 <div class="space-y-2">
                   <label for="email" class="font-mono text-[10px] font-black tracking-widest text-stone-500 uppercase">Email *</label>
@@ -200,7 +200,7 @@ watch(data, (response) => {
                     autocomplete="email"
                     required
                     type="email"
-                    class="block w-full rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm focus:border-primary-dark focus:ring-0" />
+                    class="block min-h-10 w-full rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0" />
                 </div>
               </div>
 
@@ -210,7 +210,7 @@ watch(data, (response) => {
                   id="category"
                   v-model="form.category"
                   name="category"
-                  class="block w-full appearance-none rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm focus:border-primary-dark focus:ring-0">
+                  class="block min-h-10 w-full appearance-none rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0">
                   <option v-for="option in contactOptions" :key="option" :value="option">
                     {{ option.toUpperCase() }}
                   </option>
@@ -232,7 +232,7 @@ watch(data, (response) => {
                   name="message"
                   required
                   rows="6"
-                  class="block w-full rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm focus:border-primary-dark focus:ring-0" />
+                  class="block w-full rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0" />
               </div>
 
               <div ref="turnstileContainer" class="cf-turnstile"></div>
@@ -245,8 +245,14 @@ watch(data, (response) => {
               </div>
             </form>
 
-            <transition enter-active-class="transition duration-300 ease-out" enter-from-class="opacity-0 translate-y-4" enter-to-class="opacity-100 translate-y-0">
-              <div v-if="isFinished || error" class="mt-8 border p-6" :class="[error ? 'border-red-200 bg-red-50' : 'border-primary-dark bg-primary/5']">
+            <transition
+              enter-active-class="transition-[opacity,transform] duration-300 ease-out"
+              enter-from-class="opacity-0 translate-y-4"
+              enter-to-class="opacity-100 translate-y-0"
+              leave-active-class="transition-[opacity,transform] duration-200 ease-in"
+              leave-from-class="opacity-100 translate-y-0"
+              leave-to-class="opacity-0 translate-y-2">
+              <div v-if="isFinished || error" class="mt-8 border p-6" :class="[error ? 'border-red-200 bg-red-50' : 'border-primary-dark bg-primary/5']" aria-live="polite">
                 <div class="flex gap-4">
                   <div class="shrink-0">
                     <i-heroicons-megaphone class="h-6 w-6" :class="error ? 'text-red-700' : 'text-primary-dark'" />

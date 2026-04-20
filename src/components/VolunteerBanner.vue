@@ -1,25 +1,3 @@
-<template>
-  <div v-if="hasUpcomingVolunteerEvent" class="relative z-50 border-b border-primary bg-primary-dark">
-    <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col items-center justify-between gap-4 py-3 sm:flex-row">
-        <div class="flex items-center gap-3">
-          <div class="h-2 w-2 animate-pulse rounded-full bg-accent"></div>
-          <p class="font-mono text-[10px] font-black tracking-[0.2em] text-white uppercase">
-            Upcoming Volunteer Event: <span class="text-primary-100">Scheduled for {{ eventDates }}</span>
-          </p>
-        </div>
-
-        <a
-          href="/volunteer/"
-          class="group inline-flex items-center gap-2 border border-primary-light bg-primary px-4 py-1.5 font-mono text-[10px] font-black tracking-widest text-white uppercase shadow-[4px_4px_0px_0px_var(--color-accent)] transition-all hover:border-white hover:bg-primary-light">
-          Learn More
-          <i-heroicons-arrow-right class="h-3 w-3 transition-transform group-hover:translate-x-1" />
-        </a>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { computed } from 'vue';
 
@@ -50,3 +28,25 @@ const eventDates = computed(() => {
     .join(' + ');
 });
 </script>
+
+<template>
+  <div v-if="hasUpcomingVolunteerEvent" class="relative z-50 border-b border-primary bg-primary-dark">
+    <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col items-center justify-between gap-4 py-3 sm:flex-row">
+        <div class="flex items-center gap-3">
+          <div class="h-2 w-2 animate-pulse rounded-full bg-accent"></div>
+          <p class="font-mono text-[10px] font-black tracking-[0.2em] text-white uppercase">
+            Upcoming Volunteer Event: <span class="text-primary-100 tabular-nums">Scheduled for {{ eventDates }}</span>
+          </p>
+        </div>
+
+        <a
+          href="/volunteer/"
+          class="group inline-flex min-h-10 items-center gap-2 border border-primary-light bg-primary px-4 py-1.5 font-mono text-[10px] font-black tracking-widest text-white uppercase shadow-[4px_4px_0px_0px_var(--color-accent)] transition-[background-color,border-color,box-shadow,transform] duration-200 hover:border-white hover:bg-primary-light active:scale-[0.96]">
+          Learn More
+          <i-heroicons-arrow-right class="h-3 w-3 transition-transform group-hover:translate-x-1" />
+        </a>
+      </div>
+    </div>
+  </div>
+</template>

@@ -19,7 +19,7 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
       <Image
         src={Volunteers}
         alt="Volunteers in action"
-        class="h-full w-full object-cover transition-all duration-1000"
+        class="h-full w-full object-cover"
       />
       <div
         class="absolute inset-0 border-24 border-white/10 pointer-events-none"
@@ -39,13 +39,13 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
             >
           </div>
           <h2
-            class="text-4xl sm:text-5xl font-serif font-black uppercase tracking-tighter text-stone-900 leading-none"
+            class="font-serif text-4xl leading-none font-black tracking-tighter text-balance text-stone-900 uppercase sm:text-5xl"
           >
             Our <br />
             <span class="text-primary-dark">Impact.</span>
           </h2>
           <p
-            class="mt-6 text-lg text-stone-600 font-medium leading-relaxed max-w-xl"
+            class="mt-6 max-w-xl text-lg leading-relaxed font-medium text-pretty text-stone-600"
           >
             Here's what our amazing volunteers accomplished together in 2024.
           </p>
@@ -57,7 +57,7 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
           {
             stats.map((stat) => (
               <div class="bg-white p-6 space-y-1 hover:bg-stone-50 transition-colors">
-                <div class="text-3xl sm:text-4xl font-mono font-black tracking-tighter text-stone-900">
+                <div class="font-mono text-3xl font-black tracking-tighter text-stone-900 tabular-nums sm:text-4xl">
                   {stat.value}
                 </div>
                 <div class="text-[10px] font-mono uppercase tracking-widest text-stone-500 font-bold">

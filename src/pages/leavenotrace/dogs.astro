@@ -112,7 +112,7 @@ const rules = [
               <a href="#rules" class="btn-primary-cta"> Leash Rules </a>
               <a
                 href="#off-leash"
-                class="px-8 py-4 border-2 border-stone-900 font-mono text-xs font-black uppercase tracking-widest hover:bg-stone-50 transition-all"
+                class="px-8 py-4 border-2 border-stone-900 font-mono text-xs font-black uppercase tracking-widest transition-[background-color,border-color,color,transform] duration-200 hover:bg-stone-50 active:scale-[0.96]"
               >
                 Off-Leash Dog Parks
               </a>
@@ -200,7 +200,7 @@ const rules = [
                 formats={["avif", "webp"]}
                 alt="Dog in park"
                 width="800"
-                class="w-full h-full object-cover transition-all duration-1000"
+                class="w-full h-full object-cover transition-transform duration-1000"
               />
               <div
                 class="absolute bottom-4 left-4 bg-stone-900 text-white px-2 py-0.5 font-mono text-[8px] uppercase"
@@ -290,7 +290,7 @@ const rules = [
               <div class="bg-white flex flex-col group">
                 <div class="aspect-16/10 overflow-hidden bg-stone-200 border-b border-stone-200">
                   <img
-                    class="w-full h-full object-cover transition-all duration-700"
+                    class="w-full h-full object-cover transition-transform duration-700"
                     src={park.image}
                     alt={park.name}
                   />
@@ -327,13 +327,13 @@ const rules = [
                   <div class="pt-4 flex flex-col gap-2">
                     <a
                       href={park.mapLink}
-                      class="flex justify-between items-center px-4 py-3 bg-stone-50 border border-stone-200 font-mono text-[10px] font-black uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all"
+                      class="flex justify-between items-center px-4 py-3 bg-stone-50 border border-stone-200 font-mono text-[10px] font-black uppercase tracking-widest transition-[background-color,border-color,color,transform] duration-200 hover:bg-stone-900 hover:text-white active:scale-[0.96]"
                     >
                       Visit Site <span>→</span>
                     </a>
                     <a
                       href={park.cityLink}
-                      class="flex justify-between items-center px-4 py-3 bg-transparent border border-stone-200 font-mono text-[10px] font-black uppercase tracking-widest hover:bg-stone-50 transition-all"
+                      class="flex justify-between items-center px-4 py-3 bg-transparent border border-stone-200 font-mono text-[10px] font-black uppercase tracking-widest transition-[background-color,border-color,color,transform] duration-200 hover:bg-stone-50 active:scale-[0.96]"
                     >
                       Information <span>→</span>
                     </a>
@@ -347,4 +347,3 @@ const rules = [
     </section>
   </main>
 </Layout>
-

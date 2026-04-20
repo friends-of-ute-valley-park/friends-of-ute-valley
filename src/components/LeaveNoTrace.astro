@@ -89,7 +89,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
           <div class="pt-12 border-t border-stone-300 space-y-8">
             <div
-              class="bg-white border-2 border-primary-dark p-8 shadow-sm relative group transition-all duration-500 hover:shadow-[8px_8px_0px_0px_var(--color-accent)]"
+              class="bg-white border-2 border-primary-dark p-8 shadow-sm relative group transition-[box-shadow] duration-500 hover:shadow-[8px_8px_0px_0px_var(--color-accent)]"
             >
               <a
                 href="https://www.lnt.org"
@@ -132,14 +132,14 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
                     <span class="font-mono text-4xl font-black text-accent-dark group-hover:text-accent transition-colors">
                       {principle.id}
                     </span>
-                    <div class="w-12 h-px bg-stone-200 mt-5 group-hover:bg-primary-dark transition-all" />
+                    <div class="w-12 h-px bg-stone-200 mt-5 group-hover:bg-primary-dark transition-colors" />
                   </div>
                   <h3 class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors">
                     {principle.name}
                   </h3>
                 </div>
 
-                <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-200 transition-all duration-700">
+                <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-200">
                   <Picture
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     src={principle.image}
@@ -168,4 +168,3 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     </div>
   </div>
 </section>
-

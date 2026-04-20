@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { MeetingLocationParser } from '@/utils/EventData';
-import { MeetingLocation, VolunteerEvent } from '@/typings';
+import type { MeetingLocation, VolunteerEvent } from '@/typings';
 
 const props = defineProps<{
   volunteerEvent: VolunteerEvent;
@@ -22,7 +22,7 @@ const formattedDate = computed(() => {
     <div class="flex-1 space-y-4">
       <div class="flex items-center gap-3">
         <span class="font-mono text-[10px] font-black tracking-[0.2em] text-accent-darker uppercase">Event</span>
-        <h2 class="font-serif text-2xl leading-none font-black tracking-tight text-stone-900 uppercase">
+        <h2 class="font-serif text-2xl leading-none font-black tracking-tight text-balance text-stone-900 uppercase">
           <a :href="'/events/' + volunteerEvent.id" class="transition-colors hover:text-primary-dark">{{ volunteerEvent.data.title }}</a>
         </h2>
       </div>
@@ -30,7 +30,7 @@ const formattedDate = computed(() => {
       <div class="grid grid-cols-1 gap-8 pt-2 sm:grid-cols-2">
         <div class="space-y-1">
           <p class="font-mono text-[10px] tracking-widest text-stone-500 uppercase">Date & Time</p>
-          <p class="font-mono text-sm font-black text-stone-700 uppercase">
+          <p class="font-mono text-sm font-black text-stone-700 uppercase tabular-nums">
             <time :datetime="formattedDate + ' ' + volunteerEvent.data.time">{{ formattedDate }} — {{ volunteerEvent.data.time }}</time>
           </p>
         </div>
@@ -52,7 +52,7 @@ const formattedDate = computed(() => {
       <a :href="volunteerEvent.data.link" class="btn-primary-cta inline-flex items-center justify-center"> Register </a>
       <a
         href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
-        class="inline-flex items-center justify-center border border-stone-300 bg-transparent px-6 py-4 font-mono text-xs font-black tracking-widest text-stone-500 uppercase transition-all hover:bg-stone-100 active:scale-95">
+        class="inline-flex items-center justify-center border border-stone-300 bg-transparent px-6 py-4 font-mono text-xs font-black tracking-widest text-stone-500 uppercase transition-[background-color,border-color,color,transform] duration-200 hover:bg-stone-100 active:scale-[0.96]">
         Consent and Release Form
       </a>
     </div>

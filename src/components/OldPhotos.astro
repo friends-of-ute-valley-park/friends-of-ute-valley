@@ -37,7 +37,7 @@ const morePhotos = sorted.slice(6);
             alt={`Historic Ute Valley Park photo ${num}`}
             widths={[400, 600, 800]}
             formats={["avif", "webp"]}
-            class="h-full w-full scale-105 object-cover transition-all duration-1000 group-hover:scale-100"
+            class="h-full w-full scale-105 object-cover transition-transform duration-1000 group-hover:scale-100"
             loading="lazy"
           />
           <div class="pointer-events-none absolute inset-0 border-12 border-white/20" />
@@ -48,7 +48,7 @@ const morePhotos = sorted.slice(6);
 
   <div id="view-more-btn" class="flex justify-center pt-8">
     <button
-      class="border-2 border-stone-900 px-8 py-4 font-mono text-xs font-black tracking-widest uppercase transition-all hover:bg-stone-900 hover:text-white active:scale-95"
+      class="border-2 border-stone-900 px-8 py-4 font-mono text-xs font-black tracking-widest uppercase transition-[background-color,border-color,color,box-shadow,transform] duration-200 hover:bg-stone-900 hover:text-white active:scale-[0.96]"
       data-toggle-photos
     >
       View More Photos
@@ -67,7 +67,7 @@ const morePhotos = sorted.slice(6);
               alt={`Historic Ute Valley Park photo ${num}`}
               widths={[400, 600, 800]}
               formats={["avif", "webp"]}
-              class="h-full w-full scale-105 object-cover transition-all duration-1000 group-hover:scale-100"
+              class="h-full w-full scale-105 object-cover transition-transform duration-1000 group-hover:scale-100"
               loading="lazy"
             />
             <div class="pointer-events-none absolute inset-0 border-12 border-white/20" />

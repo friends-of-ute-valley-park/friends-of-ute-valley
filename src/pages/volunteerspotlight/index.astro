@@ -52,7 +52,7 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
                 href={`/volunteerspotlight/${spotlight.id}`}
                 class="bg-white flex flex-col group hover:bg-stone-50 transition-colors"
               >
-                <div class="aspect-square w-full overflow-hidden transition-all duration-700 relative">
+                <div class="aspect-square w-full overflow-hidden relative">
                   <Image
                     class="w-full h-full object-cover object-top scale-105 group-hover:scale-100 transition-transform duration-700"
                     src={spotlight.data.images[0].image}
@@ -93,4 +93,3 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
     </section>
   </main>
 </Layout>
-

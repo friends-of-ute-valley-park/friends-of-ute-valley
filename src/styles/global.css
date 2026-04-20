@@ -30,6 +30,28 @@
 }
 
 @layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  img {
+    outline: 1px solid rgba(0, 0, 0, 0.1);
+    outline-offset: -1px;
+  }
+
   *,
   ::after,
   ::before,
@@ -41,7 +63,7 @@
 
 @layer components {
   .btn-primary-cta {
-    @apply relative bg-primary-dark px-8 py-4 font-mono text-sm font-bold text-white uppercase shadow-[4px_4px_0px_0px_var(--color-accent)] transition-all duration-300 hover:-translate-x-1.5 hover:-translate-y-1.5 hover:bg-primary hover:shadow-[12px_12px_0px_0px_var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-95;
+    @apply relative bg-primary-dark px-8 py-4 font-mono text-sm font-bold text-white uppercase shadow-[4px_4px_0px_0px_var(--color-accent)] transition-[background-color,box-shadow,transform] duration-300 hover:-translate-x-1.5 hover:-translate-y-1.5 hover:bg-primary hover:shadow-[12px_12px_0px_0px_var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-[0.96];
   }
 }
 

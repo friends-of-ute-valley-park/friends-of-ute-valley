@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { shallowRef, useTemplateRef, watch, type Ref } from 'vue';
 import { useScroll, onClickOutside } from '@vueuse/core';
 import LucidePawPrint from 'virtual:icons/lucide/paw-print';
 import LucideBird from 'virtual:icons/lucide/bird';
@@ -8,13 +8,13 @@ import LucideMap from 'virtual:icons/lucide/map';
 
 const props = defineProps<{ page: string }>();
 
-const menuOpen = ref(false);
-const lntOpen = ref(false);
-const navContainerRef = ref<HTMLElement | null>(null);
-const lntDropdown = ref<HTMLElement | null>(null);
-const navHidden = ref(false);
+const menuOpen = shallowRef(false);
+const lntOpen = shallowRef(false);
+const navContainerRef = useTemplateRef<HTMLElement>('navContainerRef');
+const lntDropdown = useTemplateRef<HTMLElement>('lntDropdown');
+const navHidden = shallowRef(false);
 let lastScrollY = 0;
-let scrollY = ref(0);
+let scrollY: Ref<number> = shallowRef(0);
 if (typeof window !== 'undefined') {
   const { y } = useScroll(window, { throttle: 50 });
   scrollY = y;
@@ -104,7 +104,7 @@ const navigation = [
         <div class="flex h-20 items-center justify-between">
           <div class="flex items-center">
             <a href="/" class="group flex shrink-0 items-center gap-3">
-              <div class="border border-stone-300 bg-white p-1 transition-all group-hover:scale-105 group-hover:border-primary">
+              <div class="border border-stone-300 bg-white p-1 transition-[border-color,transform] duration-200 group-hover:scale-105 group-hover:border-primary">
                 <img class="block h-10 w-10" src="/images/logo-small.jpg" alt="FUVP" width="40" height="40" />
               </div>
               <div class="hidden md:block">
@@ -147,10 +147,10 @@ const navigation = [
                 </button>
 
                 <Transition
-                  enter-active-class="transition ease-out duration-200"
+                  enter-active-class="transition-[opacity,transform] ease-out duration-200"
                   enter-from-class="opacity-0 translate-y-1"
                   enter-to-class="opacity-100 translate-y-0"
-                  leave-active-class="transition ease-in duration-150"
+                  leave-active-class="transition-[opacity,transform] ease-in duration-150"
                   leave-from-class="opacity-100 translate-y-0"
                   leave-to-class="opacity-0 translate-y-1">
                   <div v-if="lntOpen" class="absolute right-0 z-10 mt-px w-screen max-w-sm">
@@ -190,11 +190,23 @@ const navigation = [
               type="button"
               :aria-expanded="menuOpen"
               aria-controls="mobile-menu"
-              class="inline-flex items-center justify-center border border-stone-300 p-2 text-stone-500 hover:bg-stone-100 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              class="inline-flex min-h-10 min-w-10 items-center justify-center border border-stone-300 p-2 text-stone-500 transition-[background-color,border-color,color,transform] duration-200 hover:bg-stone-100 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary active:scale-[0.96]"
               @click="toggleMenu">
               <span class="sr-only">{{ menuOpen ? 'Close main menu' : 'Open main menu' }}</span>
-              <i-heroicons-bars-3 v-if="!menuOpen" class="block h-6 w-6" aria-hidden="true" />
-              <i-heroicons-x-mark v-else class="block h-6 w-6" aria-hidden="true" />
+              <span class="relative block h-6 w-6">
+                <i-heroicons-bars-3
+                  :class="[
+                    menuOpen ? 'scale-[0.25] opacity-0 blur-[4px]' : 'scale-100 opacity-100 blur-[0px]',
+                    'absolute inset-0 h-6 w-6 transition-[opacity,transform,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
+                  ]"
+                  aria-hidden="true" />
+                <i-heroicons-x-mark
+                  :class="[
+                    menuOpen ? 'scale-100 opacity-100 blur-[0px]' : 'scale-[0.25] opacity-0 blur-[4px]',
+                    'absolute inset-0 h-6 w-6 transition-[opacity,transform,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
+                  ]"
+                  aria-hidden="true" />
+              </span>
             </button>
           </div>
         </div>
