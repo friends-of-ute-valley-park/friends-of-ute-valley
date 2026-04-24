@@ -54,11 +54,9 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
               >
                 <div class="aspect-square w-full overflow-hidden relative">
                   <Image
-                    class="w-full h-full object-cover object-top scale-105 group-hover:scale-100 transition-transform duration-700"
+                    class="w-full h-full origin-top object-cover object-top scale-105 transition-transform duration-700 group-hover:scale-100"
                     src={spotlight.data.images[0].image}
                     alt={spotlight.data.name}
-                    width={600}
-                    height={600}
                     quality={70}
                   />
                   <div class="absolute inset-0 border-12 border-white/20 pointer-events-none" />
