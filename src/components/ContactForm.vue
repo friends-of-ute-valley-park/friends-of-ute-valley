@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, reactive, shallowRef, useTemplateRef, watch } from 'vue';
+import { computed, onBeforeUnmount, onMounted, reactive, shallowRef, useTemplateRef, watch } from 'vue';
 import { useFetch } from '@vueuse/core';
 import HeroiconsMegaphone from 'virtual:icons/heroicons/megaphone';
 import MdiLoading from 'virtual:icons/mdi/loading';
@@ -44,6 +44,9 @@ const formElement = useTemplateRef<HTMLFormElement>('formElement');
 const turnstileContainer = useTemplateRef<HTMLElement>('turnstileContainer');
 const turnstileWidgetId = shallowRef<string | null>(null);
 const formPayload = shallowRef<FormData | null>(null);
+const statusIconClass = computed(() => {
+  return `h-6 w-6 ${error.value ? 'text-red-700' : 'text-primary-dark'}`;
+});
 
 const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form', {
   immediate: false,
@@ -191,7 +194,7 @@ watch(data, (response) => {
                     name="name"
                     type="text"
                     required
-                    class="block min-h-10 w-full rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0" />
+                    class="block min-h-10 w-full rounded-none border border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0" />
                 </div>
                 <div class="space-y-2">
                   <label for="email" class="font-mono text-[10px] font-black tracking-widest text-stone-500 uppercase">Email *</label>
@@ -202,7 +205,7 @@ watch(data, (response) => {
                     autocomplete="email"
                     required
                     type="email"
-                    class="block min-h-10 w-full rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0" />
+                    class="block min-h-10 w-full rounded-none border border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0" />
                 </div>
               </div>
 
@@ -212,7 +215,7 @@ watch(data, (response) => {
                   id="category"
                   v-model="form.category"
                   name="category"
-                  class="block min-h-10 w-full appearance-none rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0">
+                  class="block min-h-10 w-full appearance-none rounded-none border border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0">
                   <option v-for="option in contactOptions" :key="option" :value="option">
                     {{ option.toUpperCase() }}
                   </option>
@@ -234,7 +237,7 @@ watch(data, (response) => {
                   name="message"
                   required
                   rows="6"
-                  class="block w-full rounded-none border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0" />
+                  class="block w-full rounded-none border border-stone-300 bg-stone-50/50 px-4 py-3 font-mono text-sm transition-[background-color,border-color,box-shadow] duration-200 focus:border-primary-dark focus:bg-white focus:ring-0" />
               </div>
 
               <div ref="turnstileContainer" class="cf-turnstile"></div>
@@ -257,7 +260,7 @@ watch(data, (response) => {
               <div v-if="isFinished || error" class="mt-8 border p-6" :class="[error ? 'border-red-200 bg-red-50' : 'border-primary-dark bg-primary/5']" aria-live="polite">
                 <div class="flex gap-4">
                   <div class="shrink-0">
-                    <HeroiconsMegaphone class="h-6 w-6" :class="error ? 'text-red-700' : 'text-primary-dark'" />
+                    <HeroiconsMegaphone :class="statusIconClass" />
                   </div>
                   <div>
                     <h3 :class="[error ? 'text-red-800' : 'text-primary-dark', 'font-mono text-xs font-black tracking-widest uppercase']">

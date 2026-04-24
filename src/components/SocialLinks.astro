@@ -28,7 +28,7 @@ const socialLinks = (await getCollection('social-links')).sort(
     return (
       <a
         href={entry.data.link}
-        class={`inline-flex min-h-10 min-w-10 items-center justify-center border border-stone-300 bg-white p-2 text-stone-500 transition-[border-color,color,transform] duration-200 active:scale-[0.96] ${hover}`}
+        class={`inline-flex min-h-10 min-w-10 items-center justify-center border border-stone-300 bg-white p-2 text-stone-500 transition-[border-color,color,transform] duration-200 active:scale-96 ${hover}`}
         target="_blank"
         rel="noopener noreferrer"
       >

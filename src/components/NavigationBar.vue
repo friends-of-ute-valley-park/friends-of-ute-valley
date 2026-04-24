@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { shallowRef, useTemplateRef, watch, type Ref } from 'vue';
+import { computed, shallowRef, useTemplateRef, watch, type Ref } from 'vue';
 import { useScroll, onClickOutside } from '@vueuse/core';
 import LucidePawPrint from 'virtual:icons/lucide/paw-print';
 import LucideBird from 'virtual:icons/lucide/bird';
@@ -16,6 +16,16 @@ const lntOpen = shallowRef(false);
 const navContainerRef = useTemplateRef<HTMLElement>('navContainerRef');
 const lntDropdown = useTemplateRef<HTMLElement>('lntDropdown');
 const navHidden = shallowRef(false);
+const chevronIconClass = computed(() => {
+  return `ml-2 h-4 w-4 opacity-50 transition-transform duration-200 ${lntOpen.value ? 'rotate-180' : ''}`;
+});
+const menuIconBaseClass = 'absolute inset-0 h-6 w-6 transition-[opacity,transform,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]';
+const barsIconClass = computed(() => {
+  return `${menuIconBaseClass} ${menuOpen.value ? 'scale-25 opacity-0 blur-xs' : 'scale-100 opacity-100 blur-none'}`;
+});
+const xMarkIconClass = computed(() => {
+  return `${menuIconBaseClass} ${menuOpen.value ? 'scale-100 opacity-100 blur-none' : 'scale-25 opacity-0 blur-xs'}`;
+});
 let lastScrollY = 0;
 let scrollY: Ref<number> = shallowRef(0);
 if (typeof window !== 'undefined') {
@@ -146,7 +156,7 @@ const navigation = [
                     'flex h-full items-center px-4 font-mono text-[10px] font-black tracking-[0.2em] uppercase transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset xl:px-5',
                   ]">
                   <span>Leave No Trace</span>
-                  <HeroiconsChevronDown class="ml-2 h-4 w-4 opacity-50 transition-transform duration-200" :class="lntOpen && 'rotate-180'" aria-hidden="true" />
+                  <HeroiconsChevronDown :class="chevronIconClass" aria-hidden="true" />
                 </button>
 
                 <Transition
@@ -193,22 +203,12 @@ const navigation = [
               type="button"
               :aria-expanded="menuOpen"
               aria-controls="mobile-menu"
-              class="inline-flex min-h-10 min-w-10 items-center justify-center border border-stone-300 p-2 text-stone-500 transition-[background-color,border-color,color,transform] duration-200 hover:bg-stone-100 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary active:scale-[0.96]"
+              class="inline-flex min-h-10 min-w-10 items-center justify-center border border-stone-300 p-2 text-stone-500 transition-[background-color,border-color,color,transform] duration-200 hover:bg-stone-100 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary active:scale-96"
               @click="toggleMenu">
               <span class="sr-only">{{ menuOpen ? 'Close main menu' : 'Open main menu' }}</span>
               <span class="relative block h-6 w-6">
-                <HeroiconsBars3
-                  :class="[
-                    menuOpen ? 'scale-[0.25] opacity-0 blur-[4px]' : 'scale-100 opacity-100 blur-[0px]',
-                    'absolute inset-0 h-6 w-6 transition-[opacity,transform,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
-                  ]"
-                  aria-hidden="true" />
-                <HeroiconsXMark
-                  :class="[
-                    menuOpen ? 'scale-100 opacity-100 blur-[0px]' : 'scale-[0.25] opacity-0 blur-[4px]',
-                    'absolute inset-0 h-6 w-6 transition-[opacity,transform,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
-                  ]"
-                  aria-hidden="true" />
+                <HeroiconsBars3 :class="barsIconClass" aria-hidden="true" />
+                <HeroiconsXMark :class="xMarkIconClass" aria-hidden="true" />
               </span>
             </button>
           </div>

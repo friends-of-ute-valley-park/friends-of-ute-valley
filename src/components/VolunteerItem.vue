@@ -52,7 +52,7 @@ const formattedDate = computed(() => {
       <a :href="volunteerEvent.data.link" class="btn-primary-cta inline-flex items-center justify-center"> Register </a>
       <a
         href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
-        class="inline-flex items-center justify-center border border-stone-300 bg-transparent px-6 py-4 font-mono text-xs font-black tracking-widest text-stone-500 uppercase transition-[background-color,border-color,color,transform] duration-200 hover:bg-stone-100 active:scale-[0.96]">
+        class="inline-flex items-center justify-center border border-stone-300 bg-transparent px-6 py-4 font-mono text-xs font-black tracking-widest text-stone-500 uppercase transition-[background-color,border-color,color,transform] duration-200 hover:bg-stone-100 active:scale-96">
         Consent and Release Form
       </a>
     </div>
