@@ -5,6 +5,9 @@ import LucidePawPrint from 'virtual:icons/lucide/paw-print';
 import LucideBird from 'virtual:icons/lucide/bird';
 import LucideCamera from 'virtual:icons/lucide/camera';
 import LucideMap from 'virtual:icons/lucide/map';
+import HeroiconsBars3 from 'virtual:icons/heroicons/bars-3';
+import HeroiconsChevronDown from 'virtual:icons/heroicons/chevron-down';
+import HeroiconsXMark from 'virtual:icons/heroicons/x-mark';
 
 const props = defineProps<{ page: string }>();
 
@@ -143,7 +146,7 @@ const navigation = [
                     'flex h-full items-center px-4 font-mono text-[10px] font-black tracking-[0.2em] uppercase transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset xl:px-5',
                   ]">
                   <span>Leave No Trace</span>
-                  <i-heroicons-chevron-down class="ml-2 h-4 w-4 opacity-50 transition-transform duration-200" :class="lntOpen && 'rotate-180'" aria-hidden="true" />
+                  <HeroiconsChevronDown class="ml-2 h-4 w-4 opacity-50 transition-transform duration-200" :class="lntOpen && 'rotate-180'" aria-hidden="true" />
                 </button>
 
                 <Transition
@@ -194,13 +197,13 @@ const navigation = [
               @click="toggleMenu">
               <span class="sr-only">{{ menuOpen ? 'Close main menu' : 'Open main menu' }}</span>
               <span class="relative block h-6 w-6">
-                <i-heroicons-bars-3
+                <HeroiconsBars3
                   :class="[
                     menuOpen ? 'scale-[0.25] opacity-0 blur-[4px]' : 'scale-100 opacity-100 blur-[0px]',
                     'absolute inset-0 h-6 w-6 transition-[opacity,transform,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
                   ]"
                   aria-hidden="true" />
-                <i-heroicons-x-mark
+                <HeroiconsXMark
                   :class="[
                     menuOpen ? 'scale-100 opacity-100 blur-[0px]' : 'scale-[0.25] opacity-0 blur-[4px]',
                     'absolute inset-0 h-6 w-6 transition-[opacity,transform,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',

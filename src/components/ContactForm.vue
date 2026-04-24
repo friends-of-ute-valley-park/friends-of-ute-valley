@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, reactive, shallowRef, useTemplateRef, watch } from 'vue';
 import { useFetch } from '@vueuse/core';
+import HeroiconsMegaphone from 'virtual:icons/heroicons/megaphone';
+import MdiLoading from 'virtual:icons/mdi/loading';
 
 interface TurnstileAPI {
   render(container: HTMLElement | string, options: { sitekey: string; theme?: 'light' | 'dark' | 'auto'; size?: 'normal' | 'compact' | 'flexible' }): string;
@@ -239,7 +241,7 @@ watch(data, (response) => {
 
               <div>
                 <button :disabled="isFetching" type="submit" class="btn-primary-cta inline-flex w-full items-center justify-center disabled:opacity-50 sm:w-auto">
-                  <i-mdi-loading v-if="isFetching" class="mr-2 h-4 w-4 animate-spin" />
+                  <MdiLoading v-if="isFetching" class="mr-2 h-4 w-4 animate-spin" />
                   Send Message
                 </button>
               </div>
@@ -255,7 +257,7 @@ watch(data, (response) => {
               <div v-if="isFinished || error" class="mt-8 border p-6" :class="[error ? 'border-red-200 bg-red-50' : 'border-primary-dark bg-primary/5']" aria-live="polite">
                 <div class="flex gap-4">
                   <div class="shrink-0">
-                    <i-heroicons-megaphone class="h-6 w-6" :class="error ? 'text-red-700' : 'text-primary-dark'" />
+                    <HeroiconsMegaphone class="h-6 w-6" :class="error ? 'text-red-700' : 'text-primary-dark'" />
                   </div>
                   <div>
                     <h3 :class="[error ? 'text-red-800' : 'text-primary-dark', 'font-mono text-xs font-black tracking-widest uppercase']">

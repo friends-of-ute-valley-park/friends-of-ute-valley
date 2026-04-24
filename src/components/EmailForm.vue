@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef } from 'vue';
 import { useFetch } from '@vueuse/core';
+import MdiLoading from 'virtual:icons/mdi/loading';
 
 const nameIsError = shallowRef(false);
 const emailIsError = shallowRef(false);
@@ -98,7 +99,7 @@ const submit = (event: SubmitEvent) => {
           :disabled="isFetching"
           type="submit"
           class="mt-3 inline-flex min-h-10 w-full shrink-0 cursor-pointer items-center justify-center rounded-md border border-transparent bg-accent-dark px-6 py-3 text-base font-semibold text-stone-900 shadow-lg transition-[background-color,box-shadow,transform] duration-200 hover:bg-accent hover:shadow-xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary-dark focus:outline-hidden active:scale-[0.96] disabled:cursor-not-allowed disabled:bg-accent-dark">
-          <i-mdi-loading v-if="isFetching" class="mr-2 h-6 w-6 animate-spin text-stone-900" />
+          <MdiLoading v-if="isFetching" class="mr-2 h-6 w-6 animate-spin text-stone-900" />
           Get updates
         </button>
       </form>
