@@ -92,18 +92,14 @@ const springTips = [
         formats={["avif", "webp"]}
         width="1800"
         height="1355"
+        loading="eager"
+        fetchpriority="high"
         alt="Ute Valley Park sandstone, pines, and Pikes Peak under a spring sky"
         class="absolute inset-0 -z-20 h-full w-full object-cover object-[62%_45%]"
       />
       <div class="absolute inset-0 -z-10 bg-grid-subtle opacity-35"></div>
-      <div
-        class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,oklch(0.985_0.006_75)_0%,oklch(0.985_0.006_75/0.92)_34%,oklch(0.985_0.006_75/0.34)_58%,transparent_82%)] lg:bg-[linear-gradient(90deg,oklch(0.985_0.006_75)_0%,oklch(0.985_0.006_75)_36%,oklch(0.985_0.006_75/0.92)_42%,oklch(0.985_0.006_75/0.46)_50%,oklch(0.985_0.006_75/0.12)_58%,transparent_66%)]"
-      >
-      </div>
-      <div
-        class="absolute inset-x-0 bottom-0 -z-10 h-2/5 bg-[radial-gradient(ellipse_at_22%_100%,oklch(0.985_0.006_75/0.92)_0%,oklch(0.985_0.006_75/0.5)_38%,transparent_70%)] lg:bg-[radial-gradient(ellipse_at_23%_100%,oklch(0.985_0.006_75/0.96)_0%,oklch(0.985_0.006_75/0.62)_34%,oklch(0.985_0.006_75/0.14)_56%,transparent_74%)]"
-      >
-      </div>
+      <div class="hero-fade-x absolute inset-0 -z-10"></div>
+      <div class="hero-fade-corner absolute inset-x-0 bottom-0 -z-10 h-2/5"></div>
 
       <div class="mx-auto flex min-h-[calc(100svh-15rem)] max-w-(--breakpoint-2xl) items-end px-4 py-12 sm:px-6 lg:px-8">
         <div class="grid w-full items-end gap-10 lg:grid-cols-12">
@@ -111,9 +107,9 @@ const springTips = [
             <div class="mb-8 flex items-center gap-4">
               <span class="h-px w-12 bg-primary-dark"></span>
               <span
-                class="font-mono text-xs font-black tracking-[0.18em] text-stone-700 uppercase"
+                class="font-mono text-xs font-medium tracking-tight text-stone-700"
               >
-                Park Update — {currentMonthYear}
+                Park update for {currentMonthYear}
               </span>
             </div>
 
@@ -150,7 +146,7 @@ const springTips = [
           </div>
 
           <aside
-            class="rounded-lg bg-stone-50/95 p-6 shadow-2xl shadow-stone-900/15 ring-1 ring-stone-200 backdrop-blur-xs lg:col-span-4 lg:col-start-9 lg:mb-1 lg:p-8"
+            class="rounded-lg bg-stone-50/95 p-6 shadow-2xl shadow-stone-900/15 ring-1 ring-stone-200 backdrop-blur-xs lg:col-span-4 lg:col-start-9 lg:p-8"
             aria-labelledby="park-status-title"
           >
             <div class="mb-6 flex items-center gap-4 border-b border-stone-300 pb-5">
@@ -161,65 +157,60 @@ const springTips = [
               </span>
               <h2
                 id="park-status-title"
-                class="font-mono text-xs font-black tracking-[0.18em] text-primary-dark uppercase"
+                class="font-serif text-lg font-bold tracking-tight text-primary-dark"
               >
-                Current Park Status
+                Current park status
               </h2>
             </div>
 
             <dl class="space-y-5">
-              <div class="grid grid-cols-[2.75rem_1fr_auto] items-center gap-4">
-                <dt class="contents">
+              <div class="grid grid-cols-[1fr_auto] items-center gap-4">
+                <dt class="flex items-center gap-4">
                   <span
                     class="flex h-10 w-10 items-center justify-center rounded-full bg-stone-200 text-stone-700"
                   >
                     <HikingIcon class="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <span
-                    class="font-mono text-xs font-bold tracking-[0.08em] text-stone-600 uppercase"
-                    >Trail Conditions</span
+                  <span class="font-mono text-xs font-medium text-stone-600"
+                    >Trail conditions</span
                   >
                 </dt>
-                <dd
-                  class="font-mono text-sm font-black tracking-[0.02em] text-accent-dark uppercase"
-                >
+                <dd class="font-mono text-sm font-bold text-accent-darker">
                   {trailConditions.status}
                 </dd>
               </div>
 
-              <div class="grid grid-cols-[2.75rem_1fr_auto] items-center gap-4">
-                <dt class="contents">
+              <div class="grid grid-cols-[1fr_auto] items-center gap-4">
+                <dt class="flex items-center gap-4">
                   <span
                     class="flex h-10 w-10 items-center justify-center rounded-full bg-stone-200 text-stone-700"
                   >
                     <ClockIcon class="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <span
-                    class="font-mono text-xs font-bold tracking-[0.08em] text-stone-600 uppercase"
-                    >{parkSeason} Park Hours</span
+                  <span class="font-mono text-xs font-medium text-stone-600"
+                    >{parkSeason} hours</span
                   >
                 </dt>
-                <dd class="font-mono text-sm font-black text-stone-950">
+                <dd class="font-mono text-sm font-bold text-stone-950">
                   {parkHours}
                 </dd>
               </div>
 
-              <div class="grid grid-cols-[2.75rem_1fr_auto] items-center gap-4">
-                <dt class="contents">
+              <div class="grid grid-cols-[1fr_auto] items-center gap-4">
+                <dt class="flex items-center gap-4">
                   <span
                     class="flex h-10 w-10 items-center justify-center rounded-full bg-stone-200 text-stone-700"
                   >
                     <DogIcon class="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <span
-                    class="font-mono text-xs font-bold tracking-[0.08em] text-stone-600 uppercase"
-                    >Dog Policy</span
+                  <span class="font-mono text-xs font-medium text-stone-600"
+                    >Dog policy</span
                   >
                 </dt>
                 <dd
-                  class="font-mono text-sm font-black tracking-[0.02em] whitespace-nowrap text-primary-dark uppercase"
+                  class="font-mono text-sm font-bold whitespace-nowrap text-primary-dark"
                 >
-                  Leash Required
+                  Leash required
                 </dd>
               </div>
             </dl>
@@ -233,9 +224,9 @@ const springTips = [
             }
 
             <div
-              class="mt-8 flex items-center justify-between border-t border-stone-300 pt-5 font-mono text-[10px] font-bold tracking-[0.08em] text-stone-400 uppercase"
+              class="mt-8 flex items-center justify-between border-t border-stone-300 pt-5 font-mono text-xs font-medium text-stone-500"
             >
-              <span>Last Updated</span>
+              <span>Last updated</span>
               <time datetime={trailConditions.last_updated}
                 >{formattedLastUpdated}</time
               >
@@ -537,8 +528,56 @@ const springTips = [
 <style>
   /* Grid pattern overlay for that technical field-notes look */
   .bg-grid-subtle {
-    background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+    background-image: radial-gradient(
+      circle,
+      var(--color-stone-300) 1px,
+      transparent 1px
+    );
     background-size: 24px 24px;
+  }
+
+  /* Hero photo fades — referenced from var(--color-stone-50) so the
+     overlay stays in sync if the brand neutral shifts. */
+  .hero-fade-x {
+    background: linear-gradient(
+      90deg,
+      var(--color-stone-50) 0%,
+      color-mix(in oklab, var(--color-stone-50) 92%, transparent) 34%,
+      color-mix(in oklab, var(--color-stone-50) 34%, transparent) 58%,
+      transparent 82%
+    );
+  }
+  @media (min-width: 1024px) {
+    .hero-fade-x {
+      background: linear-gradient(
+        90deg,
+        var(--color-stone-50) 0%,
+        var(--color-stone-50) 36%,
+        color-mix(in oklab, var(--color-stone-50) 92%, transparent) 42%,
+        color-mix(in oklab, var(--color-stone-50) 46%, transparent) 50%,
+        color-mix(in oklab, var(--color-stone-50) 12%, transparent) 58%,
+        transparent 66%
+      );
+    }
+  }
+  .hero-fade-corner {
+    background: radial-gradient(
+      ellipse at 22% 100%,
+      color-mix(in oklab, var(--color-stone-50) 92%, transparent) 0%,
+      color-mix(in oklab, var(--color-stone-50) 50%, transparent) 38%,
+      transparent 70%
+    );
+  }
+  @media (min-width: 1024px) {
+    .hero-fade-corner {
+      background: radial-gradient(
+        ellipse at 23% 100%,
+        color-mix(in oklab, var(--color-stone-50) 96%, transparent) 0%,
+        color-mix(in oklab, var(--color-stone-50) 62%, transparent) 34%,
+        color-mix(in oklab, var(--color-stone-50) 14%, transparent) 56%,
+        transparent 74%
+      );
+    }
   }
 
   /* Donate / Newsletter split: two columns edge-to-edge inside the outer
