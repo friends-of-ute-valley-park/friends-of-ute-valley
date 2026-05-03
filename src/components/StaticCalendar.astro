@@ -14,13 +14,60 @@ export interface Props {
 
 const { eventDates = [] } = Astro.props as Props;
 
+type CalendarEventType = "public" | "company";
+
+type CalendarEvent = {
+  date: string;
+  type: CalendarEventType;
+  title: string;
+  companyName?: string;
+};
+
+const seasonEvents: CalendarEvent[] = [
+  { date: "2026-05-20", type: "public", title: "Public volunteer event" },
+  { date: "2026-06-03", type: "public", title: "Public volunteer event" },
+  { date: "2026-06-17", type: "public", title: "Public volunteer event" },
+  { date: "2026-07-01", type: "public", title: "Public volunteer event" },
+  { date: "2026-07-15", type: "public", title: "Public volunteer event" },
+  { date: "2026-08-05", type: "public", title: "Public volunteer event" },
+  { date: "2026-08-19", type: "public", title: "Public volunteer event" },
+  { date: "2026-09-02", type: "public", title: "Public volunteer event" },
+  {
+    date: "2026-05-18",
+    type: "company",
+    title: "Company volunteer event",
+    companyName: "Entegris",
+  },
+  {
+    date: "2026-06-26",
+    type: "company",
+    title: "Company volunteer event",
+    companyName: "Orthopedic Rehabilitation Associates",
+  },
+  {
+    date: "2026-08-01",
+    type: "company",
+    title: "Company volunteer event",
+    companyName: "Trail Sisters",
+  },
+];
+
 const toLocalDate = (dateString: string) => {
   const [year, month, day] = dateString.split("-").map(Number);
   return new Date(year, month - 1, day);
 };
 
-const volunteerEventDates = eventDates.map(toLocalDate);
-const currentYear = new Date().getFullYear();
+const propEvents = eventDates.map((date) => ({
+  date,
+  type: "public" as const,
+  title: "Public volunteer event",
+}));
+const calendarEvents = propEvents.length > 0 ? propEvents : seasonEvents;
+const volunteerEventDates = calendarEvents.map((event) => toLocalDate(event.date));
+const currentYear =
+  calendarEvents.length > 0
+    ? toLocalDate(calendarEvents[0].date).getFullYear()
+    : new Date().getFullYear();
 const allMonths = [
   { label: "April", monthIndex: 3 },
   { label: "May", monthIndex: 4 },
@@ -46,6 +93,12 @@ const getDaysInMonth = (year: number, month: number) => {
   const end = endOfMonth(start);
   return eachDayOfInterval({ start, end });
 };
+
+const getCalendarEvent = (date: Date) =>
+  calendarEvents.find((event) => isDateInList(date, [toLocalDate(event.date)]));
+
+const getEventLabel = (event: CalendarEvent) =>
+  event.companyName ? `${event.title}: ${event.companyName}` : event.title;
 ---
 
 <div
@@ -70,9 +123,27 @@ const getDaysInMonth = (year: number, month: number) => {
     </div>
     <div class="max-w-md">
       <p class="text-sm font-medium leading-relaxed text-stone-600">
-        Highlighted dates show currently posted volunteer sessions. Choose a day
-        from the list above for full meeting details and registration.
+        Highlighted dates show public volunteer sessions and company community
+        workdays. Company workdays are not open to public registration.
       </p>
+      <div class="mt-5 flex flex-wrap gap-4">
+        <div class="flex items-center gap-2">
+          <span
+            class="h-3 w-3 border border-primary-dark bg-primary/15"
+            aria-hidden="true"></span>
+          <span class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-600"
+            >Public</span
+          >
+        </div>
+        <div class="flex items-center gap-2">
+          <span
+            class="h-3 w-3 border border-accent-dark bg-accent/25"
+            aria-hidden="true"></span>
+          <span class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-600"
+            >Company</span
+          >
+        </div>
+      </div>
     </div>
   </div>
 
@@ -101,28 +172,42 @@ const getDaysInMonth = (year: number, month: number) => {
               ))}
 
               {daysInMonth.map((day) => {
-                const isVolunteerDay = isDateInList(day, volunteerEventDates);
+                const calendarEvent = getCalendarEvent(day);
+                const isVolunteerDay = Boolean(calendarEvent);
+                const isCompanyEvent = calendarEvent?.type === "company";
+                const eventLabel = calendarEvent ? getEventLabel(calendarEvent) : undefined;
 
                 return (
                   <div
                     class:list={[
-                      "relative flex h-10 items-center justify-center bg-white",
-                      isVolunteerDay && "bg-primary/6",
+                      "relative flex h-10 items-center justify-center",
+                      !isVolunteerDay && "bg-white",
+                      isVolunteerDay && !isCompanyEvent && "bg-primary/6",
+                      isCompanyEvent && "bg-accent/15",
                     ]}
+                    title={isCompanyEvent ? eventLabel : undefined}
+                    aria-label={eventLabel}
                   >
                     <span
                       class:list={[
                         "font-mono text-xs",
-                        isVolunteerDay
+                        isVolunteerDay && !isCompanyEvent
                           ? "font-black text-primary-dark"
+                          : isCompanyEvent
+                          ? "font-black text-accent-dark"
                           : "text-stone-600",
                       ]}
                     >
                       {format(day, "d")}
                     </span>
                     {
-                      isVolunteerDay && (
+                      isVolunteerDay && !isCompanyEvent && (
                         <div class="absolute inset-1 border border-primary-dark/40" />
+                      )
+                    }
+                    {
+                      isCompanyEvent && (
+                        <div class="absolute inset-1 border border-accent-dark/60" />
                       )
                     }
                   </div>
@@ -141,4 +226,3 @@ const getDaysInMonth = (year: number, month: number) => {
     }
   </div>
 </div>
-
