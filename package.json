@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "preinstall": "node ./scripts/ensure-pnpm.mjs",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
@@ -34,11 +35,13 @@
     "oxfmt": "^0.47.0",
     "oxlint": "^1.62.0",
     "oxlint-tsgolint": "^0.22.1",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.4",
     "unplugin-icons": "^23.0.1",
     "vue": "^3.5.33"
   },
   "overrides": {
     "lodash": "4.17.23"
-  }
+  },
+  "packageManager": "pnpm@11.1.1"
 }
