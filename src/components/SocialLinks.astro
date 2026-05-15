@@ -4,6 +4,14 @@ import InstagramIcon from '~icons/mdi/instagram';
 import FacebookIcon from '~icons/mdi/facebook';
 import GithubIcon from '~icons/mdi/github';
 
+interface Props {
+  variant?: 'buttons' | 'inline';
+}
+
+const { variant = 'buttons' } = Astro.props as Props;
+const isInline = variant === 'inline';
+const Wrapper = isInline ? 'span' : 'div';
+
 const iconComponents: Record<string, typeof FacebookIcon> = {
   facebook: FacebookIcon,
   instagram: InstagramIcon,
@@ -16,25 +24,30 @@ const hoverStyles: Record<string, string> = {
   github: 'hover:text-stone-900 hover:border-stone-900',
 };
 
-const socialLinks = (await getCollection('social-links')).sort(
-  (a, b) => a.data.priority - b.data.priority,
-);
+const socialLinks = (await getCollection('social-links'))
+  .filter((entry) => !isInline || entry.data.showInline)
+  .sort((a, b) => a.data.priority - b.data.priority);
 ---
 
-<div class="relative flex space-x-4">
+<Wrapper class:list={[isInline ? 'mx-1 inline-flex space-x-2' : 'relative flex space-x-4']}>
   {socialLinks.map((entry) => {
     const Icon = iconComponents[entry.data.icon];
     const hover = hoverStyles[entry.data.icon] ?? '';
     return (
       <a
         href={entry.data.link}
-        class={`inline-flex min-h-10 min-w-10 items-center justify-center border border-stone-300 bg-white p-2 text-stone-500 transition-[border-color,color,transform] duration-200 active:scale-96 ${hover}`}
-        target="_blank"
-        rel="noopener noreferrer nofollow"
+        class:list={[
+          isInline
+            ? 'text-primary-dark focus-within:ring-2 focus-within:ring-primary-light hover:text-primary-light focus:outline-hidden'
+            : 'inline-flex min-h-10 min-w-10 items-center justify-center border border-stone-300 bg-white p-2 text-stone-500 transition-[border-color,color,transform] duration-200 active:scale-96',
+          !isInline && hover,
+        ]}
+        target={isInline ? undefined : '_blank'}
+        rel={isInline ? undefined : 'noopener noreferrer nofollow'}
       >
         <span class="sr-only">{entry.data.title}</span>
-        <Icon class="h-5 w-5" aria-hidden="true" />
+        <Icon class={isInline ? 'h-4 w-4' : 'h-5 w-5'} aria-hidden="true" />
       </a>
     );
   })}
-</div>
+</Wrapper>

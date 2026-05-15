@@ -7,7 +7,7 @@ import LeaveNoTraceSmall from "@components/LeaveNoTraceSmall.astro";
 import ContactForm from "@components/ContactForm.vue";
 import EmailForm from "@components/EmailForm.vue";
 import StaticCalendar from "../components/StaticCalendar.astro";
-import SocialLinksInline from "@components/SocialLinksInline.astro";
+import SocialLinks from "@components/SocialLinks.astro";
 
 import { getCollection } from "astro:content";
 import { isFuture, endOfDay } from "date-fns";
@@ -143,7 +143,7 @@ const meetingLocations = await getCollection("trailheads");
               maintenance and stewardship events on select Wednesdays and
               weekends. As our schedule varies each month, we encourage you to
               join our update list and follow us
-              <SocialLinksInline /> for the latest news. Whether you join us for one
+              <SocialLinks variant="inline" /> for the latest news. Whether you join us for one
               session or the full season, your contribution is vital to the health
               of our local trails.
             </p>
@@ -291,4 +291,3 @@ const meetingLocations = await getCollection("trailheads");
     </div>
   </main>
 </Layout>
-
