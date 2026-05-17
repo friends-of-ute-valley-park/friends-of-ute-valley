@@ -9,12 +9,18 @@ import { TURNSTILE_SITE_KEY } from 'astro:env/client';
   title="Contact"
   description="Contact Friends of Ute Valley Park for questions about volunteering, park stewardship, partnerships, or general inquiries."
 >
-  <main class="bg-stone-50">
+  <main class="page">
     <ContactForm client:idle turnstileSiteKey={TURNSTILE_SITE_KEY} />
     
-    <div class="border-t border-stone-300 content-defer">
+    <div class="contact-team content-defer">
       <TeamList />
     </div>
   </main>
 </Layout>
+
+<style>
+  .contact-team {
+    border-top: 1px solid var(--color-border);
+  }
+</style>
 

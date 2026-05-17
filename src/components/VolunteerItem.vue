@@ -19,43 +19,219 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-  <div class="flex w-full flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
-    <div class="flex-1 space-y-4">
-      <div class="flex items-center gap-3">
-        <span class="font-mono text-[10px] font-black tracking-[0.2em] text-accent-darker uppercase">Event</span>
-        <h2 class="font-serif text-2xl leading-none font-black tracking-tight text-balance text-stone-900 uppercase">
-          <a :href="'/events/' + volunteerEvent.id" class="transition-colors hover:text-primary-dark">{{ volunteerEvent.data.title }}</a>
+  <div class="volunteer-item">
+    <div class="volunteer-item__details">
+      <div class="volunteer-item__heading">
+        <span>Event</span>
+        <h2>
+          <a :href="'/events/' + volunteerEvent.id">{{ volunteerEvent.data.title }}</a>
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 gap-8 pt-2 sm:grid-cols-2">
-        <div class="space-y-1">
-          <p class="font-mono text-[10px] tracking-widest text-stone-500 uppercase">Date & Time</p>
-          <p class="font-mono text-sm font-black text-stone-700 uppercase tabular-nums">
+      <div class="volunteer-item__meta">
+        <div>
+          <p>Date & Time</p>
+          <p>
             <time :datetime="formattedDate + ' ' + volunteerEvent.data.time">{{ formattedDate }} — {{ volunteerEvent.data.time }}</time>
           </p>
         </div>
-        <div class="space-y-1">
-          <p class="font-mono text-[10px] tracking-widest text-stone-500 uppercase">Meeting Point</p>
-          <p class="font-mono text-sm font-black text-stone-700 uppercase">
-            <a :href="directionsLink" class="underline hover:text-primary-dark">{{ meetingLocation }}</a>
+        <div>
+          <p>Meeting Point</p>
+          <p>
+            <a :href="directionsLink">{{ meetingLocation }}</a>
           </p>
         </div>
       </div>
 
-      <div v-if="volunteerEvent.data.meetingLocation.notes" class="mt-4 border-l-2 border-stone-300 bg-stone-100 p-4">
-        <p class="mb-1 font-mono text-[10px] tracking-widest text-stone-600 uppercase">Meeting Details</p>
-        <p class="text-xs leading-relaxed font-medium text-stone-600">{{ volunteerEvent.data.meetingLocation.notes }}</p>
+      <div v-if="volunteerEvent.data.meetingLocation.notes" class="volunteer-item__notes">
+        <p>Meeting Details</p>
+        <p>{{ volunteerEvent.data.meetingLocation.notes }}</p>
       </div>
     </div>
 
-    <div class="flex w-full flex-col gap-4 sm:flex-row lg:w-auto">
-      <a :href="volunteerEvent.data.link" class="btn-primary-cta inline-flex items-center justify-center"> Register </a>
+    <div class="volunteer-item__actions">
+      <a :href="volunteerEvent.data.link" class="button button--brand volunteer-item__register"> Register </a>
       <a
         href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
-        class="inline-flex items-center justify-center border border-stone-300 bg-transparent px-6 py-4 font-mono text-xs font-black tracking-widest text-stone-500 uppercase transition-[background-color,border-color,color,transform] duration-200 hover:bg-stone-100 active:scale-96">
+        class="volunteer-item__release">
         Consent and Release Form
       </a>
     </div>
   </div>
 </template>
+
+<style scoped>
+  .volunteer-item {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .volunteer-item__details {
+    display: grid;
+    flex: 1;
+    gap: 1rem;
+  }
+
+  .volunteer-item__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .volunteer-item__heading > span {
+    color: var(--color-accent-strong);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .volunteer-item__heading h2 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    text-wrap: balance;
+    text-transform: uppercase;
+  }
+
+  .volunteer-item__heading a,
+  .volunteer-item__meta a {
+    color: inherit;
+    transition: color 200ms;
+  }
+
+  .volunteer-item__heading a {
+    text-decoration: none;
+  }
+
+  .volunteer-item__heading a:hover,
+  .volunteer-item__meta a:hover {
+    color: var(--color-brand-strong);
+  }
+
+  .volunteer-item__meta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-top: 0.5rem;
+  }
+
+  .volunteer-item__meta div,
+  .volunteer-item__notes {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .volunteer-item__meta p,
+  .volunteer-item__notes p {
+    margin: 0;
+  }
+
+  .volunteer-item__meta p:first-child,
+  .volunteer-item__notes p:first-child {
+    color: var(--color-text-subtle);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .volunteer-item__meta p:last-child {
+    color: var(--color-text-muted);
+    font-family: var(--font-label);
+    font-size: var(--text-body-small);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .volunteer-item__meta a {
+    text-decoration: underline;
+  }
+
+  .volunteer-item__notes {
+    margin-top: 1rem;
+    border-left: 2px solid var(--color-border);
+    background: var(--color-surface-muted);
+    padding: 1rem;
+  }
+
+  .volunteer-item__notes p:last-child {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .volunteer-item__actions {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .volunteer-item__register {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .volunteer-item__release {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-subtle);
+    padding: 1rem 1.5rem;
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+      background-color 200ms,
+      border-color 200ms,
+      color 200ms,
+      transform 200ms;
+  }
+
+  .volunteer-item__release:hover {
+    background: var(--color-surface-muted);
+  }
+
+  .volunteer-item__release:active {
+    transform: scale(0.96);
+  }
+
+  @media (min-width: 40rem) {
+    .volunteer-item__meta {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .volunteer-item__actions {
+      flex-direction: row;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .volunteer-item {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .volunteer-item__actions {
+      width: auto;
+    }
+  }
+</style>

@@ -8,7 +8,7 @@ const faqs = [
     tag: "Getting Around",
     question: "How do I find my way around UVP? I am always getting lost.",
     answer:
-      'Please download the <a class="font-bold text-primary-dark underline" href="/visit/">map</a> or take a picture of our trail map before you head out. Always note your specific parking lot location.',
+      'Please download the <a class="text-link" href="/visit/">map</a> or take a picture of our trail map before you head out. Always note your specific parking lot location.',
   },
   {
     id: "02",
@@ -22,7 +22,7 @@ const faqs = [
     tag: "Planning",
     question: "Where can I park my car?",
     answer:
-      'Consult the <a class="font-bold text-primary-dark underline" href="/visit/">visit</a> page for verified trailhead coordinates and parking capacity.',
+      'Consult the <a class="text-link" href="/visit/">visit</a> page for verified trailhead coordinates and parking capacity.',
   },
   {
     id: "04",
@@ -50,7 +50,7 @@ const faqs = [
     tag: "Getting Involved",
     question: "How do I get involved with Ute Valley Park?",
     answer:
-      'Visit our <a class="font-bold text-primary-dark underline" href="/volunteer/">volunteer</a> page to register for upcoming volunteer events.',
+      'Visit our <a class="text-link" href="/volunteer/">volunteer</a> page to register for upcoming volunteer events.',
   },
 ];
 ---
@@ -59,59 +59,48 @@ const faqs = [
   title="FAQ"
   description="Read frequently asked questions about Ute Valley Park including hours, parking, wildlife safety, and volunteer opportunities."
 >
-  <main class="bg-stone-50 text-stone-900">
+  <main class="page">
     <!-- FAQ Header -->
-    <section class="border-b border-stone-300">
-      <div
-        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
-      >
-        <div class="flex items-center gap-4 mb-8">
-          <span class="inline-block h-px w-12 bg-primary-dark"></span>
-          <span
-            class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
-          >
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <div class="page-eyebrow">
+          <span>
             Common Questions
           </span>
         </div>
 
-        <h1
-          class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
-        >
+        <h1 class="page-title">
           Frequently <br /> Asked <br />
-          <span class="text-primary-dark">Questions.</span>
+          <span>Questions.</span>
         </h1>
 
-        <p
-          class="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-stone-700"
-        >
+        <p class="page-intro">
           Common questions about visiting and enjoying Ute Valley Park.
         </p>
       </div>
     </section>
 
     <!-- FAQ Grid -->
-    <section class="border-b border-stone-300 bg-stone-100/50">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-0 lg:px-8 py-24">
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-stone-300 border border-stone-300"
-        >
+    <section class="page-section page-section--muted">
+      <div class="faq-section">
+        <div class="feature-grid feature-grid--two feature-grid--three">
           {
             faqs.map((faq) => (
-              <div class="bg-white p-8 space-y-6 flex flex-col justify-between hover:bg-stone-50 transition-colors group">
-                <div class="space-y-4">
-                  <div class="flex justify-between items-center">
-                    <span class="font-mono text-xs font-black text-stone-300 group-hover:text-primary-dark transition-colors">
+              <div class="faq-card">
+                <div class="faq-card__content">
+                  <div class="faq-card__meta">
+                    <span>
                       [{faq.id}]
                     </span>
-                    <span class="font-mono text-[8px] font-black uppercase tracking-widest px-2 py-0.5 border border-stone-200 text-stone-500 group-hover:border-primary-dark group-hover:text-primary-dark transition-colors">
+                    <span>
                       {faq.tag}
                     </span>
                   </div>
-                  <h3 class="text-xl font-serif font-black uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors">
+                  <h3>
                     {faq.question}
                   </h3>
                   <div
-                    class="text-sm leading-relaxed text-stone-600 font-medium prose prose-sm prose-stone"
+                    class="faq-card__answer"
                     set:html={faq.answer}
                   />
                 </div>
@@ -122,9 +111,102 @@ const faqs = [
       </div>
     </section>
 
-    <div class="bg-stone-50">
+    <div>
       <LeaveNoTraceSmall />
     </div>
   </main>
 </Layout>
 
+<style>
+  .faq-section {
+    width: min(100%, var(--container-wide));
+    margin-inline: auto;
+  }
+
+  .faq-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--color-surface);
+    padding: 2rem;
+    transition: background-color 200ms;
+  }
+
+  .faq-card:hover {
+    background: var(--color-page);
+  }
+
+  .faq-card__content {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .faq-card__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .faq-card__meta span:first-child {
+    color: var(--color-border);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+    transition: color 200ms;
+  }
+
+  .faq-card:hover .faq-card__meta span:first-child {
+    color: var(--color-brand-strong);
+  }
+
+  .faq-card__meta span:last-child {
+    border: 1px solid var(--color-border-muted);
+    color: var(--color-text-subtle);
+    padding: 0.125rem 0.5rem;
+    font-family: var(--font-label);
+    font-size: 0.5rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition:
+      border-color 200ms,
+      color 200ms;
+  }
+
+  .faq-card:hover .faq-card__meta span:last-child {
+    border-color: var(--color-brand-strong);
+    color: var(--color-brand-strong);
+  }
+
+  .faq-card h3 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    transition: color 200ms;
+  }
+
+  .faq-card:hover h3 {
+    color: var(--color-brand-strong);
+  }
+
+  .faq-card__answer {
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .faq-card__answer :global(p) {
+    margin: 0;
+  }
+
+  @media (min-width: 64rem) {
+    .faq-section {
+      width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+    }
+  }
+</style>

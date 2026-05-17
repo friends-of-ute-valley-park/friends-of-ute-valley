@@ -1,44 +1,30 @@
-<section class="relative w-full border-y border-stone-300">
-    <div class="bg-stone-900 py-24 relative overflow-hidden">
+<section class="engagement-panel">
+    <div class="engagement-panel__band">
         <!-- Decorative technical background -->
-        <div
-            class="absolute inset-0 bg-grid-subtle opacity-10 pointer-events-none"
-        >
-        </div>
-        <div
-            class="absolute top-0 right-0 w-64 h-64 bg-accent/5 -translate-y-1/2 translate-x-1/2 rotate-45 border border-accent/10"
-        >
-        </div>
+        <div class="engagement-panel__field"></div>
+        <div class="engagement-panel__marker"></div>
 
-        <div
-            class="relative z-10 mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8"
-        >
-            <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-12">
+        <div class="engagement-panel__inner">
+            <div class="engagement-panel__layout">
                 <!-- Header content -->
-                <div class="lg:col-span-5 space-y-8">
-                    <div class="flex items-center gap-4">
-                        <span class="inline-block h-px w-8 bg-accent"></span>
-                        <span
-                            class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500"
-                        >
+                <div class="engagement-panel__header">
+                    <div class="engagement-panel__eyebrow">
+                        <span></span>
+                        <span>
                             <slot name="subheading">Stay Connected</slot>
                         </span>
                     </div>
 
-                    <div class="space-y-4">
+                    <div class="engagement-panel__copy">
                         <slot name="heading">
-                            <h2
-                                class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-white leading-none"
-                            >
-                                Stay <span class="text-accent italic"
+                            <h2 class="engagement-panel__title">
+                                Stay <span class="engagement-panel__accent"
                                     >Informed.</span
                                 >
                             </h2>
                         </slot>
                         <slot name="description">
-                            <p
-                                class="text-lg text-stone-500 font-medium leading-relaxed"
-                            >
+                            <p class="engagement-panel__description">
                                 Sign up for volunteer updates and seasonal news.
                             </p>
                         </slot>
@@ -46,9 +32,7 @@
                 </div>
 
                 <!-- Main content/Form container -->
-                <div
-                    class="lg:col-span-7 bg-white p-8 md:p-12 border border-stone-800 shadow-xl relative"
-                >
+                <div class="engagement-panel__main">
                     <slot name="main"> Content </slot>
                 </div>
             </div>
@@ -57,8 +41,119 @@
 </section>
 
 <style>
-.bg-grid-subtle {
-        background-image: radial-gradient(circle, #ffffff 1px, transparent 1px);
+    .engagement-panel {
+        position: relative;
+        width: 100%;
+        border-block: 1px solid var(--color-border);
+    }
+
+    .engagement-panel__band {
+        position: relative;
+        overflow: clip;
+        background: var(--color-surface-inverse);
+        padding-block: 6rem;
+    }
+
+    .engagement-panel__field {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgb(255 255 255 / 100%) 1px, transparent 1px);
         background-size: 32px 32px;
+        opacity: 0.1;
+        pointer-events: none;
+    }
+
+    .engagement-panel__marker {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 16rem;
+        height: 16rem;
+        border: 1px solid color-mix(in oklab, var(--color-accent) 10%, transparent);
+        background: color-mix(in oklab, var(--color-accent) 5%, transparent);
+        transform: translate(50%, -50%) rotate(45deg);
+    }
+
+    .engagement-panel__inner {
+        position: relative;
+        z-index: 1;
+        width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+        margin-inline: auto;
+    }
+
+    .engagement-panel__layout {
+        display: grid;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .engagement-panel__header {
+        display: grid;
+        gap: 2rem;
+    }
+
+    .engagement-panel__eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .engagement-panel__eyebrow span:first-child {
+        display: inline-block;
+        width: 2rem;
+        height: 1px;
+        background: var(--color-accent);
+    }
+
+    .engagement-panel__eyebrow span:last-child {
+        color: var(--color-text-subtle);
+        font-family: var(--font-label);
+        font-size: var(--text-label);
+        font-weight: 900;
+        letter-spacing: var(--tracking-label);
+        text-transform: uppercase;
+    }
+
+    .engagement-panel__copy {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .engagement-panel__title {
+        margin: 0;
+        color: var(--color-text-inverse);
+        font-family: var(--font-display);
+        font-size: clamp(2.25rem, 6vw, 3.75rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: uppercase;
+    }
+
+    .engagement-panel__accent {
+        color: var(--color-accent);
+        font-style: italic;
+    }
+
+    .engagement-panel__description {
+        margin: 0;
+        color: var(--color-text-subtle);
+        font-size: var(--text-body-large);
+        font-weight: 500;
+        line-height: var(--leading-body);
+    }
+
+    .engagement-panel__main {
+        position: relative;
+        border: 1px solid var(--color-surface-inverse-muted);
+        background: var(--color-surface);
+        padding: clamp(2rem, 4vw, 3rem);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%);
+    }
+
+    @media (min-width: 64rem) {
+        .engagement-panel__layout {
+            grid-template-columns: 5fr 7fr;
+        }
     }
 </style>

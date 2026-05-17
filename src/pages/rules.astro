@@ -47,31 +47,22 @@ const parkRules = [
   title="Rules"
   description="Review Ute Valley Park rules and city ordinances including leash laws, park hours, trail etiquette, and safety requirements."
 >
-  <main class="bg-stone-50 text-stone-900">
+  <main class="page rules-page">
     <!-- Regulations Header -->
-    <section class="border-b border-stone-300">
-      <div
-        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
-      >
-        <div class="flex items-center gap-4 mb-8">
-          <span class="inline-block h-px w-12 bg-primary-dark"></span>
-          <span
-            class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
-          >
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <div class="page-eyebrow">
+          <span>
             Park Rules
           </span>
         </div>
 
-        <h1
-          class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
-        >
+        <h1 class="page-title">
           Park <br />
-          <span class="text-primary-dark">Regulations.</span>
+          <span>Regulations.</span>
         </h1>
 
-        <p
-          class="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-stone-700"
-        >
+        <p class="page-intro">
           The City of Colorado Springs Parks, Recreation, and Cultural Services
           Department establishes and enforces the following ordinances for Ute
           Valley Park.
@@ -80,50 +71,40 @@ const parkRules = [
     </section>
 
     <!-- Essential Hours & Exceptions -->
-    <section class="border-b border-stone-300 bg-stone-100/50">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="p-8 border border-stone-300 bg-white space-y-4">
-            <h3
-              class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark border-b border-stone-100 pb-2"
-            >
+    <section class="rules-summary">
+      <div class="page-section__inner">
+        <div class="rules-summary__grid">
+          <div class="rules-summary-card">
+            <h3>
               Park Hours
             </h3>
-            <div class="space-y-2">
-              <div class="flex justify-between font-mono text-xs uppercase">
-                <span class="text-stone-500">Winter (Nov-Apr)</span>
-                <span class="font-black">05:00 — 21:00</span>
+            <div class="rules-summary-card__rows">
+              <div>
+                <span>Winter (Nov-Apr)</span>
+                <span>05:00 — 21:00</span>
               </div>
-              <div class="flex justify-between font-mono text-xs uppercase">
-                <span class="text-stone-500">Summer (May-Oct)</span>
-                <span class="font-black">05:00 — 22:00</span>
+              <div>
+                <span>Summer (May-Oct)</span>
+                <span>05:00 — 22:00</span>
               </div>
             </div>
           </div>
 
-          <div class="p-8 border border-stone-300 bg-white space-y-4">
-            <h3
-              class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark border-b border-stone-100 pb-2"
-            >
+          <div class="rules-summary-card">
+            <h3>
               Dog Rules
             </h3>
-            <p
-              class="text-xs font-bold text-stone-600 leading-relaxed uppercase tracking-tight"
-            >
+            <p>
               NO OFF-LEASH AREAS. NO DOG PARKS. LEASHES MANDATORY AT ALL TIMES
               WITHOUT EXCEPTION.
             </p>
           </div>
 
-          <div class="p-8 border border-stone-300 bg-white space-y-4">
-            <h3
-              class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark border-b border-stone-100 pb-2"
-            >
+          <div class="rules-summary-card">
+            <h3>
               Fire Safety
             </h3>
-            <p
-              class="text-xs font-bold text-stone-600 leading-relaxed uppercase tracking-tight"
-            >
+            <p>
               SMOKING PROHIBITED. OPEN FIRES PROHIBITED. CHARCOAL PROHIBITED.
             </p>
           </div>
@@ -132,32 +113,28 @@ const parkRules = [
     </section>
 
     <!-- Detailed Code -->
-    <section class="py-24 border-b border-stone-300">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-        <div class="mb-16">
-          <h2
-            class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-6"
-          >
-            Municipal <span class="text-primary-dark italic">Ordinances.</span>
+    <section class="page-section">
+      <div class="page-section__inner">
+        <div class="rules-heading">
+          <h2>
+            Municipal <span>Ordinances.</span>
           </h2>
         </div>
 
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-stone-300 border border-stone-300"
-        >
+        <div class="feature-grid feature-grid--two feature-grid--three">
           {
             parkRules.map((rule) => (
-              <div class="bg-white p-8 space-y-6 hover:bg-stone-50 transition-colors group">
-                <div class="flex justify-between items-start">
-                  <span class="font-mono text-[10px] font-black text-primary-dark px-2 py-1 border border-primary-dark/20">
+              <div class="ordinance-card">
+                <div>
+                  <span>
                     {rule.code}
                   </span>
                 </div>
-                <div class="space-y-2">
-                  <h3 class="text-xl font-serif font-black uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors">
+                <div>
+                  <h3>
                     {rule.title}
                   </h3>
-                  <p class="text-sm leading-relaxed text-stone-600 font-medium">
+                  <p>
                     {rule.description}
                   </p>
                 </div>
@@ -166,15 +143,11 @@ const parkRules = [
           }
         </div>
 
-        <div class="mt-12 space-y-6">
-          <h3
-            class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark border-b border-stone-200 pb-2"
-          >
+        <div class="additional-rules">
+          <h3>
             Additional Restrictions
           </h3>
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-stone-600 font-medium leading-relaxed"
-          >
+          <div>
             <p>
               • Motorized vehicles (ATVs, golf carts, etc.) are strictly
               prohibited on all trails, turf, and restricted roadways.
@@ -197,55 +170,40 @@ const parkRules = [
     </section>
 
     <!-- Trail Etiquette -->
-    <section class="py-24 bg-stone-900 text-white">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          <div class="lg:col-span-5 space-y-8">
-            <div class="flex items-center gap-4">
-              <span class="inline-block h-px w-12 bg-accent"></span>
-              <span
-                class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
-                >Field Etiquette</span
-              >
+    <section class="right-of-way">
+      <div class="right-of-way__inner">
+        <div class="right-of-way__layout">
+          <div class="right-of-way__copy">
+            <div class="right-of-way__eyebrow">
+              <span></span>
+              <span>Field Etiquette</span>
             </div>
-            <h2
-              class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight leading-none"
-            >
+            <h2>
               Right of <br />
-              <span class="text-accent italic">Way.</span>
+              <span>Way.</span>
             </h2>
-            <ul
-              class="space-y-4 font-mono text-xs uppercase tracking-widest text-stone-300"
-            >
-              <li
-                class="flex items-center gap-4 border-l-2 border-accent pl-4 py-1"
-              >
+            <ul>
+              <li>
                 Stay on designated trails only
               </li>
-              <li
-                class="flex items-center gap-4 border-l-2 border-accent pl-4 py-1"
-              >
+              <li>
                 Yield to uphill travelers
               </li>
-              <li
-                class="flex items-center gap-4 border-l-2 border-accent pl-4 py-1"
-              >
+              <li>
                 Bicyclists yield to all other users
               </li>
-              <li
-                class="flex items-center gap-4 border-l-2 border-accent pl-4 py-1"
-              >
+              <li>
                 Warn others before passing on left
               </li>
             </ul>
           </div>
 
-          <div class="lg:col-span-7">
-            <div class="p-8 border border-white/10 bg-white/5">
+          <div>
+            <div class="right-of-way__diagram">
               <Picture
                 src={trailRightOfWay}
                 alt="Trail right of way technical diagram"
-                class="w-full h-auto brightness-200"
+                class="right-of-way__image"
               />
             </div>
           </div>
@@ -253,9 +211,247 @@ const parkRules = [
       </div>
     </section>
 
-    <div class="bg-stone-50">
+    <div>
       <LeaveNoTrace />
     </div>
   </main>
 </Layout>
 
+<style>
+  .rules-summary {
+    border-bottom: 1px solid var(--color-border);
+    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
+    padding-block: 3rem;
+  }
+
+  .rules-summary__grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .rules-summary-card {
+    display: grid;
+    gap: 1rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 2rem;
+  }
+
+  .rules-summary-card h3,
+  .additional-rules h3 {
+    margin: 0;
+    border-bottom: 1px solid var(--color-border-muted);
+    padding-bottom: 0.5rem;
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .rules-summary-card__rows {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .rules-summary-card__rows div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .rules-summary-card span,
+  .rules-summary-card p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    line-height: var(--leading-body);
+    text-transform: uppercase;
+  }
+
+  .rules-summary-card span:last-child,
+  .rules-summary-card p {
+    font-weight: 900;
+  }
+
+  .rules-heading {
+    margin-bottom: 4rem;
+  }
+
+  .rules-heading h2 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .rules-heading h2 span {
+    color: var(--color-brand-strong);
+    font-style: italic;
+  }
+
+  .ordinance-card {
+    display: grid;
+    gap: 1.5rem;
+    background: var(--color-surface);
+    padding: 2rem;
+    transition: background-color 200ms;
+  }
+
+  .ordinance-card:hover {
+    background: var(--color-page);
+  }
+
+  .ordinance-card span {
+    border: 1px solid color-mix(in oklab, var(--color-brand-strong) 20%, transparent);
+    color: var(--color-brand-strong);
+    padding: 0.25rem 0.5rem;
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+  }
+
+  .ordinance-card h3 {
+    margin: 0 0 0.5rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    transition: color 200ms;
+  }
+
+  .ordinance-card:hover h3 {
+    color: var(--color-brand-strong);
+  }
+
+  .ordinance-card p,
+  .additional-rules p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .additional-rules {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .additional-rules > div {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .right-of-way {
+    background: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+    padding-block: var(--space-section);
+  }
+
+  .right-of-way__inner {
+    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+    margin-inline: auto;
+  }
+
+  .right-of-way__layout {
+    display: grid;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .right-of-way__copy {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .right-of-way__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .right-of-way__eyebrow span:first-child {
+    width: 3rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  .right-of-way__eyebrow span:last-child {
+    color: var(--color-text-subtle);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .right-of-way h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .right-of-way h2 span {
+    color: var(--color-accent);
+    font-style: italic;
+  }
+
+  .right-of-way ul {
+    display: grid;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .right-of-way li {
+    border-left: 2px solid var(--color-accent);
+    color: var(--color-text-inverse-muted);
+    padding: 0.25rem 0 0.25rem 1rem;
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .right-of-way__diagram {
+    border: 1px solid var(--color-border-inverse);
+    background: color-mix(in oklab, var(--color-text-inverse) 5%, transparent);
+    padding: 2rem;
+  }
+
+  :global(.right-of-way__image) {
+    width: 100%;
+    height: auto;
+    filter: brightness(2);
+  }
+
+  @media (min-width: 48rem) {
+    .rules-summary__grid,
+    .additional-rules > div {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .rules-summary__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .right-of-way__layout {
+      grid-template-columns: 5fr 7fr;
+    }
+  }
+</style>

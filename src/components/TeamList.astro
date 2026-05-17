@@ -50,50 +50,41 @@ const teamMembers = [
 ];
 ---
 
-<div class="py-24 border-b border-stone-300">
-  <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-    <div class="mb-16">
-      <div class="flex items-center gap-4 mb-4">
-        <span class="inline-block h-px w-8 bg-primary-dark"></span>
-        <span
-          class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500"
-          >Our Team</span
-        >
+<div class="team-list">
+  <div class="team-list__inner">
+    <div class="team-list__header">
+      <div class="team-list__eyebrow">
+        <span></span>
+        <span>Our Team</span>
       </div>
-      <h2
-        class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900"
-      >
-        Meet the <span class="text-primary-dark italic">Team.</span>
+      <h2>
+        Meet the <span>Team.</span>
       </h2>
-      <p
-        class="mt-6 text-lg text-stone-600 font-medium max-w-2xl leading-relaxed"
-      >
+      <p>
         The dedicated leadership team overseeing the preservation, community
         outreach, and technical operations of the Ute Valley urban wildland.
       </p>
     </div>
 
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-stone-300 border border-stone-300"
-    >
+    <div class="team-list__grid">
       {
         teamMembers.map((teamMember) => (
-          <div class="bg-white group hover:bg-stone-50 transition-colors">
-            <div class="aspect-square w-full overflow-hidden grayscale transition-[filter] duration-700 group-hover:grayscale-0 relative">
+          <div class="team-list__card">
+            <div class="team-list__media">
               <Image
                 height="600"
                 width="600"
-                class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
+                class="team-list__image"
                 src={teamMember.image}
                 alt={teamMember.name}
               />
-              <div class="absolute inset-0 border-12 border-white/20 pointer-events-none" />
+              <div class="team-list__matte" />
             </div>
-            <div class="p-6 space-y-2 border-t border-stone-200">
-              <h3 class="text-lg font-serif font-black uppercase tracking-tight text-stone-900 leading-tight">
+            <div class="team-list__body">
+              <h3>
                 {teamMember.name}
               </h3>
-              <p class="font-mono text-[10px] font-black uppercase tracking-widest text-primary-dark">
+              <p>
                 {teamMember.title}
               </p>
             </div>
@@ -103,3 +94,153 @@ const teamMembers = [
     </div>
   </div>
 </div>
+
+<style>
+  .team-list {
+    border-bottom: 1px solid var(--color-border);
+    padding-block: 6rem;
+  }
+
+  .team-list__inner {
+    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+    margin-inline: auto;
+  }
+
+  .team-list__header {
+    margin-bottom: 4rem;
+  }
+
+  .team-list__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .team-list__eyebrow span:first-child {
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--color-brand-strong);
+  }
+
+  .team-list__eyebrow span:last-child,
+  .team-list__body p {
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .team-list__eyebrow span:last-child {
+    color: var(--color-text-subtle);
+  }
+
+  .team-list__header h2 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .team-list__header h2 span {
+    color: var(--color-brand-strong);
+    font-style: italic;
+  }
+
+  .team-list__header > p {
+    max-width: 42rem;
+    margin: 1.5rem 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-large);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .team-list__grid {
+    display: grid;
+    gap: 1px;
+    border: 1px solid var(--color-border);
+    background: var(--color-border);
+  }
+
+  .team-list__card {
+    background: var(--color-surface);
+    transition: background-color 200ms;
+  }
+
+  .team-list__card:hover {
+    background: var(--color-page);
+  }
+
+  .team-list__media {
+    position: relative;
+    aspect-ratio: 1;
+    width: 100%;
+    overflow: hidden;
+    filter: grayscale(1);
+    transition: filter 700ms;
+  }
+
+  .team-list__card:hover .team-list__media {
+    filter: grayscale(0);
+  }
+
+  :global(.team-list__image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: transform 700ms;
+  }
+
+  .team-list__card:hover :global(.team-list__image) {
+    transform: scale(1);
+  }
+
+  .team-list__matte {
+    position: absolute;
+    inset: 0;
+    border: 0.75rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
+    pointer-events: none;
+  }
+
+  .team-list__body {
+    display: grid;
+    gap: 0.5rem;
+    border-top: 1px solid var(--color-border-muted);
+    padding: 1.5rem;
+  }
+
+  .team-list__body h3 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 900;
+    line-height: var(--leading-tight);
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .team-list__body p {
+    margin: 0;
+    color: var(--color-brand-strong);
+  }
+
+  @media (min-width: 40rem) {
+    .team-list__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .team-list__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -10,57 +10,43 @@ import { Image } from "astro:assets";
 import Volunteers from "@/assets/images/volunteer-6.jpg";
 ---
 
-<div class="relative border-y border-stone-300 bg-white overflow-hidden">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+<div class="impact-stats">
+  <div class="impact-stats__layout">
     <!-- Image with technical frame -->
-    <div
-      class="lg:col-span-6 relative h-96 lg:h-auto overflow-hidden border-b lg:border-b-0 lg:border-r border-stone-300 group"
-    >
+    <div class="impact-stats__media">
       <Image
         src={Volunteers}
         alt="Volunteers in action"
-        class="h-full w-full object-cover"
+        class="impact-stats__image"
       />
-      <div
-        class="absolute inset-0 border-24 border-white/10 pointer-events-none"
-      >
-      </div>
+      <div class="impact-stats__matte"></div>
     </div>
 
     <!-- Stats Content -->
-    <div class="lg:col-span-6 p-8 lg:p-16 flex flex-col justify-center">
-      <div class="space-y-12">
+    <div class="impact-stats__content">
+      <div class="impact-stats__stack">
         <div>
-          <div class="flex items-center gap-4 mb-4">
-            <span class="inline-block h-px w-8 bg-accent-dark"></span>
-            <span
-              class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-accent-dark"
-              >Year in Review: 2024</span
-            >
+          <div class="impact-stats__eyebrow">
+            <span></span>
+            <span>Year in Review: 2024</span>
           </div>
-          <h2
-            class="font-serif text-4xl leading-none font-black tracking-tighter text-balance text-stone-900 uppercase sm:text-5xl"
-          >
+          <h2>
             Our <br />
-            <span class="text-primary-dark">Impact.</span>
+            <span>Impact.</span>
           </h2>
-          <p
-            class="mt-6 max-w-xl text-lg leading-relaxed font-medium text-pretty text-stone-600"
-          >
+          <p>
             Here's what our amazing volunteers accomplished together in 2024.
           </p>
         </div>
 
-        <div
-          class="grid grid-cols-2 gap-px bg-stone-200 border border-stone-200"
-        >
+        <div class="impact-stats__grid">
           {
             stats.map((stat) => (
-              <div class="bg-white p-6 space-y-1 hover:bg-stone-50 transition-colors">
-                <div class="font-mono text-3xl font-black tracking-tighter text-stone-900 tabular-nums sm:text-4xl">
+              <div class="impact-stats__stat">
+                <div>
                   {stat.value}
                 </div>
-                <div class="text-[10px] font-mono uppercase tracking-widest text-stone-500 font-bold">
+                <div>
                   {stat.name}
                 </div>
               </div>
@@ -71,3 +57,144 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
     </div>
   </div>
 </div>
+
+<style>
+  .impact-stats {
+    position: relative;
+    overflow: hidden;
+    border-block: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .impact-stats__layout {
+    display: grid;
+  }
+
+  .impact-stats__media {
+    position: relative;
+    height: 24rem;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  :global(.impact-stats__image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .impact-stats__matte {
+    position: absolute;
+    inset: 0;
+    border: 1.5rem solid color-mix(in oklab, var(--color-surface) 10%, transparent);
+    pointer-events: none;
+  }
+
+  .impact-stats__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 5vw, 4rem);
+  }
+
+  .impact-stats__stack {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .impact-stats__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .impact-stats__eyebrow span:first-child {
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--color-accent-strong);
+  }
+
+  .impact-stats__eyebrow span:last-child,
+  .impact-stats__stat div:last-child {
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .impact-stats__eyebrow span:last-child {
+    color: var(--color-accent-strong);
+  }
+
+  .impact-stats__content h2 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .impact-stats__content h2 span {
+    color: var(--color-brand-strong);
+  }
+
+  .impact-stats__content p {
+    max-width: 36rem;
+    margin: 1.5rem 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-large);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .impact-stats__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    border: 1px solid var(--color-border-muted);
+    background: var(--color-border-muted);
+  }
+
+  .impact-stats__stat {
+    display: grid;
+    gap: 0.25rem;
+    background: var(--color-surface);
+    padding: 1.5rem;
+    transition: background-color 200ms;
+  }
+
+  .impact-stats__stat:hover {
+    background: var(--color-page);
+  }
+
+  .impact-stats__stat div:first-child {
+    color: var(--color-text-strong);
+    font-family: var(--font-label);
+    font-size: clamp(1.875rem, 4vw, 2.25rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .impact-stats__stat div:last-child {
+    color: var(--color-text-subtle);
+  }
+
+  @media (min-width: 64rem) {
+    .impact-stats__layout {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .impact-stats__media {
+      height: auto;
+      border-right: 1px solid var(--color-border);
+      border-bottom: 0;
+    }
+  }
+</style>

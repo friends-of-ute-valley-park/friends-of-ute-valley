@@ -15,61 +15,44 @@ const sortedTrailheads = await getSortedTrailheads();
   title="Visit"
   description="Plan your visit to Ute Valley Park with trailhead locations, map access, park hours, and trail information."
 >
-  <main class="bg-stone-50 text-stone-900">
+  <main class="page visit-page">
     <!-- Technical Hero Section -->
-    <section class="relative border-b border-stone-300 overflow-hidden">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+    <section class="visit-hero">
+      <div class="visit-hero__layout">
         <!-- Identity Column -->
-        <div
-          class="lg:col-span-7 pt-12 pb-20 lg:pt-32 lg:pb-40 px-4 sm:px-6 lg:px-12 border-r border-stone-300"
-        >
-          <div class="space-y-8">
-            <div class="flex items-center gap-4">
-              <span class="inline-block h-px w-12 bg-primary-dark"></span>
-              <span
-                class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
-              >
+        <div class="visit-hero__identity">
+          <div class="visit-hero__stack">
+            <div class="page-eyebrow">
+              <span>
                 Getting Here
               </span>
             </div>
 
-            <h1
-              class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-[0.85] text-stone-900 uppercase"
-            >
+            <h1 class="page-title">
               Visit Ute<br /> Valley <br />
-              <span class="text-primary-dark">Park.</span>
+              <span>Park.</span>
             </h1>
 
-            <p
-              class="max-w-xl text-xl font-medium leading-relaxed text-stone-700"
-            >
+            <p>
               Ute Valley Park is nestled between Centennial Blvd, Vindicator Dr
               and I-25 in Colorado Springs. Access is provided via five primary
               parking areas.
             </p>
 
-            <div class="pt-8 flex flex-wrap gap-12">
+            <div class="visit-hero__facts">
               <div>
-                <p
-                  class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1"
-                >
+                <p>
                   Park Coordinates
                 </p>
-                <p
-                  class="font-mono text-sm font-black uppercase text-primary-dark"
-                >
+                <p>
                   38.9189° N, 104.8558° W
                 </p>
               </div>
               <div>
-                <p
-                  class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1"
-                >
+                <p>
                   Elevation
                 </p>
-                <p
-                  class="font-mono text-sm font-black uppercase text-primary-dark"
-                >
+                <p>
                   6,400'-6,800'
                 </p>
               </div>
@@ -78,65 +61,56 @@ const sortedTrailheads = await getSortedTrailheads();
         </div>
 
         <!-- Visual Context Column -->
-        <div
-          class="lg:col-span-5 bg-stone-100/50 p-0 relative group overflow-hidden"
-        >
+        <div class="visit-hero__media">
           <Picture
             src={heroImage}
             formats={["avif", "webp"]}
             alt="Biker in Ute Valley"
             width="1200"
             height="1200"
-            class="h-full w-full object-cover transition-transform duration-1000 scale-105 group-hover:scale-100"
+            class="visit-hero__image"
           />
-          <div
-            class="absolute inset-0 border-24 border-white/20 pointer-events-none"
-          >
-          </div>
+          <div class="visit-hero__matte"></div>
         </div>
       </div>
     </section>
 
     <!-- Map & Entry Points -->
-    <section class="border-b border-stone-300 content-defer">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-0 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+    <section class="article-layout content-defer">
+      <div class="article-layout__inner">
+        <div class="visit-map">
           <!-- Trailheads -->
-          <div
-            class="lg:col-span-5 py-16 lg:py-24 px-4 sm:px-6 lg:pr-12 border-r border-stone-300"
-          >
-            <div class="mb-12">
-              <h2
-                class="text-3xl font-serif font-black uppercase tracking-tight text-stone-900 mb-4"
-              >
-                Where to <span class="text-primary-dark italic">Park.</span>
+          <div class="visit-map__trailheads">
+            <div class="visit-section-heading">
+              <h2>
+                Where to <span>Park.</span>
               </h2>
-              <p class="text-sm text-stone-600 font-medium leading-relaxed">
+              <p>
                 Find your trailhead and get directions.
               </p>
             </div>
 
-            <div class="divide-y divide-stone-200 border-t border-stone-200">
+            <div class="trailhead-list">
               {
                 sortedTrailheads.map((trailhead) => (
                   <a
                     href={`/trailheads/${trailhead.id}/`}
-                    class="group py-6 flex justify-between items-center hover:bg-stone-100 transition-colors px-2"
+                    class="trailhead-list__item"
                   >
-                    <div class="space-y-1">
-                      <div class="flex items-center gap-3">
-                        <span class="font-mono text-xs font-black text-accent-darker">
+                    <div>
+                      <div class="trailhead-list__title">
+                        <span>
                           [{trailhead.data.id.toString().padStart(2, "0")}]
                         </span>
-                        <h3 class="text-lg font-bold font-serif uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors underline decoration-primary-dark decoration-4 underline-offset-2">
+                        <h3>
                           {trailhead.data.name}
                         </h3>
                       </div>
-                      <p class="text-xs text-stone-500 max-w-sm pl-8 font-medium">
+                      <p>
                         {trailhead.data.description}
                       </p>
                     </div>
-                    <span class="text-accent-dark group-hover:text-accent-light transition-colors">
+                    <span>
                       →
                     </span>
                   </a>
@@ -146,11 +120,9 @@ const sortedTrailheads = await getSortedTrailheads();
           </div>
 
           <!-- Cartographic Context -->
-          <div class="lg:col-span-7 bg-stone-50 p-8 lg:p-12">
-            <div class="sticky top-24 space-y-8">
-              <div
-                class="border border-stone-300 bg-white p-4 shadow-sm relative group"
-              >
+          <div class="visit-map__context">
+            <div class="visit-map__sticky">
+              <div class="article-photo-card">
                 <a
                   href="/images/maps/ute-valley-park-map-full.jpg"
                   target="_blank"
@@ -162,49 +134,31 @@ const sortedTrailheads = await getSortedTrailheads();
                     alt="Map of Ute Valley Park"
                     width="1200"
                     height="900"
-                    class="w-full h-auto transition-transform duration-700"
+                    class="visit-map__image"
                   />
-                  <div
-                    class="mt-4 pt-4 border-t border-stone-100 flex justify-between items-center"
-                  >
-                    <span
-                      class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
-                      >Trail Map</span
-                    >
-                    <span
-                      class="font-mono text-[10px] uppercase tracking-widest text-primary-dark font-black"
-                      >View Fullsize PDF</span
-                    >
+                  <div class="article-photo-card__meta">
+                    <span>Trail Map</span>
+                    <span>View Fullsize PDF</span>
                   </div>
                 </a>
               </div>
-              <div class="grid grid-cols-2 gap-4">
-                <div class="p-6 border border-stone-200 bg-stone-100/50">
-                  <p
-                    class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-2"
-                  >
+              <div class="visit-fact-grid">
+                <div>
+                  <p>
                     Park Hours
                   </p>
-                  <p
-                    class="font-mono text-sm font-black text-stone-900 uppercase"
-                  >
+                  <p>
                     5:00 AM — 9:00 PM Winter
                   </p>
-                  <p
-                    class="font-mono text-sm font-black text-stone-900 uppercase"
-                  >
+                  <p>
                     5:00 AM — 10:00 PM Summer
                   </p>
                 </div>
-                <div class="p-6 border border-stone-200 bg-stone-100/50">
-                  <p
-                    class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-2"
-                  >
+                <div>
+                  <p>
                     Entry Fee
                   </p>
-                  <p
-                    class="font-mono text-sm font-black text-stone-900 uppercase"
-                  >
+                  <p>
                     NO CHARGE
                   </p>
                 </div>
@@ -216,58 +170,45 @@ const sortedTrailheads = await getSortedTrailheads();
     </section>
 
     <!-- Park Rules -->
-    <section
-      class="py-24 border-b border-stone-300 bg-stone-900 text-white relative overflow-hidden content-defer"
-    >
+    <section class="visit-rules content-defer">
       <!-- Background technical markers -->
-      <div
-        class="absolute top-0 right-0 w-1/3 h-full border-l border-white/5 pointer-events-none hidden lg:block"
-      >
-      </div>
+      <div class="visit-rules__marker"></div>
 
-      <div
-        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 relative z-10"
-      >
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          <div class="lg:col-span-5 space-y-8">
-            <div class="flex items-center gap-4">
-              <span class="inline-block h-px w-12 bg-accent"></span>
-              <span
-                class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-300"
-              >
+      <div class="visit-rules__inner">
+        <div class="visit-rules__layout">
+          <div class="visit-rules__copy">
+            <div class="visit-rules__eyebrow">
+              <span></span>
+              <span>
                 Rules & Etiquette
               </span>
             </div>
-            <h2
-              class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight leading-none"
-            >
+            <h2>
               Park <br />
-              <span class="text-accent italic">Rules.</span>
+              <span>Rules.</span>
             </h2>
-            <p class="text-lg text-stone-400 font-medium leading-relaxed">
+            <p>
               To maintain the ecological integrity of this urban wildland, all
               visitors must adhere to municipal park codes and stewardship
               guidelines.
             </p>
             <a
               href="/rules/"
-              class="inline-block px-8 py-4 border-2 border-accent text-accent font-mono text-sm font-black uppercase tracking-widest transition-[background-color,border-color,color,transform] duration-200 hover:bg-accent hover:text-stone-900 active:scale-96"
+              class="visit-rules__link"
             >
               Review Full Rules
             </a>
           </div>
 
-          <div class="lg:col-span-7">
-            <div
-              class="aspect-16/9 bg-stone-800 border border-white/10 relative group overflow-hidden"
-            >
+          <div>
+            <div class="visit-rules__media">
               <Picture
                 src={DogImage}
                 formats={["avif", "webp"]}
                 alt="Dog in park"
                 width="800"
                 height="450"
-                class="w-full h-full object-cover opacity-50 transition-opacity duration-1000 group-hover:opacity-100"
+                class="visit-rules__image"
               />
             </div>
           </div>
@@ -276,23 +217,19 @@ const sortedTrailheads = await getSortedTrailheads();
     </section>
 
     <!-- Our Trails -->
-    <section class="py-24 border-b border-stone-300 content-defer">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-        <div class="mb-16">
-          <h2
-            class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-6"
-          >
-            Our <span class="text-primary-dark italic">Trails.</span>
+    <section class="page-section content-defer">
+      <div class="page-section__inner">
+        <div class="visit-section-heading visit-section-heading--spaced">
+          <h2>
+            Our <span>Trails.</span>
           </h2>
-          <p class="max-w-2xl text-lg text-stone-600 font-medium">
+          <p>
             Ute Valley Park offers trails for every skill level, from easy
             strolls to technical challenges.
           </p>
         </div>
 
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-stone-300 border border-stone-300"
-        >
+        <div class="trail-grid">
           {
             [
               {
@@ -312,15 +249,15 @@ const sortedTrailheads = await getSortedTrailheads();
                 desc: "Challenging terrain featuring sharp rock gardens, steep grades, and a massive bridge, mine tailings, and a cave! Very technical.",
               },
             ].map((trail, i) => (
-              <div class="bg-white p-8 space-y-6 flex flex-col justify-between hover:bg-stone-50 transition-colors group">
-                <div class="space-y-4">
-                  <span class="font-mono text-xs font-black text-stone-500 group-hover:text-primary-dark transition-colors">
+              <div class="trail-card">
+                <div>
+                  <span>
                     Trail {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 class="text-xl font-bold font-serif uppercase tracking-tight text-stone-900">
+                  <h3>
                     {trail.name}
                   </h3>
-                  <p class="text-sm leading-relaxed text-stone-600 font-medium">
+                  <p>
                     {trail.desc}
                   </p>
                 </div>
@@ -331,8 +268,463 @@ const sortedTrailheads = await getSortedTrailheads();
       </div>
     </section>
 
-    <div class="bg-stone-50 content-defer">
+    <div class="content-defer">
       <LeaveNoTrace />
     </div>
   </main>
 </Layout>
+
+<style>
+  .visit-hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .visit-hero__layout,
+  .visit-map {
+    display: grid;
+  }
+
+  .visit-hero__identity {
+    padding: clamp(3rem, 8vw, 8rem) var(--space-page-x) clamp(5rem, 10vw, 10rem);
+  }
+
+  .visit-hero__stack {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .visit-hero__stack > p {
+    max-width: 36rem;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .visit-hero__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    padding-top: 2rem;
+  }
+
+  .visit-hero__facts p {
+    margin: 0;
+    font-family: var(--font-label);
+    text-transform: uppercase;
+  }
+
+  .visit-hero__facts p:first-child {
+    color: var(--color-text-subtle);
+    font-size: var(--text-label);
+    letter-spacing: 0.12em;
+  }
+
+  .visit-hero__facts p:last-child {
+    color: var(--color-brand-strong);
+    font-size: var(--text-body-small);
+    font-weight: 900;
+  }
+
+  .visit-hero__media {
+    position: relative;
+    overflow: hidden;
+    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
+  }
+
+  :global(.visit-hero__image) {
+    width: 100%;
+    height: 100%;
+    min-height: 28rem;
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: transform 1000ms;
+  }
+
+  .visit-hero__media:hover :global(.visit-hero__image) {
+    transform: scale(1);
+  }
+
+  .visit-hero__matte {
+    position: absolute;
+    inset: 0;
+    border: 1.5rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
+    pointer-events: none;
+  }
+
+  .visit-map__trailheads {
+    padding: var(--space-section) var(--space-page-x);
+  }
+
+  .visit-section-heading h2 {
+    margin: 0 0 1rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(1.875rem, 5vw, 3.75rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .visit-section-heading h2 span {
+    color: var(--color-brand-strong);
+    font-style: italic;
+  }
+
+  .visit-section-heading p {
+    max-width: 42rem;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .visit-section-heading--spaced {
+    margin-bottom: 4rem;
+  }
+
+  .trailhead-list {
+    border-top: 1px solid var(--color-border-muted);
+  }
+
+  .trailhead-list__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border-muted);
+    color: inherit;
+    padding: 1.5rem 0.5rem;
+    text-decoration: none;
+    transition: background-color 200ms;
+  }
+
+  .trailhead-list__item:hover {
+    background: var(--color-surface-muted);
+  }
+
+  .trailhead-list__title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .trailhead-list__title span {
+    color: var(--color-accent-strong);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+
+  .trailhead-list h3 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: var(--text-body-large);
+    font-weight: 700;
+    letter-spacing: 0;
+    text-decoration: underline;
+    text-decoration-color: var(--color-brand-strong);
+    text-decoration-thickness: 4px;
+    text-underline-offset: 0.125rem;
+    text-transform: uppercase;
+    transition: color 200ms;
+  }
+
+  .trailhead-list__item:hover h3,
+  .trailhead-list__item:hover > span {
+    color: var(--color-brand-strong);
+  }
+
+  .trailhead-list p {
+    max-width: 24rem;
+    margin: 0.25rem 0 0 2rem;
+    color: var(--color-text-subtle);
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .trailhead-list__item > span {
+    color: var(--color-accent-strong);
+    transition: color 200ms;
+  }
+
+  .visit-map__context {
+    background: var(--color-page);
+    padding: clamp(2rem, 4vw, 3rem);
+  }
+
+  .visit-map__sticky {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 64rem) {
+    .visit-map__sticky {
+      position: sticky;
+      top: 6rem;
+    }
+  }
+
+  :global(.visit-map__image) {
+    width: 100%;
+    height: auto;
+    transition: transform 700ms;
+  }
+
+  .visit-fact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .visit-fact-grid > div {
+    border: 1px solid var(--color-border-muted);
+    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
+    padding: 1.5rem;
+  }
+
+  .visit-fact-grid p {
+    margin: 0;
+    font-family: var(--font-label);
+    text-transform: uppercase;
+  }
+
+  .visit-fact-grid p:first-child {
+    margin-bottom: 0.5rem;
+    color: var(--color-text-subtle);
+    font-size: var(--text-label);
+    letter-spacing: 0.12em;
+  }
+
+  .visit-fact-grid p:not(:first-child) {
+    color: var(--color-text-strong);
+    font-size: var(--text-body-small);
+    font-weight: 900;
+  }
+
+  .visit-rules {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+    padding-block: var(--space-section);
+  }
+
+  .visit-rules__marker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    width: 33%;
+    height: 100%;
+    border-left: 1px solid color-mix(in oklab, var(--color-text-inverse) 5%, transparent);
+    pointer-events: none;
+  }
+
+  .visit-rules__inner {
+    position: relative;
+    z-index: 1;
+    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+    margin-inline: auto;
+  }
+
+  .visit-rules__layout {
+    display: grid;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .visit-rules__copy {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .visit-rules__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .visit-rules__eyebrow span:first-child {
+    width: 3rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  .visit-rules__eyebrow span:last-child {
+    color: var(--color-text-inverse-muted);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .visit-rules h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .visit-rules h2 span {
+    color: var(--color-accent);
+    font-style: italic;
+  }
+
+  .visit-rules p {
+    margin: 0;
+    color: var(--color-text-inverse-muted);
+    font-size: var(--text-body-large);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .visit-rules__link {
+    display: inline-block;
+    width: fit-content;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    padding: 1rem 2rem;
+    font-family: var(--font-label);
+    font-size: var(--text-body-small);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+      background-color 200ms,
+      color 200ms,
+      transform 200ms;
+  }
+
+  .visit-rules__link:hover {
+    background: var(--color-accent);
+    color: var(--color-surface-inverse);
+  }
+
+  .visit-rules__link:active {
+    transform: scale(0.96);
+  }
+
+  .visit-rules__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--color-text-inverse) 10%, transparent);
+    background: var(--color-surface-inverse-muted);
+  }
+
+  :global(.visit-rules__image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: opacity 1000ms;
+  }
+
+  .visit-rules__media:hover :global(.visit-rules__image) {
+    opacity: 1;
+  }
+
+  .trail-grid {
+    display: grid;
+    gap: 1px;
+    border: 1px solid var(--color-border);
+    background: var(--color-border);
+  }
+
+  .trail-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--color-surface);
+    padding: 2rem;
+    transition: background-color 200ms;
+  }
+
+  .trail-card:hover {
+    background: var(--color-page);
+  }
+
+  .trail-card > div {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .trail-card span {
+    color: var(--color-text-subtle);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+    transition: color 200ms;
+  }
+
+  .trail-card:hover span {
+    color: var(--color-brand-strong);
+  }
+
+  .trail-card h3 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .trail-card p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  @media (min-width: 48rem) {
+    .trail-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .visit-hero__layout {
+      grid-template-columns: 7fr 5fr;
+    }
+
+    .visit-hero__identity {
+      border-right: 1px solid var(--color-border);
+      padding-inline: var(--space-page-x) 3rem;
+    }
+
+    .visit-map {
+      grid-template-columns: 5fr 7fr;
+    }
+
+    .visit-map__trailheads {
+      border-right: 1px solid var(--color-border);
+      padding-inline: var(--space-page-x) 3rem;
+    }
+
+    .visit-rules__marker {
+      display: block;
+    }
+
+    .visit-rules__layout {
+      grid-template-columns: 5fr 7fr;
+    }
+
+    .trail-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

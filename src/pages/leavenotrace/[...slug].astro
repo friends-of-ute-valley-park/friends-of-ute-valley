@@ -16,85 +16,63 @@ const { Content } = await render(entry);
 ---
 
 <Layout title={entry.data.title} description={entry.data.topText}>
-  <main class="bg-stone-50 text-stone-900">
+  <main class="page">
     <!-- Leave No Trace Guide -->
-    <section class="border-b border-stone-300">
-      <div
-        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
-      >
-        <div class="flex items-center gap-4 mb-8">
-          <span class="inline-block h-px w-12 bg-primary-dark"></span>
-          <span
-            class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
-          >
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <div class="page-eyebrow">
+          <span>
             Leave No Trace Guide
           </span>
         </div>
 
-        <h1
-          class="text-6xl sm:text-8xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase mb-8"
-        >
+        <h1 class="page-title">
           {entry.data.title.split(" ").slice(0, -1).join(" ")}
           <br />
-          <span class="text-primary-dark"
+          <span
             >{entry.data.title.split(" ").slice(-1)}</span
           >
         </h1>
 
-        <p class="max-w-3xl text-xl font-medium leading-relaxed text-stone-700">
+        <p class="page-intro">
           {entry.data.topText}
         </p>
       </div>
     </section>
 
     <!-- Content -->
-    <section class="border-b border-stone-300">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-0 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+    <section class="article-layout">
+      <div class="article-layout__inner">
+        <div class="article-layout__grid">
           <!-- Content -->
-          <div
-            class="lg:col-span-7 py-16 lg:py-24 px-4 sm:px-6 lg:pr-12 border-r border-stone-300"
-          >
-            <div
-              class="prose prose-stone lg:prose-xl font-medium text-stone-600 leading-relaxed max-w-none"
-            >
+          <div class="article-layout__main">
+            <div class="prose-content">
               <Content />
             </div>
           </div>
 
           <!-- Photos -->
-          <div class="lg:col-span-5 bg-stone-100/50 p-8 lg:p-12">
-            <div class="sticky top-24 space-y-8">
-              <div
-                class="border border-stone-300 bg-white p-4 shadow-sm group overflow-hidden"
-              >
+          <div class="article-layout__aside">
+            <div class="lnt-guide__aside-stack">
+              <div class="article-photo-card lnt-guide__photo">
                 <Picture
-                  class="w-full h-auto transition-transform duration-1000 scale-105 group-hover:scale-100"
+                  class="lnt-guide__image"
                   formats={["avif", "webp"]}
                   width="1000"
                   height="1000"
                   src={entry.data.image}
                   alt={entry.data.imageAlt}
                 />
-                <div
-                  class="mt-4 pt-4 border-t border-stone-100 flex justify-between items-center"
-                >
-                  <span
-                    class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
-                    >Photos</span
-                  >
+                <div class="article-photo-card__meta">
+                  <span>Photos</span>
                 </div>
               </div>
 
-              <div class="p-8 border border-stone-300 bg-stone-900 text-white">
-                <h3
-                  class="font-mono text-xs font-black uppercase tracking-widest text-accent mb-4"
-                >
+              <div class="lnt-guide__callout">
+                <h3>
                   Why It Matters
                 </h3>
-                <p
-                  class="text-sm font-medium leading-relaxed text-stone-300 italic"
-                >
+                <p>
                   "Following the Seven Principles of Leave No Trace is the best
                   way we can all help in protecting the park for future
                   generations."
@@ -108,3 +86,53 @@ const { Content } = await render(entry);
   </main>
 </Layout>
 
+<style>
+  .lnt-guide__aside-stack {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 64rem) {
+    .lnt-guide__aside-stack {
+      position: sticky;
+      top: 6rem;
+    }
+  }
+
+  :global(.lnt-guide__image) {
+    width: 100%;
+    height: auto;
+    transform: scale(1.05);
+    transition: transform 1000ms;
+  }
+
+  .lnt-guide__photo:hover :global(.lnt-guide__image) {
+    transform: scale(1);
+  }
+
+  .lnt-guide__callout {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+    padding: 2rem;
+  }
+
+  .lnt-guide__callout h3 {
+    margin: 0 0 1rem;
+    color: var(--color-accent);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .lnt-guide__callout p {
+    margin: 0;
+    color: var(--color-text-inverse-muted);
+    font-size: var(--text-body-small);
+    font-style: italic;
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+</style>

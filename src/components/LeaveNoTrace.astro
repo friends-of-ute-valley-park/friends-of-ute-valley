@@ -11,35 +11,35 @@ const principles = [
   {
     id: "01",
     name: "Plan Ahead & Prepare",
-    text: "A little preparation goes a long way! Check the forecast, plan your route, and review the <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/rules/'>park rules</a> before heading out.",
+    text: "A little preparation goes a long way! Check the forecast, plan your route, and review the <a class='text-link' href='/rules/'>park rules</a> before heading out.",
     image: PlanAhead,
     altText: "A lone tree in Ute Valley Park",
   },
   {
     id: "02",
     name: "Travel on Durable Surfaces",
-    text: "<a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/travel-on-durable-surfaces/'>Stay on the trail</a> to protect the landscape around you. Stick to marked paths and respect Natural Preservation Area closures so plants and soil can thrive.",
+    text: "<a class='text-link' href='/leavenotrace/travel-on-durable-surfaces/'>Stay on the trail</a> to protect the landscape around you. Stick to marked paths and respect Natural Preservation Area closures so plants and soil can thrive.",
     image: TravelOnDurableSurfaces,
     altText: "Ute Valley Park trail",
   },
   {
     id: "03",
     name: "Dispose of Waste Properly",
-    text: "Follow a Pack-In, Pack-Out approach — carry out everything you carry in, including <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/dogs/'>pet waste</a>. This keeps Ute Valley Park looking (and smelling) bea-UTE-iful!",
+    text: "Follow a Pack-In, Pack-Out approach — carry out everything you carry in, including <a class='text-link' href='/leavenotrace/dogs/'>pet waste</a>. This keeps Ute Valley Park looking (and smelling) bea-UTE-iful!",
     image: DisposeOfWasteProperly,
     altText: "Rubbish in the dirt",
   },
   {
     id: "04",
     name: "Leave What You Find",
-    text: "Take only photos, leave only footprints! <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/leave-what-you-find/'>Snap all the pictures you like</a>, but please leave rocks, plants, and other natural treasures for the next visitor to enjoy.",
+    text: "Take only photos, leave only footprints! <a class='text-link' href='/leavenotrace/leave-what-you-find/'>Snap all the pictures you like</a>, but please leave rocks, plants, and other natural treasures for the next visitor to enjoy.",
     image: LeaveWhatYouFind,
     altText: "Flowers",
   },
   {
     id: "05",
     name: "Respect Wildlife",
-    text: "Observe all wildlife from a safe distance and never feed them. Keep dogs on leash to protect wildlife habitat — learn more about our <a class='font-bold underline decoration-accent hover:text-primary-dark transition-colors' href='/leavenotrace/respect-wildlife/'>leash guidelines</a>.",
+    text: "Observe all wildlife from a safe distance and never feed them. Keep dogs on leash to protect wildlife habitat — learn more about our <a class='text-link' href='/leavenotrace/respect-wildlife/'>leash guidelines</a>.",
     image: RespectWildlife,
     altText: "A deer in Ute Valley Park",
   },
@@ -55,42 +55,34 @@ const principles = [
 import lntLogo from "../assets/images/logos/leave-no-trace.png";
 ---
 
-<section class="border-t border-stone-300 bg-stone-50 overflow-hidden">
-  <div class="mx-auto max-w-(--breakpoint-2xl)">
-    <div class="grid grid-cols-1 lg:grid-cols-12">
+<section class="lnt-principles">
+  <div class="lnt-principles__inner">
+    <div class="lnt-principles__layout">
       <!-- Left Column: About Leave No Trace -->
-      <div
-        class="lg:col-span-4 p-8 lg:p-16 border-b lg:border-b-0 lg:border-r border-stone-300 bg-stone-100/50"
-      >
-        <div class="sticky top-24 space-y-12">
-          <div class="space-y-6">
-            <div class="flex items-center gap-3">
-              <span class="inline-block h-px w-8 bg-primary-dark"></span>
-              <span
-                class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500"
-              >
+      <div class="lnt-principles__intro">
+        <div class="lnt-principles__intro-sticky">
+          <div class="lnt-principles__intro-copy">
+            <div class="lnt-principles__eyebrow">
+              <span></span>
+              <span>
                 Environmental Stewardship
               </span>
             </div>
 
-            <h2
-              class="text-5xl sm:text-6xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
-            >
+            <h2 class="lnt-principles__title">
               Leave <br /> No <br />
-              <span class="text-primary-dark">Trace.</span>
+              <span>Trace.</span>
             </h2>
 
-            <p class="text-lg font-medium leading-relaxed text-stone-700">
+            <p class="lnt-principles__summary">
               Ute Valley Park is a treasured urban wildland. Please help keep
               the park safe and clean for all visitors by following the Seven
               Principles.
             </p>
           </div>
 
-          <div class="pt-12 border-t border-stone-300 space-y-8">
-            <div
-              class="bg-white border-2 border-primary-dark p-8 shadow-sm relative group transition-[box-shadow] duration-500 hover:shadow-accent-md"
-            >
+          <div class="lnt-principles__partner">
+            <div class="lnt-principles__logo-card">
               <a
                 href="https://www.lnt.org"
                 target="_blank"
@@ -100,20 +92,17 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
                   src={lntLogo}
                   alt="Leave No Trace Official Logo"
                   width="200"
-                  class="h-auto w-full max-w-[160px] mx-auto"
+                  class="lnt-principles__logo"
                 />
               </a>
-              <div class="mt-6 text-center">
-                <span
-                  class="font-mono text-[10px] uppercase font-bold text-primary-dark"
-                  >Certified Partner</span
-                >
+              <div class="lnt-principles__certification">
+                <span>Certified Partner</span>
               </div>
             </div>
 
             <a
               href="/rules/"
-              class="btn-primary-cta block text-center"
+              class="button button--brand lnt-principles__rules-link"
             >
               View Park Rules
             </a>
@@ -122,41 +111,36 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
       </div>
 
       <!-- Principles Column -->
-      <div class="lg:col-span-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone-300">
+      <div class="lnt-principles__list-wrap">
+        <div class="lnt-principles__list">
           {
             principles.map((principle) => (
-              <div class="bg-stone-50 p-8 lg:p-12 space-y-8 flex flex-col group hover:bg-white transition-colors">
-                <div class="space-y-4">
-                  <div class="flex justify-between items-start">
-                    <span class="font-mono text-4xl font-black text-accent-dark group-hover:text-accent transition-colors">
+              <div class="lnt-principles__card">
+                <div class="lnt-principles__card-head">
+                  <div class="lnt-principles__number-row">
+                    <span>
                       {principle.id}
                     </span>
-                    <div class="w-12 h-px bg-stone-200 mt-5 group-hover:bg-primary-dark transition-colors" />
+                    <div />
                   </div>
-                  <h3 class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors">
+                  <h3>
                     {principle.name}
                   </h3>
                 </div>
 
-                <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-200">
+                <div class="lnt-principles__media">
                   <Picture
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    class="lnt-principles__image"
                     src={principle.image}
                     alt={principle.altText}
                     width={600}
                   />
                 </div>
 
-                <div class="space-y-4">
-                  <p
-                    class="text-sm leading-relaxed text-stone-600 font-medium"
-                    set:html={principle.text}
-                  />
-                </div>
+                <p class="lnt-principles__copy" set:html={principle.text} />
 
-                <div class="mt-auto pt-6 border-t border-stone-100">
-                  <span class="font-mono text-[9px] tracking-widest text-primary-dark font-bold">
+                <div class="lnt-principles__principle-label">
+                  <span>
                     Principle {principle.id}
                   </span>
                 </div>
@@ -168,3 +152,255 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     </div>
   </div>
 </section>
+
+<style>
+  .lnt-principles {
+    overflow: hidden;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-page);
+  }
+
+  .lnt-principles__inner {
+    max-width: var(--container-wide);
+    margin-inline: auto;
+  }
+
+  .lnt-principles__layout {
+    display: grid;
+  }
+
+  .lnt-principles__intro {
+    border-bottom: 1px solid var(--color-border);
+    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
+    padding: clamp(2rem, 5vw, 4rem);
+  }
+
+  .lnt-principles__intro-sticky {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .lnt-principles__intro-copy {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .lnt-principles__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .lnt-principles__eyebrow span:first-child {
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--color-brand-strong);
+  }
+
+  .lnt-principles__eyebrow span:last-child,
+  .lnt-principles__certification span,
+  .lnt-principles__principle-label span {
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .lnt-principles__eyebrow span:last-child {
+    color: var(--color-text-subtle);
+  }
+
+  .lnt-principles__title {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 3.75rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .lnt-principles__title span {
+    color: var(--color-brand-strong);
+  }
+
+  .lnt-principles__summary {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-large);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .lnt-principles__partner {
+    display: grid;
+    gap: 2rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 3rem;
+  }
+
+  .lnt-principles__logo-card {
+    position: relative;
+    border: 2px solid var(--color-brand-strong);
+    background: var(--color-surface);
+    padding: 2rem;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+    transition: box-shadow 500ms;
+  }
+
+  .lnt-principles__logo-card:hover {
+    box-shadow: var(--shadow-accent-md);
+  }
+
+  :global(.lnt-principles__logo) {
+    width: 100%;
+    max-width: 10rem;
+    height: auto;
+    margin-inline: auto;
+  }
+
+  .lnt-principles__certification {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .lnt-principles__certification span,
+  .lnt-principles__principle-label span {
+    color: var(--color-brand-strong);
+  }
+
+  .lnt-principles__rules-link {
+    display: block;
+    text-align: center;
+  }
+
+  .lnt-principles__list {
+    display: grid;
+    gap: 1px;
+    background: var(--color-border);
+  }
+
+  .lnt-principles__card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background: var(--color-page);
+    padding: clamp(2rem, 4vw, 3rem);
+    transition: background-color 200ms;
+  }
+
+  .lnt-principles__card:hover {
+    background: var(--color-surface);
+  }
+
+  .lnt-principles__card-head {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .lnt-principles__number-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .lnt-principles__number-row span {
+    color: var(--color-accent-strong);
+    font-family: var(--font-label);
+    font-size: 2.25rem;
+    font-weight: 900;
+    transition: color 200ms;
+  }
+
+  .lnt-principles__card:hover .lnt-principles__number-row span {
+    color: var(--color-accent);
+  }
+
+  .lnt-principles__number-row div {
+    width: 3rem;
+    height: 1px;
+    margin-top: 1.25rem;
+    background: var(--color-border-muted);
+    transition: background-color 200ms;
+  }
+
+  .lnt-principles__card:hover .lnt-principles__number-row div {
+    background: var(--color-brand-strong);
+  }
+
+  .lnt-principles__card h3 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    transition: color 200ms;
+  }
+
+  .lnt-principles__card:hover h3 {
+    color: var(--color-brand-strong);
+  }
+
+  .lnt-principles__media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border: 1px solid var(--color-border-muted);
+    background: var(--color-surface-muted);
+  }
+
+  :global(.lnt-principles__image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms;
+  }
+
+  .lnt-principles__card:hover :global(.lnt-principles__image) {
+    transform: scale(1.05);
+  }
+
+  .lnt-principles__copy {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .lnt-principles__principle-label {
+    margin-top: auto;
+    border-top: 1px solid var(--color-border-muted);
+    padding-top: 1.5rem;
+  }
+
+  .lnt-principles__principle-label span {
+    font-size: 0.5625rem;
+  }
+
+  @media (min-width: 48rem) {
+    .lnt-principles__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .lnt-principles__layout {
+      grid-template-columns: 4fr 8fr;
+    }
+
+    .lnt-principles__intro {
+      border-right: 1px solid var(--color-border);
+      border-bottom: 0;
+    }
+
+    .lnt-principles__intro-sticky {
+      position: sticky;
+      top: 6rem;
+    }
+  }
+</style>

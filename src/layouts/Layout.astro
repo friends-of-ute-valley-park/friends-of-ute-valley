@@ -38,15 +38,9 @@ const {
   </head>
   <ClientRouter />
 
-  <body
-    class="font-sans bg-stone-50 selection:bg-accent/30 selection:text-primary-dark"
-  >
-    <a
-      href="#main-content"
-      class="sr-only bg-white text-black underline focus:not-sr-only"
-      >Skip to main content</a
-    >
-    <div class="min-h-screen bg-stone-50">
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="site-shell">
       <VolunteerBanner
         events={upcomingVolunteerEvents.map((event) => event.data)}
         client:idle
@@ -67,4 +61,44 @@ const {
     </div>
   </body>
 </html>
+
+<style>
+  body::selection {
+    background: color-mix(in oklab, var(--color-accent) 30%, transparent);
+    color: var(--color-brand-strong);
+  }
+
+  .skip-link {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    background: var(--color-surface);
+    color: var(--color-text);
+    text-decoration: underline;
+  }
+
+  .skip-link:focus {
+    z-index: 100;
+    top: 1rem;
+    left: 1rem;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  .site-shell {
+    min-height: 100vh;
+    background: var(--color-page);
+  }
+</style>
 

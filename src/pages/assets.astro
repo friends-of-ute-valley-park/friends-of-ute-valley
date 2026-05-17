@@ -35,31 +35,22 @@ const logos = [
   title="Assets"
   description="Download official Friends of Ute Valley Park brand assets and logos for approved community, partner, and media use."
 >
-  <main class="bg-stone-50 text-stone-900">
+  <main class="page">
     <!-- Assets Header -->
-    <section class="border-b border-stone-300">
-      <div
-        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
-      >
-        <div class="flex items-center gap-4 mb-8">
-          <span class="inline-block h-px w-12 bg-primary-dark"></span>
-          <span
-            class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
-          >
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <div class="page-eyebrow">
+          <span>
             Park Media
           </span>
         </div>
 
-        <h1
-          class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
-        >
+        <h1 class="page-title">
           Brand <br />
-          <span class="text-primary-dark">Assets.</span>
+          <span>Assets.</span>
         </h1>
 
-        <p
-          class="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-stone-700"
-        >
+        <p class="page-intro">
           Official visual markers and logos for use in authorized
           communications, field signage, and technical reports.
         </p>
@@ -67,33 +58,31 @@ const logos = [
     </section>
 
     <!-- Assets Grid -->
-    <section class="border-b border-stone-300 bg-stone-100/50">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-24">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+    <section class="page-section page-section--muted">
+      <div class="page-section__inner">
+        <div class="assets-grid">
           {
             logos.map((logo) => (
-              <div class="bg-white border border-stone-300 group hover:border-primary-dark transition-colors">
-                <div class="aspect-square flex items-center justify-center p-12 bg-stone-50/50 border-b border-stone-200">
+              <div class="asset-card">
+                <div class="asset-card__media">
                   <img
                     src={logo.src}
                     alt={logo.alt}
-                    class="max-h-full w-auto transition-transform duration-700"
                   />
                 </div>
-                <div class="p-6 space-y-4">
-                  <div class="space-y-1">
-                    <h3 class="text-xl font-serif font-black uppercase tracking-tight text-stone-900">
+                <div class="asset-card__body">
+                  <div>
+                    <h3>
                       {logo.alt}
                     </h3>
-                    <p class="text-xs text-stone-500 font-medium uppercase tracking-tighter">
+                    <p>
                       {logo.desc}
                     </p>
                   </div>
-                  <div class="pt-4">
+                  <div>
                     <a
                       href={logo.src}
                       download
-                      class="inline-block px-6 py-3 border border-stone-300 font-mono text-[10px] font-black uppercase tracking-widest text-stone-500 transition-[background-color,border-color,color,transform] duration-200 hover:bg-stone-900 hover:text-white active:scale-96"
                     >
                       Download Asset
                     </a>
@@ -107,3 +96,99 @@ const logos = [
     </section>
   </main>
 </Layout>
+
+<style>
+  .assets-grid {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .asset-card {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    transition: border-color 200ms;
+  }
+
+  .asset-card:hover {
+    border-color: var(--color-brand-strong);
+  }
+
+  .asset-card__media {
+    display: flex;
+    aspect-ratio: 1;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--color-border-muted);
+    background: color-mix(in oklab, var(--color-page) 50%, transparent);
+    padding: 3rem;
+  }
+
+  .asset-card__media img {
+    width: auto;
+    max-height: 100%;
+    transition: transform 700ms;
+  }
+
+  .asset-card__body {
+    display: grid;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .asset-card__body h3 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .asset-card__body p {
+    margin: 0.25rem 0 0;
+    color: var(--color-text-subtle);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .asset-card__body a {
+    display: inline-block;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-subtle);
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+      background-color 200ms,
+      color 200ms,
+      transform 200ms;
+  }
+
+  .asset-card__body a:hover {
+    background: var(--color-text-strong);
+    color: var(--color-text-inverse);
+  }
+
+  .asset-card__body a:active {
+    transform: scale(0.96);
+  }
+
+  @media (min-width: 48rem) {
+    .assets-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .assets-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

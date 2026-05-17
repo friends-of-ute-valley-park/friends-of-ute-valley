@@ -61,12 +61,12 @@ const submit = (event: SubmitEvent) => {
 </script>
 
 <template>
-  <div class="text-left">
+  <div class="email-signup">
     <div v-if="!isFinished || error">
-      <form class="space-y-3" @submit="submit">
-        <label for="name" class="sr-only">Name</label>
-        <div class="relative">
-          <MdiAccountOutline class="pointer-events-none absolute top-1/2 left-4 h-6 w-6 -translate-y-1/2 text-stone-500" aria-hidden="true" />
+      <form class="email-signup__form" @submit="submit">
+        <label for="name" class="email-signup__sr-label">Name</label>
+        <div class="email-signup__field">
+          <MdiAccountOutline class="email-signup__field-icon" aria-hidden="true" />
           <input
             id="name"
             v-model="payload.name"
@@ -74,18 +74,15 @@ const submit = (event: SubmitEvent) => {
             name="name"
             autocomplete="name"
             :disabled="isFetching"
-            :class="{
-              'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': nameIsError,
-            }"
-            class="block min-h-12 w-full rounded-md border border-stone-200 bg-white py-3 pr-4 pl-12 text-base text-stone-900 caret-secondary shadow-md transition-[background-color,border-color,box-shadow] duration-200 placeholder:text-stone-500 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-hidden disabled:opacity-60"
+            :class="['email-signup__input', nameIsError && 'email-signup__input--invalid']"
             placeholder="Your name..."
             :aria-invalid="nameIsError"
             aria-describedby="form-errors"
             @blur="validateName(false)" />
         </div>
-        <label for="email" class="sr-only">Email</label>
-        <div class="relative">
-          <MdiEmailOutline class="pointer-events-none absolute top-1/2 left-4 h-6 w-6 -translate-y-1/2 text-stone-500" aria-hidden="true" />
+        <label for="email" class="email-signup__sr-label">Email</label>
+        <div class="email-signup__field">
+          <MdiEmailOutline class="email-signup__field-icon" aria-hidden="true" />
           <input
             id="email"
             v-model="payload.email"
@@ -94,10 +91,7 @@ const submit = (event: SubmitEvent) => {
             autocomplete="email"
             spellcheck="false"
             :disabled="isFetching"
-            :class="{
-              'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 focus:outline-hidden': emailIsError,
-            }"
-            class="block min-h-12 w-full rounded-md border border-stone-200 bg-white py-3 pr-4 pl-12 text-base text-stone-900 caret-secondary shadow-md transition-[background-color,border-color,box-shadow] duration-200 placeholder:text-stone-500 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-hidden disabled:opacity-60"
+            :class="['email-signup__input', emailIsError && 'email-signup__input--invalid']"
             placeholder="Email address..."
             :aria-invalid="emailIsError"
             aria-describedby="form-errors"
@@ -106,29 +100,214 @@ const submit = (event: SubmitEvent) => {
         <button
           :disabled="isFetching"
           type="submit"
-          class="inline-flex min-h-12 w-full shrink-0 cursor-pointer items-center justify-center gap-3 rounded-md border border-transparent bg-accent-dark px-6 py-3 font-mono text-sm font-black tracking-widest text-white uppercase shadow-lg transition-[background-color,box-shadow,transform] duration-200 hover:bg-accent-darker hover:shadow-xl focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-white focus:outline-hidden active:scale-96 disabled:cursor-not-allowed disabled:bg-accent-dark">
-          <MdiLoading v-if="isFetching" class="h-5 w-5 animate-spin text-white" />
-          <MdiEmailOutline v-else class="h-5 w-5 text-white" aria-hidden="true" />
+          class="email-signup__submit">
+          <MdiLoading v-if="isFetching" class="email-signup__submit-icon email-signup__submit-icon--loading" />
+          <MdiEmailOutline v-else class="email-signup__submit-icon" aria-hidden="true" />
           Get updates
         </button>
       </form>
-      <p v-if="nameValidationError || emailValidationError" id="form-errors" class="mt-2 text-sm font-medium text-red-700" role="alert">
+      <p v-if="nameValidationError || emailValidationError" id="form-errors" class="email-signup__error" role="alert">
         {{ nameValidationError }}
         {{ emailValidationError }}
       </p>
-      <p class="mt-4 text-sm leading-relaxed text-stone-700">
+      <p class="email-signup__privacy">
         We only use your email for Friends of Ute Valley Park updates. Read our
-        <a href="/privacy/" class="font-bold text-primary-dark underline decoration-accent/70 transition-colors hover:decoration-accent">Privacy Policy</a>.
+        <a href="/privacy/">Privacy Policy</a>.
       </p>
     </div>
 
     <div v-if="isFinished && !error">
-      <p class="text-base font-medium text-primary-dark">You're on the list. Check your email to confirm your subscription.</p>
+      <p class="email-signup__success">You're on the list. Check your email to confirm your subscription.</p>
     </div>
 
-    <div v-if="error" class="mt-2 text-sm text-red-700">
-      <h2 class="text-xl font-medium text-stone-900">We couldn't sign you up yet.</h2>
+    <div v-if="error" class="email-signup__failure">
+      <h2>We couldn't sign you up yet.</h2>
       {{ data?.message || 'Please try again in a moment.' }}
     </div>
   </div>
 </template>
+
+<style scoped>
+  .email-signup {
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+  }
+
+  .email-signup__form {
+    display: grid;
+    min-width: 0;
+    gap: 0.75rem;
+  }
+
+  .email-signup__sr-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .email-signup__field {
+    position: relative;
+    min-width: 0;
+  }
+
+  .email-signup__field-icon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--color-text-subtle);
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .email-signup__input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 3rem;
+    border: 1px solid var(--color-border-muted);
+    border-radius: 0.375rem;
+    background: var(--color-surface);
+    color: var(--color-text-strong);
+    caret-color: var(--color-accent-strong);
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    font: inherit;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%);
+    transition:
+      background-color 200ms,
+      border-color 200ms,
+      box-shadow 200ms;
+  }
+
+  .email-signup__input::placeholder {
+    color: var(--color-text-subtle);
+  }
+
+  .email-signup__input:focus-visible {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-accent) 30%, transparent);
+    outline: 0;
+  }
+
+  .email-signup__input:disabled {
+    opacity: 0.6;
+  }
+
+  .email-signup__input--invalid {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+  }
+
+  .email-signup__submit {
+    display: inline-flex;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 3rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    background: var(--color-accent-hover);
+    color: var(--color-text-inverse);
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-label);
+    font-size: var(--text-body-small);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%);
+    transition:
+      background-color 200ms,
+      box-shadow 200ms,
+      transform 200ms;
+  }
+
+  .email-signup__submit:hover {
+    background: var(--color-accent-strong);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%);
+  }
+
+  .email-signup__submit:active {
+    transform: scale(0.96);
+  }
+
+  .email-signup__submit:disabled {
+    cursor: not-allowed;
+    background: var(--color-accent-hover);
+  }
+
+  .email-signup__submit-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-text-inverse);
+  }
+
+  .email-signup__submit-icon--loading {
+    animation: email-signup-spin 1s linear infinite;
+  }
+
+  .email-signup__error {
+    margin: 0.5rem 0 0;
+    color: var(--color-danger);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+  }
+
+  .email-signup__privacy {
+    margin: 1rem 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    line-height: var(--leading-body);
+  }
+
+  .email-signup__privacy a {
+    color: var(--color-brand-strong);
+    font-weight: 700;
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in oklab, var(--color-accent) 70%, transparent);
+    transition: text-decoration-color 200ms;
+  }
+
+  .email-signup__privacy a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+
+  .email-signup__success {
+    color: var(--color-brand-strong);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .email-signup__failure {
+    margin-top: 0.5rem;
+    color: var(--color-danger);
+    font-size: var(--text-body-small);
+  }
+
+  .email-signup__failure h2 {
+    margin: 0 0 0.5rem;
+    color: var(--color-text-strong);
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  @keyframes email-signup-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

@@ -22,32 +22,24 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
   title="Link in Bio"
   description="Quick links from Friends of Ute Valley Park including volunteer events, resources, and current wishlist needs."
 >
-  <main class="bg-stone-50 min-h-screen py-8">
-    <div
-      class="mx-auto max-w-xl bg-white border border-stone-300 shadow-sm overflow-hidden"
-    >
+  <main class="link-page">
+    <div class="link-card">
       <!-- Header -->
-      <div class="p-8 border-b border-stone-300 bg-stone-50/50">
-        <div class="flex flex-col items-center gap-6 text-center">
-          <div class="p-1 border border-stone-300 bg-white shadow-sm">
-            <Image src={Logo} alt="FUVP Seal" width="80" height="80" class="" />
+      <div class="link-card__header">
+        <div class="link-card__identity">
+          <div class="link-card__logo-frame">
+            <Image src={Logo} alt="FUVP Seal" width="80" height="80" />
           </div>
-          <div class="space-y-2">
-            <h1
-              class="text-3xl font-serif font-black uppercase tracking-tighter text-stone-900 leading-none"
-            >
+          <div class="link-card__title-block">
+            <h1>
               Friends of <br />
-              <span class="text-primary-dark">Ute Valley Park.</span>
+              <span>Ute Valley Park.</span>
             </h1>
-            <p
-              class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500"
-            >
+            <p>
               Ute Valley Park — Quick Links
             </p>
           </div>
-          <div
-            class="pt-4 border-t border-stone-200 w-full flex justify-center"
-          >
+          <div class="link-card__social">
             <SocialLinks />
           </div>
         </div>
@@ -56,16 +48,16 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
       <!-- Active Operations -->
       {
         upcomingVolunteerEvents.length > 0 && (
-          <div class="p-8 border-b border-stone-300 bg-white">
-            <div class="flex items-center gap-3 mb-6">
-              <span class="inline-block h-px w-6 bg-accent-dark" />
-              <h2 class="font-mono text-[10px] font-black uppercase tracking-widest text-accent-dark">
+          <div class="link-section">
+            <div class="link-section__heading link-section__heading--accent">
+              <span />
+              <h2>
                 Volunteer Opportunities
               </h2>
             </div>
-            <div class="space-y-8">
+            <div class="link-section__stack">
               {upcomingVolunteerEvents.map((volunteerEvent) => (
-                <div class="border-l-2 border-stone-100 pl-4">
+                <div class="link-section__inset">
                   <VolunteerItem
                     meetingLocations={meetingLocations}
                     volunteerEvent={volunteerEvent}
@@ -79,28 +71,26 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
       }
 
       <!-- Quick Links -->
-      <div class="p-8 border-b border-stone-300 bg-stone-50/30">
-        <div class="flex items-center gap-3 mb-6">
-          <span class="inline-block h-px w-6 bg-primary-dark"></span>
-          <h2
-            class="font-mono text-[10px] font-black uppercase tracking-widest text-primary-dark"
-          >
+      <div class="link-section link-section--muted">
+        <div class="link-section__heading">
+          <span></span>
+          <h2>
             Useful Links
           </h2>
         </div>
-        <div class="grid grid-cols-1 gap-4">
+        <div class="quick-links">
           {
             sortedLinks.map((link) => (
               <a
                 href={link.data.link}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                class="group flex justify-between items-center p-5 border border-stone-300 bg-white hover:border-primary-dark transition-[background-color,border-color,color,box-shadow,transform] duration-200 active:scale-96"
+                class="quick-link"
               >
-                <span class="font-mono text-xs font-black uppercase tracking-widest text-stone-900 group-hover:text-primary-dark transition-colors">
+                <span>
                   {link.data.title}
                 </span>
-                <span class="text-stone-300 group-hover:text-primary-dark transition-colors">
+                <span>
                   →
                 </span>
               </a>
@@ -110,44 +100,38 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
       </div>
 
       <!-- Technical Wishlist -->
-      <div class="p-8 bg-white">
-        <div class="flex items-center gap-3 mb-6">
-          <span class="inline-block h-px w-6 bg-stone-400"></span>
-          <h2
-            class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-500"
-          >
+      <div class="link-section">
+        <div class="link-section__heading link-section__heading--neutral">
+          <span></span>
+          <h2>
             Our Wishlist
           </h2>
         </div>
-        <p
-          class="text-[10px] font-mono uppercase tracking-tighter text-stone-500 mb-8 leading-relaxed"
-        >
+        <p class="wishlist-intro">
           The following items are needed for our work in the park. Please <a
             href="/contact/"
-            class="text-primary-dark font-black underline">contact us</a
+            >contact us</a
           > to coordinate delivery.
         </p>
 
-        <div
-          class="grid grid-cols-2 gap-px bg-stone-200 border border-stone-200"
-        >
+        <div class="wishlist-grid">
           {
             wishlist.map((item) => (
-              <div class="bg-white p-4 space-y-4 hover:bg-stone-50 transition-colors group">
-                <div class="aspect-square bg-stone-100 border border-stone-100 overflow-hidden relative">
+              <div class="wishlist-item">
+                <div class="wishlist-item__media">
                   <Image
                     src={item.data.image}
                     alt={item.data.imageAlt}
                     width="200"
                     height="200"
-                    class="w-full h-full object-cover transition-transform duration-700"
+                    class="wishlist-item__image"
                   />
-                  <div class="absolute bottom-2 left-2 bg-stone-900 text-white px-2 py-0.5 font-mono text-[8px] uppercase tracking-tighter">
+                  <div class="wishlist-item__quantity">
                     {item.data.quantityNeeded} REQUIRED
                   </div>
                 </div>
-                <div class="space-y-1">
-                  <h3 class="font-mono text-[10px] font-black uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors">
+                <div>
+                  <h3>
                     <a
                       href={item.data.link}
                       target="_blank"
@@ -164,13 +148,284 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
       </div>
 
       <!-- Footer -->
-      <div class="p-8 border-t border-stone-300 bg-stone-900 text-center">
-        <p
-          class="font-mono text-[8px] uppercase tracking-[0.4em] text-stone-500"
-        >
+      <div class="link-card__footer">
+        <p>
           Friends of Ute Valley Park — 2026 Active Wildland
         </p>
       </div>
     </div>
   </main>
 </Layout>
+
+<style>
+  .link-page {
+    min-height: 100vh;
+    background: var(--color-page);
+    padding-block: 2rem;
+  }
+
+  .link-card {
+    width: min(100% - 2rem, 36rem);
+    margin-inline: auto;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+  }
+
+  .link-card__header,
+  .link-section {
+    border-bottom: 1px solid var(--color-border);
+    padding: 2rem;
+  }
+
+  .link-card__header,
+  .link-section--muted {
+    background: color-mix(in oklab, var(--color-page) 50%, transparent);
+  }
+
+  .link-card__identity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .link-card__logo-frame {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 0.25rem;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+  }
+
+  .link-card__title-block {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .link-card__title-block h1 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .link-card__title-block h1 span {
+    color: var(--color-brand-strong);
+  }
+
+  .link-card__title-block p,
+  .link-card__footer p {
+    margin: 0;
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .link-card__title-block p {
+    color: var(--color-text-subtle);
+  }
+
+  .link-card__social {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    border-top: 1px solid var(--color-border-muted);
+    padding-top: 1rem;
+  }
+
+  .link-section__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .link-section__heading span {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--color-brand-strong);
+  }
+
+  .link-section__heading--accent span {
+    background: var(--color-accent-strong);
+  }
+
+  .link-section__heading--neutral span {
+    background: var(--color-text-subtle);
+  }
+
+  .link-section__heading h2 {
+    margin: 0;
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .link-section__heading--accent h2 {
+    color: var(--color-accent-strong);
+  }
+
+  .link-section__heading--neutral h2 {
+    color: var(--color-text-subtle);
+  }
+
+  .link-section__stack {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .link-section__inset {
+    border-left: 2px solid var(--color-border-muted);
+    padding-left: 1rem;
+  }
+
+  .quick-links {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .quick-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: inherit;
+    padding: 1.25rem;
+    text-decoration: none;
+    transition:
+      border-color 200ms,
+      transform 200ms;
+  }
+
+  .quick-link:hover {
+    border-color: var(--color-brand-strong);
+  }
+
+  .quick-link:active {
+    transform: scale(0.96);
+  }
+
+  .quick-link span:first-child,
+  .wishlist-item h3 {
+    color: var(--color-text-strong);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 200ms;
+  }
+
+  .quick-link span:last-child {
+    color: var(--color-border);
+    transition: color 200ms;
+  }
+
+  .quick-link:hover span {
+    color: var(--color-brand-strong);
+  }
+
+  .wishlist-intro {
+    margin: 0 0 2rem;
+    color: var(--color-text-subtle);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    line-height: var(--leading-body);
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .wishlist-intro a {
+    color: var(--color-brand-strong);
+    font-weight: 900;
+    text-decoration: underline;
+  }
+
+  .wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    border: 1px solid var(--color-border-muted);
+    background: var(--color-border-muted);
+  }
+
+  .wishlist-item {
+    display: grid;
+    gap: 1rem;
+    background: var(--color-surface);
+    padding: 1rem;
+    transition: background-color 200ms;
+  }
+
+  .wishlist-item:hover {
+    background: var(--color-page);
+  }
+
+  .wishlist-item__media {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid var(--color-border-muted);
+    background: var(--color-surface-muted);
+  }
+
+  :global(.wishlist-item__image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms;
+  }
+
+  .wishlist-item__quantity {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    background: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+    padding: 0.125rem 0.5rem;
+    font-family: var(--font-label);
+    font-size: 0.5rem;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .wishlist-item h3 {
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .wishlist-item h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .wishlist-item:hover h3 {
+    color: var(--color-brand-strong);
+  }
+
+  .link-card__footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface-inverse);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .link-card__footer p {
+    color: var(--color-text-subtle);
+    font-size: 0.5rem;
+    letter-spacing: 0.4em;
+  }
+</style>

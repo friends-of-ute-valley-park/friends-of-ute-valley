@@ -14,45 +14,33 @@ const footerItems = [
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-stone-50 border-t border-stone-300 pt-20 pb-12">
-  <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-    <div
-      class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 border border-stone-300"
-    >
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__panel">
       <!-- Branding & Legal -->
-      <div
-        class="lg:col-span-5 p-8 lg:p-12 border-b lg:border-b-0 lg:border-r border-stone-300 bg-white"
-      >
-        <div class="space-y-8">
+      <div class="site-footer__brand">
+        <div class="site-footer__brand-stack">
           <div>
-            <h2
-              class="font-serif font-black text-3xl uppercase tracking-tighter leading-none text-stone-900"
-            >
+            <h2 class="site-footer__title">
               Friends of <br />
-              <span class="text-primary">Ute Valley Park.</span>
+              <span>Ute Valley Park.</span>
             </h2>
-            <p
-              class="mt-6 text-sm text-stone-500 font-medium leading-relaxed max-w-sm"
-            >
+            <p class="site-footer__summary">
               Established for the preservation, maintenance, and community
               education of the 550-acre Ute Valley urban wildland.
             </p>
           </div>
 
-          <div class="pt-8 border-t border-stone-200">
+          <div class="site-footer__social">
             <SocialLinks />
           </div>
 
-          <div class="space-y-4">
-            <p
-              class="text-[10px] font-mono uppercase tracking-widest text-stone-500 leading-tight"
-            >
+          <div class="site-footer__legal">
+            <p>
               Fiscally sponsored fund of the Trails and Open Space Coalition
               (501(c)(3)). Contributions are tax-deductible as permitted by law.
             </p>
-            <p
-              class="text-[10px] font-mono uppercase tracking-widest text-primary font-black"
-            >
+            <p class="site-footer__copyright">
               © {currentYear} Friends of Ute Valley Park — ALL RIGHTS RESERVED.
             </p>
           </div>
@@ -60,52 +48,218 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <!-- Navigation Links -->
-      <div
-        class="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 divide-x divide-y divide-stone-300"
-      >
+      <div class="site-footer__nav">
         {
           footerItems.map((item) => (
-            <a
-              href={item.link}
-              class="group p-8 flex flex-col justify-between hover:bg-white transition-colors"
-            >
-              <span class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500 group-hover:text-primary transition-colors">
-                {item.name}
-              </span>
-              <div class="mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-                <span class="text-primary">→</span>
-              </div>
+            <a href={item.link} class="site-footer__nav-link">
+              <span>{item.name}</span>
+              <span aria-hidden="true">→</span>
             </a>
           ))
         }
-        <a
-          href="/sitemap-index.xml"
-          class="group p-8 flex flex-col justify-between hover:bg-white transition-colors col-span-2 md:col-span-1"
-        >
-          <span
-            class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500 group-hover:text-secondary transition-colors"
-          >
-            Sitemap
-          </span>
-          <div
-            class="mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity"
-          >
-            <span class="text-secondary">→</span>
-          </div>
+        <a href="/sitemap-index.xml" class="site-footer__nav-link site-footer__nav-link--wide">
+          <span>Sitemap</span>
+          <span aria-hidden="true">→</span>
         </a>
       </div>
     </div>
 
     <!-- Coordinate Detail -->
-    <div
-      class="mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] font-mono uppercase tracking-[0.3em] text-stone-500"
-    >
-      <span class="text-primary font-bold">38.9189° N, 104.8558° W</span>
-      <span class="hidden md:block border-x border-stone-200 px-8"
-        >Colorado Springs, CO</span
-      >
-      <span class="text-primary font-bold">Urban Open Space</span>
+    <div class="site-footer__coordinates">
+      <span>38.9189° N, 104.8558° W</span>
+      <span>Colorado Springs, CO</span>
+      <span>Urban Open Space</span>
     </div>
   </div>
 </footer>
 
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-page);
+    padding-block: 5rem 3rem;
+  }
+
+  .site-footer__inner {
+    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+    margin-inline: auto;
+  }
+
+  .site-footer__panel {
+    display: grid;
+    gap: 3rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .site-footer__brand {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: clamp(2rem, 5vw, 3rem);
+  }
+
+  .site-footer__brand-stack {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .site-footer__title {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .site-footer__title span {
+    color: var(--color-brand);
+  }
+
+  .site-footer__summary {
+    max-width: 24rem;
+    margin: 1.5rem 0 0;
+    color: var(--color-text-subtle);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .site-footer__social {
+    border-top: 1px solid var(--color-border-muted);
+    padding-top: 2rem;
+  }
+
+  .site-footer__legal {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .site-footer__legal p {
+    margin: 0;
+    color: var(--color-text-subtle);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    line-height: var(--leading-tight);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .site-footer__legal .site-footer__copyright {
+    color: var(--color-brand);
+    font-weight: 900;
+  }
+
+  .site-footer__nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .site-footer__nav-link {
+    display: flex;
+    min-height: 8rem;
+    flex-direction: column;
+    justify-content: space-between;
+    border-color: var(--color-border);
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    padding: 2rem;
+    text-decoration: none;
+    transition: background-color 200ms;
+  }
+
+  .site-footer__nav-link:hover {
+    background: var(--color-surface);
+  }
+
+  .site-footer__nav-link span:first-child {
+    color: var(--color-text-subtle);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    transition: color 200ms;
+  }
+
+  .site-footer__nav-link span:last-child {
+    align-self: end;
+    color: var(--color-brand);
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+
+  .site-footer__nav-link:hover span:first-child {
+    color: var(--color-brand);
+  }
+
+  .site-footer__nav-link:hover span:last-child {
+    opacity: 1;
+  }
+
+  .site-footer__nav-link--wide {
+    grid-column: span 2;
+  }
+
+  .site-footer__nav-link--wide:hover span:first-child,
+  .site-footer__nav-link--wide span:last-child {
+    color: var(--color-accent-strong);
+  }
+
+  .site-footer__coordinates {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    color: var(--color-text-subtle);
+    font-family: var(--font-label);
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .site-footer__coordinates span:first-child,
+  .site-footer__coordinates span:last-child {
+    color: var(--color-brand);
+  }
+
+  .site-footer__coordinates span:nth-child(2) {
+    display: none;
+  }
+
+  @media (min-width: 48rem) {
+    .site-footer__nav {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .site-footer__nav-link--wide {
+      grid-column: span 1;
+    }
+
+    .site-footer__coordinates {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .site-footer__coordinates span:nth-child(2) {
+      display: block;
+      border-inline: 1px solid var(--color-border-muted);
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .site-footer__panel {
+      grid-template-columns: 5fr 7fr;
+      gap: 0;
+    }
+
+    .site-footer__brand {
+      border-right: 1px solid var(--color-border);
+      border-bottom: 0;
+    }
+  }
+</style>

@@ -4,8 +4,6 @@ import Icons from 'unplugin-icons/vite';
 
 import sitemap from '@astrojs/sitemap';
 
-import tailwindcss from '@tailwindcss/vite';
-
 // https://astro.build/config
 export default defineConfig({
   site: 'https://fuvp.org',
@@ -47,7 +45,6 @@ export default defineConfig({
       Icons({
         compiler: 'astro',
       }),
-      tailwindcss(),
     ],
   },
   env: {

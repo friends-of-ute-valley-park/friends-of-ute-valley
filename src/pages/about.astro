@@ -10,31 +10,22 @@ import StatsCard from "@components/StatsCard.astro";
   title="About"
   description="Learn about Friends of Ute Valley Park, our mission, history, and volunteer-led work to protect and maintain Ute Valley Park in Colorado Springs."
 >
-  <main class="bg-stone-50 text-stone-900">
+  <main class="page about-page">
     <!-- Archival Header -->
-    <section class="border-b border-stone-300">
-      <div
-        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
-      >
-        <div class="flex items-center gap-4 mb-8">
-          <span class="inline-block h-px w-12 bg-primary-dark"></span>
-          <span
-            class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
-          >
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <div class="page-eyebrow">
+          <span>
             About Us
           </span>
         </div>
 
-        <h1
-          class="text-6xl sm:text-8xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase mb-12"
-        >
-          Our Story <br /> & <span class="text-primary-dark">Mission.</span>
+        <h1 class="page-title about-hero__title">
+          Our Story <br /> & <span>Mission.</span>
         </h1>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div
-            class="lg:col-span-7 prose prose-stone lg:prose-xl font-medium text-stone-700 leading-relaxed"
-          >
+        <div class="about-hero__layout">
+          <div class="prose-content about-hero__copy">
             <p>
               Friends of Ute Valley Park (FUVP) is an officially recognized
               "Friends" organization dedicated to maintaining, preserving, and
@@ -47,9 +38,8 @@ import StatsCard from "@components/StatsCard.astro";
               future generations.
             </p>
           </div>
-          <div class="lg:col-span-5 border border-stone-300 bg-white p-8">
+          <div class="about-hero__logo-card">
             <img
-              class="block w-full h-auto transition-transform duration-700"
               src="/images/logo-medium.jpg"
               alt="Friends of Ute Valley logo"
             />
@@ -59,57 +49,51 @@ import StatsCard from "@components/StatsCard.astro";
     </section>
 
     <!-- Impact Data -->
-    <section class="border-b border-stone-300 bg-stone-100/50">
+    <section class="about-impact">
       <StatsCard />
     </section>
 
     <!-- Structural Records -->
-    <section class="border-b border-stone-300">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-24">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          <div
-            class="lg:col-span-4 border-r border-stone-300 pr-12 hidden lg:block"
-          >
-            <div class="sticky top-24 space-y-8">
-              <h3
-                class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-primary-dark"
-              >
+    <section class="about-records">
+      <div class="page-section__inner">
+        <div class="about-records__layout">
+          <div class="about-toc">
+            <div class="about-toc__sticky">
+              <h3>
                 About Our Work
               </h3>
-              <nav class="flex flex-col gap-4" data-about-toc>
+              <nav class="about-toc__links" data-about-toc>
                 <a
                   href="#history"
-                  class="font-mono text-xs uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors"
+                  class="about-toc__link"
                   >01. Our History</a
                 >
                 <a
                   href="#stewardship"
-                  class="font-mono text-xs uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors"
+                  class="about-toc__link"
                   >02. How We Care for the Park</a
                 >
                 <a
                   href="#awards"
-                  class="font-mono text-xs uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors"
+                  class="about-toc__link"
                   >03. Awards & Recognition</a
                 >
                 <a
                   href="#structure"
-                  class="font-mono text-xs uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors"
+                  class="about-toc__link"
                   >04. Our Structure</a
                 >
               </nav>
             </div>
           </div>
 
-          <div class="lg:col-span-8 space-y-24">
+          <div class="about-records__content">
             <!-- History -->
-            <div id="history" class="scroll-mt-24 space-y-8">
-              <h2
-                class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900"
-              >
-                Our <span class="italic text-primary-dark">History.</span>
+            <div id="history" class="about-record">
+              <h2>
+                Our <span>History.</span>
               </h2>
-              <div class="prose prose-stone leading-relaxed text-stone-600">
+              <div class="prose-content">
                 <p>
                   FUVP was formed in 2012 when we learned the City had an
                   opportunity to purchase an additional 205 acres to expand Ute
@@ -126,15 +110,11 @@ import StatsCard from "@components/StatsCard.astro";
             </div>
 
             <!-- Stewardship -->
-            <div id="stewardship" class="scroll-mt-24 space-y-8">
-              <h2
-                class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900"
-              >
-                How We <span class="italic text-primary-dark"
-                  >Care for the Park.</span
-                >
+            <div id="stewardship" class="about-record">
+              <h2>
+                How We <span>Care for the Park.</span>
               </h2>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="stewardship-grid">
                 {
                   [
                     "Conducts trail maintenance twice a month",
@@ -143,11 +123,11 @@ import StatsCard from "@components/StatsCard.astro";
                     "Provides education about the park's ecology and history",
                     "Advocates for the protection of UVP",
                   ].map((item, i) => (
-                    <div class="border border-stone-300 bg-white p-6 flex gap-4 items-start hover:border-primary-dark transition-colors">
-                      <span class="font-mono text-xs font-black text-accent-dark">
+                    <div class="stewardship-card">
+                      <span>
                         [{String(i + 1).padStart(2, "0")}]
                       </span>
-                      <p class="text-sm font-bold text-stone-800 uppercase tracking-tight">
+                      <p>
                         {item}
                       </p>
                     </div>
@@ -157,15 +137,11 @@ import StatsCard from "@components/StatsCard.astro";
             </div>
 
             <!-- Awards -->
-            <div id="awards" class="scroll-mt-24 space-y-8">
-              <h2
-                class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900"
-              >
-                Awards & <span class="italic text-primary-dark"
-                  >Recognition.</span
-                >
+            <div id="awards" class="about-record">
+              <h2>
+                Awards & <span>Recognition.</span>
               </h2>
-              <div class="border border-stone-300 divide-y divide-stone-300">
+              <div class="award-list">
                 {
                   [
                     {
@@ -197,11 +173,11 @@ import StatsCard from "@components/StatsCard.astro";
                       title: "Dan Woods SuperGroup MVP Award",
                     },
                   ].map((award) => (
-                    <div class="flex items-center gap-8 p-6 hover:bg-white transition-colors">
-                      <span class="font-mono text-lg font-black text-primary-dark">
+                    <div class="award-list__item">
+                      <span>
                         {award.year}
                       </span>
-                      <span class="font-mono text-xs uppercase tracking-[0.1em] font-bold text-stone-700">
+                      <span>
                         {award.title}
                       </span>
                     </div>
@@ -211,54 +187,41 @@ import StatsCard from "@components/StatsCard.astro";
             </div>
 
             <!-- Structure -->
-            <div id="structure" class="scroll-mt-24 space-y-8">
-              <h2
-                class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900"
-              >
-                Our <span class="italic text-primary-dark">Structure.</span>
+            <div id="structure" class="about-record">
+              <h2>
+                Our <span>Structure.</span>
               </h2>
-              <div
-                class="bg-stone-900 text-white p-12 relative overflow-hidden"
-              >
-                <div class="relative z-10 space-y-6">
-                  <p class="text-lg font-medium leading-relaxed text-stone-300">
+              <div class="structure-card">
+                <div class="structure-card__content">
+                  <p>
                     FUVP operates as a committee under the fiscal sponsorship of
                     the Trails and Open Spaces Coalition (TOSC).
                   </p>
-                  <p class="text-stone-500">
+                  <p>
                     This arrangement minimizes our operating costs and allows us
                     to utilize TOSC's 501(C)(3) non-profit status as we pursue
                     our mission.
                   </p>
-                  <div
-                    class="pt-8 border-t border-stone-800 flex flex-wrap gap-8"
-                  >
+                  <div class="structure-card__facts">
                     <div>
-                      <p
-                        class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1"
-                      >
+                      <p>
                         Status
                       </p>
-                      <p class="font-mono text-xs font-black uppercase">
+                      <p>
                         501(C)(3) Sponsored
                       </p>
                     </div>
                     <div>
-                      <p
-                        class="font-mono text-[10px] uppercase tracking-widest text-stone-500 mb-1"
-                      >
+                      <p>
                         Entity
                       </p>
-                      <p class="font-mono text-xs font-black uppercase">
+                      <p>
                         TOSC Fiscal Committee
                       </p>
                     </div>
                   </div>
                 </div>
-                <div
-                  class="absolute top-0 right-0 w-32 h-32 bg-primary-dark/20 -translate-y-1/2 translate-x-1/2 rotate-45"
-                >
-                </div>
+                <div class="structure-card__marker"></div>
               </div>
             </div>
           </div>
@@ -267,18 +230,16 @@ import StatsCard from "@components/StatsCard.astro";
     </section>
 
     <!-- Our Team -->
-    <section class="border-b border-stone-300 bg-stone-50">
+    <section class="about-team">
       <TeamList />
     </section>
 
     <!-- Photographic Evidence -->
-    <section class="border-b border-stone-300 py-24">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center gap-4 mb-12">
-          <h2
-            class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900"
-          >
-            Park <span class="text-primary-dark italic">Gallery.</span>
+    <section class="about-gallery">
+      <div class="page-section__inner">
+        <div class="about-gallery__heading">
+          <h2>
+            Park <span>Gallery.</span>
           </h2>
         </div>
         <OldPhotos />
@@ -286,32 +247,22 @@ import StatsCard from "@components/StatsCard.astro";
     </section>
 
     <!-- Technical Surveys -->
-    <section class="py-24 bg-stone-100">
-      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div class="border-2 border-stone-900 bg-white p-8 md:p-12 relative">
-          <div
-            class="absolute top-4 right-4 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500"
-          >
-          </div>
-          <h2
-            class="text-3xl font-serif font-black uppercase tracking-tight text-stone-900 mb-8 border-b border-stone-200 pb-4"
-          >
-            Coal Mine <span class="text-primary-dark">Survey Report.</span>
+    <section class="survey-report">
+      <div class="survey-report__inner">
+        <div class="survey-report__card">
+          <div class="survey-report__code"></div>
+          <h2>
+            Coal Mine <span>Survey Report.</span>
           </h2>
-          <div
-            class="aspect-video bg-stone-200 border border-stone-300 overflow-hidden mb-8"
-          >
+          <div class="survey-report__media">
             <img
               src="/images/colorado-land-survey-preview.jpg"
-              class="w-full h-full object-cover transition-transform duration-700"
               alt="Coal mine survey"
             />
           </div>
-          <div
-            class="flex flex-col md:flex-row justify-between items-end gap-8"
-          >
-            <div class="space-y-4 max-w-md">
-              <p class="text-sm font-medium text-stone-600 leading-relaxed">
+          <div class="survey-report__footer">
+            <div>
+              <p>
                 1983 Colorado Front Range Inactive Coal Mine Data (El Paso
                 County). Historical geological report regarding subsurface
                 conditions and previous industrial operations.
@@ -320,7 +271,7 @@ import StatsCard from "@components/StatsCard.astro";
             <a
               href="/images/maps/colorado-springs-coal-mine-survey.pdf"
               download
-              class="btn-primary-cta"
+              class="button button--brand"
             >
               Download Report (14.8MB)
             </a>
@@ -329,7 +280,7 @@ import StatsCard from "@components/StatsCard.astro";
       </div>
     </section>
 
-    <div class="bg-stone-50 border-t border-stone-300">
+    <div class="about-lnt">
       <LeaveNoTraceSmall />
     </div>
   </main>
@@ -352,14 +303,12 @@ import StatsCard from "@components/StatsCard.astro";
 
     const setActive = (id: string) => {
       links.forEach((link) => {
-        link.classList.remove("text-primary");
-        link.classList.add("text-stone-500");
+        link.classList.remove("about-toc__link--active");
         link.removeAttribute("aria-current");
       });
       const active = linkById.get(id);
       if (active) {
-        active.classList.add("text-primary");
-        active.classList.remove("text-stone-500");
+        active.classList.add("about-toc__link--active");
         active.setAttribute("aria-current", "location");
       }
     };
@@ -392,3 +341,351 @@ import StatsCard from "@components/StatsCard.astro";
   }
 </script>
 
+<style>
+  .about-hero__title {
+    margin-bottom: 3rem;
+  }
+
+  .about-hero__layout {
+    display: grid;
+    align-items: start;
+    gap: 3rem;
+  }
+
+  .about-hero__copy {
+    color: var(--color-text-muted);
+    font-size: var(--text-body-large);
+  }
+
+  .about-hero__logo-card {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 2rem;
+  }
+
+  .about-hero__logo-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 700ms;
+  }
+
+  .about-impact,
+  .about-team,
+  .about-lnt {
+    border-bottom: 1px solid var(--color-border);
+    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
+  }
+
+  .about-records,
+  .about-gallery,
+  .survey-report {
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-section);
+  }
+
+  .about-records__layout {
+    display: grid;
+    gap: 4rem;
+  }
+
+  .about-toc {
+    display: none;
+  }
+
+  .about-toc__sticky {
+    position: sticky;
+    top: 6rem;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .about-toc h3 {
+    margin: 0;
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .about-toc__links,
+  .about-records__content,
+  .about-record {
+    display: grid;
+  }
+
+  .about-toc__links {
+    gap: 1rem;
+  }
+
+  .about-toc__link {
+    color: var(--color-text-subtle);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 200ms;
+  }
+
+  .about-toc__link:hover,
+  .about-toc__link--active {
+    color: var(--color-brand);
+  }
+
+  .about-records__content {
+    gap: 6rem;
+  }
+
+  .about-record {
+    gap: 2rem;
+    scroll-margin-top: 6rem;
+  }
+
+  .about-record h2,
+  .about-gallery__heading h2 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 3rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .about-record h2 span,
+  .about-gallery__heading h2 span,
+  .survey-report h2 span {
+    color: var(--color-brand-strong);
+    font-style: italic;
+  }
+
+  .stewardship-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .stewardship-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 1.5rem;
+    transition: border-color 200ms;
+  }
+
+  .stewardship-card:hover {
+    border-color: var(--color-brand-strong);
+  }
+
+  .stewardship-card span {
+    color: var(--color-accent-strong);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+
+  .stewardship-card p {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .award-list {
+    border: 1px solid var(--color-border);
+  }
+
+  .award-list__item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.5rem;
+    transition: background-color 200ms;
+  }
+
+  .award-list__item:last-child {
+    border-bottom: 0;
+  }
+
+  .award-list__item:hover {
+    background: var(--color-surface);
+  }
+
+  .award-list__item span:first-child {
+    min-width: 3rem;
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: var(--text-body-large);
+    font-weight: 900;
+  }
+
+  .award-list__item span:last-child {
+    color: var(--color-text-muted);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .structure-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+    padding: clamp(2rem, 4vw, 3rem);
+  }
+
+  .structure-card__content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .structure-card__content > p {
+    margin: 0;
+    color: var(--color-text-inverse-muted);
+    font-size: var(--text-body-large);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .structure-card__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    border-top: 1px solid var(--color-surface-inverse-muted);
+    padding-top: 2rem;
+  }
+
+  .structure-card__facts p {
+    margin: 0;
+    font-family: var(--font-label);
+    text-transform: uppercase;
+  }
+
+  .structure-card__facts p:first-child {
+    margin-bottom: 0.25rem;
+    color: var(--color-text-subtle);
+    font-size: var(--text-label);
+    letter-spacing: 0.12em;
+  }
+
+  .structure-card__facts p:last-child {
+    color: var(--color-text-inverse);
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+
+  .structure-card__marker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8rem;
+    height: 8rem;
+    background: color-mix(in oklab, var(--color-brand-strong) 20%, transparent);
+    transform: translate(50%, -50%) rotate(45deg);
+  }
+
+  .about-gallery__heading {
+    margin-bottom: 3rem;
+  }
+
+  .survey-report {
+    background: var(--color-surface-muted);
+  }
+
+  .survey-report__inner {
+    width: min(100% - (var(--space-page-x) * 2), 56rem);
+    margin-inline: auto;
+  }
+
+  .survey-report__card {
+    position: relative;
+    border: 2px solid var(--color-border-strong);
+    background: var(--color-surface);
+    padding: clamp(2rem, 4vw, 3rem);
+  }
+
+  .survey-report h2 {
+    margin: 0 0 2rem;
+    border-bottom: 1px solid var(--color-border-muted);
+    padding-bottom: 1rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .survey-report__media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-muted);
+    margin-bottom: 2rem;
+  }
+
+  .survey-report__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms;
+  }
+
+  .survey-report__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .survey-report__footer > div {
+    max-width: 28rem;
+  }
+
+  .survey-report__footer p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  @media (min-width: 48rem) {
+    .stewardship-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .survey-report__footer {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .about-hero__layout {
+      grid-template-columns: 7fr 5fr;
+    }
+
+    .about-records__layout {
+      grid-template-columns: 4fr 8fr;
+    }
+
+    .about-toc {
+      display: block;
+      border-right: 1px solid var(--color-border);
+      padding-right: 3rem;
+    }
+  }
+</style>

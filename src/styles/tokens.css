@@ -1,0 +1,88 @@
+@layer tokens {
+  :root {
+    --_color-white: oklch(1 0 0);
+    --_color-stone-50: oklch(0.985 0.001 106.423);
+    --_color-stone-100: oklch(0.97 0.001 106.424);
+    --_color-stone-200: oklch(0.923 0.003 48.717);
+    --_color-stone-300: oklch(0.869 0.005 56.366);
+    --_color-stone-400: oklch(0.709 0.01 56.259);
+    --_color-stone-500: oklch(0.553 0.013 58.071);
+    --_color-stone-600: oklch(0.444 0.011 73.639);
+    --_color-stone-700: oklch(0.374 0.01 67.558);
+    --_color-stone-800: oklch(0.268 0.007 34.298);
+    --_color-stone-900: oklch(0.216 0.006 56.043);
+    --_color-stone-950: oklch(0.147 0.004 49.25);
+    --_color-green-50: oklch(0.982 0.018 155.826);
+    --_color-green-100: oklch(0.962 0.044 156.743);
+    --_color-green-200: oklch(0.925 0.084 155.995);
+    --_color-green-600: oklch(0.627 0.194 149.214);
+    --_color-green-700: oklch(0.527 0.154 150.069);
+    --_color-green-800: oklch(0.448 0.119 151.328);
+    --_color-teal-500: oklch(0.704 0.14 182.503);
+    --_color-teal-600: oklch(0.6 0.118 184.704);
+    --_color-teal-800: oklch(0.437 0.078 188.216);
+    --_color-amber-400: oklch(0.828 0.189 84.429);
+    --_color-amber-600: oklch(0.666 0.179 58.318);
+    --_color-amber-700: oklch(0.555 0.163 48.998);
+    --_color-red-700: oklch(0.505 0.213 27.518);
+
+    --font-body: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: var(--font-editorial-serif, Georgia, Cambria, 'Times New Roman', serif);
+    --font-label: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+    --color-page: var(--_color-stone-50);
+    --color-surface: var(--_color-white);
+    --color-surface-muted: var(--_color-stone-100);
+    --color-surface-raised: color-mix(in oklab, var(--_color-white) 90%, var(--_color-stone-50));
+    --color-surface-inverse: var(--_color-stone-900);
+    --color-surface-inverse-muted: var(--_color-stone-800);
+    --color-text: var(--_color-stone-950);
+    --color-text-strong: var(--_color-stone-900);
+    --color-text-muted: var(--_color-stone-600);
+    --color-text-subtle: var(--_color-stone-500);
+    --color-text-inverse: var(--_color-white);
+    --color-text-inverse-muted: var(--_color-stone-300);
+    --color-border: var(--_color-stone-300);
+    --color-border-muted: var(--_color-stone-200);
+    --color-border-strong: var(--_color-stone-900);
+    --color-border-inverse: color-mix(in oklab, var(--_color-white) 12%, transparent);
+    --color-brand: var(--_color-green-700);
+    --color-brand-hover: var(--_color-green-600);
+    --color-brand-strong: var(--_color-green-800);
+    --color-brand-subtle: var(--_color-green-50);
+    --color-brand-muted: var(--_color-green-100);
+    --color-accent: var(--_color-amber-400);
+    --color-accent-hover: var(--_color-amber-600);
+    --color-accent-strong: var(--_color-amber-700);
+    --color-danger: var(--_color-red-700);
+    --color-focus: var(--color-accent);
+
+    --container-wide: 96rem;
+    --container-readable: 70ch;
+    --space-page-x: clamp(1rem, 2.5vw, 2rem);
+    --space-section: clamp(4rem, 8vw, 6rem);
+    --space-section-compact: clamp(3rem, 6vw, 4.5rem);
+    --space-cluster: 1rem;
+    --space-panel: clamp(1.5rem, 4vw, 3rem);
+
+    --text-display-xl: clamp(5rem, 14vw, 7rem);
+    --text-display-lg: clamp(3.75rem, 9vw, 6rem);
+    --text-heading: clamp(2.5rem, 5vw, 3.75rem);
+    --text-subheading: clamp(1.75rem, 3vw, 2.25rem);
+    --text-body: 1rem;
+    --text-body-large: 1.125rem;
+    --text-body-small: 0.875rem;
+    --text-label: 0.625rem;
+    --text-action: 0.875rem;
+
+    --leading-display: 0.85;
+    --leading-tight: 1.1;
+    --leading-body: 1.625;
+    --tracking-label: 0.2em;
+
+    --shadow-accent-sm: 4px 4px 0 0 var(--color-accent);
+    --shadow-accent-md: 8px 8px 0 0 var(--color-accent);
+    --shadow-accent-lg: 12px 12px 0 0 var(--color-accent);
+    --shadow-accent-xl: 16px 16px 0 0 var(--color-accent);
+  }
+}

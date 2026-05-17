@@ -10,75 +10,64 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
   title="Volunteer Spotlight"
   description="Meet the volunteers behind Friends of Ute Valley Park and read spotlight stories from community stewards."
 >
-  <main class="bg-stone-50 text-stone-900">
+  <main class="page">
     <!-- Volunteer Spotlight Header -->
-    <section class="border-b border-stone-300">
-      <div
-        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
-      >
-        <div class="flex items-center gap-4 mb-8">
-          <span class="inline-block h-px w-12 bg-primary-dark"></span>
-          <span
-            class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
-          >
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <div class="page-eyebrow">
+          <span>
             Volunteer Stories
           </span>
         </div>
 
-        <h1
-          class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
-        >
+        <h1 class="page-title">
           Volunteer <br />
-          <span class="text-primary-dark">Spotlight.</span>
+          <span>Spotlight.</span>
         </h1>
 
-        <p
-          class="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-stone-700"
-        >
+        <p class="page-intro">
           Get to know the stories and contributions of our amazing volunteers.
         </p>
       </div>
     </section>
 
     <!-- Spotlight Grid -->
-    <section class="border-b border-stone-300 bg-stone-100/50">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-24">
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-stone-300 border border-stone-300"
-        >
+    <section class="page-section page-section--muted">
+      <div class="page-section__inner">
+        <div class="feature-grid feature-grid--two feature-grid--three">
           {
             volunteerSpotlights.map((spotlight) => (
               <a
                 href={`/volunteerspotlight/${spotlight.id}`}
-                class="bg-white flex flex-col group hover:bg-stone-50 transition-colors"
+                class="spotlight-card"
               >
-                <div class="aspect-square w-full overflow-hidden relative">
+                <div class="spotlight-card__media">
                   <Image
-                    class="w-full h-full origin-top object-cover object-top scale-105 transition-transform duration-700 group-hover:scale-100"
+                    class="spotlight-card__image"
                     src={spotlight.data.images[0].image}
                     alt={spotlight.data.name}
                     quality={70}
                   />
-                  <div class="absolute inset-0 border-12 border-white/20 pointer-events-none" />
+                  <div class="spotlight-card__matte" />
                 </div>
 
-                <div class="p-8 space-y-6 flex flex-col flex-1">
-                  <div class="space-y-3">
-                    <div class="flex items-center gap-3">
-                      <span class="font-mono text-[10px] font-black text-primary-dark px-2 py-0.5 border border-primary-dark/20 uppercase tracking-widest">
+                <div class="spotlight-card__body">
+                  <div class="spotlight-card__copy">
+                    <div class="spotlight-card__tag">
+                      <span>
                         Volunteer
                       </span>
                     </div>
-                    <h3 class="text-3xl font-serif font-black uppercase tracking-tight text-stone-900 group-hover:text-primary-dark transition-colors leading-none">
+                    <h3>
                       {spotlight.data.name}
                     </h3>
-                    <p class="line-clamp-3 text-sm font-medium leading-relaxed text-stone-600">
+                    <p>
                       {spotlight.data.intro}
                     </p>
                   </div>
 
-                  <div class="mt-auto pt-6 border-t border-stone-100 flex justify-between items-center">
-                    <span class="font-mono text-[10px] font-black uppercase tracking-widest text-primary-dark">
+                  <div class="spotlight-card__footer">
+                    <span>
                       Read More →
                     </span>
                   </div>
@@ -91,3 +80,122 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
     </section>
   </main>
 </Layout>
+
+<style>
+  .spotlight-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 200ms;
+  }
+
+  .spotlight-card:hover {
+    background: var(--color-page);
+  }
+
+  .spotlight-card__media {
+    position: relative;
+    aspect-ratio: 1;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  :global(.spotlight-card__image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transform: scale(1.05);
+    transform-origin: top;
+    transition: transform 700ms;
+  }
+
+  .spotlight-card:hover :global(.spotlight-card__image) {
+    transform: scale(1);
+  }
+
+  .spotlight-card__matte {
+    position: absolute;
+    inset: 0;
+    border: 0.75rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
+    pointer-events: none;
+  }
+
+  .spotlight-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+
+  .spotlight-card__copy {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .spotlight-card__tag {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .spotlight-card__tag span {
+    border: 1px solid color-mix(in oklab, var(--color-brand-strong) 20%, transparent);
+    color: var(--color-brand-strong);
+    padding: 0.125rem 0.5rem;
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .spotlight-card h3 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    transition: color 200ms;
+  }
+
+  .spotlight-card:hover h3 {
+    color: var(--color-brand-strong);
+  }
+
+  .spotlight-card__copy p {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .spotlight-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    border-top: 1px solid var(--color-border-muted);
+    padding-top: 1.5rem;
+  }
+
+  .spotlight-card__footer span {
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+</style>

@@ -22,144 +22,50 @@ const locationInformation = MeetingLocationParser(entry.data, meetingLocations);
 ---
 
 <Layout title={entry.data.title} description={entry.data.description}>
-  <div class="relative mt-2 overflow-hidden bg-white py-16">
-    <div class="hidden lg:absolute lg:inset-y-0 lg:block lg:h-full lg:w-full">
-      <div class="relative mx-auto h-full max-w-prose text-lg">
-        <svg
-          class="absolute top-12 left-full translate-x-32 transform"
-          width="404"
-          height="384"
-          fill="none"
-          viewBox="0 0 404 384"
-        >
-          <defs>
-            <pattern
-              id="74b3fd99-0a6f-4271-bef2-e80eeafdf357"
-              x="0"
-              y="0"
-              width="20"
-              height="20"
-              patternUnits="userSpaceOnUse"
-            >
-              <rect
-                x="0"
-                y="0"
-                width="4"
-                height="4"
-                class="text-stone-200"
-                fill="currentColor"></rect>
-            </pattern>
-          </defs>
-          <rect
-            width="404"
-            height="384"
-            fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)"></rect>
-        </svg>
-        <svg
-          class="absolute top-1/2 right-full -translate-x-32 -translate-y-1/2 transform"
-          width="404"
-          height="384"
-          fill="none"
-          viewBox="0 0 404 384"
-        >
-          <defs>
-            <pattern
-              id="f210dbf6-a58d-4871-961e-36d5016a0f49"
-              x="0"
-              y="0"
-              width="20"
-              height="20"
-              patternUnits="userSpaceOnUse"
-            >
-              <rect
-                x="0"
-                y="0"
-                width="4"
-                height="4"
-                class="text-stone-200"
-                fill="currentColor"></rect>
-            </pattern>
-          </defs>
-          <rect
-            width="404"
-            height="384"
-            fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)"></rect>
-        </svg>
-        <svg
-          class="absolute bottom-12 left-full translate-x-32 transform"
-          width="404"
-          height="384"
-          fill="none"
-          viewBox="0 0 404 384"
-        >
-          <defs>
-            <pattern
-              id="d3eb07ae-5182-43e6-857d-35c643af9034"
-              x="0"
-              y="0"
-              width="20"
-              height="20"
-              patternUnits="userSpaceOnUse"
-            >
-              <rect
-                x="0"
-                y="0"
-                width="4"
-                height="4"
-                class="text-stone-200"
-                fill="currentColor"></rect>
-            </pattern>
-          </defs>
-          <rect
-            width="404"
-            height="384"
-            fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)"></rect>
-        </svg>
+  <main class="page event-detail">
+    <section class="page-hero">
+      <div class="page-hero__inner event-detail__hero">
+        <div class="page-eyebrow">
+          <span>Volunteer Event</span>
+        </div>
+        <h1 class="event-detail__title">{entry.data.title}</h1>
       </div>
-    </div>
-    <div class="relative px-4 sm:px-6 lg:px-8">
-      <div class="mx-auto mb-6 max-w-prose text-lg">
-        <h1
-          class="mt-2 mb-8 text-center text-3xl leading-8 font-extrabold tracking-tight text-stone-900 sm:text-4xl sm:leading-10"
-        >
-          {entry.data.title}
-        </h1>
+    </section>
+
+    <section class="page-section">
+      <div class="event-detail__inner">
         <Image
           src={volunteerImage}
-          class="h-96 w-full rounded-lg object-cover shadow-lg"
+          class="event-detail__image"
           alt="volunteers working in Ute Valley Park"
         />
-        <div class="mt-6">
-          <div>
-            <a
-              class="mt-2 flex items-center text-lg text-primary underline sm:mt-0"
-              href={locationInformation.directionsLink}
-            >
-              <svg
-                class="mr-1.5 h-5 w-5 shrink-0 text-stone-500"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              {locationInformation.name}
-            </a>
-            {
-              entry.data.meetingLocation.notes && (
-                <span class="ml-6 max-w-xs text-sm text-stone-500">
-                  {entry.data.meetingLocation.notes}
-                </span>
-              )
-            }
-          </div>
-          <div class="mt-2 flex items-center pt-2 text-stone-500 sm:mt-0">
+
+        <div class="event-detail__meta-panel">
+          <a class="event-detail__meta-link" href={locationInformation.directionsLink}>
             <svg
-              class="mr-1.5 h-5 w-5 shrink-0 text-stone-500"
+              class="event-detail__icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                clip-rule="evenodd"></path>
+            </svg>
+            {locationInformation.name}
+          </a>
+          {
+            entry.data.meetingLocation.notes && (
+              <span class="event-detail__notes">
+                {entry.data.meetingLocation.notes}
+              </span>
+            )
+          }
+          <div class="event-detail__meta-line">
+            <svg
+              class="event-detail__icon"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -174,27 +80,144 @@ const locationInformation = MeetingLocationParser(entry.data, meetingLocations);
             {entry.data.time}
           </div>
         </div>
-        <div class="prose lg:prose-xl py-8">
+
+        <div class="prose-content event-detail__content">
           <Content />
         </div>
-        <div class="mt-2 flex shrink-0 sm:mt-0">
-          {
-            entry.data.link && (
-              <div>
-                <p class="mb-3 font-semibold text-primary">
-                  You must register to participate in this event.
-                </p>
-                <a
-                  href={entry.data.link}
-                  class="mb-2 inline-flex items-center rounded-md border border-transparent bg-primary-light px-6 py-3 text-base font-medium text-primary-50 shadow-sm transition duration-150 ease-in-out hover:text-primary-100 focus:ring-2 focus:ring-primary-light focus:outline-hidden md:my-0"
-                >
-                  Register
-                </a>
-              </div>
-            )
-          }
-        </div>
+
+        {
+          entry.data.link && (
+            <div class="event-detail__registration">
+              <p>
+                You must register to participate in this event.
+              </p>
+              <a href={entry.data.link} class="button button--brand">
+                Register
+              </a>
+            </div>
+          )
+        }
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  .event-detail {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .event-detail::before,
+  .event-detail::after {
+    position: absolute;
+    z-index: 0;
+    display: none;
+    width: 25rem;
+    height: 24rem;
+    background-image: radial-gradient(var(--color-border-muted) 2px, transparent 2px);
+    background-size: 20px 20px;
+    content: '';
+    pointer-events: none;
+  }
+
+  .event-detail::before {
+    top: 8rem;
+    left: calc(50% + 24rem);
+  }
+
+  .event-detail::after {
+    top: 30rem;
+    right: calc(50% + 24rem);
+  }
+
+  .event-detail__hero,
+  .event-detail__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .event-detail__title {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 900;
+    line-height: var(--leading-tight);
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .event-detail__inner {
+    width: min(100% - (var(--space-page-x) * 2), 65ch);
+    margin-inline: auto;
+  }
+
+  :global(.event-detail__image) {
+    width: 100%;
+    height: 24rem;
+    object-fit: cover;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%);
+  }
+
+  .event-detail__meta-panel {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    color: var(--color-text-subtle);
+  }
+
+  .event-detail__meta-link,
+  .event-detail__meta-line {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-subtle);
+  }
+
+  .event-detail__meta-link {
+    color: var(--color-brand);
+    font-size: var(--text-body-large);
+    text-decoration: underline;
+  }
+
+  .event-detail__notes {
+    max-width: 24rem;
+    color: var(--color-text-subtle);
+    font-size: var(--text-body-small);
+  }
+
+  .event-detail__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    margin-right: 0.375rem;
+    color: var(--color-text-subtle);
+  }
+
+  .event-detail__content {
+    padding-block: 2rem;
+  }
+
+  .event-detail__registration {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .event-detail__registration p {
+    margin: 0;
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+
+  @media (min-width: 64rem) {
+    .event-detail::before,
+    .event-detail::after {
+      display: block;
+    }
+  }
+</style>

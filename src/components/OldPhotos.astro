@@ -17,60 +17,53 @@ const initialPhotos = sorted.slice(0, 6);
 const morePhotos = sorted.slice(6);
 ---
 
-<div class="space-y-12">
-  <div class="mb-8 flex items-center gap-4">
-    <span class="inline-block h-px w-8 bg-stone-300"></span>
-    <span
-      class="font-mono text-[10px] font-black tracking-[0.2em] text-stone-500 uppercase"
-      >Park History</span
-    >
+<div class="historic-photos">
+  <div class="historic-photos__eyebrow">
+    <span></span>
+    <span>Park History</span>
   </div>
 
-  <div
-    class="grid grid-cols-1 gap-px border border-stone-300 bg-stone-300 sm:grid-cols-2 lg:grid-cols-3"
-  >
+  <div class="historic-photos__grid">
     {
       initialPhotos.map(({ image, num }) => (
-        <div class="group relative aspect-square overflow-hidden bg-white">
+        <div class="historic-photos__item">
           <Picture
             src={image}
             alt={`Historic Ute Valley Park photo ${num}`}
             widths={[400, 600, 800]}
             formats={["avif", "webp"]}
-            class="h-full w-full scale-105 object-cover transition-transform duration-1000 group-hover:scale-100"
+            class="historic-photos__image"
             loading="lazy"
           />
-          <div class="pointer-events-none absolute inset-0 border-12 border-white/20" />
+          <div class="historic-photos__matte" />
         </div>
       ))
     }
   </div>
 
-  <div id="view-more-btn" class="flex justify-center pt-8">
+  <div id="view-more-btn" class="historic-photos__more">
     <button
-      class="border-2 border-stone-900 px-8 py-4 font-mono text-xs font-black tracking-widest uppercase transition-[background-color,border-color,color,box-shadow,transform] duration-200 hover:bg-stone-900 hover:text-white active:scale-96"
+      class="historic-photos__button"
       data-toggle-photos
     >
       View More Photos
     </button>
   </div>
 
-  <div id="more-photos" class="hidden space-y-12">
-    <div
-      class="grid grid-cols-1 gap-px border border-stone-300 bg-stone-300 sm:grid-cols-2 lg:grid-cols-3"
-    >
+  <div id="more-photos" class="historic-photos__extra" hidden>
+    <div class="historic-photos__grid">
       {
         morePhotos.map(({ image, num }) => (
-          <div class="group relative aspect-square overflow-hidden bg-white">
+          <div class="historic-photos__item">
             <Picture
               src={image}
               alt={`Historic Ute Valley Park photo ${num}`}
               widths={[400, 600, 800]}
               formats={["avif", "webp"]}
-              class="h-full w-full scale-105 object-cover transition-transform duration-1000 group-hover:scale-100"
+              class="historic-photos__image"
               loading="lazy"
             />
-            <div class="pointer-events-none absolute inset-0 border-12 border-white/20" />
+            <div class="historic-photos__matte" />
           </div>
         ))
       }
@@ -84,7 +77,124 @@ const morePhotos = sorted.slice(6);
   const morePhotos = document.getElementById("more-photos");
 
   btn?.addEventListener("click", () => {
-    morePhotos?.classList.remove("hidden");
+    morePhotos?.removeAttribute("hidden");
     btnWrapper?.remove();
   });
 </script>
+
+<style>
+  .historic-photos {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .historic-photos__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: -1rem;
+  }
+
+  .historic-photos__eyebrow span:first-child {
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .historic-photos__eyebrow span:last-child {
+    color: var(--color-text-subtle);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .historic-photos__grid {
+    display: grid;
+    gap: 1px;
+    border: 1px solid var(--color-border);
+    background: var(--color-border);
+  }
+
+  .historic-photos__item {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  :global(.historic-photos__image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: transform 1000ms;
+  }
+
+  .historic-photos__item:hover :global(.historic-photos__image) {
+    transform: scale(1);
+  }
+
+  .historic-photos__matte {
+    position: absolute;
+    inset: 0;
+    border: 0.75rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
+    pointer-events: none;
+  }
+
+  .historic-photos__more {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+  }
+
+  .historic-photos__button {
+    border: 2px solid var(--color-text-strong);
+    background: transparent;
+    color: var(--color-text-strong);
+    padding: 1rem 2rem;
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition:
+      background-color 200ms,
+      border-color 200ms,
+      color 200ms,
+      box-shadow 200ms,
+      transform 200ms;
+  }
+
+  .historic-photos__button:hover {
+    background: var(--color-text-strong);
+    color: var(--color-text-inverse);
+  }
+
+  .historic-photos__button:active {
+    transform: scale(0.96);
+  }
+
+  .historic-photos__extra {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .historic-photos__extra[hidden] {
+    display: none;
+  }
+
+  @media (min-width: 40rem) {
+    .historic-photos__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .historic-photos__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -25,45 +25,32 @@ const meetingLocations = await getCollection("trailheads");
   title="Volunteer"
   description="Volunteer with Friends of Ute Valley Park and join trail maintenance and stewardship events in Colorado Springs."
 >
-  <main class="bg-stone-50 text-stone-900">
+  <main class="page volunteer-page">
     <!-- Hero Section -->
-    <section
-      class="relative border-b border-stone-300 bg-stone-900 overflow-hidden"
-    >
+    <section class="volunteer-hero">
       <Image
         src={VolunteerHeroImage}
         alt="Volunteers in the field"
-        class="absolute inset-0 h-full w-full object-cover opacity-40"
+        class="volunteer-hero__image"
         width={1800}
       />
-      <div
-        class="absolute inset-0 bg-linear-to-t from-stone-900 via-transparent to-transparent"
-      >
-      </div>
+      <div class="volunteer-hero__scrim"></div>
 
-      <div
-        class="relative mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-24 lg:py-40"
-      >
-        <div class="max-w-3xl">
-          <div class="flex items-center gap-4 mb-8">
-            <span class="inline-block h-px w-12 bg-accent"></span>
-            <span
-              class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-300"
-            >
+      <div class="volunteer-hero__inner">
+        <div class="volunteer-hero__content">
+          <div class="volunteer-hero__eyebrow">
+            <span></span>
+            <span>
               How You Can Help
             </span>
           </div>
 
-          <h1
-            class="text-5xl sm:text-9xl font-serif font-black tracking-tighter leading-none text-white uppercase"
-          >
+          <h1>
             Volunteer <br />
-            <span class="text-accent">With Us.</span>
+            <span>With Us.</span>
           </h1>
 
-          <p
-            class="mt-8 text-xl font-medium leading-relaxed text-stone-300 max-w-xl"
-          >
+          <p>
             Join our community of dedicated park stewards. We provide the
             expertise and tools; your hands-on help is what makes the continued
             preservation of this urban wildland possible.
@@ -71,23 +58,15 @@ const meetingLocations = await getCollection("trailheads");
         </div>
       </div>
 
-      <div class="absolute bottom-0 right-0 p-8 hidden lg:block">
-        <div
-          class="bg-white/10 backdrop-blur-md border border-white/20 p-6 space-y-4"
-        >
-          <div class="flex justify-between gap-12">
-            <span class="font-mono text-[10px] uppercase text-stone-500"
-              >Current Status</span
-            >
-            <span class="font-mono text-[10px] uppercase text-accent font-black"
-              >Recruiting</span
-            >
+      <div class="volunteer-status">
+        <div class="volunteer-status__panel">
+          <div>
+            <span>Current Status</span>
+            <span>Recruiting</span>
           </div>
-          <div class="flex justify-between gap-12">
-            <span class="font-mono text-[10px] uppercase text-stone-500"
-              >Next Event</span
-            >
-            <span class="font-mono text-[10px] uppercase text-white font-black">
+          <div>
+            <span>Next Event</span>
+            <span>
               {
                 upcomingVolunteerEvents.length > 0
                   ? formatShortMonthDayYear(upcomingVolunteerEvents[0].data.date)
@@ -101,9 +80,9 @@ const meetingLocations = await getCollection("trailheads");
 
     {
       upcomingVolunteerEvents.length > 0 ? (
-        <div class="border border-stone-300 divide-y divide-stone-300">
+        <div class="volunteer-events">
           {upcomingVolunteerEvents.map((volunteerEvent) => (
-            <div class="p-8 hover:bg-stone-50 transition-colors">
+            <div class="volunteer-events__item">
               <VolunteerItem
                 meetingLocations={meetingLocations}
                 volunteerEvent={volunteerEvent}
@@ -113,8 +92,8 @@ const meetingLocations = await getCollection("trailheads");
           ))}
         </div>
       ) : (
-        <div class="p-12 border border-stone-200 bg-stone-50 text-center">
-          <p class="font-mono text-sm uppercase tracking-widest text-stone-600">
+        <div class="volunteer-events__empty">
+          <p>
             No scheduled events at this time. Check back for seasonal updates.
           </p>
         </div>
@@ -122,19 +101,15 @@ const meetingLocations = await getCollection("trailheads");
     }
 
     <!-- Volunteer Opportunities -->
-    <section class="border-b border-stone-300 bg-white">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-18">
-        <div
-          class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16"
-        >
-          <div class="max-w-4xl">
-            <h2
-              class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-6"
-            >
+    <section class="page-section volunteer-opps">
+      <div class="page-section__inner">
+        <div class="volunteer-opps__header">
+          <div>
+            <h2>
               Volunteer{" "}
-              <span class="text-primary-dark italic">Opportunities.</span>
+              <span>Opportunities.</span>
             </h2>
-            <p class="text-lg text-stone-600 font-medium leading-relaxed">
+            <p>
               Preserving the 550-acre Ute Valley urban wildland is a collective
               effort. From April through September, we host scheduled trail
               maintenance and stewardship events on select Wednesdays and
@@ -150,29 +125,27 @@ const meetingLocations = await getCollection("trailheads");
     </section>
 
     <!-- Seasonal Calendar -->
-    <section class="py-24 border-b border-stone-300 bg-stone-100/50">
+    <section class="page-section page-section--muted">
       <StaticCalendar />
     </section>
 
     <!-- Field Manual / Info -->
-    <section class="border-b border-stone-300">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-18">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          <div class="lg:col-span-6 space-y-12">
+    <section class="page-section">
+      <div class="page-section__inner">
+        <div class="volunteer-field">
+          <div class="volunteer-field__copy">
             <div>
-              <h2
-                class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900 mb-8"
-              >
-                What to <span class="text-primary-dark italic">Expect.</span>
+              <h2>
+                What to <span>Expect.</span>
               </h2>
-              <p class="text-lg text-stone-700 leading-relaxed font-medium">
+              <p>
                 Our team welcomes individuals of all abilities. We offer tasks
                 ranging from trail restoration and drainage construction to
                 native seeding and path maintenance.
               </p>
             </div>
 
-            <div class="space-y-6">
+            <div class="field-notes">
               {
                 [
                   {
@@ -188,11 +161,11 @@ const meetingLocations = await getCollection("trailheads");
                     desc: "Volunteers must wear pants and closed-toe footwear. Gloves and eye protection are mandatory.",
                   },
                 ].map((item, i) => (
-                  <div class="border-l-4 border-primary-dark pl-6 py-2">
-                    <h3 class="font-mono text-sm font-black uppercase tracking-widest text-stone-900 mb-2">
+                  <div class="field-note">
+                    <h3>
                       0{i + 1}. {item.title}
                     </h3>
-                    <p class="text-sm text-stone-600 leading-relaxed font-medium">
+                    <p>
                       {item.desc}
                     </p>
                   </div>
@@ -201,20 +174,15 @@ const meetingLocations = await getCollection("trailheads");
             </div>
           </div>
 
-          <div class="lg:col-span-6 border border-stone-300 bg-white p-4">
+          <div class="volunteer-field__photo">
             <Image
               src={VolunteerInfoImage2}
               alt="Volunteers in action"
-              class="w-full h-auto transition-transform duration-1000"
+              class="volunteer-field__image"
               width={1000}
             />
-            <div
-              class="mt-4 pt-4 border-t border-stone-100 flex justify-between items-center"
-            >
-              <span
-                class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
-                >Volunteers working on trail maintenance</span
-              >
+            <div class="article-photo-card__meta">
+              <span>Volunteers working on trail maintenance</span>
             </div>
           </div>
         </div>
@@ -222,35 +190,26 @@ const meetingLocations = await getCollection("trailheads");
     </section>
 
     <!-- Recruitment (Engagement) -->
-    <section class="py-24 bg-stone-900 relative overflow-hidden">
-      <div
-        class="absolute top-0 right-0 w-64 h-64 bg-accent/5 -translate-y-1/2 translate-x-1/2 rotate-45 border border-accent/10"
-      >
-      </div>
+    <section class="volunteer-recruitment">
+      <div class="volunteer-recruitment__marker"></div>
 
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div
-          class="border-2 border-accent bg-stone-900 p-8 md:p-16 shadow-accent-xl"
-        >
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-8">
-              <h2
-                class="text-4xl font-serif font-black uppercase tracking-tight text-white leading-none"
-              >
+      <div class="volunteer-recruitment__inner">
+        <div class="volunteer-recruitment__panel">
+          <div class="volunteer-recruitment__layout">
+            <div class="volunteer-recruitment__copy">
+              <h2>
                 Stay <br />
-                <span class="text-accent italic">Updated.</span>
+                <span>Updated.</span>
               </h2>
-              <p class="text-lg text-stone-400 leading-relaxed font-medium">
+              <p>
                 Our crew leaders often schedule additional volunteer sessions.
                 Stay connected through our newsletter or social media for the
                 latest on volunteer opportunities, meeting locations, and park
                 updates.
               </p>
             </div>
-            <div class="bg-white p-8 border border-stone-300">
-              <h3
-                class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark mb-6 border-b border-stone-200 pb-2"
-              >
+            <div class="volunteer-recruitment__form">
+              <h3>
                 Stay Updated
               </h3>
               <EmailForm client:idle />
@@ -261,18 +220,16 @@ const meetingLocations = await getCollection("trailheads");
     </section>
 
     <!-- Communication Link -->
-    <section class="py-24 border-b border-stone-300">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section class="volunteer-contact">
+      <div class="volunteer-contact__inner">
         <ContactForm
           default-option="Volunteer"
           client:visible
           turnstileSiteKey={TURNSTILE_SITE_KEY}
         >
           <Fragment slot="title">
-            <h2
-              class="text-4xl font-serif font-black uppercase tracking-tight text-stone-900"
-            >
-              Get in <span class="text-primary-dark italic">Touch.</span>
+            <h2 class="volunteer-contact__title">
+              Get in <span>Touch.</span>
             </h2>
           </Fragment>
           <Fragment slot="subtitle">
@@ -283,8 +240,381 @@ const meetingLocations = await getCollection("trailheads");
       </div>
     </section>
 
-    <div class="bg-stone-50 border-t border-stone-300">
+    <div class="volunteer-lnt">
       <LeaveNoTraceSmall />
     </div>
   </main>
 </Layout>
+
+<style>
+  .volunteer-hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface-inverse);
+  }
+
+  :global(.volunteer-hero__image) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+  }
+
+  .volunteer-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--color-surface-inverse), transparent);
+  }
+
+  .volunteer-hero__inner {
+    position: relative;
+    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+    margin-inline: auto;
+    padding-block: clamp(6rem, 12vw, 10rem);
+  }
+
+  .volunteer-hero__content {
+    max-width: 48rem;
+  }
+
+  .volunteer-hero__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .volunteer-hero__eyebrow span:first-child {
+    width: 3rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  .volunteer-hero__eyebrow span:last-child,
+  .volunteer-status span,
+  .volunteer-events__empty p {
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .volunteer-hero__eyebrow span:last-child {
+    color: var(--color-text-inverse-muted);
+    font-weight: 900;
+  }
+
+  .volunteer-hero h1 {
+    margin: 0;
+    color: var(--color-text-inverse);
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 11vw, 8rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .volunteer-hero h1 span,
+  .volunteer-recruitment__copy h2 span {
+    color: var(--color-accent);
+  }
+
+  .volunteer-hero p {
+    max-width: 36rem;
+    margin: 2rem 0 0;
+    color: var(--color-text-inverse-muted);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .volunteer-status {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: none;
+    padding: 2rem;
+  }
+
+  .volunteer-status__panel {
+    display: grid;
+    gap: 1rem;
+    border: 1px solid color-mix(in oklab, var(--color-text-inverse) 20%, transparent);
+    background: color-mix(in oklab, var(--color-text-inverse) 10%, transparent);
+    padding: 1.5rem;
+    backdrop-filter: blur(12px);
+  }
+
+  .volunteer-status__panel div {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .volunteer-status span:first-child {
+    color: var(--color-text-subtle);
+  }
+
+  .volunteer-status span:last-child {
+    color: var(--color-text-inverse);
+    font-weight: 900;
+  }
+
+  .volunteer-status div:first-child span:last-child {
+    color: var(--color-accent);
+  }
+
+  .volunteer-events {
+    border: 1px solid var(--color-border);
+  }
+
+  .volunteer-events__item {
+    padding: 2rem;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 200ms;
+  }
+
+  .volunteer-events__item:hover {
+    background: var(--color-page);
+  }
+
+  .volunteer-events__item:last-child {
+    border-bottom: 0;
+  }
+
+  .volunteer-events__empty {
+    border: 1px solid var(--color-border-muted);
+    background: var(--color-page);
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .volunteer-events__empty p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .volunteer-opps {
+    background: var(--color-surface);
+  }
+
+  .volunteer-opps__header {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .volunteer-opps__header > div {
+    width: min(100%, 56rem);
+    max-width: 56rem;
+  }
+
+  .volunteer-opps h2,
+  .volunteer-field h2,
+  .volunteer-contact__title {
+    margin: 0 0 1.5rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .volunteer-opps h2 span,
+  .volunteer-field h2 span,
+  .volunteer-contact__title span {
+    color: var(--color-brand-strong);
+    font-style: italic;
+  }
+
+  .volunteer-opps p,
+  .volunteer-field__copy > div > p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-large);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .volunteer-field {
+    display: grid;
+    gap: 4rem;
+  }
+
+  .volunteer-field__copy {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .field-notes {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .field-note {
+    border-left: 4px solid var(--color-brand-strong);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+  }
+
+  .field-note h3 {
+    margin: 0 0 0.5rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-label);
+    font-size: var(--text-body-small);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .field-note p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .volunteer-field__photo {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 1rem;
+  }
+
+  :global(.volunteer-field__image) {
+    width: 100%;
+    height: auto;
+    transition: transform 1000ms;
+  }
+
+  .volunteer-recruitment {
+    position: relative;
+    overflow: clip;
+    background: var(--color-surface-inverse);
+    padding-block: var(--space-section);
+  }
+
+  .volunteer-recruitment__marker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16rem;
+    height: 16rem;
+    border: 1px solid color-mix(in oklab, var(--color-accent) 10%, transparent);
+    background: color-mix(in oklab, var(--color-accent) 5%, transparent);
+    transform: translate(50%, -50%) rotate(45deg);
+  }
+
+  .volunteer-recruitment__inner {
+    width: min(100% - (var(--space-page-x) * 2), 72rem);
+    margin-inline: auto;
+  }
+
+  .volunteer-recruitment__panel {
+    border: 2px solid var(--color-accent);
+    background: var(--color-surface-inverse);
+    padding: clamp(2rem, 5vw, 4rem);
+    box-shadow: var(--shadow-accent-xl);
+  }
+
+  .volunteer-recruitment__layout {
+    display: grid;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .volunteer-recruitment__copy {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .volunteer-recruitment__copy h2 {
+    margin: 0;
+    color: var(--color-text-inverse);
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 3rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .volunteer-recruitment__copy h2 span {
+    font-style: italic;
+  }
+
+  .volunteer-recruitment__copy p {
+    margin: 0;
+    color: var(--color-text-inverse-muted);
+    font-size: var(--text-body-large);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .volunteer-recruitment__form {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: clamp(1.25rem, 5vw, 2rem);
+  }
+
+  .volunteer-recruitment__form :global(.email-signup) {
+    width: 100%;
+  }
+
+  .volunteer-recruitment__form h3 {
+    margin: 0 0 1.5rem;
+    border-bottom: 1px solid var(--color-border-muted);
+    padding-bottom: 0.5rem;
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .volunteer-contact {
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-section);
+  }
+
+  .volunteer-contact__inner {
+    width: min(100% - (var(--space-page-x) * 2), 80rem);
+    margin-inline: auto;
+  }
+
+  .volunteer-lnt {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-page);
+  }
+
+  @media (width <= 24rem) {
+    .volunteer-hero h1 {
+      font-size: clamp(2.5rem, 13vw, 3rem);
+    }
+
+    .volunteer-opps h2,
+    .volunteer-field h2,
+    .volunteer-contact__title {
+      font-size: clamp(1.5rem, 9vw, 1.875rem);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .volunteer-status {
+      display: block;
+    }
+
+    .volunteer-field,
+    .volunteer-recruitment__layout {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

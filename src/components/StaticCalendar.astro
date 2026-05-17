@@ -101,74 +101,55 @@ const getEventLabel = (event: CalendarEvent) =>
   event.companyName ? `${event.title}: ${event.companyName}` : event.title;
 ---
 
-<div
-  class="calendar-container mx-auto max-w-(--breakpoint-2xl) px-4 py-12 sm:px-6 lg:px-8"
->
-  <div
-    class="mb-12 grid items-end gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)]"
-  >
-    <div class="space-y-4">
-      <div class="flex items-center gap-4">
-        <span class="inline-block h-px w-8 bg-primary-dark"></span>
-        <span
-          class="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-stone-500"
-          >Volunteer Calendar</span
-        >
+<div class="static-calendar">
+  <div class="static-calendar__header">
+    <div class="static-calendar__heading">
+      <div class="static-calendar__eyebrow">
+        <span></span>
+        <span>Volunteer Calendar</span>
       </div>
-      <h2
-        class="text-4xl font-serif font-black uppercase leading-none tracking-tight text-stone-900 sm:text-6xl"
-      >
-        Posted <span class="italic text-primary-dark">Workdays.</span>
+      <h2>
+        Posted <span>Workdays.</span>
       </h2>
     </div>
-    <div class="max-w-md">
-      <p class="text-sm font-medium leading-relaxed text-stone-600">
+    <div class="static-calendar__intro">
+      <p>
         Highlighted dates show public volunteer sessions and company community
         workdays. Company workdays are not open to public registration.
       </p>
-      <div class="mt-5 flex flex-wrap gap-4">
-        <div class="flex items-center gap-2">
-          <span
-            class="h-3 w-3 border border-primary-dark bg-primary/15"
-            aria-hidden="true"></span>
-          <span class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-600"
-            >Public</span
-          >
+      <div class="static-calendar__legend">
+        <div>
+          <span class="static-calendar__legend-swatch static-calendar__legend-swatch--public" aria-hidden="true"></span>
+          <span>Public</span>
         </div>
-        <div class="flex items-center gap-2">
-          <span
-            class="h-3 w-3 border border-accent-dark bg-accent/25"
-            aria-hidden="true"></span>
-          <span class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-600"
-            >Company</span
-          >
+        <div>
+          <span class="static-calendar__legend-swatch static-calendar__legend-swatch--company" aria-hidden="true"></span>
+          <span>Company</span>
         </div>
       </div>
     </div>
   </div>
 
-  <div
-    class="grid grid-cols-1 gap-px border border-stone-300 bg-stone-300 md:grid-cols-2 xl:grid-cols-3"
-  >
+  <div class="static-calendar__months">
     {
       months.map(({ label, monthIndex }) => {
         const daysInMonth = getDaysInMonth(currentYear, monthIndex);
         const firstDayOfWeek = getDay(daysInMonth[0]);
 
         return (
-          <div class="bg-white p-8">
-            <h3 class="mb-6 border-b border-stone-100 pb-2 font-serif text-xl font-black uppercase text-stone-900">
+          <div class="static-calendar__month">
+            <h3>
               {label}
             </h3>
-            <div class="grid grid-cols-7 gap-px border border-stone-100 bg-stone-100">
+            <div class="static-calendar__grid">
               {["S", "M", "T", "W", "T", "F", "S"].map((day) => (
-                <div class="bg-stone-50 py-2 text-center font-mono text-[10px] font-black uppercase text-stone-500">
+                <div class="static-calendar__weekday">
                   {day}
                 </div>
               ))}
 
               {Array.from({ length: firstDayOfWeek }).map(() => (
-                <div class="h-10 bg-white" />
+                <div class="static-calendar__day static-calendar__day--blank" />
               ))}
 
               {daysInMonth.map((day) => {
@@ -180,34 +161,34 @@ const getEventLabel = (event: CalendarEvent) =>
                 return (
                   <div
                     class:list={[
-                      "relative flex h-10 items-center justify-center",
-                      !isVolunteerDay && "bg-white",
-                      isVolunteerDay && !isCompanyEvent && "bg-primary/6",
-                      isCompanyEvent && "bg-accent/15",
+                      "static-calendar__day",
+                      !isVolunteerDay && "static-calendar__day--empty",
+                      isVolunteerDay && !isCompanyEvent && "static-calendar__day--public",
+                      isCompanyEvent && "static-calendar__day--company",
                     ]}
                     title={isCompanyEvent ? eventLabel : undefined}
                     aria-label={eventLabel}
                   >
                     <span
                       class:list={[
-                        "font-mono text-xs",
+                        "static-calendar__day-number",
                         isVolunteerDay && !isCompanyEvent
-                          ? "font-black text-primary-dark"
+                          ? "static-calendar__day-number--public"
                           : isCompanyEvent
-                          ? "font-black text-accent-dark"
-                          : "text-stone-600",
+                          ? "static-calendar__day-number--company"
+                          : "static-calendar__day-number--empty",
                       ]}
                     >
                       {format(day, "d")}
                     </span>
                     {
                       isVolunteerDay && !isCompanyEvent && (
-                        <div class="absolute inset-1 border border-primary-dark/40" />
+                        <div class="static-calendar__event-outline static-calendar__event-outline--public" />
                       )
                     }
                     {
                       isCompanyEvent && (
-                        <div class="absolute inset-1 border border-accent-dark/60" />
+                        <div class="static-calendar__event-outline static-calendar__event-outline--company" />
                       )
                     }
                   </div>
@@ -217,7 +198,7 @@ const getEventLabel = (event: CalendarEvent) =>
               {Array.from({
                 length: (7 - ((daysInMonth.length + firstDayOfWeek) % 7)) % 7,
               }).map(() => (
-                <div class="h-10 bg-white" />
+                <div class="static-calendar__day static-calendar__day--blank" />
               ))}
             </div>
           </div>
@@ -226,3 +207,221 @@ const getEventLabel = (event: CalendarEvent) =>
     }
   </div>
 </div>
+
+<style>
+  .static-calendar {
+    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+    margin-inline: auto;
+    padding-block: 3rem;
+  }
+
+  .static-calendar__header {
+    display: grid;
+    align-items: end;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .static-calendar__heading {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .static-calendar__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .static-calendar__eyebrow span:first-child {
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--color-brand-strong);
+  }
+
+  .static-calendar__eyebrow span:last-child,
+  .static-calendar__legend span:last-child,
+  .static-calendar__weekday {
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .static-calendar__eyebrow span:last-child {
+    color: var(--color-text-subtle);
+  }
+
+  .static-calendar__heading h2 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .static-calendar__heading h2 span {
+    color: var(--color-brand-strong);
+    font-style: italic;
+  }
+
+  .static-calendar__intro {
+    max-width: 28rem;
+  }
+
+  .static-calendar__intro p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .static-calendar__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .static-calendar__legend div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .static-calendar__legend-swatch {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .static-calendar__legend-swatch--public {
+    border: 1px solid var(--color-brand-strong);
+    background: color-mix(in oklab, var(--color-brand) 15%, transparent);
+  }
+
+  .static-calendar__legend-swatch--company {
+    border: 1px solid var(--color-accent-strong);
+    background: color-mix(in oklab, var(--color-accent) 25%, transparent);
+  }
+
+  .static-calendar__legend span:last-child {
+    color: var(--color-text-muted);
+  }
+
+  .static-calendar__months {
+    display: grid;
+    gap: 1px;
+    border: 1px solid var(--color-border);
+    background: var(--color-border);
+  }
+
+  .static-calendar__month {
+    background: var(--color-surface);
+    padding: 2rem;
+  }
+
+  .static-calendar__month h3 {
+    margin: 0 0 1.5rem;
+    border-bottom: 1px solid var(--color-border-muted);
+    padding-bottom: 0.5rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .static-calendar__grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 1px;
+    border: 1px solid var(--color-border-muted);
+    background: var(--color-border-muted);
+  }
+
+  .static-calendar__weekday {
+    background: var(--color-page);
+    color: var(--color-text-subtle);
+    padding-block: 0.5rem;
+    text-align: center;
+  }
+
+  .static-calendar__day {
+    position: relative;
+    display: flex;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .static-calendar__day--blank,
+  .static-calendar__day--empty {
+    background: var(--color-surface);
+  }
+
+  .static-calendar__day--public {
+    background: color-mix(in oklab, var(--color-brand) 6%, transparent);
+  }
+
+  .static-calendar__day--company {
+    background: color-mix(in oklab, var(--color-accent) 15%, transparent);
+  }
+
+  .static-calendar__day-number {
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+  }
+
+  .static-calendar__day-number--empty {
+    color: var(--color-text-muted);
+  }
+
+  .static-calendar__day-number--public,
+  .static-calendar__day-number--company {
+    font-weight: 900;
+  }
+
+  .static-calendar__day-number--public {
+    color: var(--color-brand-strong);
+  }
+
+  .static-calendar__day-number--company {
+    color: var(--color-accent-strong);
+  }
+
+  .static-calendar__event-outline {
+    position: absolute;
+    inset: 0.25rem;
+    pointer-events: none;
+  }
+
+  .static-calendar__event-outline--public {
+    border: 1px solid color-mix(in oklab, var(--color-brand-strong) 40%, transparent);
+  }
+
+  .static-calendar__event-outline--company {
+    border: 1px solid color-mix(in oklab, var(--color-accent-strong) 60%, transparent);
+  }
+
+  @media (min-width: 48rem) {
+    .static-calendar__header {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    }
+
+    .static-calendar__months {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .static-calendar__months {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

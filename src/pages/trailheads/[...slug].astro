@@ -20,79 +20,62 @@ const { entry } = Astro.props;
 ---
 
 <Layout title={entry.data.name} description={entry.data.description}>
-  <main class="bg-stone-50 text-stone-900">
+  <main class="page">
     <!-- Trailhead Header -->
-    <section class="border-b border-stone-300">
-      <div
-        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
-      >
-        <div class="flex items-center gap-4 mb-8">
-          <span class="inline-block h-px w-12 bg-primary-dark"></span>
-          <span
-            class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
-          >
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <div class="page-eyebrow">
+          <span>
             Trailhead Info
           </span>
         </div>
 
-        <h1
-          class="text-4xl sm:text-6xl lg:text-9xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
-        >
+        <h1 class="page-title">
           {entry.data.name.split(" ").slice(0, -1).join(" ")}
           <br />
-          <span class="text-primary-dark"
+          <span
             >{entry.data.name.split(" ").slice(-1)}</span
           >
         </h1>
 
-        <p
-          class="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-stone-700"
-        >
+        <p class="page-intro">
           {entry.data.description}
         </p>
       </div>
     </section>
 
     <!-- Logistics & Entry Grid -->
-    <section class="border-b border-stone-300">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-0 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+    <section class="article-layout">
+      <div class="article-layout__inner">
+        <div class="trailhead-layout">
           <!-- Details -->
-          <div
-            class="lg:col-span-5 py-16 lg:py-24 px-4 sm:px-6 lg:pr-12 border-r border-stone-300"
-          >
-            <div class="space-y-12">
-              <div>
-                <h3
-                  class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark border-b border-stone-200 pb-2 mb-6"
-                >
+          <div class="trailhead-layout__details">
+            <div class="trailhead-stack">
+              <div class="trailhead-block">
+                <h3>
                   Location Info
                 </h3>
-                <p
-                  class="text-lg font-medium text-stone-700 leading-relaxed italic"
-                >
+                <p class="trailhead-location">
                   {entry.data.location}
                 </p>
               </div>
 
-              <div>
-                <h3
-                  class="font-mono text-xs font-black uppercase tracking-widest text-primary-dark border-b border-stone-200 pb-2 mb-6"
-                >
+              <div class="trailhead-block">
+                <h3>
                   Available Amenities
                 </h3>
-                <div class="grid grid-cols-1 gap-4">
+                <div class="amenity-list">
                   {
                     entry.data.amenities.map((amenity, i) => (
-                      <div class="p-6 border border-stone-200 bg-white flex gap-4 items-start">
-                        <span class="font-mono text-xs font-black text-accent-dark">
+                      <div class="amenity-card">
+                        <span>
                           [{String(i + 1).padStart(2, "0")}]
                         </span>
-                        <div class="space-y-1">
-                          <h5 class="text-sm font-bold text-stone-900 uppercase tracking-tight">
+                        <div>
+                          <h5>
                             {amenity.name}
                           </h5>
-                          <p class="text-xs text-stone-500 font-medium leading-relaxed">
+                          <p>
                             {amenity.description}
                           </p>
                         </div>
@@ -102,12 +85,12 @@ const { entry } = Astro.props;
                 </div>
               </div>
 
-              <div class="pt-8">
+              <div>
                 <a
                   href={entry.data.directionsLink}
                   target="_blank"
                   rel="noopener noreferrer nofollow"
-                  class="btn-primary-cta inline-flex items-center justify-center w-full"
+                  class="button button--brand trailhead-directions"
                 >
                   Get Directions →
                 </a>
@@ -116,14 +99,10 @@ const { entry } = Astro.props;
           </div>
 
           <!-- Cartographic Context -->
-          <div
-            class="lg:col-span-7 bg-stone-100/50 p-8 lg:p-12 flex items-center justify-center"
-          >
-            <div
-              class="w-full max-w-2xl border border-stone-300 bg-white p-4 group"
-            >
+          <div class="trailhead-layout__map-wrap">
+            <div class="trailhead-map-card">
               <Picture
-                class="w-full h-auto transition-transform duration-700"
+                class="trailhead-map"
                 width="1000"
                 src={entry.data.map}
                 alt={`${entry.data.name} map section`}
@@ -135,30 +114,28 @@ const { entry } = Astro.props;
     </section>
 
     <!-- Visual Documentation -->
-    <section class="py-24 border-b border-stone-300">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-        <div class="mb-16">
-          <h2
-            class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900"
-          >
-            Site <span class="text-primary-dark italic">Documentation.</span>
+    <section class="page-section">
+      <div class="page-section__inner">
+        <div class="trailhead-docs__header">
+          <h2>
+            Site <span>Documentation.</span>
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="trailhead-photo-grid">
           {
             entry.data.photos.map((photo) => (
-              <div class="space-y-6 group">
-                <div class="aspect-16/10 overflow-hidden bg-stone-200 border border-stone-300 relative">
+              <div class="trailhead-photo">
+                <div class="trailhead-photo__media">
                   <Picture
-                    class="w-full h-full object-cover transition-transform duration-1000 scale-105 group-hover:scale-100"
+                    class="trailhead-photo__image"
                     src={photo.photo}
                     alt={photo.caption}
                     width={800}
                   />
-                  <div class="absolute inset-0 border-16 border-white/10 pointer-events-none" />
+                  <div class="trailhead-photo__matte" />
                 </div>
-                <p class="font-mono text-[10px] uppercase tracking-widest text-stone-500 text-center font-bold">
+                <p>
                   {photo.caption}
                 </p>
               </div>
@@ -169,3 +146,190 @@ const { entry } = Astro.props;
     </section>
   </main>
 </Layout>
+
+<style>
+  .trailhead-layout {
+    display: grid;
+  }
+
+  .trailhead-layout__details {
+    padding: var(--space-section) var(--space-page-x);
+  }
+
+  .trailhead-stack {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .trailhead-block h3 {
+    margin: 0 0 1.5rem;
+    border-bottom: 1px solid var(--color-border-muted);
+    padding-bottom: 0.5rem;
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .trailhead-location {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-large);
+    font-style: italic;
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .amenity-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .amenity-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 1px solid var(--color-border-muted);
+    background: var(--color-surface);
+    padding: 1.5rem;
+  }
+
+  .amenity-card > span {
+    color: var(--color-accent-strong);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+
+  .amenity-card h5 {
+    margin: 0 0 0.25rem;
+    color: var(--color-text-strong);
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .amenity-card p {
+    margin: 0;
+    color: var(--color-text-subtle);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .trailhead-directions {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .trailhead-layout__map-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
+    padding: clamp(2rem, 4vw, 3rem);
+  }
+
+  .trailhead-map-card {
+    width: 100%;
+    max-width: 42rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 1rem;
+  }
+
+  :global(.trailhead-map) {
+    width: 100%;
+    height: auto;
+    transition: transform 700ms;
+  }
+
+  .trailhead-docs__header {
+    margin-bottom: 4rem;
+  }
+
+  .trailhead-docs__header h2 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .trailhead-docs__header h2 span {
+    color: var(--color-brand-strong);
+    font-style: italic;
+  }
+
+  .trailhead-photo-grid {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .trailhead-photo {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .trailhead-photo__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-muted);
+  }
+
+  :global(.trailhead-photo__image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: transform 1000ms;
+  }
+
+  .trailhead-photo:hover :global(.trailhead-photo__image) {
+    transform: scale(1);
+  }
+
+  .trailhead-photo__matte {
+    position: absolute;
+    inset: 0;
+    border: 1rem solid color-mix(in oklab, var(--color-surface) 10%, transparent);
+    pointer-events: none;
+  }
+
+  .trailhead-photo p {
+    margin: 0;
+    color: var(--color-text-subtle);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 48rem) {
+    .trailhead-photo-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .trailhead-layout {
+      grid-template-columns: 5fr 7fr;
+    }
+
+    .trailhead-layout__details {
+      border-right: 1px solid var(--color-border);
+      padding-inline: var(--space-page-x) 3rem;
+    }
+  }
+</style>

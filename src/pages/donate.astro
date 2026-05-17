@@ -19,43 +19,36 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
   title="Donate"
   description="Support Friends of Ute Valley Park with a tax-deductible donation that funds trail maintenance, restoration, and stewardship programs."
 >
-  <main class="bg-stone-50 text-stone-900">
+  <main class="page donate-page">
     <!-- Fiscal Hero -->
-    <section class="relative border-b border-stone-300 overflow-hidden">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+    <section class="donate-hero">
+      <div class="donate-hero__layout">
         <!-- Message Column -->
-        <div
-          class="lg:col-span-7 pt-12 pb-20 lg:pt-32 lg:pb-40 px-4 sm:px-6 lg:px-12 border-r border-stone-300"
-        >
-          <div class="space-y-8">
-            <div class="flex items-center gap-4">
-              <span class="inline-block h-px w-12 bg-primary-dark"></span>
-              <span
-                class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
-              >
+        <div class="donate-hero__message">
+          <div class="donate-hero__stack">
+            <div class="page-eyebrow">
+              <span>
                 Support Us
               </span>
             </div>
 
-            <h1
-              class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-[0.85] text-stone-900 uppercase"
-            >
+            <h1 class="page-title">
               Support <br /> The <br />
-              <span class="text-primary-dark">Wildland.</span>
+              <span>Wildland.</span>
             </h1>
 
-            <div class="max-w-xl">
-              <p class="text-xl font-medium leading-relaxed text-stone-700">
+            <div class="donate-hero__intro">
+              <p>
                 Your tax-deductible gift directly funds trail maintenance,
                 invasive species management, educational programs, and the
                 stewardship that keeps Ute Valley Park beautiful for everyone.
               </p>
             </div>
 
-            <div class="pt-8">
+            <div class="donate-hero__cta">
               <a
                 href="https://trailsandopenspacecoalition-bloom.kindful.com/embeds/65db98e0-d794-4712-bf37-144689d58de3"
-                class="btn-primary-cta"
+                class="button button--brand"
               >
                 Donate Now
               </a>
@@ -64,57 +57,46 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
         </div>
 
         <!-- Visual Context -->
-        <div
-          class="lg:col-span-5 bg-stone-100/50 relative group overflow-hidden"
-        >
+        <div class="donate-hero__media">
           <Image
             src={VolunteerHeroImage}
             alt="Park scenery"
-            class="h-full w-full object-cover transition-transform duration-1000"
+            class="donate-hero__image"
             width={1200}
           />
-          <div
-            class="absolute inset-0 border-24 border-white/20 pointer-events-none"
-          >
-          </div>
+          <div class="donate-hero__matte"></div>
         </div>
       </div>
     </section>
 
     <!-- Fiscal Sponsorship Info -->
-    <section class="py-24 border-b border-stone-300">
-      <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          <div class="lg:col-span-8 space-y-12">
+    <section class="page-section">
+      <div class="page-section__inner">
+        <div class="donate-info">
+          <div class="donate-info__main">
             <div>
-              <h2
-                class="text-4xl sm:text-6xl font-serif font-black uppercase tracking-tight text-stone-900 mb-8"
-              >
-                How Your <span class="text-primary-dark italic"
-                  >Gift Helps.</span
-                >
+              <h2>
+                How Your <span>Gift Helps.</span>
               </h2>
-              <p class="text-lg text-stone-700 leading-relaxed font-medium">
+              <p>
                 Friends of Ute Valley Park operates under the fiscal sponsorship
                 of the Trails and Open Space Coalition (TOSC), a 501(c)(3)
                 nonprofit. This ensures your donation is used effectively.
               </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-              <div class="space-y-4">
-                  <h4
-                    class="text-sm font-serif font-black leading-[0.85] text-stone-900 uppercase"
-                  >
+            <div class="donate-info__columns">
+              <div class="donate-info__column">
+                  <h4>
                       What We
-                    <span class="text-primary-dark">Need.</span>
+                    <span>Need.</span>
                   </h4>
-                <ul class="space-y-4">
+                <ul class="benefit-list">
                   {
                     benefits.map((benefit) => (
-                      <li class="flex items-start gap-4">
-                        <CheckBadgeIcon class="w-5 h-5 text-accent-dark shrink-0" />
-                        <span class="text-sm font-bold uppercase tracking-tight text-stone-800">
+                      <li>
+                        <CheckBadgeIcon class="benefit-list__icon" />
+                        <span>
                           {benefit}
                         </span>
                       </li>
@@ -122,37 +104,31 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
                   }
                 </ul>
               </div>
-              <div class="space-y-4">
-                  <h4
-                    class="text-sm font-serif font-black leading-[0.85] text-stone-900 uppercase"
-                  >
+              <div class="donate-info__column">
+                  <h4>
                       Our
-                    <span class="text-primary-dark">Partner.</span>
+                    <span>Partner.</span>
                   </h4>
-                <div class="bg-stone-100 p-6 border border-stone-200 space-y-4">
-                  <p class="text-xs text-stone-600 leading-relaxed font-medium">
+                <div class="partner-note">
+                  <p>
                     All donations are processed via TOSC for regulatory
                     compliance and transparency.
                   </p>
-                  <div class="flex flex-col gap-2">
-                    <span class="font-mono text-[10px] uppercase text-stone-600"
-                      >Entity Status</span
-                    >
-                    <span class="font-mono text-[10px] font-black uppercase"
-                      >501(c)(3) Tax-Exempt</span
-                    >
+                  <div>
+                    <span>Entity Status</span>
+                    <span>501(c)(3) Tax-Exempt</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="lg:col-span-4 space-y-8">
-            <div class="border border-stone-300 bg-white p-8 space-y-8">
-              <div class="flex justify-center">
+          <div class="donate-info__aside">
+            <div class="tosc-card">
+              <div class="tosc-card__logo">
                 <svg
                   id="Layer_1"
-                  class="w-full h-auto opacity-50"
+                  class="tosc-card__svg"
                   version="1.1"
                   xmlns="http://www.w3.org/2000/svg"
                   x="0"
@@ -188,20 +164,19 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
                   </g>
                 </svg>
               </div>
-              <div class="space-y-4">
-                <p class="text-xs text-stone-600 leading-relaxed font-medium">
+              <div>
+                <p>
                   TOSC is our fiscal sponsor. All donations are processed
                   through their nonprofit organization.
                 </p>
               </div>
             </div>
-            <div class="p-8 border border-stone-200 bg-stone-100/50 space-y-4">
-              <p class="text-sm font-medium text-stone-900">
+            <div class="volunteer-donation-card">
+              <p>
                 Want to donate your time instead?
               </p>
               <a
                 href="/volunteer/"
-                class="inline-block text-primary-dark font-black underline uppercase text-xs tracking-widest"
                 >Check Volunteer Opportunities →</a
               >
             </div>
@@ -212,3 +187,239 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
   </main>
 </Layout>
 
+<style>
+  .donate-hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .donate-hero__layout {
+    display: grid;
+  }
+
+  .donate-hero__message {
+    padding: clamp(3rem, 8vw, 8rem) var(--space-page-x) clamp(5rem, 10vw, 10rem);
+  }
+
+  .donate-hero__stack {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .donate-hero__intro {
+    max-width: 36rem;
+  }
+
+  .donate-hero__intro p,
+  .donate-info__main > div > p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-large);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .donate-hero__cta {
+    padding-top: 2rem;
+  }
+
+  .donate-hero__media {
+    position: relative;
+    min-height: 28rem;
+    overflow: hidden;
+    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
+  }
+
+  :global(.donate-hero__image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1000ms;
+  }
+
+  .donate-hero__matte {
+    position: absolute;
+    inset: 0;
+    border: 1.5rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
+    pointer-events: none;
+  }
+
+  .donate-info {
+    display: grid;
+    align-items: start;
+    gap: 4rem;
+  }
+
+  .donate-info__main {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .donate-info__main h2 {
+    margin: 0 0 2rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .donate-info__main h2 span,
+  .donate-info__column h4 span {
+    color: var(--color-brand-strong);
+    font-style: italic;
+  }
+
+  .donate-info__columns {
+    display: grid;
+    gap: 2rem 3rem;
+  }
+
+  .donate-info__column {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .donate-info__column h4 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: var(--text-body-small);
+    font-weight: 900;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  .benefit-list {
+    display: grid;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .benefit-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  :global(.benefit-list__icon) {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    color: var(--color-accent-strong);
+  }
+
+  .benefit-list span {
+    color: var(--color-text-strong);
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .partner-note {
+    display: grid;
+    gap: 1rem;
+    border: 1px solid var(--color-border-muted);
+    background: var(--color-surface-muted);
+    padding: 1.5rem;
+  }
+
+  .partner-note p,
+  .tosc-card p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .partner-note div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .partner-note span {
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    text-transform: uppercase;
+  }
+
+  .partner-note span:last-child {
+    font-weight: 900;
+  }
+
+  .donate-info__aside {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .tosc-card {
+    display: grid;
+    gap: 2rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 2rem;
+  }
+
+  .tosc-card__logo {
+    display: flex;
+    justify-content: center;
+  }
+
+  .tosc-card__svg {
+    width: 100%;
+    height: auto;
+    opacity: 0.5;
+  }
+
+  .volunteer-donation-card {
+    display: grid;
+    gap: 1rem;
+    border: 1px solid var(--color-border-muted);
+    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
+    padding: 2rem;
+  }
+
+  .volunteer-donation-card p {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+  }
+
+  .volunteer-donation-card a {
+    display: inline-block;
+    color: var(--color-brand-strong);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 48rem) {
+    .donate-info__columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .donate-hero__layout {
+      grid-template-columns: 7fr 5fr;
+    }
+
+    .donate-hero__message {
+      border-right: 1px solid var(--color-border);
+      padding-inline: var(--space-page-x) 3rem;
+    }
+
+    .donate-info {
+      grid-template-columns: 8fr 4fr;
+    }
+  }
+</style>

@@ -6,83 +6,61 @@ import Layout from "@layouts/Layout.astro";
   title="Privacy Policy"
   description="Read the Friends of Ute Valley Park privacy policy and how we collect, use, and protect website and contact data."
 >
-  <main class="bg-stone-50 text-stone-900">
+  <main class="page">
     <!-- Privacy Header -->
-    <section class="border-b border-stone-300">
-      <div
-        class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
-      >
-        <div class="flex items-center gap-4 mb-8">
-          <span class="inline-block h-px w-12 bg-primary-dark"></span>
-          <span
-            class="font-mono text-[10px] font-black tracking-[0.2em] uppercase text-stone-500"
-          >
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <div class="page-eyebrow">
+          <span>
             Our Privacy Policy
           </span>
         </div>
 
-        <h1
-          class="text-6xl sm:text-9xl font-serif font-black tracking-tighter leading-none text-stone-900 uppercase"
-        >
+        <h1 class="page-title">
           Your <br />
-          <span class="text-primary-dark">Privacy.</span>
+          <span>Privacy.</span>
         </h1>
 
-        <p
-          class="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-stone-700"
-        >
+        <p class="page-intro">
           How we collect, use, and protect your information.
         </p>
       </div>
     </section>
 
     <!-- Policy Content -->
-    <section class="py-24 border-b border-stone-300">
-      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div class="space-y-16">
-          <div class="flex flex-col md:flex-row gap-8 items-start">
-            <div
-              class="font-mono text-xs font-black text-stone-300 shrink-0 mt-1"
-            >
+    <section class="page-section">
+      <div class="page-section__inner--narrow">
+        <div class="privacy-sections">
+          <div class="privacy-section">
+            <div class="privacy-section__number">
               Section 1
             </div>
-            <div class="space-y-4">
-              <h2
-                class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900"
-              >
+            <div class="privacy-section__content">
+              <h2>
                 Information Collection
               </h2>
-              <div class="prose prose-stone text-stone-600 font-medium">
+              <div class="privacy-prose">
                 <p>
                   Friends of Ute Valley Park ("we", "us", "our") is committed to
                   protecting the privacy of our website visitors. We collect
                   limited personal data strictly for communication and improving
                   our services.
                 </p>
-                <ul class="list-none space-y-4 pl-0">
-                  <li class="border-l-2 border-stone-200 pl-4 py-1">
-                    <span
-                      class="font-bold text-stone-900 block mb-1 uppercase text-xs tracking-widest"
-                      >Analytics Data</span
-                    >
+                <ul>
+                  <li>
+                    <span>Analytics Data</span>
                     We collect anonymized analytics data to optimize site performance.
                     No personally identifiable information (PII) is captured during
                     this process. We do not employ third-party tracking cookies.
                   </li>
-                  <li class="border-l-2 border-stone-200 pl-4 py-1">
-                    <span
-                      class="font-bold text-stone-900 block mb-1 uppercase text-xs tracking-widest"
-                      >Communication Forms</span
-                    >
+                  <li>
+                    <span>Communication Forms</span>
                     Name and email addresses are collected via contact and volunteer
                     forms. This data is utilized exclusively for addressing specific
                     inquiries.
                   </li>
-                  <li class="border-l-2 border-stone-200 pl-4 py-1">
-                    <span
-                      class="font-bold text-stone-900 block mb-1 uppercase text-xs tracking-widest"
-                      >Subscriptions</span
-                    >
+                  <li>
+                    <span>Subscriptions</span>
                     Newsletter enrollment requires name and email data. Subscribers
                     may opt-out at any time via the provided technical links.
                   </li>
@@ -91,37 +69,27 @@ import Layout from "@layouts/Layout.astro";
             </div>
           </div>
 
-          <div class="flex flex-col md:flex-row gap-8 items-start">
-            <div
-              class="font-mono text-xs font-black text-stone-300 shrink-0 mt-1"
-            >
+          <div class="privacy-section">
+            <div class="privacy-section__number">
               Section 2
             </div>
-            <div class="space-y-4">
-              <h2
-                class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900"
-              >
+            <div class="privacy-section__content">
+              <h2>
                 Data Disclosure
               </h2>
-              <div class="prose prose-stone text-stone-600 font-medium">
+              <div class="privacy-prose">
                 <p>
                   We maintain a strict zero-distribution policy regarding
                   personal data.
                 </p>
-                <ul class="list-none space-y-4 pl-0">
-                  <li class="border-l-2 border-stone-200 pl-4 py-1">
-                    <span
-                      class="font-bold text-stone-900 block mb-1 uppercase text-xs tracking-widest"
-                      >We Don't Sell Your Data</span
-                    >
+                <ul>
+                  <li>
+                    <span>We Don't Sell Your Data</span>
                     We will never sell or lease personal information to third-party
                     entities for any reason.
                   </li>
-                  <li class="border-l-2 border-stone-200 pl-4 py-1">
-                    <span
-                      class="font-bold text-stone-900 block mb-1 uppercase text-xs tracking-widest"
-                      >Service Facilitation</span
-                    >
+                  <li>
+                    <span>Service Facilitation</span>
                     Third-party providers (e.g., Turnstile, Kindful) may process data
                     only to fulfill specific functional requests (spam prevention,
                     donation processing) and are contractually bound to privacy standards.
@@ -131,19 +99,15 @@ import Layout from "@layouts/Layout.astro";
             </div>
           </div>
 
-          <div class="flex flex-col md:flex-row gap-8 items-start">
-            <div
-              class="font-mono text-xs font-black text-stone-300 shrink-0 mt-1"
-            >
+          <div class="privacy-section">
+            <div class="privacy-section__number">
               Section 3
             </div>
-            <div class="space-y-4">
-              <h2
-                class="text-2xl font-serif font-black uppercase tracking-tight text-stone-900"
-              >
+            <div class="privacy-section__content">
+              <h2>
                 Security & Integrity
               </h2>
-              <div class="prose prose-stone text-stone-600 font-medium">
+              <div class="privacy-prose">
                 <p>
                   We implement technical measures to protect data from
                   unauthorized access. However, absolute security of internet
@@ -155,23 +119,18 @@ import Layout from "@layouts/Layout.astro";
           </div>
         </div>
 
-        <div class="mt-24 p-8 border border-stone-300 bg-white">
-          <div
-            class="flex flex-col md:flex-row justify-between items-center gap-8"
-          >
-            <div class="space-y-2">
-              <p
-                class="font-mono text-[10px] uppercase tracking-widest text-stone-500"
-              >
+        <div class="privacy-update">
+          <div class="privacy-update__content">
+            <div>
+              <p>
                 Last Update
               </p>
-              <p class="font-mono text-sm font-black text-stone-900 uppercase">
+              <p>
                 March 31, 2023
               </p>
             </div>
             <a
               href="mailto:contact@fuvp.org"
-              class="font-mono text-[10px] font-black uppercase tracking-widest text-primary-dark underline"
               >Contact Us →</a
             >
           </div>
@@ -181,3 +140,124 @@ import Layout from "@layouts/Layout.astro";
   </main>
 </Layout>
 
+<style>
+  .privacy-sections {
+    display: grid;
+    gap: 4rem;
+  }
+
+  .privacy-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .privacy-section__number {
+    flex-shrink: 0;
+    color: var(--color-border);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+
+  .privacy-section__content {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .privacy-section__content h2 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .privacy-prose {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .privacy-prose p {
+    margin: 0 0 1rem;
+  }
+
+  .privacy-prose ul {
+    display: grid;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .privacy-prose li {
+    border-left: 2px solid var(--color-border-muted);
+    padding: 0.25rem 0 0.25rem 1rem;
+  }
+
+  .privacy-prose li span {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--color-text-strong);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .privacy-update {
+    margin-top: 6rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 2rem;
+  }
+
+  .privacy-update__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .privacy-update p {
+    margin: 0;
+    font-family: var(--font-label);
+    text-transform: uppercase;
+  }
+
+  .privacy-update p:first-child {
+    color: var(--color-text-subtle);
+    font-size: var(--text-label);
+    letter-spacing: 0.12em;
+  }
+
+  .privacy-update p:last-child {
+    color: var(--color-text-strong);
+    font-size: var(--text-body-small);
+    font-weight: 900;
+  }
+
+  .privacy-update a {
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 48rem) {
+    .privacy-section {
+      flex-direction: row;
+    }
+
+    .privacy-update__content {
+      flex-direction: row;
+    }
+  }
+</style>

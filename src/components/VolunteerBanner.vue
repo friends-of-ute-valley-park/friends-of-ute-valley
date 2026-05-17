@@ -32,23 +32,129 @@ const eventDates = computed(() => {
 </script>
 
 <template>
-  <div v-if="hasUpcomingVolunteerEvent" class="relative z-50 border-b border-primary bg-primary-dark">
-    <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col items-center justify-between gap-4 py-3 sm:flex-row">
-        <div class="flex items-center gap-3">
-          <div class="h-2 w-2 animate-pulse rounded-full bg-accent"></div>
-          <p class="font-mono text-[10px] font-black tracking-[0.2em] text-white uppercase">
-            Upcoming Volunteer Event: <span class="text-primary-100 tabular-nums">Scheduled for {{ eventDates }}</span>
+  <div v-if="hasUpcomingVolunteerEvent" class="volunteer-alert">
+    <div class="volunteer-alert__inner">
+      <div class="volunteer-alert__content">
+        <div class="volunteer-alert__message">
+          <div class="volunteer-alert__pulse"></div>
+          <p>
+            Upcoming Volunteer Event: <span>Scheduled for {{ eventDates }}</span>
           </p>
         </div>
 
         <a
           href="/volunteer/"
-          class="group inline-flex min-h-10 items-center gap-2 border border-primary-light bg-primary px-4 py-1.5 font-mono text-[10px] font-black tracking-widest text-white uppercase shadow-accent-sm transition-[background-color,border-color,box-shadow,transform] duration-200 hover:border-white hover:bg-primary-light active:scale-96">
+          class="volunteer-alert__link">
           Learn More
-          <HeroiconsArrowRight class="h-3 w-3 transition-transform group-hover:translate-x-1" />
+          <HeroiconsArrowRight class="volunteer-alert__icon" />
         </a>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+  .volunteer-alert {
+    position: relative;
+    z-index: 50;
+    border-bottom: 1px solid var(--color-brand);
+    background: var(--color-brand-strong);
+  }
+
+  .volunteer-alert__inner {
+    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+    margin-inline: auto;
+  }
+
+  .volunteer-alert__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.75rem;
+  }
+
+  .volunteer-alert__message {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .volunteer-alert__pulse {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    animation: volunteer-alert-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .volunteer-alert__message p {
+    margin: 0;
+    color: var(--color-text-inverse);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .volunteer-alert__message span {
+    color: var(--color-brand-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .volunteer-alert__link {
+    display: inline-flex;
+    min-height: 2.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-brand-hover);
+    background: var(--color-brand);
+    color: var(--color-text-inverse);
+    padding: 0.375rem 1rem;
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: var(--shadow-accent-sm);
+    transition:
+      background-color 200ms,
+      border-color 200ms,
+      box-shadow 200ms,
+      transform 200ms;
+  }
+
+  .volunteer-alert__link:hover {
+    border-color: var(--color-text-inverse);
+    background: var(--color-brand-hover);
+  }
+
+  .volunteer-alert__link:active {
+    transform: scale(0.96);
+  }
+
+  .volunteer-alert__icon {
+    width: 0.75rem;
+    height: 0.75rem;
+    transition: transform 200ms;
+  }
+
+  .volunteer-alert__link:hover .volunteer-alert__icon {
+    transform: translateX(0.25rem);
+  }
+
+  @keyframes volunteer-alert-pulse {
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .volunteer-alert__content {
+      flex-direction: row;
+    }
+  }
+</style>
