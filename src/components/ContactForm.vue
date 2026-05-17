@@ -156,14 +156,14 @@ watch(data, (response) => {
     <div class="contact-form__inner">
       <div class="contact-form__layout">
         <div class="contact-form__intro">
-          <div class="contact-form__title-block">
-            <div class="contact-form__eyebrow">
-              <span></span>
-              <span>Contact Us</span>
+          <div class="contact-form__title-block section-heading">
+            <div class="contact-form__eyebrow section-kicker section-kicker--wide">
+              <span class="section-kicker__rule"></span>
+              <span class="section-kicker__text">Contact Us</span>
             </div>
 
             <slot name="title">
-              <h1 class="contact-form__title">
+              <h1 class="contact-form__title section-heading__title">
                 Get In <br />
                 <span>Touch.</span>
               </h1>
@@ -180,21 +180,21 @@ watch(data, (response) => {
         </div>
 
         <div class="contact-form__panel-wrap">
-          <div class="contact-form__panel">
+          <div class="contact-form__panel panel-card panel-card--raised">
             <form ref="formElement" action="/contact-form" method="POST" class="contact-form__fields" @submit.prevent="submit">
               <div class="contact-form__field-grid">
-                <div class="contact-form__field">
-                  <label for="name">Name *</label>
+                <div class="contact-form__field form-field">
+                  <label for="name" class="form-label">Name *</label>
                   <input
                     id="name"
                     v-model="form.name"
                     name="name"
                     type="text"
                     required
-                    class="contact-form__input" />
+                    class="contact-form__input form-input form-input--quiet" />
                 </div>
-                <div class="contact-form__field">
-                  <label for="email">Email *</label>
+                <div class="contact-form__field form-field">
+                  <label for="email" class="form-label">Email *</label>
                   <input
                     id="email"
                     v-model="form.email"
@@ -202,17 +202,17 @@ watch(data, (response) => {
                     autocomplete="email"
                     required
                     type="email"
-                    class="contact-form__input" />
+                    class="contact-form__input form-input form-input--quiet" />
                 </div>
               </div>
 
-              <div class="contact-form__field">
-                <label for="category">What can we help with? *</label>
+              <div class="contact-form__field form-field">
+                <label for="category" class="form-label">What can we help with? *</label>
                 <select
                   id="category"
                   v-model="form.category"
                   name="category"
-                  class="contact-form__input contact-form__input--select">
+                  class="contact-form__input form-input form-input--quiet contact-form__input--select">
                   <option v-for="option in contactOptions" :key="option" :value="option">
                     {{ option.toUpperCase() }}
                   </option>
@@ -226,15 +226,15 @@ watch(data, (response) => {
                 </p>
               </div>
 
-              <div class="contact-form__field">
-                <label for="message">Your Message *</label>
+              <div class="contact-form__field form-field">
+                <label for="message" class="form-label">Your Message *</label>
                 <textarea
                   id="message"
                   v-model="form.message"
                   name="message"
                   required
                   rows="6"
-                  class="contact-form__input contact-form__input--message" />
+                  class="contact-form__input form-input form-input--quiet contact-form__input--message" />
               </div>
 
               <div ref="turnstileContainer" class="cf-turnstile"></div>
@@ -308,25 +308,10 @@ watch(data, (response) => {
 
   .contact-form__title-block {
     min-width: 0;
-    gap: 0.75rem;
+    --section-heading-gap: 0.75rem;
   }
 
-  .contact-form__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .contact-form__eyebrow span:first-child {
-    display: inline-block;
-    width: 3rem;
-    height: 1px;
-    background: var(--color-brand-strong);
-  }
-
-  .contact-form__eyebrow span:last-child,
   .contact-form__response-note p,
-  .contact-form__field label,
   .contact-form__volunteer-note h3,
   .contact-form__status-title {
     font-family: var(--font-label);
@@ -336,25 +321,13 @@ watch(data, (response) => {
     text-transform: uppercase;
   }
 
-  .contact-form__eyebrow span:last-child,
-  .contact-form__response-note p,
-  .contact-form__field label {
+  .contact-form__response-note p {
     color: var(--color-text-subtle);
   }
 
   .contact-form__title {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 8vw, 4.5rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .contact-form__title span {
-    color: var(--color-brand-strong);
+    --section-heading-title-size: clamp(3rem, 8vw, 4.5rem);
+    --section-heading-accent-style: normal;
   }
 
   .contact-form__subtitle {
@@ -378,13 +351,6 @@ watch(data, (response) => {
 
   .contact-form__panel {
     container-type: inline-size;
-    min-width: 0;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    padding: clamp(2rem, 4vw, 3rem);
-    box-shadow:
-      0 1px 2px rgb(0 0 0 / 5%),
-      0 18px 48px rgb(28 25 23 / 8%);
   }
 
   .contact-form__fields {
@@ -399,34 +365,8 @@ watch(data, (response) => {
   }
 
   .contact-form__field {
-    display: grid;
-    min-width: 0;
-    gap: 0.5rem;
-  }
-
-  .contact-form__input {
-    display: block;
-    width: 100%;
-    min-width: 0;
-    min-height: 2.5rem;
-    border: 1px solid var(--color-border);
-    border-radius: 0;
-    background: color-mix(in oklab, var(--color-page) 50%, transparent);
-    color: var(--color-text);
-    padding: 0.75rem 1rem;
-    font-family: var(--font-label);
-    font-size: var(--text-body-small);
-    transition:
-      background-color 200ms,
-      border-color 200ms,
-      box-shadow 200ms;
-  }
-
-  .contact-form__input:focus-visible {
-    border-color: var(--color-brand-strong);
-    background: var(--color-surface);
-    box-shadow: none;
-    outline: 0;
+    --form-field-gap: 0.5rem;
+    --form-label-color: var(--color-text-subtle);
   }
 
   .contact-form__input--select {

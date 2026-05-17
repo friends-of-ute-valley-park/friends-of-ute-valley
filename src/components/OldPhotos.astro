@@ -18,12 +18,12 @@ const morePhotos = sorted.slice(6);
 ---
 
 <div class="historic-photos">
-  <div class="historic-photos__eyebrow">
-    <span></span>
-    <span>Park History</span>
+  <div class="historic-photos__eyebrow section-kicker">
+    <span class="section-kicker__rule"></span>
+    <span class="section-kicker__text">Park History</span>
   </div>
 
-  <div class="historic-photos__grid">
+  <div class="historic-photos__grid feature-grid feature-grid--two-sm feature-grid--three">
     {
       initialPhotos.map(({ image, num }) => (
         <div class="historic-photos__item">
@@ -43,7 +43,7 @@ const morePhotos = sorted.slice(6);
 
   <div id="view-more-btn" class="historic-photos__more">
     <button
-      class="historic-photos__button"
+      class="button historic-photos__button"
       data-toggle-photos
     >
       View More Photos
@@ -51,7 +51,7 @@ const morePhotos = sorted.slice(6);
   </div>
 
   <div id="more-photos" class="historic-photos__extra" hidden>
-    <div class="historic-photos__grid">
+    <div class="historic-photos__grid feature-grid feature-grid--two-sm feature-grid--three">
       {
         morePhotos.map(({ image, num }) => (
           <div class="historic-photos__item">
@@ -89,33 +89,8 @@ const morePhotos = sorted.slice(6);
   }
 
   .historic-photos__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
     margin-bottom: -1rem;
-  }
-
-  .historic-photos__eyebrow span:first-child {
-    display: inline-block;
-    width: 2rem;
-    height: 1px;
-    background: var(--color-border);
-  }
-
-  .historic-photos__eyebrow span:last-child {
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
-  }
-
-  .historic-photos__grid {
-    display: grid;
-    gap: 1px;
-    border: 1px solid var(--color-border);
-    background: var(--color-border);
+    --section-kicker-rule-color: var(--color-border);
   }
 
   .historic-photos__item {
@@ -154,12 +129,8 @@ const morePhotos = sorted.slice(6);
     border: 2px solid var(--color-text-strong);
     background: transparent;
     color: var(--color-text-strong);
-    padding: 1rem 2rem;
-    font-family: var(--font-label);
     font-size: 0.75rem;
-    font-weight: 900;
     letter-spacing: 0.12em;
-    text-transform: uppercase;
     transition:
       background-color 200ms,
       border-color 200ms,
@@ -186,15 +157,4 @@ const morePhotos = sorted.slice(6);
     display: none;
   }
 
-  @media (min-width: 40rem) {
-    .historic-photos__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .historic-photos__grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
 </style>

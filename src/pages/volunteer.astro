@@ -38,9 +38,9 @@ const meetingLocations = await getCollection("trailheads");
 
       <div class="volunteer-hero__inner">
         <div class="volunteer-hero__content">
-          <div class="volunteer-hero__eyebrow">
-            <span></span>
-            <span>
+          <div class="volunteer-hero__eyebrow section-kicker section-kicker--wide section-kicker--accent section-kicker--inverse">
+            <span class="section-kicker__rule"></span>
+            <span class="section-kicker__text">
               How You Can Help
             </span>
           </div>
@@ -281,30 +281,15 @@ const meetingLocations = await getCollection("trailheads");
   }
 
   .volunteer-hero__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
     margin-bottom: 2rem;
   }
 
-  .volunteer-hero__eyebrow span:first-child {
-    width: 3rem;
-    height: 1px;
-    background: var(--color-accent);
-  }
-
-  .volunteer-hero__eyebrow span:last-child,
   .volunteer-status span,
   .volunteer-events__empty p {
     font-family: var(--font-label);
     font-size: var(--text-label);
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
-  }
-
-  .volunteer-hero__eyebrow span:last-child {
-    color: var(--color-text-inverse-muted);
-    font-weight: 900;
   }
 
   .volunteer-hero h1 {

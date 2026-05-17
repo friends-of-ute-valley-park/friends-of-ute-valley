@@ -61,20 +61,20 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
       <!-- Left Column: About Leave No Trace -->
       <div class="lnt-principles__intro">
         <div class="lnt-principles__intro-sticky">
-          <div class="lnt-principles__intro-copy">
-            <div class="lnt-principles__eyebrow">
-              <span></span>
-              <span>
+          <div class="lnt-principles__intro-copy section-heading">
+            <div class="lnt-principles__eyebrow section-kicker">
+              <span class="section-kicker__rule"></span>
+              <span class="section-kicker__text">
                 Environmental Stewardship
               </span>
             </div>
 
-            <h2 class="lnt-principles__title">
+            <h2 class="lnt-principles__title section-heading__title">
               Leave <br /> No <br />
               <span>Trace.</span>
             </h2>
 
-            <p class="lnt-principles__summary">
+            <p class="lnt-principles__summary section-heading__copy">
               Ute Valley Park is a treasured urban wildland. Please help keep
               the park safe and clean for all visitors by following the Seven
               Principles.
@@ -181,24 +181,12 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
   }
 
   .lnt-principles__intro-copy {
-    display: grid;
-    gap: 1.5rem;
+    --section-heading-gap: 1.5rem;
+    --section-heading-title-size: clamp(3rem, 8vw, 3.75rem);
+    --section-heading-accent-style: normal;
+    --section-heading-copy-margin: 0;
   }
 
-  .lnt-principles__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .lnt-principles__eyebrow span:first-child {
-    display: inline-block;
-    width: 2rem;
-    height: 1px;
-    background: var(--color-brand-strong);
-  }
-
-  .lnt-principles__eyebrow span:last-child,
   .lnt-principles__certification span,
   .lnt-principles__principle-label span {
     font-family: var(--font-label);
@@ -206,33 +194,6 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     font-weight: 900;
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
-  }
-
-  .lnt-principles__eyebrow span:last-child {
-    color: var(--color-text-subtle);
-  }
-
-  .lnt-principles__title {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 8vw, 3.75rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .lnt-principles__title span {
-    color: var(--color-brand-strong);
-  }
-
-  .lnt-principles__summary {
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: var(--text-body-large);
-    font-weight: 500;
-    line-height: var(--leading-body);
   }
 
   .lnt-principles__partner {

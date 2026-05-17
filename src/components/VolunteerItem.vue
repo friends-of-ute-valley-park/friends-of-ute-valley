@@ -53,7 +53,7 @@ const formattedDate = computed(() => {
       <a :href="volunteerEvent.data.link" class="button button--brand volunteer-item__register"> Register </a>
       <a
         href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
-        class="volunteer-item__release">
+        class="button button--quiet volunteer-item__release">
         Consent and Release Form
       </a>
     </div>
@@ -185,20 +185,10 @@ const formattedDate = computed(() => {
   }
 
   .volunteer-item__release {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--color-border);
-    background: transparent;
-    color: var(--color-text-subtle);
     padding: 1rem 1.5rem;
-    font-family: var(--font-label);
     font-size: 0.75rem;
-    font-weight: 900;
     letter-spacing: 0.12em;
     text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
     transition:
       background-color 200ms,
       border-color 200ms,

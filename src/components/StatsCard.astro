@@ -25,21 +25,21 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
     <!-- Stats Content -->
     <div class="impact-stats__content">
       <div class="impact-stats__stack">
-        <div>
-          <div class="impact-stats__eyebrow">
-            <span></span>
-            <span>Year in Review: 2024</span>
+        <div class="impact-stats__heading section-heading">
+          <div class="impact-stats__eyebrow section-kicker">
+            <span class="section-kicker__rule"></span>
+            <span class="section-kicker__text">Year in Review: 2024</span>
           </div>
-          <h2>
+          <h2 class="section-heading__title">
             Our <br />
             <span>Impact.</span>
           </h2>
-          <p>
+          <p class="section-heading__copy">
             Here's what our amazing volunteers accomplished together in 2024.
           </p>
         </div>
 
-        <div class="impact-stats__grid">
+        <div class="impact-stats__grid feature-grid">
           {
             stats.map((stat) => (
               <div class="impact-stats__stat">
@@ -102,21 +102,14 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
     gap: 3rem;
   }
 
-  .impact-stats__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+  .impact-stats__heading {
+    --section-heading-title-size: clamp(2.25rem, 5vw, 3rem);
+    --section-heading-accent-style: normal;
+    --section-heading-copy-width: 36rem;
+    --section-kicker-rule-color: var(--color-accent-strong);
+    --section-kicker-text-color: var(--color-accent-strong);
   }
 
-  .impact-stats__eyebrow span:first-child {
-    display: inline-block;
-    width: 2rem;
-    height: 1px;
-    background: var(--color-accent-strong);
-  }
-
-  .impact-stats__eyebrow span:last-child,
   .impact-stats__stat div:last-child {
     font-family: var(--font-label);
     font-size: var(--text-label);
@@ -125,40 +118,10 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
     text-transform: uppercase;
   }
 
-  .impact-stats__eyebrow span:last-child {
-    color: var(--color-accent-strong);
-  }
-
-  .impact-stats__content h2 {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 5vw, 3rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .impact-stats__content h2 span {
-    color: var(--color-brand-strong);
-  }
-
-  .impact-stats__content p {
-    max-width: 36rem;
-    margin: 1.5rem 0 0;
-    color: var(--color-text-muted);
-    font-size: var(--text-body-large);
-    font-weight: 500;
-    line-height: var(--leading-body);
-  }
-
   .impact-stats__grid {
-    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1px;
-    border: 1px solid var(--color-border-muted);
-    background: var(--color-border-muted);
+    --feature-grid-border-color: var(--color-border-muted);
+    --feature-grid-background: var(--color-border-muted);
   }
 
   .impact-stats__stat {

@@ -52,21 +52,21 @@ const teamMembers = [
 
 <div class="team-list">
   <div class="team-list__inner">
-    <div class="team-list__header">
-      <div class="team-list__eyebrow">
-        <span></span>
-        <span>Our Team</span>
+    <div class="team-list__header section-heading">
+      <div class="team-list__eyebrow section-kicker">
+        <span class="section-kicker__rule"></span>
+        <span class="section-kicker__text">Our Team</span>
       </div>
-      <h2>
+      <h2 class="section-heading__title">
         Meet the <span>Team.</span>
       </h2>
-      <p>
+      <p class="section-heading__copy">
         The dedicated leadership team overseeing the preservation, community
         outreach, and technical operations of the Ute Valley urban wildland.
       </p>
     </div>
 
-    <div class="team-list__grid">
+    <div class="team-list__grid feature-grid feature-grid--two-sm feature-grid--three">
       {
         teamMembers.map((teamMember) => (
           <div class="team-list__card">
@@ -110,62 +110,12 @@ const teamMembers = [
     margin-bottom: 4rem;
   }
 
-  .team-list__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .team-list__eyebrow span:first-child {
-    display: inline-block;
-    width: 2rem;
-    height: 1px;
-    background: var(--color-brand-strong);
-  }
-
-  .team-list__eyebrow span:last-child,
   .team-list__body p {
     font-family: var(--font-label);
     font-size: var(--text-label);
     font-weight: 900;
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
-  }
-
-  .team-list__eyebrow span:last-child {
-    color: var(--color-text-subtle);
-  }
-
-  .team-list__header h2 {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 6vw, 3.75rem);
-    font-weight: 900;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .team-list__header h2 span {
-    color: var(--color-brand-strong);
-    font-style: italic;
-  }
-
-  .team-list__header > p {
-    max-width: 42rem;
-    margin: 1.5rem 0 0;
-    color: var(--color-text-muted);
-    font-size: var(--text-body-large);
-    font-weight: 500;
-    line-height: var(--leading-body);
-  }
-
-  .team-list__grid {
-    display: grid;
-    gap: 1px;
-    border: 1px solid var(--color-border);
-    background: var(--color-border);
   }
 
   .team-list__card {
@@ -232,15 +182,4 @@ const teamMembers = [
     color: var(--color-brand-strong);
   }
 
-  @media (min-width: 40rem) {
-    .team-list__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .team-list__grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
 </style>

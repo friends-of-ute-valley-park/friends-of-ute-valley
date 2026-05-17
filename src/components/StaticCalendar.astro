@@ -103,17 +103,17 @@ const getEventLabel = (event: CalendarEvent) =>
 
 <div class="static-calendar">
   <div class="static-calendar__header">
-    <div class="static-calendar__heading">
-      <div class="static-calendar__eyebrow">
-        <span></span>
-        <span>Volunteer Calendar</span>
+    <div class="static-calendar__heading section-heading">
+      <div class="static-calendar__eyebrow section-kicker">
+        <span class="section-kicker__rule"></span>
+        <span class="section-kicker__text">Volunteer Calendar</span>
       </div>
-      <h2>
+      <h2 class="section-heading__title">
         Posted <span>Workdays.</span>
       </h2>
     </div>
     <div class="static-calendar__intro">
-      <p>
+      <p class="section-heading__copy">
         Highlighted dates show public volunteer sessions and company community
         workdays. Company workdays are not open to public registration.
       </p>
@@ -130,7 +130,7 @@ const getEventLabel = (event: CalendarEvent) =>
     </div>
   </div>
 
-  <div class="static-calendar__months">
+  <div class="static-calendar__months feature-grid feature-grid--two feature-grid--three-xl">
     {
       months.map(({ label, monthIndex }) => {
         const daysInMonth = getDaysInMonth(currentYear, monthIndex);
@@ -222,25 +222,6 @@ const getEventLabel = (event: CalendarEvent) =>
     margin-bottom: 3rem;
   }
 
-  .static-calendar__heading {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .static-calendar__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .static-calendar__eyebrow span:first-child {
-    display: inline-block;
-    width: 2rem;
-    height: 1px;
-    background: var(--color-brand-strong);
-  }
-
-  .static-calendar__eyebrow span:last-child,
   .static-calendar__legend span:last-child,
   .static-calendar__weekday {
     font-family: var(--font-label);
@@ -250,36 +231,11 @@ const getEventLabel = (event: CalendarEvent) =>
     text-transform: uppercase;
   }
 
-  .static-calendar__eyebrow span:last-child {
-    color: var(--color-text-subtle);
-  }
-
-  .static-calendar__heading h2 {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 6vw, 3.75rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .static-calendar__heading h2 span {
-    color: var(--color-brand-strong);
-    font-style: italic;
-  }
-
   .static-calendar__intro {
+    --section-heading-copy-width: 28rem;
+    --section-heading-copy-margin: 0;
+    --section-heading-copy-size: var(--text-body-small);
     max-width: 28rem;
-  }
-
-  .static-calendar__intro p {
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: var(--text-body-small);
-    font-weight: 500;
-    line-height: var(--leading-body);
   }
 
   .static-calendar__legend {
@@ -312,13 +268,6 @@ const getEventLabel = (event: CalendarEvent) =>
 
   .static-calendar__legend span:last-child {
     color: var(--color-text-muted);
-  }
-
-  .static-calendar__months {
-    display: grid;
-    gap: 1px;
-    border: 1px solid var(--color-border);
-    background: var(--color-border);
   }
 
   .static-calendar__month {
@@ -412,16 +361,6 @@ const getEventLabel = (event: CalendarEvent) =>
   @media (min-width: 48rem) {
     .static-calendar__header {
       grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
-    }
-
-    .static-calendar__months {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 80rem) {
-    .static-calendar__months {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 </style>

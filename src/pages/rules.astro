@@ -173,12 +173,12 @@ const parkRules = [
     <section class="right-of-way">
       <div class="right-of-way__inner">
         <div class="right-of-way__layout">
-          <div class="right-of-way__copy">
-            <div class="right-of-way__eyebrow">
-              <span></span>
-              <span>Field Etiquette</span>
+          <div class="right-of-way__copy section-heading section-heading--inverse">
+            <div class="right-of-way__eyebrow section-kicker section-kicker--wide section-kicker--accent">
+              <span class="section-kicker__rule"></span>
+              <span class="section-kicker__text">Field Etiquette</span>
             </div>
-            <h2>
+            <h2 class="section-heading__title">
               Right of <br />
               <span>Way.</span>
             </h2>
@@ -368,44 +368,7 @@ const parkRules = [
   }
 
   .right-of-way__copy {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .right-of-way__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .right-of-way__eyebrow span:first-child {
-    width: 3rem;
-    height: 1px;
-    background: var(--color-accent);
-  }
-
-  .right-of-way__eyebrow span:last-child {
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
-  }
-
-  .right-of-way h2 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 6vw, 3.75rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .right-of-way h2 span {
-    color: var(--color-accent);
-    font-style: italic;
+    --section-heading-gap: 2rem;
   }
 
   .right-of-way ul {
