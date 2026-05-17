@@ -11,6 +11,7 @@ export interface Props {
 const { title, image, publishedOn, href, previewText } = Astro.props as Props;
 
 import { Image } from "astro:assets";
+import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
 ---
 
 <a href={"/news/" + href} class="group block space-y-6">
@@ -33,11 +34,7 @@ import { Image } from "astro:assets";
       class="absolute top-4 right-4 bg-primary-dark px-2 py-1 font-mono text-[10px] tracking-widest text-white tabular-nums uppercase"
     >
       {
-        new Intl.DateTimeFormat("en-US", {
-          month: "short",
-          day: "2-digit",
-          year: "numeric",
-        }).format(new Date(publishedOn))
+        formatShortMonthDayYear(publishedOn)
       }
     </div>
 
@@ -59,10 +56,7 @@ import { Image } from "astro:assets";
       <span
         class="font-mono text-[10px] font-black uppercase tracking-widest text-stone-500 group-hover:text-primary-dark transition-colors"
         >{
-          new Intl.DateTimeFormat("en-US", {
-            month: "short",
-            year: "numeric",
-          }).format(new Date(publishedOn))
+          formatShortMonthYear(publishedOn)
         }</span
       >
     </div>

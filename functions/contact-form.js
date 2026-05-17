@@ -9,35 +9,38 @@ export const onRequestPost = [
     try {
       const data = await generateRequestData(context.request);
 
-      // Validate form data
       if (!data.email || !data.name || !data.message) {
-        return new Response(
-          JSON.stringify({
-            status: false,
-            message: 'Email, name, and message are required',
-          }),
+        return jsonResponse(
           {
-            status: 400,
-            headers: { 'Content-Type': 'application/json' },
+            status: false,
+            message: 'Email, name, and message are required.',
           },
+          400,
         );
       }
 
-      // Check if Turnstile validation passed (the plugin adds this)
-      if (!context.data.turnstile.success) {
-        return new Response(
-          JSON.stringify({
+      if (!isValidEmail(data.email)) {
+        return jsonResponse(
+          {
+            status: false,
+            message: 'A valid email address is required.',
+          },
+          400,
+        );
+      }
+
+      if (!context.data?.turnstile?.success) {
+        return jsonResponse(
+          {
             status: false,
             message: 'CAPTCHA validation failed. Please try again.',
-          }),
-          {
-            status: 400, // Use 403 Forbidden or 400 Bad Request
-            headers: { 'Content-Type': 'application/json' },
           },
+          400,
         );
       }
 
       const resend = new Resend(context.env.RESEND_API_KEY);
+      const subjectName = data.name.replace(/[\r\n]+/g, ' ');
 
       const emailContent = `
   Name: ${data.name}
@@ -46,29 +49,26 @@ export const onRequestPost = [
   Message: ${data.message}
     `;
 
-      // Send email using Resend
-      await resend.emails.send({
+      const emailResult = await resend.emails.send({
         from: 'contact@fuvp.org',
         to: 'contact@fuvp.org',
-        subject: `New Contact Form Submission from ${data.name}`,
+        subject: `New Contact Form Submission from ${subjectName}`,
         text: emailContent,
       });
 
-      return new Response(JSON.stringify({ status: true }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      if (emailResult.error) {
+        throw new Error(emailResult.error.message);
+      }
+
+      return jsonResponse({ status: true });
     } catch (error) {
       console.error('Error processing request:', error);
-      return new Response(
-        JSON.stringify({
-          status: false,
-          message: error.message || 'Failed to process request',
-        }),
+      return jsonResponse(
         {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' },
+          status: false,
+          message: 'Failed to process request. Please try again later.',
         },
+        400,
       );
     }
   },
@@ -83,12 +83,27 @@ async function generateRequestData(request) {
 
     // Get data directly from formData fields.
     return {
-      email: formData.get('email')?.toString() || '',
-      name: formData.get('name')?.toString() || '',
-      category: formData.get('category')?.toString() || '',
-      message: formData.get('message')?.toString() || '',
+      email: normalizeField(formData.get('email')),
+      name: normalizeField(formData.get('name')),
+      category: normalizeField(formData.get('category')),
+      message: normalizeField(formData.get('message')),
     };
   } else {
     throw new Error('Unsupported content type. Only FormData is allowed.');
   }
+}
+
+function normalizeField(value) {
+  return value?.toString().trim() || '';
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function jsonResponse(payload, status = 200) {
+  return new Response(JSON.stringify(payload), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import HeroiconsArrowRight from 'virtual:icons/heroicons/arrow-right';
+import { formatShortMonthDay, getDateTime } from '@/utils/date';
 
 interface Event {
   date: Date;
@@ -21,10 +22,10 @@ const eventDates = computed(() => {
 
   return [...props.events]
     .sort((a, b) => {
-      return new Date(a.date).getTime() - new Date(b.date).getTime();
+      return getDateTime(a.date) - getDateTime(b.date);
     })
     .map((item) => {
-      return new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit' }).format(new Date(item.date));
+      return formatShortMonthDay(item.date);
     })
     .join(' + ');
 });

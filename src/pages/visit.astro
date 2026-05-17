@@ -7,9 +7,8 @@ import DogImage from "../assets/images/dog.jpg";
 import uteValleyParkMap from "../assets/images/maps/ute-valley-park-map-full.jpg";
 
 import LeaveNoTrace from "@components/LeaveNoTrace.astro";
-import { getCollection } from "astro:content";
-const trailheads = await getCollection("trailheads");
-const sortedTrailheads = trailheads.sort((a, b) => a.data.id - b.data.id);
+import { getSortedTrailheads } from "@/utils/content";
+const sortedTrailheads = await getSortedTrailheads();
 ---
 
 <Layout

@@ -144,7 +144,7 @@ onBeforeUnmount(() => {
 });
 
 watch(data, (response) => {
-  if (!response) return;
+  if (!response?.status) return;
 
   displayMessage.value = "Thanks for reaching out. We'll reply within 2–3 business days.";
   form.name = '';

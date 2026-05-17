@@ -10,10 +10,9 @@ import StaticCalendar from "../components/StaticCalendar.astro";
 import SocialLinks from "@components/SocialLinks.astro";
 
 import { getCollection } from "astro:content";
-import { isFuture, endOfDay } from "date-fns";
-const upcomingVolunteerEvents = await getCollection("events", ({ data }) => {
-  return isFuture(endOfDay(new Date(data.date)));
-});
+import { getUpcomingVolunteerEvents } from "@/utils/content";
+import { formatShortMonthDayYear } from "@/utils/date";
+const upcomingVolunteerEvents = await getUpcomingVolunteerEvents();
 
 import VolunteerHeroImage from "../assets/images/volunteer-hero-mask.jpg";
 import VolunteerInfoImage2 from "../assets/images/volunteer-4.jpg";
@@ -91,9 +90,7 @@ const meetingLocations = await getCollection("trailheads");
             <span class="font-mono text-[10px] uppercase text-white font-black">
               {
                 upcomingVolunteerEvents.length > 0
-                  ? new Date(
-                      upcomingVolunteerEvents[0].data.date,
-                    ).toLocaleDateString()
+                  ? formatShortMonthDayYear(upcomingVolunteerEvents[0].data.date)
                   : "TBD"
               }
             </span>

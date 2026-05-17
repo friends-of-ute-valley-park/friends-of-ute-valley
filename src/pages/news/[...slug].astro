@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { formatShortMonthDayYear } from '../../utils/date';
 import { Picture } from 'astro:assets';
 
 export async function getStaticPaths() {
@@ -47,11 +48,7 @@ const { Content } = await render(entry);
             class="font-mono text-xs font-black uppercase tracking-widest text-stone-700"
             datetime={entry.data.publishedOn.toString()}
           >
-            {new Intl.DateTimeFormat("en-US", {
-              month: "short",
-              day: "2-digit",
-              year: "numeric",
-            }).format(new Date(entry.data.publishedOn))}
+            {formatShortMonthDayYear(entry.data.publishedOn)}
           </time>
         </div>
       </div>

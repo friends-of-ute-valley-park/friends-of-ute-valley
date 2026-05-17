@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import InstagramIcon from '~icons/mdi/instagram';
 import FacebookIcon from '~icons/mdi/facebook';
 import GithubIcon from '~icons/mdi/github';
+import { byPriorityAsc } from '@/utils/content';
 
 interface Props {
   variant?: 'buttons' | 'inline';
@@ -26,7 +27,7 @@ const hoverStyles: Record<string, string> = {
 
 const socialLinks = (await getCollection('social-links'))
   .filter((entry) => !isInline || entry.data.showInline)
-  .sort((a, b) => a.data.priority - b.data.priority);
+  .sort(byPriorityAsc);
 ---
 
 <Wrapper class:list={[isInline ? 'mx-1 inline-flex space-x-2' : 'relative flex space-x-4']}>

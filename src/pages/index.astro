@@ -18,31 +18,21 @@ import heroImage2 from "../assets/images/ute-valley-park-hero-2.jpg";
 import mountainViewsImage from "../assets/images/volunteer-7.jpg";
 import cta from "../assets/images/volunteer-5.jpg";
 
-import { getCollection, getEntry } from "astro:content";
+import { getEntry } from "astro:content";
+import { formatShortMonthDayYear, formatShortMonthYear, getParkHoursForDate } from "@/utils/date";
+import { getPublishedNewsEntries } from "@/utils/content";
 const trailConditionsEntry = await getEntry("trail-conditions", "current");
 if (!trailConditionsEntry) {
   throw new Error("Trail conditions data missing");
 }
 const trailConditions = trailConditionsEntry.data;
-const publishedNewsEntries = await getCollection("news", ({ data }) => {
-  return data.published === true;
-});
-const currentMonthYear = new Intl.DateTimeFormat("en-US", {
-  month: "short",
-  year: "numeric",
-}).format(new Date());
+const publishedNewsEntries = await getPublishedNewsEntries();
+const currentMonthYear = formatShortMonthYear(new Date());
 
-const formattedLastUpdated = new Intl.DateTimeFormat("en-US", {
-  month: "short",
-  day: "numeric",
-  year: "numeric",
-}).format(new Date(trailConditions.last_updated));
+const formattedLastUpdated = formatShortMonthDayYear(trailConditions.last_updated);
 
 // Park hours by season (from FAQ: Winter Nov 1–Apr 30, Summer May 1–Oct 31)
-const currentMonth = new Date().getMonth() + 1; // 1-12
-const isWinter = currentMonth >= 11 || currentMonth <= 4;
-const parkSeason = isWinter ? "Winter" : "Summer";
-const parkHours = isWinter ? "5AM to 9PM" : "5AM to 10PM";
+const { season: parkSeason, hours: parkHours } = getParkHoursForDate();
 
 const springTips = [
   {
@@ -433,11 +423,6 @@ const springTips = [
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {
             publishedNewsEntries
-              .sort(
-                (a, b) =>
-                  new Date(b.data.publishedOn).getTime() -
-                  new Date(a.data.publishedOn).getTime(),
-              )
               .slice(0, 3)
               .map((post) => (
                 <a
@@ -454,10 +439,7 @@ const springTips = [
                       class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div class="absolute top-4 right-4 bg-primary-dark text-white px-2 py-1 font-mono text-[10px] uppercase">
-                      {new Date(post.data.publishedOn).toLocaleDateString(
-                        "en-US",
-                        { month: "short", day: "2-digit", year: "numeric" },
-                      )}
+                      {formatShortMonthDayYear(post.data.publishedOn)}
                     </div>
                   </div>
                   <div class="space-y-3">

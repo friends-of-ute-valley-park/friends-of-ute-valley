@@ -2,10 +2,8 @@
 import Layout from '@layouts/Layout.astro';
 import Card from '@components/Card.astro';
 
-import { getCollection } from 'astro:content';
-const publishedNewsEntries = await getCollection('news', ({ data }) => {
-  return data.published === true;
-});
+import { getPublishedNewsEntries } from '@/utils/content';
+const publishedNewsEntries = await getPublishedNewsEntries();
 ---
 
 <Layout
@@ -39,7 +37,6 @@ const publishedNewsEntries = await getCollection('news', ({ data }) => {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
           {
             publishedNewsEntries
-              .sort((a, b) => new Date(b.data.publishedOn).getTime() - new Date(a.data.publishedOn).getTime())
               .map((post) => (
                 <Card 
                   title={post.data.title} 
@@ -55,4 +52,3 @@ const publishedNewsEntries = await getCollection('news', ({ data }) => {
     </section>
   </main>
 </Layout>
-

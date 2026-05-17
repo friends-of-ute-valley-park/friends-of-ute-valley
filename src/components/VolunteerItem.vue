@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { MeetingLocationParser } from '@/utils/EventData';
+import { formatShortMonthDayYear } from '@/utils/date';
 import type { MeetingLocation, VolunteerEvent } from '@/typings';
 
 const props = defineProps<{
@@ -13,7 +14,7 @@ const meetingLocation = computed(() => locationInformation.value.name ?? '');
 const directionsLink = computed(() => locationInformation.value.directionsLink ?? '');
 
 const formattedDate = computed(() => {
-  return new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(new Date(props.volunteerEvent.data.date));
+  return formatShortMonthDayYear(props.volunteerEvent.data.date);
 });
 </script>
 

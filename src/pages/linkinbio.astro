@@ -6,16 +6,14 @@ import SocialLinks from "@components/SocialLinks.astro";
 import { Image } from "astro:assets";
 
 import { getCollection } from "astro:content";
-import { isFuture, endOfDay } from "date-fns";
-const upcomingVolunteerEvents = await getCollection("events", ({ data }) => {
-  return isFuture(endOfDay(new Date(data.date)));
-});
+import { byPriorityDesc, getUpcomingVolunteerEvents } from "@/utils/content";
+const upcomingVolunteerEvents = await getUpcomingVolunteerEvents();
 const meetingLocations = await getCollection("trailheads");
 const links = await getCollection("links");
 const wishlist = await getCollection("wishlist", ({ data }) => {
   return data.quantityNeeded > 0;
 });
-const sortedLinks = links.sort((b, a) => a.data.priority - b.data.priority);
+const sortedLinks = [...links].sort(byPriorityDesc);
 
 import Logo from "@/assets/images/logos/logo-medium.jpg";
 ---
