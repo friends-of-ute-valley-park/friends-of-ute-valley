@@ -1,11 +1,4 @@
 ---
-import {
-  eachDayOfInterval,
-  endOfMonth,
-  format,
-  getDay,
-  startOfMonth,
-} from "date-fns";
 import { isDateInList } from "../utils/date";
 
 export interface Props {
@@ -89,9 +82,12 @@ const months = allMonths.filter(
 );
 
 const getDaysInMonth = (year: number, month: number) => {
-  const start = startOfMonth(new Date(year, month));
-  const end = endOfMonth(start);
-  return eachDayOfInterval({ start, end });
+  const dayCount = new Date(year, month + 1, 0).getDate();
+
+  return Array.from(
+    { length: dayCount },
+    (_, dayIndex) => new Date(year, month, dayIndex + 1),
+  );
 };
 
 const getCalendarEvent = (date: Date) =>
@@ -134,7 +130,7 @@ const getEventLabel = (event: CalendarEvent) =>
     {
       months.map(({ label, monthIndex }) => {
         const daysInMonth = getDaysInMonth(currentYear, monthIndex);
-        const firstDayOfWeek = getDay(daysInMonth[0]);
+        const firstDayOfWeek = daysInMonth[0].getDay();
 
         return (
           <div class="month">
@@ -179,7 +175,7 @@ const getEventLabel = (event: CalendarEvent) =>
                           : "day-number empty",
                       ]}
                     >
-                      {format(day, "d")}
+                      {day.getDate()}
                     </span>
                     {
                       isVolunteerDay && !isCompanyEvent && (
