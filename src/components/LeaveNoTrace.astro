@@ -115,7 +115,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
         <div class="lnt-principles__list">
           {
             principles.map((principle) => (
-              <div class="lnt-principles__card">
+              <div class="lnt-principles__card media-zoom-parent media-zoom-parent--expand">
                 <div class="lnt-principles__card-head">
                   <div class="lnt-principles__number-row">
                     <span>
@@ -128,9 +128,9 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
                   </h3>
                 </div>
 
-                <div class="lnt-principles__media">
+                <div class="lnt-principles__media media-frame">
                   <Picture
-                    class="lnt-principles__image"
+                    class="lnt-principles__image media-cover media-zoom"
                     src={principle.image}
                     alt={principle.altText}
                     width={600}
@@ -309,20 +309,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
   .lnt-principles__media {
     aspect-ratio: 16 / 10;
-    overflow: hidden;
-    border: 1px solid var(--color-border-muted);
-    background: var(--color-surface-muted);
-  }
-
-  :global(.lnt-principles__image) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 700ms;
-  }
-
-  .lnt-principles__card:hover :global(.lnt-principles__image) {
-    transform: scale(1.05);
+    --media-frame-border-color: var(--color-border-muted);
   }
 
   .lnt-principles__copy {

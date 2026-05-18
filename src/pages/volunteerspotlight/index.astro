@@ -39,26 +39,26 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
             volunteerSpotlights.map((spotlight) => (
               <a
                 href={`/volunteerspotlight/${spotlight.id}`}
-                class="spotlight-card"
+                class="spotlight-card media-zoom-parent"
               >
                 <div class="spotlight-card__media">
                   <Image
-                    class="spotlight-card__image"
+                    class="spotlight-card__image media-cover media-zoom"
                     src={spotlight.data.images[0].image}
                     alt={spotlight.data.name}
                     quality={70}
                   />
-                  <div class="spotlight-card__matte" />
+                  <div class="spotlight-card__matte media-matte" />
                 </div>
 
                 <div class="spotlight-card__body">
                   <div class="spotlight-card__copy">
                     <div class="spotlight-card__tag">
-                      <span>
+                      <span class="meta-label">
                         Volunteer
                       </span>
                     </div>
-                    <h3>
+                    <h3 class="spotlight-card__title card-title">
                       {spotlight.data.name}
                     </h3>
                     <p>
@@ -67,7 +67,7 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
                   </div>
 
                   <div class="spotlight-card__footer">
-                    <span>
+                    <span class="meta-label">
                       Read More →
                     </span>
                   </div>
@@ -103,24 +103,8 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
   }
 
   :global(.spotlight-card__image) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     object-position: top;
-    transform: scale(1.05);
     transform-origin: top;
-    transition: transform 700ms;
-  }
-
-  .spotlight-card:hover :global(.spotlight-card__image) {
-    transform: scale(1);
-  }
-
-  .spotlight-card__matte {
-    position: absolute;
-    inset: 0;
-    border: 0.75rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
-    pointer-events: none;
   }
 
   .spotlight-card__body {
@@ -146,23 +130,11 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
     border: 1px solid color-mix(in oklab, var(--color-brand-strong) 20%, transparent);
     color: var(--color-brand-strong);
     padding: 0.125rem 0.5rem;
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
   }
 
-  .spotlight-card h3 {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: 1.875rem;
-    font-weight: 900;
+  .spotlight-card__title {
+    --card-title-size: 1.875rem;
     line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
-    transition: color 200ms;
   }
 
   .spotlight-card:hover h3 {
@@ -192,10 +164,5 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
 
   .spotlight-card__footer span {
     color: var(--color-brand-strong);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
   }
 </style>

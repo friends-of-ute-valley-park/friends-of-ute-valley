@@ -61,16 +61,16 @@ const sortedTrailheads = await getSortedTrailheads();
         </div>
 
         <!-- Visual Context Column -->
-        <div class="visit-hero__media">
+        <div class="visit-hero__media media-zoom-frame">
           <Picture
             src={heroImage}
             formats={["avif", "webp"]}
             alt="Biker in Ute Valley"
             width="1200"
             height="1200"
-            class="visit-hero__image"
+            class="visit-hero__image media-cover media-zoom media-zoom--slow"
           />
-          <div class="visit-hero__matte"></div>
+          <div class="visit-hero__matte media-matte"></div>
         </div>
       </div>
     </section>
@@ -208,7 +208,7 @@ const sortedTrailheads = await getSortedTrailheads();
                 alt="Dog in park"
                 width="800"
                 height="450"
-                class="visit-rules__image"
+                class="visit-rules__image media-cover"
               />
             </div>
           </div>
@@ -336,23 +336,11 @@ const sortedTrailheads = await getSortedTrailheads();
   }
 
   :global(.visit-hero__image) {
-    width: 100%;
-    height: 100%;
     min-height: 28rem;
-    object-fit: cover;
-    transform: scale(1.05);
-    transition: transform 1000ms;
-  }
-
-  .visit-hero__media:hover :global(.visit-hero__image) {
-    transform: scale(1);
   }
 
   .visit-hero__matte {
-    position: absolute;
-    inset: 0;
-    border: 1.5rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
-    pointer-events: none;
+    --media-matte-border: 1.5rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
   }
 
   .visit-map__trailheads {
@@ -580,9 +568,6 @@ const sortedTrailheads = await getSortedTrailheads();
   }
 
   :global(.visit-rules__image) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     opacity: 0.5;
     transition: opacity 1000ms;
   }

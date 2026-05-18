@@ -26,16 +26,16 @@ const morePhotos = sorted.slice(6);
   <div class="historic-photos__grid feature-grid feature-grid--two-sm feature-grid--three">
     {
       initialPhotos.map(({ image, num }) => (
-        <div class="historic-photos__item">
+        <div class="historic-photos__item media-zoom-frame">
           <Picture
             src={image}
             alt={`Historic Ute Valley Park photo ${num}`}
             widths={[400, 600, 800]}
             formats={["avif", "webp"]}
-            class="historic-photos__image"
+            class="historic-photos__image media-cover media-zoom media-zoom--slow"
             loading="lazy"
           />
-          <div class="historic-photos__matte" />
+          <div class="historic-photos__matte media-matte" />
         </div>
       ))
     }
@@ -54,16 +54,16 @@ const morePhotos = sorted.slice(6);
     <div class="historic-photos__grid feature-grid feature-grid--two-sm feature-grid--three">
       {
         morePhotos.map(({ image, num }) => (
-          <div class="historic-photos__item">
+          <div class="historic-photos__item media-zoom-frame">
             <Picture
               src={image}
               alt={`Historic Ute Valley Park photo ${num}`}
               widths={[400, 600, 800]}
               formats={["avif", "webp"]}
-              class="historic-photos__image"
+              class="historic-photos__image media-cover media-zoom media-zoom--slow"
               loading="lazy"
             />
-            <div class="historic-photos__matte" />
+            <div class="historic-photos__matte media-matte" />
           </div>
         ))
       }
@@ -98,25 +98,6 @@ const morePhotos = sorted.slice(6);
     aspect-ratio: 1;
     overflow: hidden;
     background: var(--color-surface);
-  }
-
-  :global(.historic-photos__image) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1.05);
-    transition: transform 1000ms;
-  }
-
-  .historic-photos__item:hover :global(.historic-photos__image) {
-    transform: scale(1);
-  }
-
-  .historic-photos__matte {
-    position: absolute;
-    inset: 0;
-    border: 0.75rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
-    pointer-events: none;
   }
 
   .historic-photos__more {

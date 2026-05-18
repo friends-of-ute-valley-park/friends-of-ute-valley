@@ -69,22 +69,22 @@ const teamMembers = [
     <div class="team-list__grid feature-grid feature-grid--two-sm feature-grid--three">
       {
         teamMembers.map((teamMember) => (
-          <div class="team-list__card">
+          <div class="team-list__card media-zoom-parent">
             <div class="team-list__media">
               <Image
                 height="600"
                 width="600"
-                class="team-list__image"
+                class="team-list__image media-cover media-zoom"
                 src={teamMember.image}
                 alt={teamMember.name}
               />
-              <div class="team-list__matte" />
+              <div class="team-list__matte media-matte" />
             </div>
             <div class="team-list__body">
-              <h3>
+              <h3 class="team-list__name card-title">
                 {teamMember.name}
               </h3>
-              <p>
+              <p class="meta-label">
                 {teamMember.title}
               </p>
             </div>
@@ -110,14 +110,6 @@ const teamMembers = [
     margin-bottom: 4rem;
   }
 
-  .team-list__body p {
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
-  }
-
   .team-list__card {
     background: var(--color-surface);
     transition: background-color 200ms;
@@ -140,25 +132,6 @@ const teamMembers = [
     filter: grayscale(0);
   }
 
-  :global(.team-list__image) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1.05);
-    transition: transform 700ms;
-  }
-
-  .team-list__card:hover :global(.team-list__image) {
-    transform: scale(1);
-  }
-
-  .team-list__matte {
-    position: absolute;
-    inset: 0;
-    border: 0.75rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
-    pointer-events: none;
-  }
-
   .team-list__body {
     display: grid;
     gap: 0.5rem;
@@ -166,18 +139,12 @@ const teamMembers = [
     padding: 1.5rem;
   }
 
-  .team-list__body h3 {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: 1.125rem;
-    font-weight: 900;
-    line-height: var(--leading-tight);
-    letter-spacing: 0;
-    text-transform: uppercase;
+  .team-list__name {
+    --card-title-size: 1.125rem;
   }
 
   .team-list__body p {
+    --meta-label-tracking: var(--tracking-label);
     margin: 0;
     color: var(--color-brand-strong);
   }

@@ -61,10 +61,10 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
           <Image
             src={VolunteerHeroImage}
             alt="Park scenery"
-            class="donate-hero__image"
+            class="donate-hero__image media-cover"
             width={1200}
           />
-          <div class="donate-hero__matte"></div>
+          <div class="donate-hero__matte media-matte"></div>
         </div>
       </div>
     </section>
@@ -231,18 +231,8 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
     background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
   }
 
-  :global(.donate-hero__image) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1000ms;
-  }
-
   .donate-hero__matte {
-    position: absolute;
-    inset: 0;
-    border: 1.5rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
-    pointer-events: none;
+    --media-matte-border: 1.5rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
   }
 
   .donate-info {
