@@ -53,10 +53,10 @@ const { Content } = await render(entry);
 
           <!-- Photos -->
           <div class="article-layout__aside">
-            <div class="lnt-guide__aside-stack">
-              <div class="article-photo-card lnt-guide__photo">
+            <div class="aside-stack">
+              <div class="article-photo-card photo">
                 <Picture
-                  class="lnt-guide__image"
+                  class="image"
                   formats={["avif", "webp"]}
                   width="1000"
                   height="1000"
@@ -68,7 +68,7 @@ const { Content } = await render(entry);
                 </div>
               </div>
 
-              <div class="lnt-guide__callout">
+              <div class="callout">
                 <h3>
                   Why It Matters
                 </h3>
@@ -87,37 +87,37 @@ const { Content } = await render(entry);
 </Layout>
 
 <style>
-  .lnt-guide__aside-stack {
+  .lnt-guide .aside-stack {
     display: grid;
     gap: 2rem;
   }
 
   @media (min-width: 64rem) {
-    .lnt-guide__aside-stack {
+    .lnt-guide .aside-stack {
       position: sticky;
       top: 6rem;
     }
   }
 
-  :global(.lnt-guide__image) {
+  :global(.lnt-guide .image) {
     width: 100%;
     height: auto;
     transform: scale(1.05);
     transition: transform 1000ms;
   }
 
-  .lnt-guide__photo:hover :global(.lnt-guide__image) {
+  .lnt-guide .photo:hover :global(.image) {
     transform: scale(1);
   }
 
-  .lnt-guide__callout {
+  .lnt-guide .callout {
     border: 1px solid var(--color-border);
     background: var(--color-surface-inverse);
     color: var(--color-text-inverse);
     padding: 2rem;
   }
 
-  .lnt-guide__callout h3 {
+  .lnt-guide .callout h3 {
     margin: 0 0 1rem;
     color: var(--color-accent);
     font-family: var(--font-label);
@@ -127,7 +127,7 @@ const { Content } = await render(entry);
     text-transform: uppercase;
   }
 
-  .lnt-guide__callout p {
+  .lnt-guide .callout p {
     margin: 0;
     color: var(--color-text-inverse-muted);
     font-size: var(--text-body-small);

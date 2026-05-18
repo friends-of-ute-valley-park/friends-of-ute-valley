@@ -31,8 +31,8 @@ const { Content } = await render(entry);
     <!-- Volunteer Spotlight Header -->
     <section class="page-hero">
       <div class="page-hero__inner">
-        <div class="spotlight-detail__hero">
-          <div class="spotlight-detail__intro">
+        <div class="hero">
+          <div class="intro">
             <div class="page-eyebrow">
               <span>
                 Volunteer Spotlight — {entry.data.name}
@@ -52,28 +52,28 @@ const { Content } = await render(entry);
             </p>
           </div>
 
-          <div class="spotlight-detail__actions">
+          <div class="actions">
             <a
               href="/volunteerspotlight/"
-              class="spotlight-detail__back"
+              class="back"
             >
               <span>← Back to Spotlights</span>
             </a>
             {
               (entry.data.instagram || entry.data.website) && (
-                <div class="spotlight-detail__socials">
+                <div class="socials">
                   {entry.data.instagram && (
                     <a
                       href={"https://instagram.com/" + entry.data.instagram}
                     >
-                      <InstagramIcon class="spotlight-detail__icon" aria-hidden="true" />
+                      <InstagramIcon class="icon" aria-hidden="true" />
                     </a>
                   )}
                   {entry.data.website && (
                     <a
                       href={entry.data.website}
                     >
-                      <WebsiteIcon class="spotlight-detail__icon" aria-hidden="true" />
+                      <WebsiteIcon class="icon" aria-hidden="true" />
                     </a>
                   )}
                 </div>
@@ -96,16 +96,16 @@ const { Content } = await render(entry);
           </div>
 
           <!-- Photographic Records -->
-          <div class="article-layout__aside spotlight-detail__photos">
+          <div class="article-layout__aside photos">
             {
               entry.data.images.map((image, i) => (
-                <div class="article-photo-card spotlight-detail__photo">
+                <div class="article-photo-card photo">
                   <Image
                     src={image.image}
                     alt={`${entry.data.name} action photo ${i + 1}`}
                     width={800}
                     height={800}
-                    class="spotlight-detail__photo-image"
+                    class="photo-image"
                   />
                   <div class="article-photo-card__meta">
                     <span>
@@ -123,7 +123,7 @@ const { Content } = await render(entry);
 </Layout>
 
 <style>
-  .spotlight-detail__hero {
+  .spotlight-detail .hero {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -131,18 +131,18 @@ const { Content } = await render(entry);
     gap: 2rem;
   }
 
-  .spotlight-detail__intro {
+  .spotlight-detail .intro {
     display: grid;
     gap: 2rem;
   }
 
-  .spotlight-detail__actions {
+  .spotlight-detail .actions {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
-  .spotlight-detail__back {
+  .spotlight-detail .back {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -156,12 +156,12 @@ const { Content } = await render(entry);
     transition: color 200ms;
   }
 
-  .spotlight-detail__back:hover,
-  .spotlight-detail__socials a:hover {
+  .spotlight-detail .back:hover,
+  .spotlight-detail .socials a:hover {
     color: var(--color-brand-strong);
   }
 
-  .spotlight-detail__socials {
+  .spotlight-detail .socials {
     display: flex;
     gap: 1rem;
     border: 1px solid var(--color-border-muted);
@@ -169,27 +169,27 @@ const { Content } = await render(entry);
     padding: 1rem;
   }
 
-  .spotlight-detail__socials a {
+  .spotlight-detail .socials a {
     color: var(--color-text-subtle);
     transition: color 200ms;
   }
 
-  :global(.spotlight-detail__icon) {
+  :global(.spotlight-detail .icon) {
     width: 1.25rem;
     height: 1.25rem;
   }
 
-  .spotlight-detail__photos {
+  .spotlight-detail .photos {
     display: grid;
     align-content: start;
     gap: 3rem;
   }
 
-  .spotlight-detail__photo {
+  .spotlight-detail .photo {
     align-self: start;
   }
 
-  :global(.spotlight-detail__photo-image) {
+  :global(.spotlight-detail .photo-image) {
     display: block;
     width: 100%;
     height: clamp(14rem, 26vw, 20rem);
@@ -200,12 +200,12 @@ const { Content } = await render(entry);
     transition: transform 1000ms;
   }
 
-  .spotlight-detail__photo:hover :global(.spotlight-detail__photo-image) {
+  .spotlight-detail .photo:hover :global(.photo-image) {
     transform: scale(1);
   }
 
   @media (min-width: 48rem) {
-    .spotlight-detail__hero {
+    .spotlight-detail .hero {
       flex-direction: row;
     }
   }

@@ -20,9 +20,9 @@ const iconComponents: Record<string, typeof FacebookIcon> = {
 };
 
 const toneClasses: Record<string, string> = {
-  facebook: 'social-links__link--brand',
-  instagram: 'social-links__link--accent',
-  github: 'social-links__link--neutral',
+  facebook: 'link brand',
+  instagram: 'link accent',
+  github: 'link neutral',
 };
 
 const socialLinks = (await getCollection('social-links'))
@@ -30,7 +30,7 @@ const socialLinks = (await getCollection('social-links'))
   .sort(byPriorityAsc);
 ---
 
-<Wrapper class:list={['social-links', isInline ? 'social-links--inline' : 'social-links--buttons']}>
+<Wrapper class:list={['social-links', isInline ? 'social-links is-inline' : 'social-links is-buttons']}>
   {socialLinks.map((entry) => {
     const Icon = iconComponents[entry.data.icon];
     const tone = toneClasses[entry.data.icon] ?? '';
@@ -38,15 +38,15 @@ const socialLinks = (await getCollection('social-links'))
       <a
         href={entry.data.link}
         class:list={[
-          'social-links__link',
-          isInline ? 'social-links__link--inline' : 'social-links__link--button',
+          'link',
+          isInline ? 'link inline' : 'link button',
           !isInline && tone,
         ]}
         target={isInline ? undefined : '_blank'}
         rel={isInline ? undefined : 'noopener noreferrer nofollow'}
       >
-        <span class="social-links__label">{entry.data.title}</span>
-        <Icon class={isInline ? 'social-links__icon social-links__icon--inline' : 'social-links__icon'} aria-hidden="true" />
+        <span class="label">{entry.data.title}</span>
+        <Icon class={isInline ? 'icon icon inline' : 'icon'} aria-hidden="true" />
       </a>
     );
   })}
@@ -58,30 +58,30 @@ const socialLinks = (await getCollection('social-links'))
     align-items: center;
   }
 
-  .social-links--inline {
+  .social-links.is-inline {
     gap: 0.5rem;
     margin-inline: 0.25rem;
     vertical-align: text-bottom;
   }
 
-  .social-links--buttons {
+  .social-links.is-buttons {
     position: relative;
     gap: 1rem;
   }
 
-  .social-links__link {
+  .social-links .link {
     color: inherit;
   }
 
-  .social-links__link--inline {
+  .social-links .link.inline {
     color: var(--color-brand-strong);
   }
 
-  .social-links__link--inline:hover {
+  .social-links .link.inline:hover {
     color: var(--color-brand-hover);
   }
 
-  .social-links__link--button {
+  .social-links .link.button {
     display: inline-flex;
     min-width: 2.5rem;
     min-height: 2.5rem;
@@ -97,26 +97,26 @@ const socialLinks = (await getCollection('social-links'))
       transform 200ms;
   }
 
-  .social-links__link--button:active {
+  .social-links .link.button:active {
     transform: scale(0.96);
   }
 
-  .social-links__link--brand:hover {
+  .social-links .link.brand:hover {
     border-color: var(--color-brand);
     color: var(--color-brand);
   }
 
-  .social-links__link--accent:hover {
+  .social-links .link.accent:hover {
     border-color: var(--color-accent-strong);
     color: var(--color-accent-strong);
   }
 
-  .social-links__link--neutral:hover {
+  .social-links .link.neutral:hover {
     border-color: var(--color-text-strong);
     color: var(--color-text-strong);
   }
 
-  .social-links__label {
+  .social-links .label {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -128,12 +128,12 @@ const socialLinks = (await getCollection('social-links'))
     border: 0;
   }
 
-  :global(.social-links__icon) {
+  :global(.social-links .icon) {
     width: 1.25rem;
     height: 1.25rem;
   }
 
-  :global(.social-links__icon--inline) {
+  :global(.social-links .icon.inline) {
     width: 1rem;
     height: 1rem;
   }

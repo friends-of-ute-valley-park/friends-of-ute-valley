@@ -31,14 +31,14 @@ const meetingLocations = await getCollection("trailheads");
       <Image
         src={VolunteerHeroImage}
         alt="Volunteers in the field"
-        class="volunteer-hero__image"
+        class="image"
         width={1800}
       />
-      <div class="volunteer-hero__scrim"></div>
+      <div class="scrim"></div>
 
-      <div class="volunteer-hero__inner">
-        <div class="volunteer-hero__content">
-          <div class="volunteer-hero__eyebrow section-kicker section-kicker--wide section-kicker--accent section-kicker--inverse">
+      <div class="inner">
+        <div class="content">
+          <div class="eyebrow section-kicker section-kicker--wide section-kicker--accent section-kicker--inverse">
             <span class="section-kicker__rule"></span>
             <span class="section-kicker__text">
               How You Can Help
@@ -59,7 +59,7 @@ const meetingLocations = await getCollection("trailheads");
       </div>
 
       <div class="volunteer-status">
-        <div class="volunteer-status__panel">
+        <div class="panel">
           <div>
             <span>Current Status</span>
             <span>Recruiting</span>
@@ -82,7 +82,7 @@ const meetingLocations = await getCollection("trailheads");
       upcomingVolunteerEvents.length > 0 ? (
         <div class="volunteer-events">
           {upcomingVolunteerEvents.map((volunteerEvent) => (
-            <div class="volunteer-events__item">
+            <div class="item">
               <VolunteerItem
                 meetingLocations={meetingLocations}
                 volunteerEvent={volunteerEvent}
@@ -92,7 +92,7 @@ const meetingLocations = await getCollection("trailheads");
           ))}
         </div>
       ) : (
-        <div class="volunteer-events__empty">
+        <div class="empty">
           <p>
             No scheduled events at this time. Check back for seasonal updates.
           </p>
@@ -103,7 +103,7 @@ const meetingLocations = await getCollection("trailheads");
     <!-- Volunteer Opportunities -->
     <section class="page-section volunteer-opps">
       <div class="page-section__inner">
-        <div class="volunteer-opps__header">
+        <div class="header">
           <div>
             <h2>
               Volunteer{" "}
@@ -133,7 +133,7 @@ const meetingLocations = await getCollection("trailheads");
     <section class="page-section">
       <div class="page-section__inner">
         <div class="volunteer-field">
-          <div class="volunteer-field__copy">
+          <div class="copy">
             <div>
               <h2>
                 What to <span>Expect.</span>
@@ -174,11 +174,11 @@ const meetingLocations = await getCollection("trailheads");
             </div>
           </div>
 
-          <div class="volunteer-field__photo">
+          <div class="photo">
             <Image
               src={VolunteerInfoImage2}
               alt="Volunteers in action"
-              class="volunteer-field__image"
+              class="image"
               width={1000}
             />
             <div class="article-photo-card__meta">
@@ -191,12 +191,12 @@ const meetingLocations = await getCollection("trailheads");
 
     <!-- Recruitment (Engagement) -->
     <section class="volunteer-recruitment">
-      <div class="volunteer-recruitment__marker"></div>
+      <div class="marker"></div>
 
-      <div class="volunteer-recruitment__inner">
-        <div class="volunteer-recruitment__panel">
-          <div class="volunteer-recruitment__layout">
-            <div class="volunteer-recruitment__copy">
+      <div class="inner">
+        <div class="panel">
+          <div class="layout">
+            <div class="copy">
               <h2>
                 Stay <br />
                 <span>Updated.</span>
@@ -208,7 +208,7 @@ const meetingLocations = await getCollection("trailheads");
                 updates.
               </p>
             </div>
-            <div class="volunteer-recruitment__form">
+            <div class="form">
               <h3>
                 Stay Updated
               </h3>
@@ -221,14 +221,14 @@ const meetingLocations = await getCollection("trailheads");
 
     <!-- Communication Link -->
     <section class="volunteer-contact">
-      <div class="volunteer-contact__inner">
+      <div class="inner">
         <ContactForm
           default-option="Volunteer"
           client:visible
           turnstileSiteKey={TURNSTILE_SITE_KEY}
         >
           <Fragment slot="title">
-            <h2 class="volunteer-contact__title">
+            <h2 class="title">
               Get in <span>Touch.</span>
             </h2>
           </Fragment>
@@ -254,7 +254,7 @@ const meetingLocations = await getCollection("trailheads");
     background: var(--color-surface-inverse);
   }
 
-  :global(.volunteer-hero__image) {
+  :global(.volunteer-hero .image) {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -263,29 +263,29 @@ const meetingLocations = await getCollection("trailheads");
     opacity: 0.4;
   }
 
-  .volunteer-hero__scrim {
+  .volunteer-hero .scrim {
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, var(--color-surface-inverse), transparent);
   }
 
-  .volunteer-hero__inner {
+  .volunteer-hero .inner {
     position: relative;
     width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
     margin-inline: auto;
     padding-block: clamp(6rem, 12vw, 10rem);
   }
 
-  .volunteer-hero__content {
+  .volunteer-hero .content {
     max-width: 48rem;
   }
 
-  .volunteer-hero__eyebrow {
+  .volunteer-hero .eyebrow {
     margin-bottom: 2rem;
   }
 
   .volunteer-status span,
-  .volunteer-events__empty p {
+  .volunteer-events .empty p {
     font-family: var(--font-label);
     font-size: var(--text-label);
     letter-spacing: var(--tracking-label);
@@ -304,7 +304,7 @@ const meetingLocations = await getCollection("trailheads");
   }
 
   .volunteer-hero h1 span,
-  .volunteer-recruitment__copy h2 span {
+  .volunteer-recruitment .copy h2 span {
     color: var(--color-accent);
   }
 
@@ -325,7 +325,7 @@ const meetingLocations = await getCollection("trailheads");
     padding: 2rem;
   }
 
-  .volunteer-status__panel {
+  .volunteer-status .panel {
     display: grid;
     gap: 1rem;
     border: 1px solid color-mix(in oklab, var(--color-text-inverse) 20%, transparent);
@@ -334,7 +334,7 @@ const meetingLocations = await getCollection("trailheads");
     backdrop-filter: blur(12px);
   }
 
-  .volunteer-status__panel div {
+  .volunteer-status .panel div {
     display: flex;
     justify-content: space-between;
     gap: 3rem;
@@ -357,28 +357,28 @@ const meetingLocations = await getCollection("trailheads");
     border: 1px solid var(--color-border);
   }
 
-  .volunteer-events__item {
+  .volunteer-events .item {
     padding: 2rem;
     border-bottom: 1px solid var(--color-border);
     transition: background-color 200ms;
   }
 
-  .volunteer-events__item:hover {
+  .volunteer-events .item:hover {
     background: var(--color-page);
   }
 
-  .volunteer-events__item:last-child {
+  .volunteer-events .item:last-child {
     border-bottom: 0;
   }
 
-  .volunteer-events__empty {
+  .volunteer-events .empty {
     border: 1px solid var(--color-border-muted);
     background: var(--color-page);
     padding: 3rem;
     text-align: center;
   }
 
-  .volunteer-events__empty p {
+  .volunteer-events .empty p {
     margin: 0;
     color: var(--color-text-muted);
   }
@@ -387,7 +387,7 @@ const meetingLocations = await getCollection("trailheads");
     background: var(--color-surface);
   }
 
-  .volunteer-opps__header {
+  .volunteer-opps .header {
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -396,14 +396,14 @@ const meetingLocations = await getCollection("trailheads");
     margin-bottom: 4rem;
   }
 
-  .volunteer-opps__header > div {
+  .volunteer-opps .header > div {
     width: min(100%, 56rem);
     max-width: 56rem;
   }
 
   .volunteer-opps h2,
   .volunteer-field h2,
-  .volunteer-contact__title {
+  .volunteer-contact .title {
     margin: 0 0 1.5rem;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -415,13 +415,13 @@ const meetingLocations = await getCollection("trailheads");
 
   .volunteer-opps h2 span,
   .volunteer-field h2 span,
-  .volunteer-contact__title span {
+  .volunteer-contact .title span {
     color: var(--color-brand-strong);
     font-style: italic;
   }
 
   .volunteer-opps p,
-  .volunteer-field__copy > div > p {
+  .volunteer-field .copy > div > p {
     margin: 0;
     color: var(--color-text-muted);
     font-size: var(--text-body-large);
@@ -434,7 +434,7 @@ const meetingLocations = await getCollection("trailheads");
     gap: 4rem;
   }
 
-  .volunteer-field__copy {
+  .volunteer-field .copy {
     display: grid;
     gap: 3rem;
   }
@@ -467,13 +467,13 @@ const meetingLocations = await getCollection("trailheads");
     line-height: var(--leading-body);
   }
 
-  .volunteer-field__photo {
+  .volunteer-field .photo {
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     padding: 1rem;
   }
 
-  :global(.volunteer-field__image) {
+  :global(.volunteer-field .image) {
     width: 100%;
     height: auto;
     transition: transform 1000ms;
@@ -486,7 +486,7 @@ const meetingLocations = await getCollection("trailheads");
     padding-block: var(--space-section);
   }
 
-  .volunteer-recruitment__marker {
+  .volunteer-recruitment .marker {
     position: absolute;
     top: 0;
     right: 0;
@@ -497,30 +497,30 @@ const meetingLocations = await getCollection("trailheads");
     transform: translate(50%, -50%) rotate(45deg);
   }
 
-  .volunteer-recruitment__inner {
+  .volunteer-recruitment .inner {
     width: min(100% - (var(--space-page-x) * 2), 72rem);
     margin-inline: auto;
   }
 
-  .volunteer-recruitment__panel {
+  .volunteer-recruitment .panel {
     border: 2px solid var(--color-accent);
     background: var(--color-surface-inverse);
     padding: clamp(2rem, 5vw, 4rem);
     box-shadow: var(--shadow-accent-xl);
   }
 
-  .volunteer-recruitment__layout {
+  .volunteer-recruitment .layout {
     display: grid;
     align-items: center;
     gap: 4rem;
   }
 
-  .volunteer-recruitment__copy {
+  .volunteer-recruitment .copy {
     display: grid;
     gap: 2rem;
   }
 
-  .volunteer-recruitment__copy h2 {
+  .volunteer-recruitment .copy h2 {
     margin: 0;
     color: var(--color-text-inverse);
     font-family: var(--font-display);
@@ -531,11 +531,11 @@ const meetingLocations = await getCollection("trailheads");
     text-transform: uppercase;
   }
 
-  .volunteer-recruitment__copy h2 span {
+  .volunteer-recruitment .copy h2 span {
     font-style: italic;
   }
 
-  .volunteer-recruitment__copy p {
+  .volunteer-recruitment .copy p {
     margin: 0;
     color: var(--color-text-inverse-muted);
     font-size: var(--text-body-large);
@@ -543,17 +543,17 @@ const meetingLocations = await getCollection("trailheads");
     line-height: var(--leading-body);
   }
 
-  .volunteer-recruitment__form {
+  .volunteer-recruitment .form {
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     padding: clamp(1.25rem, 5vw, 2rem);
   }
 
-  .volunteer-recruitment__form :global(.email-signup) {
+  .volunteer-recruitment .form :global(.email-signup) {
     width: 100%;
   }
 
-  .volunteer-recruitment__form h3 {
+  .volunteer-recruitment .form h3 {
     margin: 0 0 1.5rem;
     border-bottom: 1px solid var(--color-border-muted);
     padding-bottom: 0.5rem;
@@ -570,7 +570,7 @@ const meetingLocations = await getCollection("trailheads");
     padding-block: var(--space-section);
   }
 
-  .volunteer-contact__inner {
+  .volunteer-contact .inner {
     width: min(100% - (var(--space-page-x) * 2), 80rem);
     margin-inline: auto;
   }
@@ -587,7 +587,7 @@ const meetingLocations = await getCollection("trailheads");
 
     .volunteer-opps h2,
     .volunteer-field h2,
-    .volunteer-contact__title {
+    .volunteer-contact .title {
       font-size: clamp(1.5rem, 9vw, 1.875rem);
     }
   }
@@ -598,7 +598,7 @@ const meetingLocations = await getCollection("trailheads");
     }
 
     .volunteer-field,
-    .volunteer-recruitment__layout {
+    .volunteer-recruitment .layout {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }

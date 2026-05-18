@@ -102,9 +102,9 @@ const getEventLabel = (event: CalendarEvent) =>
 ---
 
 <div class="static-calendar">
-  <div class="static-calendar__header">
-    <div class="static-calendar__heading section-heading">
-      <div class="static-calendar__eyebrow section-kicker">
+  <div class="header">
+    <div class="heading section-heading">
+      <div class="eyebrow section-kicker">
         <span class="section-kicker__rule"></span>
         <span class="section-kicker__text">Volunteer Calendar</span>
       </div>
@@ -112,44 +112,44 @@ const getEventLabel = (event: CalendarEvent) =>
         Posted <span>Workdays.</span>
       </h2>
     </div>
-    <div class="static-calendar__intro">
+    <div class="intro">
       <p class="section-heading__copy">
         Highlighted dates show public volunteer sessions and company community
         workdays. Company workdays are not open to public registration.
       </p>
-      <div class="static-calendar__legend">
+      <div class="legend">
         <div>
-          <span class="static-calendar__legend-swatch static-calendar__legend-swatch--public" aria-hidden="true"></span>
+          <span class="legend-swatch public" aria-hidden="true"></span>
           <span>Public</span>
         </div>
         <div>
-          <span class="static-calendar__legend-swatch static-calendar__legend-swatch--company" aria-hidden="true"></span>
+          <span class="legend-swatch company" aria-hidden="true"></span>
           <span>Company</span>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="static-calendar__months feature-grid feature-grid--two feature-grid--three-xl">
+  <div class="months feature-grid feature-grid--two feature-grid--three-xl">
     {
       months.map(({ label, monthIndex }) => {
         const daysInMonth = getDaysInMonth(currentYear, monthIndex);
         const firstDayOfWeek = getDay(daysInMonth[0]);
 
         return (
-          <div class="static-calendar__month">
+          <div class="month">
             <h3>
               {label}
             </h3>
-            <div class="static-calendar__grid">
+            <div class="grid">
               {["S", "M", "T", "W", "T", "F", "S"].map((day) => (
-                <div class="static-calendar__weekday">
+                <div class="weekday">
                   {day}
                 </div>
               ))}
 
               {Array.from({ length: firstDayOfWeek }).map(() => (
-                <div class="static-calendar__day static-calendar__day--blank" />
+                <div class="day blank" />
               ))}
 
               {daysInMonth.map((day) => {
@@ -161,34 +161,34 @@ const getEventLabel = (event: CalendarEvent) =>
                 return (
                   <div
                     class:list={[
-                      "static-calendar__day",
-                      !isVolunteerDay && "static-calendar__day--empty",
-                      isVolunteerDay && !isCompanyEvent && "static-calendar__day--public",
-                      isCompanyEvent && "static-calendar__day--company",
+                      "day",
+                      !isVolunteerDay && "day empty",
+                      isVolunteerDay && !isCompanyEvent && "day public",
+                      isCompanyEvent && "day company",
                     ]}
                     title={isCompanyEvent ? eventLabel : undefined}
                     aria-label={eventLabel}
                   >
                     <span
                       class:list={[
-                        "static-calendar__day-number",
+                        "day-number",
                         isVolunteerDay && !isCompanyEvent
-                          ? "static-calendar__day-number--public"
+                          ? "day-number public"
                           : isCompanyEvent
-                          ? "static-calendar__day-number--company"
-                          : "static-calendar__day-number--empty",
+                          ? "day-number company"
+                          : "day-number empty",
                       ]}
                     >
                       {format(day, "d")}
                     </span>
                     {
                       isVolunteerDay && !isCompanyEvent && (
-                        <div class="static-calendar__event-outline static-calendar__event-outline--public" />
+                        <div class="event-outline public" />
                       )
                     }
                     {
                       isCompanyEvent && (
-                        <div class="static-calendar__event-outline static-calendar__event-outline--company" />
+                        <div class="event-outline company" />
                       )
                     }
                   </div>
@@ -198,7 +198,7 @@ const getEventLabel = (event: CalendarEvent) =>
               {Array.from({
                 length: (7 - ((daysInMonth.length + firstDayOfWeek) % 7)) % 7,
               }).map(() => (
-                <div class="static-calendar__day static-calendar__day--blank" />
+                <div class="day blank" />
               ))}
             </div>
           </div>
@@ -215,15 +215,15 @@ const getEventLabel = (event: CalendarEvent) =>
     padding-block: 3rem;
   }
 
-  .static-calendar__header {
+  .static-calendar .header {
     display: grid;
     align-items: end;
     gap: 2rem;
     margin-bottom: 3rem;
   }
 
-  .static-calendar__legend span:last-child,
-  .static-calendar__weekday {
+  .static-calendar .legend span:last-child,
+  .static-calendar .weekday {
     font-family: var(--font-label);
     font-size: var(--text-label);
     font-weight: 900;
@@ -231,51 +231,51 @@ const getEventLabel = (event: CalendarEvent) =>
     text-transform: uppercase;
   }
 
-  .static-calendar__intro {
+  .static-calendar .intro {
     --section-heading-copy-width: 28rem;
     --section-heading-copy-margin: 0;
     --section-heading-copy-size: var(--text-body-small);
     max-width: 28rem;
   }
 
-  .static-calendar__legend {
+  .static-calendar .legend {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     margin-top: 1.25rem;
   }
 
-  .static-calendar__legend div {
+  .static-calendar .legend div {
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
 
-  .static-calendar__legend-swatch {
+  .static-calendar .legend-swatch {
     width: 0.75rem;
     height: 0.75rem;
   }
 
-  .static-calendar__legend-swatch--public {
+  .static-calendar .legend-swatch.public {
     border: 1px solid var(--color-brand-strong);
     background: color-mix(in oklab, var(--color-brand) 15%, transparent);
   }
 
-  .static-calendar__legend-swatch--company {
+  .static-calendar .legend-swatch.company {
     border: 1px solid var(--color-accent-strong);
     background: color-mix(in oklab, var(--color-accent) 25%, transparent);
   }
 
-  .static-calendar__legend span:last-child {
+  .static-calendar .legend span:last-child {
     color: var(--color-text-muted);
   }
 
-  .static-calendar__month {
+  .static-calendar .month {
     background: var(--color-surface);
     padding: 2rem;
   }
 
-  .static-calendar__month h3 {
+  .static-calendar .month h3 {
     margin: 0 0 1.5rem;
     border-bottom: 1px solid var(--color-border-muted);
     padding-bottom: 0.5rem;
@@ -286,7 +286,7 @@ const getEventLabel = (event: CalendarEvent) =>
     text-transform: uppercase;
   }
 
-  .static-calendar__grid {
+  .static-calendar .grid {
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
     gap: 1px;
@@ -294,14 +294,14 @@ const getEventLabel = (event: CalendarEvent) =>
     background: var(--color-border-muted);
   }
 
-  .static-calendar__weekday {
+  .static-calendar .weekday {
     background: var(--color-page);
     color: var(--color-text-subtle);
     padding-block: 0.5rem;
     text-align: center;
   }
 
-  .static-calendar__day {
+  .static-calendar .day {
     position: relative;
     display: flex;
     height: 2.5rem;
@@ -309,57 +309,57 @@ const getEventLabel = (event: CalendarEvent) =>
     justify-content: center;
   }
 
-  .static-calendar__day--blank,
-  .static-calendar__day--empty {
+  .static-calendar .day.blank,
+  .static-calendar .day.empty {
     background: var(--color-surface);
   }
 
-  .static-calendar__day--public {
+  .static-calendar .day.public {
     background: color-mix(in oklab, var(--color-brand) 6%, transparent);
   }
 
-  .static-calendar__day--company {
+  .static-calendar .day.company {
     background: color-mix(in oklab, var(--color-accent) 15%, transparent);
   }
 
-  .static-calendar__day-number {
+  .static-calendar .day-number {
     font-family: var(--font-label);
     font-size: 0.75rem;
   }
 
-  .static-calendar__day-number--empty {
+  .static-calendar .day-number.empty {
     color: var(--color-text-muted);
   }
 
-  .static-calendar__day-number--public,
-  .static-calendar__day-number--company {
+  .static-calendar .day-number.public,
+  .static-calendar .day-number.company {
     font-weight: 900;
   }
 
-  .static-calendar__day-number--public {
+  .static-calendar .day-number.public {
     color: var(--color-brand-strong);
   }
 
-  .static-calendar__day-number--company {
+  .static-calendar .day-number.company {
     color: var(--color-accent-strong);
   }
 
-  .static-calendar__event-outline {
+  .static-calendar .event-outline {
     position: absolute;
     inset: 0.25rem;
     pointer-events: none;
   }
 
-  .static-calendar__event-outline--public {
+  .static-calendar .event-outline.public {
     border: 1px solid color-mix(in oklab, var(--color-brand-strong) 40%, transparent);
   }
 
-  .static-calendar__event-outline--company {
+  .static-calendar .event-outline.company {
     border: 1px solid color-mix(in oklab, var(--color-accent-strong) 60%, transparent);
   }
 
   @media (min-width: 48rem) {
-    .static-calendar__header {
+    .static-calendar .header {
       grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
     }
   }

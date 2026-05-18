@@ -101,16 +101,16 @@ const navigation = [
 </script>
 
 <template>
-  <div ref="navContainerRef" :class="['site-nav-shell', navHidden && 'site-nav-shell--hidden']" @keydown.escape="onKeydown">
-    <nav aria-label="Primary" class="site-nav">
-      <div class="site-nav__inner">
-        <div class="site-nav__bar">
-          <div class="site-nav__brand-wrap">
-            <a href="/" class="site-nav__brand">
-              <div class="site-nav__logo-frame">
-                <img class="site-nav__logo" src="/images/logo-small.jpg" alt="FUVP" width="40" height="40" />
+  <div ref="navContainerRef" :class="['site-nav site-nav-shell', navHidden && 'site-nav-shell--hidden']" @keydown.escape="onKeydown">
+    <nav aria-label="Primary">
+      <div class="inner">
+        <div class="bar">
+          <div class="brand-wrap">
+            <a href="/" class="brand">
+              <div class="logo-frame">
+                <img class="logo" src="/images/logo-small.jpg" alt="FUVP" width="40" height="40" />
               </div>
-              <div class="site-nav__wordmark">
+              <div class="wordmark">
                 <span
                   >Friends of <br />
                   Ute Valley Park</span
@@ -120,33 +120,33 @@ const navigation = [
           </div>
 
           <!-- Desktop Navigation -->
-          <div class="site-nav__desktop">
-            <div class="site-nav__links">
+          <div class="desktop">
+            <div class="links">
               <a
                 v-for="item in navigation"
                 :key="item.name"
                 :href="item.href"
                 :aria-current="item.current ? 'page' : undefined"
                 :class="[
-                  'site-nav__link',
-                  item.current && 'site-nav__link--current',
+                  'link',
+                  item.current && 'link current',
                 ]"
                 >{{ item.name }}</a
               >
 
               <!-- Leave No Trace Dropdown -->
-              <div ref="lntDropdown" class="site-nav__dropdown" @keydown.escape="lntOpen = false">
+              <div ref="lntDropdown" class="dropdown" @keydown.escape="lntOpen = false">
                 <button
                   type="button"
                   :aria-expanded="lntOpen"
                   aria-haspopup="true"
                   @click="lntOpen = !lntOpen"
                   :class="[
-                    'site-nav__link site-nav__dropdown-button',
-                    (props.page.startsWith('/leavenotrace') || lntOpen) && 'site-nav__link--current',
+                    'link dropdown-button',
+                    (props.page.startsWith('/leavenotrace') || lntOpen) && 'link current',
                   ]">
                   <span>Leave No Trace</span>
-                  <HeroiconsChevronDown :class="['site-nav__chevron', lntOpen && 'site-nav__chevron--open']" aria-hidden="true" />
+                  <HeroiconsChevronDown :class="['chevron', lntOpen && 'chevron open']" aria-hidden="true" />
                 </button>
 
                 <Transition
@@ -156,23 +156,23 @@ const navigation = [
                   leave-active-class="site-nav-menu-leave-active"
                   leave-from-class="site-nav-menu-leave-from"
                   leave-to-class="site-nav-menu-leave-to">
-                  <div v-if="lntOpen" class="site-nav__dropdown-panel-wrap">
-                    <div class="site-nav__dropdown-panel">
-                      <div class="site-nav__dropdown-list">
+                  <div v-if="lntOpen" class="dropdown-panel-wrap">
+                    <div class="dropdown-panel">
+                      <div class="dropdown-list">
                         <a
                           v-for="item in leaveNoTraceMenuItems"
                           :key="item.name"
                           :href="item.href"
                           :aria-current="item.current ? 'page' : undefined"
-                          class="site-nav__dropdown-item">
-                          <div class="site-nav__dropdown-icon">
-                            <component :is="item.icon" class="site-nav__dropdown-symbol" aria-hidden="true" />
+                          class="dropdown-item">
+                          <div class="dropdown-icon">
+                            <component :is="item.icon" class="dropdown-symbol" aria-hidden="true" />
                           </div>
                           <div>
-                            <p class="site-nav__dropdown-title">
+                            <p class="dropdown-title">
                               {{ item.name }}
                             </p>
-                            <p class="site-nav__dropdown-description">{{ item.description }}</p>
+                            <p class="dropdown-description">{{ item.description }}</p>
                           </div>
                         </a>
                       </div>
@@ -182,23 +182,23 @@ const navigation = [
               </div>
             </div>
 
-            <div class="site-nav__social">
+            <div class="social">
               <slot name="social-links" />
             </div>
           </div>
 
           <!-- Mobile menu button -->
-          <div class="site-nav__mobile-toggle-wrap">
+          <div class="mobile-toggle-wrap">
             <button
               type="button"
               :aria-expanded="menuOpen"
               aria-controls="mobile-menu"
-              class="site-nav__toggle"
+              class="toggle"
               @click="toggleMenu">
-              <span class="site-nav__sr-label">{{ menuOpen ? 'Close main menu' : 'Open main menu' }}</span>
-              <span class="site-nav__toggle-icons">
-                <HeroiconsBars3 :class="['site-nav__toggle-icon', menuOpen ? 'site-nav__toggle-icon--hidden' : 'site-nav__toggle-icon--visible']" aria-hidden="true" />
-                <HeroiconsXMark :class="['site-nav__toggle-icon', menuOpen ? 'site-nav__toggle-icon--visible' : 'site-nav__toggle-icon--hidden']" aria-hidden="true" />
+              <span class="sr-label">{{ menuOpen ? 'Close main menu' : 'Open main menu' }}</span>
+              <span class="toggle-icons">
+                <HeroiconsBars3 :class="['toggle-icon', menuOpen ? 'toggle-icon hidden' : 'toggle-icon visible']" aria-hidden="true" />
+                <HeroiconsXMark :class="['toggle-icon', menuOpen ? 'toggle-icon visible' : 'toggle-icon hidden']" aria-hidden="true" />
               </span>
             </button>
           </div>
@@ -207,11 +207,11 @@ const navigation = [
     </nav>
 
     <!-- Mobile menu backdrop -->
-    <div v-show="menuOpen" class="site-nav__backdrop" aria-hidden="true" @click="closeMenu" />
+    <div v-show="menuOpen" class="backdrop" aria-hidden="true" @click="closeMenu" />
 
     <!-- Mobile Panel -->
-    <nav v-show="menuOpen" id="mobile-menu" aria-label="Mobile menu" class="site-nav__mobile-panel">
-      <div class="site-nav__mobile-list">
+    <nav v-show="menuOpen" id="mobile-menu" aria-label="Mobile menu" class="mobile-panel">
+      <div class="mobile-list">
         <a
           v-for="item in navigation"
           :key="item.name"
@@ -219,13 +219,13 @@ const navigation = [
           @click="closeMenu"
           :aria-current="item.current ? 'page' : undefined"
           :class="[
-            'site-nav__mobile-link',
-            item.current && 'site-nav__mobile-link--current',
+            'mobile-link',
+            item.current && 'mobile-link current',
           ]"
           >{{ item.name }}
         </a>
 
-        <div class="site-nav__mobile-kicker">
+        <div class="mobile-kicker">
           <span>Leave No Trace</span>
         </div>
 
@@ -236,14 +236,14 @@ const navigation = [
           @click="closeMenu"
           :aria-current="item.current ? 'page' : undefined"
           :class="[
-            'site-nav__mobile-link site-nav__mobile-link--sub',
-            item.current && 'site-nav__mobile-link--current',
+            'mobile-link sub',
+            item.current && 'mobile-link current',
           ]"
           >{{ item.name }}
         </a>
       </div>
 
-      <div class="site-nav__mobile-social">
+      <div class="mobile-social">
         <slot name="social-links" />
       </div>
     </nav>
@@ -267,24 +267,24 @@ const navigation = [
     background: var(--color-page);
   }
 
-  .site-nav__inner {
+  .site-nav .inner {
     width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
     margin-inline: auto;
   }
 
-  .site-nav__bar {
+  .site-nav .bar {
     display: flex;
     height: 5rem;
     align-items: center;
     justify-content: space-between;
   }
 
-  .site-nav__brand-wrap {
+  .site-nav .brand-wrap {
     display: flex;
     align-items: center;
   }
 
-  .site-nav__brand {
+  .site-nav .brand {
     display: flex;
     flex-shrink: 0;
     align-items: center;
@@ -293,7 +293,7 @@ const navigation = [
     text-decoration: none;
   }
 
-  .site-nav__logo-frame {
+  .site-nav .logo-frame {
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     padding: 0.25rem;
@@ -302,22 +302,22 @@ const navigation = [
       transform 200ms;
   }
 
-  .site-nav__brand:hover .site-nav__logo-frame {
+  .site-nav .brand:hover .logo-frame {
     border-color: var(--color-brand);
     transform: scale(1.05);
   }
 
-  .site-nav__logo {
+  .site-nav .logo {
     display: block;
     width: 2.5rem;
     height: 2.5rem;
   }
 
-  .site-nav__wordmark {
+  .site-nav .wordmark {
     display: none;
   }
 
-  .site-nav__wordmark span {
+  .site-nav .wordmark span {
     display: block;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -329,21 +329,21 @@ const navigation = [
     transition: color 200ms;
   }
 
-  .site-nav__brand:hover .site-nav__wordmark span {
+  .site-nav .brand:hover .wordmark span {
     color: var(--color-brand);
   }
 
-  .site-nav__desktop {
+  .site-nav .desktop {
     display: none;
   }
 
-  .site-nav__links {
+  .site-nav .links {
     display: flex;
     height: 100%;
     border-left: 1px solid var(--color-border);
   }
 
-  .site-nav__link {
+  .site-nav .link {
     display: inline-flex;
     height: 100%;
     align-items: center;
@@ -363,38 +363,38 @@ const navigation = [
       color 200ms;
   }
 
-  .site-nav__link:hover,
-  .site-nav__link--current {
+  .site-nav .link:hover,
+  .site-nav .link.current {
     background: var(--color-surface);
     color: var(--color-brand);
   }
 
-  .site-nav__link--current {
+  .site-nav .link.current {
     border-bottom: 2px solid var(--color-brand);
   }
 
-  .site-nav__dropdown {
+  .site-nav .dropdown {
     position: relative;
     height: 100%;
   }
 
-  .site-nav__dropdown-button {
+  .site-nav .dropdown-button {
     gap: 0.5rem;
     cursor: pointer;
   }
 
-  .site-nav__chevron {
+  .site-nav .chevron {
     width: 1rem;
     height: 1rem;
     opacity: 0.5;
     transition: transform 200ms;
   }
 
-  .site-nav__chevron--open {
+  .site-nav .chevron.open {
     transform: rotate(180deg);
   }
 
-  .site-nav__dropdown-panel-wrap {
+  .site-nav .dropdown-panel-wrap {
     position: absolute;
     right: 0;
     z-index: 10;
@@ -403,18 +403,18 @@ const navigation = [
     margin-top: 1px;
   }
 
-  .site-nav__dropdown-panel {
+  .site-nav .dropdown-panel {
     overflow: hidden;
     border: 2px solid var(--color-brand);
     background: var(--color-surface);
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
   }
 
-  .site-nav__dropdown-list {
+  .site-nav .dropdown-list {
     display: grid;
   }
 
-  .site-nav__dropdown-item {
+  .site-nav .dropdown-item {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -425,15 +425,15 @@ const navigation = [
     transition: background-color 200ms;
   }
 
-  .site-nav__dropdown-item:last-child {
+  .site-nav .dropdown-item:last-child {
     border-bottom: 0;
   }
 
-  .site-nav__dropdown-item:hover {
+  .site-nav .dropdown-item:hover {
     background: color-mix(in oklab, var(--color-brand) 5%, transparent);
   }
 
-  .site-nav__dropdown-icon {
+  .site-nav .dropdown-icon {
     display: flex;
     width: 2.5rem;
     height: 2.5rem;
@@ -449,51 +449,51 @@ const navigation = [
       color 200ms;
   }
 
-  .site-nav__dropdown-item:hover .site-nav__dropdown-icon {
+  .site-nav .dropdown-item:hover .dropdown-icon {
     border-color: var(--color-brand);
     background: var(--color-surface);
     color: var(--color-brand);
   }
 
-  .site-nav__dropdown-symbol {
+  .site-nav .dropdown-symbol {
     width: 1.25rem;
     height: 1.25rem;
   }
 
-  .site-nav__dropdown-title,
-  .site-nav__dropdown-description {
+  .site-nav .dropdown-title,
+  .site-nav .dropdown-description {
     margin: 0;
     font-family: var(--font-label);
     font-size: var(--text-label);
     text-transform: uppercase;
   }
 
-  .site-nav__dropdown-title {
+  .site-nav .dropdown-title {
     color: var(--color-text-strong);
     font-weight: 900;
     letter-spacing: 0.12em;
     transition: color 200ms;
   }
 
-  .site-nav__dropdown-item:hover .site-nav__dropdown-title {
+  .site-nav .dropdown-item:hover .dropdown-title {
     color: var(--color-brand);
   }
 
-  .site-nav__dropdown-description {
+  .site-nav .dropdown-description {
     color: var(--color-text-subtle);
     letter-spacing: 0;
   }
 
-  .site-nav__social {
+  .site-nav .social {
     display: none;
     padding-left: 2rem;
   }
 
-  .site-nav__mobile-toggle-wrap {
+  .site-nav .mobile-toggle-wrap {
     display: flex;
   }
 
-  .site-nav__toggle {
+  .site-nav .toggle {
     display: inline-flex;
     min-width: 2.5rem;
     min-height: 2.5rem;
@@ -510,16 +510,16 @@ const navigation = [
       transform 200ms;
   }
 
-  .site-nav__toggle:hover {
+  .site-nav .toggle:hover {
     background: var(--color-surface-muted);
     color: var(--color-brand);
   }
 
-  .site-nav__toggle:active {
+  .site-nav .toggle:active {
     transform: scale(0.96);
   }
 
-  .site-nav__sr-label {
+  .site-nav .sr-label {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -531,14 +531,14 @@ const navigation = [
     border: 0;
   }
 
-  .site-nav__toggle-icons {
+  .site-nav .toggle-icons {
     position: relative;
     display: block;
     width: 1.5rem;
     height: 1.5rem;
   }
 
-  .site-nav__toggle-icon {
+  .site-nav .toggle-icon {
     position: absolute;
     inset: 0;
     width: 1.5rem;
@@ -549,19 +549,19 @@ const navigation = [
       transform 200ms cubic-bezier(0.2, 0, 0, 1);
   }
 
-  .site-nav__toggle-icon--visible {
+  .site-nav .toggle-icon.visible {
     opacity: 1;
     filter: blur(0);
     transform: scale(1);
   }
 
-  .site-nav__toggle-icon--hidden {
+  .site-nav .toggle-icon.hidden {
     opacity: 0;
     filter: blur(4px);
     transform: scale(0.25);
   }
 
-  .site-nav__backdrop {
+  .site-nav .backdrop {
     position: absolute;
     inset-inline: 0;
     top: 100%;
@@ -569,7 +569,7 @@ const navigation = [
     background: rgb(28 25 23 / 40%);
   }
 
-  .site-nav__mobile-panel {
+  .site-nav .mobile-panel {
     position: absolute;
     inset-inline: 0;
     top: 100%;
@@ -579,11 +579,11 @@ const navigation = [
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%);
   }
 
-  .site-nav__mobile-list {
+  .site-nav .mobile-list {
     display: grid;
   }
 
-  .site-nav__mobile-link {
+  .site-nav .mobile-link {
     display: block;
     border-bottom: 1px solid var(--color-border-muted);
     color: var(--color-text-muted);
@@ -596,26 +596,26 @@ const navigation = [
     text-decoration: none;
   }
 
-  .site-nav__mobile-link:hover,
-  .site-nav__mobile-link--current {
+  .site-nav .mobile-link:hover,
+  .site-nav .mobile-link.current {
     background: var(--color-brand-subtle);
     color: var(--color-brand);
   }
 
-  .site-nav__mobile-link--current {
+  .site-nav .mobile-link.current {
     border-left: 4px solid var(--color-brand);
   }
 
-  .site-nav__mobile-link--sub {
+  .site-nav .mobile-link.sub {
     padding-inline: 2rem;
   }
 
-  .site-nav__mobile-kicker {
+  .site-nav .mobile-kicker {
     background: var(--color-page);
     padding: 0.5rem 1.5rem;
   }
 
-  .site-nav__mobile-kicker span {
+  .site-nav .mobile-kicker span {
     color: var(--color-brand);
     font-family: var(--font-label);
     font-size: 0.5rem;
@@ -624,7 +624,7 @@ const navigation = [
     text-transform: uppercase;
   }
 
-  .site-nav__mobile-social {
+  .site-nav .mobile-social {
     border-top: 1px solid var(--color-border);
     background: var(--color-page);
     padding: 1.5rem;
@@ -654,7 +654,7 @@ const navigation = [
   }
 
   @media (min-width: 48rem) {
-    .site-nav__wordmark {
+    .site-nav .wordmark {
       display: block;
     }
   }
@@ -664,25 +664,25 @@ const navigation = [
       transform: translateY(0);
     }
 
-    .site-nav__desktop {
+    .site-nav .desktop {
       display: flex;
       height: 100%;
       align-items: center;
     }
 
-    .site-nav__mobile-toggle-wrap,
-    .site-nav__backdrop,
-    .site-nav__mobile-panel {
+    .site-nav .mobile-toggle-wrap,
+    .site-nav .backdrop,
+    .site-nav .mobile-panel {
       display: none;
     }
   }
 
   @media (min-width: 80rem) {
-    .site-nav__link {
+    .site-nav .link {
       padding-inline: 1.25rem;
     }
 
-    .site-nav__social {
+    .site-nav .social {
       display: block;
     }
   }

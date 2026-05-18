@@ -56,33 +56,33 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 ---
 
 <section class="lnt-principles">
-  <div class="lnt-principles__inner">
-    <div class="lnt-principles__layout">
+  <div class="inner">
+    <div class="layout">
       <!-- Left Column: About Leave No Trace -->
-      <div class="lnt-principles__intro">
-        <div class="lnt-principles__intro-sticky">
-          <div class="lnt-principles__intro-copy section-heading">
-            <div class="lnt-principles__eyebrow section-kicker">
+      <div class="intro">
+        <div class="intro-sticky">
+          <div class="intro-copy section-heading">
+            <div class="eyebrow section-kicker">
               <span class="section-kicker__rule"></span>
               <span class="section-kicker__text">
                 Environmental Stewardship
               </span>
             </div>
 
-            <h2 class="lnt-principles__title section-heading__title">
+            <h2 class="title section-heading__title">
               Leave <br /> No <br />
               <span>Trace.</span>
             </h2>
 
-            <p class="lnt-principles__summary section-heading__copy">
+            <p class="summary section-heading__copy">
               Ute Valley Park is a treasured urban wildland. Please help keep
               the park safe and clean for all visitors by following the Seven
               Principles.
             </p>
           </div>
 
-          <div class="lnt-principles__partner">
-            <div class="lnt-principles__logo-card">
+          <div class="partner">
+            <div class="logo-card">
               <a
                 href="https://www.lnt.org"
                 target="_blank"
@@ -92,17 +92,17 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
                   src={lntLogo}
                   alt="Leave No Trace Official Logo"
                   width="200"
-                  class="lnt-principles__logo"
+                  class="logo"
                 />
               </a>
-              <div class="lnt-principles__certification">
+              <div class="certification">
                 <span>Certified Partner</span>
               </div>
             </div>
 
             <a
               href="/rules/"
-              class="button button--brand lnt-principles__rules-link"
+              class="button button--brand rules-link"
             >
               View Park Rules
             </a>
@@ -111,13 +111,13 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
       </div>
 
       <!-- Principles Column -->
-      <div class="lnt-principles__list-wrap">
-        <div class="lnt-principles__list">
+      <div class="list-wrap">
+        <div class="list">
           {
             principles.map((principle) => (
-              <div class="lnt-principles__card media-zoom-parent media-zoom-parent--expand">
-                <div class="lnt-principles__card-head">
-                  <div class="lnt-principles__number-row">
+              <div class="card media-zoom-parent media-zoom-parent--expand">
+                <div class="card-head">
+                  <div class="number-row">
                     <span>
                       {principle.id}
                     </span>
@@ -128,18 +128,18 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
                   </h3>
                 </div>
 
-                <div class="lnt-principles__media media-frame">
+                <div class="media media-frame">
                   <Picture
-                    class="lnt-principles__image media-cover media-zoom"
+                    class="image media-cover media-zoom"
                     src={principle.image}
                     alt={principle.altText}
                     width={600}
                   />
                 </div>
 
-                <p class="lnt-principles__copy" set:html={principle.text} />
+                <p class="copy" set:html={principle.text} />
 
-                <div class="lnt-principles__principle-label">
+                <div class="principle-label">
                   <span>
                     Principle {principle.id}
                   </span>
@@ -160,35 +160,35 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     background: var(--color-page);
   }
 
-  .lnt-principles__inner {
+  .lnt-principles .inner {
     max-width: var(--container-wide);
     margin-inline: auto;
   }
 
-  .lnt-principles__layout {
+  .lnt-principles .layout {
     display: grid;
   }
 
-  .lnt-principles__intro {
+  .lnt-principles .intro {
     border-bottom: 1px solid var(--color-border);
     background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
     padding: clamp(2rem, 5vw, 4rem);
   }
 
-  .lnt-principles__intro-sticky {
+  .lnt-principles .intro-sticky {
     display: grid;
     gap: 3rem;
   }
 
-  .lnt-principles__intro-copy {
+  .lnt-principles .intro-copy {
     --section-heading-gap: 1.5rem;
     --section-heading-title-size: clamp(3rem, 8vw, 3.75rem);
     --section-heading-accent-style: normal;
     --section-heading-copy-margin: 0;
   }
 
-  .lnt-principles__certification span,
-  .lnt-principles__principle-label span {
+  .lnt-principles .certification span,
+  .lnt-principles .principle-label span {
     font-family: var(--font-label);
     font-size: var(--text-label);
     font-weight: 900;
@@ -196,14 +196,14 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     text-transform: uppercase;
   }
 
-  .lnt-principles__partner {
+  .lnt-principles .partner {
     display: grid;
     gap: 2rem;
     border-top: 1px solid var(--color-border);
     padding-top: 3rem;
   }
 
-  .lnt-principles__logo-card {
+  .lnt-principles .logo-card {
     position: relative;
     border: 2px solid var(--color-brand-strong);
     background: var(--color-surface);
@@ -212,39 +212,39 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     transition: box-shadow 500ms;
   }
 
-  .lnt-principles__logo-card:hover {
+  .lnt-principles .logo-card:hover {
     box-shadow: var(--shadow-accent-md);
   }
 
-  :global(.lnt-principles__logo) {
+  :global(.lnt-principles .logo) {
     width: 100%;
     max-width: 10rem;
     height: auto;
     margin-inline: auto;
   }
 
-  .lnt-principles__certification {
+  .lnt-principles .certification {
     margin-top: 1.5rem;
     text-align: center;
   }
 
-  .lnt-principles__certification span,
-  .lnt-principles__principle-label span {
+  .lnt-principles .certification span,
+  .lnt-principles .principle-label span {
     color: var(--color-brand-strong);
   }
 
-  .lnt-principles__rules-link {
+  .lnt-principles .rules-link {
     display: block;
     text-align: center;
   }
 
-  .lnt-principles__list {
+  .lnt-principles .list {
     display: grid;
     gap: 1px;
     background: var(--color-border);
   }
 
-  .lnt-principles__card {
+  .lnt-principles .card {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -253,22 +253,22 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     transition: background-color 200ms;
   }
 
-  .lnt-principles__card:hover {
+  .lnt-principles .card:hover {
     background: var(--color-surface);
   }
 
-  .lnt-principles__card-head {
+  .lnt-principles .card-head {
     display: grid;
     gap: 1rem;
   }
 
-  .lnt-principles__number-row {
+  .lnt-principles .number-row {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
   }
 
-  .lnt-principles__number-row span {
+  .lnt-principles .number-row span {
     color: var(--color-accent-strong);
     font-family: var(--font-label);
     font-size: 2.25rem;
@@ -276,11 +276,11 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     transition: color 200ms;
   }
 
-  .lnt-principles__card:hover .lnt-principles__number-row span {
+  .lnt-principles .card:hover .number-row span {
     color: var(--color-accent);
   }
 
-  .lnt-principles__number-row div {
+  .lnt-principles .number-row div {
     width: 3rem;
     height: 1px;
     margin-top: 1.25rem;
@@ -288,11 +288,11 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     transition: background-color 200ms;
   }
 
-  .lnt-principles__card:hover .lnt-principles__number-row div {
+  .lnt-principles .card:hover .number-row div {
     background: var(--color-brand-strong);
   }
 
-  .lnt-principles__card h3 {
+  .lnt-principles .card h3 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -303,16 +303,16 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     transition: color 200ms;
   }
 
-  .lnt-principles__card:hover h3 {
+  .lnt-principles .card:hover h3 {
     color: var(--color-brand-strong);
   }
 
-  .lnt-principles__media {
+  .lnt-principles .media {
     aspect-ratio: 16 / 10;
     --media-frame-border-color: var(--color-border-muted);
   }
 
-  .lnt-principles__copy {
+  .lnt-principles .copy {
     margin: 0;
     color: var(--color-text-muted);
     font-size: var(--text-body-small);
@@ -320,33 +320,33 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     line-height: var(--leading-body);
   }
 
-  .lnt-principles__principle-label {
+  .lnt-principles .principle-label {
     margin-top: auto;
     border-top: 1px solid var(--color-border-muted);
     padding-top: 1.5rem;
   }
 
-  .lnt-principles__principle-label span {
+  .lnt-principles .principle-label span {
     font-size: 0.5625rem;
   }
 
   @media (min-width: 48rem) {
-    .lnt-principles__list {
+    .lnt-principles .list {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (min-width: 64rem) {
-    .lnt-principles__layout {
+    .lnt-principles .layout {
       grid-template-columns: 4fr 8fr;
     }
 
-    .lnt-principles__intro {
+    .lnt-principles .intro {
       border-right: 1px solid var(--color-border);
       border-bottom: 0;
     }
 
-    .lnt-principles__intro-sticky {
+    .lnt-principles .intro-sticky {
       position: sticky;
       top: 6rem;
     }

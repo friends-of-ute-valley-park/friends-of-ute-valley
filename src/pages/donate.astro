@@ -22,10 +22,10 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
   <main class="page donate-page">
     <!-- Fiscal Hero -->
     <section class="donate-hero">
-      <div class="donate-hero__layout">
+      <div class="layout">
         <!-- Message Column -->
-        <div class="donate-hero__message">
-          <div class="donate-hero__stack">
+        <div class="message">
+          <div class="stack">
             <div class="page-eyebrow">
               <span>
                 Support Us
@@ -37,7 +37,7 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
               <span>Wildland.</span>
             </h1>
 
-            <div class="donate-hero__intro">
+            <div class="intro">
               <p>
                 Your tax-deductible gift directly funds trail maintenance,
                 invasive species management, educational programs, and the
@@ -45,7 +45,7 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
               </p>
             </div>
 
-            <div class="donate-hero__cta">
+            <div class="cta">
               <a
                 href="https://trailsandopenspacecoalition-bloom.kindful.com/embeds/65db98e0-d794-4712-bf37-144689d58de3"
                 class="button button--brand"
@@ -57,14 +57,14 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
         </div>
 
         <!-- Visual Context -->
-        <div class="donate-hero__media">
+        <div class="media">
           <Image
             src={VolunteerHeroImage}
             alt="Park scenery"
-            class="donate-hero__image media-cover"
+            class="image media-cover"
             width={1200}
           />
-          <div class="donate-hero__matte media-matte"></div>
+          <div class="matte media-matte"></div>
         </div>
       </div>
     </section>
@@ -73,7 +73,7 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
     <section class="page-section">
       <div class="page-section__inner">
         <div class="donate-info">
-          <div class="donate-info__main">
+          <div class="main">
             <div>
               <h2>
                 How Your <span>Gift Helps.</span>
@@ -85,8 +85,8 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
               </p>
             </div>
 
-            <div class="donate-info__columns">
-              <div class="donate-info__column">
+            <div class="columns">
+              <div class="column">
                   <h4>
                       What We
                     <span>Need.</span>
@@ -95,7 +95,7 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
                   {
                     benefits.map((benefit) => (
                       <li>
-                        <CheckBadgeIcon class="benefit-list__icon" />
+                        <CheckBadgeIcon class="icon" />
                         <span>
                           {benefit}
                         </span>
@@ -104,7 +104,7 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
                   }
                 </ul>
               </div>
-              <div class="donate-info__column">
+              <div class="column">
                   <h4>
                       Our
                     <span>Partner.</span>
@@ -123,12 +123,12 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
             </div>
           </div>
 
-          <div class="donate-info__aside">
+          <div class="aside">
             <div class="tosc-card">
-              <div class="tosc-card__logo">
+              <div class="logo">
                 <svg
                   id="Layer_1"
-                  class="tosc-card__svg"
+                  class="svg"
                   version="1.1"
                   xmlns="http://www.w3.org/2000/svg"
                   x="0"
@@ -194,25 +194,25 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
     border-bottom: 1px solid var(--color-border);
   }
 
-  .donate-hero__layout {
+  .donate-hero .layout {
     display: grid;
   }
 
-  .donate-hero__message {
+  .donate-hero .message {
     padding: clamp(3rem, 8vw, 8rem) var(--space-page-x) clamp(5rem, 10vw, 10rem);
   }
 
-  .donate-hero__stack {
+  .donate-hero .stack {
     display: grid;
     gap: 2rem;
   }
 
-  .donate-hero__intro {
+  .donate-hero .intro {
     max-width: 36rem;
   }
 
-  .donate-hero__intro p,
-  .donate-info__main > div > p {
+  .donate-hero .intro p,
+  .donate-info .main > div > p {
     margin: 0;
     color: var(--color-text-muted);
     font-size: var(--text-body-large);
@@ -220,18 +220,18 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
     line-height: var(--leading-body);
   }
 
-  .donate-hero__cta {
+  .donate-hero .cta {
     padding-top: 2rem;
   }
 
-  .donate-hero__media {
+  .donate-hero .media {
     position: relative;
     min-height: 28rem;
     overflow: hidden;
     background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
   }
 
-  .donate-hero__matte {
+  .donate-hero .matte {
     --media-matte-border: 1.5rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
   }
 
@@ -241,12 +241,12 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
     gap: 4rem;
   }
 
-  .donate-info__main {
+  .donate-info .main {
     display: grid;
     gap: 3rem;
   }
 
-  .donate-info__main h2 {
+  .donate-info .main h2 {
     margin: 0 0 2rem;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -256,23 +256,23 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
     text-transform: uppercase;
   }
 
-  .donate-info__main h2 span,
-  .donate-info__column h4 span {
+  .donate-info .main h2 span,
+  .donate-info .column h4 span {
     color: var(--color-brand-strong);
     font-style: italic;
   }
 
-  .donate-info__columns {
+  .donate-info .columns {
     display: grid;
     gap: 2rem 3rem;
   }
 
-  .donate-info__column {
+  .donate-info .column {
     display: grid;
     gap: 1rem;
   }
 
-  .donate-info__column h4 {
+  .donate-info .column h4 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -296,7 +296,7 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
     gap: 1rem;
   }
 
-  :global(.benefit-list__icon) {
+  :global(.benefit-list .icon) {
     width: 1.25rem;
     height: 1.25rem;
     flex-shrink: 0;
@@ -344,7 +344,7 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
     font-weight: 900;
   }
 
-  .donate-info__aside {
+  .donate-info .aside {
     display: grid;
     gap: 2rem;
   }
@@ -357,12 +357,12 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
     padding: 2rem;
   }
 
-  .tosc-card__logo {
+  .tosc-card .logo {
     display: flex;
     justify-content: center;
   }
 
-  .tosc-card__svg {
+  .tosc-card .svg {
     width: 100%;
     height: auto;
     opacity: 0.5;
@@ -393,17 +393,17 @@ import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
   }
 
   @media (min-width: 48rem) {
-    .donate-info__columns {
+    .donate-info .columns {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (min-width: 64rem) {
-    .donate-hero__layout {
+    .donate-hero .layout {
       grid-template-columns: 7fr 5fr;
     }
 
-    .donate-hero__message {
+    .donate-hero .message {
       border-right: 1px solid var(--color-border);
       padding-inline: var(--space-page-x) 3rem;
     }

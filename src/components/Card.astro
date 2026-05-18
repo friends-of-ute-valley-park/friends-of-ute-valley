@@ -15,40 +15,40 @@ import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
 ---
 
 <a href={"/news/" + href} class="news-teaser">
-  <article class="news-teaser__media media-frame media-zoom-frame">
+  <article class="media media-frame media-zoom-frame">
     <Image
       src={image}
       width={800}
       height={500}
       quality="80"
       alt={title}
-      class="news-teaser__image media-cover media-zoom media-zoom--slow"
+      class="image media-cover media-zoom media-zoom--slow"
     />
 
-    <div class="news-teaser__matte media-matte"></div>
+    <div class="matte media-matte"></div>
 
-    <div class="news-teaser__date meta-label">
+    <div class="date meta-label">
       {
         formatShortMonthDayYear(publishedOn)
       }
     </div>
 
-    <div class="news-teaser__action">
+    <div class="action">
       <span class="meta-label">Read More →</span>
     </div>
   </article>
 
-  <div class="news-teaser__body">
-    <div class="news-teaser__meta">
+  <div class="body">
+    <div class="meta">
       <span></span>
       <span class="meta-label">
         {formatShortMonthYear(publishedOn)}
       </span>
     </div>
-    <h3 class="news-teaser__title card-title">
+    <h3 class="title card-title">
       {title}
     </h3>
-    <p class="news-teaser__preview">
+    <p class="preview">
       {previewText}
     </p>
   </div>
@@ -61,21 +61,21 @@ import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
     text-decoration: none;
   }
 
-  .news-teaser__media {
+  .news-teaser .media {
     position: relative;
     aspect-ratio: 16 / 10;
     transition: border-color 200ms;
   }
 
-  .news-teaser:hover .news-teaser__media {
+  .news-teaser:hover .media {
     border-color: var(--color-brand-strong);
   }
 
-  .news-teaser__matte {
+  .news-teaser .matte {
     --media-matte-border: 1rem solid color-mix(in oklab, var(--color-surface) 10%, transparent);
   }
 
-  .news-teaser__date {
+  .news-teaser .date {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -85,7 +85,7 @@ import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
     font-variant-numeric: tabular-nums;
   }
 
-  .news-teaser__action {
+  .news-teaser .action {
     position: absolute;
     bottom: 1rem;
     left: 1rem;
@@ -96,21 +96,21 @@ import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
     transition: opacity 500ms;
   }
 
-  .news-teaser:hover .news-teaser__action {
+  .news-teaser:hover .action {
     opacity: 1;
   }
 
-  .news-teaser__action span {
+  .news-teaser .action span {
     color: var(--color-brand-strong);
   }
 
-  .news-teaser__body {
+  .news-teaser .body {
     display: grid;
     gap: 0.75rem;
     margin-top: 1.5rem;
   }
 
-  .news-teaser__meta {
+  .news-teaser .meta {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -118,7 +118,7 @@ import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
     transition: color 200ms;
   }
 
-  .news-teaser__meta span:first-child {
+  .news-teaser .meta span:first-child {
     display: inline-block;
     width: 1.5rem;
     height: 1px;
@@ -126,19 +126,19 @@ import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
     transition: background-color 200ms;
   }
 
-  .news-teaser:hover .news-teaser__meta {
+  .news-teaser:hover .meta {
     color: var(--color-brand-strong);
   }
 
-  .news-teaser:hover .news-teaser__meta span:first-child {
+  .news-teaser:hover .meta span:first-child {
     background: var(--color-brand-strong);
   }
 
-  .news-teaser:hover .news-teaser__title {
+  .news-teaser:hover .title {
     color: var(--color-brand-strong);
   }
 
-  .news-teaser__preview {
+  .news-teaser .preview {
     display: -webkit-box;
     margin: 0;
     overflow: hidden;

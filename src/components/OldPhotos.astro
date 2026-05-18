@@ -18,52 +18,52 @@ const morePhotos = sorted.slice(6);
 ---
 
 <div class="historic-photos">
-  <div class="historic-photos__eyebrow section-kicker">
+  <div class="eyebrow section-kicker">
     <span class="section-kicker__rule"></span>
     <span class="section-kicker__text">Park History</span>
   </div>
 
-  <div class="historic-photos__grid feature-grid feature-grid--two-sm feature-grid--three">
+  <div class="grid feature-grid feature-grid--two-sm feature-grid--three">
     {
       initialPhotos.map(({ image, num }) => (
-        <div class="historic-photos__item media-zoom-frame">
+        <div class="item media-zoom-frame">
           <Picture
             src={image}
             alt={`Historic Ute Valley Park photo ${num}`}
             widths={[400, 600, 800]}
             formats={["avif", "webp"]}
-            class="historic-photos__image media-cover media-zoom media-zoom--slow"
+            class="image media-cover media-zoom media-zoom--slow"
             loading="lazy"
           />
-          <div class="historic-photos__matte media-matte" />
+          <div class="matte media-matte" />
         </div>
       ))
     }
   </div>
 
-  <div id="view-more-btn" class="historic-photos__more">
+  <div id="view-more-btn" class="more">
     <button
-      class="button historic-photos__button"
+      class="button"
       data-toggle-photos
     >
       View More Photos
     </button>
   </div>
 
-  <div id="more-photos" class="historic-photos__extra" hidden>
-    <div class="historic-photos__grid feature-grid feature-grid--two-sm feature-grid--three">
+  <div id="more-photos" class="extra" hidden>
+    <div class="grid feature-grid feature-grid--two-sm feature-grid--three">
       {
         morePhotos.map(({ image, num }) => (
-          <div class="historic-photos__item media-zoom-frame">
+          <div class="item media-zoom-frame">
             <Picture
               src={image}
               alt={`Historic Ute Valley Park photo ${num}`}
               widths={[400, 600, 800]}
               formats={["avif", "webp"]}
-              class="historic-photos__image media-cover media-zoom media-zoom--slow"
+              class="image media-cover media-zoom media-zoom--slow"
               loading="lazy"
             />
-            <div class="historic-photos__matte media-matte" />
+            <div class="matte media-matte" />
           </div>
         ))
       }
@@ -88,25 +88,25 @@ const morePhotos = sorted.slice(6);
     gap: 3rem;
   }
 
-  .historic-photos__eyebrow {
+  .historic-photos .eyebrow {
     margin-bottom: -1rem;
     --section-kicker-rule-color: var(--color-border);
   }
 
-  .historic-photos__item {
+  .historic-photos .item {
     position: relative;
     aspect-ratio: 1;
     overflow: hidden;
     background: var(--color-surface);
   }
 
-  .historic-photos__more {
+  .historic-photos .more {
     display: flex;
     justify-content: center;
     padding-top: 2rem;
   }
 
-  .historic-photos__button {
+  .historic-photos .button {
     border: 2px solid var(--color-text-strong);
     background: transparent;
     color: var(--color-text-strong);
@@ -120,21 +120,21 @@ const morePhotos = sorted.slice(6);
       transform 200ms;
   }
 
-  .historic-photos__button:hover {
+  .historic-photos .button:hover {
     background: var(--color-text-strong);
     color: var(--color-text-inverse);
   }
 
-  .historic-photos__button:active {
+  .historic-photos .button:active {
     transform: scale(0.96);
   }
 
-  .historic-photos__extra {
+  .historic-photos .extra {
     display: grid;
     gap: 3rem;
   }
 
-  .historic-photos__extra[hidden] {
+  .historic-photos .extra[hidden] {
     display: none;
   }
 

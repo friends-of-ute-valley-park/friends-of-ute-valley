@@ -7,20 +7,20 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 <EngagementPanel>
   <h2
     slot="heading"
-    class="lnt-small__title"
+    class="title"
   >
     Leave <br /> No <span>Trace.</span>
   </h2>
   <Fragment slot="subheading">Environmental Stewardship</Fragment>
   <Fragment slot="description">
-    <p class="lnt-small__description">
+    <p class="description">
       Ute Valley Park proudly supports The 7 Principles of Leave No Trace.
       Following these guidelines helps protect the park for everyone.
     </p>
-    <div class="lnt-small__rules">
+    <div class="rules">
       <a
         href="/rules/"
-        class="lnt-small__rules-link"
+        class="rules-link"
       >
         View Park Rules →
       </a>
@@ -29,14 +29,14 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
   <div
     slot="main"
-    class="lnt-small__partner"
+    class="partner"
   >
-    <a href="https://www.lnt.org" class="lnt-small__logo-link">
+    <a href="https://www.lnt.org" class="logo-link">
       <Picture
         src={lntLogo}
         alt="Leave No Trace logo"
         width="240"
-        class="lnt-small__logo"
+        class="logo"
       />
     </a>
     <span>Certified Stewardship Partner</span>
@@ -44,7 +44,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 </EngagementPanel>
 
 <style>
-  .lnt-small__title {
+  .lnt-small .title {
     margin: 0;
     color: var(--color-text-inverse);
     font-family: var(--font-display);
@@ -55,12 +55,12 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     text-transform: uppercase;
   }
 
-  .lnt-small__title span {
+  .lnt-small .title span {
     color: var(--color-accent);
     font-style: italic;
   }
 
-  .lnt-small__description {
+  .lnt-small .description {
     margin: 0;
     color: var(--color-text-subtle);
     font-size: var(--text-body-large);
@@ -68,11 +68,11 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     line-height: var(--leading-body);
   }
 
-  .lnt-small__rules {
+  .lnt-small .rules {
     padding-top: 1.5rem;
   }
 
-  .lnt-small__rules-link {
+  .lnt-small .rules-link {
     display: inline-block;
     color: var(--color-accent);
     font-family: var(--font-label);
@@ -84,11 +84,11 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     text-transform: uppercase;
   }
 
-  .lnt-small__rules-link:hover {
+  .lnt-small .rules-link:hover {
     text-decoration-color: var(--color-accent);
   }
 
-  .lnt-small__partner {
+  .lnt-small .partner {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,16 +97,16 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     padding-block: 1rem;
   }
 
-  .lnt-small__logo-link {
+  .lnt-small .logo-link {
     display: block;
   }
 
-  :global(.lnt-small__logo) {
+  :global(.lnt-small .logo) {
     width: 12rem;
     height: auto;
   }
 
-  .lnt-small__partner span {
+  .lnt-small .partner span {
     color: var(--color-text-subtle);
     font-family: var(--font-label);
     font-size: var(--text-label);

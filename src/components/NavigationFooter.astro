@@ -15,32 +15,32 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="site-footer__inner">
-    <div class="site-footer__panel">
+  <div class="inner">
+    <div class="panel">
       <!-- Branding & Legal -->
-      <div class="site-footer__brand">
-        <div class="site-footer__brand-stack">
+      <div class="brand">
+        <div class="brand-stack">
           <div>
-            <h2 class="site-footer__title">
+            <h2 class="title">
               Friends of <br />
               <span>Ute Valley Park.</span>
             </h2>
-            <p class="site-footer__summary">
+            <p class="summary">
               Established for the preservation, maintenance, and community
               education of the 550-acre Ute Valley urban wildland.
             </p>
           </div>
 
-          <div class="site-footer__social">
+          <div class="social">
             <SocialLinks />
           </div>
 
-          <div class="site-footer__legal">
+          <div class="legal">
             <p>
               Fiscally sponsored fund of the Trails and Open Space Coalition
               (501(c)(3)). Contributions are tax-deductible as permitted by law.
             </p>
-            <p class="site-footer__copyright">
+            <p class="copyright">
               © {currentYear} Friends of Ute Valley Park — ALL RIGHTS RESERVED.
             </p>
           </div>
@@ -48,16 +48,16 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <!-- Navigation Links -->
-      <div class="site-footer__nav">
+      <div class="nav">
         {
           footerItems.map((item) => (
-            <a href={item.link} class="site-footer__nav-link">
+            <a href={item.link} class="nav-link">
               <span>{item.name}</span>
               <span aria-hidden="true">→</span>
             </a>
           ))
         }
-        <a href="/sitemap-index.xml" class="site-footer__nav-link site-footer__nav-link--wide">
+        <a href="/sitemap-index.xml" class="nav-link wide">
           <span>Sitemap</span>
           <span aria-hidden="true">→</span>
         </a>
@@ -65,7 +65,7 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Coordinate Detail -->
-    <div class="site-footer__coordinates">
+    <div class="coordinates">
       <span>38.9189° N, 104.8558° W</span>
       <span>Colorado Springs, CO</span>
       <span>Urban Open Space</span>
@@ -80,29 +80,29 @@ const currentYear = new Date().getFullYear();
     padding-block: 5rem 3rem;
   }
 
-  .site-footer__inner {
+  .site-footer .inner {
     width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
     margin-inline: auto;
   }
 
-  .site-footer__panel {
+  .site-footer .panel {
     display: grid;
     gap: 3rem;
     border: 1px solid var(--color-border);
   }
 
-  .site-footer__brand {
+  .site-footer .brand {
     border-bottom: 1px solid var(--color-border);
     background: var(--color-surface);
     padding: clamp(2rem, 5vw, 3rem);
   }
 
-  .site-footer__brand-stack {
+  .site-footer .brand-stack {
     display: grid;
     gap: 2rem;
   }
 
-  .site-footer__title {
+  .site-footer .title {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -113,11 +113,11 @@ const currentYear = new Date().getFullYear();
     text-transform: uppercase;
   }
 
-  .site-footer__title span {
+  .site-footer .title span {
     color: var(--color-brand);
   }
 
-  .site-footer__summary {
+  .site-footer .summary {
     max-width: 24rem;
     margin: 1.5rem 0 0;
     color: var(--color-text-subtle);
@@ -126,17 +126,17 @@ const currentYear = new Date().getFullYear();
     line-height: var(--leading-body);
   }
 
-  .site-footer__social {
+  .site-footer .social {
     border-top: 1px solid var(--color-border-muted);
     padding-top: 2rem;
   }
 
-  .site-footer__legal {
+  .site-footer .legal {
     display: grid;
     gap: 1rem;
   }
 
-  .site-footer__legal p {
+  .site-footer .legal p {
     margin: 0;
     color: var(--color-text-subtle);
     font-family: var(--font-label);
@@ -146,17 +146,17 @@ const currentYear = new Date().getFullYear();
     text-transform: uppercase;
   }
 
-  .site-footer__legal .site-footer__copyright {
+  .site-footer .legal .copyright {
     color: var(--color-brand);
     font-weight: 900;
   }
 
-  .site-footer__nav {
+  .site-footer .nav {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .site-footer__nav-link {
+  .site-footer .nav-link {
     display: flex;
     min-height: 8rem;
     flex-direction: column;
@@ -169,11 +169,11 @@ const currentYear = new Date().getFullYear();
     transition: background-color 200ms;
   }
 
-  .site-footer__nav-link:hover {
+  .site-footer .nav-link:hover {
     background: var(--color-surface);
   }
 
-  .site-footer__nav-link span:first-child {
+  .site-footer .nav-link span:first-child {
     color: var(--color-text-subtle);
     font-family: var(--font-label);
     font-size: var(--text-label);
@@ -183,31 +183,31 @@ const currentYear = new Date().getFullYear();
     transition: color 200ms;
   }
 
-  .site-footer__nav-link span:last-child {
+  .site-footer .nav-link span:last-child {
     align-self: end;
     color: var(--color-brand);
     opacity: 0;
     transition: opacity 200ms;
   }
 
-  .site-footer__nav-link:hover span:first-child {
+  .site-footer .nav-link:hover span:first-child {
     color: var(--color-brand);
   }
 
-  .site-footer__nav-link:hover span:last-child {
+  .site-footer .nav-link:hover span:last-child {
     opacity: 1;
   }
 
-  .site-footer__nav-link--wide {
+  .site-footer .nav-link.wide {
     grid-column: span 2;
   }
 
-  .site-footer__nav-link--wide:hover span:first-child,
-  .site-footer__nav-link--wide span:last-child {
+  .site-footer .nav-link.wide:hover span:first-child,
+  .site-footer .nav-link.wide span:last-child {
     color: var(--color-accent-strong);
   }
 
-  .site-footer__coordinates {
+  .site-footer .coordinates {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -221,30 +221,30 @@ const currentYear = new Date().getFullYear();
     text-transform: uppercase;
   }
 
-  .site-footer__coordinates span:first-child,
-  .site-footer__coordinates span:last-child {
+  .site-footer .coordinates span:first-child,
+  .site-footer .coordinates span:last-child {
     color: var(--color-brand);
   }
 
-  .site-footer__coordinates span:nth-child(2) {
+  .site-footer .coordinates span:nth-child(2) {
     display: none;
   }
 
   @media (min-width: 48rem) {
-    .site-footer__nav {
+    .site-footer .nav {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .site-footer__nav-link--wide {
+    .site-footer .nav-link.wide {
       grid-column: span 1;
     }
 
-    .site-footer__coordinates {
+    .site-footer .coordinates {
       flex-direction: row;
       justify-content: space-between;
     }
 
-    .site-footer__coordinates span:nth-child(2) {
+    .site-footer .coordinates span:nth-child(2) {
       display: block;
       border-inline: 1px solid var(--color-border-muted);
       padding-inline: 2rem;
@@ -252,12 +252,12 @@ const currentYear = new Date().getFullYear();
   }
 
   @media (min-width: 64rem) {
-    .site-footer__panel {
+    .site-footer .panel {
       grid-template-columns: 5fr 7fr;
       gap: 0;
     }
 
-    .site-footer__brand {
+    .site-footer .brand {
       border-right: 1px solid var(--color-border);
       border-bottom: 0;
     }

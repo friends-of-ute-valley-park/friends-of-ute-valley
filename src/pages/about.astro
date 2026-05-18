@@ -20,12 +20,12 @@ import StatsCard from "@components/StatsCard.astro";
           </span>
         </div>
 
-        <h1 class="page-title about-hero__title">
+        <h1 class="page-title title">
           Our Story <br /> & <span>Mission.</span>
         </h1>
 
-        <div class="about-hero__layout">
-          <div class="prose-content about-hero__copy">
+        <div class="layout">
+          <div class="prose-content copy">
             <p>
               Friends of Ute Valley Park (FUVP) is an officially recognized
               "Friends" organization dedicated to maintaining, preserving, and
@@ -38,7 +38,7 @@ import StatsCard from "@components/StatsCard.astro";
               future generations.
             </p>
           </div>
-          <div class="about-hero__logo-card">
+          <div class="logo-card">
             <img
               src="/images/logo-medium.jpg"
               alt="Friends of Ute Valley logo"
@@ -56,38 +56,38 @@ import StatsCard from "@components/StatsCard.astro";
     <!-- Structural Records -->
     <section class="about-records">
       <div class="page-section__inner">
-        <div class="about-records__layout">
+        <div class="layout">
           <div class="about-toc">
-            <div class="about-toc__sticky">
+            <div class="sticky">
               <h3>
                 About Our Work
               </h3>
-              <nav class="about-toc__links" data-about-toc>
+              <nav class="links" data-about-toc>
                 <a
                   href="#history"
-                  class="about-toc__link"
+                  class="link"
                   >01. Our History</a
                 >
                 <a
                   href="#stewardship"
-                  class="about-toc__link"
+                  class="link"
                   >02. How We Care for the Park</a
                 >
                 <a
                   href="#awards"
-                  class="about-toc__link"
+                  class="link"
                   >03. Awards & Recognition</a
                 >
                 <a
                   href="#structure"
-                  class="about-toc__link"
+                  class="link"
                   >04. Our Structure</a
                 >
               </nav>
             </div>
           </div>
 
-          <div class="about-records__content">
+          <div class="content">
             <!-- History -->
             <div id="history" class="about-record">
               <h2>
@@ -173,7 +173,7 @@ import StatsCard from "@components/StatsCard.astro";
                       title: "Dan Woods SuperGroup MVP Award",
                     },
                   ].map((award) => (
-                    <div class="award-list__item">
+                    <div class="item">
                       <span>
                         {award.year}
                       </span>
@@ -192,7 +192,7 @@ import StatsCard from "@components/StatsCard.astro";
                 Our <span>Structure.</span>
               </h2>
               <div class="structure-card">
-                <div class="structure-card__content">
+                <div class="content">
                   <p>
                     FUVP operates as a committee under the fiscal sponsorship of
                     the Trails and Open Spaces Coalition (TOSC).
@@ -202,7 +202,7 @@ import StatsCard from "@components/StatsCard.astro";
                     to utilize TOSC's 501(C)(3) non-profit status as we pursue
                     our mission.
                   </p>
-                  <div class="structure-card__facts">
+                  <div class="facts">
                     <div>
                       <p>
                         Status
@@ -221,7 +221,7 @@ import StatsCard from "@components/StatsCard.astro";
                     </div>
                   </div>
                 </div>
-                <div class="structure-card__marker"></div>
+                <div class="marker"></div>
               </div>
             </div>
           </div>
@@ -237,7 +237,7 @@ import StatsCard from "@components/StatsCard.astro";
     <!-- Photographic Evidence -->
     <section class="about-gallery">
       <div class="page-section__inner">
-        <div class="about-gallery__heading">
+        <div class="heading">
           <h2>
             Park <span>Gallery.</span>
           </h2>
@@ -248,19 +248,19 @@ import StatsCard from "@components/StatsCard.astro";
 
     <!-- Technical Surveys -->
     <section class="survey-report">
-      <div class="survey-report__inner">
-        <div class="survey-report__card">
-          <div class="survey-report__code"></div>
+      <div class="inner">
+        <div class="card">
+          <div class="code"></div>
           <h2>
             Coal Mine <span>Survey Report.</span>
           </h2>
-          <div class="survey-report__media">
+          <div class="media">
             <img
               src="/images/colorado-land-survey-preview.jpg"
               alt="Coal mine survey"
             />
           </div>
-          <div class="survey-report__footer">
+          <div class="footer">
             <div>
               <p>
                 1983 Colorado Front Range Inactive Coal Mine Data (El Paso
@@ -303,12 +303,12 @@ import StatsCard from "@components/StatsCard.astro";
 
     const setActive = (id: string) => {
       links.forEach((link) => {
-        link.classList.remove("about-toc__link--active");
+        link.classList.remove("link active");
         link.removeAttribute("aria-current");
       });
       const active = linkById.get(id);
       if (active) {
-        active.classList.add("about-toc__link--active");
+        active.classList.add("link active");
         active.setAttribute("aria-current", "location");
       }
     };
@@ -342,28 +342,28 @@ import StatsCard from "@components/StatsCard.astro";
 </script>
 
 <style>
-  .about-hero__title {
+  .about-hero .title {
     margin-bottom: 3rem;
   }
 
-  .about-hero__layout {
+  .about-hero .layout {
     display: grid;
     align-items: start;
     gap: 3rem;
   }
 
-  .about-hero__copy {
+  .about-hero .copy {
     color: var(--color-text-muted);
     font-size: var(--text-body-large);
   }
 
-  .about-hero__logo-card {
+  .about-hero .logo-card {
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     padding: 2rem;
   }
 
-  .about-hero__logo-card img {
+  .about-hero .logo-card img {
     display: block;
     width: 100%;
     height: auto;
@@ -384,7 +384,7 @@ import StatsCard from "@components/StatsCard.astro";
     padding-block: var(--space-section);
   }
 
-  .about-records__layout {
+  .about-records .layout {
     display: grid;
     gap: 4rem;
   }
@@ -393,7 +393,7 @@ import StatsCard from "@components/StatsCard.astro";
     display: none;
   }
 
-  .about-toc__sticky {
+  .about-toc .sticky {
     position: sticky;
     top: 6rem;
     display: grid;
@@ -410,17 +410,17 @@ import StatsCard from "@components/StatsCard.astro";
     text-transform: uppercase;
   }
 
-  .about-toc__links,
-  .about-records__content,
+  .about-toc .links,
+  .about-records .content,
   .about-record {
     display: grid;
   }
 
-  .about-toc__links {
+  .about-toc .links {
     gap: 1rem;
   }
 
-  .about-toc__link {
+  .about-toc .link {
     color: var(--color-text-subtle);
     font-family: var(--font-label);
     font-size: 0.75rem;
@@ -430,12 +430,12 @@ import StatsCard from "@components/StatsCard.astro";
     transition: color 200ms;
   }
 
-  .about-toc__link:hover,
-  .about-toc__link--active {
+  .about-toc .link:hover,
+  .about-toc .link.active {
     color: var(--color-brand);
   }
 
-  .about-records__content {
+  .about-records .content {
     gap: 6rem;
   }
 
@@ -445,7 +445,7 @@ import StatsCard from "@components/StatsCard.astro";
   }
 
   .about-record h2,
-  .about-gallery__heading h2 {
+  .about-gallery .heading h2 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -456,7 +456,7 @@ import StatsCard from "@components/StatsCard.astro";
   }
 
   .about-record h2 span,
-  .about-gallery__heading h2 span,
+  .about-gallery .heading h2 span,
   .survey-report h2 span {
     color: var(--color-brand-strong);
     font-style: italic;
@@ -501,7 +501,7 @@ import StatsCard from "@components/StatsCard.astro";
     border: 1px solid var(--color-border);
   }
 
-  .award-list__item {
+  .award-list .item {
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -510,15 +510,15 @@ import StatsCard from "@components/StatsCard.astro";
     transition: background-color 200ms;
   }
 
-  .award-list__item:last-child {
+  .award-list .item:last-child {
     border-bottom: 0;
   }
 
-  .award-list__item:hover {
+  .award-list .item:hover {
     background: var(--color-surface);
   }
 
-  .award-list__item span:first-child {
+  .award-list .item span:first-child {
     min-width: 3rem;
     color: var(--color-brand-strong);
     font-family: var(--font-label);
@@ -526,7 +526,7 @@ import StatsCard from "@components/StatsCard.astro";
     font-weight: 900;
   }
 
-  .award-list__item span:last-child {
+  .award-list .item span:last-child {
     color: var(--color-text-muted);
     font-family: var(--font-label);
     font-size: 0.75rem;
@@ -543,14 +543,14 @@ import StatsCard from "@components/StatsCard.astro";
     padding: clamp(2rem, 4vw, 3rem);
   }
 
-  .structure-card__content {
+  .structure-card .content {
     position: relative;
     z-index: 1;
     display: grid;
     gap: 1.5rem;
   }
 
-  .structure-card__content > p {
+  .structure-card .content > p {
     margin: 0;
     color: var(--color-text-inverse-muted);
     font-size: var(--text-body-large);
@@ -558,7 +558,7 @@ import StatsCard from "@components/StatsCard.astro";
     line-height: var(--leading-body);
   }
 
-  .structure-card__facts {
+  .structure-card .facts {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
@@ -566,26 +566,26 @@ import StatsCard from "@components/StatsCard.astro";
     padding-top: 2rem;
   }
 
-  .structure-card__facts p {
+  .structure-card .facts p {
     margin: 0;
     font-family: var(--font-label);
     text-transform: uppercase;
   }
 
-  .structure-card__facts p:first-child {
+  .structure-card .facts p:first-child {
     margin-bottom: 0.25rem;
     color: var(--color-text-subtle);
     font-size: var(--text-label);
     letter-spacing: 0.12em;
   }
 
-  .structure-card__facts p:last-child {
+  .structure-card .facts p:last-child {
     color: var(--color-text-inverse);
     font-size: 0.75rem;
     font-weight: 900;
   }
 
-  .structure-card__marker {
+  .structure-card .marker {
     position: absolute;
     top: 0;
     right: 0;
@@ -595,7 +595,7 @@ import StatsCard from "@components/StatsCard.astro";
     transform: translate(50%, -50%) rotate(45deg);
   }
 
-  .about-gallery__heading {
+  .about-gallery .heading {
     margin-bottom: 3rem;
   }
 
@@ -603,12 +603,12 @@ import StatsCard from "@components/StatsCard.astro";
     background: var(--color-surface-muted);
   }
 
-  .survey-report__inner {
+  .survey-report .inner {
     width: min(100% - (var(--space-page-x) * 2), 56rem);
     margin-inline: auto;
   }
 
-  .survey-report__card {
+  .survey-report .card {
     position: relative;
     border: 2px solid var(--color-border-strong);
     background: var(--color-surface);
@@ -627,7 +627,7 @@ import StatsCard from "@components/StatsCard.astro";
     text-transform: uppercase;
   }
 
-  .survey-report__media {
+  .survey-report .media {
     aspect-ratio: 16 / 9;
     overflow: hidden;
     border: 1px solid var(--color-border);
@@ -635,14 +635,14 @@ import StatsCard from "@components/StatsCard.astro";
     margin-bottom: 2rem;
   }
 
-  .survey-report__media img {
+  .survey-report .media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 700ms;
   }
 
-  .survey-report__footer {
+  .survey-report .footer {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -650,11 +650,11 @@ import StatsCard from "@components/StatsCard.astro";
     gap: 2rem;
   }
 
-  .survey-report__footer > div {
+  .survey-report .footer > div {
     max-width: 28rem;
   }
 
-  .survey-report__footer p {
+  .survey-report .footer p {
     margin: 0;
     color: var(--color-text-muted);
     font-size: var(--text-body-small);
@@ -667,18 +667,18 @@ import StatsCard from "@components/StatsCard.astro";
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .survey-report__footer {
+    .survey-report .footer {
       flex-direction: row;
       align-items: flex-end;
     }
   }
 
   @media (min-width: 64rem) {
-    .about-hero__layout {
+    .about-hero .layout {
       grid-template-columns: 7fr 5fr;
     }
 
-    .about-records__layout {
+    .about-records .layout {
       grid-template-columns: 4fr 8fr;
     }
 

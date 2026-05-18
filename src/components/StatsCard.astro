@@ -11,22 +11,22 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
 ---
 
 <div class="impact-stats">
-  <div class="impact-stats__layout">
+  <div class="layout">
     <!-- Image with technical frame -->
-    <div class="impact-stats__media">
+    <div class="media">
       <Image
         src={Volunteers}
         alt="Volunteers in action"
-        class="impact-stats__image media-cover"
+        class="image media-cover"
       />
-      <div class="impact-stats__matte media-matte"></div>
+      <div class="matte media-matte"></div>
     </div>
 
     <!-- Stats Content -->
-    <div class="impact-stats__content">
-      <div class="impact-stats__stack">
-        <div class="impact-stats__heading section-heading">
-          <div class="impact-stats__eyebrow section-kicker">
+    <div class="content">
+      <div class="stack">
+        <div class="heading section-heading">
+          <div class="eyebrow section-kicker">
             <span class="section-kicker__rule"></span>
             <span class="section-kicker__text">Year in Review: 2024</span>
           </div>
@@ -39,10 +39,10 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
           </p>
         </div>
 
-        <div class="impact-stats__grid feature-grid">
+        <div class="grid feature-grid">
           {
             stats.map((stat) => (
-              <div class="impact-stats__stat">
+              <div class="stat">
                 <div>
                   {stat.value}
                 </div>
@@ -66,34 +66,34 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
     background: var(--color-surface);
   }
 
-  .impact-stats__layout {
+  .impact-stats .layout {
     display: grid;
   }
 
-  .impact-stats__media {
+  .impact-stats .media {
     position: relative;
     height: 24rem;
     overflow: hidden;
     border-bottom: 1px solid var(--color-border);
   }
 
-  .impact-stats__matte {
+  .impact-stats .matte {
     --media-matte-border: 1.5rem solid color-mix(in oklab, var(--color-surface) 10%, transparent);
   }
 
-  .impact-stats__content {
+  .impact-stats .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: clamp(2rem, 5vw, 4rem);
   }
 
-  .impact-stats__stack {
+  .impact-stats .stack {
     display: grid;
     gap: 3rem;
   }
 
-  .impact-stats__heading {
+  .impact-stats .heading {
     --section-heading-title-size: clamp(2.25rem, 5vw, 3rem);
     --section-heading-accent-style: normal;
     --section-heading-copy-width: 36rem;
@@ -101,7 +101,7 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
     --section-kicker-text-color: var(--color-accent-strong);
   }
 
-  .impact-stats__stat div:last-child {
+  .impact-stats .stat div:last-child {
     font-family: var(--font-label);
     font-size: var(--text-label);
     font-weight: 900;
@@ -109,13 +109,13 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
     text-transform: uppercase;
   }
 
-  .impact-stats__grid {
+  .impact-stats .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     --feature-grid-border-color: var(--color-border-muted);
     --feature-grid-background: var(--color-border-muted);
   }
 
-  .impact-stats__stat {
+  .impact-stats .stat {
     display: grid;
     gap: 0.25rem;
     background: var(--color-surface);
@@ -123,11 +123,11 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
     transition: background-color 200ms;
   }
 
-  .impact-stats__stat:hover {
+  .impact-stats .stat:hover {
     background: var(--color-page);
   }
 
-  .impact-stats__stat div:first-child {
+  .impact-stats .stat div:first-child {
     color: var(--color-text-strong);
     font-family: var(--font-label);
     font-size: clamp(1.875rem, 4vw, 2.25rem);
@@ -136,16 +136,16 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
     font-variant-numeric: tabular-nums;
   }
 
-  .impact-stats__stat div:last-child {
+  .impact-stats .stat div:last-child {
     color: var(--color-text-subtle);
   }
 
   @media (min-width: 64rem) {
-    .impact-stats__layout {
+    .impact-stats .layout {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .impact-stats__media {
+    .impact-stats .media {
       height: auto;
       border-right: 1px solid var(--color-border);
       border-bottom: 0;

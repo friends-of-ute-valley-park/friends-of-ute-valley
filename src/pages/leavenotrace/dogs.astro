@@ -78,10 +78,10 @@ const rules = [
   <main class="page dogs-page">
     <!-- Dogs Hero -->
     <section class="dogs-hero">
-      <div class="dogs-hero__layout">
+      <div class="layout">
         <!-- Identity Column -->
-        <div class="dogs-hero__identity">
-          <div class="dogs-hero__stack">
+        <div class="identity">
+          <div class="stack">
             <div class="page-eyebrow">
               <span>
                 Visiting With Dogs
@@ -99,11 +99,11 @@ const rules = [
               leash at all times.
             </p>
 
-            <div class="dogs-hero__actions">
+            <div class="actions">
               <a href="#rules" class="button button--brand"> Leash Rules </a>
               <a
                 href="#off-leash"
-                class="dogs-hero__secondary-link"
+                class="secondary-link"
               >
                 Off-Leash Dog Parks
               </a>
@@ -112,9 +112,9 @@ const rules = [
         </div>
 
         <!-- Visual Context -->
-        <div class="dogs-hero__gallery">
-          <div class="dogs-hero__gallery-grid">
-            <div class="dogs-hero__gallery-column">
+        <div class="gallery">
+          <div class="gallery-grid">
+            <div class="gallery-column">
               {
                 dogs.slice(0, 2).map((dog) => (
                   <div class="dog-tile">
@@ -128,7 +128,7 @@ const rules = [
                         formats={["avif", "webp"]}
                         alt="Dog at Ute Valley Park"
                         width={400}
-                        class="dog-tile__image"
+                        class="image"
                       />
                       <p>
                         @{dog.handle}
@@ -138,7 +138,7 @@ const rules = [
                 ))
               }
             </div>
-            <div class="dogs-hero__gallery-column">
+            <div class="gallery-column">
               {
                 dogs.slice(2, 5).map((dog) => (
                   <div class="dog-tile">
@@ -152,7 +152,7 @@ const rules = [
                         formats={["avif", "webp"]}
                         alt="Dog at Ute Valley Park"
                         width={400}
-                        class="dog-tile__image"
+                        class="image"
                       />
                       <p>
                         @{dog.handle}
@@ -163,7 +163,7 @@ const rules = [
               }
             </div>
           </div>
-          <div class="dogs-hero__badge">
+          <div class="badge">
             Dogs of Ute Valley
           </div>
         </div>
@@ -173,19 +173,19 @@ const rules = [
     <!-- Leash Rules -->
     <section class="page-section dogs-rules">
       <div class="page-section__inner">
-        <div class="dogs-rules__layout">
+        <div class="layout">
           <div>
             <h2>
               Leash <br />
               <span>Rules.</span>
             </h2>
-            <div class="dogs-rules__photo">
+            <div class="photo">
               <Picture
                 src={DogImage}
                 formats={["avif", "webp"]}
                 alt="Dog in park"
                 width="800"
-                class="dogs-rules__image"
+                class="image"
               />
               <div>
                 Good dog!
@@ -193,9 +193,9 @@ const rules = [
             </div>
           </div>
 
-          <div class="dogs-rules__content">
+          <div class="content">
             <div>
-              <p class="dogs-rules__kicker">
+              <p class="kicker">
                 Why Leash Rules Matter
               </p>
               <div class="dogs-reason-list">
@@ -215,13 +215,13 @@ const rules = [
             </div>
 
             <div id="rules">
-              <p class="dogs-rules__kicker">
+              <p class="kicker">
                 Here's Why
               </p>
               <div class="dog-rule-list">
                 {
                   rules.map((rule) => (
-                    <div class="dog-rule-list__item">
+                    <div class="item">
                       <div />
                       <p>
                         {rule}
@@ -239,7 +239,7 @@ const rules = [
     <!-- Off-Leash Dog Parks Nearby -->
     <section id="off-leash" class="off-leash-parks">
       <div class="page-section__inner">
-        <div class="off-leash-parks__header">
+        <div class="header">
           <div>
             <h2>
               Off-Leash Dog <span>Parks Nearby.</span>
@@ -258,13 +258,13 @@ const rules = [
           {
             otherParks.map((park) => (
               <div class="dog-park-card">
-                <div class="dog-park-card__media">
+                <div class="media">
                   <img
                     src={park.image}
                     alt={park.name}
                   />
                 </div>
-                <div class="dog-park-card__body">
+                <div class="body">
                   <div>
                     <p>
                       {park.type} Park
@@ -274,7 +274,7 @@ const rules = [
                     </h3>
                   </div>
 
-                  <div class="dog-park-card__stats">
+                  <div class="stats">
                     <div>
                       <p>
                         Dist
@@ -293,7 +293,7 @@ const rules = [
                     </div>
                   </div>
 
-                  <div class="dog-park-card__links">
+                  <div class="links">
                     <a
                       href={park.mapLink}
                     >
@@ -322,20 +322,20 @@ const rules = [
     border-bottom: 1px solid var(--color-border);
   }
 
-  .dogs-hero__layout {
+  .dogs-hero .layout {
     display: grid;
   }
 
-  .dogs-hero__identity {
+  .dogs-hero .identity {
     padding: clamp(3rem, 8vw, 8rem) var(--space-page-x) clamp(5rem, 10vw, 10rem);
   }
 
-  .dogs-hero__stack {
+  .dogs-hero .stack {
     display: grid;
     gap: 2rem;
   }
 
-  .dogs-hero__stack > p {
+  .dogs-hero .stack > p {
     max-width: 36rem;
     margin: 0;
     color: var(--color-text-muted);
@@ -344,14 +344,14 @@ const rules = [
     line-height: var(--leading-body);
   }
 
-  .dogs-hero__actions {
+  .dogs-hero .actions {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     padding-top: 1rem;
   }
 
-  .dogs-hero__secondary-link {
+  .dogs-hero .secondary-link {
     border: 2px solid var(--color-text-strong);
     color: var(--color-text-strong);
     padding: 1rem 2rem;
@@ -366,22 +366,22 @@ const rules = [
       transform 200ms;
   }
 
-  .dogs-hero__secondary-link:hover {
+  .dogs-hero .secondary-link:hover {
     background: var(--color-page);
   }
 
-  .dogs-hero__secondary-link:active {
+  .dogs-hero .secondary-link:active {
     transform: scale(0.96);
   }
 
-  .dogs-hero__gallery {
+  .dogs-hero .gallery {
     position: relative;
     min-height: 25rem;
     overflow: hidden;
     background: var(--color-page);
   }
 
-  .dogs-hero__gallery-grid {
+  .dogs-hero .gallery-grid {
     position: absolute;
     inset: 0;
     display: grid;
@@ -390,7 +390,7 @@ const rules = [
     padding: 0.75rem;
   }
 
-  .dogs-hero__gallery-column {
+  .dogs-hero .gallery-column {
     display: grid;
     align-content: center;
     gap: 0.75rem;
@@ -404,7 +404,7 @@ const rules = [
     background: var(--color-surface);
   }
 
-  :global(.dog-tile__image) {
+  :global(.dog-tile .image) {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -427,7 +427,7 @@ const rules = [
     text-transform: uppercase;
   }
 
-  .dogs-hero__badge {
+  .dogs-hero .badge {
     position: absolute;
     bottom: 2rem;
     left: 2rem;
@@ -448,14 +448,14 @@ const rules = [
     background: var(--color-surface);
   }
 
-  .dogs-rules__layout {
+  .dogs-rules .layout {
     display: grid;
     align-items: start;
     gap: 4rem;
   }
 
   .dogs-rules h2,
-  .off-leash-parks__header h2 {
+  .off-leash-parks .header h2 {
     margin: 0 0 2rem;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -467,12 +467,12 @@ const rules = [
   }
 
   .dogs-rules h2 span,
-  .off-leash-parks__header h2 span {
+  .off-leash-parks .header h2 span {
     color: var(--color-brand-strong);
     font-style: italic;
   }
 
-  .dogs-rules__photo {
+  .dogs-rules .photo {
     position: relative;
     aspect-ratio: 1;
     overflow: hidden;
@@ -480,14 +480,14 @@ const rules = [
     background: var(--color-surface-muted);
   }
 
-  :global(.dogs-rules__image) {
+  :global(.dogs-rules .image) {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 1000ms;
   }
 
-  .dogs-rules__photo > div {
+  .dogs-rules .photo > div {
     position: absolute;
     bottom: 1rem;
     left: 1rem;
@@ -499,12 +499,12 @@ const rules = [
     text-transform: uppercase;
   }
 
-  .dogs-rules__content {
+  .dogs-rules .content {
     display: grid;
     gap: 3rem;
   }
 
-  .dogs-rules__kicker {
+  .dogs-rules .kicker {
     margin: 0 0 1rem;
     color: var(--color-text-subtle);
     font-family: var(--font-label);
@@ -547,7 +547,7 @@ const rules = [
     border: 1px solid var(--color-border);
   }
 
-  .dog-rule-list__item {
+  .dog-rule-list .item {
     display: flex;
     align-items: center;
     gap: 1.5rem;
@@ -556,22 +556,22 @@ const rules = [
     transition: background-color 200ms;
   }
 
-  .dog-rule-list__item:last-child {
+  .dog-rule-list .item:last-child {
     border-bottom: 0;
   }
 
-  .dog-rule-list__item:hover {
+  .dog-rule-list .item:hover {
     background: var(--color-page);
   }
 
-  .dog-rule-list__item div {
+  .dog-rule-list .item div {
     width: 0.5rem;
     height: 0.5rem;
     flex-shrink: 0;
     background: var(--color-accent);
   }
 
-  .dog-rule-list__item p {
+  .dog-rule-list .item p {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-label);
@@ -586,7 +586,7 @@ const rules = [
     padding-block: var(--space-section);
   }
 
-  .off-leash-parks__header {
+  .off-leash-parks .header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -595,17 +595,17 @@ const rules = [
     margin-bottom: 4rem;
   }
 
-  .off-leash-parks__header h2 {
+  .off-leash-parks .header h2 {
     margin-bottom: 1rem;
   }
 
-  .off-leash-parks__header p {
+  .off-leash-parks .header p {
     margin: 0;
     color: var(--color-text-subtle);
     font-weight: 500;
   }
 
-  .off-leash-parks__header > a {
+  .off-leash-parks .header > a {
     color: var(--color-brand-strong);
     font-family: var(--font-label);
     font-size: 0.75rem;
@@ -631,21 +631,21 @@ const rules = [
     background: var(--color-surface);
   }
 
-  .dog-park-card__media {
+  .dog-park-card .media {
     aspect-ratio: 16 / 10;
     overflow: hidden;
     border-bottom: 1px solid var(--color-border-muted);
     background: var(--color-surface-muted);
   }
 
-  .dog-park-card__media img {
+  .dog-park-card .media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 700ms;
   }
 
-  .dog-park-card__body {
+  .dog-park-card .body {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -653,8 +653,8 @@ const rules = [
     padding: 2rem;
   }
 
-  .dog-park-card__body > div:first-child p,
-  .dog-park-card__stats p:first-child {
+  .dog-park-card .body > div:first-child p,
+  .dog-park-card .stats p:first-child {
     margin: 0;
     color: var(--color-text-subtle);
     font-family: var(--font-label);
@@ -675,7 +675,7 @@ const rules = [
     text-transform: uppercase;
   }
 
-  .dog-park-card__stats {
+  .dog-park-card .stats {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
@@ -683,12 +683,12 @@ const rules = [
     padding-block: 1rem;
   }
 
-  .dog-park-card__stats div {
+  .dog-park-card .stats div {
     display: grid;
     gap: 0.25rem;
   }
 
-  .dog-park-card__stats p:last-child {
+  .dog-park-card .stats p:last-child {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-label);
@@ -697,14 +697,14 @@ const rules = [
     text-transform: uppercase;
   }
 
-  .dog-park-card__links {
+  .dog-park-card .links {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     padding-top: 1rem;
   }
 
-  .dog-park-card__links a {
+  .dog-park-card .links a {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -724,12 +724,12 @@ const rules = [
       transform 200ms;
   }
 
-  .dog-park-card__links a:hover {
+  .dog-park-card .links a:hover {
     background: var(--color-surface-inverse);
     color: var(--color-text-inverse);
   }
 
-  .dog-park-card__links a:active {
+  .dog-park-card .links a:active {
     transform: scale(0.96);
   }
 
@@ -740,23 +740,23 @@ const rules = [
   }
 
   @media (min-width: 48rem) {
-    .off-leash-parks__header {
+    .off-leash-parks .header {
       flex-direction: row;
       align-items: flex-end;
     }
   }
 
   @media (min-width: 64rem) {
-    .dogs-hero__layout {
+    .dogs-hero .layout {
       grid-template-columns: 7fr 5fr;
     }
 
-    .dogs-hero__identity {
+    .dogs-hero .identity {
       border-right: 1px solid var(--color-border);
       padding-inline: var(--space-page-x) 3rem;
     }
 
-    .dogs-rules__layout {
+    .dogs-rules .layout {
       grid-template-columns: 5fr 7fr;
     }
 

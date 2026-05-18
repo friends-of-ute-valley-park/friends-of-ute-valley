@@ -49,7 +49,7 @@ const { entry } = Astro.props;
       <div class="article-layout__inner">
         <div class="trailhead-layout">
           <!-- Details -->
-          <div class="trailhead-layout__details">
+          <div class="details">
             <div class="trailhead-stack">
               <div class="trailhead-block">
                 <h3>
@@ -99,7 +99,7 @@ const { entry } = Astro.props;
           </div>
 
           <!-- Cartographic Context -->
-          <div class="trailhead-layout__map-wrap">
+          <div class="map-wrap">
             <div class="trailhead-map-card">
               <Picture
                 class="trailhead-map"
@@ -116,7 +116,7 @@ const { entry } = Astro.props;
     <!-- Visual Documentation -->
     <section class="page-section">
       <div class="page-section__inner">
-        <div class="trailhead-docs__header">
+        <div class="header">
           <h2>
             Site <span>Documentation.</span>
           </h2>
@@ -126,14 +126,14 @@ const { entry } = Astro.props;
           {
             entry.data.photos.map((photo) => (
               <div class="trailhead-photo">
-                <div class="trailhead-photo__media media-frame media-zoom-frame">
+                <div class="media media-frame media-zoom-frame">
                   <Picture
-                    class="trailhead-photo__image media-cover media-zoom media-zoom--slow"
+                    class="image media-cover media-zoom media-zoom--slow"
                     src={photo.photo}
                     alt={photo.caption}
                     width={800}
                   />
-                  <div class="trailhead-photo__matte media-matte" />
+                  <div class="matte media-matte" />
                 </div>
                 <p>
                   {photo.caption}
@@ -152,7 +152,7 @@ const { entry } = Astro.props;
     display: grid;
   }
 
-  .trailhead-layout__details {
+  .trailhead-layout .details {
     padding: var(--space-section) var(--space-page-x);
   }
 
@@ -227,7 +227,7 @@ const { entry } = Astro.props;
     justify-content: center;
   }
 
-  .trailhead-layout__map-wrap {
+  .trailhead-layout .map-wrap {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -249,11 +249,11 @@ const { entry } = Astro.props;
     transition: transform 700ms;
   }
 
-  .trailhead-docs__header {
+  .trailhead-docs .header {
     margin-bottom: 4rem;
   }
 
-  .trailhead-docs__header h2 {
+  .trailhead-docs .header h2 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -263,7 +263,7 @@ const { entry } = Astro.props;
     text-transform: uppercase;
   }
 
-  .trailhead-docs__header h2 span {
+  .trailhead-docs .header h2 span {
     color: var(--color-brand-strong);
     font-style: italic;
   }
@@ -278,12 +278,12 @@ const { entry } = Astro.props;
     gap: 1.5rem;
   }
 
-  .trailhead-photo__media {
+  .trailhead-photo .media {
     position: relative;
     aspect-ratio: 16 / 10;
   }
 
-  .trailhead-photo__matte {
+  .trailhead-photo .matte {
     --media-matte-border: 1rem solid color-mix(in oklab, var(--color-surface) 10%, transparent);
   }
 
@@ -309,7 +309,7 @@ const { entry } = Astro.props;
       grid-template-columns: 5fr 7fr;
     }
 
-    .trailhead-layout__details {
+    .trailhead-layout .details {
       border-right: 1px solid var(--color-border);
       padding-inline: var(--space-page-x) 3rem;
     }

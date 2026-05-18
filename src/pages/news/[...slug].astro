@@ -27,11 +27,11 @@ const { Content } = await render(entry);
           </span>
         </div>
 
-        <h1 class="news-detail__title">
+        <h1 class="title">
           {entry.data.title}
         </h1>
 
-        <div class="news-detail__meta">
+        <div class="meta">
           <span>
             Publish Date
           </span>
@@ -47,7 +47,7 @@ const { Content } = await render(entry);
     <!-- Field Report -->
     <section class="page-section">
       <div class="page-section__inner">
-        <div class="news-detail__layout">
+        <div class="layout">
           <div>
             <div class="article-photo-card">
               <Picture
@@ -55,15 +55,15 @@ const { Content } = await render(entry);
                 formats={["avif", "webp"]}
                 width={1200}
                 height={800}
-                class="news-detail__image"
+                class="image"
                 src={entry.data.coverImage}
                 alt={`${entry.data.title} cover image`}
               />
             </div>
           </div>
           <div>
-            <div class="news-detail__notes">
-              <div class="news-detail__notes-eyebrow">
+            <div class="notes">
+              <div class="notes-eyebrow">
                 <span></span>
                 <span>
                   Field Notes
@@ -81,7 +81,7 @@ const { Content } = await render(entry);
 </Layout>
 
 <style>
-  .news-detail__title {
+  .news-detail .title {
     max-width: 62rem;
     margin: 0;
     color: var(--color-text-strong);
@@ -93,7 +93,7 @@ const { Content } = await render(entry);
     text-transform: uppercase;
   }
 
-  .news-detail__meta {
+  .news-detail .meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -101,66 +101,66 @@ const { Content } = await render(entry);
     margin-top: 1.5rem;
   }
 
-  .news-detail__meta span,
-  .news-detail__meta time,
-  .news-detail__notes-eyebrow span:last-child {
+  .news-detail .meta span,
+  .news-detail .meta time,
+  .news-detail .notes-eyebrow span:last-child {
     font-family: var(--font-label);
     font-weight: 900;
     text-transform: uppercase;
   }
 
-  .news-detail__meta span {
+  .news-detail .meta span {
     color: var(--color-brand-strong);
     font-size: var(--text-label);
     letter-spacing: var(--tracking-label);
   }
 
-  .news-detail__meta time {
+  .news-detail .meta time {
     color: var(--color-text-muted);
     font-size: 0.75rem;
     letter-spacing: 0.12em;
   }
 
-  .news-detail__layout {
+  .news-detail .layout {
     display: grid;
     align-items: start;
     gap: 3rem;
   }
 
-  :global(.news-detail__image) {
+  :global(.news-detail .image) {
     width: 100%;
     height: auto;
     object-fit: cover;
   }
 
-  .news-detail__notes {
+  .news-detail .notes {
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     padding: 2rem;
   }
 
-  .news-detail__notes-eyebrow {
+  .news-detail .notes-eyebrow {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
   }
 
-  .news-detail__notes-eyebrow span:first-child {
+  .news-detail .notes-eyebrow span:first-child {
     display: inline-block;
     width: 2rem;
     height: 1px;
     background: var(--color-brand-strong);
   }
 
-  .news-detail__notes-eyebrow span:last-child {
+  .news-detail .notes-eyebrow span:last-child {
     color: var(--color-text-subtle);
     font-size: var(--text-label);
     letter-spacing: var(--tracking-label);
   }
 
   @media (min-width: 64rem) {
-    .news-detail__layout {
+    .news-detail .layout {
       grid-template-columns: 7fr 5fr;
     }
   }

@@ -20,15 +20,15 @@ const formattedDate = computed(() => {
 
 <template>
   <div class="volunteer-item">
-    <div class="volunteer-item__details">
-      <div class="volunteer-item__heading">
+    <div class="details">
+      <div class="heading">
         <span>Event</span>
         <h2>
           <a :href="'/events/' + volunteerEvent.id">{{ volunteerEvent.data.title }}</a>
         </h2>
       </div>
 
-      <div class="volunteer-item__meta">
+      <div class="meta">
         <div>
           <p>Date & Time</p>
           <p>
@@ -43,17 +43,17 @@ const formattedDate = computed(() => {
         </div>
       </div>
 
-      <div v-if="volunteerEvent.data.meetingLocation.notes" class="volunteer-item__notes">
+      <div v-if="volunteerEvent.data.meetingLocation.notes" class="notes">
         <p>Meeting Details</p>
         <p>{{ volunteerEvent.data.meetingLocation.notes }}</p>
       </div>
     </div>
 
-    <div class="volunteer-item__actions">
-      <a :href="volunteerEvent.data.link" class="button button--brand volunteer-item__register"> Register </a>
+    <div class="actions">
+      <a :href="volunteerEvent.data.link" class="button button--brand register"> Register </a>
       <a
         href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
-        class="button button--quiet volunteer-item__release">
+        class="button button--quiet release">
         Consent and Release Form
       </a>
     </div>
@@ -70,19 +70,19 @@ const formattedDate = computed(() => {
     gap: 2rem;
   }
 
-  .volunteer-item__details {
+  .volunteer-item .details {
     display: grid;
     flex: 1;
     gap: 1rem;
   }
 
-  .volunteer-item__heading {
+  .volunteer-item .heading {
     display: flex;
     align-items: center;
     gap: 0.75rem;
   }
 
-  .volunteer-item__heading > span {
+  .volunteer-item .heading > span {
     color: var(--color-accent-strong);
     font-family: var(--font-label);
     font-size: var(--text-label);
@@ -91,7 +91,7 @@ const formattedDate = computed(() => {
     text-transform: uppercase;
   }
 
-  .volunteer-item__heading h2 {
+  .volunteer-item .heading h2 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -103,41 +103,41 @@ const formattedDate = computed(() => {
     text-transform: uppercase;
   }
 
-  .volunteer-item__heading a,
-  .volunteer-item__meta a {
+  .volunteer-item .heading a,
+  .volunteer-item .meta a {
     color: inherit;
     transition: color 200ms;
   }
 
-  .volunteer-item__heading a {
+  .volunteer-item .heading a {
     text-decoration: none;
   }
 
-  .volunteer-item__heading a:hover,
-  .volunteer-item__meta a:hover {
+  .volunteer-item .heading a:hover,
+  .volunteer-item .meta a:hover {
     color: var(--color-brand-strong);
   }
 
-  .volunteer-item__meta {
+  .volunteer-item .meta {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
     padding-top: 0.5rem;
   }
 
-  .volunteer-item__meta div,
-  .volunteer-item__notes {
+  .volunteer-item .meta div,
+  .volunteer-item .notes {
     display: grid;
     gap: 0.25rem;
   }
 
-  .volunteer-item__meta p,
-  .volunteer-item__notes p {
+  .volunteer-item .meta p,
+  .volunteer-item .notes p {
     margin: 0;
   }
 
-  .volunteer-item__meta p:first-child,
-  .volunteer-item__notes p:first-child {
+  .volunteer-item .meta p:first-child,
+  .volunteer-item .notes p:first-child {
     color: var(--color-text-subtle);
     font-family: var(--font-label);
     font-size: var(--text-label);
@@ -145,7 +145,7 @@ const formattedDate = computed(() => {
     text-transform: uppercase;
   }
 
-  .volunteer-item__meta p:last-child {
+  .volunteer-item .meta p:last-child {
     color: var(--color-text-muted);
     font-family: var(--font-label);
     font-size: var(--text-body-small);
@@ -154,37 +154,37 @@ const formattedDate = computed(() => {
     font-variant-numeric: tabular-nums;
   }
 
-  .volunteer-item__meta a {
+  .volunteer-item .meta a {
     text-decoration: underline;
   }
 
-  .volunteer-item__notes {
+  .volunteer-item .notes {
     margin-top: 1rem;
     border-left: 2px solid var(--color-border);
     background: var(--color-surface-muted);
     padding: 1rem;
   }
 
-  .volunteer-item__notes p:last-child {
+  .volunteer-item .notes p:last-child {
     color: var(--color-text-muted);
     font-size: 0.75rem;
     font-weight: 500;
     line-height: var(--leading-body);
   }
 
-  .volunteer-item__actions {
+  .volunteer-item .actions {
     display: flex;
     width: 100%;
     flex-direction: column;
     gap: 1rem;
   }
 
-  .volunteer-item__register {
+  .volunteer-item .register {
     align-items: center;
     justify-content: center;
   }
 
-  .volunteer-item__release {
+  .volunteer-item .release {
     padding: 1rem 1.5rem;
     font-size: 0.75rem;
     letter-spacing: 0.12em;
@@ -196,20 +196,20 @@ const formattedDate = computed(() => {
       transform 200ms;
   }
 
-  .volunteer-item__release:hover {
+  .volunteer-item .release:hover {
     background: var(--color-surface-muted);
   }
 
-  .volunteer-item__release:active {
+  .volunteer-item .release:active {
     transform: scale(0.96);
   }
 
   @media (min-width: 40rem) {
-    .volunteer-item__meta {
+    .volunteer-item .meta {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .volunteer-item__actions {
+    .volunteer-item .actions {
       flex-direction: row;
     }
   }
@@ -220,7 +220,7 @@ const formattedDate = computed(() => {
       align-items: center;
     }
 
-    .volunteer-item__actions {
+    .volunteer-item .actions {
       width: auto;
     }
   }

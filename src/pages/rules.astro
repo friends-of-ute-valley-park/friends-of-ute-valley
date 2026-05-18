@@ -73,12 +73,12 @@ const parkRules = [
     <!-- Essential Hours & Exceptions -->
     <section class="rules-summary">
       <div class="page-section__inner">
-        <div class="rules-summary__grid">
+        <div class="grid">
           <div class="rules-summary-card">
             <h3>
               Park Hours
             </h3>
-            <div class="rules-summary-card__rows">
+            <div class="rows">
               <div>
                 <span>Winter (Nov-Apr)</span>
                 <span>05:00 — 21:00</span>
@@ -171,10 +171,10 @@ const parkRules = [
 
     <!-- Trail Etiquette -->
     <section class="right-of-way">
-      <div class="right-of-way__inner">
-        <div class="right-of-way__layout">
-          <div class="right-of-way__copy section-heading section-heading--inverse">
-            <div class="right-of-way__eyebrow section-kicker section-kicker--wide section-kicker--accent">
+      <div class="inner">
+        <div class="layout">
+          <div class="copy section-heading section-heading--inverse">
+            <div class="eyebrow section-kicker section-kicker--wide section-kicker--accent">
               <span class="section-kicker__rule"></span>
               <span class="section-kicker__text">Field Etiquette</span>
             </div>
@@ -199,11 +199,11 @@ const parkRules = [
           </div>
 
           <div>
-            <div class="right-of-way__diagram">
+            <div class="diagram">
               <Picture
                 src={trailRightOfWay}
                 alt="Trail right of way technical diagram"
-                class="right-of-way__image"
+                class="image"
               />
             </div>
           </div>
@@ -224,7 +224,7 @@ const parkRules = [
     padding-block: 3rem;
   }
 
-  .rules-summary__grid {
+  .rules-summary .grid {
     display: grid;
     gap: 2rem;
   }
@@ -250,18 +250,18 @@ const parkRules = [
     text-transform: uppercase;
   }
 
-  .rules-summary-card__rows {
+  .rules-summary-card .rows {
     display: grid;
     gap: 0.5rem;
   }
 
-  .rules-summary-card__rows div {
+  .rules-summary-card .rows div {
     display: flex;
     justify-content: space-between;
   }
 
   .rules-summary-card span,
-  .rules-summary-card p {
+  p {
     margin: 0;
     color: var(--color-text-muted);
     font-family: var(--font-label);
@@ -271,7 +271,7 @@ const parkRules = [
   }
 
   .rules-summary-card span:last-child,
-  .rules-summary-card p {
+  p {
     font-weight: 900;
   }
 
@@ -356,18 +356,18 @@ const parkRules = [
     padding-block: var(--space-section);
   }
 
-  .right-of-way__inner {
+  .right-of-way .inner {
     width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
     margin-inline: auto;
   }
 
-  .right-of-way__layout {
+  .right-of-way .layout {
     display: grid;
     align-items: center;
     gap: 4rem;
   }
 
-  .right-of-way__copy {
+  .right-of-way .copy {
     --section-heading-gap: 2rem;
   }
 
@@ -389,31 +389,31 @@ const parkRules = [
     text-transform: uppercase;
   }
 
-  .right-of-way__diagram {
+  .right-of-way .diagram {
     border: 1px solid var(--color-border-inverse);
     background: color-mix(in oklab, var(--color-text-inverse) 5%, transparent);
     padding: 2rem;
   }
 
-  :global(.right-of-way__image) {
+  :global(.right-of-way .image) {
     width: 100%;
     height: auto;
     filter: brightness(2);
   }
 
   @media (min-width: 48rem) {
-    .rules-summary__grid,
+    .rules-summary .grid,
     .additional-rules > div {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (min-width: 64rem) {
-    .rules-summary__grid {
+    .rules-summary .grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .right-of-way__layout {
+    .right-of-way .layout {
       grid-template-columns: 5fr 7fr;
     }
   }

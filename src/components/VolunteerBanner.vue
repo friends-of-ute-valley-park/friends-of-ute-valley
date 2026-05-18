@@ -33,10 +33,10 @@ const eventDates = computed(() => {
 
 <template>
   <div v-if="hasUpcomingVolunteerEvent" class="volunteer-alert">
-    <div class="volunteer-alert__inner">
-      <div class="volunteer-alert__content">
-        <div class="volunteer-alert__message">
-          <div class="volunteer-alert__pulse"></div>
+    <div class="inner">
+      <div class="content">
+        <div class="message">
+          <div class="pulse"></div>
           <p>
             Upcoming Volunteer Event: <span>Scheduled for {{ eventDates }}</span>
           </p>
@@ -44,9 +44,9 @@ const eventDates = computed(() => {
 
         <a
           href="/volunteer/"
-          class="volunteer-alert__link">
+          class="link">
           Learn More
-          <HeroiconsArrowRight class="volunteer-alert__icon" />
+          <HeroiconsArrowRight class="icon" />
         </a>
       </div>
     </div>
@@ -61,12 +61,12 @@ const eventDates = computed(() => {
     background: var(--color-brand-strong);
   }
 
-  .volunteer-alert__inner {
+  .volunteer-alert .inner {
     width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
     margin-inline: auto;
   }
 
-  .volunteer-alert__content {
+  .volunteer-alert .content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,13 +75,13 @@ const eventDates = computed(() => {
     padding-block: 0.75rem;
   }
 
-  .volunteer-alert__message {
+  .volunteer-alert .message {
     display: flex;
     align-items: center;
     gap: 0.75rem;
   }
 
-  .volunteer-alert__pulse {
+  .volunteer-alert .pulse {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 999px;
@@ -89,7 +89,7 @@ const eventDates = computed(() => {
     animation: volunteer-alert-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  .volunteer-alert__message p {
+  .volunteer-alert .message p {
     margin: 0;
     color: var(--color-text-inverse);
     font-family: var(--font-label);
@@ -99,12 +99,12 @@ const eventDates = computed(() => {
     text-transform: uppercase;
   }
 
-  .volunteer-alert__message span {
+  .volunteer-alert .message span {
     color: var(--color-brand-muted);
     font-variant-numeric: tabular-nums;
   }
 
-  .volunteer-alert__link {
+  .volunteer-alert .link {
     display: inline-flex;
     min-height: 2.5rem;
     align-items: center;
@@ -127,22 +127,22 @@ const eventDates = computed(() => {
       transform 200ms;
   }
 
-  .volunteer-alert__link:hover {
+  .volunteer-alert .link:hover {
     border-color: var(--color-text-inverse);
     background: var(--color-brand-hover);
   }
 
-  .volunteer-alert__link:active {
+  .volunteer-alert .link:active {
     transform: scale(0.96);
   }
 
-  .volunteer-alert__icon {
+  .volunteer-alert .icon {
     width: 0.75rem;
     height: 0.75rem;
     transition: transform 200ms;
   }
 
-  .volunteer-alert__link:hover .volunteer-alert__icon {
+  .volunteer-alert .link:hover .icon {
     transform: translateX(0.25rem);
   }
 
@@ -153,7 +153,7 @@ const eventDates = computed(() => {
   }
 
   @media (min-width: 40rem) {
-    .volunteer-alert__content {
+    .volunteer-alert .content {
       flex-direction: row;
     }
   }

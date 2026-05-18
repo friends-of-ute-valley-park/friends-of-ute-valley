@@ -25,12 +25,12 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
   <main class="link-page">
     <div class="link-card">
       <!-- Header -->
-      <div class="link-card__header">
-        <div class="link-card__identity">
-          <div class="link-card__logo-frame">
+      <div class="header">
+        <div class="identity">
+          <div class="logo-frame">
             <Image src={Logo} alt="FUVP Seal" width="80" height="80" />
           </div>
-          <div class="link-card__title-block">
+          <div class="title-block">
             <h1>
               Friends of <br />
               <span>Ute Valley Park.</span>
@@ -39,7 +39,7 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
               Ute Valley Park — Quick Links
             </p>
           </div>
-          <div class="link-card__social">
+          <div class="social">
             <SocialLinks />
           </div>
         </div>
@@ -49,15 +49,15 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
       {
         upcomingVolunteerEvents.length > 0 && (
           <div class="link-section">
-            <div class="link-section__heading link-section__heading--accent">
+            <div class="heading accent">
               <span />
               <h2>
                 Volunteer Opportunities
               </h2>
             </div>
-            <div class="link-section__stack">
+            <div class="stack">
               {upcomingVolunteerEvents.map((volunteerEvent) => (
-                <div class="link-section__inset">
+                <div class="inset">
                   <VolunteerItem
                     meetingLocations={meetingLocations}
                     volunteerEvent={volunteerEvent}
@@ -71,8 +71,8 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
       }
 
       <!-- Quick Links -->
-      <div class="link-section link-section--muted">
-        <div class="link-section__heading">
+      <div class="link-section is-muted">
+        <div class="heading">
           <span></span>
           <h2>
             Useful Links
@@ -101,7 +101,7 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
 
       <!-- Technical Wishlist -->
       <div class="link-section">
-        <div class="link-section__heading link-section__heading--neutral">
+        <div class="heading neutral">
           <span></span>
           <h2>
             Our Wishlist
@@ -118,15 +118,15 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
           {
             wishlist.map((item) => (
               <div class="wishlist-item">
-                <div class="wishlist-item__media">
+                <div class="media">
                   <Image
                     src={item.data.image}
                     alt={item.data.imageAlt}
                     width="200"
                     height="200"
-                    class="wishlist-item__image"
+                    class="image"
                   />
-                  <div class="wishlist-item__quantity">
+                  <div class="quantity">
                     {item.data.quantityNeeded} REQUIRED
                   </div>
                 </div>
@@ -148,7 +148,7 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
       </div>
 
       <!-- Footer -->
-      <div class="link-card__footer">
+      <div class="footer">
         <p>
           Friends of Ute Valley Park — 2026 Active Wildland
         </p>
@@ -173,18 +173,18 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
     box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
   }
 
-  .link-card__header,
+  .link-card .header,
   .link-section {
     border-bottom: 1px solid var(--color-border);
     padding: 2rem;
   }
 
-  .link-card__header,
-  .link-section--muted {
+  .link-card .header,
+  .link-section.is-muted {
     background: color-mix(in oklab, var(--color-page) 50%, transparent);
   }
 
-  .link-card__identity {
+  .link-card .identity {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -192,19 +192,19 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
     text-align: center;
   }
 
-  .link-card__logo-frame {
+  .link-card .logo-frame {
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     padding: 0.25rem;
     box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
   }
 
-  .link-card__title-block {
+  .link-card .title-block {
     display: grid;
     gap: 0.5rem;
   }
 
-  .link-card__title-block h1 {
+  .link-card .title-block h1 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -215,12 +215,12 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
     text-transform: uppercase;
   }
 
-  .link-card__title-block h1 span {
+  .link-card .title-block h1 span {
     color: var(--color-brand-strong);
   }
 
-  .link-card__title-block p,
-  .link-card__footer p {
+  .link-card .title-block p,
+  .link-card .footer p {
     margin: 0;
     font-family: var(--font-label);
     font-size: var(--text-label);
@@ -229,11 +229,11 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
     text-transform: uppercase;
   }
 
-  .link-card__title-block p {
+  .link-card .title-block p {
     color: var(--color-text-subtle);
   }
 
-  .link-card__social {
+  .link-card .social {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -241,29 +241,29 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
     padding-top: 1rem;
   }
 
-  .link-section__heading {
+  .link-section .heading {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
   }
 
-  .link-section__heading span {
+  .link-section .heading span {
     display: inline-block;
     width: 1.5rem;
     height: 1px;
     background: var(--color-brand-strong);
   }
 
-  .link-section__heading--accent span {
+  .link-section .heading.accent span {
     background: var(--color-accent-strong);
   }
 
-  .link-section__heading--neutral span {
+  .link-section .heading.neutral span {
     background: var(--color-text-subtle);
   }
 
-  .link-section__heading h2 {
+  .link-section .heading h2 {
     margin: 0;
     color: var(--color-brand-strong);
     font-family: var(--font-label);
@@ -273,20 +273,20 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
     text-transform: uppercase;
   }
 
-  .link-section__heading--accent h2 {
+  .link-section .heading.accent h2 {
     color: var(--color-accent-strong);
   }
 
-  .link-section__heading--neutral h2 {
+  .link-section .heading.neutral h2 {
     color: var(--color-text-subtle);
   }
 
-  .link-section__stack {
+  .link-section .stack {
     display: grid;
     gap: 2rem;
   }
 
-  .link-section__inset {
+  .link-section .inset {
     border-left: 2px solid var(--color-border-muted);
     padding-left: 1rem;
   }
@@ -374,7 +374,7 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
     background: var(--color-page);
   }
 
-  .wishlist-item__media {
+  .wishlist-item .media {
     position: relative;
     aspect-ratio: 1;
     overflow: hidden;
@@ -382,14 +382,14 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
     background: var(--color-surface-muted);
   }
 
-  :global(.wishlist-item__image) {
+  :global(.wishlist-item .image) {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 700ms;
   }
 
-  .wishlist-item__quantity {
+  .wishlist-item .quantity {
     position: absolute;
     bottom: 0.5rem;
     left: 0.5rem;
@@ -416,14 +416,14 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
     color: var(--color-brand-strong);
   }
 
-  .link-card__footer {
+  .link-card .footer {
     border-top: 1px solid var(--color-border);
     background: var(--color-surface-inverse);
     padding: 2rem;
     text-align: center;
   }
 
-  .link-card__footer p {
+  .link-card .footer p {
     color: var(--color-text-subtle);
     font-size: 0.5rem;
     letter-spacing: 0.4em;

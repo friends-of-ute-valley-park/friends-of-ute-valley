@@ -81,28 +81,28 @@ const springTips = [
         loading="eager"
         fetchpriority="high"
         alt="Ute Valley Park sandstone, pines, and Pikes Peak under a spring sky"
-        class="home-hero__image"
+        class="image"
       />
-      <div class="home-field-pattern home-hero__grid"></div>
-      <div class="hero-fade-x home-hero__fade-x"></div>
-      <div class="hero-fade-corner home-hero__fade-corner"></div>
+      <div class="home-field-pattern grid"></div>
+      <div class="hero-fade-x fade-x"></div>
+      <div class="hero-fade-corner fade-corner"></div>
 
-      <div class="l-container home-hero__container">
-        <div class="home-hero__layout">
-          <div class="home-hero__copy">
+      <div class="l-container container">
+        <div class="layout">
+          <div class="copy">
             <div class="home-kicker">
-              <span class="home-kicker__rule"></span>
-              <span class="home-kicker__text">Park update for {currentMonthYear}</span>
+              <span class="rule"></span>
+              <span class="text">Park update for {currentMonthYear}</span>
             </div>
 
-            <h1 class="home-hero__title">
+            <h1 class="title">
               Ute <br /> Valley <br />
               <span>Park.</span>
             </h1>
 
-            <span class="home-hero__rule"></span>
+            <span class="rule"></span>
 
-            <p class="home-hero__lede">
+            <p class="lede">
               A 550-acre urban wildland in Colorado Springs. We are the
               stewards dedicated to its preservation, maintenance, and community
               education.
@@ -121,46 +121,46 @@ const springTips = [
           </div>
 
           <aside class="park-status" aria-labelledby="park-status-title">
-            <div class="park-status__header">
-              <span class="park-status__brand-icon">
+            <div class="header">
+              <span class="brand-icon">
                 <PineTreeIcon aria-hidden="true" />
               </span>
-              <h2 id="park-status-title" class="park-status__title">
+              <h2 id="park-status-title" class="title">
                 Current park status
               </h2>
             </div>
 
-            <dl class="park-status__list">
-              <div class="park-status__item">
-                <dt class="park-status__term">
-                  <span class="park-status__icon">
+            <dl class="list">
+              <div class="item">
+                <dt class="term">
+                  <span class="icon">
                     <HikingIcon aria-hidden="true" />
                   </span>
                   <span>Trail conditions</span>
                 </dt>
-                <dd class="park-status__value park-status__value--accent">
+                <dd class="value accent">
                   {trailConditions.status}
                 </dd>
               </div>
 
-              <div class="park-status__item">
-                <dt class="park-status__term">
-                  <span class="park-status__icon">
+              <div class="item">
+                <dt class="term">
+                  <span class="icon">
                     <ClockIcon aria-hidden="true" />
                   </span>
                   <span>{parkSeason} hours</span>
                 </dt>
-                <dd class="park-status__value">{parkHours}</dd>
+                <dd class="value">{parkHours}</dd>
               </div>
 
-              <div class="park-status__item">
-                <dt class="park-status__term">
-                  <span class="park-status__icon">
+              <div class="item">
+                <dt class="term">
+                  <span class="icon">
                     <DogIcon aria-hidden="true" />
                   </span>
                   <span>Dog policy</span>
                 </dt>
-                <dd class="park-status__value park-status__value--brand">
+                <dd class="value brand">
                   Leash required
                 </dd>
               </div>
@@ -168,13 +168,13 @@ const springTips = [
 
             {
               trailConditions.message && (
-                <p class="park-status__message">
+                <p class="message">
                   {trailConditions.message}
                 </p>
               )
             }
 
-            <div class="park-status__updated">
+            <div class="updated">
               <span>Last updated</span>
               <time datetime={trailConditions.last_updated}
                 >{formattedLastUpdated}</time
@@ -187,38 +187,38 @@ const springTips = [
 
     <!-- Visual Interlude: The Landscape -->
     <section class="landscape-strip">
-      <div class="landscape-strip__item">
+      <div class="item">
         <Picture
           src={heroImage2}
           formats={["avif", "webp"]}
           width="600"
           height="600"
           alt="Trail"
-          class="landscape-strip__image"
+          class="image"
         />
-        <div class="landscape-strip__label">Trail System Access</div>
+        <div class="label">Trail System Access</div>
       </div>
-      <div class="landscape-strip__item landscape-strip__item--tablet">
+      <div class="item tablet">
         <Picture
           src={mountainViewsImage}
           formats={["avif", "webp"]}
           width="600"
           height="600"
           alt="Vista"
-          class="landscape-strip__image"
+          class="image"
         />
-        <div class="landscape-strip__label">Mountain Views</div>
+        <div class="label">Mountain Views</div>
       </div>
-      <div class="landscape-strip__item landscape-strip__item--desktop">
+      <div class="item desktop">
         <Picture
           src={cta}
           formats={["avif", "webp"]}
           width="600"
           height="600"
           alt="Volunteer"
-          class="landscape-strip__image"
+          class="image"
         />
-        <div class="landscape-strip__label">Active Stewardship</div>
+        <div class="label">Active Stewardship</div>
       </div>
     </section>
 
@@ -239,12 +239,12 @@ const springTips = [
           {
             springTips.map((tip) => (
               <div class="spring-card">
-                <div class="spring-card__content">
-                  <span class="spring-card__number">{tip.id}</span>
+                <div class="content">
+                  <span class="number">{tip.id}</span>
                   <h3>{tip.title}</h3>
                   <p>{tip.description}</p>
                 </div>
-                <div class="spring-card__footer">
+                <div class="footer">
                   <span>{tip.tag}</span>
                 </div>
               </div>
@@ -257,14 +257,14 @@ const springTips = [
     <!-- Stats Section: Redesigned in place -->
     <section class="l-section band band--inverse impact-section content-defer">
       <div class="l-container">
-        <div class="impact-section__layout">
+        <div class="layout">
           <div>
-            <span class="impact-section__kicker">Our Impact: 2025</span>
-            <h2 class="impact-section__title">
+            <span class="kicker">Our Impact: 2025</span>
+            <h2 class="title">
               Our <br />
               <span>Impact.</span>
             </h2>
-            <p class="impact-section__lede">
+            <p class="lede">
               A year of boots-on-the-ground stewardship and a growing community
               of people who care about Ute Valley Park.
             </p>
@@ -290,15 +290,15 @@ const springTips = [
                 },
               ].map((section) => (
                 <div class="impact-group">
-                  <div class="impact-group__heading">
+                  <div class="heading">
                     <span />
                     <span>{section.group}</span>
                   </div>
                   <div class="impact-stats">
                     {section.stats.map((stat) => (
                       <div class="impact-stat">
-                        <div class="impact-stat__value">{stat.value}</div>
-                        <div class="impact-stat__label">{stat.label}</div>
+                        <div class="value">{stat.value}</div>
+                        <div class="label">{stat.label}</div>
                       </div>
                     ))}
                   </div>
@@ -313,14 +313,14 @@ const springTips = [
     <!-- News Section: The Bulletin Board -->
     <section class="l-section band news-section content-defer">
       <div class="l-container">
-        <div class="news-section__heading">
+        <div class="heading">
           <div>
             <h2 class="t-section-title">
               Latest <span>News.</span>
             </h2>
             <p>News and updates from Ute Valley Park.</p>
           </div>
-          <a href="/news" class="news-section__all-link">
+          <a href="/news" class="all-link">
             View All News
           </a>
         </div>
@@ -331,20 +331,20 @@ const springTips = [
               .slice(0, 3)
               .map((post) => (
                 <a href={`/news/${post.id}`} class="news-card">
-                  <div class="news-card__media">
+                  <div class="media">
                     <Picture
                       src={post.data.coverImage}
                       formats={["avif", "webp"]}
                       width="600"
                       height="400"
                       alt={post.data.title}
-                      class="news-card__image"
+                      class="image"
                     />
-                    <div class="news-card__date">
+                    <div class="date">
                       {formatShortMonthDayYear(post.data.publishedOn)}
                     </div>
                   </div>
-                  <div class="news-card__body">
+                  <div class="body">
                     <h3>{post.data.title}</h3>
                     <p>{post.data.previewText}</p>
                   </div>
@@ -357,39 +357,39 @@ const springTips = [
 
     <!-- Engagement: Direct Action -->
     <section class="l-section band band--muted support-section content-defer">
-      <div class="support-section__container">
+      <div class="container">
         <div class="support-split">
-          <div class="support-split__grid">
-            <div class="support-split__col support-split__col--donate">
-              <div class="support-split__meta support-split__meta--brand">
-                <span class="support-split__mark"><HeartIcon aria-hidden="true" /></span>
-                <span class="support-split__eyebrow t-label">Donate</span>
+          <div class="grid">
+            <div class="col donate">
+              <div class="meta brand">
+                <span class="mark"><HeartIcon aria-hidden="true" /></span>
+                <span class="eyebrow t-label">Donate</span>
               </div>
-              <h2 class="support-split__headline">Support Ute Valley Park.</h2>
-              <p class="support-split__copy">
+              <h2 class="headline">Support Ute Valley Park.</h2>
+              <p class="copy">
                 Your donation directly funds trail restoration, invasive species management, and educational programming. Together, we can protect and enhance our park for generations to come.
               </p>
-              <ul class="support-split__benefits">
+              <ul class="benefits">
                 <li><PineTreeIcon aria-hidden="true" /><span>Restore Trails</span></li>
                 <li><LeafIcon aria-hidden="true" /><span>Protect Wildlife</span></li>
                 <li><AccountGroupIcon aria-hidden="true" /><span>Inspire Community</span></li>
               </ul>
-              <a href="/donate/" class="button button--brand support-split__button">
+              <a href="/donate/" class="button button--brand">
                 <HeartIcon aria-hidden="true" />
                 Make a Donation
               </a>
             </div>
 
-            <div class="support-split__rule" aria-hidden="true"></div>
-            <div class="support-split__or">Or</div>
+            <div class="rule" aria-hidden="true"></div>
+            <div class="or">Or</div>
 
-            <div class="support-split__col support-split__col--newsletter">
-              <div class="support-split__meta support-split__meta--accent">
-                <span class="support-split__mark"><EmailNewsletterIcon aria-hidden="true" /></span>
-                <span class="support-split__eyebrow t-label">Email Newsletter</span>
+            <div class="col newsletter">
+              <div class="meta accent">
+                <span class="mark"><EmailNewsletterIcon aria-hidden="true" /></span>
+                <span class="eyebrow t-label">Email Newsletter</span>
               </div>
-              <h2 class="support-split__headline">Stay in the Loop.</h2>
-              <p class="support-split__copy">
+              <h2 class="headline">Stay in the Loop.</h2>
+              <p class="copy">
                 Get park updates, volunteer opportunities, event announcements, and conservation news delivered straight to your inbox.
               </p>
               <EmailForm client:idle />
@@ -425,7 +425,7 @@ const springTips = [
     background: var(--color-page);
   }
 
-  :global(.home-hero__image) {
+  :global(.home-hero .image) {
     position: absolute;
     inset: 0;
     z-index: -20;
@@ -435,18 +435,18 @@ const springTips = [
     object-position: 62% 45%;
   }
 
-  .home-hero__grid,
-  .home-hero__fade-x {
+  .home-hero .grid,
+  .home-hero .fade-x {
     position: absolute;
     inset: 0;
     z-index: -10;
   }
 
-  .home-hero__grid {
+  .home-hero .grid {
     opacity: 0.35;
   }
 
-  .home-hero__fade-corner {
+  .home-hero .fade-corner {
     position: absolute;
     inset-inline: 0;
     bottom: 0;
@@ -454,31 +454,31 @@ const springTips = [
     height: 40%;
   }
 
-  .home-hero__container {
+  .home-hero .container {
     display: flex;
     min-height: calc(100svh - 15rem);
     align-items: end;
     padding-block: 3rem;
   }
 
-  .home-hero__layout {
+  .home-hero .layout {
     display: grid;
     width: 100%;
     align-items: end;
     gap: 2.5rem;
   }
 
-  .home-hero__copy {
+  .home-hero .copy {
     max-width: 48rem;
   }
 
   .home-kicker,
   .home-actions,
   .home-button-content,
-  .park-status__header,
-  .park-status__term,
-  .park-status__updated,
-  .impact-group__heading {
+  .park-status .header,
+  .park-status .term,
+  .park-status .updated,
+  .impact-group .heading {
     display: flex;
     align-items: center;
   }
@@ -488,19 +488,19 @@ const springTips = [
     margin-bottom: 2rem;
   }
 
-  .home-kicker__rule,
-  .home-hero__rule,
-  .impact-group__heading span:first-child {
+  .home-kicker .rule,
+  .home-hero .rule,
+  .impact-group .heading span:first-child {
     display: block;
     height: 1px;
     background: var(--color-brand-strong);
   }
 
-  .home-kicker__rule {
+  .home-kicker .rule {
     width: 3rem;
   }
 
-  .home-kicker__text {
+  .home-kicker .text {
     color: var(--color-text-muted);
     font-family: var(--font-label);
     font-size: 0.75rem;
@@ -508,7 +508,7 @@ const springTips = [
     letter-spacing: 0;
   }
 
-  .home-hero__title {
+  .home-hero .title {
     margin: 0;
     color: var(--color-text);
     font-family: var(--font-display);
@@ -520,16 +520,16 @@ const springTips = [
     text-wrap: balance;
   }
 
-  .home-hero__title span {
+  .home-hero .title span {
     color: var(--color-brand-strong);
   }
 
-  .home-hero__rule {
+  .home-hero .rule {
     width: 2rem;
     margin-block: 1.5rem;
   }
 
-  .home-hero__lede {
+  .home-hero .lede {
     max-width: 34rem;
     margin: 0;
     color: var(--color-text-muted);
@@ -551,7 +551,7 @@ const springTips = [
   }
 
   .home-button-icon,
-  .support-split__button svg {
+  .support-split .button svg {
     width: 1rem;
     height: 1rem;
   }
@@ -582,15 +582,15 @@ const springTips = [
     outline: 1px solid var(--color-border-muted);
   }
 
-  .park-status__header {
+  .park-status .header {
     gap: 1rem;
     margin-bottom: 1.5rem;
     padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--color-border);
   }
 
-  .park-status__brand-icon,
-  .park-status__icon {
+  .park-status .brand-icon,
+  .park-status .icon {
     display: flex;
     width: 2.5rem;
     height: 2.5rem;
@@ -600,19 +600,19 @@ const springTips = [
     border-radius: 9999px;
   }
 
-  .park-status__brand-icon {
+  .park-status .brand-icon {
     background: var(--color-brand-subtle);
     color: var(--color-brand-strong);
     outline: 1px solid var(--color-brand-muted);
   }
 
-  .park-status__brand-icon svg,
-  .park-status__icon svg {
+  .park-status .brand-icon svg,
+  .park-status .icon svg {
     width: 1.25rem;
     height: 1.25rem;
   }
 
-  .park-status__title {
+  .park-status .title {
     margin: 0;
     color: var(--color-brand-strong);
     font-family: var(--font-display);
@@ -621,37 +621,37 @@ const springTips = [
     letter-spacing: 0;
   }
 
-  .park-status__list {
+  .park-status .list {
     display: grid;
     gap: 1.25rem;
     margin: 0;
   }
 
-  .park-status__item {
+  .park-status .item {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
     gap: 1rem;
   }
 
-  .park-status__term {
+  .park-status .term {
     gap: 1rem;
   }
 
-  .park-status__icon {
+  .park-status .icon {
     background: var(--color-border-muted);
     color: var(--color-text-muted);
   }
 
-  .park-status__term span:last-child,
-  .park-status__updated {
+  .park-status .term span:last-child,
+  .park-status .updated {
     color: var(--color-text-muted);
     font-family: var(--font-label);
     font-size: 0.75rem;
     font-weight: 500;
   }
 
-  .park-status__value {
+  .park-status .value {
     margin: 0;
     color: var(--color-text);
     font-family: var(--font-label);
@@ -659,16 +659,16 @@ const springTips = [
     font-weight: 700;
   }
 
-  .park-status__value--accent {
+  .park-status .value.accent {
     color: var(--color-accent-strong);
   }
 
-  .park-status__value--brand {
+  .park-status .value.brand {
     color: var(--color-brand-strong);
     white-space: nowrap;
   }
 
-  .park-status__message {
+  .park-status .message {
     margin: 1.5rem 0 0;
     padding-top: 1rem;
     border-top: 1px solid var(--color-border);
@@ -678,7 +678,7 @@ const springTips = [
     line-height: var(--leading-body);
   }
 
-  .park-status__updated {
+  .park-status .updated {
     justify-content: space-between;
     margin-top: 2rem;
     padding-top: 1.25rem;
@@ -691,32 +691,32 @@ const springTips = [
     border-bottom: 1px solid var(--color-border);
   }
 
-  .landscape-strip__item {
+  .landscape-strip .item {
     position: relative;
     overflow: hidden;
     aspect-ratio: 16 / 9;
     border-right: 1px solid var(--color-border);
   }
 
-  .landscape-strip__item--tablet,
-  .landscape-strip__item--desktop {
+  .landscape-strip .item.tablet,
+  .landscape-strip .item.desktop {
     display: none;
   }
 
-  :global(.landscape-strip__image),
-  :global(.news-card__image) {
+  :global(.landscape-strip .image),
+  :global(.news-card .image) {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 1000ms;
   }
 
-  .landscape-strip__item:hover :global(.landscape-strip__image),
-  .news-card:hover :global(.news-card__image) {
+  .landscape-strip .item:hover :global(.image),
+  .news-card:hover :global(.image) {
     transform: scale(1.05);
   }
 
-  .landscape-strip__label {
+  .landscape-strip .label {
     position: absolute;
     bottom: 1rem;
     left: 1rem;
@@ -737,19 +737,19 @@ const springTips = [
   }
 
   .section-heading,
-  .news-section__heading {
+  .news-section .heading {
     margin-bottom: 4rem;
   }
 
   .section-heading h2,
-  .news-section__heading h2 {
+  .news-section .heading h2 {
     margin: 0 0 1.5rem;
     color: var(--color-text-strong);
     text-wrap: balance;
   }
 
   .section-heading h2 span,
-  .news-section__heading h2 span {
+  .news-section .heading h2 span {
     color: var(--color-brand-strong);
     font-style: italic;
   }
@@ -760,8 +760,8 @@ const springTips = [
   }
 
   .section-heading p,
-  .news-section__heading p,
-  .support-split__copy {
+  .news-section .heading p,
+  .support-split .copy {
     color: var(--color-text-muted);
     font-size: 1.125rem;
     font-weight: 500;
@@ -794,11 +794,11 @@ const springTips = [
     background: var(--color-surface);
   }
 
-  .spring-card__content > * + * {
+  .spring-card .content > * + * {
     margin-top: 1rem;
   }
 
-  .spring-card__number {
+  .spring-card .number {
     color: var(--color-accent-hover);
     font-family: var(--font-label);
     font-size: 2.25rem;
@@ -806,7 +806,7 @@ const springTips = [
     transition: color 200ms;
   }
 
-  .spring-card:hover .spring-card__number {
+  .spring-card:hover .number {
     color: var(--color-accent);
   }
 
@@ -832,11 +832,11 @@ const springTips = [
     line-height: var(--leading-body);
   }
 
-  .spring-card__footer {
+  .spring-card .footer {
     padding-top: 1.5rem;
   }
 
-  .spring-card__footer span {
+  .spring-card .footer span {
     display: inline-block;
     background: var(--color-brand-strong);
     color: var(--color-text-inverse);
@@ -847,13 +847,13 @@ const springTips = [
     text-transform: uppercase;
   }
 
-  .impact-section__layout {
+  .impact-section .layout {
     display: grid;
     align-items: center;
     gap: 4rem;
   }
 
-  .impact-section__kicker {
+  .impact-section .kicker {
     display: block;
     margin-bottom: 1rem;
     color: var(--color-text-inverse-muted);
@@ -864,7 +864,7 @@ const springTips = [
     text-transform: uppercase;
   }
 
-  .impact-section__title {
+  .impact-section .title {
     margin: 0 0 2rem;
     color: var(--color-text-inverse);
     font-family: var(--font-display);
@@ -875,12 +875,12 @@ const springTips = [
     text-transform: uppercase;
   }
 
-  .impact-section__title span,
-  .impact-group__heading span:last-child {
+  .impact-section .title span,
+  .impact-group .heading span:last-child {
     color: var(--color-brand-hover);
   }
 
-  .impact-section__lede {
+  .impact-section .lede {
     max-width: 28rem;
     margin: 0;
     color: var(--color-text-inverse-muted);
@@ -895,17 +895,17 @@ const springTips = [
     padding-left: 2rem;
   }
 
-  .impact-group__heading {
+  .impact-group .heading {
     gap: 0.75rem;
     margin-bottom: 1.25rem;
   }
 
-  .impact-group__heading span:first-child {
+  .impact-group .heading span:first-child {
     width: 1.5rem;
     background: var(--color-brand-hover);
   }
 
-  .impact-group__heading span:last-child {
+  .impact-group .heading span:last-child {
     font-family: var(--font-label);
     font-size: 0.625rem;
     font-weight: 700;
@@ -924,7 +924,7 @@ const springTips = [
     gap: 0.25rem;
   }
 
-  .impact-stat__value {
+  .impact-stat .value {
     color: var(--color-text-inverse);
     font-family: var(--font-label);
     font-size: clamp(1.875rem, 4vw, 3rem);
@@ -932,7 +932,7 @@ const springTips = [
     letter-spacing: 0;
   }
 
-  .impact-stat__label {
+  .impact-stat .label {
     color: var(--color-text-inverse-muted);
     font-family: var(--font-label);
     font-size: 0.625rem;
@@ -940,19 +940,19 @@ const springTips = [
     text-transform: uppercase;
   }
 
-  .news-section__heading {
+  .news-section .heading {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 2rem;
   }
 
-  .news-section__heading p {
+  .news-section .heading p {
     margin: 0;
     font-size: 1rem;
   }
 
-  .news-section__all-link {
+  .news-section .all-link {
     color: var(--color-text);
     font-family: var(--font-label);
     font-size: 0.875rem;
@@ -965,7 +965,7 @@ const springTips = [
     transition: color 200ms;
   }
 
-  .news-section__all-link:hover {
+  .news-section .all-link:hover {
     color: var(--color-brand);
   }
 
@@ -985,7 +985,7 @@ const springTips = [
     margin-top: 1.5rem;
   }
 
-  .news-card__media {
+  .news-card .media {
     position: relative;
     overflow: hidden;
     aspect-ratio: 16 / 10;
@@ -993,7 +993,7 @@ const springTips = [
     background: var(--color-border-muted);
   }
 
-  .news-card__date {
+  .news-card .date {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -1005,7 +1005,7 @@ const springTips = [
     text-transform: uppercase;
   }
 
-  .news-card__body > * + * {
+  .news-card .body > * + * {
     margin-top: 0.75rem;
   }
 
@@ -1034,7 +1034,7 @@ const springTips = [
     line-height: var(--leading-body);
   }
 
-  .support-section__container {
+  .support-section .container {
     width: min(100% - (var(--space-page-x) * 2), 80rem);
     margin-inline: auto;
   }
@@ -1046,44 +1046,44 @@ const springTips = [
     box-shadow: var(--shadow-accent-xl);
   }
 
-  .support-split__grid {
+  .support-split .grid {
     position: relative;
     z-index: 1;
     display: grid;
     grid-template-columns: 1fr;
   }
 
-  .support-split__col {
+  .support-split .col {
     position: relative;
     min-width: 0;
     padding: 2rem;
   }
 
-  .support-split__col--donate {
+  .support-split .col.donate {
     background: color-mix(in oklab, var(--color-brand-subtle) 55%, transparent);
   }
 
-  .support-split__col--newsletter {
+  .support-split .col.newsletter {
     background: color-mix(in oklab, var(--color-accent) 12%, transparent);
   }
 
-  .support-split__col--newsletter :global(.email-signup) {
+  .support-split .col.newsletter :global(.email-signup) {
     width: 100%;
     min-width: 0;
   }
 
-  .support-split__col > * + * {
+  .support-split .col > * + * {
     margin-top: 1.5rem;
   }
 
-  .support-split__rule {
+  .support-split .rule {
     display: none;
     position: relative;
     z-index: 2;
     background: color-mix(in oklab, var(--color-border) 80%, var(--color-page));
   }
 
-  .support-split__or {
+  .support-split .or {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1098,29 +1098,29 @@ const springTips = [
     text-transform: uppercase;
   }
 
-  .support-split__or::before,
-  .support-split__or::after {
+  .support-split .or::before,
+  .support-split .or::after {
     content: "";
     flex: 1;
     height: 1px;
     background: color-mix(in oklab, var(--color-border-muted) 88%, var(--color-page));
   }
 
-  .support-split__meta {
+  .support-split .meta {
     display: flex;
     align-items: center;
     gap: 0.875rem;
   }
 
-  .support-split__meta--brand {
+  .support-split .meta.brand {
     color: var(--color-brand-strong);
   }
 
-  .support-split__meta--accent {
+  .support-split .meta.accent {
     color: var(--color-accent-hover);
   }
 
-  .support-split__mark {
+  .support-split .mark {
     position: relative;
     z-index: 1;
     display: inline-flex;
@@ -1134,19 +1134,19 @@ const springTips = [
     background: var(--color-surface);
   }
 
-  .support-split__mark > svg {
+  .support-split .mark > svg {
     width: 55%;
     height: 55%;
   }
 
-  .support-split__eyebrow {
+  .support-split .eyebrow {
     border-bottom: 2px solid currentColor;
     padding-bottom: 0.375rem;
     font-size: 0.75rem;
     letter-spacing: 0.15em;
   }
 
-  .support-split__headline {
+  .support-split .headline {
     margin: 0;
     color: var(--color-brand-strong);
     font-family: var(--font-display);
@@ -1158,11 +1158,11 @@ const springTips = [
     text-wrap: balance;
   }
 
-  .support-split__copy {
+  .support-split .copy {
     margin-bottom: 0;
   }
 
-  .support-split__benefits {
+  .support-split .benefits {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.75rem 1rem;
@@ -1171,26 +1171,26 @@ const springTips = [
     color: var(--color-brand-strong);
   }
 
-  .support-split__benefits li {
+  .support-split .benefits li {
     display: flex;
     min-width: 0;
     align-items: center;
     gap: 0.5rem;
   }
 
-  .support-split__benefits svg {
+  .support-split .benefits svg {
     width: 1.25rem;
     height: 1.25rem;
     flex-shrink: 0;
     color: var(--color-brand);
   }
 
-  .support-split__benefits span {
+  .support-split .benefits span {
     font-size: 0.8125rem;
     font-weight: 700;
   }
 
-  .support-split__button {
+  .support-split .button {
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -1234,7 +1234,7 @@ const springTips = [
   }
 
   @media (min-width: 40rem) {
-    .home-hero__lede {
+    .home-hero .lede {
       font-size: 1.5rem;
     }
 
@@ -1242,7 +1242,7 @@ const springTips = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .landscape-strip__item--tablet {
+    .landscape-strip .item.tablet {
       display: block;
     }
 
@@ -1251,24 +1251,24 @@ const springTips = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .support-split__col {
+    .support-split .col {
       padding: 2.5rem;
     }
   }
 
   @media (min-width: 48rem) {
-    .news-section__heading {
+    .news-section .heading {
       flex-direction: row;
       align-items: end;
     }
   }
 
   @media (min-width: 64rem) {
-    .home-hero__layout {
+    .home-hero .layout {
       grid-template-columns: repeat(12, minmax(0, 1fr));
     }
 
-    .home-hero__copy {
+    .home-hero .copy {
       grid-column: span 7 / span 7;
     }
 
@@ -1281,11 +1281,11 @@ const springTips = [
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .landscape-strip__item {
+    .landscape-strip .item {
       aspect-ratio: 1 / 1;
     }
 
-    .landscape-strip__item--desktop {
+    .landscape-strip .item.desktop {
       display: block;
     }
 
@@ -1293,7 +1293,7 @@ const springTips = [
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    .impact-section__layout {
+    .impact-section .layout {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -1305,19 +1305,19 @@ const springTips = [
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .support-split__grid {
+    .support-split .grid {
       grid-template-columns: 1fr 1px 1fr;
     }
 
-    .support-split__col {
+    .support-split .col {
       padding: 3rem;
     }
 
-    .support-split__rule {
+    .support-split .rule {
       display: block;
     }
 
-    .support-split__rule::after {
+    .support-split .rule::after {
       content: "Or";
       position: absolute;
       top: 50%;
@@ -1336,7 +1336,7 @@ const springTips = [
       white-space: nowrap;
     }
 
-    .support-split__or {
+    .support-split .or {
       display: none;
     }
 

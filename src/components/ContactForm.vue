@@ -153,37 +153,37 @@ watch(data, (response) => {
 
 <template>
   <div class="contact-form">
-    <div class="contact-form__inner">
-      <div class="contact-form__layout">
-        <div class="contact-form__intro">
-          <div class="contact-form__title-block section-heading">
-            <div class="contact-form__eyebrow section-kicker section-kicker--wide">
+    <div class="inner">
+      <div class="layout">
+        <div class="intro">
+          <div class="title-block section-heading">
+            <div class="eyebrow section-kicker section-kicker--wide">
               <span class="section-kicker__rule"></span>
               <span class="section-kicker__text">Contact Us</span>
             </div>
 
             <slot name="title">
-              <h1 class="contact-form__title section-heading__title">
+              <h1 class="title section-heading__title">
                 Get In <br />
                 <span>Touch.</span>
               </h1>
             </slot>
           </div>
 
-          <p class="contact-form__subtitle">
+          <p class="subtitle">
             <slot name="subtitle">Have a question, comment, or concern? We'd love to hear from you.</slot>
           </p>
 
-          <div class="contact-form__response-note">
+          <div class="response-note">
             <p>We usually reply within 2–3 business days.</p>
           </div>
         </div>
 
-        <div class="contact-form__panel-wrap">
-          <div class="contact-form__panel panel-card panel-card--raised">
-            <form ref="formElement" action="/contact-form" method="POST" class="contact-form__fields" @submit.prevent="submit">
-              <div class="contact-form__field-grid">
-                <div class="contact-form__field form-field">
+        <div class="panel-wrap">
+          <div class="panel panel-card panel-card--raised">
+            <form ref="formElement" action="/contact-form" method="POST" class="fields" @submit.prevent="submit">
+              <div class="field-grid">
+                <div class="field form-field">
                   <label for="name" class="form-label">Name *</label>
                   <input
                     id="name"
@@ -191,9 +191,9 @@ watch(data, (response) => {
                     name="name"
                     type="text"
                     required
-                    class="contact-form__input form-input form-input--quiet" />
+                    class="input form-input form-input--quiet" />
                 </div>
-                <div class="contact-form__field form-field">
+                <div class="field form-field">
                   <label for="email" class="form-label">Email *</label>
                   <input
                     id="email"
@@ -202,31 +202,31 @@ watch(data, (response) => {
                     autocomplete="email"
                     required
                     type="email"
-                    class="contact-form__input form-input form-input--quiet" />
+                    class="input form-input form-input--quiet" />
                 </div>
               </div>
 
-              <div class="contact-form__field form-field">
+              <div class="field form-field">
                 <label for="category" class="form-label">What can we help with? *</label>
                 <select
                   id="category"
                   v-model="form.category"
                   name="category"
-                  class="contact-form__input form-input form-input--quiet contact-form__input--select">
+                  class="input form-input form-input--quiet select">
                   <option v-for="option in contactOptions" :key="option" :value="option">
                     {{ option.toUpperCase() }}
                   </option>
                 </select>
               </div>
 
-              <div v-if="form.category === 'Volunteer'" class="contact-form__volunteer-note">
+              <div v-if="form.category === 'Volunteer'" class="volunteer-note">
                 <h3>Volunteer Info</h3>
                 <p>
                   Tell us whether you want volunteer updates, help planning a group project, or guidance before your first workday. We will point you to the right next step.
                 </p>
               </div>
 
-              <div class="contact-form__field form-field">
+              <div class="field form-field">
                 <label for="message" class="form-label">Your Message *</label>
                 <textarea
                   id="message"
@@ -234,14 +234,14 @@ watch(data, (response) => {
                   name="message"
                   required
                   rows="6"
-                  class="contact-form__input form-input form-input--quiet contact-form__input--message" />
+                  class="input form-input form-input--quiet message" />
               </div>
 
               <div ref="turnstileContainer" class="cf-turnstile"></div>
 
               <div>
-                <button :disabled="isFetching" type="submit" class="button button--brand contact-form__submit">
-                  <MdiLoading v-if="isFetching" class="contact-form__loading-icon" />
+                <button :disabled="isFetching" type="submit" class="button button--brand submit">
+                  <MdiLoading v-if="isFetching" class="loading-icon" />
                   Send Message
                 </button>
               </div>
@@ -254,16 +254,16 @@ watch(data, (response) => {
               leave-active-class="contact-form-status-leave-active"
               leave-from-class="contact-form-status-leave-from"
               leave-to-class="contact-form-status-leave-to">
-              <div v-if="isFinished || error" :class="['contact-form__status', error ? 'contact-form__status--error' : 'contact-form__status--success']" aria-live="polite">
-                <div class="contact-form__status-content">
-                  <div class="contact-form__status-icon-wrap">
-                    <HeroiconsMegaphone :class="['contact-form__status-icon', error ? 'contact-form__status-icon--error' : 'contact-form__status-icon--success']" />
+              <div v-if="isFinished || error" :class="['status', error ? 'status error' : 'status success']" aria-live="polite">
+                <div class="status-content">
+                  <div class="status-icon-wrap">
+                    <HeroiconsMegaphone :class="['status-icon', error ? 'status-icon error' : 'status-icon success']" />
                   </div>
                   <div>
-                    <h3 :class="['contact-form__status-title', error ? 'contact-form__status-title--error' : 'contact-form__status-title--success']">
+                    <h3 :class="['status-title', error ? 'status-title error' : 'status-title success']">
                       {{ error ? 'Message Not Sent' : 'Message Received' }}
                     </h3>
-                    <p :class="['contact-form__status-message', error ? 'contact-form__status-message--error' : 'contact-form__status-message--success']">
+                    <p :class="['status-message', error ? 'status-message error' : 'status-message success']">
                       <span v-if="displayMessage">{{ displayMessage }}</span>
                       <span v-else-if="error">Please try again in a moment.</span>
                     </p>
@@ -283,37 +283,37 @@ watch(data, (response) => {
     background: var(--color-page);
   }
 
-  .contact-form__inner {
+  .contact-form .inner {
     width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
     margin-inline: auto;
     padding-block: clamp(4rem, 8vw, 6rem);
   }
 
-  .contact-form__layout {
+  .contact-form .layout {
     display: grid;
     min-width: 0;
     gap: clamp(2rem, 5vw, 4rem);
   }
 
-  .contact-form__intro,
-  .contact-form__title-block,
-  .contact-form__fields {
+  .contact-form .intro,
+  .contact-form .title-block,
+  .contact-form .fields {
     display: grid;
   }
 
-  .contact-form__intro {
+  .contact-form .intro {
     min-width: 0;
     gap: 1.25rem;
   }
 
-  .contact-form__title-block {
+  .contact-form .title-block {
     min-width: 0;
     --section-heading-gap: 0.75rem;
   }
 
-  .contact-form__response-note p,
-  .contact-form__volunteer-note h3,
-  .contact-form__status-title {
+  .contact-form .response-note p,
+  .contact-form .volunteer-note h3,
+  .contact-form .status-title {
     font-family: var(--font-label);
     font-size: var(--text-label);
     font-weight: 900;
@@ -321,16 +321,16 @@ watch(data, (response) => {
     text-transform: uppercase;
   }
 
-  .contact-form__response-note p {
+  .contact-form .response-note p {
     color: var(--color-text-subtle);
   }
 
-  .contact-form__title {
+  .contact-form .title {
     --section-heading-title-size: clamp(3rem, 8vw, 4.5rem);
     --section-heading-accent-style: normal;
   }
 
-  .contact-form__subtitle {
+  .contact-form .subtitle {
     margin: 0;
     color: var(--color-text-muted);
     font-size: var(--text-body-large);
@@ -338,58 +338,58 @@ watch(data, (response) => {
     line-height: var(--leading-body);
   }
 
-  .contact-form__response-note {
+  .contact-form .response-note {
     display: grid;
     gap: 1rem;
     border-top: 1px solid var(--color-border-muted);
     padding-top: 1.25rem;
   }
 
-  .contact-form__response-note p {
+  .contact-form .response-note p {
     margin: 0;
   }
 
-  .contact-form__panel {
+  .contact-form .panel {
     container-type: inline-size;
   }
 
-  .contact-form__fields {
+  .contact-form .fields {
     min-width: 0;
     gap: 2rem;
   }
 
-  .contact-form__field-grid {
+  .contact-form .field-grid {
     display: grid;
     min-width: 0;
     gap: 2rem;
   }
 
-  .contact-form__field {
+  .contact-form .field {
     --form-field-gap: 0.5rem;
     --form-label-color: var(--color-text-subtle);
   }
 
-  .contact-form__input--select {
+  .contact-form .input.select {
     appearance: none;
   }
 
-  .contact-form__input--message {
+  .contact-form .input.message {
     min-height: 9rem;
     resize: vertical;
   }
 
-  .contact-form__volunteer-note {
+  .contact-form .volunteer-note {
     border-left: 4px solid var(--color-accent);
     background: var(--color-brand-strong);
     color: var(--color-text-inverse);
     padding: 1.5rem;
   }
 
-  .contact-form__volunteer-note h3 {
+  .contact-form .volunteer-note h3 {
     margin: 0 0 0.5rem;
   }
 
-  .contact-form__volunteer-note p {
+  .contact-form .volunteer-note p {
     margin: 0;
     color: var(--color-text-inverse-muted);
     font-size: 0.75rem;
@@ -397,75 +397,75 @@ watch(data, (response) => {
     line-height: var(--leading-body);
   }
 
-  .contact-form__submit {
+  .contact-form .submit {
     width: 100%;
     align-items: center;
     justify-content: center;
   }
 
-  .contact-form__submit:disabled {
+  .contact-form .submit:disabled {
     opacity: 0.5;
   }
 
-  .contact-form__loading-icon {
+  .contact-form .loading-icon {
     width: 1rem;
     height: 1rem;
     margin-right: 0.5rem;
     animation: contact-form-spin 1s linear infinite;
   }
 
-  .contact-form__status {
+  .contact-form .status {
     margin-top: 2rem;
     border: 1px solid;
     padding: 1.5rem;
   }
 
-  .contact-form__status--error {
+  .contact-form .status.error {
     border-color: color-mix(in oklab, var(--color-danger) 20%, var(--color-surface));
     background: color-mix(in oklab, var(--color-danger) 8%, var(--color-surface));
   }
 
-  .contact-form__status--success {
+  .contact-form .status.success {
     border-color: var(--color-brand-strong);
     background: color-mix(in oklab, var(--color-brand) 5%, transparent);
   }
 
-  .contact-form__status-content {
+  .contact-form .status-content {
     display: flex;
     gap: 1rem;
   }
 
-  .contact-form__status-icon-wrap {
+  .contact-form .status-icon-wrap {
     flex-shrink: 0;
   }
 
-  .contact-form__status-icon {
+  .contact-form .status-icon {
     width: 1.5rem;
     height: 1.5rem;
   }
 
-  .contact-form__status-icon--error,
-  .contact-form__status-title--error,
-  .contact-form__status-message--error {
+  .contact-form .status-icon.error,
+  .contact-form .status-title.error,
+  .contact-form .status-message.error {
     color: var(--color-danger);
   }
 
-  .contact-form__status-icon--success,
-  .contact-form__status-title--success {
+  .contact-form .status-icon.success,
+  .contact-form .status-title.success {
     color: var(--color-brand-strong);
   }
 
-  .contact-form__status-title {
+  .contact-form .status-title {
     margin: 0;
   }
 
-  .contact-form__status-message {
+  .contact-form .status-message {
     margin: 0.5rem 0 0;
     font-size: 0.75rem;
     font-weight: 500;
   }
 
-  .contact-form__status-message--success {
+  .contact-form .status-message.success {
     color: var(--color-text-muted);
   }
 
@@ -504,17 +504,17 @@ watch(data, (response) => {
   }
 
   @container (min-width: 38rem) {
-    .contact-form__field-grid {
+    .contact-form .field-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .contact-form__submit {
+    .contact-form .submit {
       width: auto;
     }
   }
 
   @media (min-width: 64rem) {
-    .contact-form__layout {
+    .contact-form .layout {
       grid-template-columns: 5fr 7fr;
     }
   }

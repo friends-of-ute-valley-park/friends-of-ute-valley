@@ -41,24 +41,24 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
                 href={`/volunteerspotlight/${spotlight.id}`}
                 class="spotlight-card media-zoom-parent"
               >
-                <div class="spotlight-card__media">
+                <div class="media">
                   <Image
-                    class="spotlight-card__image media-cover media-zoom"
+                    class="image media-cover media-zoom"
                     src={spotlight.data.images[0].image}
                     alt={spotlight.data.name}
                     quality={70}
                   />
-                  <div class="spotlight-card__matte media-matte" />
+                  <div class="matte media-matte" />
                 </div>
 
-                <div class="spotlight-card__body">
-                  <div class="spotlight-card__copy">
-                    <div class="spotlight-card__tag">
+                <div class="body">
+                  <div class="copy">
+                    <div class="tag">
                       <span class="meta-label">
                         Volunteer
                       </span>
                     </div>
-                    <h3 class="spotlight-card__title card-title">
+                    <h3 class="title card-title">
                       {spotlight.data.name}
                     </h3>
                     <p>
@@ -66,7 +66,7 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
                     </p>
                   </div>
 
-                  <div class="spotlight-card__footer">
+                  <div class="footer">
                     <span class="meta-label">
                       Read More →
                     </span>
@@ -95,19 +95,19 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
     background: var(--color-page);
   }
 
-  .spotlight-card__media {
+  .spotlight-card .media {
     position: relative;
     aspect-ratio: 1;
     width: 100%;
     overflow: hidden;
   }
 
-  :global(.spotlight-card__image) {
+  :global(.spotlight-card .image) {
     object-position: top;
     transform-origin: top;
   }
 
-  .spotlight-card__body {
+  .spotlight-card .body {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -115,24 +115,24 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
     padding: 2rem;
   }
 
-  .spotlight-card__copy {
+  .spotlight-card .copy {
     display: grid;
     gap: 0.75rem;
   }
 
-  .spotlight-card__tag {
+  .spotlight-card .tag {
     display: flex;
     align-items: center;
     gap: 0.75rem;
   }
 
-  .spotlight-card__tag span {
+  .spotlight-card .tag span {
     border: 1px solid color-mix(in oklab, var(--color-brand-strong) 20%, transparent);
     color: var(--color-brand-strong);
     padding: 0.125rem 0.5rem;
   }
 
-  .spotlight-card__title {
+  .spotlight-card .title {
     --card-title-size: 1.875rem;
     line-height: 1;
   }
@@ -141,7 +141,7 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
     color: var(--color-brand-strong);
   }
 
-  .spotlight-card__copy p {
+  .spotlight-card .copy p {
     display: -webkit-box;
     margin: 0;
     overflow: hidden;
@@ -153,7 +153,7 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
     line-height: var(--leading-body);
   }
 
-  .spotlight-card__footer {
+  .spotlight-card .footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -162,7 +162,7 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
     padding-top: 1.5rem;
   }
 
-  .spotlight-card__footer span {
+  .spotlight-card .footer span {
     color: var(--color-brand-strong);
   }
 </style>

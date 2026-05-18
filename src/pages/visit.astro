@@ -18,10 +18,10 @@ const sortedTrailheads = await getSortedTrailheads();
   <main class="page visit-page">
     <!-- Technical Hero Section -->
     <section class="visit-hero">
-      <div class="visit-hero__layout">
+      <div class="layout">
         <!-- Identity Column -->
-        <div class="visit-hero__identity">
-          <div class="visit-hero__stack">
+        <div class="identity">
+          <div class="stack">
             <div class="page-eyebrow">
               <span>
                 Getting Here
@@ -39,7 +39,7 @@ const sortedTrailheads = await getSortedTrailheads();
               parking areas.
             </p>
 
-            <div class="visit-hero__facts">
+            <div class="facts">
               <div>
                 <p>
                   Park Coordinates
@@ -61,16 +61,16 @@ const sortedTrailheads = await getSortedTrailheads();
         </div>
 
         <!-- Visual Context Column -->
-        <div class="visit-hero__media media-zoom-frame">
+        <div class="media media-zoom-frame">
           <Picture
             src={heroImage}
             formats={["avif", "webp"]}
             alt="Biker in Ute Valley"
             width="1200"
             height="1200"
-            class="visit-hero__image media-cover media-zoom media-zoom--slow"
+            class="image media-cover media-zoom media-zoom--slow"
           />
-          <div class="visit-hero__matte media-matte"></div>
+          <div class="matte media-matte"></div>
         </div>
       </div>
     </section>
@@ -80,7 +80,7 @@ const sortedTrailheads = await getSortedTrailheads();
       <div class="article-layout__inner">
         <div class="visit-map">
           <!-- Trailheads -->
-          <div class="visit-map__trailheads">
+          <div class="trailheads">
             <div class="visit-section-heading">
               <h2>
                 Where to <span>Park.</span>
@@ -95,10 +95,10 @@ const sortedTrailheads = await getSortedTrailheads();
                 sortedTrailheads.map((trailhead) => (
                   <a
                     href={`/trailheads/${trailhead.id}/`}
-                    class="trailhead-list__item"
+                    class="item"
                   >
                     <div>
-                      <div class="trailhead-list__title">
+                      <div class="title">
                         <span>
                           [{trailhead.data.id.toString().padStart(2, "0")}]
                         </span>
@@ -120,8 +120,8 @@ const sortedTrailheads = await getSortedTrailheads();
           </div>
 
           <!-- Cartographic Context -->
-          <div class="visit-map__context">
-            <div class="visit-map__sticky">
+          <div class="context">
+            <div class="sticky">
               <div class="article-photo-card">
                 <a
                   href="/images/maps/ute-valley-park-map-full.jpg"
@@ -134,7 +134,7 @@ const sortedTrailheads = await getSortedTrailheads();
                     alt="Map of Ute Valley Park"
                     width="1200"
                     height="900"
-                    class="visit-map__image"
+                    class="image"
                   />
                   <div class="article-photo-card__meta">
                     <span>Trail Map</span>
@@ -172,12 +172,12 @@ const sortedTrailheads = await getSortedTrailheads();
     <!-- Park Rules -->
     <section class="visit-rules content-defer">
       <!-- Background technical markers -->
-      <div class="visit-rules__marker"></div>
+      <div class="marker"></div>
 
-      <div class="visit-rules__inner">
-        <div class="visit-rules__layout">
-          <div class="visit-rules__copy section-heading section-heading--inverse">
-            <div class="visit-rules__eyebrow section-kicker section-kicker--wide section-kicker--accent section-kicker--inverse">
+      <div class="inner">
+        <div class="layout">
+          <div class="copy section-heading section-heading--inverse">
+            <div class="eyebrow section-kicker section-kicker--wide section-kicker--accent section-kicker--inverse">
               <span class="section-kicker__rule"></span>
               <span class="section-kicker__text">
                 Rules & Etiquette
@@ -194,21 +194,21 @@ const sortedTrailheads = await getSortedTrailheads();
             </p>
             <a
               href="/rules/"
-              class="visit-rules__link"
+              class="link"
             >
               Review Full Rules
             </a>
           </div>
 
           <div>
-            <div class="visit-rules__media">
+            <div class="media">
               <Picture
                 src={DogImage}
                 formats={["avif", "webp"]}
                 alt="Dog in park"
                 width="800"
                 height="450"
-                class="visit-rules__image media-cover"
+                class="image media-cover"
               />
             </div>
           </div>
@@ -281,21 +281,21 @@ const sortedTrailheads = await getSortedTrailheads();
     border-bottom: 1px solid var(--color-border);
   }
 
-  .visit-hero__layout,
+  .visit-hero .layout,
   .visit-map {
     display: grid;
   }
 
-  .visit-hero__identity {
+  .visit-hero .identity {
     padding: clamp(3rem, 8vw, 8rem) var(--space-page-x) clamp(5rem, 10vw, 10rem);
   }
 
-  .visit-hero__stack {
+  .visit-hero .stack {
     display: grid;
     gap: 2rem;
   }
 
-  .visit-hero__stack > p {
+  .visit-hero .stack > p {
     max-width: 36rem;
     margin: 0;
     color: var(--color-text-muted);
@@ -304,46 +304,46 @@ const sortedTrailheads = await getSortedTrailheads();
     line-height: var(--leading-body);
   }
 
-  .visit-hero__facts {
+  .visit-hero .facts {
     display: flex;
     flex-wrap: wrap;
     gap: 3rem;
     padding-top: 2rem;
   }
 
-  .visit-hero__facts p {
+  .visit-hero .facts p {
     margin: 0;
     font-family: var(--font-label);
     text-transform: uppercase;
   }
 
-  .visit-hero__facts p:first-child {
+  .visit-hero .facts p:first-child {
     color: var(--color-text-subtle);
     font-size: var(--text-label);
     letter-spacing: 0.12em;
   }
 
-  .visit-hero__facts p:last-child {
+  .visit-hero .facts p:last-child {
     color: var(--color-brand-strong);
     font-size: var(--text-body-small);
     font-weight: 900;
   }
 
-  .visit-hero__media {
+  .visit-hero .media {
     position: relative;
     overflow: hidden;
     background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
   }
 
-  :global(.visit-hero__image) {
+  :global(.visit-hero .image) {
     min-height: 28rem;
   }
 
-  .visit-hero__matte {
+  .visit-hero .matte {
     --media-matte-border: 1.5rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
   }
 
-  .visit-map__trailheads {
+  .visit-map .trailheads {
     padding: var(--space-section) var(--space-page-x);
   }
 
@@ -379,7 +379,7 @@ const sortedTrailheads = await getSortedTrailheads();
     border-top: 1px solid var(--color-border-muted);
   }
 
-  .trailhead-list__item {
+  .trailhead-list .item {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -390,17 +390,17 @@ const sortedTrailheads = await getSortedTrailheads();
     transition: background-color 200ms;
   }
 
-  .trailhead-list__item:hover {
+  .trailhead-list .item:hover {
     background: var(--color-surface-muted);
   }
 
-  .trailhead-list__title {
+  .trailhead-list .title {
     display: flex;
     align-items: center;
     gap: 0.75rem;
   }
 
-  .trailhead-list__title span {
+  .trailhead-list .title span {
     color: var(--color-accent-strong);
     font-family: var(--font-label);
     font-size: 0.75rem;
@@ -422,8 +422,8 @@ const sortedTrailheads = await getSortedTrailheads();
     transition: color 200ms;
   }
 
-  .trailhead-list__item:hover h3,
-  .trailhead-list__item:hover > span {
+  .trailhead-list .item:hover h3,
+  .trailhead-list .item:hover > span {
     color: var(--color-brand-strong);
   }
 
@@ -435,29 +435,29 @@ const sortedTrailheads = await getSortedTrailheads();
     font-weight: 500;
   }
 
-  .trailhead-list__item > span {
+  .trailhead-list .item > span {
     color: var(--color-accent-strong);
     transition: color 200ms;
   }
 
-  .visit-map__context {
+  .visit-map .context {
     background: var(--color-page);
     padding: clamp(2rem, 4vw, 3rem);
   }
 
-  .visit-map__sticky {
+  .visit-map .sticky {
     display: grid;
     gap: 2rem;
   }
 
   @media (min-width: 64rem) {
-    .visit-map__sticky {
+    .visit-map .sticky {
       position: sticky;
       top: 6rem;
     }
   }
 
-  :global(.visit-map__image) {
+  :global(.visit-map .image) {
     width: 100%;
     height: auto;
     transition: transform 700ms;
@@ -503,7 +503,7 @@ const sortedTrailheads = await getSortedTrailheads();
     padding-block: var(--space-section);
   }
 
-  .visit-rules__marker {
+  .visit-rules .marker {
     position: absolute;
     top: 0;
     right: 0;
@@ -514,25 +514,25 @@ const sortedTrailheads = await getSortedTrailheads();
     pointer-events: none;
   }
 
-  .visit-rules__inner {
+  .visit-rules .inner {
     position: relative;
     z-index: 1;
     width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
     margin-inline: auto;
   }
 
-  .visit-rules__layout {
+  .visit-rules .layout {
     display: grid;
     align-items: center;
     gap: 4rem;
   }
 
-  .visit-rules__copy {
+  .visit-rules .copy {
     --section-heading-gap: 2rem;
     --section-heading-copy-margin: 0;
   }
 
-  .visit-rules__link {
+  .visit-rules .link {
     display: inline-block;
     width: fit-content;
     border: 2px solid var(--color-accent);
@@ -550,16 +550,16 @@ const sortedTrailheads = await getSortedTrailheads();
       transform 200ms;
   }
 
-  .visit-rules__link:hover {
+  .visit-rules .link:hover {
     background: var(--color-accent);
     color: var(--color-surface-inverse);
   }
 
-  .visit-rules__link:active {
+  .visit-rules .link:active {
     transform: scale(0.96);
   }
 
-  .visit-rules__media {
+  .visit-rules .media {
     position: relative;
     aspect-ratio: 16 / 9;
     overflow: hidden;
@@ -567,12 +567,12 @@ const sortedTrailheads = await getSortedTrailheads();
     background: var(--color-surface-inverse-muted);
   }
 
-  :global(.visit-rules__image) {
+  :global(.visit-rules .image) {
     opacity: 0.5;
     transition: opacity 1000ms;
   }
 
-  .visit-rules__media:hover :global(.visit-rules__image) {
+  .visit-rules .media:hover :global(.image) {
     opacity: 1;
   }
 
@@ -638,11 +638,11 @@ const sortedTrailheads = await getSortedTrailheads();
   }
 
   @media (min-width: 64rem) {
-    .visit-hero__layout {
+    .visit-hero .layout {
       grid-template-columns: 7fr 5fr;
     }
 
-    .visit-hero__identity {
+    .visit-hero .identity {
       border-right: 1px solid var(--color-border);
       padding-inline: var(--space-page-x) 3rem;
     }
@@ -651,16 +651,16 @@ const sortedTrailheads = await getSortedTrailheads();
       grid-template-columns: 5fr 7fr;
     }
 
-    .visit-map__trailheads {
+    .visit-map .trailheads {
       border-right: 1px solid var(--color-border);
       padding-inline: var(--space-page-x) 3rem;
     }
 
-    .visit-rules__marker {
+    .visit-rules .marker {
       display: block;
     }
 
-    .visit-rules__layout {
+    .visit-rules .layout {
       grid-template-columns: 5fr 7fr;
     }
 

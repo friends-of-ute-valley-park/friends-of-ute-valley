@@ -87,8 +87,8 @@ const faqs = [
           {
             faqs.map((faq) => (
               <div class="faq-card">
-                <div class="faq-card__content">
-                  <div class="faq-card__meta">
+                <div class="content">
+                  <div class="meta">
                     <span>
                       [{faq.id}]
                     </span>
@@ -100,7 +100,7 @@ const faqs = [
                     {faq.question}
                   </h3>
                   <div
-                    class="faq-card__answer"
+                    class="answer"
                     set:html={faq.answer}
                   />
                 </div>
@@ -136,18 +136,18 @@ const faqs = [
     background: var(--color-page);
   }
 
-  .faq-card__content {
+  .faq-card .content {
     display: grid;
     gap: 1rem;
   }
 
-  .faq-card__meta {
+  .faq-card .meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  .faq-card__meta span:first-child {
+  .faq-card .meta span:first-child {
     color: var(--color-border);
     font-family: var(--font-label);
     font-size: 0.75rem;
@@ -155,11 +155,11 @@ const faqs = [
     transition: color 200ms;
   }
 
-  .faq-card:hover .faq-card__meta span:first-child {
+  .faq-card:hover .meta span:first-child {
     color: var(--color-brand-strong);
   }
 
-  .faq-card__meta span:last-child {
+  .faq-card .meta span:last-child {
     border: 1px solid var(--color-border-muted);
     color: var(--color-text-subtle);
     padding: 0.125rem 0.5rem;
@@ -173,7 +173,7 @@ const faqs = [
       color 200ms;
   }
 
-  .faq-card:hover .faq-card__meta span:last-child {
+  .faq-card:hover .meta span:last-child {
     border-color: var(--color-brand-strong);
     color: var(--color-brand-strong);
   }
@@ -193,14 +193,14 @@ const faqs = [
     color: var(--color-brand-strong);
   }
 
-  .faq-card__answer {
+  .faq-card .answer {
     color: var(--color-text-muted);
     font-size: var(--text-body-small);
     font-weight: 500;
     line-height: var(--leading-body);
   }
 
-  .faq-card__answer :global(p) {
+  .faq-card .answer :global(p) {
     margin: 0;
   }
 
