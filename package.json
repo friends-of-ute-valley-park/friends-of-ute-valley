@@ -23,7 +23,7 @@
     "@vueuse/core": "^14.3.0",
     "astro": "^6.3.3",
     "dotenv": "^17.4.2",
-    "resend": "^6.12.2",
+    "resend": "^6.12.3",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
