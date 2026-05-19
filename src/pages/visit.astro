@@ -81,11 +81,11 @@ const sortedTrailheads = await getSortedTrailheads();
         <div class="visit-map">
           <!-- Trailheads -->
           <div class="trailheads">
-            <div class="visit-section-heading">
-              <h2>
+            <div class="visit-section-heading section-heading">
+              <h2 class="section-heading__title">
                 Where to <span>Park.</span>
               </h2>
-              <p>
+              <p class="section-heading__copy">
                 Find your trailhead and get directions.
               </p>
             </div>
@@ -219,11 +219,11 @@ const sortedTrailheads = await getSortedTrailheads();
     <!-- Our Trails -->
     <section class="page-section content-defer">
       <div class="page-section__inner">
-        <div class="visit-section-heading visit-section-heading--spaced">
-          <h2>
+        <div class="visit-section-heading visit-section-heading--spaced section-heading">
+          <h2 class="section-heading__title">
             Our <span>Trails.</span>
           </h2>
-          <p>
+          <p class="section-heading__copy">
             Ute Valley Park offers trails for every skill level, from easy
             strolls to technical challenges.
           </p>
@@ -347,28 +347,11 @@ const sortedTrailheads = await getSortedTrailheads();
     padding: var(--space-section) var(--space-page-x);
   }
 
-  .visit-section-heading h2 {
-    margin: 0 0 1rem;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(1.875rem, 5vw, 3.75rem);
-    font-weight: 900;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .visit-section-heading h2 span {
-    color: var(--color-brand-strong);
-    font-style: italic;
-  }
-
-  .visit-section-heading p {
-    max-width: 42rem;
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: var(--text-body-small);
-    font-weight: 500;
-    line-height: var(--leading-body);
+  .visit-section-heading {
+    --section-heading-title-size: clamp(1.875rem, 5vw, 3.75rem);
+    --section-heading-title-leading: normal;
+    --section-heading-copy-size: var(--text-body-small);
+    --section-heading-copy-margin: 0;
   }
 
   .visit-section-heading--spaced {

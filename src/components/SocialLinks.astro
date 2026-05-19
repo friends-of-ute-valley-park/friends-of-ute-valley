@@ -45,7 +45,7 @@ const socialLinks = (await getCollection('social-links'))
         target={isInline ? undefined : '_blank'}
         rel={isInline ? undefined : 'noopener noreferrer nofollow'}
       >
-        <span class="label">{entry.data.title}</span>
+        <span class="label sr-only">{entry.data.title}</span>
         <Icon class={isInline ? 'icon icon inline' : 'icon'} aria-hidden="true" />
       </a>
     );
@@ -114,18 +114,6 @@ const socialLinks = (await getCollection('social-links'))
   .social-links .link.neutral:hover {
     border-color: var(--color-text-strong);
     color: var(--color-text-strong);
-  }
-
-  .social-links .label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
   }
 
   :global(.social-links .icon) {

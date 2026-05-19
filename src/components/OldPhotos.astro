@@ -43,7 +43,7 @@ const morePhotos = sorted.slice(6);
 
   <div id="view-more-btn" class="more">
     <button
-      class="button"
+      class="button button--outline"
       data-toggle-photos
     >
       View More Photos
@@ -104,29 +104,6 @@ const morePhotos = sorted.slice(6);
     display: flex;
     justify-content: center;
     padding-top: 2rem;
-  }
-
-  .historic-photos .button {
-    border: 2px solid var(--color-text-strong);
-    background: transparent;
-    color: var(--color-text-strong);
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    transition:
-      background-color 200ms,
-      border-color 200ms,
-      color 200ms,
-      box-shadow 200ms,
-      transform 200ms;
-  }
-
-  .historic-photos .button:hover {
-    background: var(--color-text-strong);
-    color: var(--color-text-inverse);
-  }
-
-  .historic-photos .button:active {
-    transform: scale(0.96);
   }
 
   .historic-photos .extra {

@@ -7,7 +7,6 @@ const footerItems = [
   { name: "Volunteer", link: "/volunteer/" },
   { name: "FAQ", link: "/faq/" },
   { name: "Privacy Policy", link: "/privacy/" },
-  { name: "Donate", link: "/donate/" },
   { name: "Park Regulations", link: "/rules/" },
   { name: "Brand Assets", link: "/assets/" },
 ];
@@ -15,7 +14,7 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="inner">
+  <div class="inner l-container">
     <div class="panel">
       <!-- Branding & Legal -->
       <div class="brand">
@@ -37,8 +36,8 @@ const currentYear = new Date().getFullYear();
 
           <div class="legal">
             <p>
-              Fiscally sponsored fund of the Trails and Open Space Coalition
-              (501(c)(3)). Contributions are tax-deductible as permitted by law.
+              Mail donations and correspondence to Friends of Ute Valley Park,
+              PO Box 50122, Colorado Springs, CO 80919.
             </p>
             <p class="copyright">
               © {currentYear} Friends of Ute Valley Park — ALL RIGHTS RESERVED.
@@ -78,11 +77,6 @@ const currentYear = new Date().getFullYear();
     border-top: 1px solid var(--color-border);
     background: var(--color-page);
     padding-block: 5rem 3rem;
-  }
-
-  .site-footer .inner {
-    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
-    margin-inline: auto;
   }
 
   .site-footer .panel {

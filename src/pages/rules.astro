@@ -115,8 +115,8 @@ const parkRules = [
     <!-- Detailed Code -->
     <section class="page-section">
       <div class="page-section__inner">
-        <div class="rules-heading">
-          <h2>
+        <div class="rules-heading section-heading">
+          <h2 class="section-heading__title">
             Municipal <span>Ordinances.</span>
           </h2>
         </div>
@@ -277,21 +277,8 @@ const parkRules = [
 
   .rules-heading {
     margin-bottom: 4rem;
-  }
-
-  .rules-heading h2 {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 6vw, 3.75rem);
-    font-weight: 900;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .rules-heading h2 span {
-    color: var(--color-brand-strong);
-    font-style: italic;
+    --section-heading-title-size: clamp(2.25rem, 6vw, 3.75rem);
+    --section-heading-title-leading: normal;
   }
 
   .ordinance-card {

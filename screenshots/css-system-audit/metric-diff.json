@@ -1,0 +1,47 @@
+[
+  {
+    "route": "visit",
+    "selector": ".section-heading__title",
+    "property": "color",
+    "before": "oklch(1 0 0)",
+    "after": "oklch(0.216 0.006 56.043)"
+  },
+  {
+    "route": "visit",
+    "selector": ".section-heading__title",
+    "property": "fontSize",
+    "before": "36px",
+    "after": "30px"
+  },
+  {
+    "route": "visit",
+    "selector": ".section-heading__title",
+    "property": "lineHeight",
+    "before": "36px",
+    "after": "normal"
+  },
+  {
+    "route": "visit",
+    "selector": ".section-heading__title",
+    "property": "rect",
+    "before": {
+      "height": 72,
+      "width": 361,
+      "x": 16,
+      "y": 1837
+    },
+    "after": {
+      "height": 40,
+      "width": 361,
+      "x": 16,
+      "y": 1294
+    }
+  },
+  {
+    "route": "visit",
+    "selector": ".section-heading__title",
+    "property": "text",
+    "before": "Park Rules.",
+    "after": "Where to Park."
+  }
+]

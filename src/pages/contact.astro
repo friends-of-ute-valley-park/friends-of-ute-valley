@@ -11,6 +11,20 @@ import { TURNSTILE_SITE_KEY } from 'astro:env/client';
 >
   <main class="page">
     <ContactForm client:idle turnstileSiteKey={TURNSTILE_SITE_KEY} />
+
+    <section class="mailing-address">
+      <div class="mailing-address__inner l-container">
+        <div>
+          <p class="eyebrow t-label">Mail Donations and Correspondence</p>
+          <h2>Our new PO Box.</h2>
+        </div>
+        <address>
+          <span>Friends of Ute Valley Park</span>
+          <span>PO Box 50122</span>
+          <span>Colorado Springs, CO 80919</span>
+        </address>
+      </div>
+    </section>
     
     <div class="contact-team content-defer">
       <TeamList />
@@ -19,8 +33,54 @@ import { TURNSTILE_SITE_KEY } from 'astro:env/client';
 </Layout>
 
 <style>
+  .mailing-address {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding-block: 3rem;
+  }
+
+  .mailing-address__inner {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .mailing-address .eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--color-brand-strong);
+  }
+
+  .mailing-address h2 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .mailing-address address {
+    display: grid;
+    gap: 0.35rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-page);
+    padding: 1.5rem;
+    color: var(--color-brand-strong);
+    font-style: normal;
+    font-weight: 800;
+    line-height: var(--leading-tight);
+  }
+
   .contact-team {
     border-top: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 48rem) {
+    .mailing-address__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
+      align-items: center;
+    }
   }
 </style>
 

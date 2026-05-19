@@ -37,21 +37,10 @@
   }
 
   .button--brand {
-    position: relative;
     background: var(--color-brand-strong);
-    padding: 1rem 2rem;
     color: var(--color-text-inverse);
-    font-family: var(--font-label);
-    font-size: var(--text-action);
     font-weight: 700;
-    line-height: 1;
-    text-transform: uppercase;
-    text-decoration: none;
     box-shadow: var(--shadow-accent-sm);
-    transition:
-      background-color 300ms,
-      box-shadow 300ms,
-      transform 300ms;
   }
 
   .button--brand:hover {
@@ -69,10 +58,40 @@
     color: var(--color-text-inverse);
   }
 
+  .button--accent:hover {
+    background: var(--color-accent-strong);
+  }
+
   .button--quiet {
     border: 1px solid var(--color-border);
     background: transparent;
     color: var(--color-text-muted);
+  }
+
+  .button--outline {
+    border: 2px solid var(--color-text-strong);
+    background: transparent;
+    color: var(--color-text-strong);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+  }
+
+  .button--outline:hover {
+    background: var(--color-text-strong);
+    color: var(--color-text-inverse);
+  }
+
+  .button--outline:active,
+  .button--accent:active {
+    transform: scale(0.96);
+  }
+
+  .button--full {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+    text-align: center;
   }
 
   .text-link {
@@ -249,9 +268,7 @@
   }
 
   .panel-card--raised {
-    --panel-card-shadow:
-      0 1px 2px rgb(0 0 0 / 5%),
-      0 18px 48px rgb(28 25 23 / 8%);
+    --panel-card-shadow: 0 1px 2px rgb(0 0 0 / 5%), 0 18px 48px rgb(28 25 23 / 8%);
   }
 
   .page {
@@ -505,10 +522,12 @@
     border-radius: var(--form-input-radius, 0);
     background: var(--form-input-background, var(--color-surface));
     color: var(--form-input-color, var(--color-text));
+    caret-color: var(--form-input-caret-color, auto);
     padding: var(--form-input-padding, 0.75rem 1rem);
     font: inherit;
     font-family: var(--form-input-font-family, inherit);
     font-size: var(--form-input-font-size, inherit);
+    box-shadow: var(--form-input-shadow, none);
     transition:
       background-color 200ms,
       border-color 200ms,
@@ -530,6 +549,7 @@
   .form-input[aria-invalid='true'],
   .form-input--invalid {
     border-color: var(--color-danger);
+    color: var(--color-danger);
   }
 
   .form-input--quiet {
@@ -541,6 +561,18 @@
     --form-input-focus-shadow: none;
     --form-input-font-family: var(--font-label);
     --form-input-font-size: var(--text-body-small);
+  }
+
+  .form-input--newsletter {
+    --form-input-min-height: 3rem;
+    --form-input-radius: 0.375rem;
+    --form-input-color: var(--color-text-strong);
+    --form-input-caret-color: var(--color-accent-strong);
+    --form-input-padding: 0.75rem 1rem 0.75rem 3rem;
+    --form-input-font-size: 1rem;
+    --form-input-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%);
+    --form-input-focus-border-color: var(--color-accent);
+    --form-input-focus-shadow: 0 0 0 3px color-mix(in oklab, var(--color-accent) 30%, transparent);
   }
 
   .form-error {

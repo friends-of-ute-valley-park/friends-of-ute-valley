@@ -97,7 +97,7 @@ const getEventLabel = (event: CalendarEvent) =>
   event.companyName ? `${event.title}: ${event.companyName}` : event.title;
 ---
 
-<div class="static-calendar">
+<div class="static-calendar l-container">
   <div class="header">
     <div class="heading section-heading">
       <div class="eyebrow section-kicker">
@@ -206,8 +206,6 @@ const getEventLabel = (event: CalendarEvent) =>
 
 <style>
   .static-calendar {
-    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
-    margin-inline: auto;
     padding-block: 3rem;
   }
 

@@ -89,8 +89,8 @@ import StatsCard from "@components/StatsCard.astro";
 
           <div class="content">
             <!-- History -->
-            <div id="history" class="about-record">
-              <h2>
+            <div id="history" class="about-record section-heading">
+              <h2 class="section-heading__title">
                 Our <span>History.</span>
               </h2>
               <div class="prose-content">
@@ -110,8 +110,8 @@ import StatsCard from "@components/StatsCard.astro";
             </div>
 
             <!-- Stewardship -->
-            <div id="stewardship" class="about-record">
-              <h2>
+            <div id="stewardship" class="about-record section-heading">
+              <h2 class="section-heading__title">
                 How We <span>Care for the Park.</span>
               </h2>
               <div class="stewardship-grid">
@@ -137,8 +137,8 @@ import StatsCard from "@components/StatsCard.astro";
             </div>
 
             <!-- Awards -->
-            <div id="awards" class="about-record">
-              <h2>
+            <div id="awards" class="about-record section-heading">
+              <h2 class="section-heading__title">
                 Awards & <span>Recognition.</span>
               </h2>
               <div class="award-list">
@@ -187,20 +187,20 @@ import StatsCard from "@components/StatsCard.astro";
             </div>
 
             <!-- Structure -->
-            <div id="structure" class="about-record">
-              <h2>
+            <div id="structure" class="about-record section-heading">
+              <h2 class="section-heading__title">
                 Our <span>Structure.</span>
               </h2>
               <div class="structure-card">
                 <div class="content">
                   <p>
-                    FUVP operates as a committee under the fiscal sponsorship of
-                    the Trails and Open Spaces Coalition (TOSC).
+                    FUVP currently operates as a committee under the fiscal
+                    sponsorship of the Trails and Open Spaces Coalition (TOSC)
+                    through June 30, 2026.
                   </p>
                   <p>
-                    This arrangement minimizes our operating costs and allows us
-                    to utilize TOSC's 501(C)(3) non-profit status as we pursue
-                    our mission.
+                    We are transitioning away from that sponsorship and have
+                    opened a new PO Box for direct correspondence.
                   </p>
                   <div class="facts">
                     <div>
@@ -208,15 +208,15 @@ import StatsCard from "@components/StatsCard.astro";
                         Status
                       </p>
                       <p>
-                        501(C)(3) Sponsored
+                        Transitioning
                       </p>
                     </div>
                     <div>
                       <p>
-                        Entity
+                        Mail
                       </p>
                       <p>
-                        TOSC Fiscal Committee
+                        PO Box 50122
                       </p>
                     </div>
                   </div>
@@ -237,8 +237,8 @@ import StatsCard from "@components/StatsCard.astro";
     <!-- Photographic Evidence -->
     <section class="about-gallery">
       <div class="page-section__inner">
-        <div class="heading">
-          <h2>
+        <div class="heading section-heading">
+          <h2 class="section-heading__title">
             Park <span>Gallery.</span>
           </h2>
         </div>
@@ -444,19 +444,12 @@ import StatsCard from "@components/StatsCard.astro";
     scroll-margin-top: 6rem;
   }
 
-  .about-record h2,
-  .about-gallery .heading h2 {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 6vw, 3rem);
-    font-weight: 900;
-    letter-spacing: 0;
-    text-transform: uppercase;
+  .about-record,
+  .about-gallery .heading {
+    --section-heading-title-size: clamp(2.25rem, 6vw, 3rem);
+    --section-heading-title-leading: normal;
   }
 
-  .about-record h2 span,
-  .about-gallery .heading h2 span,
   .survey-report h2 span {
     color: var(--color-brand-strong);
     font-style: italic;

@@ -1,5 +1,5 @@
 ---
-title: Donate
-link: https://fuvp.org/donate/
+title: Contact Us
+link: https://fuvp.org/contact/
 priority: 97
 ---

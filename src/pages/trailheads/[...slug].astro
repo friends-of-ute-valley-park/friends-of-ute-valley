@@ -116,8 +116,8 @@ const { entry } = Astro.props;
     <!-- Visual Documentation -->
     <section class="page-section">
       <div class="page-section__inner">
-        <div class="header">
-          <h2>
+        <div class="header section-heading">
+          <h2 class="section-heading__title">
             Site <span>Documentation.</span>
           </h2>
         </div>
@@ -251,21 +251,8 @@ const { entry } = Astro.props;
 
   .trailhead-docs .header {
     margin-bottom: 4rem;
-  }
-
-  .trailhead-docs .header h2 {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 6vw, 3.75rem);
-    font-weight: 900;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .trailhead-docs .header h2 span {
-    color: var(--color-brand-strong);
-    font-style: italic;
+    --section-heading-title-size: clamp(2.25rem, 6vw, 3.75rem);
+    --section-heading-title-leading: normal;
   }
 
   .trailhead-photo-grid {

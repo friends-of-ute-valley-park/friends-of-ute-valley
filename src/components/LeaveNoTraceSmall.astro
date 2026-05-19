@@ -4,44 +4,46 @@ import EngagementPanel from "./EngagementPanel.astro";
 import lntLogo from "../assets/images/logos/leave-no-trace.png";
 ---
 
-<EngagementPanel>
-  <h2
-    slot="heading"
-    class="title"
-  >
-    Leave <br /> No <span>Trace.</span>
-  </h2>
-  <Fragment slot="subheading">Environmental Stewardship</Fragment>
-  <Fragment slot="description">
-    <p class="description">
-      Ute Valley Park proudly supports The 7 Principles of Leave No Trace.
-      Following these guidelines helps protect the park for everyone.
-    </p>
-    <div class="rules">
-      <a
-        href="/rules/"
-        class="rules-link"
-      >
-        View Park Rules →
-      </a>
-    </div>
-  </Fragment>
+<div class="lnt-small">
+  <EngagementPanel>
+    <h2
+      slot="heading"
+      class="title section-heading__title"
+    >
+      Leave <br /> No <span>Trace.</span>
+    </h2>
+    <Fragment slot="subheading">Environmental Stewardship</Fragment>
+    <Fragment slot="description">
+      <p class="description section-heading__copy">
+        Ute Valley Park proudly supports The 7 Principles of Leave No Trace.
+        Following these guidelines helps protect the park for everyone.
+      </p>
+      <div class="rules">
+        <a
+          href="/rules/"
+          class="rules-link"
+        >
+          View Park Rules →
+        </a>
+      </div>
+    </Fragment>
 
-  <div
-    slot="main"
-    class="partner"
-  >
-    <a href="https://www.lnt.org" class="logo-link">
-      <Picture
-        src={lntLogo}
-        alt="Leave No Trace logo"
-        width="240"
-        class="logo"
-      />
-    </a>
-    <span>Certified Stewardship Partner</span>
-  </div>
-</EngagementPanel>
+    <div
+      slot="main"
+      class="partner"
+    >
+      <a href="https://www.lnt.org" class="logo-link">
+        <Picture
+          src={lntLogo}
+          alt="Leave No Trace logo"
+          width="240"
+          class="logo"
+        />
+      </a>
+      <span>Certified Stewardship Partner</span>
+    </div>
+  </EngagementPanel>
+</div>
 
 <style>
   .lnt-small .title {
@@ -62,7 +64,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
   .lnt-small .description {
     margin: 0;
-    color: var(--color-text-subtle);
+    color: var(--color-text-inverse-muted);
     font-size: var(--text-body-large);
     font-weight: 500;
     line-height: var(--leading-body);
