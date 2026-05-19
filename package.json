@@ -30,7 +30,7 @@
     "@astrojs/vue": "^6.0.1",
     "@iconify/json": "^2.2.469",
     "oxfmt": "^0.47.0",
-    "oxlint": "^1.62.0",
+    "oxlint": "^1.65.0",
     "oxlint-tsgolint": "^0.22.1",
     "sharp": "^0.34.5",
     "unplugin-icons": "^23.0.1",
