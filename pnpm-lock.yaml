@@ -37,8 +37,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(@types/node@24.12.4)(astro@6.3.4(@types/node@24.12.4)(rollup@4.60.4))(vue@3.5.34(typescript@6.0.3))
       '@iconify/json':
-        specifier: ^2.2.474
-        version: 2.2.474
+        specifier: ^2.2.477
+        version: 2.2.477
       oxfmt:
         specifier: ^0.50.0
         version: 0.50.0
@@ -407,8 +407,8 @@ packages:
   '@fontsource-variable/playfair-display@5.2.8':
     resolution: {integrity: sha512-ZzVIXPOrL85yyOvZYoBzUszIJM+xKkHqni4IYn2CVLaGQQdJR8sBeC8yFNgjxSJ7ludTwta8qpULeOFuk5X75A==}
 
-  '@iconify/json@2.2.474':
-    resolution: {integrity: sha512-6dyYYjYWMcsV3nWMX4rEtDypaSL1+j6M7ra7F+CMLlpCSy8qdgYUDcwr7FrIYSa+GySmRfhdtJcUPQYWvB4DRw==}
+  '@iconify/json@2.2.477':
+    resolution: {integrity: sha512-isVa2k45CaoJl2DEMbyOCwif7Ec8PIk97p6VENhSSPfZE19UPmbY72LLOICUchWkWYz9RqBy5duFE2aiuPfUvA==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -2696,7 +2696,7 @@ snapshots:
 
   '@fontsource-variable/playfair-display@5.2.8': {}
 
-  '@iconify/json@2.2.474':
+  '@iconify/json@2.2.477':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 2.0.3
