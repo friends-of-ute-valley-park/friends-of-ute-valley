@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@astrojs/vue": "^6.0.1",
-    "@iconify/json": "^2.2.474",
+    "@iconify/json": "^2.2.478",
     "oxfmt": "^0.50.0",
     "oxlint": "^1.65.0",
     "oxlint-tsgolint": "^0.23.0",
