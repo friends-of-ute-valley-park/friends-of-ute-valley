@@ -1,0 +1,227 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+const domainFacts = [
+  {
+    label: "Organization",
+    value: "Friends of Ute Valley Park",
+  },
+  {
+    label: "Domain",
+    value: "fuvp.org",
+  },
+  {
+    label: "Website",
+    value: "https://fuvp.org",
+  },
+  {
+    label: "Contact",
+    value: "contact@fuvp.org",
+  },
+];
+---
+
+<Layout
+  title="Official Organization Domain"
+  description="Confirmation that fuvp.org is the official domain used by Friends of Ute Valley Park for its public website and organizational email."
+>
+  <main class="page organization-domain-page">
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <div class="page-eyebrow">
+          <span>
+            Official Domain Confirmation
+          </span>
+        </div>
+
+        <h1 class="page-title">
+          Friends of Ute Valley Park <span>Domain.</span>
+        </h1>
+
+        <p class="page-intro">
+          This page confirms the relationship between Friends of Ute Valley Park
+          and the fuvp.org domain.
+        </p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-section__inner--narrow">
+        <article class="confirmation">
+          <div class="confirmation__mark" aria-hidden="true"></div>
+
+          <div class="confirmation__content">
+            <h2>
+              Official Organization Domain
+            </h2>
+
+            <div class="confirmation__prose">
+              <p>
+                Friends of Ute Valley Park confirms that <strong>fuvp.org</strong>
+                is the official internet domain used by the organization for its
+                public website and organizational email.
+              </p>
+
+              <p>
+                Friends of Ute Valley Park is a volunteer-led nonprofit
+                organization dedicated to maintaining, preserving, and providing
+                education for Ute Valley Park in Colorado Springs, Colorado.
+              </p>
+
+              <p>
+                FUVP currently operates as a committee under the fiscal
+                sponsorship of the Trails and Open Spaces Coalition through June
+                30, 2026, while continuing to use fuvp.org as its official
+                organizational domain.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <div class="domain-facts" aria-label="Organization domain details">
+          {
+            domainFacts.map((fact) => (
+              <div class="domain-fact">
+                <span>
+                  {fact.label}
+                </span>
+                <strong>
+                  {fact.value}
+                </strong>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="verification-note">
+          <div>
+            <p>
+              Mailing Address
+            </p>
+            <p>
+              Friends of Ute Valley Park<br />
+              PO Box 50122<br />
+              Colorado Springs, CO 80949
+            </p>
+          </div>
+
+          <a href="mailto:contact@fuvp.org" class="button button--brand">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .organization-domain-page .page-title {
+    max-width: 11ch;
+  }
+
+  .confirmation {
+    display: grid;
+    gap: 1.5rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: clamp(1.5rem, 5vw, 3rem);
+  }
+
+  .confirmation__mark {
+    width: 3rem;
+    height: 0.35rem;
+    background: var(--color-brand-strong);
+  }
+
+  .confirmation__content {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .confirmation h2 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .confirmation__prose {
+    display: grid;
+    gap: 1rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-large);
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .confirmation__prose p {
+    margin: 0;
+  }
+
+  .confirmation__prose strong {
+    color: var(--color-text-strong);
+  }
+
+  .domain-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .domain-fact {
+    display: grid;
+    gap: 0.5rem;
+    border: 1px solid var(--color-border);
+    padding: 1.25rem;
+  }
+
+  .domain-fact span,
+  .verification-note p:first-child {
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .domain-fact strong {
+    color: var(--color-text-strong);
+    font-size: var(--text-body-large);
+    overflow-wrap: anywhere;
+  }
+
+  .verification-note {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    border: 1px solid var(--color-border);
+    background: color-mix(in oklab, var(--color-surface-muted) 55%, transparent);
+    padding: 1.5rem;
+  }
+
+  .verification-note p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    line-height: var(--leading-body);
+  }
+
+  .verification-note p + p {
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .verification-note {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+</style>
