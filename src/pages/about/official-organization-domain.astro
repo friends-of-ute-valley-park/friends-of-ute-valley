@@ -11,6 +11,14 @@ const domainFacts = [
     value: "fuvp.org",
   },
   {
+    label: "Employer ID number",
+    value: "42-2107142",
+  },
+  {
+    label: "IRS status",
+    value: "501(c)(3) public charity",
+  },
+  {
     label: "Website",
     value: "https://fuvp.org",
   },
@@ -63,17 +71,29 @@ const domainFacts = [
               </p>
 
               <p>
-                Friends of Ute Valley Park is a volunteer-led nonprofit
-                organization dedicated to maintaining, preserving, and providing
-                education for Ute Valley Park in Colorado Springs, Colorado.
+                Friends of Ute Valley Park is recognized by the Internal Revenue
+                Service as exempt from federal income tax under Internal Revenue
+                Code Section 501(c)(3). The organization's Employer
+                Identification Number is <strong>42-2107142</strong>.
               </p>
 
               <p>
-                FUVP currently operates as a committee under the fiscal
-                sponsorship of the Trails and Open Spaces Coalition through June
-                30, 2026, while continuing to use fuvp.org as its official
-                organizational domain.
+                The IRS determination letter is dated May 6, 2026, with an
+                effective exemption date of April 28, 2026, and classifies
+                Friends of Ute Valley Park as a public charity.
               </p>
+            </div>
+
+            <div class="confirmation__actions">
+              <a
+                href="/documents/fuvp-irs-determination-letter-redacted.pdf"
+                class="button button--brand"
+              >
+                Download IRS Letter
+              </a>
+              <span>
+                Public copy redacts personal mailing information.
+              </span>
             </div>
           </div>
         </article>
@@ -163,6 +183,20 @@ const domainFacts = [
 
   .confirmation__prose strong {
     color: var(--color-text-strong);
+  }
+
+  .confirmation__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-top: 0.25rem;
+  }
+
+  .confirmation__actions span {
+    color: var(--color-text-subtle);
+    font-size: var(--text-body-small);
+    font-weight: 600;
   }
 
   .domain-facts {
