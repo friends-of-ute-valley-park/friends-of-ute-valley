@@ -174,7 +174,7 @@ const sortedTrailheads = await getSortedTrailheads();
       <!-- Background technical markers -->
       <div class="marker"></div>
 
-      <div class="inner">
+      <div class="inner l-container">
         <div class="layout">
           <div class="copy section-heading section-heading--inverse">
             <div class="eyebrow section-kicker section-kicker--wide section-kicker--accent section-kicker--inverse">
@@ -370,7 +370,7 @@ const sortedTrailheads = await getSortedTrailheads();
     color: inherit;
     padding: 1.5rem 0.5rem;
     text-decoration: none;
-    transition: background-color 200ms;
+    transition: background-color var(--duration-fast);
   }
 
   .trailhead-list .item:hover {
@@ -402,7 +402,7 @@ const sortedTrailheads = await getSortedTrailheads();
     text-decoration-thickness: 4px;
     text-underline-offset: 0.125rem;
     text-transform: uppercase;
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   .trailhead-list .item:hover h3,
@@ -420,7 +420,7 @@ const sortedTrailheads = await getSortedTrailheads();
 
   .trailhead-list .item > span {
     color: var(--color-accent-strong);
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   .visit-map .context {
@@ -443,7 +443,7 @@ const sortedTrailheads = await getSortedTrailheads();
   :global(.visit-map .image) {
     width: 100%;
     height: auto;
-    transition: transform 700ms;
+    transition: transform var(--duration-slow);
   }
 
   .visit-fact-grid {
@@ -500,8 +500,6 @@ const sortedTrailheads = await getSortedTrailheads();
   .visit-rules .inner {
     position: relative;
     z-index: 1;
-    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
-    margin-inline: auto;
   }
 
   .visit-rules .layout {
@@ -528,9 +526,9 @@ const sortedTrailheads = await getSortedTrailheads();
     text-decoration: none;
     text-transform: uppercase;
     transition:
-      background-color 200ms,
-      color 200ms,
-      transform 200ms;
+      background-color var(--duration-fast),
+      color var(--duration-fast),
+      transform var(--duration-fast);
   }
 
   .visit-rules .link:hover {
@@ -552,7 +550,7 @@ const sortedTrailheads = await getSortedTrailheads();
 
   :global(.visit-rules .image) {
     opacity: 0.5;
-    transition: opacity 1000ms;
+    transition: opacity var(--duration-slower);
   }
 
   .visit-rules .media:hover :global(.image) {
@@ -572,7 +570,7 @@ const sortedTrailheads = await getSortedTrailheads();
     justify-content: space-between;
     background: var(--color-surface);
     padding: 2rem;
-    transition: background-color 200ms;
+    transition: background-color var(--duration-fast);
   }
 
   .trail-card:hover {
@@ -589,7 +587,7 @@ const sortedTrailheads = await getSortedTrailheads();
     font-family: var(--font-label);
     font-size: 0.75rem;
     font-weight: 900;
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   .trail-card:hover span {

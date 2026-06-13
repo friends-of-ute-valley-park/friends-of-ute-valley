@@ -1,11 +1,13 @@
 @layer layout {
   .l-container {
-    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+    width: min(100% - (var(--space-page-x) * 2), var(--l-container-max, var(--container-wide)));
     margin-inline: auto;
   }
 
   .l-container-readable {
-    width: min(100% - (var(--space-page-x) * 2), var(--container-readable));
+    --l-container-max: var(--container-readable);
+
+    width: min(100% - (var(--space-page-x) * 2), var(--l-container-max, var(--container-wide)));
     margin-inline: auto;
   }
 

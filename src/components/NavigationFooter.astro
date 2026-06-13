@@ -167,7 +167,7 @@ const currentYear = new Date().getFullYear();
     border-width: 0 1px 1px 0;
     padding: 2rem;
     text-decoration: none;
-    transition: background-color 200ms;
+    transition: background-color var(--duration-fast);
   }
 
   .site-footer .nav-link:hover {
@@ -181,14 +181,14 @@ const currentYear = new Date().getFullYear();
     font-weight: 900;
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   .site-footer .nav-link span:last-child {
     align-self: end;
     color: var(--color-brand);
     opacity: 0;
-    transition: opacity 200ms;
+    transition: opacity var(--duration-fast);
   }
 
   .site-footer .nav-link:hover span:first-child {

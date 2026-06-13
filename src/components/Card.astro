@@ -64,7 +64,7 @@ import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
   .news-teaser .media {
     position: relative;
     aspect-ratio: 16 / 10;
-    transition: border-color 200ms;
+    transition: border-color var(--duration-fast);
   }
 
   .news-teaser:hover .media {
@@ -115,7 +115,7 @@ import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
     align-items: center;
     gap: 0.75rem;
     color: var(--color-text-subtle);
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   .news-teaser .meta span:first-child {
@@ -123,7 +123,7 @@ import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
     width: 1.5rem;
     height: 1px;
     background: var(--color-border);
-    transition: background-color 200ms;
+    transition: background-color var(--duration-fast);
   }
 
   .news-teaser:hover .meta {

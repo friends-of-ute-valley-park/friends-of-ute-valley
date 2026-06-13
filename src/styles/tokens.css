@@ -57,6 +57,7 @@
     --color-accent-strong: var(--_color-amber-700);
     --color-danger: var(--_color-red-700);
     --color-focus: var(--color-accent);
+    --color-scrim: color-mix(in oklab, var(--_color-stone-900) 40%, transparent);
 
     --container-wide: 96rem;
     --container-readable: 70ch;
@@ -81,6 +82,15 @@
     --leading-body: 1.625;
     --tracking-label: 0.2em;
 
+    --radius-pill: 9999px;
+
+    --duration-fast: 200ms;
+    --duration-base: 300ms;
+    --duration-slow: 700ms;
+    --duration-slower: 1000ms;
+    --ease-out: cubic-bezier(0.2, 0, 0, 1);
+
+    --shadow-raised: 0 1px 2px rgb(0 0 0 / 5%), 0 18px 48px color-mix(in oklab, var(--_color-stone-900) 8%, transparent);
     --shadow-accent-sm: 4px 4px 0 0 var(--color-accent);
     --shadow-accent-md: 8px 8px 0 0 var(--color-accent);
     --shadow-accent-lg: 12px 12px 0 0 var(--color-accent);

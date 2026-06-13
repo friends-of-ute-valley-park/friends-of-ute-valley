@@ -92,9 +92,9 @@ const socialLinks = (await getCollection('social-links'))
     color: var(--color-text-subtle);
     padding: 0.5rem;
     transition:
-      border-color 200ms,
-      color 200ms,
-      transform 200ms;
+      border-color var(--duration-fast),
+      color var(--duration-fast),
+      transform var(--duration-fast);
   }
 
   .social-links .link.button:active {

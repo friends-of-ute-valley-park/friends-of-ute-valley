@@ -153,7 +153,7 @@ const { Content } = await render(entry);
     letter-spacing: 0.12em;
     text-decoration: none;
     text-transform: uppercase;
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   .spotlight-detail .back:hover,
@@ -171,7 +171,7 @@ const { Content } = await render(entry);
 
   .spotlight-detail .socials a {
     color: var(--color-text-subtle);
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   :global(.spotlight-detail .icon) {
@@ -197,7 +197,7 @@ const { Content } = await render(entry);
     object-position: top;
     transform-origin: top center;
     transform: scale(1.05);
-    transition: transform 1000ms;
+    transition: transform var(--duration-slower);
   }
 
   .spotlight-detail .photo:hover :global(.photo-image) {

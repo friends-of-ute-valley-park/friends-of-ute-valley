@@ -444,14 +444,14 @@ watch(data, (response) => {
 
 .contact-form-status-enter-active {
   transition:
-    opacity 300ms,
-    transform 300ms;
+    opacity var(--duration-base),
+    transform var(--duration-base);
 }
 
 .contact-form-status-leave-active {
   transition:
-    opacity 200ms,
-    transform 200ms;
+    opacity var(--duration-fast),
+    transform var(--duration-fast);
 }
 
 .contact-form-status-enter-from {

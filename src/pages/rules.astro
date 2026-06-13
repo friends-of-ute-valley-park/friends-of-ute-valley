@@ -171,7 +171,7 @@ const parkRules = [
 
     <!-- Trail Etiquette -->
     <section class="right-of-way">
-      <div class="inner">
+      <div class="inner l-container">
         <div class="layout">
           <div class="copy section-heading section-heading--inverse">
             <div class="eyebrow section-kicker section-kicker--wide section-kicker--accent">
@@ -286,7 +286,7 @@ const parkRules = [
     gap: 1.5rem;
     background: var(--color-surface);
     padding: 2rem;
-    transition: background-color 200ms;
+    transition: background-color var(--duration-fast);
   }
 
   .ordinance-card:hover {
@@ -310,7 +310,7 @@ const parkRules = [
     font-weight: 900;
     letter-spacing: 0;
     text-transform: uppercase;
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   .ordinance-card:hover h3 {
@@ -341,11 +341,6 @@ const parkRules = [
     background: var(--color-surface-inverse);
     color: var(--color-text-inverse);
     padding-block: var(--space-section);
-  }
-
-  .right-of-way .inner {
-    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
-    margin-inline: auto;
   }
 
   .right-of-way .layout {

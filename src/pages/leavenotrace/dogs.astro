@@ -461,7 +461,7 @@ const rules = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 1000ms;
+    transition: transform var(--duration-slower);
   }
 
   .dogs-rules .photo > div {
@@ -530,7 +530,7 @@ const rules = [
     gap: 1.5rem;
     border-bottom: 1px solid var(--color-border);
     padding: 1.5rem;
-    transition: background-color 200ms;
+    transition: background-color var(--duration-fast);
   }
 
   .dog-rule-list .item:last-child {
@@ -619,7 +619,7 @@ const rules = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 700ms;
+    transition: transform var(--duration-slow);
   }
 
   .dog-park-card .body {
@@ -696,9 +696,9 @@ const rules = [
     text-decoration: none;
     text-transform: uppercase;
     transition:
-      background-color 200ms,
-      color 200ms,
-      transform 200ms;
+      background-color var(--duration-fast),
+      color var(--duration-fast),
+      transform var(--duration-fast);
   }
 
   .dog-park-card .links a:hover {

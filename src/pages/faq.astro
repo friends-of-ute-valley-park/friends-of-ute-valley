@@ -129,7 +129,7 @@ const faqs = [
     justify-content: space-between;
     background: var(--color-surface);
     padding: 2rem;
-    transition: background-color 200ms;
+    transition: background-color var(--duration-fast);
   }
 
   .faq-card:hover {
@@ -152,7 +152,7 @@ const faqs = [
     font-family: var(--font-label);
     font-size: 0.75rem;
     font-weight: 900;
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   .faq-card:hover .meta span:first-child {
@@ -169,8 +169,8 @@ const faqs = [
     letter-spacing: 0.12em;
     text-transform: uppercase;
     transition:
-      border-color 200ms,
-      color 200ms;
+      border-color var(--duration-fast),
+      color var(--duration-fast);
   }
 
   .faq-card:hover .meta span:last-child {
@@ -186,7 +186,7 @@ const faqs = [
     font-weight: 900;
     letter-spacing: 0;
     text-transform: uppercase;
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   .faq-card:hover h3 {

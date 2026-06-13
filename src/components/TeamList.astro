@@ -107,7 +107,7 @@ const teamMembers = [
 
   .team-list .card {
     background: var(--color-surface);
-    transition: background-color 200ms;
+    transition: background-color var(--duration-fast);
   }
 
   .team-list .card:hover {
@@ -120,7 +120,7 @@ const teamMembers = [
     width: 100%;
     overflow: hidden;
     filter: grayscale(1);
-    transition: filter 700ms;
+    transition: filter var(--duration-slow);
   }
 
   .team-list .card:hover .media {

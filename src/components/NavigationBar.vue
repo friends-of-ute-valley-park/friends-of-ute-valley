@@ -225,7 +225,7 @@ const navigation = [
   position: sticky;
   top: 0;
   z-index: 50;
-  transition: transform 300ms;
+  transition: transform var(--duration-base);
 }
 
 .site-nav-shell--hidden {
@@ -263,8 +263,8 @@ const navigation = [
   background: var(--color-surface);
   padding: 0.25rem;
   transition:
-    border-color 200ms,
-    transform 200ms;
+    border-color var(--duration-fast),
+    transform var(--duration-fast);
 }
 
 .site-nav .brand:hover .logo-frame {
@@ -291,7 +291,7 @@ const navigation = [
   line-height: 1;
   letter-spacing: 0;
   text-transform: uppercase;
-  transition: color 200ms;
+  transition: color var(--duration-fast);
 }
 
 .site-nav .brand:hover .wordmark span {
@@ -324,8 +324,8 @@ const navigation = [
   text-transform: uppercase;
   text-decoration: none;
   transition:
-    background-color 200ms,
-    color 200ms;
+    background-color var(--duration-fast),
+    color var(--duration-fast);
 }
 
 .site-nav .link:hover,
@@ -352,7 +352,7 @@ const navigation = [
   width: 1rem;
   height: 1rem;
   opacity: 0.5;
-  transition: transform 200ms;
+  transition: transform var(--duration-fast);
 }
 
 .site-nav .chevron.open {
@@ -387,7 +387,7 @@ const navigation = [
   padding: 1rem;
   color: inherit;
   text-decoration: none;
-  transition: background-color 200ms;
+  transition: background-color var(--duration-fast);
 }
 
 .site-nav .dropdown-item:last-child {
@@ -409,9 +409,9 @@ const navigation = [
   background: var(--color-page);
   color: var(--color-text-subtle);
   transition:
-    background-color 200ms,
-    border-color 200ms,
-    color 200ms;
+    background-color var(--duration-fast),
+    border-color var(--duration-fast),
+    color var(--duration-fast);
 }
 
 .site-nav .dropdown-item:hover .dropdown-icon {
@@ -437,7 +437,7 @@ const navigation = [
   color: var(--color-text-strong);
   font-weight: 900;
   letter-spacing: 0.12em;
-  transition: color 200ms;
+  transition: color var(--duration-fast);
 }
 
 .site-nav .dropdown-item:hover .dropdown-title {
@@ -469,10 +469,10 @@ const navigation = [
   color: var(--color-text-subtle);
   padding: 0.5rem;
   transition:
-    background-color 200ms,
-    border-color 200ms,
-    color 200ms,
-    transform 200ms;
+    background-color var(--duration-fast),
+    border-color var(--duration-fast),
+    color var(--duration-fast),
+    transform var(--duration-fast);
 }
 
 .site-nav .toggle:hover {
@@ -497,9 +497,9 @@ const navigation = [
   width: 1.5rem;
   height: 1.5rem;
   transition:
-    filter 200ms cubic-bezier(0.2, 0, 0, 1),
-    opacity 200ms cubic-bezier(0.2, 0, 0, 1),
-    transform 200ms cubic-bezier(0.2, 0, 0, 1);
+    filter var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .site-nav .toggle-icon.visible {
@@ -519,7 +519,7 @@ const navigation = [
   inset-inline: 0;
   top: 100%;
   height: 100vh;
-  background: rgb(28 25 23 / 40%);
+  background: var(--color-scrim);
 }
 
 .site-nav .mobile-panel {
@@ -586,8 +586,8 @@ const navigation = [
 .site-nav-menu-enter-active,
 .site-nav-menu-leave-active {
   transition:
-    opacity 200ms,
-    transform 200ms;
+    opacity var(--duration-fast),
+    transform var(--duration-fast);
 }
 
 .site-nav-menu-leave-active {

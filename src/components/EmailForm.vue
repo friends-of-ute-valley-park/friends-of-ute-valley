@@ -168,7 +168,7 @@ const submit = (event: SubmitEvent) => {
   font-size: var(--text-body-small);
   letter-spacing: 0.12em;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%);
-  transition-duration: 200ms;
+  transition-duration: var(--duration-fast);
 }
 
 .email-signup .submit:disabled {
@@ -209,7 +209,7 @@ const submit = (event: SubmitEvent) => {
   font-weight: 700;
   text-decoration-line: underline;
   text-decoration-color: color-mix(in oklab, var(--color-accent) 70%, transparent);
-  transition: text-decoration-color 200ms;
+  transition: text-decoration-color var(--duration-fast);
 }
 
 .email-signup .privacy a:hover {

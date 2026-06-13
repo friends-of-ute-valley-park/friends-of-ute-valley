@@ -29,11 +29,11 @@
     text-transform: uppercase;
     text-decoration: none;
     transition:
-      background-color 300ms,
-      border-color 300ms,
-      box-shadow 300ms,
-      color 300ms,
-      transform 300ms;
+      background-color var(--duration-base),
+      border-color var(--duration-base),
+      box-shadow var(--duration-base),
+      color var(--duration-base),
+      transform var(--duration-base);
   }
 
   .button--brand {
@@ -101,7 +101,7 @@
     text-decoration-color: var(--color-accent);
     text-decoration-thickness: 1px;
     text-underline-offset: 0.18em;
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   .text-link:hover {
@@ -122,13 +122,9 @@
   }
 
   .section-kicker__text {
+    --meta-label-tracking: var(--tracking-label);
+
     color: var(--section-kicker-text-color, var(--color-text-subtle));
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
   }
 
   .section-kicker--wide {
@@ -181,7 +177,11 @@
     --section-heading-copy-color: var(--color-text-inverse-muted);
   }
 
-  .meta-label {
+  .meta-label,
+  .section-kicker__text,
+  .page-eyebrow span,
+  .form-label,
+  .article-photo-card__meta span {
     font-family: var(--font-label);
     font-size: var(--meta-label-size, var(--text-label));
     font-weight: var(--meta-label-weight, 900);
@@ -197,10 +197,10 @@
 
   .card--interactive {
     transition:
-      background-color 200ms,
-      border-color 200ms,
-      color 200ms,
-      transform 200ms;
+      background-color var(--duration-fast),
+      border-color var(--duration-fast),
+      color var(--duration-fast),
+      transform var(--duration-fast);
   }
 
   .card--interactive:hover {
@@ -217,7 +217,7 @@
     letter-spacing: 0;
     text-wrap: balance;
     text-transform: uppercase;
-    transition: color 200ms;
+    transition: color var(--duration-fast);
   }
 
   .media-frame {
@@ -234,11 +234,11 @@
 
   .media-zoom {
     transform: scale(var(--media-zoom-start, 1.05));
-    transition: transform var(--media-zoom-duration, 700ms);
+    transition: transform var(--media-zoom-duration, var(--duration-slow));
   }
 
   .media-zoom--slow {
-    --media-zoom-duration: 1000ms;
+    --media-zoom-duration: var(--duration-slower);
   }
 
   .media-zoom-frame:hover .media-zoom,
@@ -268,7 +268,7 @@
   }
 
   .panel-card--raised {
-    --panel-card-shadow: 0 1px 2px rgb(0 0 0 / 5%), 0 18px 48px rgb(28 25 23 / 8%);
+    --panel-card-shadow: var(--shadow-raised);
   }
 
   .page {
@@ -281,9 +281,9 @@
   }
 
   .page-hero__inner {
-    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+    width: min(100% - (var(--space-page-x) * 2), var(--l-container-max, var(--container-wide)));
     margin-inline: auto;
-    padding-block: clamp(4rem, 8vw, 6rem);
+    padding-block: var(--space-section);
   }
 
   .page-eyebrow {
@@ -302,12 +302,9 @@
   }
 
   .page-eyebrow span {
+    --meta-label-tracking: var(--tracking-label);
+
     color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
   }
 
   .page-title {
@@ -350,13 +347,12 @@
   }
 
   .page-section__inner {
-    width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+    width: min(100% - (var(--space-page-x) * 2), var(--l-container-max, var(--container-wide)));
     margin-inline: auto;
   }
 
   .page-section__inner--narrow {
-    width: min(100% - (var(--space-page-x) * 2), 56rem);
-    margin-inline: auto;
+    --l-container-max: 56rem;
   }
 
   .feature-grid {
@@ -451,11 +447,9 @@
   }
 
   .article-photo-card__meta span {
+    --meta-label-weight: 400;
+
     color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
   }
 
   @media (min-width: 64rem) {
@@ -505,12 +499,9 @@
   }
 
   .form-label {
+    --meta-label-tracking: var(--tracking-label);
+
     color: var(--form-label-color, var(--color-text-muted));
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
   }
 
   .form-input {
@@ -529,9 +520,9 @@
     font-size: var(--form-input-font-size, inherit);
     box-shadow: var(--form-input-shadow, none);
     transition:
-      background-color 200ms,
-      border-color 200ms,
-      box-shadow 200ms;
+      background-color var(--duration-fast),
+      border-color var(--duration-fast),
+      box-shadow var(--duration-fast);
   }
 
   .form-input:focus-visible {

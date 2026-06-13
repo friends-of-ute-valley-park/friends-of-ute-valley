@@ -102,7 +102,7 @@ const formattedDate = computed(() => {
 .volunteer-item .heading a,
 .volunteer-item .meta a {
   color: inherit;
-  transition: color 200ms;
+  transition: color var(--duration-fast);
 }
 
 .volunteer-item .heading a {
@@ -186,10 +186,10 @@ const formattedDate = computed(() => {
   letter-spacing: 0.12em;
   text-align: center;
   transition:
-    background-color 200ms,
-    border-color 200ms,
-    color 200ms,
-    transform 200ms;
+    background-color var(--duration-fast),
+    border-color var(--duration-fast),
+    color var(--duration-fast),
+    transform var(--duration-fast);
 }
 
 .volunteer-item .release:hover {

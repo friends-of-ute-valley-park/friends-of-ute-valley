@@ -77,7 +77,7 @@ const eventDates = computed(() => {
 .volunteer-alert .pulse {
   width: 0.5rem;
   height: 0.5rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--color-accent);
   animation: volunteer-alert-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
@@ -114,10 +114,10 @@ const eventDates = computed(() => {
   text-transform: uppercase;
   box-shadow: var(--shadow-accent-sm);
   transition:
-    background-color 200ms,
-    border-color 200ms,
-    box-shadow 200ms,
-    transform 200ms;
+    background-color var(--duration-fast),
+    border-color var(--duration-fast),
+    box-shadow var(--duration-fast),
+    transform var(--duration-fast);
 }
 
 .volunteer-alert .link:hover {
@@ -132,7 +132,7 @@ const eventDates = computed(() => {
 .volunteer-alert .icon {
   width: 0.75rem;
   height: 0.75rem;
-  transition: transform 200ms;
+  transition: transform var(--duration-fast);
 }
 
 .volunteer-alert .link:hover .icon {

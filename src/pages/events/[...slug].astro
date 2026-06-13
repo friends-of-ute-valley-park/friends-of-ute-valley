@@ -33,7 +33,7 @@ const locationInformation = MeetingLocationParser(entry.data, meetingLocations);
     </section>
 
     <section class="page-section">
-      <div class="inner">
+      <div class="inner l-container">
         <Image
           src={volunteerImage}
           class="image"
@@ -150,8 +150,7 @@ const locationInformation = MeetingLocationParser(entry.data, meetingLocations);
   }
 
   .event-detail .inner {
-    width: min(100% - (var(--space-page-x) * 2), 65ch);
-    margin-inline: auto;
+    --l-container-max: 65ch;
   }
 
   :global(.event-detail .image) {
