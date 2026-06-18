@@ -16,7 +16,7 @@ const { Content } = await render(entry);
 ---
 
 <Layout title={entry.data.title} description={entry.data.topText}>
-  <main class="page">
+  <main class="page lnt-guide">
     <!-- Leave No Trace Guide -->
     <section class="page-hero">
       <div class="page-hero__inner">
@@ -58,14 +58,11 @@ const { Content } = await render(entry);
                 <Picture
                   class="image"
                   formats={["avif", "webp"]}
-                  width="1000"
-                  height="1000"
+                  width="900"
+                  height="675"
                   src={entry.data.image}
                   alt={entry.data.imageAlt}
                 />
-                <div class="article-photo-card__meta">
-                  <span>Photos</span>
-                </div>
               </div>
 
               <div class="callout">
@@ -89,19 +86,65 @@ const { Content } = await render(entry);
 <style>
   .lnt-guide .aside-stack {
     display: grid;
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+
+  .lnt-guide .article-layout__inner {
+    width: min(100% - (var(--space-page-x) * 2), 74rem);
+  }
+
+  .lnt-guide .article-layout__main {
+    padding-inline: 0;
+  }
+
+  .lnt-guide .article-layout__aside {
+    padding-inline: 0;
+  }
+
+  .lnt-guide .article-photo-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    max-width: 34rem;
+    margin-inline: auto;
+    padding: 0.75rem;
   }
 
   @media (min-width: 64rem) {
+    .lnt-guide .article-layout__grid {
+      grid-template-columns: minmax(0, 43rem) minmax(18rem, 26rem);
+      gap: clamp(2.5rem, 5vw, 4rem);
+      align-items: start;
+      justify-content: center;
+      padding-block: var(--space-section);
+    }
+
+    .lnt-guide .article-layout__main {
+      border-right: 0;
+      padding-block: 0;
+      padding-inline: 0;
+    }
+
+    .lnt-guide .article-layout__aside {
+      background: transparent;
+      padding: 0;
+    }
+
     .lnt-guide .aside-stack {
       position: sticky;
       top: 6rem;
     }
   }
 
-  :global(.lnt-guide .image) {
+  .lnt-guide .article-photo-card :global(picture),
+  .lnt-guide .article-photo-card :global(img) {
+    display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+  }
+
+  .lnt-guide .article-photo-card :global(img) {
+    object-fit: cover;
     transform: scale(1.05);
     transition: transform var(--duration-slower);
   }
