@@ -21,7 +21,7 @@
     "@cloudflare/pages-plugin-turnstile": "^1.0.2",
     "@fontsource-variable/playfair-display": "^5.2.8",
     "@vueuse/core": "^14.3.0",
-    "astro": "^6.3.4",
+    "astro": "^6.4.6",
     "dotenv": "^17.4.2",
     "resend": "^6.12.3",
     "typescript": "^6.0.3"
