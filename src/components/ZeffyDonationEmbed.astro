@@ -1,0 +1,144 @@
+---
+import InformationCircleIcon from "~icons/heroicons/information-circle";
+
+interface Props {
+  height?: string;
+  mobileHeight?: string;
+}
+
+const { height = "520px", mobileHeight = height } = Astro.props;
+const formPath = "/embed/donation-form/support-ute-valley-park";
+const formUrl = `https://www.zeffy.com${formPath}`;
+---
+
+<div
+  class="zeffy-donation-embed"
+  style={`--zeffy-embed-height: ${height}; --zeffy-embed-height-mobile: ${mobileHeight};`}
+>
+  <div data-zeffy-embed data-form-url={formPath}></div>
+  <div data-zeffy-embed-fallback style="display:none;">
+    <div class="zeffy-donation-embed__frame">
+      <iframe
+        title="Donation form"
+        data-zeffy-embed-src={formUrl}
+        allow="payment"
+        allowtransparency="true"
+      >
+      </iframe>
+    </div>
+  </div>
+  <script
+    is:inline
+    data-astro-rerun
+  >
+    (() => {
+      const scriptSrc = "https://www.zeffy.com/embed/v2/zeffy-embed.js";
+
+      const showFallback = () => {
+        document.querySelectorAll("[data-zeffy-embed-fallback]").forEach((el) => {
+          el.style.display = "block";
+          el.querySelectorAll("iframe[data-zeffy-embed-src]").forEach((frame) => {
+            frame.src = frame.getAttribute("data-zeffy-embed-src");
+          });
+        });
+      };
+
+      const removeFallbacks = () => {
+        document.querySelectorAll("[data-zeffy-embed-fallback]").forEach((el) => {
+          el.querySelectorAll("iframe").forEach((frame) => {
+            frame.src = "about:blank";
+          });
+          el.remove();
+        });
+      };
+
+      const initEmbed = () => {
+        removeFallbacks();
+        window.Zeffy?.embed?.init?.();
+      };
+
+      if (window.Zeffy?.embed) {
+        initEmbed();
+        return;
+      }
+
+      const existingScript = document.querySelector("[data-zeffy-embed-script]");
+      if (existingScript) {
+        existingScript.addEventListener("load", initEmbed, { once: true });
+        existingScript.addEventListener("error", showFallback, { once: true });
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = scriptSrc;
+      script.async = true;
+      script.dataset.zeffyEmbedScript = "true";
+      script.addEventListener("load", initEmbed, { once: true });
+      script.addEventListener("error", showFallback, { once: true });
+      document.head.append(script);
+    })();
+  </script>
+  <p class="zeffy-donation-embed__note">
+    <InformationCircleIcon aria-hidden="true" />
+    <span>
+      Zeffy lets us receive donations at no cost by offering donors an optional
+      tip at checkout. That tip supports Zeffy, not Friends of Ute Valley Park,
+      and you can adjust it to any amount you choose.
+    </span>
+  </p>
+</div>
+
+<style>
+  .zeffy-donation-embed {
+    --zeffy-reserved-height: var(--zeffy-embed-height);
+
+    width: 100%;
+    min-width: 0;
+    min-height: var(--zeffy-reserved-height);
+  }
+
+  .zeffy-donation-embed [data-zeffy-embed] {
+    min-height: var(--zeffy-reserved-height);
+  }
+
+  .zeffy-donation-embed__frame {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: var(--zeffy-reserved-height);
+  }
+
+  .zeffy-donation-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .zeffy-donation-embed__note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    margin: 1rem 0 0;
+    border-top: 1px solid var(--color-border-muted);
+    padding-top: 1rem;
+    color: var(--color-text-muted);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: var(--leading-body);
+  }
+
+  .zeffy-donation-embed__note svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+    color: var(--color-brand);
+  }
+
+  @media (max-width: 36rem) {
+    .zeffy-donation-embed {
+      --zeffy-reserved-height: var(--zeffy-embed-height-mobile);
+    }
+  }
+</style>

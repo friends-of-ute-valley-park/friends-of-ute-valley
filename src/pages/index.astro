@@ -2,6 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import LeaveNoTrace from "@components/LeaveNoTrace.astro";
 import EmailForm from "@components/EmailForm.vue";
+import ZeffyDonationEmbed from "@components/ZeffyDonationEmbed.astro";
 
 import ChevronRightIcon from "~icons/heroicons/chevron-right";
 import AccountGroupIcon from "~icons/mdi/account-group";
@@ -363,17 +364,18 @@ const springTips = [
             <div class="col donate">
               <div class="meta brand">
                 <span class="mark"><HeartIcon aria-hidden="true" /></span>
-                <span class="eyebrow t-label">Coming Soon</span>
+                <span class="eyebrow t-label">Donate</span>
               </div>
-              <h2 class="headline">Donate options coming soon.</h2>
+              <h2 class="headline">Support Ute Valley Park.</h2>
               <p class="copy">
-                Direct giving options for Friends of Ute Valley Park are coming soon. Please check back for updates.
+                Give through our online donation form to help fund trail stewardship, education, and volunteer work in the park.
               </p>
               <ul class="benefits">
                 <li><PineTreeIcon aria-hidden="true" /><span>Restore Trails</span></li>
                 <li><LeafIcon aria-hidden="true" /><span>Protect Wildlife</span></li>
                 <li><AccountGroupIcon aria-hidden="true" /><span>Inspire Community</span></li>
               </ul>
+              <ZeffyDonationEmbed height="520px" />
             </div>
 
             <div class="rule" aria-hidden="true"></div>
@@ -1032,7 +1034,7 @@ const springTips = [
   }
 
   .support-section .container {
-    --l-container-max: 80rem;
+    --l-container-max: 76rem;
   }
 
   .support-split {
@@ -1047,12 +1049,24 @@ const springTips = [
     z-index: 1;
     display: grid;
     grid-template-columns: 1fr;
+    align-items: stretch;
   }
 
   .support-split .col {
+    display: flex;
+    flex-direction: column;
     position: relative;
     min-width: 0;
     padding: 2rem;
+  }
+
+  .support-split .col > :global(.zeffy-donation-embed),
+  .support-split .col > :global(.email-signup) {
+    width: min(100%, 37.5rem);
+  }
+
+  .support-split .col.donate > :global(.zeffy-donation-embed) {
+    align-self: center;
   }
 
   .support-split .col.donate {
@@ -1064,7 +1078,6 @@ const springTips = [
   }
 
   .support-split .col.newsletter :global(.email-signup) {
-    width: 100%;
     min-width: 0;
   }
 
@@ -1128,11 +1141,13 @@ const springTips = [
     border: 2px solid currentColor;
     border-radius: var(--radius-pill);
     background: var(--color-surface);
+    line-height: 0;
   }
 
   .support-split .mark > svg {
-    width: 55%;
-    height: 55%;
+    display: block;
+    width: 1.35rem;
+    height: 1.35rem;
   }
 
   .support-split .eyebrow {
@@ -1165,12 +1180,15 @@ const springTips = [
     border-top: 1px solid color-mix(in oklab, var(--color-border) 80%, var(--color-page));
     padding-top: 1.25rem;
     color: var(--color-brand-strong);
+    padding-inline-start: 0;
+    margin: 0;
+    list-style: none;
   }
 
   .support-split .benefits li {
     display: flex;
     min-width: 0;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
   }
 
@@ -1179,11 +1197,13 @@ const springTips = [
     height: 1.25rem;
     flex-shrink: 0;
     color: var(--color-brand);
+    margin-top: 0.05rem;
   }
 
   .support-split .benefits span {
     font-size: 0.8125rem;
     font-weight: 700;
+    line-height: 1.25;
   }
 
   .support-split .mail-address {
@@ -1314,11 +1334,15 @@ const springTips = [
     }
 
     .support-split .grid {
-      grid-template-columns: 1fr 1px 1fr;
+      grid-template-columns: minmax(0, 1.06fr) 1px minmax(0, 0.94fr);
     }
 
     .support-split .col {
-      padding: 3rem;
+      padding: clamp(2.5rem, 4vw, 3.5rem);
+    }
+
+    .support-split .col.newsletter {
+      padding-left: clamp(3rem, 5vw, 4.25rem);
     }
 
     .support-split .rule {

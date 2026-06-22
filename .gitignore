@@ -51,6 +51,7 @@ packages/astro/e2e/fixtures/cloudflare/.wrangler/deploy/config.json
 .claude
 .gemini
 .github/skills
+.impeccable
 
 Trace-*.json
 Heap-*.heapsnapshot
