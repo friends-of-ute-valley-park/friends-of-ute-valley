@@ -157,11 +157,6 @@ watch(data, (response) => {
       <div class="layout">
         <div class="intro">
           <div class="title-block section-heading">
-            <div class="eyebrow section-kicker section-kicker--wide">
-              <span class="section-kicker__rule"></span>
-              <span class="section-kicker__text">Contact Us</span>
-            </div>
-
             <slot name="title">
               <h1 class="title section-heading__title">
                 Get In <br />
