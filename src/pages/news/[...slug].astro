@@ -17,7 +17,7 @@ const { Content } = await render(entry);
 ---
 
 <Layout title={entry.data.title} description={entry.data.previewText}>
-  <main class="page">
+  <main class="page news-detail">
     <!-- News Header -->
     <section class="page-hero">
       <div class="page-hero__inner">
@@ -44,33 +44,28 @@ const { Content } = await render(entry);
       </div>
     </section>
 
-    <!-- Field Report -->
-    <section class="page-section">
-      <div class="page-section__inner">
-        <div class="layout">
-          <div>
-            <div class="article-photo-card">
-              <Picture
-                loading="lazy"
-                formats={["avif", "webp"]}
-                width={1200}
-                height={800}
-                class="image"
-                src={entry.data.coverImage}
-                alt={`${entry.data.title} cover image`}
-              />
+    <!-- Content -->
+    <section class="article-layout">
+      <div class="article-layout__inner">
+        <div class="article-layout__grid">
+          <div class="article-layout__main">
+            <div class="prose-content">
+              <Content />
             </div>
           </div>
-          <div>
-            <div class="notes">
-              <div class="notes-eyebrow">
-                <span></span>
-                <span>
-                  Field Notes
-                </span>
-              </div>
-              <div class="prose-content">
-                <Content />
+
+          <div class="article-layout__aside">
+            <div class="aside-stack">
+              <div class="article-photo-card photo">
+                <Picture
+                  loading="lazy"
+                  formats={["avif", "webp"]}
+                  width={900}
+                  height={675}
+                  class="image"
+                  src={entry.data.coverImage}
+                  alt={`${entry.data.title} cover image`}
+                />
               </div>
             </div>
           </div>
@@ -102,8 +97,7 @@ const { Content } = await render(entry);
   }
 
   .news-detail .meta span,
-  .news-detail .meta time,
-  .news-detail .notes-eyebrow span:last-child {
+  .news-detail .meta time {
     font-family: var(--font-label);
     font-weight: 900;
     text-transform: uppercase;
@@ -121,47 +115,72 @@ const { Content } = await render(entry);
     letter-spacing: 0.12em;
   }
 
-  .news-detail .layout {
+  .news-detail .aside-stack {
     display: grid;
-    align-items: start;
-    gap: 3rem;
+    gap: 1.5rem;
   }
 
-  :global(.news-detail .image) {
+  .news-detail .article-layout__inner {
+    width: min(100% - (var(--space-page-x) * 2), 74rem);
+  }
+
+  .news-detail .article-layout__main {
+    padding-inline: 0;
+  }
+
+  .news-detail .article-layout__aside {
+    padding-inline: 0;
+  }
+
+  .news-detail .article-photo-card {
+    position: relative;
     width: 100%;
-    height: auto;
+    aspect-ratio: 4 / 3;
+    max-width: 34rem;
+    margin-inline: auto;
+    padding: 0.75rem;
+  }
+
+  .news-detail .article-photo-card :global(picture),
+  .news-detail .article-photo-card :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .news-detail .article-photo-card :global(img) {
     object-fit: cover;
+    transform: scale(1.05);
+    transition: transform var(--duration-slower);
   }
 
-  .news-detail .notes {
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    padding: 2rem;
-  }
-
-  .news-detail .notes-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .news-detail .notes-eyebrow span:first-child {
-    display: inline-block;
-    width: 2rem;
-    height: 1px;
-    background: var(--color-brand-strong);
-  }
-
-  .news-detail .notes-eyebrow span:last-child {
-    color: var(--color-text-subtle);
-    font-size: var(--text-label);
-    letter-spacing: var(--tracking-label);
+  .news-detail .photo:hover :global(.image) {
+    transform: scale(1);
   }
 
   @media (min-width: 64rem) {
-    .news-detail .layout {
-      grid-template-columns: 7fr 5fr;
+    .news-detail .article-layout__grid {
+      grid-template-columns: minmax(0, 43rem) minmax(18rem, 26rem);
+      gap: clamp(2.5rem, 5vw, 4rem);
+      align-items: start;
+      justify-content: center;
+      padding-block: var(--space-section);
+    }
+
+    .news-detail .article-layout__main {
+      border-right: 0;
+      padding-block: 0;
+      padding-inline: 0;
+    }
+
+    .news-detail .article-layout__aside {
+      background: transparent;
+      padding: 0;
+    }
+
+    .news-detail .aside-stack {
+      position: sticky;
+      top: 6rem;
     }
   }
 </style>
