@@ -32,11 +32,6 @@
     text-wrap: pretty;
   }
 
-  img {
-    outline: 1px solid rgb(0 0 0 / 10%);
-    outline-offset: -1px;
-  }
-
   *,
   ::after,
   ::before,

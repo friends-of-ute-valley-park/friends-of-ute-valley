@@ -28,43 +28,168 @@ if (!trailConditionsEntry) {
 }
 const trailConditions = trailConditionsEntry.data;
 const publishedNewsEntries = await getPublishedNewsEntries();
-const currentMonthYear = formatShortMonthYear(new Date());
+const buildDate = new Date();
+const currentMonthYear = formatShortMonthYear(buildDate);
 
 const formattedLastUpdated = formatShortMonthDayYear(trailConditions.last_updated);
 
 // Park hours by season (from FAQ: Winter Nov 1–Apr 30, Summer May 1–Oct 31)
 const { season: parkSeason, hours: parkHours } = getParkHoursForDate();
 
-const springTips = [
-  {
-    id: "01",
-    title: "Avoid Muddy Trails",
-    description:
-      "Spring thaw and rains softens the ground. Walking muddy trails causes erosion and lasting damage—turn back or stick to drier routes.",
-    tag: "TRAIL CARE",
+const seasonalEssentialsBySeason = {
+  Winter: {
+    title: "Winter",
+    intro:
+      "Cold nights, short days, and freeze-thaw cycles make the park sensitive. Here is how you can help protect it through winter.",
+    tips: [
+      {
+        id: "01",
+        title: "Watch for Ice",
+        description:
+          "Shaded trail sections can stay icy long after sunny areas dry out. Slow down and give other visitors room to pass.",
+        tag: "TRAIL SAFETY",
+      },
+      {
+        id: "02",
+        title: "Stay Off Mud",
+        description:
+          "Freeze-thaw cycles can leave trails soft by afternoon. Turn back or choose a drier route when soil sticks to your shoes or tires.",
+        tag: "TRAIL CARE",
+      },
+      {
+        id: "03",
+        title: "Start Early Enough",
+        description:
+          "Winter daylight fades quickly. Plan your route around sunset and bring a light if your visit may run late.",
+        tag: "VISITOR PREP",
+      },
+      {
+        id: "04",
+        title: "Pack Out Everything",
+        description:
+          "Snow can hide litter and pet waste, but it does not make it disappear. Carry out everything you bring in.",
+        tag: "PACK IT OUT",
+      },
+    ],
   },
-  {
-    id: "02",
-    title: "Dress for Shifting Weather",
-    description:
-      "Spring in Colorado swings from sun to snow. Bring layers, sun protection, and extra water on every outing.",
-    tag: "VISITOR PREP",
+  Spring: {
+    title: "Spring",
+    intro:
+      "The park is fragile as it emerges from winter. Here is how you can help keep it healthy through the thaw.",
+    tips: [
+      {
+        id: "01",
+        title: "Avoid Muddy Trails",
+        description:
+          "Spring thaw and rains soften the ground. Walking muddy trails causes erosion and lasting damage, so turn back or stick to drier routes.",
+        tag: "TRAIL CARE",
+      },
+      {
+        id: "02",
+        title: "Dress for Shifting Weather",
+        description:
+          "Spring in Colorado swings from sun to snow. Bring layers, sun protection, and extra water on every outing.",
+        tag: "VISITOR PREP",
+      },
+      {
+        id: "03",
+        title: "Give Wildlife Space",
+        description:
+          "Nesting birds and newborn animals are active this season. Keep dogs leashed and stay well back from wildlife.",
+        tag: "WILDLIFE HABITAT",
+      },
+      {
+        id: "04",
+        title: "Pack Out Everything",
+        description:
+          "Melting snow exposes trash and pet waste left behind over winter. Carry out everything you bring in.",
+        tag: "PACK IT OUT",
+      },
+    ],
   },
-  {
-    id: "03",
-    title: "Give Wildlife Space",
-    description:
-      "Nesting birds and newborn animals are active this season. Keep dogs leashed and stay well back from wildlife.",
-    tag: "WILDLIFE HABITAT",
+  Summer: {
+    title: "Summer",
+    intro:
+      "Hot, dry days put extra stress on visitors, wildlife, and the landscape. Here is how you can help care for the park this summer.",
+    tips: [
+      {
+        id: "01",
+        title: "Carry More Water",
+        description:
+          "Ute Valley has exposed stretches and little shade. Bring more water than you think you need, especially for kids and dogs.",
+        tag: "HEAT SAFETY",
+      },
+      {
+        id: "02",
+        title: "Go Early or Late",
+        description:
+          "Morning and evening visits are cooler, calmer, and easier on the trail. Avoid the hottest part of the day when you can.",
+        tag: "VISITOR PREP",
+      },
+      {
+        id: "03",
+        title: "Protect Dry Vegetation",
+        description:
+          "Stay on designated trails and keep clear of dry grasses. Cutting across fragile areas increases erosion and fire risk.",
+        tag: "FIRE AWARENESS",
+      },
+      {
+        id: "04",
+        title: "Leash and Pack Out",
+        description:
+          "Keep dogs leashed, carry pet waste all the way out, and give wildlife extra space during the busiest season.",
+        tag: "LEAVE NO TRACE",
+      },
+    ],
   },
-  {
-    id: "04",
-    title: "Pack Out Everything",
-    description:
-      "Melting snow exposes trash and pet waste left behind over winter. Carry out everything you bring in.",
-    tag: "PACK IT OUT",
+  Fall: {
+    title: "Fall",
+    intro:
+      "Cooler weather brings busy trails, changing light, and dry vegetation. Here is how you can help keep autumn visits low impact.",
+    tips: [
+      {
+        id: "01",
+        title: "Plan for Earlier Dusk",
+        description:
+          "Evening light drops fast in fall. Start with enough time to finish your route before dark or bring a light.",
+        tag: "VISITOR PREP",
+      },
+      {
+        id: "02",
+        title: "Yield on Busy Trails",
+        description:
+          "Cooler days bring more walkers, runners, riders, and dogs. Slow down, communicate early, and pass with care.",
+        tag: "TRAIL COURTESY",
+      },
+      {
+        id: "03",
+        title: "Respect Dry Conditions",
+        description:
+          "Grasses and shrubs can be brittle late in the season. Stay on designated trails and avoid disturbing recovering areas.",
+        tag: "HABITAT CARE",
+      },
+      {
+        id: "04",
+        title: "Pack Out Everything",
+        description:
+          "Wind can scatter wrappers, bottles, and pet waste bags quickly. Carry out everything you bring in.",
+        tag: "PACK IT OUT",
+      },
+    ],
   },
-];
+} as const;
+
+const getSeasonalEssentialsForDate = (date: Date) => {
+  const month = date.getMonth() + 1;
+
+  if (month >= 3 && month <= 5) return seasonalEssentialsBySeason.Spring;
+  if (month >= 6 && month <= 8) return seasonalEssentialsBySeason.Summer;
+  if (month >= 9 && month <= 11) return seasonalEssentialsBySeason.Fall;
+
+  return seasonalEssentialsBySeason.Winter;
+};
+
+const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
 ---
 
 <Layout
@@ -81,7 +206,7 @@ const springTips = [
         height="1355"
         loading="eager"
         fetchpriority="high"
-        alt="Ute Valley Park sandstone, pines, and Pikes Peak under a spring sky"
+        alt="Ute Valley Park sandstone, pines, and Pikes Peak under an open sky"
         class="image"
       />
       <div class="home-field-pattern grid"></div>
@@ -223,23 +348,20 @@ const springTips = [
       </div>
     </section>
 
-    <!-- Spring Stewardship: Seasonal Guidance -->
-    <section class="l-section band spring-section content-defer">
+    <!-- Seasonal Stewardship: Seasonal Guidance -->
+    <section class="l-section band seasonal-section content-defer">
       <div class="l-container">
         <div class="section-heading">
           <h2 class="t-section-title">
-            Spring <span>Essentials.</span>
+            {seasonalEssentials.title} <span>Essentials.</span>
           </h2>
-          <p>
-            The park is fragile as it emerges from winter. Here is how you can
-            help keep it healthy through the thaw.
-          </p>
+          <p>{seasonalEssentials.intro}</p>
         </div>
 
-        <div class="spring-grid">
+        <div class="seasonal-grid">
           {
-            springTips.map((tip) => (
-              <div class="spring-card">
+            seasonalEssentials.tips.map((tip) => (
+              <div class="seasonal-card">
                 <div class="content">
                   <span class="number">{tip.id}</span>
                   <h3>{tip.title}</h3>
@@ -728,7 +850,7 @@ const springTips = [
     text-transform: uppercase;
   }
 
-  .spring-section,
+  .seasonal-section,
   .news-section,
   .leave-no-trace-band {
     border-bottom: 1px solid var(--color-border);
@@ -766,7 +888,7 @@ const springTips = [
     line-height: var(--leading-body);
   }
 
-  .spring-grid {
+  .seasonal-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0;
@@ -774,7 +896,7 @@ const springTips = [
     background: transparent;
   }
 
-  .spring-card {
+  .seasonal-card {
     display: flex;
     min-height: 100%;
     flex-direction: column;
@@ -788,15 +910,15 @@ const springTips = [
       color var(--duration-fast);
   }
 
-  .spring-card:hover {
+  .seasonal-card:hover {
     background: var(--color-surface);
   }
 
-  .spring-card .content > * + * {
+  .seasonal-card .content > * + * {
     margin-top: 1rem;
   }
 
-  .spring-card .number {
+  .seasonal-card .number {
     color: var(--color-accent-hover);
     font-family: var(--font-label);
     font-size: 2.25rem;
@@ -804,11 +926,11 @@ const springTips = [
     transition: color var(--duration-fast);
   }
 
-  .spring-card:hover .number {
+  .seasonal-card:hover .number {
     color: var(--color-accent);
   }
 
-  .spring-card h3 {
+  .seasonal-card h3 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
@@ -819,22 +941,22 @@ const springTips = [
     transition: color var(--duration-fast);
   }
 
-  .spring-card:hover h3 {
+  .seasonal-card:hover h3 {
     color: var(--color-brand-strong);
   }
 
-  .spring-card p {
+  .seasonal-card p {
     margin: 0;
     color: var(--color-text-muted);
     font-size: 0.875rem;
     line-height: var(--leading-body);
   }
 
-  .spring-card .footer {
+  .seasonal-card .footer {
     padding-top: 1.5rem;
   }
 
-  .spring-card .footer span {
+  .seasonal-card .footer span {
     display: inline-block;
     background: var(--color-brand-strong);
     color: var(--color-text-inverse);
@@ -1274,7 +1396,7 @@ const springTips = [
       display: block;
     }
 
-    .spring-grid,
+    .seasonal-grid,
     .news-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1317,7 +1439,7 @@ const springTips = [
       display: block;
     }
 
-    .spring-grid {
+    .seasonal-grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 

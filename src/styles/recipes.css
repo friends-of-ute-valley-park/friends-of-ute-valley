@@ -432,18 +432,13 @@
 
   .article-photo-card {
     overflow: hidden;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    padding: 1rem;
   }
 
   .article-photo-card__meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid var(--color-border-muted);
-    margin-top: 1rem;
-    padding-top: 1rem;
+    margin-top: 0.75rem;
   }
 
   .article-photo-card__meta span {

@@ -27,7 +27,7 @@ const { Content } = await render(entry);
   title={`Volunteer Spotlight: ${entry.data.name}`}
   description={entry.data.intro}
 >
-  <main class="page">
+  <main class="page spotlight-detail">
     <!-- Volunteer Spotlight Header -->
     <section class="page-hero">
       <div class="page-hero__inner">
@@ -107,11 +107,6 @@ const { Content } = await render(entry);
                     height={800}
                     class="photo-image"
                   />
-                  <div class="article-photo-card__meta">
-                    <span>
-                      Photo {i + 1}
-                    </span>
-                  </div>
                 </div>
               ))
             }
