@@ -71,27 +71,31 @@ const meetingLocations = await getCollection("trailheads");
       </div>
     </section>
 
-    {
-      upcomingVolunteerEvents.length > 0 ? (
-        <div class="volunteer-events">
-          {upcomingVolunteerEvents.map((volunteerEvent) => (
-            <div class="item">
-              <VolunteerItem
-                meetingLocations={meetingLocations}
-                volunteerEvent={volunteerEvent}
-                client:idle
-              />
+    <section class="page-section volunteer-events-section">
+      <div class="page-section__inner">
+        {
+          upcomingVolunteerEvents.length > 0 ? (
+            <div class="volunteer-events">
+              {upcomingVolunteerEvents.map((volunteerEvent) => (
+                <div class="item">
+                  <VolunteerItem
+                    meetingLocations={meetingLocations}
+                    volunteerEvent={volunteerEvent}
+                    client:idle
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      ) : (
-        <div class="empty">
-          <p>
-            No scheduled events at this time. Check back for seasonal updates.
-          </p>
-        </div>
-      )
-    }
+          ) : (
+            <div class="empty">
+              <p>
+                No scheduled events at this time. Check back for seasonal updates.
+              </p>
+            </div>
+          )
+        }
+      </div>
+    </section>
 
     <!-- Volunteer Opportunities -->
     <section class="page-section volunteer-opps">
@@ -327,6 +331,7 @@ const meetingLocations = await getCollection("trailheads");
 
   .volunteer-status .panel div {
     display: flex;
+    align-items: baseline;
     justify-content: space-between;
     gap: 3rem;
   }
@@ -337,7 +342,10 @@ const meetingLocations = await getCollection("trailheads");
 
   .volunteer-status span:last-child {
     color: var(--color-text-inverse);
-    font-weight: 900;
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    letter-spacing: normal;
+    text-transform: none;
   }
 
   .volunteer-status div:first-child span:last-child {

@@ -22,7 +22,6 @@ const formattedDate = computed(() => {
   <div class="volunteer-item">
     <div class="details">
       <div class="heading">
-        <span>Event</span>
         <h2>
           <a :href="'/events/' + volunteerEvent.id">{{ volunteerEvent.data.title }}</a>
         </h2>
@@ -78,25 +77,15 @@ const formattedDate = computed(() => {
   gap: 0.75rem;
 }
 
-.volunteer-item .heading > span {
-  color: var(--color-accent-strong);
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  font-weight: 900;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-}
-
 .volunteer-item .heading h2 {
   margin: 0;
   color: var(--color-text-strong);
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 900;
-  line-height: 1;
+  line-height: 1.1;
   letter-spacing: 0;
   text-wrap: balance;
-  text-transform: uppercase;
 }
 
 .volunteer-item .heading a,
@@ -142,11 +131,10 @@ const formattedDate = computed(() => {
 }
 
 .volunteer-item .meta p:last-child {
-  color: var(--color-text-muted);
+  color: var(--color-text-strong);
   font-family: var(--font-label);
   font-size: var(--text-body-small);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
 
