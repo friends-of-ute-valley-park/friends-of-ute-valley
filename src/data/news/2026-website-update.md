@@ -16,7 +16,7 @@ We also reorganized things to match how people actually use the site. For exampl
 
 ## The look and feel
 
-We wanted the site to feel like it belongs to a park, not a tech company. The design takes cues from field journals, ranger station bulletins, and trail signage. Earthy stone tones instead of sterile white backgrounds. Strong, no-nonsense typography. Clean grid layouts that let the content and photography do the talking.
+We wanted the site to feel like it belongs to a park, not a tech company. The design takes cues from local park maps, community notices, and trail signage. Earthy stone tones instead of sterile white backgrounds. Clear public-service typography. Clean grid layouts that let the content and photography do the talking.
 
 It's meant to feel sturdy and practical. The kind of thing you'd expect pinned to a corkboard at a trailhead kiosk, not floating in some startup's portfolio.
 

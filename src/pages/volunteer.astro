@@ -30,7 +30,7 @@ const meetingLocations = await getCollection("trailheads");
     <section class="volunteer-hero">
       <Image
         src={VolunteerHeroImage}
-        alt="Volunteers in the field"
+        alt="Volunteers maintaining a trail"
         class="image"
         width={1800}
       />
@@ -54,8 +54,8 @@ const meetingLocations = await getCollection("trailheads");
       <div class="volunteer-status">
         <div class="panel">
           <div>
-            <span>Current Status</span>
-            <span>Recruiting</span>
+            <span>Volunteer Season</span>
+            <span>Open</span>
           </div>
           <div>
             <span>Next Event</span>
@@ -126,7 +126,7 @@ const meetingLocations = await getCollection("trailheads");
       <StaticCalendar />
     </section>
 
-    <!-- Field Manual / Info -->
+    <!-- Volunteer Details -->
     <section class="page-section">
       <div class="page-section__inner">
         <div class="volunteer-field">
@@ -146,16 +146,16 @@ const meetingLocations = await getCollection("trailheads");
               {
                 [
                   {
-                    title: "Technical Training",
+                    title: "Trail Care Guidance",
                     desc: "No prior experience required. Crew leaders provide on-site instruction for all specialized tools.",
                   },
                   {
-                    title: "Logistics",
-                    desc: "FUVP provides all necessary heavy tools and infrastructure support.",
+                    title: "Event Support",
+                    desc: "FUVP provides the shared tools, materials, and project support needed for the workday.",
                   },
                   {
-                    title: "Field Gear",
-                    desc: "Volunteers must wear pants and closed-toe footwear. Gloves and eye protection are mandatory.",
+                    title: "What to Wear",
+                    desc: "Please wear pants and closed-toe footwear. Gloves and eye protection are needed for safe trail work.",
                   },
                 ].map((item, i) => (
                   <div class="field-note">
@@ -230,8 +230,8 @@ const meetingLocations = await getCollection("trailheads");
             </h2>
           </Fragment>
           <Fragment slot="subtitle">
-            For specific inquiries regarding group volunteer events or technical
-            project coordination, please submit an official request below.
+            For questions about group volunteer events or trail project
+            coordination, please send us a note below.
           </Fragment>
         </ContactForm>
       </div>
