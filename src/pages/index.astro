@@ -190,6 +190,18 @@ const getSeasonalEssentialsForDate = (date: Date) => {
 };
 
 const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
+const matchRaised = 373;
+const matchGoal = 2000;
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
+});
+const matchRaisedFormatted = currencyFormatter.format(matchRaised);
+const matchGoalFormatted = currencyFormatter.format(matchGoal);
+const matchProgressPercent = Math.min((matchRaised / matchGoal) * 100, 100);
+const matchProgressStyle = `--match-progress: ${matchProgressPercent.toFixed(2)}%`;
+const matchProgressLabel = `Donate to the 2 to 1 match. ${matchRaisedFormatted} raised toward the ${matchGoalFormatted} goal.`;
 ---
 
 <Layout
@@ -288,6 +300,43 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
                 </dt>
                 <dd class="value brand">
                   Leash required
+                </dd>
+              </div>
+
+              <div class="item item--match">
+                <dt class="term">
+                  <span class="icon icon--match">
+                    <HeartIcon aria-hidden="true" />
+                  </span>
+                  <span>2:1 donation match</span>
+                </dt>
+                <dd class="match-value">
+                  <a
+                    href="/donate/"
+                    class="match-link"
+                    aria-label={matchProgressLabel}
+                  >
+                    <span class="match-copy">
+                      <span class="match-total">
+                        <span class="match-raised">{matchRaisedFormatted}</span>
+                        <span class="match-goal">of {matchGoalFormatted}</span>
+                      </span>
+                      <span class="match-cta">
+                        Donate
+                        <ChevronRightIcon aria-hidden="true" />
+                      </span>
+                    </span>
+                    <span
+                      class="match-progress"
+                      style={matchProgressStyle}
+                      aria-hidden="true"
+                    >
+                      <span></span>
+                    </span>
+                    <span class="match-note">
+                      Every $1 becomes $3 while matching funds last.
+                    </span>
+                  </a>
                 </dd>
               </div>
             </dl>
@@ -754,6 +803,25 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     gap: 1rem;
   }
 
+  .park-status .item--match {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+    padding: 1.125rem 1.25rem;
+    border: 2px solid var(--color-brand-strong);
+    border-radius: 0.5rem;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-accent-sm);
+    transition:
+      box-shadow var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+
+  .park-status .item--match:hover,
+  .park-status .item--match:focus-within {
+    box-shadow: var(--shadow-accent-md);
+    transform: translate(-0.25rem, -0.25rem);
+  }
+
   .park-status .term {
     gap: 1rem;
   }
@@ -761,6 +829,11 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
   .park-status .icon {
     background: var(--color-border-muted);
     color: var(--color-text-muted);
+  }
+
+  .park-status .icon--match {
+    background: var(--color-brand-strong);
+    color: var(--color-text-inverse);
   }
 
   .park-status .term span:last-child,
@@ -786,6 +859,102 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
   .park-status .value.brand {
     color: var(--color-brand-strong);
     white-space: nowrap;
+  }
+
+  .park-status .match-value {
+    margin: 0;
+  }
+
+  .park-status .match-link {
+    display: grid;
+    gap: 0.625rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .park-status .match-link:focus-visible {
+    outline-offset: 0.25rem;
+  }
+
+  .park-status .match-copy {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .park-status .match-total,
+  .park-status .match-cta,
+  .park-status .match-note {
+    font-family: var(--font-label);
+  }
+
+  .park-status .match-total {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4em;
+    font-size: 0.875rem;
+  }
+
+  .park-status .match-raised {
+    color: var(--color-brand-strong);
+    font-weight: 900;
+  }
+
+  .park-status .match-goal {
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .park-status .match-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--color-accent-strong);
+    font-size: 0.6875rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color var(--duration-fast) var(--ease-out);
+    white-space: nowrap;
+  }
+
+  .park-status .match-cta svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .park-status .item--match:hover .match-cta,
+  .park-status .item--match:focus-within .match-cta {
+    color: var(--color-brand-strong);
+  }
+
+  .park-status .item--match:hover .match-cta svg {
+    transform: translateX(0.125rem);
+  }
+
+  .park-status .match-progress {
+    display: block;
+    height: 0.5rem;
+    overflow: hidden;
+    border-radius: var(--radius-pill);
+    background: var(--color-brand-muted);
+  }
+
+  .park-status .match-progress span {
+    display: block;
+    width: var(--match-progress);
+    height: 100%;
+    border-radius: inherit;
+    background: var(--color-brand);
+  }
+
+  .park-status .match-note {
+    color: var(--color-text-muted);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.45;
   }
 
   .park-status .message {
