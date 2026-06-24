@@ -282,64 +282,79 @@ const mapTrailheads: TrailheadMapPoint[] = sortedTrailheads.map((trailhead) => (
 
   const visitWindow = window as Window & {
     __visitTrailheadHoverCleanup?: () => void;
+    __visitTrailheadHoverBridgeReady?: boolean;
   };
-  const trailheadItems = document.querySelectorAll<HTMLElement>("[data-trailhead-id]");
 
   const setHighlightedTrailhead = (trailheadId?: string) => {
-    trailheadItems.forEach((item) => {
+    document.querySelectorAll<HTMLElement>("[data-trailhead-id]").forEach((item) => {
       item.classList.toggle("is-map-highlighted", item.dataset.trailheadId === trailheadId);
     });
   };
 
-  const handleTrailheadHover = (event: Event) => {
-    if (!(event instanceof CustomEvent)) {
+  const initializeTrailheadHoverBridge = () => {
+    const trailheadItems = document.querySelectorAll<HTMLElement>("[data-trailhead-id]");
+
+    visitWindow.__visitTrailheadHoverCleanup?.();
+
+    if (!trailheadItems.length) {
       return;
     }
 
-    setHighlightedTrailhead((event as CustomEvent<TrailheadHoverDetail>).detail?.trailheadId);
-  };
-
-  const cleanupHandlers: Array<() => void> = [];
-  const addCleanupHandler = (
-    target: EventTarget,
-    type: string,
-    listener: EventListenerOrEventListenerObject,
-    options?: AddEventListenerOptions,
-  ) => {
-    target.addEventListener(type, listener, options);
-    cleanupHandlers.push(() => target.removeEventListener(type, listener, options));
-  };
-
-  visitWindow.__visitTrailheadHoverCleanup?.();
-
-  trailheadItems.forEach((item) => {
-    const activateTrailhead = () => {
-      dispatchTrailheadHover(item.dataset.trailheadId);
+    const cleanupHandlers: Array<() => void> = [];
+    const addCleanupHandler = (
+      target: EventTarget,
+      type: string,
+      listener: EventListenerOrEventListenerObject,
+      options?: AddEventListenerOptions,
+    ) => {
+      target.addEventListener(type, listener, options);
+      cleanupHandlers.push(() => target.removeEventListener(type, listener, options));
     };
 
-    const clearTrailhead = () => {
-      dispatchTrailheadHover();
+    const handleTrailheadHover = (event: Event) => {
+      if (!(event instanceof CustomEvent)) {
+        return;
+      }
+
+      setHighlightedTrailhead((event as CustomEvent<TrailheadHoverDetail>).detail?.trailheadId);
     };
 
-    addCleanupHandler(item, "mouseenter", activateTrailhead);
-    addCleanupHandler(item, "focus", activateTrailhead);
-    addCleanupHandler(item, "mouseleave", clearTrailhead);
-    addCleanupHandler(item, "blur", clearTrailhead);
-  });
+    trailheadItems.forEach((item) => {
+      const activateTrailhead = () => {
+        dispatchTrailheadHover(item.dataset.trailheadId);
+      };
 
-  addCleanupHandler(document, trailheadHoverEvent, handleTrailheadHover);
+      const clearTrailhead = () => {
+        dispatchTrailheadHover();
+      };
 
-  const cleanupTrailheadHoverBridge = () => {
-    cleanupHandlers.splice(0).forEach((cleanup) => cleanup());
-    setHighlightedTrailhead();
+      addCleanupHandler(item, "mouseenter", activateTrailhead);
+      addCleanupHandler(item, "focus", activateTrailhead);
+      addCleanupHandler(item, "mouseleave", clearTrailhead);
+      addCleanupHandler(item, "blur", clearTrailhead);
+    });
 
-    if (visitWindow.__visitTrailheadHoverCleanup === cleanupTrailheadHoverBridge) {
-      delete visitWindow.__visitTrailheadHoverCleanup;
-    }
+    addCleanupHandler(document, trailheadHoverEvent, handleTrailheadHover);
+
+    const cleanupTrailheadHoverBridge = () => {
+      cleanupHandlers.splice(0).forEach((cleanup) => cleanup());
+      setHighlightedTrailhead();
+
+      if (visitWindow.__visitTrailheadHoverCleanup === cleanupTrailheadHoverBridge) {
+        delete visitWindow.__visitTrailheadHoverCleanup;
+      }
+    };
+
+    visitWindow.__visitTrailheadHoverCleanup = cleanupTrailheadHoverBridge;
   };
 
-  visitWindow.__visitTrailheadHoverCleanup = cleanupTrailheadHoverBridge;
-  addCleanupHandler(document, "astro:before-swap", cleanupTrailheadHoverBridge, { once: true });
+  if (!visitWindow.__visitTrailheadHoverBridgeReady) {
+    document.addEventListener("astro:page-load", initializeTrailheadHoverBridge);
+    document.addEventListener("astro:before-swap", () => visitWindow.__visitTrailheadHoverCleanup?.());
+    visitWindow.__visitTrailheadHoverBridgeReady = true;
+  }
+
+  initializeTrailheadHoverBridge();
 </script>
 
 <style>

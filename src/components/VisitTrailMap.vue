@@ -9,6 +9,10 @@ const trailforksMapUrl =
   'https://www.trailforks.com/region/ute-valley-park/?activitytype=6&z=13.9&lat=38.91440&lon=-104.84102&content=trails,labels,region,poi,directory,polygon,waypoint,nst,route_popular,routes_featured';
 const openFreeMapStyleUrl = 'https://tiles.openfreemap.org/styles/positron';
 const trailDataUrl = '/data/ute-valley-trails.geojson';
+const mobileViewportQuery = '(max-width: 767px)';
+const desktopDefaultZoom = 13.6;
+const mobileDefaultZoom = 12.7;
+const minZoom = 12.3;
 
 const props = defineProps<{
   trailheads: TrailheadMapPoint[];
@@ -218,12 +222,14 @@ onMounted(async () => {
     return;
   }
 
+  const defaultZoom = window.matchMedia(mobileViewportQuery).matches ? mobileDefaultZoom : desktopDefaultZoom;
+
   const mapInstance = new maplibregl.Map({
     container: mapCanvas.value,
     center: [-104.844, 38.9144],
-    zoom: 13.6,
+    zoom: defaultZoom,
     maxZoom: 14.4,
-    minZoom: 13,
+    minZoom,
     attributionControl: false,
     style,
   });
@@ -280,7 +286,7 @@ onMounted(async () => {
   if (!trailheadBounds.isEmpty()) {
     mapInstance.fitBounds(trailheadBounds, {
       duration: 0,
-      maxZoom: 13.6,
+      maxZoom: defaultZoom,
       padding: {
         top: 72,
         right: 72,
