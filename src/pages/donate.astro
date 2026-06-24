@@ -19,6 +19,21 @@ const giftUses = [
   "Community outreach with City of Colorado Springs partners",
 ];
 
+const matchDetails = [
+  {
+    label: "$1 donated",
+    value: "$3 for the park",
+  },
+  {
+    label: "Matched through",
+    value: "August 31, 2026",
+  },
+  {
+    label: "Challenge cap",
+    value: "$2,000",
+  },
+];
+
 const givingOptions = [
   {
     id: "give-by-mail",
@@ -60,24 +75,55 @@ const givingOptions = [
           </p>
 
           <h1 class="hero-title">
-            Give to Ute Valley Park.
+            Triple your impact for Ute Valley Park.
           </h1>
 
           <p class="hero-intro">
-            Your gift keeps local stewardship moving: maintained trails,
-            protected habitat, clearer visitor guidance, and continued care for
-            a 550-acre urban wildland in Colorado Springs.
+            Friends of Ute Valley Park is launching as an independent nonprofit.
+            During this kickoff challenge, every dollar you give is matched
+            two-to-one to help local stewardship start strong.
           </p>
 
           <div class="hero-actions" aria-label="Donation page shortcuts">
             <a href="#donation-form" class="button button--brand">
-              Give Online
+              Give While Gifts Are Matched
             </a>
-            <a href="#other-ways-to-give" class="text-link">
-              Other ways to give
+            <a href="#gift-impact" class="text-link">
+              See what gifts support
             </a>
           </div>
 
+          <section class="match-panel" aria-labelledby="match-panel-title">
+            <div class="match-panel__copy">
+              <p class="match-panel__label">
+                Independence Kickoff Fund
+              </p>
+              <h2 id="match-panel-title">
+                $1 becomes $3 for the park.
+              </h2>
+              <p>
+                Gifts are matched two dollars for every dollar donated, up to
+                $2,000, through August 31, 2026.
+              </p>
+            </div>
+
+            <dl class="match-panel__details" aria-label="Kickoff matching gift details">
+              {
+                matchDetails.map((item) => (
+                  <div>
+                    <dt>{item.label}</dt>
+                    <dd>{item.value}</dd>
+                  </div>
+                ))
+              }
+            </dl>
+          </section>
+
+          <p class="donation-meta">
+            Friends of Ute Valley Park is an independent 501(c)(3) public charity.
+            EIN: 42-2107142. Donations support local stewardship of Ute Valley
+            Park and may be tax-deductible as allowed by law.
+          </p>
         </div>
 
         <aside id="donation-form" class="donation-card panel-card" aria-label="Online donation form">
@@ -88,7 +134,8 @@ const givingOptions = [
               </h2>
               <p>
                 Make a one-time or monthly gift through Zeffy. Choose any
-                amount that works for you. It only takes a minute.
+                amount that works for you. Eligible kickoff gifts are matched
+                two-to-one through August 31, 2026.
               </p>
             </div>
 
@@ -104,45 +151,10 @@ const givingOptions = [
 
           <ZeffyDonationEmbed height="620px" mobileHeight="700px" />
         </aside>
-
-        <section class="giving-routes" aria-labelledby="giving-routes-title">
-          <div class="giving-routes__intro">
-            <h2 id="giving-routes-title">
-              Prefer another way?
-            </h2>
-            <p>
-              Online giving is fastest. These routes are here when a check,
-              bank transfer, or employer program fits better.
-            </p>
-          </div>
-
-          <div class="route-list card">
-            {
-              givingOptions.map((option) => {
-                const Icon = option.icon;
-
-                return (
-                  <a href={`#${option.id}`} class="route-link">
-                    <Icon aria-hidden="true" />
-                    <span>
-                      <strong>{option.title}</strong>
-                      <span>{option.description}</span>
-                    </span>
-                  </a>
-                );
-              })
-            }
-          </div>
-        </section>
-
-        <p class="donation-meta">
-          Friends of Ute Valley Park is an independent 501(c)(3) public charity.
-          EIN: 42-2107142.
-        </p>
       </div>
     </section>
 
-    <section class="impact-section l-section content-defer">
+    <section id="gift-impact" class="impact-section l-section content-defer">
       <div class="impact-layout l-container">
         <div class="impact-media media-frame">
           <Image
@@ -155,7 +167,7 @@ const givingOptions = [
 
         <div class="impact-copy">
           <h2>
-            What your gift supports
+            What matched gifts make possible
           </h2>
           <ul class="gift-list" aria-label="What donations support">
             {
@@ -265,16 +277,17 @@ const givingOptions = [
   }
 
   .hero-title {
-    max-width: 10.5ch;
+    max-width: 12ch;
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: clamp(3.25rem, 8vw, 4.75rem);
+    font-size: clamp(3rem, 7vw, 4.75rem);
     font-weight: 900;
     letter-spacing: 0;
     line-height: 0.9;
     text-transform: uppercase;
     text-wrap: balance;
+    word-spacing: 0.08em;
   }
 
   .hero-intro,
@@ -307,93 +320,85 @@ const givingOptions = [
     text-transform: none;
   }
 
-  .giving-routes {
+  .match-panel {
     display: grid;
     gap: 1rem;
     min-width: 0;
     border-block: 1px solid var(--color-border);
-    padding-block: 1.25rem;
+    padding-block: clamp(1.25rem, 3vw, 1.75rem);
   }
 
-  .giving-routes__intro {
+  .match-panel__copy {
     display: grid;
-    gap: 0.45rem;
+    gap: 0.55rem;
   }
 
-  .giving-routes h2 {
+  .match-panel__label {
+    width: fit-content;
+    margin: 0;
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: 0.7rem;
+    font-weight: 850;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .match-panel h2 {
+    max-width: 18ch;
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: clamp(1.45rem, 2vw, 1.85rem);
-    font-weight: 800;
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    font-weight: 900;
     letter-spacing: 0;
     line-height: var(--leading-tight);
+    text-transform: uppercase;
     text-wrap: balance;
   }
 
-  .giving-routes p {
-    max-width: 42rem;
+  .match-panel p {
+    max-width: 38rem;
     margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
     line-height: var(--leading-body);
     text-wrap: pretty;
   }
 
-  .route-list {
+  .match-panel__details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .match-panel__details div {
+    flex: 1 1 8.5rem;
     display: grid;
-    gap: 0;
-  }
-
-  .route-link {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.8rem;
-    align-items: start;
-    color: var(--color-text-strong);
-    padding: 0.9rem 1rem;
-    text-decoration: none;
-    transition:
-      background-color var(--duration-fast),
-      color var(--duration-fast);
-  }
-
-  .route-link + .route-link {
-    border-top: 1px solid var(--color-border-muted);
-  }
-
-  .route-link:hover,
-  .route-link:focus-visible {
-    background: var(--color-surface-muted);
-    color: var(--color-brand-strong);
-  }
-
-  .route-link svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--color-brand-strong);
-    margin-top: 0.12rem;
-  }
-
-  .route-link span {
-    display: grid;
-    gap: 0.18rem;
+    gap: 0.35rem;
     min-width: 0;
+    border-top: 2px solid var(--color-accent);
+    padding-top: 0.65rem;
   }
 
-  .route-link strong {
-    font-size: 0.95rem;
-    font-weight: 800;
-    letter-spacing: 0;
-    line-height: var(--leading-tight);
-  }
-
-  .route-link span span {
+  .match-panel__details dt {
     color: var(--color-text-muted);
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.76rem;
+    font-weight: 750;
     line-height: var(--leading-tight);
+  }
+
+  .match-panel__details dd {
+    margin: 0;
+    color: var(--color-brand-strong);
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2vw, 1.55rem);
+    font-weight: 900;
+    line-height: var(--leading-tight);
+    text-wrap: balance;
   }
 
   .donation-meta {
@@ -661,15 +666,6 @@ const givingOptions = [
 
     .donation-card {
       grid-column: 2;
-      grid-row: 1 / span 3;
-    }
-
-    .giving-routes {
-      grid-column: 1;
-    }
-
-    .donation-meta {
-      grid-column: 1;
     }
 
     .impact-layout {
