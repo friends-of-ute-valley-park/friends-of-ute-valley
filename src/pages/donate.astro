@@ -92,38 +92,6 @@ const givingOptions = [
               See what gifts support
             </a>
           </div>
-
-          <section class="match-panel" aria-labelledby="match-panel-title">
-            <div class="match-panel__copy">
-              <p class="match-panel__label">
-                Independence Kickoff Fund
-              </p>
-              <h2 id="match-panel-title">
-                $1 becomes $3 for the park.
-              </h2>
-              <p>
-                Gifts are matched two dollars for every dollar donated, up to
-                $2,000, through August 31, 2026.
-              </p>
-            </div>
-
-            <dl class="match-panel__details" aria-label="Kickoff matching gift details">
-              {
-                matchDetails.map((item) => (
-                  <div>
-                    <dt>{item.label}</dt>
-                    <dd>{item.value}</dd>
-                  </div>
-                ))
-              }
-            </dl>
-          </section>
-
-          <p class="donation-meta">
-            Friends of Ute Valley Park is an independent 501(c)(3) public charity.
-            EIN: 42-2107142. Donations support local stewardship of Ute Valley
-            Park and may be tax-deductible as allowed by law.
-          </p>
         </div>
 
         <aside id="donation-form" class="donation-card panel-card" aria-label="Online donation form">
@@ -151,6 +119,38 @@ const givingOptions = [
 
           <ZeffyDonationEmbed height="620px" mobileHeight="700px" />
         </aside>
+
+        <section class="match-panel" aria-labelledby="match-panel-title">
+          <div class="match-panel__copy">
+            <p class="match-panel__label">
+              Independence Kickoff Fund
+            </p>
+            <h2 id="match-panel-title">
+              $1 becomes $3 for the park.
+            </h2>
+            <p>
+              Gifts are matched two dollars for every dollar donated, up to
+              $2,000, through August 31, 2026.
+            </p>
+          </div>
+
+          <dl class="match-panel__details" aria-label="Kickoff matching gift details">
+            {
+              matchDetails.map((item) => (
+                <div>
+                  <dt>{item.label}</dt>
+                  <dd>{item.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </section>
+
+        <p class="donation-meta">
+          Friends of Ute Valley Park is an independent 501(c)(3) public charity.
+          EIN: 42-2107142. Donations support local stewardship of Ute Valley
+          Park and may be tax-deductible as allowed by law.
+        </p>
       </div>
     </section>
 
@@ -666,6 +666,12 @@ const givingOptions = [
 
     .donation-card {
       grid-column: 2;
+      grid-row: 1 / span 3;
+    }
+
+    .match-panel,
+    .donation-meta {
+      grid-column: 1;
     }
 
     .impact-layout {
