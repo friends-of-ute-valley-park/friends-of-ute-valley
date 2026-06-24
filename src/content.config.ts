@@ -51,6 +51,8 @@ const trailheadsCollection = defineCollection({
       id: z.number(),
       name: z.string(),
       description: z.string(),
+      longitude: z.number(),
+      latitude: z.number(),
       directionsLink: z.string(),
       location: z.string(),
       amenities: z.array(

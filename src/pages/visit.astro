@@ -4,11 +4,19 @@ import Layout from "@layouts/Layout.astro";
 import { Picture } from "astro:assets";
 import heroImage from "../assets/images/ute-valley-park-biker.jpg";
 import DogImage from "../assets/images/dog.jpg";
-import uteValleyParkMap from "../assets/images/maps/ute-valley-park-map-full.jpg";
 
 import LeaveNoTrace from "@components/LeaveNoTrace.astro";
+import VisitTrailMap from "@components/VisitTrailMap.vue";
 import { getSortedTrailheads } from "@/utils/content";
+import type { TrailheadMapPoint } from "@/utils/trailheadHover";
 const sortedTrailheads = await getSortedTrailheads();
+const mapTrailheads: TrailheadMapPoint[] = sortedTrailheads.map((trailhead) => ({
+  id: String(trailhead.id),
+  name: trailhead.data.name,
+  description: trailhead.data.description,
+  coordinates: [trailhead.data.longitude, trailhead.data.latitude] as [number, number],
+  url: `/trailheads/${trailhead.id}/`,
+}));
 ---
 
 <Layout
@@ -96,6 +104,7 @@ const sortedTrailheads = await getSortedTrailheads();
                   <a
                     href={`/trailheads/${trailhead.id}/`}
                     class="item"
+                    data-trailhead-id={String(trailhead.id)}
                   >
                     <div>
                       <div class="title">
@@ -122,26 +131,16 @@ const sortedTrailheads = await getSortedTrailheads();
           <!-- Cartographic Context -->
           <div class="context">
             <div class="sticky">
-              <div class="article-photo-card">
-                <a
-                  href="/images/maps/ute-valley-park-map-full.jpg"
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                >
-                  <Picture
-                    src={uteValleyParkMap}
-                    formats={["avif", "webp"]}
-                    alt="Map of Ute Valley Park"
-                    width="1200"
-                    height="900"
-                    class="image"
-                  />
-                  <div class="article-photo-card__meta">
-                    <span>Trail Map</span>
-                    <span>View Fullsize PDF</span>
-                  </div>
-                </a>
-              </div>
+              <VisitTrailMap trailheads={mapTrailheads} client:visible />
+              <a
+                class="static-map-link"
+                href="/images/maps/ute-valley-park-map-full.jpg"
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+              >
+                <span>Official Park Map</span>
+                <span>Open Full Size</span>
+              </a>
               <div class="visit-fact-grid">
                 <div>
                   <p>
@@ -274,6 +273,75 @@ const sortedTrailheads = await getSortedTrailheads();
   </main>
 </Layout>
 
+<script>
+  import {
+    dispatchTrailheadHover,
+    trailheadHoverEvent,
+    type TrailheadHoverDetail,
+  } from "@/utils/trailheadHover";
+
+  const visitWindow = window as Window & {
+    __visitTrailheadHoverCleanup?: () => void;
+  };
+  const trailheadItems = document.querySelectorAll<HTMLElement>("[data-trailhead-id]");
+
+  const setHighlightedTrailhead = (trailheadId?: string) => {
+    trailheadItems.forEach((item) => {
+      item.classList.toggle("is-map-highlighted", item.dataset.trailheadId === trailheadId);
+    });
+  };
+
+  const handleTrailheadHover = (event: Event) => {
+    if (!(event instanceof CustomEvent)) {
+      return;
+    }
+
+    setHighlightedTrailhead((event as CustomEvent<TrailheadHoverDetail>).detail?.trailheadId);
+  };
+
+  const cleanupHandlers: Array<() => void> = [];
+  const addCleanupHandler = (
+    target: EventTarget,
+    type: string,
+    listener: EventListenerOrEventListenerObject,
+    options?: AddEventListenerOptions,
+  ) => {
+    target.addEventListener(type, listener, options);
+    cleanupHandlers.push(() => target.removeEventListener(type, listener, options));
+  };
+
+  visitWindow.__visitTrailheadHoverCleanup?.();
+
+  trailheadItems.forEach((item) => {
+    const activateTrailhead = () => {
+      dispatchTrailheadHover(item.dataset.trailheadId);
+    };
+
+    const clearTrailhead = () => {
+      dispatchTrailheadHover();
+    };
+
+    addCleanupHandler(item, "mouseenter", activateTrailhead);
+    addCleanupHandler(item, "focus", activateTrailhead);
+    addCleanupHandler(item, "mouseleave", clearTrailhead);
+    addCleanupHandler(item, "blur", clearTrailhead);
+  });
+
+  addCleanupHandler(document, trailheadHoverEvent, handleTrailheadHover);
+
+  const cleanupTrailheadHoverBridge = () => {
+    cleanupHandlers.splice(0).forEach((cleanup) => cleanup());
+    setHighlightedTrailhead();
+
+    if (visitWindow.__visitTrailheadHoverCleanup === cleanupTrailheadHoverBridge) {
+      delete visitWindow.__visitTrailheadHoverCleanup;
+    }
+  };
+
+  visitWindow.__visitTrailheadHoverCleanup = cleanupTrailheadHoverBridge;
+  addCleanupHandler(document, "astro:before-swap", cleanupTrailheadHoverBridge, { once: true });
+</script>
+
 <style>
   .visit-hero {
     position: relative;
@@ -377,6 +445,11 @@ const sortedTrailheads = await getSortedTrailheads();
     background: var(--color-surface-muted);
   }
 
+  .trailhead-list .item.is-map-highlighted {
+    background: var(--color-surface-muted);
+    box-shadow: inset 0.25rem 0 0 var(--color-brand-strong);
+  }
+
   .trailhead-list .title {
     display: flex;
     align-items: center;
@@ -406,7 +479,9 @@ const sortedTrailheads = await getSortedTrailheads();
   }
 
   .trailhead-list .item:hover h3,
-  .trailhead-list .item:hover > span {
+  .trailhead-list .item:hover > span,
+  .trailhead-list .item.is-map-highlighted h3,
+  .trailhead-list .item.is-map-highlighted > span {
     color: var(--color-brand-strong);
   }
 
@@ -430,7 +505,7 @@ const sortedTrailheads = await getSortedTrailheads();
 
   .visit-map .sticky {
     display: grid;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   @media (min-width: 64rem) {
@@ -444,6 +519,41 @@ const sortedTrailheads = await getSortedTrailheads();
     width: 100%;
     height: auto;
     transition: transform var(--duration-slow);
+  }
+
+  .static-map-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid var(--color-border-muted);
+    background: var(--color-surface);
+    color: inherit;
+    padding: 1rem;
+    text-decoration: none;
+    transition:
+      background-color var(--duration-fast),
+      color var(--duration-fast);
+  }
+
+  .static-map-link:hover {
+    background: var(--color-surface-muted);
+  }
+
+  .static-map-link span {
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .static-map-link span:first-child {
+    color: var(--color-text-subtle);
+  }
+
+  .static-map-link span:last-child {
+    color: var(--color-brand-strong);
   }
 
   .visit-fact-grid {

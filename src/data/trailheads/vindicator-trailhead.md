@@ -2,6 +2,8 @@
 id: 1
 name: Vindicator Trailhead
 description: Popular parking spot with convenient access to easy trails for hiking, biking and running.
+longitude: -104.8569722
+latitude: 38.9253889
 directionsLink: https://goo.gl/maps/qbg3DnHYZJL3MchC7
 location: Located on Vindicator Drive between Centennial Boulevard and W Rockrimmon Road just West of Eagleview Middle School.
 amenities:

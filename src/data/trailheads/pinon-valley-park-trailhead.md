@@ -2,6 +2,8 @@
 id: 4
 name: Piñon Valley Park Trailhead
 description: Great access to both Ute Valley and Piñon Valley Parks with the most convenient access to the bouldering area.
+longitude: -104.85816
+latitude: 38.9111944
 directionsLink: https://goo.gl/maps/ZXN3c92sjsCFhnF19
 location: Located on Piñon Park Dr and Mule Deer Dr East of Centennial Blvd
 amenities:
