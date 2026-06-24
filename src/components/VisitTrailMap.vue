@@ -9,6 +9,7 @@ const trailforksMapUrl =
   'https://www.trailforks.com/region/ute-valley-park/?activitytype=6&z=13.9&lat=38.91440&lon=-104.84102&content=trails,labels,region,poi,directory,polygon,waypoint,nst,route_popular,routes_featured';
 const openFreeMapStyleUrl = 'https://tiles.openfreemap.org/styles/positron';
 const trailDataUrl = '/data/ute-valley-trails.geojson';
+const trailInteractionLayerId = 'ute-valley-trails-hit-area';
 const mobileViewportQuery = '(max-width: 767px)';
 const desktopDefaultZoom = 13.6;
 const mobileDefaultZoom = 12.7;
@@ -168,6 +169,21 @@ const addTrailLines = async (mapInstance: MapLibreMap, maplibregl: typeof import
     },
   });
 
+  mapInstance.addLayer({
+    id: trailInteractionLayerId,
+    type: 'line',
+    source: 'ute-valley-trails',
+    paint: {
+      'line-color': 'rgba(0, 0, 0, 0.01)',
+      'line-opacity': 0.01,
+      'line-width': ['interpolate', ['linear'], ['zoom'], 11, 18, 14, 24, 17, 32],
+    },
+    layout: {
+      'line-cap': 'round',
+      'line-join': 'round',
+    },
+  });
+
   const trailHoverContent = document.createElement('strong');
   const trailHoverPopup = new maplibregl.Popup({
     closeButton: false,
@@ -176,11 +192,7 @@ const addTrailLines = async (mapInstance: MapLibreMap, maplibregl: typeof import
     offset: 12,
   }).setDOMContent(trailHoverContent);
 
-  mapInstance.on('mouseenter', 'ute-valley-trails', () => {
-    mapInstance.getCanvas().style.cursor = 'pointer';
-  });
-
-  mapInstance.on('mousemove', 'ute-valley-trails', (event) => {
+  const showTrailPopup = (event: { features?: Array<{ properties?: { name?: unknown } }>; lngLat?: maplibregl.LngLatLike }) => {
     const feature = event.features?.[0];
     const name = feature?.properties?.name;
 
@@ -191,9 +203,17 @@ const addTrailLines = async (mapInstance: MapLibreMap, maplibregl: typeof import
 
     trailHoverContent.textContent = name;
     trailHoverPopup.setLngLat(event.lngLat).addTo(mapInstance);
+  };
+
+  mapInstance.on('mouseenter', trailInteractionLayerId, () => {
+    mapInstance.getCanvas().style.cursor = 'pointer';
   });
 
-  mapInstance.on('mouseleave', 'ute-valley-trails', () => {
+  mapInstance.on('mousemove', trailInteractionLayerId, showTrailPopup);
+  mapInstance.on('click', trailInteractionLayerId, showTrailPopup);
+  mapInstance.on('touchstart', trailInteractionLayerId, showTrailPopup);
+
+  mapInstance.on('mouseleave', trailInteractionLayerId, () => {
     mapInstance.getCanvas().style.cursor = '';
     trailHoverPopup.remove();
   });
