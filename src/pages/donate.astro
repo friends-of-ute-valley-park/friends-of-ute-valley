@@ -11,6 +11,7 @@ import MailboxUpIcon from "~icons/mdi/mailbox-up";
 import { TURNSTILE_SITE_KEY } from "astro:env/client";
 
 import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
+import { donationDrive } from "@/data/donationDrive";
 
 const giftUses = [
   "Trail restoration",
@@ -50,18 +51,7 @@ const matchedGiftExamples = [
   },
 ];
 
-const matchRaised = 373;
-const matchGoal = 2000;
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-  maximumFractionDigits: 0,
-});
-const matchRaisedFormatted = currencyFormatter.format(matchRaised);
-const matchGoalFormatted = currencyFormatter.format(matchGoal);
-const matchProgressPercent = Math.min((matchRaised / matchGoal) * 100, 100);
-const matchProgressStyle = `--match-progress: ${matchProgressPercent.toFixed(2)}%`;
-const matchProgressLabel = `Independence Kickoff Fund: ${matchRaisedFormatted} of ${matchGoalFormatted} matched.`;
+const matchProgressLabel = `${donationDrive.name}: ${donationDrive.raisedFormatted} of ${donationDrive.goalFormatted} matched.`;
 
 const matchDetails = [
   {
@@ -70,11 +60,11 @@ const matchDetails = [
   },
   {
     label: "Matched through",
-    value: "August 31, 2026",
+    value: donationDrive.deadlineLabel,
   },
   {
     label: "Challenge cap",
-    value: "$2,000",
+    value: donationDrive.challengeCapFormatted,
   },
 ];
 
@@ -125,7 +115,7 @@ const givingOptions = [
           <p class="hero-intro">
             Friends of Ute Valley Park is now an independent nonprofit dedicated
             exclusively to caring for Ute Valley Park. To celebrate this new
-            chapter, every donation is matched 2-to-1 through August 31, 2026.
+            chapter, every donation is matched {donationDrive.matchRatioLabel} through {donationDrive.deadlineLabel}.
             Every $1 you give becomes $3 for the park.
           </p>
 
@@ -147,8 +137,8 @@ const givingOptions = [
               </h2>
               <p>
                 Make a one-time or monthly gift through Zeffy. Choose any
-                amount that works for you. Gifts made through August 31, 2026
-                are matched 2-to-1.
+                amount that works for you. Gifts made through {donationDrive.deadlineLabel}
+                are matched {donationDrive.matchRatioLabel}.
               </p>
             </div>
 
@@ -168,23 +158,23 @@ const givingOptions = [
         <section class="match-panel" aria-labelledby="match-panel-title">
           <div class="match-panel__copy">
             <p class="match-panel__label">
-              Independence Kickoff Fund
+              {donationDrive.name}
             </p>
             <h2 id="match-panel-title">
-              {matchRaisedFormatted} of {matchGoalFormatted} matched.
+              {donationDrive.raisedFormatted} of {donationDrive.goalFormatted} matched.
             </h2>
             <p>
-              Every dollar donated through August 31, 2026 is matched with two
-              more dollars, up to the $2,000 challenge cap.
+              Every dollar donated through {donationDrive.deadlineLabel} is
+              matched with two more dollars, up to the {donationDrive.challengeCapFormatted} challenge cap.
             </p>
           </div>
 
           <div class="match-progress-block" aria-label={matchProgressLabel}>
-            <div class="match-progress-track" style={matchProgressStyle}>
+            <div class="match-progress-track" style={donationDrive.progressStyle}>
               <span></span>
             </div>
             <p>
-              {matchRaisedFormatted} of {matchGoalFormatted} matched
+              {donationDrive.raisedFormatted} of {donationDrive.goalFormatted} matched
             </p>
           </div>
 
@@ -253,9 +243,9 @@ const givingOptions = [
             Why donate today?
           </h2>
           <p>
-            Gifts made through August 31, 2026 are matched 2-to-1. Your gift
-            goes three times as far for local trail work, habitat care, and
-            volunteer stewardship.
+            Gifts made through {donationDrive.deadlineLabel} are matched
+            {donationDrive.matchRatioLabel}. Your gift goes three times as far
+            for local trail work, habitat care, and volunteer stewardship.
           </p>
           <p>
             Thousands of people hike, bike, run, and explore Ute Valley Park
@@ -283,8 +273,9 @@ const givingOptions = [
           Help launch the next chapter of Ute Valley Park
         </h2>
         <p>
-          Every dollar donated through August 31, 2026 is matched 2-to-1. Join
-          the community investing in the future of Ute Valley Park.
+          Every dollar donated through {donationDrive.deadlineLabel} is matched
+          {donationDrive.matchRatioLabel}. Join the community investing in the
+          future of Ute Valley Park.
         </p>
         <a href="#donation-form" class="button button--brand">
           Donate Today
