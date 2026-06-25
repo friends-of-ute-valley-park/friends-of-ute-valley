@@ -13,11 +13,55 @@ import { TURNSTILE_SITE_KEY } from "astro:env/client";
 import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
 
 const giftUses = [
-  "Tools, safety gear, and supplies for volunteer trail work days",
-  "Habitat protection and practical visitor education",
-  "Wayfinding signs, stewardship materials, and ongoing park care",
-  "Community outreach with City of Colorado Springs partners",
+  "Trail restoration",
+  "Habitat protection",
+  "Invasive species removal",
+  "Volunteer tools and safety equipment",
+  "Educational signs and outreach",
+  "Community stewardship events",
 ];
+
+const tangibleUses = [
+  "Gloves",
+  "Loppers",
+  "Native seed",
+  "Trail tools",
+  "Educational signs",
+  "Volunteer supplies",
+  "Restoration materials",
+];
+
+const matchedGiftExamples = [
+  {
+    gift: "$10",
+    matched: "$30",
+  },
+  {
+    gift: "$25",
+    matched: "$75",
+  },
+  {
+    gift: "$50",
+    matched: "$150",
+  },
+  {
+    gift: "$100",
+    matched: "$300",
+  },
+];
+
+const matchRaised = 373;
+const matchGoal = 2000;
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
+});
+const matchRaisedFormatted = currencyFormatter.format(matchRaised);
+const matchGoalFormatted = currencyFormatter.format(matchGoal);
+const matchProgressPercent = Math.min((matchRaised / matchGoal) * 100, 100);
+const matchProgressStyle = `--match-progress: ${matchProgressPercent.toFixed(2)}%`;
+const matchProgressLabel = `Independence Kickoff Fund: ${matchRaisedFormatted} of ${matchGoalFormatted} matched.`;
 
 const matchDetails = [
   {
@@ -75,21 +119,22 @@ const givingOptions = [
           </p>
 
           <h1 class="hero-title">
-            Triple your impact for Ute Valley Park.
+            Protect the park you love.
           </h1>
 
           <p class="hero-intro">
-            Friends of Ute Valley Park is launching as an independent nonprofit.
-            During this kickoff challenge, every dollar you give is matched
-            two-to-one to help local stewardship start strong.
+            Friends of Ute Valley Park is now an independent nonprofit dedicated
+            exclusively to caring for Ute Valley Park. To celebrate this new
+            chapter, every donation is matched 2-to-1 through August 31, 2026.
+            Every $1 you give becomes $3 for the park.
           </p>
 
           <div class="hero-actions" aria-label="Donation page shortcuts">
             <a href="#donation-form" class="button button--brand">
-              Give While Gifts Are Matched
+              Donate Today
             </a>
-            <a href="#gift-impact" class="text-link">
-              See what gifts support
+            <a href="#why-now" class="text-link">
+              See why now matters
             </a>
           </div>
         </div>
@@ -102,8 +147,8 @@ const givingOptions = [
               </h2>
               <p>
                 Make a one-time or monthly gift through Zeffy. Choose any
-                amount that works for you. Eligible kickoff gifts are matched
-                two-to-one through August 31, 2026.
+                amount that works for you. Gifts made through August 31, 2026
+                are matched 2-to-1.
               </p>
             </div>
 
@@ -126,11 +171,20 @@ const givingOptions = [
               Independence Kickoff Fund
             </p>
             <h2 id="match-panel-title">
-              $1 becomes $3 for the park.
+              {matchRaisedFormatted} of {matchGoalFormatted} matched.
             </h2>
             <p>
-              Gifts are matched two dollars for every dollar donated, up to
-              $2,000, through August 31, 2026.
+              Every dollar donated through August 31, 2026 is matched with two
+              more dollars, up to the $2,000 challenge cap.
+            </p>
+          </div>
+
+          <div class="match-progress-block" aria-label={matchProgressLabel}>
+            <div class="match-progress-track" style={matchProgressStyle}>
+              <span></span>
+            </div>
+            <p>
+              {matchRaisedFormatted} of {matchGoalFormatted} matched
             </p>
           </div>
 
@@ -148,8 +202,8 @@ const givingOptions = [
 
         <p class="donation-meta">
           Friends of Ute Valley Park is an independent 501(c)(3) public charity.
-          EIN: 42-2107142. Donations support local stewardship of Ute Valley
-          Park and may be tax-deductible as allowed by law.
+          EIN: 42-2107142. 100% of donations stay focused on Ute Valley Park
+          and may be tax-deductible as allowed by law.
         </p>
       </div>
     </section>
@@ -167,8 +221,13 @@ const givingOptions = [
 
         <div class="impact-copy">
           <h2>
-            What matched gifts make possible
+            Your donation stays in Ute Valley Park
           </h2>
+          <p>
+            Every donation directly supports stewardship of Ute Valley Park.
+            Friends of Ute Valley Park is an all-volunteer nonprofit, so your
+            gift goes toward caring for the park rather than paying staff.
+          </p>
           <ul class="gift-list" aria-label="What donations support">
             {
               giftUses.map((item) => (
@@ -179,7 +238,57 @@ const givingOptions = [
               ))
             }
           </ul>
+          <p class="specific-impact">
+            Gifts help buy {tangibleUses.join(", ").toLowerCase()}, and other
+            materials for trail work and habitat repair.
+          </p>
         </div>
+      </div>
+    </section>
+
+    <section id="why-now" class="why-now-section band band--muted l-section content-defer">
+      <div class="why-now-layout l-container">
+        <div class="why-now-copy">
+          <h2>
+            Why donate today?
+          </h2>
+          <p>
+            Gifts made through August 31, 2026 are matched 2-to-1. Your gift
+            goes three times as far for local trail work, habitat care, and
+            volunteer stewardship.
+          </p>
+          <p>
+            Thousands of people hike, bike, run, and explore Ute Valley Park
+            every year. Together, we can keep it healthy, welcoming, and
+            beautiful for everyone.
+          </p>
+        </div>
+
+        <dl class="match-examples" aria-label="Examples of two-to-one matched donations">
+          {
+            matchedGiftExamples.map((example) => (
+              <div>
+                <dt>{example.gift} becomes</dt>
+                <dd>{example.matched}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+
+    <section class="final-donate-cta band l-section content-defer">
+      <div class="l-container final-donate-cta__inner">
+        <h2>
+          Help launch the next chapter of Ute Valley Park
+        </h2>
+        <p>
+          Every dollar donated through August 31, 2026 is matched 2-to-1. Join
+          the community investing in the future of Ute Valley Park.
+        </p>
+        <a href="#donation-form" class="button button--brand">
+          Donate Today
+        </a>
       </div>
     </section>
 
@@ -375,6 +484,31 @@ const givingOptions = [
     margin: 0;
   }
 
+  .match-progress-block {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .match-progress-track {
+    overflow: hidden;
+    height: 0.9rem;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface-muted);
+  }
+
+  .match-progress-track span {
+    display: block;
+    width: var(--match-progress);
+    height: 100%;
+    background: var(--color-brand-strong);
+  }
+
+  .match-progress-block p {
+    color: var(--color-text-strong);
+    font-size: 0.95rem;
+    font-weight: 800;
+  }
+
   .match-panel__details div {
     flex: 1 1 8.5rem;
     display: grid;
@@ -508,6 +642,23 @@ const givingOptions = [
     padding-block: clamp(1.5rem, 4vw, 3rem);
   }
 
+  .impact-copy p,
+  .why-now-copy p,
+  .final-donate-cta p {
+    max-width: 44rem;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-large);
+    font-weight: 500;
+    line-height: var(--leading-body);
+    text-wrap: pretty;
+  }
+
+  .specific-impact {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
   .gift-list {
     display: grid;
     gap: 1rem;
@@ -535,6 +686,84 @@ const givingOptions = [
     font-size: 1rem;
     font-weight: 750;
     line-height: 1.45;
+  }
+
+  .why-now-section {
+    border-block: 1px solid var(--color-border);
+  }
+
+  .why-now-layout {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .why-now-copy {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .why-now-copy h2,
+  .final-donate-cta h2 {
+    max-width: 18ch;
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 4.5vw, 3.35rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .match-examples {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-border-strong);
+  }
+
+  .match-examples div {
+    display: grid;
+    gap: 0.45rem;
+    min-width: 0;
+    background: var(--color-surface);
+    padding: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .match-examples dt {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    font-weight: 800;
+    line-height: var(--leading-tight);
+  }
+
+  .match-examples dd {
+    margin: 0;
+    color: var(--color-brand-strong);
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 5vw, 3rem);
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .final-donate-cta {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .final-donate-cta h2 {
+    max-width: 24ch;
+    font-size: clamp(2rem, 3.5vw, 2.85rem);
+    line-height: var(--leading-tight);
+  }
+
+  .final-donate-cta__inner {
+    display: grid;
+    gap: 1rem;
+    justify-items: start;
   }
 
   .donate-section-heading {
@@ -677,17 +906,26 @@ const givingOptions = [
     .impact-layout {
       grid-template-columns: minmax(0, 0.8fr) minmax(22rem, 0.7fr);
     }
+
+    .why-now-layout {
+      grid-template-columns: minmax(0, 0.8fr) minmax(26rem, 0.9fr);
+    }
   }
 
   @media (max-width: 36rem) {
     .hero-actions .button,
-    .bridge-inner .button {
+    .bridge-inner .button,
+    .final-donate-cta .button {
       width: 100%;
     }
 
     .hero-actions .text-link {
       width: 100%;
       text-align: center;
+    }
+
+    .match-examples {
+      grid-template-columns: 1fr;
     }
   }
 
