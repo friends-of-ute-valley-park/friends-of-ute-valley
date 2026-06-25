@@ -4,7 +4,7 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0,
 });
 
-const raised = 498;
+const raised = 733;
 const goal = 2000;
 const progressPercent = Math.min((raised / goal) * 100, 100);
 
