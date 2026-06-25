@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import InstagramIcon from '~icons/mdi/instagram';
 import FacebookIcon from '~icons/mdi/facebook';
-import GithubIcon from '~icons/mdi/github';
 import { byPriorityAsc } from '@/utils/content';
 
 interface Props {
@@ -16,13 +15,11 @@ const Wrapper = isInline ? 'span' : 'div';
 const iconComponents: Record<string, typeof FacebookIcon> = {
   facebook: FacebookIcon,
   instagram: InstagramIcon,
-  github: GithubIcon,
 };
 
 const toneClasses: Record<string, string> = {
   facebook: 'link brand',
   instagram: 'link accent',
-  github: 'link neutral',
 };
 
 const socialLinks = (await getCollection('social-links'))

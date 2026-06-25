@@ -315,13 +315,13 @@ const navigation = [
   border: 0;
   border-right: 1px solid var(--color-border);
   background: transparent;
-  color: var(--color-text-subtle);
+  color: var(--color-text-muted);
   padding-inline: 1rem;
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  font-weight: 900;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
   text-decoration: none;
   transition:
     background-color var(--duration-fast),
@@ -428,15 +428,15 @@ const navigation = [
 .site-nav .dropdown-title,
 .site-nav .dropdown-description {
   margin: 0;
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  text-transform: none;
 }
 
 .site-nav .dropdown-title {
   color: var(--color-text-strong);
-  font-weight: 900;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0;
   transition: color var(--duration-fast);
 }
 
@@ -541,11 +541,11 @@ const navigation = [
   border-bottom: 1px solid var(--color-border-muted);
   color: var(--color-text-muted);
   padding: 1rem 1.5rem;
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
   text-decoration: none;
 }
 
@@ -570,11 +570,11 @@ const navigation = [
 
 .site-nav .mobile-kicker span {
   color: var(--color-brand);
-  font-family: var(--font-label);
-  font-size: 0.5rem;
-  font-weight: 900;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .site-nav .mobile-social {
