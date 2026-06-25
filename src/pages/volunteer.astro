@@ -116,6 +116,10 @@ const meetingLocations = await getCollection("trailheads");
               session or the full season, your contribution is vital to the health
               of our local trails.
             </p>
+            <a href="/volunteerspotlight/" class="spotlight-link">
+              <span>Read Volunteer Spotlights</span>
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
       </div>
@@ -423,6 +427,33 @@ const meetingLocations = await getCollection("trailheads");
     font-size: var(--text-body-large);
     font-weight: 500;
     line-height: var(--leading-body);
+  }
+
+  .volunteer-opps .spotlight-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color var(--duration-fast);
+  }
+
+  .volunteer-opps .spotlight-link span:last-child {
+    transition: transform var(--duration-fast);
+  }
+
+  .volunteer-opps .spotlight-link:hover {
+    color: var(--color-accent-strong);
+  }
+
+  .volunteer-opps .spotlight-link:hover span:last-child {
+    transform: translateX(0.25rem);
   }
 
   .volunteer-field {
