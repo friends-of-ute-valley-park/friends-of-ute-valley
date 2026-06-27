@@ -5,10 +5,23 @@ import { dispatchTrailheadHover, trailheadHoverEvent, type TrailheadHoverDetail,
 import { onBeforeUnmount, onMounted, shallowRef, useTemplateRef } from 'vue';
 import type { Map as MapLibreMap } from 'maplibre-gl';
 
+type TrailProperties = {
+  id: string | number;
+  name: string;
+  color?: string;
+  opacity?: number;
+};
+
+type TrailFeatureCollection = GeoJSON.FeatureCollection<GeoJSON.LineString, TrailProperties>;
+
 const trailforksMapUrl =
   'https://www.trailforks.com/region/ute-valley-park/?activitytype=6&z=13.9&lat=38.91440&lon=-104.84102&content=trails,labels,region,poi,directory,polygon,waypoint,nst,route_popular,routes_featured';
 const openFreeMapStyleUrl = 'https://tiles.openfreemap.org/styles/positron';
 const trailDataUrl = '/data/ute-valley-trails.geojson';
+const trailSourceId = 'ute-valley-trails-source';
+const trailCasingLayerId = 'ute-valley-trails-casing';
+const trailLineLayerId = 'ute-valley-trails';
+const trailLabelLayerId = 'ute-valley-trail-labels';
 const trailInteractionLayerId = 'ute-valley-trails-hit-area';
 const mobileViewportQuery = '(max-width: 767px)';
 const desktopDefaultZoom = 13.6;
@@ -22,7 +35,11 @@ const props = defineProps<{
 const mapCanvas = useTemplateRef<HTMLElement>('mapCanvas');
 const map = shallowRef<MapLibreMap | null>(null);
 const markerElements: HTMLElement[] = [];
-let isUnmounted = false;
+const setupAbortController = new AbortController();
+
+const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null;
+
+const isAbortError = (error: unknown) => setupAbortController.signal.aborted || (error instanceof DOMException && error.name === 'AbortError');
 
 const createTrailheadPopupContent = (trailhead: TrailheadMapPoint) => {
   const wrapper = document.createElement('div');
@@ -40,7 +57,7 @@ const createTrailheadPopupContent = (trailhead: TrailheadMapPoint) => {
   return wrapper;
 };
 
-const createParkMapStyle = async () => {
+const createParkMapStyle = async (signal: AbortSignal) => {
   const hillshadeSource = {
     type: 'raster',
     tiles: ['https://services.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}'],
@@ -60,7 +77,12 @@ const createParkMapStyle = async () => {
   };
 
   try {
-    const response = await fetch(openFreeMapStyleUrl);
+    const response = await fetch(openFreeMapStyleUrl, { signal });
+
+    if (!response.ok) {
+      throw new Error(`Map style failed to load: ${response.status}`);
+    }
+
     const style = await response.json();
     const layers = Array.isArray(style.layers) ? style.layers : [];
 
@@ -72,7 +94,11 @@ const createParkMapStyle = async () => {
       },
       layers: [...layers.filter((layer: { type?: string }) => layer.type !== 'symbol'), hillshadeLayer],
     };
-  } catch {
+  } catch (error) {
+    if (signal.aborted) {
+      throw error;
+    }
+
     return {
       version: 8,
       sources: {
@@ -98,24 +124,75 @@ const createParkMapStyle = async () => {
   }
 };
 
-const addTrailLines = async (mapInstance: MapLibreMap, maplibregl: typeof import('maplibre-gl').default) => {
-  const response = await fetch(trailDataUrl);
+const normalizeTrailData = (data: unknown): TrailFeatureCollection => {
+  if (!isRecord(data) || data.type !== 'FeatureCollection' || !Array.isArray(data.features)) {
+    throw new Error('Trail data is not a GeoJSON FeatureCollection');
+  }
+
+  const trailIds = new Set<string>();
+  const features = data.features.map((feature, index) => {
+    if (!isRecord(feature) || feature.type !== 'Feature' || !isRecord(feature.properties) || !isRecord(feature.geometry)) {
+      throw new Error(`Trail feature ${index} is invalid`);
+    }
+
+    const propertyTrailId = feature.properties.id;
+
+    if (feature.id !== undefined && propertyTrailId !== undefined && String(feature.id) !== String(propertyTrailId)) {
+      throw new Error(`Trail feature ${index} has conflicting IDs`);
+    }
+
+    const trailId = feature.id ?? propertyTrailId;
+
+    if ((typeof trailId !== 'string' && typeof trailId !== 'number') || feature.geometry.type !== 'LineString') {
+      throw new Error(`Trail feature ${index} needs a stable ID and LineString geometry`);
+    }
+
+    if (typeof feature.properties.name !== 'string') {
+      throw new Error(`Trail feature ${trailId} needs a name`);
+    }
+
+    const trailIdKey = String(trailId);
+
+    if (trailIds.has(trailIdKey)) {
+      throw new Error(`Duplicate trail feature ID: ${trailId}`);
+    }
+
+    trailIds.add(trailIdKey);
+
+    return {
+      ...feature,
+      id: trailId,
+      properties: {
+        ...feature.properties,
+        id: trailId,
+        name: feature.properties.name,
+      },
+    } as GeoJSON.Feature<GeoJSON.LineString, TrailProperties>;
+  });
+
+  return { ...data, features } as TrailFeatureCollection;
+};
+
+const loadTrailData = async (signal: AbortSignal) => {
+  const response = await fetch(trailDataUrl, { signal });
 
   if (!response.ok) {
     throw new Error(`Trail data failed to load: ${response.status}`);
   }
 
-  const trailData = await response.json();
+  return normalizeTrailData(await response.json());
+};
 
-  mapInstance.addSource('ute-valley-trails', {
+const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCollection) => {
+  mapInstance.addSource(trailSourceId, {
     type: 'geojson',
     data: trailData,
   });
 
   mapInstance.addLayer({
-    id: 'ute-valley-trails-casing',
+    id: trailCasingLayerId,
     type: 'line',
-    source: 'ute-valley-trails',
+    source: trailSourceId,
     paint: {
       'line-color': '#ffffff',
       'line-opacity': 0.94,
@@ -128,9 +205,9 @@ const addTrailLines = async (mapInstance: MapLibreMap, maplibregl: typeof import
   });
 
   mapInstance.addLayer({
-    id: 'ute-valley-trails',
+    id: trailLineLayerId,
     type: 'line',
-    source: 'ute-valley-trails',
+    source: trailSourceId,
     paint: {
       'line-color': ['coalesce', ['get', 'color'], '#2f6f48'],
       'line-opacity': ['*', 0.9, ['coalesce', ['to-number', ['get', 'opacity']], 1]],
@@ -143,9 +220,9 @@ const addTrailLines = async (mapInstance: MapLibreMap, maplibregl: typeof import
   });
 
   mapInstance.addLayer({
-    id: 'ute-valley-trail-labels',
+    id: trailLabelLayerId,
     type: 'symbol',
-    source: 'ute-valley-trails',
+    source: trailSourceId,
     minzoom: 11,
     layout: {
       'symbol-placement': 'line-center',
@@ -172,7 +249,7 @@ const addTrailLines = async (mapInstance: MapLibreMap, maplibregl: typeof import
   mapInstance.addLayer({
     id: trailInteractionLayerId,
     type: 'line',
-    source: 'ute-valley-trails',
+    source: trailSourceId,
     paint: {
       'line-color': 'rgba(0, 0, 0, 0.01)',
       'line-opacity': 0.01,
@@ -183,7 +260,9 @@ const addTrailLines = async (mapInstance: MapLibreMap, maplibregl: typeof import
       'line-join': 'round',
     },
   });
+};
 
+const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof import('maplibre-gl').default) => {
   const trailHoverContent = document.createElement('strong');
   const trailHoverPopup = new maplibregl.Popup({
     closeButton: false,
@@ -236,91 +315,108 @@ onMounted(async () => {
     return;
   }
 
-  const [{ default: maplibregl }, style] = await Promise.all([import('maplibre-gl'), createParkMapStyle()]);
+  try {
+    const [{ default: maplibregl }, style] = await Promise.all([import('maplibre-gl'), createParkMapStyle(setupAbortController.signal)]);
 
-  if (isUnmounted || !mapCanvas.value) {
-    return;
-  }
+    if (setupAbortController.signal.aborted || !mapCanvas.value) {
+      return;
+    }
 
-  const defaultZoom = window.matchMedia(mobileViewportQuery).matches ? mobileDefaultZoom : desktopDefaultZoom;
+    const defaultZoom = window.matchMedia(mobileViewportQuery).matches ? mobileDefaultZoom : desktopDefaultZoom;
 
-  const mapInstance = new maplibregl.Map({
-    container: mapCanvas.value,
-    center: [-104.844, 38.9144],
-    zoom: defaultZoom,
-    maxZoom: 14.4,
-    minZoom,
-    attributionControl: false,
-    style,
-  });
+    const mapInstance = new maplibregl.Map({
+      container: mapCanvas.value,
+      center: [-104.844, 38.9144],
+      zoom: defaultZoom,
+      maxZoom: 14.4,
+      minZoom,
+      attributionControl: false,
+      style,
+    });
 
-  map.value = mapInstance;
+    map.value = mapInstance;
 
-  mapInstance.on('load', () => {
-    addTrailLines(mapInstance, maplibregl).catch((error) => {
+    mapInstance.on('load', async () => {
+      try {
+        const trailData = await loadTrailData(setupAbortController.signal);
+
+        if (setupAbortController.signal.aborted) {
+          return;
+        }
+
+        installTrailLayers(mapInstance, trailData);
+        installTrailInteractions(mapInstance, maplibregl);
+      } catch (error) {
+        if (!isAbortError(error)) {
+          console.error(error);
+        }
+      }
+    });
+
+    mapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+    mapInstance.addControl(
+      new maplibregl.AttributionControl({
+        compact: true,
+        customAttribution: '<a href="https://www.trailforks.com/" target="_blank" rel="noopener noreferrer">Trail data © Trailforks</a>',
+      }),
+      'bottom-right',
+    );
+
+    const trailheadBounds = new maplibregl.LngLatBounds();
+
+    props.trailheads.forEach((trailhead) => {
+      const coordinates = trailhead.coordinates;
+      const marker = document.createElement('a');
+      marker.className = 'visit-trail-map-marker';
+      marker.href = trailhead.url;
+      marker.ariaLabel = trailhead.name;
+      marker.dataset.trailheadId = trailhead.id;
+
+      const activateTrailhead = () => {
+        dispatchTrailheadHover(trailhead.id);
+      };
+
+      const clearTrailhead = () => {
+        dispatchTrailheadHover();
+      };
+
+      marker.addEventListener('mouseenter', activateTrailhead);
+      marker.addEventListener('focus', activateTrailhead);
+      marker.addEventListener('mouseleave', clearTrailhead);
+      marker.addEventListener('blur', clearTrailhead);
+
+      markerElements.push(marker);
+      trailheadBounds.extend(coordinates);
+
+      new maplibregl.Marker({ element: marker, anchor: 'bottom' })
+        .setLngLat(coordinates)
+        .setPopup(new maplibregl.Popup({ offset: 18 }).setDOMContent(createTrailheadPopupContent(trailhead)))
+        .addTo(mapInstance);
+    });
+
+    if (!trailheadBounds.isEmpty()) {
+      mapInstance.fitBounds(trailheadBounds, {
+        duration: 0,
+        maxZoom: defaultZoom,
+        padding: {
+          top: 72,
+          right: 72,
+          bottom: 160,
+          left: 72,
+        },
+      });
+    }
+
+    document.addEventListener(trailheadHoverEvent, handleTrailheadHover);
+  } catch (error) {
+    if (!isAbortError(error)) {
       console.error(error);
-    });
-  });
-
-  mapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
-  mapInstance.addControl(
-    new maplibregl.AttributionControl({
-      compact: true,
-      customAttribution: '<a href="https://www.trailforks.com/" target="_blank" rel="noopener noreferrer">Trail data © Trailforks</a>',
-    }),
-    'bottom-right',
-  );
-
-  const trailheadBounds = new maplibregl.LngLatBounds();
-
-  props.trailheads.forEach((trailhead) => {
-    const coordinates = trailhead.coordinates;
-    const marker = document.createElement('a');
-    marker.className = 'visit-trail-map-marker';
-    marker.href = trailhead.url;
-    marker.ariaLabel = trailhead.name;
-    marker.dataset.trailheadId = trailhead.id;
-
-    const activateTrailhead = () => {
-      dispatchTrailheadHover(trailhead.id);
-    };
-
-    const clearTrailhead = () => {
-      dispatchTrailheadHover();
-    };
-
-    marker.addEventListener('mouseenter', activateTrailhead);
-    marker.addEventListener('focus', activateTrailhead);
-    marker.addEventListener('mouseleave', clearTrailhead);
-    marker.addEventListener('blur', clearTrailhead);
-
-    markerElements.push(marker);
-    trailheadBounds.extend(coordinates);
-
-    new maplibregl.Marker({ element: marker, anchor: 'bottom' })
-      .setLngLat(coordinates)
-      .setPopup(new maplibregl.Popup({ offset: 18 }).setDOMContent(createTrailheadPopupContent(trailhead)))
-      .addTo(mapInstance);
-  });
-
-  if (!trailheadBounds.isEmpty()) {
-    mapInstance.fitBounds(trailheadBounds, {
-      duration: 0,
-      maxZoom: defaultZoom,
-      padding: {
-        top: 72,
-        right: 72,
-        bottom: 160,
-        left: 72,
-      },
-    });
+    }
   }
-
-  document.addEventListener(trailheadHoverEvent, handleTrailheadHover);
 });
 
 onBeforeUnmount(() => {
-  isUnmounted = true;
+  setupAbortController.abort();
   document.removeEventListener(trailheadHoverEvent, handleTrailheadHover);
   map.value?.remove();
   map.value = null;
