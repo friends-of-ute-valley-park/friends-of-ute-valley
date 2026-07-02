@@ -12,32 +12,39 @@ import StatsCard from "@components/StatsCard.astro";
 >
   <main class="page about-page">
     <!-- Archival Header -->
-    <section class="page-hero">
+    <section class="about-hero page-hero">
       <div class="page-hero__inner">
-        <h1 class="page-title title">
-          Our Story <br /> & <span>Mission.</span>
-        </h1>
+        <div class="about-hero__grid">
+          <div class="intro">
+            <h1 class="page-title title">
+              Our Story <br /> & <span>Mission.</span>
+            </h1>
 
-        <div class="layout">
-          <div class="prose-content copy">
-            <p>
-              Friends of Ute Valley Park (FUVP) is an officially recognized
-              "Friends" organization dedicated to maintaining, preserving, and
-              providing education for Ute Valley Park in Colorado Springs.
-            </p>
-            <p>
-              We work in partnership with the city's Parks, Recreation, and
-              Cultural Services Department to care for this treasured community
-              resource, ensuring its wildland character remains intact for
-              future generations.
-            </p>
+            <div class="prose-content copy">
+              <p>
+                Friends of Ute Valley Park (FUVP) is an officially recognized
+                "Friends" organization dedicated to maintaining, preserving, and
+                providing education for Ute Valley Park in Colorado Springs.
+              </p>
+              <p>
+                We work in partnership with the city's Parks, Recreation, and
+                Cultural Services Department to care for this treasured community
+                resource, ensuring its wildland character remains intact for
+                future generations.
+              </p>
+            </div>
           </div>
-          <div class="logo-card">
-            <img
-              src="/images/logo-medium.jpg"
-              alt="Friends of Ute Valley logo"
-            />
-          </div>
+
+          <aside
+            class="logo-card"
+            aria-label="Friends of Ute Valley Park identity"
+          >
+            <img src="/images/logo-medium.jpg" alt="Friends of Ute Valley logo" />
+            <p>
+              Volunteer-led stewardship for a 550-acre Colorado Springs
+              wildland.
+            </p>
+          </aside>
         </div>
       </div>
     </section>
@@ -296,7 +303,7 @@ import StatsCard from "@components/StatsCard.astro";
 
     const setActive = (id: string) => {
       links.forEach((link) => {
-        link.classList.remove("link active");
+        link.classList.remove("active");
         link.removeAttribute("aria-current");
       });
       const active = linkById.get(id);
@@ -336,31 +343,66 @@ import StatsCard from "@components/StatsCard.astro";
 
 <style>
   .about-hero .title {
-    margin-bottom: 3rem;
+    max-width: 11ch;
+    margin: 0;
+    font-size: clamp(3rem, 8vw, 6rem);
+    text-wrap: balance;
   }
 
-  .about-hero .layout {
+  .about-hero .page-hero__inner {
+    padding-block: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .about-hero__grid {
     display: grid;
-    align-items: start;
-    gap: 3rem;
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 22rem);
+    align-items: end;
+    gap: clamp(2rem, 6vw, 5rem);
+  }
+
+  .about-hero .intro {
+    display: grid;
+    gap: clamp(1.25rem, 2.5vw, 1.75rem);
   }
 
   .about-hero .copy {
+    max-width: 58rem;
     color: var(--color-text-muted);
-    font-size: var(--text-body-large);
+    font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+    text-wrap: pretty;
   }
 
   .about-hero .logo-card {
-    border: 1px solid var(--color-border);
+    width: min(100%, 20rem);
+    align-self: center;
+    justify-self: end;
+    display: grid;
+    align-content: center;
+    gap: 1.25rem;
+    border: 2px solid var(--color-border-strong);
     background: var(--color-surface);
-    padding: 2rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    box-shadow: var(--shadow-accent-md);
   }
 
   .about-hero .logo-card img {
     display: block;
-    width: 100%;
+    width: min(100%, 12rem);
     height: auto;
+    margin-inline: auto;
     transition: transform var(--duration-slow);
+  }
+
+  .about-hero .logo-card p {
+    max-width: 18rem;
+    margin: 0;
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: var(--text-body-small);
+    font-weight: 900;
+    line-height: var(--leading-tight);
+    text-align: center;
+    text-transform: uppercase;
   }
 
   .about-impact,
@@ -658,11 +700,24 @@ import StatsCard from "@components/StatsCard.astro";
     }
   }
 
-  @media (min-width: 64rem) {
-    .about-hero .layout {
-      grid-template-columns: 7fr 5fr;
+  @media (width <= 56rem) {
+    .about-hero__grid {
+      grid-template-columns: 1fr;
+      align-items: start;
     }
 
+    .about-hero .logo-card {
+      width: min(100%, 24rem);
+      align-self: start;
+      justify-self: start;
+    }
+
+    .about-hero .logo-card img {
+      width: min(100%, 10rem);
+    }
+  }
+
+  @media (min-width: 64rem) {
     .about-records .layout {
       grid-template-columns: 4fr 8fr;
     }
