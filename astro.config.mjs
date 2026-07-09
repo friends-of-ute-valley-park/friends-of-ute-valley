@@ -1,4 +1,5 @@
 import { defineConfig, envField, fontProviders } from 'astro/config';
+import mdx from '@astrojs/mdx';
 import vue from '@astrojs/vue';
 import Icons from 'unplugin-icons/vite';
 
@@ -27,6 +28,7 @@ export default defineConfig({
     },
   ],
   integrations: [
+    mdx(),
     vue({
       //workaround for https://github.com/withastro/astro/issues/9328
       template: {

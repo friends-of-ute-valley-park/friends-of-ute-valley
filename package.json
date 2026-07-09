@@ -17,6 +17,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@astrojs/mdx": "^7.0.2",
     "@astrojs/sitemap": "^3.7.3",
     "@cloudflare/pages-plugin-turnstile": "^1.0.2",
     "@fontsource-variable/playfair-display": "^5.2.8",
