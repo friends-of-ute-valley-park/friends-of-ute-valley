@@ -39,10 +39,10 @@ const DIFFICULTY_BY_ID = {
 
 const appId = process.env.TRAILFORKS_APP_ID;
 const appSecret = process.env.TRAILFORKS_APP_SECRET;
-const regionId = process.env.TRAILFORKS_REGION_ID;
+const regionId = process.env.TRAILFORKS_REGION_ID || EXPECTED_REGION_ID;
 
-if (!appId || !appSecret || !regionId) {
-  throw new Error('TRAILFORKS_APP_ID, TRAILFORKS_APP_SECRET, and TRAILFORKS_REGION_ID are required');
+if (!appId || !appSecret) {
+  throw new Error('TRAILFORKS_APP_ID and TRAILFORKS_APP_SECRET are required');
 }
 
 if (regionId !== EXPECTED_REGION_ID) {
