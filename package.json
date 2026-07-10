@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "preinstall": "node ./scripts/ensure-pnpm.mjs",
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "pnpm run trails:update && astro dev",
+    "start": "pnpm run dev",
     "build": "pnpm run trails:update && astro build",
     "preview": "astro preview",
     "astro": "astro",

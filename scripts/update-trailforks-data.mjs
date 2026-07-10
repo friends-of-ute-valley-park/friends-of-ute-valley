@@ -157,18 +157,19 @@ const reportedConditions = Object.entries(conditionCounts)
 const adverseCount = reportedConditions.filter(({ condition }) => !['ideal', 'dry'].includes(condition)).reduce((sum, item) => sum + item.count, 0);
 const status = recentReportCount === 0 ? 'Ideal' : adverseCount === 0 ? 'Dry / ideal' : reportedConditions.length === 1 ? reportedConditions[0].label : 'Mixed conditions';
 
-const dataset = {
-  type: 'FeatureCollection',
+const summary = {
   generatedAt: now.toISOString(),
   regionId: Number(regionId),
   maxReportAgeDays: MAX_REPORT_AGE_DAYS,
-  summary: {
-    status,
-    note: recentReportCount === 0 ? 'No trail reports in the last 14 days; conditions are assumed ideal.' : `${recentReportCount} of ${features.length} trails have reports from the last 14 days.`,
-    recentReportCount,
-    trailCount: features.length,
-    reportedConditions,
-  },
+  status,
+  note: recentReportCount === 0 ? 'No trail reports in the last 14 days; conditions are assumed ideal.' : `${recentReportCount} of ${features.length} trails have reports from the last 14 days.`,
+  recentReportCount,
+  trailCount: features.length,
+  reportedConditions,
+};
+
+const mapData = {
+  type: 'FeatureCollection',
   features,
 };
 
@@ -177,6 +178,6 @@ const outputDirectory = path.join(root, 'public', 'data');
 const generatedDataDirectory = path.join(root, 'src', 'data', 'generated');
 await mkdir(outputDirectory, { recursive: true });
 await mkdir(generatedDataDirectory, { recursive: true });
-await writeFile(path.join(outputDirectory, 'ute-valley-trails.geojson'), `${JSON.stringify(dataset)}\n`);
-await writeFile(path.join(generatedDataDirectory, 'trailforks.json'), `${JSON.stringify(dataset)}\n`);
+await writeFile(path.join(outputDirectory, 'ute-valley-trails.geojson'), `${JSON.stringify(mapData)}\n`);
+await writeFile(path.join(generatedDataDirectory, 'trailforks-summary.json'), `${JSON.stringify(summary)}\n`);
 console.log(`Updated ${features.length} trails (${recentReportCount} with reports from the last ${MAX_REPORT_AGE_DAYS} days)`);
