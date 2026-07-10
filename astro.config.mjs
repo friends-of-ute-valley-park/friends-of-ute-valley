@@ -53,6 +53,9 @@ export default defineConfig({
     schema: {
       TURNSTILE_SITE_KEY: envField.string({ context: 'client', access: 'public', default: '1x00000000000000000000AA' }),
       TURNSTILE_SECRET_KEY: envField.string({ context: 'server', access: 'secret' }),
+      TRAILFORKS_APP_ID: envField.number({ context: 'server', access: 'secret', int: true }),
+      TRAILFORKS_APP_SECRET: envField.string({ context: 'server', access: 'secret' }),
+      TRAILFORKS_REGION_ID: envField.number({ context: 'server', access: 'secret', int: true, default: 4104 }),
     },
   },
 });

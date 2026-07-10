@@ -7,13 +7,14 @@
     "preinstall": "node ./scripts/ensure-pnpm.mjs",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "pnpm run trails:update && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "oxlint --type-aware && node ./scripts/check-design-tokens.mjs",
     "lint:design": "node ./scripts/check-design-tokens.mjs",
     "lint:fix": "oxlint --fix --type-aware",
     "format": "oxfmt",
+    "trails:update": "node ./scripts/update-trailforks-data.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
