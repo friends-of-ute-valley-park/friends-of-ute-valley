@@ -2,14 +2,21 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 import { dispatchTrailheadHover, trailheadHoverEvent, type TrailheadHoverDetail, type TrailheadMapPoint } from '@/utils/trailheadHover';
-import { onBeforeUnmount, onMounted, shallowRef, useTemplateRef } from 'vue';
+import { conditionColor, conditionOpacity, difficultyColor } from '@/utils/trailMapStyle';
+import { computed, onBeforeUnmount, onMounted, shallowRef, useTemplateRef } from 'vue';
 import type { Map as MapLibreMap } from 'maplibre-gl';
 
 type TrailProperties = {
   id: string | number;
   name: string;
-  color?: string;
-  opacity?: number;
+  difficulty: string;
+  difficultyLabel: string;
+  condition: string;
+  conditionLabel: string;
+  reportAgeDays: number | null;
+  reportAgeBucket: string;
+  reportedAt: string | null;
+  conditionAssumed: boolean;
 };
 
 type TrailFeatureCollection = GeoJSON.FeatureCollection<GeoJSON.LineString, TrailProperties>;
@@ -34,12 +41,26 @@ const props = defineProps<{
 
 const mapCanvas = useTemplateRef<HTMLElement>('mapCanvas');
 const map = shallowRef<MapLibreMap | null>(null);
+const mapMode = shallowRef<'difficulty' | 'conditions'>('difficulty');
+const mapModeLabel = computed(() => (mapMode.value === 'difficulty' ? 'Trail difficulty' : 'Recent conditions'));
 const markerElements: HTMLElement[] = [];
 const setupAbortController = new AbortController();
 
 const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null;
 
 const isAbortError = (error: unknown) => setupAbortController.signal.aborted || (error instanceof DOMException && error.name === 'AbortError');
+
+const applyMapMode = (mapInstance: MapLibreMap) => {
+  if (!mapInstance.getLayer(trailLineLayerId)) return;
+  const showingConditions = mapMode.value === 'conditions';
+  mapInstance.setPaintProperty(trailLineLayerId, 'line-color', showingConditions ? conditionColor : difficultyColor);
+  mapInstance.setPaintProperty(trailLineLayerId, 'line-opacity', showingConditions ? conditionOpacity : 0.92);
+};
+
+const setMapMode = (mode: 'difficulty' | 'conditions') => {
+  mapMode.value = mode;
+  if (map.value) applyMapMode(map.value);
+};
 
 const createTrailheadPopupContent = (trailhead: TrailheadMapPoint) => {
   const wrapper = document.createElement('div');
@@ -209,9 +230,19 @@ const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCol
     type: 'line',
     source: trailSourceId,
     paint: {
-      'line-color': ['coalesce', ['get', 'color'], '#2f6f48'],
-      'line-opacity': ['*', 0.9, ['coalesce', ['to-number', ['get', 'opacity']], 1]],
-      'line-width': ['interpolate', ['linear'], ['zoom'], 11, 1.3, 14, 2.7, 17, 5.2],
+      'line-color': difficultyColor,
+      'line-opacity': 0.92,
+      'line-width': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        11,
+        ['case', ['boolean', ['feature-state', 'hover'], false], 3.4, 1.5],
+        14,
+        ['case', ['boolean', ['feature-state', 'hover'], false], 6.2, 3],
+        17,
+        ['case', ['boolean', ['feature-state', 'hover'], false], 9.2, 5.4],
+      ],
     },
     layout: {
       'line-cap': 'round',
@@ -239,7 +270,7 @@ const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCol
       'text-rotation-alignment': 'map',
     },
     paint: {
-      'text-color': ['coalesce', ['get', 'color'], '#2f6f48'],
+      'text-color': '#26342d',
       'text-halo-color': 'rgba(255, 255, 255, 0.9)',
       'text-halo-width': 1.4,
       'text-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.72, 12, 0.95],
@@ -263,7 +294,7 @@ const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCol
 };
 
 const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof import('maplibre-gl').default) => {
-  const trailHoverContent = document.createElement('strong');
+  const trailHoverContent = document.createElement('div');
   const trailHoverPopup = new maplibregl.Popup({
     closeButton: false,
     closeOnClick: false,
@@ -271,7 +302,14 @@ const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof i
     offset: 12,
   }).setDOMContent(trailHoverContent);
 
-  const showTrailPopup = (event: { features?: Array<{ properties?: { name?: unknown } }>; lngLat?: maplibregl.LngLatLike }) => {
+  let hoveredTrailId: string | number | null = null;
+
+  const clearHover = () => {
+    if (hoveredTrailId !== null) mapInstance.setFeatureState({ source: trailSourceId, id: hoveredTrailId }, { hover: false });
+    hoveredTrailId = null;
+  };
+
+  const showTrailPopup = (event: { features?: Array<{ id?: string | number; properties?: Partial<TrailProperties> }>; lngLat?: maplibregl.LngLatLike }) => {
     const feature = event.features?.[0];
     const name = feature?.properties?.name;
 
@@ -280,7 +318,21 @@ const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof i
       return;
     }
 
-    trailHoverContent.textContent = name;
+    clearHover();
+    if (feature?.id !== undefined) {
+      hoveredTrailId = feature.id;
+      mapInstance.setFeatureState({ source: trailSourceId, id: feature.id }, { hover: true });
+    }
+
+    const conditionSuffix = feature?.properties?.conditionAssumed ? ' · assumed' : '';
+    trailHoverContent.replaceChildren();
+    const title = document.createElement('strong');
+    const difficulty = document.createElement('span');
+    const condition = document.createElement('span');
+    title.textContent = name;
+    difficulty.textContent = `Difficulty: ${feature?.properties?.difficultyLabel ?? 'Unknown'}`;
+    condition.textContent = `Conditions: ${feature?.properties?.conditionLabel ?? 'Unknown'} · ${feature?.properties?.reportAgeBucket ?? 'No recent report'}${conditionSuffix}`;
+    trailHoverContent.append(title, difficulty, condition);
     trailHoverPopup.setLngLat(event.lngLat).addTo(mapInstance);
   };
 
@@ -294,6 +346,7 @@ const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof i
 
   mapInstance.on('mouseleave', trailInteractionLayerId, () => {
     mapInstance.getCanvas().style.cursor = '';
+    clearHover();
     trailHoverPopup.remove();
   });
 };
@@ -345,6 +398,7 @@ onMounted(async () => {
         }
 
         installTrailLayers(mapInstance, trailData);
+        applyMapMode(mapInstance);
         installTrailInteractions(mapInstance, maplibregl);
       } catch (error) {
         if (!isAbortError(error)) {
@@ -429,10 +483,16 @@ onBeforeUnmount(() => {
     <div ref="mapCanvas" class="visit-trail-map__canvas"></div>
     <div class="visit-trail-map__panel">
       <div>
-        <p class="visit-trail-map__kicker">Interactive Trail Map</p>
-        <p class="visit-trail-map__title">Ute Valley Park</p>
+        <p class="visit-trail-map__kicker">Interactive trail map</p>
+        <p class="visit-trail-map__title">{{ mapModeLabel }}</p>
       </div>
-      <a :href="trailforksMapUrl" target="_blank" rel="noopener noreferrer"> Open Trailforks </a>
+      <div class="visit-trail-map__actions">
+        <div class="visit-trail-map__toggle" role="group" aria-label="Color trails by">
+          <button type="button" :aria-pressed="mapMode === 'difficulty'" @click="setMapMode('difficulty')">Difficulty</button>
+          <button type="button" :aria-pressed="mapMode === 'conditions'" @click="setMapMode('conditions')">Conditions</button>
+        </div>
+        <a :href="trailforksMapUrl" target="_blank" rel="noopener noreferrer">Open Trailforks</a>
+      </div>
     </div>
   </div>
 </template>
@@ -466,6 +526,42 @@ onBeforeUnmount(() => {
   padding: 1rem;
   box-shadow: 0 1rem 3rem color-mix(in oklab, var(--color-text-strong) 12%, transparent);
   pointer-events: none;
+}
+
+.visit-trail-map__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  pointer-events: auto;
+}
+
+.visit-trail-map__toggle {
+  display: flex;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+  padding: 0.1875rem;
+}
+
+.visit-trail-map__toggle button {
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: var(--font-label);
+  font-size: 0.6875rem;
+  font-weight: 900;
+  padding: 0.5rem 0.625rem;
+  text-transform: uppercase;
+}
+
+.visit-trail-map__toggle button[aria-pressed='true'] {
+  background: var(--color-brand-strong);
+  color: var(--color-surface);
+}
+
+.visit-trail-map__toggle button:focus-visible {
+  outline: 3px solid var(--color-accent-strong);
+  outline-offset: 2px;
 }
 
 .visit-trail-map__panel p {
@@ -589,6 +685,11 @@ onBeforeUnmount(() => {
   letter-spacing: 0.06em;
 }
 
+.visit-trail-map :deep(.visit-trail-map-hover-popup .maplibregl-popup-content span) {
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+}
+
 :global(.visit-trail-map-marker) {
   position: absolute;
   top: 0 !important;
@@ -651,6 +752,12 @@ onBeforeUnmount(() => {
   }
 
   .visit-trail-map__panel {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .visit-trail-map__actions {
+    width: 100%;
     align-items: start;
     flex-direction: column;
   }

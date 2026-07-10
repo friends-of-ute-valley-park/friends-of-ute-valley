@@ -19,20 +19,13 @@ import heroImage2 from "../assets/images/ute-valley-park-hero-2.jpg";
 import mountainViewsImage from "../assets/images/volunteer-7.jpg";
 import cta from "../assets/images/volunteer-5.jpg";
 
-import { getEntry } from "astro:content";
 import { formatShortMonthDayYear, formatShortMonthYear, getParkHoursForDate } from "@/utils/date";
 import { getPublishedNewsEntries } from "@/utils/content";
 import { donationDrive } from "@/data/donationDrive";
-const trailConditionsEntry = await getEntry("trail-conditions", "current");
-if (!trailConditionsEntry) {
-  throw new Error("Trail conditions data missing");
-}
-const trailConditions = trailConditionsEntry.data;
+import trailConditions from "@/data/generated/trailforks-summary.json";
 const publishedNewsEntries = await getPublishedNewsEntries();
 const buildDate = new Date();
 const currentMonthYear = formatShortMonthYear(buildDate);
-
-const formattedLastUpdated = formatShortMonthDayYear(trailConditions.last_updated);
 
 // Park hours by season (from FAQ: Winter Nov 1–Apr 30, Summer May 1–Oct 31)
 const { season: parkSeason, hours: parkHours } = getParkHoursForDate();
@@ -266,8 +259,9 @@ const matchProgressLabel = `Donate to the ${donationDrive.matchRatioLabel} match
                   </span>
                   <span>Trail conditions</span>
                 </dt>
-                <dd class="value accent">
-                  {trailConditions.status}
+                <dd class="trail-status">
+                  <span class="value accent">{trailConditions.status}</span>
+                  <span class="trail-status__note">{trailConditions.note}</span>
                 </dd>
               </div>
 
@@ -331,20 +325,6 @@ const matchProgressLabel = `Donate to the ${donationDrive.matchRatioLabel} match
               </div>
             </dl>
 
-            {
-              trailConditions.message && (
-                <p class="message">
-                  {trailConditions.message}
-                </p>
-              )
-            }
-
-            <div class="updated">
-              <span>Last updated</span>
-              <time datetime={trailConditions.last_updated}
-                >{formattedLastUpdated}</time
-              >
-            </div>
           </aside>
         </div>
       </div>
@@ -636,7 +616,6 @@ const matchProgressLabel = `Donate to the ${donationDrive.matchRatioLabel} match
   .home-button-content,
   .park-status .header,
   .park-status .term,
-  .park-status .updated,
   .impact-group .heading {
     display: flex;
     align-items: center;
@@ -826,8 +805,7 @@ const matchProgressLabel = `Donate to the ${donationDrive.matchRatioLabel} match
     color: var(--color-text-inverse);
   }
 
-  .park-status .term span:last-child,
-  .park-status .updated {
+  .park-status .term span:last-child {
     color: var(--color-text-muted);
     font-family: var(--font-label);
     font-size: 0.75rem;
@@ -844,6 +822,23 @@ const matchProgressLabel = `Donate to the ${donationDrive.matchRatioLabel} match
 
   .park-status .value.accent {
     color: var(--color-accent-strong);
+  }
+
+  .park-status .trail-status {
+    display: grid;
+    max-width: 15rem;
+    justify-items: end;
+    gap: 0.25rem;
+    margin: 0;
+    text-align: right;
+  }
+
+  .park-status .trail-status__note {
+    color: var(--color-text-muted);
+    font-family: var(--font-label);
+    font-size: 0.625rem;
+    font-weight: 500;
+    line-height: 1.35;
   }
 
   .park-status .value.brand {
@@ -945,23 +940,6 @@ const matchProgressLabel = `Donate to the ${donationDrive.matchRatioLabel} match
     font-size: 0.6875rem;
     font-weight: 500;
     line-height: 1.45;
-  }
-
-  .park-status .message {
-    margin: 1.5rem 0 0;
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-border);
-    color: var(--color-text-muted);
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: var(--leading-body);
-  }
-
-  .park-status .updated {
-    justify-content: space-between;
-    margin-top: 2rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--color-border);
   }
 
   .landscape-strip {

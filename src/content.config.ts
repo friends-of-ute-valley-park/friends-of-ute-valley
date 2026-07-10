@@ -1,7 +1,6 @@
 import { defineCollection, type SchemaContext } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { readFile } from 'node:fs/promises';
 
 const leavenotraceCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/leavenotrace' }),
@@ -94,25 +93,6 @@ const wishlistCollection = defineCollection({
     }),
 });
 
-const trailConditionsCollection = defineCollection({
-  loader: {
-    name: 'trail-conditions',
-    load: async (context) => {
-      const raw = await readFile('./src/data/trail-conditions/trail-conditions.json', 'utf-8');
-      const data = JSON.parse(raw);
-      const parsed = await context.parseData({ id: 'current', data });
-      context.store.set({ id: 'current', data: parsed });
-    },
-  },
-  schema: () =>
-    z.object({
-      status: z.enum(['dry', 'snowy', 'muddy', 'icy']),
-      message: z.string(),
-      last_updated: z.string(),
-      updated_by: z.string(),
-    }),
-});
-
 const socialLinksCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/social-links' }),
   schema: () =>
@@ -149,6 +129,5 @@ export const collections = {
   links: linksCollection,
   wishlist: wishlistCollection,
   'volunteer-spotlight': volunteerSpotlightCollection,
-  'trail-conditions': trailConditionsCollection,
   'social-links': socialLinksCollection,
 };

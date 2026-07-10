@@ -56,3 +56,7 @@ packages/astro/e2e/fixtures/cloudflare/.wrangler/deploy/config.json
 
 Trace-*.json
 Heap-*.heapsnapshot
+
+# Generated from Trailforks before dev/build
+public/data/ute-valley-trails.geojson
+src/data/generated/trailforks-summary.json
