@@ -38,6 +38,7 @@ const trailInteractionLayerId = 'ute-valley-trails-hit-area';
 const mobileViewportQuery = '(max-width: 767px)';
 const desktopDefaultZoom = 13.6;
 const mobileDefaultZoom = 12.7;
+const zoomInRange = 1.5;
 
 const props = defineProps<{
   trailheads: TrailheadMapPoint[];
@@ -325,19 +326,20 @@ onMounted(async () => {
       center: [-104.844, 38.9144],
       zoom: defaultZoom,
       minZoom: defaultZoom,
-      maxZoom: defaultZoom,
-      dragPan: false,
+      maxZoom: defaultZoom + zoomInRange,
+      dragPan: true,
       dragRotate: false,
-      scrollZoom: false,
+      scrollZoom: true,
       boxZoom: false,
-      doubleClickZoom: false,
-      touchZoomRotate: false,
+      doubleClickZoom: true,
+      touchZoomRotate: true,
       keyboard: false,
       attributionControl: false,
       style: parkMapStyle,
     });
 
     map.value = mapInstance;
+    mapInstance.touchZoomRotate.disableRotation();
 
     mapInstance.on('load', async () => {
       try {
@@ -365,6 +367,7 @@ onMounted(async () => {
       }),
       'bottom-right',
     );
+    mapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 
     props.trailheads.forEach((trailhead) => {
       const coordinates = trailhead.coordinates;
@@ -528,6 +531,11 @@ onBeforeUnmount(() => {
   text-decoration: none;
   text-transform: uppercase;
   pointer-events: auto;
+}
+
+.visit-trail-map :deep(.maplibregl-ctrl-top-right) {
+  top: 1rem;
+  right: 1rem;
 }
 
 .visit-trail-map :deep(.maplibregl-ctrl-bottom-right) {
