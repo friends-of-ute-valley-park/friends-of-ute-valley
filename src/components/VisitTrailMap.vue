@@ -23,17 +23,21 @@ type TrailFeatureCollection = GeoJSON.FeatureCollection<GeoJSON.LineString, Trai
 
 const trailforksMapUrl =
   'https://www.trailforks.com/region/ute-valley-park/?activitytype=6&z=13.9&lat=38.91440&lon=-104.84102&content=trails,labels,region,poi,directory,polygon,waypoint,nst,route_popular,routes_featured';
-const openFreeMapStyleUrl = 'https://tiles.openfreemap.org/styles/positron';
+const parkBasemapUrl = '/images/maps/ute-valley-basemap.webp';
+const parkBounds = {
+  west: -104.8974609375,
+  east: -104.8095703125,
+  south: 38.89103282648846,
+  north: 38.94232097947903,
+} as const;
 const trailDataUrl = '/data/ute-valley-trails.geojson';
 const trailSourceId = 'ute-valley-trails-source';
 const trailCasingLayerId = 'ute-valley-trails-casing';
 const trailLineLayerId = 'ute-valley-trails';
-const trailLabelLayerId = 'ute-valley-trail-labels';
 const trailInteractionLayerId = 'ute-valley-trails-hit-area';
 const mobileViewportQuery = '(max-width: 767px)';
 const desktopDefaultZoom = 13.6;
 const mobileDefaultZoom = 12.7;
-const minZoom = 12.3;
 
 const props = defineProps<{
   trailheads: TrailheadMapPoint[];
@@ -78,71 +82,29 @@ const createTrailheadPopupContent = (trailhead: TrailheadMapPoint) => {
   return wrapper;
 };
 
-const createParkMapStyle = async (signal: AbortSignal) => {
-  const hillshadeSource = {
-    type: 'raster',
-    tiles: ['https://services.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}'],
-    tileSize: 256,
-    attribution: 'Esri World Hillshade',
-  };
-
-  const hillshadeLayer = {
-    id: 'hillshade-relief',
-    type: 'raster',
-    source: 'hillshade',
-    paint: {
-      'raster-opacity': 0.26,
-      'raster-saturation': -1,
-      'raster-contrast': 0.12,
-    },
-  };
-
-  try {
-    const response = await fetch(openFreeMapStyleUrl, { signal });
-
-    if (!response.ok) {
-      throw new Error(`Map style failed to load: ${response.status}`);
-    }
-
-    const style = await response.json();
-    const layers = Array.isArray(style.layers) ? style.layers : [];
-
-    return {
-      ...style,
-      sources: {
-        ...style.sources,
-        hillshade: hillshadeSource,
-      },
-      layers: [...layers.filter((layer: { type?: string }) => layer.type !== 'symbol'), hillshadeLayer],
-    };
-  } catch (error) {
-    if (signal.aborted) {
-      throw error;
-    }
-
-    return {
-      version: 8,
-      sources: {
-        hillshade: hillshadeSource,
-      },
-      layers: [
-        {
-          id: 'background',
-          type: 'background',
-          paint: {
-            'background-color': '#f3f1ea',
-          },
-        },
-        {
-          ...hillshadeLayer,
-          paint: {
-            ...hillshadeLayer.paint,
-            'raster-opacity': 0.32,
-          },
-        },
+const parkMapStyle = {
+  version: 8 as const,
+  sources: {
+    basemap: {
+      type: 'image',
+      url: parkBasemapUrl,
+      coordinates: [
+        [parkBounds.west, parkBounds.north],
+        [parkBounds.east, parkBounds.north],
+        [parkBounds.east, parkBounds.south],
+        [parkBounds.west, parkBounds.south],
       ],
-    };
-  }
+    },
+  },
+  layers: [
+    { id: 'background', type: 'background' as const, paint: { 'background-color': '#f3f1ea' } },
+    {
+      id: 'basemap',
+      type: 'raster' as const,
+      source: 'basemap',
+      paint: { 'raster-saturation': -0.72, 'raster-contrast': 0.08, 'raster-opacity': 0.78 },
+    },
+  ],
 };
 
 const normalizeTrailData = (data: unknown): TrailFeatureCollection => {
@@ -251,33 +213,6 @@ const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCol
   });
 
   mapInstance.addLayer({
-    id: trailLabelLayerId,
-    type: 'symbol',
-    source: trailSourceId,
-    minzoom: 11,
-    layout: {
-      'symbol-placement': 'line-center',
-      'text-field': ['get', 'name'],
-      'text-font': ['Noto Sans Regular'],
-      'text-size': ['interpolate', ['linear'], ['zoom'], 11, 7.5, 13, 9, 15, 10.5],
-      'text-allow-overlap': false,
-      'text-ignore-placement': false,
-      'text-keep-upright': true,
-      'text-letter-spacing': 0.02,
-      'text-max-angle': 35,
-      'text-padding': 3,
-      'text-pitch-alignment': 'viewport',
-      'text-rotation-alignment': 'map',
-    },
-    paint: {
-      'text-color': '#26342d',
-      'text-halo-color': 'rgba(255, 255, 255, 0.9)',
-      'text-halo-width': 1.4,
-      'text-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.72, 12, 0.95],
-    },
-  });
-
-  mapInstance.addLayer({
     id: trailInteractionLayerId,
     type: 'line',
     source: trailSourceId,
@@ -307,6 +242,11 @@ const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof i
   const clearHover = () => {
     if (hoveredTrailId !== null) mapInstance.setFeatureState({ source: trailSourceId, id: hoveredTrailId }, { hover: false });
     hoveredTrailId = null;
+  };
+
+  const dismissTrailPopup = () => {
+    clearHover();
+    trailHoverPopup.remove();
   };
 
   const showTrailPopup = (event: { features?: Array<{ id?: string | number; properties?: Partial<TrailProperties> }>; lngLat?: maplibregl.LngLatLike }) => {
@@ -343,11 +283,14 @@ const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof i
   mapInstance.on('mousemove', trailInteractionLayerId, showTrailPopup);
   mapInstance.on('click', trailInteractionLayerId, showTrailPopup);
   mapInstance.on('touchstart', trailInteractionLayerId, showTrailPopup);
+  mapInstance.on('click', (event) => {
+    const clickedTrail = mapInstance.queryRenderedFeatures(event.point, { layers: [trailInteractionLayerId] }).length > 0;
+    if (!clickedTrail) dismissTrailPopup();
+  });
 
   mapInstance.on('mouseleave', trailInteractionLayerId, () => {
     mapInstance.getCanvas().style.cursor = '';
-    clearHover();
-    trailHoverPopup.remove();
+    dismissTrailPopup();
   });
 };
 
@@ -369,7 +312,7 @@ onMounted(async () => {
   }
 
   try {
-    const [{ default: maplibregl }, style] = await Promise.all([import('maplibre-gl'), createParkMapStyle(setupAbortController.signal)]);
+    const { default: maplibregl } = await import('maplibre-gl');
 
     if (setupAbortController.signal.aborted || !mapCanvas.value) {
       return;
@@ -381,10 +324,17 @@ onMounted(async () => {
       container: mapCanvas.value,
       center: [-104.844, 38.9144],
       zoom: defaultZoom,
-      maxZoom: 14.4,
-      minZoom,
+      minZoom: defaultZoom,
+      maxZoom: defaultZoom,
+      dragPan: false,
+      dragRotate: false,
+      scrollZoom: false,
+      boxZoom: false,
+      doubleClickZoom: false,
+      touchZoomRotate: false,
+      keyboard: false,
       attributionControl: false,
-      style,
+      style: parkMapStyle,
     });
 
     map.value = mapInstance;
@@ -407,16 +357,14 @@ onMounted(async () => {
       }
     });
 
-    mapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
     mapInstance.addControl(
       new maplibregl.AttributionControl({
         compact: true,
-        customAttribution: '<a href="https://www.trailforks.com/" target="_blank" rel="noopener noreferrer">Trail data © Trailforks</a>',
+        customAttribution:
+          '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a> · <a href="https://www.trailforks.com/" target="_blank" rel="noopener noreferrer">Trail data © Trailforks</a>',
       }),
       'bottom-right',
     );
-
-    const trailheadBounds = new maplibregl.LngLatBounds();
 
     props.trailheads.forEach((trailhead) => {
       const coordinates = trailhead.coordinates;
@@ -440,26 +388,11 @@ onMounted(async () => {
       marker.addEventListener('blur', clearTrailhead);
 
       markerElements.push(marker);
-      trailheadBounds.extend(coordinates);
-
       new maplibregl.Marker({ element: marker, anchor: 'bottom' })
         .setLngLat(coordinates)
         .setPopup(new maplibregl.Popup({ offset: 18 }).setDOMContent(createTrailheadPopupContent(trailhead)))
         .addTo(mapInstance);
     });
-
-    if (!trailheadBounds.isEmpty()) {
-      mapInstance.fitBounds(trailheadBounds, {
-        duration: 0,
-        maxZoom: defaultZoom,
-        padding: {
-          top: 72,
-          right: 72,
-          bottom: 160,
-          left: 72,
-        },
-      });
-    }
 
     document.addEventListener(trailheadHoverEvent, handleTrailheadHover);
   } catch (error) {
@@ -595,11 +528,6 @@ onBeforeUnmount(() => {
   text-decoration: none;
   text-transform: uppercase;
   pointer-events: auto;
-}
-
-.visit-trail-map :deep(.maplibregl-ctrl-top-right) {
-  top: 1rem;
-  right: 1rem;
 }
 
 .visit-trail-map :deep(.maplibregl-ctrl-bottom-right) {
