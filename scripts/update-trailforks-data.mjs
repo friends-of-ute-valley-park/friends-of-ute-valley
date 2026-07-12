@@ -3,28 +3,15 @@ import 'dotenv/config';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { assertMinimumTrailCount, normalizeTrailData } from '../src/utils/trailData.ts';
+import { trailConditionById } from '../src/utils/trailTaxonomy.ts';
 
 const API_BASE_URL = 'https://www.trailforks.com/api/1';
 const EXPECTED_REGION_ID = '4104';
 const MAX_REPORT_AGE_DAYS = 14;
+const MIN_EXPECTED_TRAIL_COUNT = 20;
 const DAY_IN_SECONDS = 86_400;
 const EXCLUDED_TRAIL_IDS = new Set(['117100']); // Pikes Peak Greenway clips the park boundary.
-
-const CONDITION_BY_ID = {
-  0: { key: 'unknown', label: 'Unknown' },
-  1: { key: 'snow-packed', label: 'Snow packed' },
-  2: { key: 'muddy', label: 'Muddy' },
-  3: { key: 'wet', label: 'Wet' },
-  4: { key: 'variable', label: 'Variable' },
-  5: { key: 'dry', label: 'Dry' },
-  6: { key: 'dry', label: 'Very dry' },
-  7: { key: 'snow-covered', label: 'Snow covered' },
-  8: { key: 'freeze-thaw', label: 'Freeze/thaw' },
-  9: { key: 'icy', label: 'Icy' },
-  10: { key: 'snow-packed', label: 'Snow groomed' },
-  11: { key: 'ideal', label: 'Ideal' },
-  12: { key: 'snow-covered', label: 'Partial snow cover' },
-};
 
 const DIFFICULTY_BY_ID = {
   1: { key: 'access', label: 'Access road' },
@@ -123,7 +110,7 @@ const features = trails
     const report = newestReportByTrail.get(trailId);
     const reportedAt = report ? new Date(Number(report.created) * 1000) : null;
     const reportAgeDays = reportedAt ? Math.max(0, Math.floor((now.getTime() - reportedAt.getTime()) / (DAY_IN_SECONDS * 1000))) : null;
-    const condition = report ? (CONDITION_BY_ID[Number(report.condition)] ?? CONDITION_BY_ID[0]) : CONDITION_BY_ID[11];
+    const condition = report ? (trailConditionById[Number(report.condition)] ?? trailConditionById[0]) : trailConditionById[11];
     const difficulty = DIFFICULTY_BY_ID[Number(trail.difficulty)] ?? { key: 'unknown', label: 'Unknown' };
 
     if (report) {
@@ -151,7 +138,11 @@ const features = trails
   });
 
 const reportedConditions = Object.entries(conditionCounts)
-  .map(([condition, count]) => ({ condition, label: CONDITION_BY_ID[Object.keys(CONDITION_BY_ID).find((id) => CONDITION_BY_ID[id].key === condition)]?.label ?? condition, count }))
+  .map(([condition, count]) => ({
+    condition,
+    label: trailConditionById[Object.keys(trailConditionById).find((id) => trailConditionById[id].key === condition)]?.label ?? condition,
+    count,
+  }))
   .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 
 const adverseCount = reportedConditions.filter(({ condition }) => !['ideal', 'dry'].includes(condition)).reduce((sum, item) => sum + item.count, 0);
@@ -168,10 +159,11 @@ const summary = {
   reportedConditions,
 };
 
-const mapData = {
+const mapData = normalizeTrailData({
   type: 'FeatureCollection',
   features,
-};
+});
+assertMinimumTrailCount(mapData, MIN_EXPECTED_TRAIL_COUNT);
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputDirectory = path.join(root, 'public', 'data');

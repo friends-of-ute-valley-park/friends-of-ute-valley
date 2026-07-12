@@ -6,12 +6,14 @@ import heroImage from "../assets/images/ute-valley-park-biker.jpg";
 import DogImage from "../assets/images/dog.jpg";
 
 import LeaveNoTrace from "@components/LeaveNoTrace.astro";
-import VisitTrailMap from "@components/VisitTrailMap.vue";
+import VisitTrailExplorer from "@components/VisitTrailExplorer.vue";
 import { getSortedTrailheads } from "@/utils/content";
-import type { TrailheadMapPoint } from "@/utils/trailheadHover";
+import trailConditions from "@/data/generated/trailforks-summary.json";
+import type { VisitTrailhead } from "@/utils/trailMapModel";
 const sortedTrailheads = await getSortedTrailheads();
-const mapTrailheads: TrailheadMapPoint[] = sortedTrailheads.map((trailhead) => ({
+const mapTrailheads: VisitTrailhead[] = sortedTrailheads.map((trailhead) => ({
   id: String(trailhead.id),
+  displayId: trailhead.data.id.toString().padStart(2, "0"),
   name: trailhead.data.name,
   description: trailhead.data.description,
   coordinates: [trailhead.data.longitude, trailhead.data.latitude] as [number, number],
@@ -86,85 +88,11 @@ const mapTrailheads: TrailheadMapPoint[] = sortedTrailheads.map((trailhead) => (
     <!-- Map & Entry Points -->
     <section class="article-layout content-defer">
       <div class="article-layout__inner">
-        <div class="visit-map">
-          <!-- Trailheads -->
-          <div class="trailheads">
-            <div class="visit-section-heading section-heading">
-              <h2 class="section-heading__title">
-                Where to <span>Park.</span>
-              </h2>
-              <p class="section-heading__copy">
-                Find your trailhead and get directions.
-              </p>
-            </div>
-
-            <div class="trailhead-list">
-              {
-                sortedTrailheads.map((trailhead) => (
-                  <a
-                    href={`/trailheads/${trailhead.id}/`}
-                    class="item"
-                    data-trailhead-id={String(trailhead.id)}
-                  >
-                    <div>
-                      <div class="title">
-                        <span>
-                          [{trailhead.data.id.toString().padStart(2, "0")}]
-                        </span>
-                        <h3>
-                          {trailhead.data.name}
-                        </h3>
-                      </div>
-                      <p>
-                        {trailhead.data.description}
-                      </p>
-                    </div>
-                    <span>
-                      →
-                    </span>
-                  </a>
-                ))
-              }
-            </div>
-          </div>
-
-          <!-- Cartographic Context -->
-          <div class="context">
-            <div class="sticky">
-              <VisitTrailMap trailheads={mapTrailheads} client:visible />
-              <a
-                class="static-map-link"
-                href="/images/maps/ute-valley-park-map-full.jpg"
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-              >
-                <span>Official Park Map</span>
-                <span>Open Full Size</span>
-              </a>
-              <div class="visit-fact-grid">
-                <div>
-                  <p>
-                    Park Hours
-                  </p>
-                  <p>
-                    5:00 AM — 9:00 PM Winter
-                  </p>
-                  <p>
-                    5:00 AM — 10:00 PM Summer
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    Entry Fee
-                  </p>
-                  <p>
-                    NO CHARGE
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <VisitTrailExplorer
+          trailheads={mapTrailheads}
+          conditionNote={trailConditions.note}
+          client:visible
+        />
       </div>
     </section>
 
@@ -273,90 +201,6 @@ const mapTrailheads: TrailheadMapPoint[] = sortedTrailheads.map((trailhead) => (
   </main>
 </Layout>
 
-<script>
-  import {
-    dispatchTrailheadHover,
-    trailheadHoverEvent,
-    type TrailheadHoverDetail,
-  } from "@/utils/trailheadHover";
-
-  const visitWindow = window as Window & {
-    __visitTrailheadHoverCleanup?: () => void;
-    __visitTrailheadHoverBridgeReady?: boolean;
-  };
-
-  const setHighlightedTrailhead = (trailheadId?: string) => {
-    document.querySelectorAll<HTMLElement>("[data-trailhead-id]").forEach((item) => {
-      item.classList.toggle("is-map-highlighted", item.dataset.trailheadId === trailheadId);
-    });
-  };
-
-  const initializeTrailheadHoverBridge = () => {
-    const trailheadItems = document.querySelectorAll<HTMLElement>("[data-trailhead-id]");
-
-    visitWindow.__visitTrailheadHoverCleanup?.();
-
-    if (!trailheadItems.length) {
-      return;
-    }
-
-    const cleanupHandlers: Array<() => void> = [];
-    const addCleanupHandler = (
-      target: EventTarget,
-      type: string,
-      listener: EventListenerOrEventListenerObject,
-      options?: AddEventListenerOptions,
-    ) => {
-      target.addEventListener(type, listener, options);
-      cleanupHandlers.push(() => target.removeEventListener(type, listener, options));
-    };
-
-    const handleTrailheadHover = (event: Event) => {
-      if (!(event instanceof CustomEvent)) {
-        return;
-      }
-
-      setHighlightedTrailhead((event as CustomEvent<TrailheadHoverDetail>).detail?.trailheadId);
-    };
-
-    trailheadItems.forEach((item) => {
-      const activateTrailhead = () => {
-        dispatchTrailheadHover(item.dataset.trailheadId);
-      };
-
-      const clearTrailhead = () => {
-        dispatchTrailheadHover();
-      };
-
-      addCleanupHandler(item, "mouseenter", activateTrailhead);
-      addCleanupHandler(item, "focus", activateTrailhead);
-      addCleanupHandler(item, "mouseleave", clearTrailhead);
-      addCleanupHandler(item, "blur", clearTrailhead);
-    });
-
-    addCleanupHandler(document, trailheadHoverEvent, handleTrailheadHover);
-
-    const cleanupTrailheadHoverBridge = () => {
-      cleanupHandlers.splice(0).forEach((cleanup) => cleanup());
-      setHighlightedTrailhead();
-
-      if (visitWindow.__visitTrailheadHoverCleanup === cleanupTrailheadHoverBridge) {
-        delete visitWindow.__visitTrailheadHoverCleanup;
-      }
-    };
-
-    visitWindow.__visitTrailheadHoverCleanup = cleanupTrailheadHoverBridge;
-  };
-
-  if (!visitWindow.__visitTrailheadHoverBridgeReady) {
-    document.addEventListener("astro:page-load", initializeTrailheadHoverBridge);
-    document.addEventListener("astro:before-swap", () => visitWindow.__visitTrailheadHoverCleanup?.());
-    visitWindow.__visitTrailheadHoverBridgeReady = true;
-  }
-
-  initializeTrailheadHoverBridge();
-</script>
-
 <style>
   .visit-hero {
     position: relative;
@@ -364,8 +208,7 @@ const mapTrailheads: TrailheadMapPoint[] = sortedTrailheads.map((trailhead) => (
     border-bottom: 1px solid var(--color-border);
   }
 
-  .visit-hero .layout,
-  .visit-map {
+  .visit-hero .layout {
     display: grid;
   }
 
@@ -426,10 +269,6 @@ const mapTrailheads: TrailheadMapPoint[] = sortedTrailheads.map((trailhead) => (
     --media-matte-border: 1.5rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
   }
 
-  .visit-map .trailheads {
-    padding: var(--space-section) var(--space-page-x);
-  }
-
   .visit-section-heading {
     --section-heading-title-size: clamp(1.875rem, 5vw, 3.75rem);
     --section-heading-title-leading: normal;
@@ -439,167 +278,6 @@ const mapTrailheads: TrailheadMapPoint[] = sortedTrailheads.map((trailhead) => (
 
   .visit-section-heading--spaced {
     margin-bottom: 4rem;
-  }
-
-  .trailhead-list {
-    border-top: 1px solid var(--color-border-muted);
-  }
-
-  .trailhead-list .item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--color-border-muted);
-    color: inherit;
-    padding: 1.5rem 0.5rem;
-    text-decoration: none;
-    transition: background-color var(--duration-fast);
-  }
-
-  .trailhead-list .item:hover {
-    background: var(--color-surface-muted);
-  }
-
-  .trailhead-list .item.is-map-highlighted {
-    background: var(--color-surface-muted);
-    box-shadow: inset 0.25rem 0 0 var(--color-brand-strong);
-  }
-
-  .trailhead-list .title {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .trailhead-list .title span {
-    color: var(--color-accent-strong);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 900;
-  }
-
-  .trailhead-list h3 {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: var(--text-body-large);
-    font-weight: 700;
-    letter-spacing: 0;
-    text-decoration: underline;
-    text-decoration-color: var(--color-brand-strong);
-    text-decoration-thickness: 4px;
-    text-underline-offset: 0.125rem;
-    text-transform: uppercase;
-    transition: color var(--duration-fast);
-  }
-
-  .trailhead-list .item:hover h3,
-  .trailhead-list .item:hover > span,
-  .trailhead-list .item.is-map-highlighted h3,
-  .trailhead-list .item.is-map-highlighted > span {
-    color: var(--color-brand-strong);
-  }
-
-  .trailhead-list p {
-    max-width: 24rem;
-    margin: 0.25rem 0 0 2rem;
-    color: var(--color-text-subtle);
-    font-size: 0.75rem;
-    font-weight: 500;
-  }
-
-  .trailhead-list .item > span {
-    color: var(--color-accent-strong);
-    transition: color var(--duration-fast);
-  }
-
-  .visit-map .context {
-    background: var(--color-page);
-    padding: clamp(2rem, 4vw, 3rem);
-  }
-
-  .visit-map .sticky {
-    display: grid;
-    gap: 1rem;
-  }
-
-  @media (min-width: 64rem) {
-    .visit-map .sticky {
-      position: sticky;
-      top: 6rem;
-    }
-  }
-
-  :global(.visit-map .image) {
-    width: 100%;
-    height: auto;
-    transition: transform var(--duration-slow);
-  }
-
-  .static-map-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    border: 1px solid var(--color-border-muted);
-    background: var(--color-surface);
-    color: inherit;
-    padding: 1rem;
-    text-decoration: none;
-    transition:
-      background-color var(--duration-fast),
-      color var(--duration-fast);
-  }
-
-  .static-map-link:hover {
-    background: var(--color-surface-muted);
-  }
-
-  .static-map-link span {
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .static-map-link span:first-child {
-    color: var(--color-text-subtle);
-  }
-
-  .static-map-link span:last-child {
-    color: var(--color-brand-strong);
-  }
-
-  .visit-fact-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .visit-fact-grid > div {
-    border: 1px solid var(--color-border-muted);
-    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
-    padding: 1.5rem;
-  }
-
-  .visit-fact-grid p {
-    margin: 0;
-    font-family: var(--font-label);
-    text-transform: uppercase;
-  }
-
-  .visit-fact-grid p:first-child {
-    margin-bottom: 0.5rem;
-    color: var(--color-text-subtle);
-    font-size: var(--text-label);
-    letter-spacing: 0.12em;
-  }
-
-  .visit-fact-grid p:not(:first-child) {
-    color: var(--color-text-strong);
-    font-size: var(--text-body-small);
-    font-weight: 900;
   }
 
   .visit-rules {
@@ -749,15 +427,6 @@ const mapTrailheads: TrailheadMapPoint[] = sortedTrailheads.map((trailhead) => (
     }
 
     .visit-hero .identity {
-      border-right: 1px solid var(--color-border);
-      padding-inline: var(--space-page-x) 3rem;
-    }
-
-    .visit-map {
-      grid-template-columns: 5fr 7fr;
-    }
-
-    .visit-map .trailheads {
       border-right: 1px solid var(--color-border);
       padding-inline: var(--space-page-x) 3rem;
     }

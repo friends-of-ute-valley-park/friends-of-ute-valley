@@ -14,7 +14,8 @@
     "lint:design": "node ./scripts/check-design-tokens.mjs",
     "lint:fix": "oxlint --fix --type-aware",
     "format": "oxfmt",
-    "trails:update": "node ./scripts/update-trailforks-data.mjs",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "trails:update": "node --experimental-strip-types ./scripts/update-trailforks-data.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

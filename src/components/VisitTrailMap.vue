@@ -1,434 +1,72 @@
 <script setup lang="ts">
 import 'maplibre-gl/dist/maplibre-gl.css';
 
-import { dispatchTrailheadHover, trailheadHoverEvent, type TrailheadHoverDetail, type TrailheadMapPoint } from '@/utils/trailheadHover';
-import { conditionColor, conditionOpacity, difficultyColor } from '@/utils/trailMapStyle';
-import { computed, onBeforeUnmount, onMounted, shallowRef, useTemplateRef } from 'vue';
-import type { Map as MapLibreMap } from 'maplibre-gl';
-
-type TrailProperties = {
-  id: string | number;
-  name: string;
-  difficulty: string;
-  difficultyLabel: string;
-  condition: string;
-  conditionLabel: string;
-  reportAgeDays: number | null;
-  reportAgeBucket: string;
-  reportedAt: string | null;
-  conditionAssumed: boolean;
-};
-
-type TrailFeatureCollection = GeoJSON.FeatureCollection<GeoJSON.LineString, TrailProperties>;
-
-const trailforksMapUrl =
-  'https://www.trailforks.com/region/ute-valley-park/?activitytype=6&z=13.9&lat=38.91440&lon=-104.84102&content=trails,labels,region,poi,directory,polygon,waypoint,nst,route_popular,routes_featured';
-const parkBasemapUrl = '/images/maps/ute-valley-basemap.webp';
-const parkBounds = {
-  west: -104.8974609375,
-  east: -104.8095703125,
-  south: 38.89103282648846,
-  north: 38.94232097947903,
-} as const;
-const trailDataUrl = '/data/ute-valley-trails.geojson';
-const trailSourceId = 'ute-valley-trails-source';
-const trailCasingLayerId = 'ute-valley-trails-casing';
-const trailLineLayerId = 'ute-valley-trails';
-const trailInteractionLayerId = 'ute-valley-trails-hit-area';
-const mobileViewportQuery = '(max-width: 767px)';
-const desktopDefaultZoom = 13.6;
-const mobileDefaultZoom = 12.7;
-const zoomInRange = 1.5;
+import { useVisitTrailMap } from '@/composables/useVisitTrailMap';
+import { trailMapModes, type TrailMapMode, type VisitTrailhead } from '@/utils/trailMapModel';
+import { computed, shallowRef, toRef, useTemplateRef } from 'vue';
 
 const props = defineProps<{
-  trailheads: TrailheadMapPoint[];
+  trailheads: VisitTrailhead[];
+  activeTrailheadId?: string;
+  conditionNote: string;
 }>();
 
-const mapCanvas = useTemplateRef<HTMLElement>('mapCanvas');
-const map = shallowRef<MapLibreMap | null>(null);
-const mapMode = shallowRef<'difficulty' | 'conditions'>('difficulty');
-const mapModeLabel = computed(() => (mapMode.value === 'difficulty' ? 'Trail difficulty' : 'Recent conditions'));
-const markerElements: HTMLElement[] = [];
-const setupAbortController = new AbortController();
+const emit = defineEmits<{
+  activeChange: [trailheadId?: string];
+}>();
 
-const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null;
+const mapCanvas = useTemplateRef<HTMLDivElement>('mapCanvas');
+const mapMode = shallowRef<TrailMapMode>('difficulty');
+const modeDetails = computed(() => trailMapModes[mapMode.value]);
 
-const isAbortError = (error: unknown) => setupAbortController.signal.aborted || (error instanceof DOMException && error.name === 'AbortError');
-
-const applyMapMode = (mapInstance: MapLibreMap) => {
-  if (!mapInstance.getLayer(trailLineLayerId)) return;
-  const showingConditions = mapMode.value === 'conditions';
-  mapInstance.setPaintProperty(trailLineLayerId, 'line-color', showingConditions ? conditionColor : difficultyColor);
-  mapInstance.setPaintProperty(trailLineLayerId, 'line-opacity', showingConditions ? conditionOpacity : 0.92);
-};
-
-const setMapMode = (mode: 'difficulty' | 'conditions') => {
-  mapMode.value = mode;
-  if (map.value) applyMapMode(map.value);
-};
-
-const createTrailheadPopupContent = (trailhead: TrailheadMapPoint) => {
-  const wrapper = document.createElement('div');
-  const title = document.createElement('strong');
-  const description = document.createElement('span');
-  const link = document.createElement('a');
-
-  title.textContent = trailhead.name;
-  description.textContent = trailhead.description;
-  link.href = trailhead.url;
-  link.textContent = 'Trailhead details';
-
-  wrapper.append(title, description, link);
-
-  return wrapper;
-};
-
-const parkMapStyle = {
-  version: 8 as const,
-  sources: {
-    basemap: {
-      type: 'image',
-      url: parkBasemapUrl,
-      coordinates: [
-        [parkBounds.west, parkBounds.north],
-        [parkBounds.east, parkBounds.north],
-        [parkBounds.east, parkBounds.south],
-        [parkBounds.west, parkBounds.south],
-      ],
-    },
-  },
-  layers: [
-    { id: 'background', type: 'background' as const, paint: { 'background-color': '#f3f1ea' } },
-    {
-      id: 'basemap',
-      type: 'raster' as const,
-      source: 'basemap',
-      paint: { 'raster-saturation': -0.72, 'raster-contrast': 0.08, 'raster-opacity': 0.78 },
-    },
-  ],
-};
-
-const normalizeTrailData = (data: unknown): TrailFeatureCollection => {
-  if (!isRecord(data) || data.type !== 'FeatureCollection' || !Array.isArray(data.features)) {
-    throw new Error('Trail data is not a GeoJSON FeatureCollection');
-  }
-
-  const trailIds = new Set<string>();
-  const features = data.features.map((feature, index) => {
-    if (!isRecord(feature) || feature.type !== 'Feature' || !isRecord(feature.properties) || !isRecord(feature.geometry)) {
-      throw new Error(`Trail feature ${index} is invalid`);
-    }
-
-    const propertyTrailId = feature.properties.id;
-
-    if (feature.id !== undefined && propertyTrailId !== undefined && String(feature.id) !== String(propertyTrailId)) {
-      throw new Error(`Trail feature ${index} has conflicting IDs`);
-    }
-
-    const trailId = feature.id ?? propertyTrailId;
-
-    if ((typeof trailId !== 'string' && typeof trailId !== 'number') || feature.geometry.type !== 'LineString') {
-      throw new Error(`Trail feature ${index} needs a stable ID and LineString geometry`);
-    }
-
-    if (typeof feature.properties.name !== 'string') {
-      throw new Error(`Trail feature ${trailId} needs a name`);
-    }
-
-    const trailIdKey = String(trailId);
-
-    if (trailIds.has(trailIdKey)) {
-      throw new Error(`Duplicate trail feature ID: ${trailId}`);
-    }
-
-    trailIds.add(trailIdKey);
-
-    return {
-      ...feature,
-      id: trailId,
-      properties: {
-        ...feature.properties,
-        id: trailId,
-        name: feature.properties.name,
-      },
-    } as GeoJSON.Feature<GeoJSON.LineString, TrailProperties>;
-  });
-
-  return { ...data, features } as TrailFeatureCollection;
-};
-
-const loadTrailData = async (signal: AbortSignal) => {
-  const response = await fetch(trailDataUrl, { signal });
-
-  if (!response.ok) {
-    throw new Error(`Trail data failed to load: ${response.status}`);
-  }
-
-  return normalizeTrailData(await response.json());
-};
-
-const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCollection) => {
-  mapInstance.addSource(trailSourceId, {
-    type: 'geojson',
-    data: trailData,
-  });
-
-  mapInstance.addLayer({
-    id: trailCasingLayerId,
-    type: 'line',
-    source: trailSourceId,
-    paint: {
-      'line-color': '#ffffff',
-      'line-opacity': 0.94,
-      'line-width': ['interpolate', ['linear'], ['zoom'], 11, 3, 14, 5.4, 17, 9],
-    },
-    layout: {
-      'line-cap': 'round',
-      'line-join': 'round',
-    },
-  });
-
-  mapInstance.addLayer({
-    id: trailLineLayerId,
-    type: 'line',
-    source: trailSourceId,
-    paint: {
-      'line-color': difficultyColor,
-      'line-opacity': 0.92,
-      'line-width': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        11,
-        ['case', ['boolean', ['feature-state', 'hover'], false], 3.4, 1.5],
-        14,
-        ['case', ['boolean', ['feature-state', 'hover'], false], 6.2, 3],
-        17,
-        ['case', ['boolean', ['feature-state', 'hover'], false], 9.2, 5.4],
-      ],
-    },
-    layout: {
-      'line-cap': 'round',
-      'line-join': 'round',
-    },
-  });
-
-  mapInstance.addLayer({
-    id: trailInteractionLayerId,
-    type: 'line',
-    source: trailSourceId,
-    paint: {
-      'line-color': 'rgba(0, 0, 0, 0.01)',
-      'line-opacity': 0.01,
-      'line-width': ['interpolate', ['linear'], ['zoom'], 11, 18, 14, 24, 17, 32],
-    },
-    layout: {
-      'line-cap': 'round',
-      'line-join': 'round',
-    },
-  });
-};
-
-const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof import('maplibre-gl').default) => {
-  const trailHoverContent = document.createElement('div');
-  const trailHoverPopup = new maplibregl.Popup({
-    closeButton: false,
-    closeOnClick: false,
-    className: 'visit-trail-map-hover-popup',
-    offset: 12,
-  }).setDOMContent(trailHoverContent);
-
-  let hoveredTrailId: string | number | null = null;
-
-  const clearHover = () => {
-    if (hoveredTrailId !== null) mapInstance.setFeatureState({ source: trailSourceId, id: hoveredTrailId }, { hover: false });
-    hoveredTrailId = null;
-  };
-
-  const dismissTrailPopup = () => {
-    clearHover();
-    trailHoverPopup.remove();
-  };
-
-  const showTrailPopup = (event: { features?: Array<{ id?: string | number; properties?: Partial<TrailProperties> }>; lngLat?: maplibregl.LngLatLike }) => {
-    const feature = event.features?.[0];
-    const name = feature?.properties?.name;
-
-    if (typeof name !== 'string' || !event.lngLat) {
-      trailHoverPopup.remove();
-      return;
-    }
-
-    clearHover();
-    if (feature?.id !== undefined) {
-      hoveredTrailId = feature.id;
-      mapInstance.setFeatureState({ source: trailSourceId, id: feature.id }, { hover: true });
-    }
-
-    const conditionSuffix = feature?.properties?.conditionAssumed ? ' · assumed' : '';
-    trailHoverContent.replaceChildren();
-    const title = document.createElement('strong');
-    const difficulty = document.createElement('span');
-    const condition = document.createElement('span');
-    title.textContent = name;
-    difficulty.textContent = `Difficulty: ${feature?.properties?.difficultyLabel ?? 'Unknown'}`;
-    condition.textContent = `Conditions: ${feature?.properties?.conditionLabel ?? 'Unknown'} · ${feature?.properties?.reportAgeBucket ?? 'No recent report'}${conditionSuffix}`;
-    trailHoverContent.append(title, difficulty, condition);
-    trailHoverPopup.setLngLat(event.lngLat).addTo(mapInstance);
-  };
-
-  mapInstance.on('mouseenter', trailInteractionLayerId, () => {
-    mapInstance.getCanvas().style.cursor = 'pointer';
-  });
-
-  mapInstance.on('mousemove', trailInteractionLayerId, showTrailPopup);
-  mapInstance.on('click', trailInteractionLayerId, showTrailPopup);
-  mapInstance.on('touchstart', trailInteractionLayerId, showTrailPopup);
-  mapInstance.on('click', (event) => {
-    const clickedTrail = mapInstance.queryRenderedFeatures(event.point, { layers: [trailInteractionLayerId] }).length > 0;
-    if (!clickedTrail) dismissTrailPopup();
-  });
-
-  mapInstance.on('mouseleave', trailInteractionLayerId, () => {
-    mapInstance.getCanvas().style.cursor = '';
-    dismissTrailPopup();
-  });
-};
-
-const handleTrailheadHover = (event: Event) => {
-  if (!(event instanceof CustomEvent)) {
-    return;
-  }
-
-  const activeTrailheadId = (event as CustomEvent<TrailheadHoverDetail>).detail?.trailheadId;
-
-  markerElements.forEach((marker) => {
-    marker.classList.toggle('is-list-highlighted', marker.dataset.trailheadId === activeTrailheadId);
-  });
-};
-
-onMounted(async () => {
-  if (!mapCanvas.value) {
-    return;
-  }
-
-  try {
-    const { default: maplibregl } = await import('maplibre-gl');
-
-    if (setupAbortController.signal.aborted || !mapCanvas.value) {
-      return;
-    }
-
-    const defaultZoom = window.matchMedia(mobileViewportQuery).matches ? mobileDefaultZoom : desktopDefaultZoom;
-
-    const mapInstance = new maplibregl.Map({
-      container: mapCanvas.value,
-      center: [-104.844, 38.9144],
-      zoom: defaultZoom,
-      minZoom: defaultZoom,
-      maxZoom: defaultZoom + zoomInRange,
-      dragPan: true,
-      dragRotate: false,
-      scrollZoom: true,
-      boxZoom: false,
-      doubleClickZoom: true,
-      touchZoomRotate: true,
-      keyboard: false,
-      attributionControl: false,
-      style: parkMapStyle,
-    });
-
-    map.value = mapInstance;
-    mapInstance.touchZoomRotate.disableRotation();
-
-    mapInstance.on('load', async () => {
-      try {
-        const trailData = await loadTrailData(setupAbortController.signal);
-
-        if (setupAbortController.signal.aborted) {
-          return;
-        }
-
-        installTrailLayers(mapInstance, trailData);
-        applyMapMode(mapInstance);
-        installTrailInteractions(mapInstance, maplibregl);
-      } catch (error) {
-        if (!isAbortError(error)) {
-          console.error(error);
-        }
-      }
-    });
-
-    mapInstance.addControl(
-      new maplibregl.AttributionControl({
-        compact: true,
-        customAttribution:
-          '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a> · <a href="https://www.trailforks.com/" target="_blank" rel="noopener noreferrer">Trail data © Trailforks</a>',
-      }),
-      'bottom-right',
-    );
-    mapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
-
-    props.trailheads.forEach((trailhead) => {
-      const coordinates = trailhead.coordinates;
-      const marker = document.createElement('a');
-      marker.className = 'visit-trail-map-marker';
-      marker.href = trailhead.url;
-      marker.ariaLabel = trailhead.name;
-      marker.dataset.trailheadId = trailhead.id;
-
-      const activateTrailhead = () => {
-        dispatchTrailheadHover(trailhead.id);
-      };
-
-      const clearTrailhead = () => {
-        dispatchTrailheadHover();
-      };
-
-      marker.addEventListener('mouseenter', activateTrailhead);
-      marker.addEventListener('focus', activateTrailhead);
-      marker.addEventListener('mouseleave', clearTrailhead);
-      marker.addEventListener('blur', clearTrailhead);
-
-      markerElements.push(marker);
-      new maplibregl.Marker({ element: marker, anchor: 'bottom' })
-        .setLngLat(coordinates)
-        .setPopup(new maplibregl.Popup({ offset: 18 }).setDOMContent(createTrailheadPopupContent(trailhead)))
-        .addTo(mapInstance);
-    });
-
-    document.addEventListener(trailheadHoverEvent, handleTrailheadHover);
-  } catch (error) {
-    if (!isAbortError(error)) {
-      console.error(error);
-    }
-  }
-});
-
-onBeforeUnmount(() => {
-  setupAbortController.abort();
-  document.removeEventListener(trailheadHoverEvent, handleTrailheadHover);
-  map.value?.remove();
-  map.value = null;
-  markerElements.length = 0;
+const { status, errorMessage, retry } = useVisitTrailMap({
+  container: mapCanvas,
+  trailheads: props.trailheads,
+  activeTrailheadId: toRef(props, 'activeTrailheadId'),
+  mode: mapMode,
+  onTrailheadActive: (trailheadId) => emit('activeChange', trailheadId),
 });
 </script>
 
 <template>
   <div class="visit-trail-map">
-    <div ref="mapCanvas" class="visit-trail-map__canvas"></div>
-    <div class="visit-trail-map__panel">
-      <div>
-        <p class="visit-trail-map__kicker">Interactive trail map</p>
-        <p class="visit-trail-map__title">{{ mapModeLabel }}</p>
+    <div ref="mapCanvas" class="visit-trail-map__canvas" aria-label="Interactive map of Ute Valley Park trails and trailheads"></div>
+
+    <div v-if="status !== 'ready'" class="visit-trail-map__status" :role="status === 'error' ? 'alert' : 'status'">
+      <p>{{ status === 'error' ? errorMessage : 'Loading interactive trail map…' }}</p>
+      <div v-if="status === 'error'" class="visit-trail-map__status-actions">
+        <button type="button" @click="retry">Try Again</button>
+        <a href="/images/maps/ute-valley-park-map-full.jpg" target="_blank" rel="noopener noreferrer"> Open Official Map </a>
       </div>
-      <div class="visit-trail-map__actions">
-        <div class="visit-trail-map__toggle" role="group" aria-label="Color trails by">
-          <button type="button" :aria-pressed="mapMode === 'difficulty'" @click="setMapMode('difficulty')">Difficulty</button>
-          <button type="button" :aria-pressed="mapMode === 'conditions'" @click="setMapMode('conditions')">Conditions</button>
+    </div>
+
+    <div v-if="status === 'ready'" class="visit-trail-map__panel">
+      <div class="visit-trail-map__panel-heading">
+        <div>
+          <p class="visit-trail-map__kicker">Interactive trail map</p>
+          <p class="visit-trail-map__title">{{ modeDetails.label }}</p>
         </div>
-        <a :href="trailforksMapUrl" target="_blank" rel="noopener noreferrer">Open Trailforks</a>
+        <div class="visit-trail-map__actions">
+          <div class="visit-trail-map__toggle" role="group" aria-label="Color trails by">
+            <button type="button" :aria-pressed="mapMode === 'difficulty'" @click="mapMode = 'difficulty'">Difficulty</button>
+            <button type="button" :aria-pressed="mapMode === 'conditions'" @click="mapMode = 'conditions'">Conditions</button>
+          </div>
+          <a
+            href="https://www.trailforks.com/region/ute-valley-park/?activitytype=6&z=13.9&lat=38.91440&lon=-104.84102&content=trails,labels,region,poi,directory,polygon,waypoint,nst,route_popular,routes_featured"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open Trailforks
+          </a>
+        </div>
       </div>
+
+      <ul class="visit-trail-map__legend" :aria-label="`${modeDetails.label} legend`">
+        <li v-for="item in modeDetails.legend" :key="item.label">
+          <span class="visit-trail-map__legend-swatch" :class="{ 'is-faded': item.treatment === 'faded' }" :style="{ backgroundColor: item.color }"></span>
+          {{ item.label }}
+        </li>
+      </ul>
+      <p v-if="mapMode === 'conditions'" class="visit-trail-map__condition-note">{{ conditionNote }}</p>
     </div>
   </div>
 </template>
@@ -447,21 +85,64 @@ onBeforeUnmount(() => {
   inset: 0;
 }
 
+.visit-trail-map__status {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  z-index: 2;
+  width: min(24rem, calc(100% - 2rem));
+  border: 1px solid var(--color-border);
+  background: color-mix(in oklab, var(--color-surface) 94%, transparent);
+  padding: 1.5rem;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.visit-trail-map__status p {
+  margin: 0;
+  color: var(--color-text-strong);
+  font-weight: 700;
+}
+
+.visit-trail-map__status-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.visit-trail-map__status-actions button,
+.visit-trail-map__status-actions a {
+  border: 0;
+  background: none;
+  color: var(--color-brand-strong);
+  cursor: pointer;
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 900;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
 .visit-trail-map__panel {
   position: absolute;
   right: 1rem;
   bottom: 2.4375rem;
   left: 1rem;
   z-index: 2;
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 1rem;
+  display: grid;
+  gap: 0.75rem;
   border: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent);
   background: color-mix(in oklab, var(--color-surface) 92%, transparent);
   padding: 1rem;
   box-shadow: 0 1rem 3rem color-mix(in oklab, var(--color-text-strong) 12%, transparent);
   pointer-events: none;
+}
+
+.visit-trail-map__panel-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .visit-trail-map__actions {
@@ -533,6 +214,45 @@ onBeforeUnmount(() => {
   pointer-events: auto;
 }
 
+.visit-trail-map__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: auto;
+}
+
+.visit-trail-map__legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-label);
+  font-size: 0.625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.visit-trail-map__legend-swatch {
+  width: 0.85rem;
+  height: 0.28rem;
+  border-radius: 999px;
+}
+
+.visit-trail-map__legend-swatch.is-faded {
+  background: linear-gradient(90deg, #2f7d4a, #23708a, #a34f22) !important;
+  opacity: 0.38;
+}
+
+.visit-trail-map__condition-note {
+  color: var(--color-text-subtle);
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  pointer-events: auto;
+}
+
 .visit-trail-map :deep(.maplibregl-ctrl-top-right) {
   top: 1rem;
   right: 1rem;
@@ -569,10 +289,29 @@ onBeforeUnmount(() => {
 }
 
 .visit-trail-map :deep(.maplibregl-popup-content) {
+  position: relative;
   border: 1px solid var(--color-border);
   border-radius: 0;
   padding: 0.875rem;
   box-shadow: 0 1rem 2rem color-mix(in oklab, var(--color-text-strong) 18%, transparent);
+}
+
+.visit-trail-map :deep(.visit-trail-map-popup-close) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  padding: 0.2rem 0.45rem;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.visit-trail-map :deep(.visit-trail-map-popup-close:focus-visible) {
+  outline: 2px solid var(--color-brand-strong);
+  outline-offset: 1px;
 }
 
 .visit-trail-map :deep(.maplibregl-popup-content strong),
@@ -631,16 +370,20 @@ onBeforeUnmount(() => {
   top: 0 !important;
   left: 0 !important;
   display: block;
-  width: 1.25rem;
-  height: 1.58rem;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
 }
 
 :global(.visit-trail-map-marker)::before {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 1.25rem;
-  height: 1.25rem;
+  bottom: 7px;
+  left: 6px;
+  width: 14px;
+  height: 14px;
   border: 3px solid var(--color-surface);
   border-radius: 999px;
   background: var(--color-brand-strong);
@@ -656,45 +399,51 @@ onBeforeUnmount(() => {
 
 :global(.visit-trail-map-marker)::after {
   position: absolute;
-  top: 1.08rem;
+  bottom: 0;
   left: 50%;
   width: 0;
   height: 0;
-  border-top: 0.5rem solid var(--color-brand-strong);
-  border-right: 0.32rem solid transparent;
-  border-left: 0.32rem solid transparent;
+  border-top: 8px solid var(--color-brand-strong);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
   content: '';
   transform: translateX(-50%);
   transition: border-top-color var(--duration-fast);
 }
 
 :global(.visit-trail-map-marker:hover)::before,
+:global(.visit-trail-map-marker:focus-visible)::before,
 :global(.visit-trail-map-marker.is-list-highlighted)::before {
   background: var(--color-accent-strong);
   box-shadow:
     0 0 0 3px color-mix(in oklab, var(--color-accent-strong) 60%, transparent),
     0 0.75rem 1.5rem color-mix(in oklab, var(--color-text-strong) 28%, transparent);
-  transform: translateY(-0.125rem);
+  transform: translateY(-2px);
 }
 
 :global(.visit-trail-map-marker:hover)::after,
+:global(.visit-trail-map-marker:focus-visible)::after,
 :global(.visit-trail-map-marker.is-list-highlighted)::after {
   border-top-color: var(--color-accent-strong);
 }
 
 @media (max-width: 39rem) {
   .visit-trail-map {
-    min-height: 31rem;
+    min-height: 34rem;
   }
 
-  .visit-trail-map__panel {
+  .visit-trail-map__panel-heading,
+  .visit-trail-map__actions {
     align-items: start;
     flex-direction: column;
   }
 
   .visit-trail-map__actions {
     width: 100%;
-    align-items: start;
+  }
+
+  .visit-trail-map__status-actions {
+    align-items: center;
     flex-direction: column;
   }
 }
