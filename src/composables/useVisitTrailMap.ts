@@ -1,20 +1,17 @@
 import type { TrailFeatureCollection, TrailProperties } from '@/utils/trailData';
 import { conditionColor, conditionOpacity, difficultyColor, type TrailMapMode, type VisitTrailhead } from '@/utils/trailMapModel';
-import { createTrailheadActivation } from '@/utils/trailheadPopup';
 import { waitForMapLoad } from '@/utils/waitForMapLoad';
-import { whenElementVisible } from '@/utils/whenElementVisible';
 import { nextTick, onBeforeUnmount, onMounted, readonly, shallowRef, watch, type Ref, type ShallowRef } from 'vue';
 import type { Map as MapLibreMap, Popup, StyleSpecification } from 'maplibre-gl';
 
 type MapStatus = 'loading' | 'ready' | 'error';
-type MapLibreApi = typeof import('maplibre-gl');
-
 type UseVisitTrailMapOptions = {
   container: Readonly<ShallowRef<HTMLDivElement | null>>;
   trailheads: readonly VisitTrailhead[];
   activeTrailheadId: Readonly<Ref<string | undefined>>;
   mode: Readonly<Ref<TrailMapMode>>;
   onTrailheadActive: (trailheadId?: string) => void;
+  onPopupChange: (trailheadId?: string) => void;
 };
 
 const parkBasemapUrl = '/images/maps/ute-valley-basemap.webp';
@@ -141,7 +138,7 @@ const applyMapMode = (mapInstance: MapLibreMap, mode: TrailMapMode) => {
   mapInstance.setPaintProperty(trailLineLayerId, 'line-opacity', showingConditions ? conditionOpacity : 0.92);
 };
 
-const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: MapLibreApi) => {
+const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof import('maplibre-gl')) => {
   const trailHoverContent = document.createElement('div');
   const trailHoverPopup = new maplibregl.Popup({
     closeButton: false,
@@ -218,7 +215,6 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
   let mapInstance: MapLibreMap | null = null;
   let trailheadPopup: Popup | null = null;
   let setupAbortController: AbortController | null = null;
-  let stopWaitingForVisibility: (() => void) | null = null;
 
   const updateActiveMarker = (trailheadId?: string) => {
     markerElements.forEach((marker, id) => {
@@ -227,8 +223,6 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
   };
 
   const disposeMap = () => {
-    stopWaitingForVisibility?.();
-    stopWaitingForVisibility = null;
     setupAbortController?.abort();
     setupAbortController = null;
     trailheadPopup?.remove();
@@ -251,8 +245,7 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
     setupAbortController = controller;
 
     try {
-      const [maplibreModule, trailData] = await Promise.all([import('maplibre-gl'), loadTrailData(controller.signal)]);
-      const maplibregl = ((maplibreModule as unknown as { default?: MapLibreApi }).default ?? maplibreModule) as MapLibreApi;
+      const [maplibregl, trailData] = await Promise.all([import('maplibre-gl'), loadTrailData(controller.signal)]);
 
       if (controller.signal.aborted || !options.container.value) return;
 
@@ -303,19 +296,23 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
       const popup = new maplibregl.Popup({ offset: 18, closeButton: false }).setDOMContent(host);
       popupHost.value = host;
       trailheadPopup = popup;
-      let openActivation: ReturnType<typeof createTrailheadActivation> | undefined;
-
       popup.on('open', () => {
+        const trailheadId = popupTrailhead.value?.id;
         popupTrigger.value?.setAttribute('aria-expanded', 'true');
-        openActivation?.popupOpened();
+        options.onPopupChange(trailheadId);
+        options.onTrailheadActive(trailheadId);
+        updateActiveMarker(trailheadId);
       });
       popup.on('close', () => {
         const trigger = popupTrigger.value;
+        const trailheadId = popupTrailhead.value?.id;
+        const triggerHasFocus = document.activeElement === trigger;
         trigger?.setAttribute('aria-expanded', 'false');
-        openActivation?.popupClosed(document.activeElement === trigger);
         popupTrailhead.value = undefined;
         popupTrigger.value = undefined;
-        openActivation = undefined;
+        options.onPopupChange();
+        options.onTrailheadActive(triggerHasFocus ? trailheadId : undefined);
+        updateActiveMarker(triggerHasFocus ? trailheadId : undefined);
       });
 
       options.trailheads.forEach((trailhead) => {
@@ -326,16 +323,15 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
         marker.ariaExpanded = 'false';
         marker.dataset.trailheadId = trailhead.id;
         marker.setAttribute('aria-controls', 'visit-trailhead-popup');
-        const activation = createTrailheadActivation({
-          trailheadId: trailhead.id,
-          setActiveTrailhead: options.onTrailheadActive,
-          isPopupOpen: () => popup.isOpen() && popupTrigger.value === marker,
-        });
+        const activate = () => options.onTrailheadActive(trailhead.id);
+        const deactivate = () => {
+          if (popupTrigger.value !== marker) options.onTrailheadActive();
+        };
 
-        marker.addEventListener('mouseenter', activation.activate);
-        marker.addEventListener('focus', activation.activate);
-        marker.addEventListener('mouseleave', activation.deactivate);
-        marker.addEventListener('blur', activation.deactivate);
+        marker.addEventListener('mouseenter', activate);
+        marker.addEventListener('focus', activate);
+        marker.addEventListener('mouseleave', deactivate);
+        marker.addEventListener('blur', deactivate);
         marker.addEventListener('click', async (event) => {
           event.stopPropagation();
           if (popup.isOpen()) {
@@ -345,7 +341,6 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
           }
           popupTrailhead.value = trailhead;
           popupTrigger.value = marker;
-          openActivation = activation;
           await nextTick();
           if (popupTrigger.value !== marker) return;
           popup.setLngLat(trailhead.coordinates).addTo(instance);
@@ -373,12 +368,7 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
   });
 
   onMounted(() => {
-    if (!options.container.value) return;
-
-    stopWaitingForVisibility = whenElementVisible(options.container.value, () => {
-      stopWaitingForVisibility = null;
-      void initializeMap();
-    });
+    void initializeMap();
   });
   onBeforeUnmount(disposeMap);
 

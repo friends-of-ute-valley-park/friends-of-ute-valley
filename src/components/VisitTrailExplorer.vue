@@ -2,14 +2,16 @@
 import VisitTrailheadList from '@components/VisitTrailheadList.vue';
 import VisitTrailMap from '@components/VisitTrailMap.vue';
 import type { VisitTrailhead } from '@/utils/trailMapModel';
-import { shallowRef } from 'vue';
+import { computed, shallowRef } from 'vue';
 
 defineProps<{
   trailheads: VisitTrailhead[];
   conditionNote: string;
 }>();
 
-const activeTrailheadId = shallowRef<string>();
+const interactionTrailheadId = shallowRef<string>();
+const popupTrailheadId = shallowRef<string>();
+const activeTrailheadId = computed(() => popupTrailheadId.value ?? interactionTrailheadId.value);
 </script>
 
 <template>
@@ -20,12 +22,17 @@ const activeTrailheadId = shallowRef<string>();
         <p class="section-heading__copy">Find your trailhead and get directions.</p>
       </div>
 
-      <VisitTrailheadList :trailheads="trailheads" :active-trailhead-id="activeTrailheadId" @active-change="activeTrailheadId = $event" />
+      <VisitTrailheadList :trailheads="trailheads" :active-trailhead-id="activeTrailheadId" @active-change="interactionTrailheadId = $event" />
     </div>
 
     <div class="map-context">
       <div class="sticky-context">
-        <VisitTrailMap :trailheads="trailheads" :active-trailhead-id="activeTrailheadId" :condition-note="conditionNote" @active-change="activeTrailheadId = $event" />
+        <VisitTrailMap
+          :trailheads="trailheads"
+          :active-trailhead-id="activeTrailheadId"
+          :condition-note="conditionNote"
+          @active-change="interactionTrailheadId = $event"
+          @popup-change="popupTrailheadId = $event" />
         <a class="static-map-link" href="/images/maps/ute-valley-park-map-full.jpg" target="_blank" rel="noopener noreferrer">
           <span>Official Park Map</span>
           <span>Open Full Size</span>

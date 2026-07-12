@@ -15,6 +15,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   activeChange: [trailheadId?: string];
+  popupChange: [trailheadId?: string];
 }>();
 
 const mapCanvas = useTemplateRef<HTMLDivElement>('mapCanvas');
@@ -27,6 +28,7 @@ const { status, errorMessage, retry, popupHost, popupTrailhead, popupTrigger, cl
   activeTrailheadId: toRef(props, 'activeTrailheadId'),
   mode: mapMode,
   onTrailheadActive: (trailheadId) => emit('activeChange', trailheadId),
+  onPopupChange: (trailheadId) => emit('popupChange', trailheadId),
 });
 
 const { focused: popupTriggerFocused } = useFocus(popupTrigger, { preventScroll: true });
