@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import 'maplibre-gl/dist/maplibre-gl.css';
 
+import VisitTrailheadPopup from '@/components/VisitTrailheadPopup.vue';
 import { useVisitTrailMap } from '@/composables/useVisitTrailMap';
 import { trailMapModes, type TrailMapMode, type VisitTrailhead } from '@/utils/trailMapModel';
+import { onKeyStroke, useFocus } from '@vueuse/core';
 import { computed, shallowRef, toRef, useTemplateRef } from 'vue';
 
 const props = defineProps<{
@@ -19,18 +21,36 @@ const mapCanvas = useTemplateRef<HTMLDivElement>('mapCanvas');
 const mapMode = shallowRef<TrailMapMode>('difficulty');
 const modeDetails = computed(() => trailMapModes[mapMode.value]);
 
-const { status, errorMessage, retry } = useVisitTrailMap({
+const { status, errorMessage, retry, popupHost, popupTrailhead, popupTrigger, closePopup } = useVisitTrailMap({
   container: mapCanvas,
   trailheads: props.trailheads,
   activeTrailheadId: toRef(props, 'activeTrailheadId'),
   mode: mapMode,
   onTrailheadActive: (trailheadId) => emit('activeChange', trailheadId),
 });
+
+const { focused: popupTriggerFocused } = useFocus(popupTrigger, { preventScroll: true });
+
+const closeTrailheadPopup = () => {
+  popupTriggerFocused.value = true;
+  closePopup();
+};
+
+onKeyStroke('Escape', (event) => {
+  if (!popupTrailhead.value) return;
+
+  event.preventDefault();
+  closeTrailheadPopup();
+});
 </script>
 
 <template>
   <div class="visit-trail-map">
     <div ref="mapCanvas" class="visit-trail-map__canvas" aria-label="Interactive map of Ute Valley Park trails and trailheads"></div>
+
+    <Teleport v-if="popupHost && popupTrailhead" :to="popupHost">
+      <VisitTrailheadPopup :trailhead="popupTrailhead" @close="closeTrailheadPopup" />
+    </Teleport>
 
     <div v-if="status !== 'ready'" class="visit-trail-map__status" :role="status === 'error' ? 'alert' : 'status'">
       <p>{{ status === 'error' ? errorMessage : 'Loading interactive trail map…' }}</p>
@@ -296,55 +316,6 @@ const { status, errorMessage, retry } = useVisitTrailMap({
   box-shadow: 0 1rem 2rem color-mix(in oklab, var(--color-text-strong) 18%, transparent);
 }
 
-.visit-trail-map :deep(.visit-trail-map-popup-close) {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: 0;
-  padding: 0.2rem 0.45rem;
-  background: transparent;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  font-size: 1.125rem;
-  line-height: 1;
-}
-
-.visit-trail-map :deep(.visit-trail-map-popup-close:focus-visible) {
-  outline: 2px solid var(--color-brand-strong);
-  outline-offset: 1px;
-}
-
-.visit-trail-map :deep(.maplibregl-popup-content strong),
-.visit-trail-map :deep(.maplibregl-popup-content span),
-.visit-trail-map :deep(.maplibregl-popup-content a) {
-  display: block;
-}
-
-.visit-trail-map :deep(.maplibregl-popup-content strong) {
-  margin-bottom: 0.25rem;
-  color: var(--color-text-strong);
-  font-family: var(--font-display);
-  font-size: 1rem;
-  line-height: 1.1;
-  text-transform: uppercase;
-}
-
-.visit-trail-map :deep(.maplibregl-popup-content span) {
-  color: var(--color-text-muted);
-  font-size: 0.8125rem;
-  line-height: 1.4;
-}
-
-.visit-trail-map :deep(.maplibregl-popup-content a) {
-  margin-top: 0.625rem;
-  color: var(--color-brand-strong);
-  font-family: var(--font-label);
-  font-size: 0.75rem;
-  font-weight: 900;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
 .visit-trail-map :deep(.visit-trail-map-hover-popup) {
   pointer-events: none;
 }
@@ -354,14 +325,18 @@ const { status, errorMessage, retry } = useVisitTrailMap({
 }
 
 .visit-trail-map :deep(.visit-trail-map-hover-popup .maplibregl-popup-content strong) {
+  display: block;
   margin: 0;
+  color: var(--color-text-strong);
   font-family: var(--font-label);
   font-size: 0.6875rem;
   letter-spacing: 0.06em;
 }
 
 .visit-trail-map :deep(.visit-trail-map-hover-popup .maplibregl-popup-content span) {
+  display: block;
   margin-top: 0.2rem;
+  color: var(--color-text-muted);
   font-size: 0.75rem;
 }
 

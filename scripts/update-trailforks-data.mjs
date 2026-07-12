@@ -3,7 +3,6 @@ import 'dotenv/config';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { assertMinimumTrailCount, normalizeTrailData } from '../src/utils/trailData.ts';
 import { trailConditionById } from '../src/utils/trailTaxonomy.ts';
 
 const API_BASE_URL = 'https://www.trailforks.com/api/1';
@@ -159,11 +158,14 @@ const summary = {
   reportedConditions,
 };
 
-const mapData = normalizeTrailData({
+if (features.length < MIN_EXPECTED_TRAIL_COUNT) {
+  throw new Error(`Trail data contains ${features.length} features; expected at least ${MIN_EXPECTED_TRAIL_COUNT}`);
+}
+
+const mapData = {
   type: 'FeatureCollection',
   features,
-});
-assertMinimumTrailCount(mapData, MIN_EXPECTED_TRAIL_COUNT);
+};
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputDirectory = path.join(root, 'public', 'data');

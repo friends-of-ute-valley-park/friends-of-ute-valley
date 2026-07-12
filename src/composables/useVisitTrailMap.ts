@@ -1,9 +1,9 @@
-import { normalizeTrailData, type TrailFeatureCollection, type TrailProperties } from '@/utils/trailData';
+import type { TrailFeatureCollection, TrailProperties } from '@/utils/trailData';
 import { conditionColor, conditionOpacity, difficultyColor, type TrailMapMode, type VisitTrailhead } from '@/utils/trailMapModel';
-import { createTrailheadActivation, dismissPopupOnEscape, dismissPopupWithFocusReturn } from '@/utils/trailheadPopup';
+import { createTrailheadActivation } from '@/utils/trailheadPopup';
 import { waitForMapLoad } from '@/utils/waitForMapLoad';
 import { whenElementVisible } from '@/utils/whenElementVisible';
-import { onBeforeUnmount, onMounted, readonly, shallowRef, watch, type Ref, type ShallowRef } from 'vue';
+import { nextTick, onBeforeUnmount, onMounted, readonly, shallowRef, watch, type Ref, type ShallowRef } from 'vue';
 import type { Map as MapLibreMap, Popup, StyleSpecification } from 'maplibre-gl';
 
 type MapStatus = 'loading' | 'ready' | 'error';
@@ -68,7 +68,7 @@ const loadTrailData = async (signal: AbortSignal): Promise<TrailFeatureCollectio
     throw new Error(`Trail data failed to load: ${response.status}`);
   }
 
-  return normalizeTrailData(await response.json());
+  return (await response.json()) as TrailFeatureCollection;
 };
 
 const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCollection) => {
@@ -141,29 +141,6 @@ const applyMapMode = (mapInstance: MapLibreMap, mode: TrailMapMode) => {
   mapInstance.setPaintProperty(trailLineLayerId, 'line-opacity', showingConditions ? conditionOpacity : 0.92);
 };
 
-const createTrailheadPopupContent = (trailhead: VisitTrailhead) => {
-  const wrapper = document.createElement('div');
-  const closeButton = document.createElement('button');
-  const title = document.createElement('strong');
-  const description = document.createElement('span');
-  const link = document.createElement('a');
-
-  wrapper.id = `visit-trailhead-popup-${trailhead.id.replace(/[^a-zA-Z0-9_-]/g, '-')}`;
-  wrapper.role = 'group';
-  wrapper.ariaLabel = `${trailhead.name} details`;
-  closeButton.type = 'button';
-  closeButton.className = 'visit-trail-map-popup-close';
-  closeButton.ariaLabel = `Close ${trailhead.name} details`;
-  closeButton.textContent = '×';
-  title.textContent = trailhead.name;
-  description.textContent = trailhead.description;
-  link.href = trailhead.url;
-  link.textContent = 'Trailhead details';
-  wrapper.append(closeButton, title, description, link);
-
-  return { closeButton, element: wrapper };
-};
-
 const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: MapLibreApi) => {
   const trailHoverContent = document.createElement('div');
   const trailHoverPopup = new maplibregl.Popup({
@@ -234,8 +211,12 @@ const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: MapLibre
 export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
   const status = shallowRef<MapStatus>('loading');
   const errorMessage = shallowRef<string>();
+  const popupHost = shallowRef<HTMLDivElement>();
+  const popupTrailhead = shallowRef<VisitTrailhead>();
+  const popupTrigger = shallowRef<HTMLButtonElement>();
   const markerElements = new Map<string, HTMLButtonElement>();
   let mapInstance: MapLibreMap | null = null;
+  let trailheadPopup: Popup | null = null;
   let setupAbortController: AbortController | null = null;
   let stopWaitingForVisibility: (() => void) | null = null;
 
@@ -250,8 +231,13 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
     stopWaitingForVisibility = null;
     setupAbortController?.abort();
     setupAbortController = null;
+    trailheadPopup?.remove();
+    trailheadPopup = null;
     mapInstance?.remove();
     mapInstance = null;
+    popupHost.value = undefined;
+    popupTrailhead.value = undefined;
+    popupTrigger.value = undefined;
     markerElements.clear();
   };
 
@@ -313,7 +299,25 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
       );
       instance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 
-      let openMarkerPopup: Popup | null = null;
+      const host = document.createElement('div');
+      const popup = new maplibregl.Popup({ offset: 18, closeButton: false }).setDOMContent(host);
+      popupHost.value = host;
+      trailheadPopup = popup;
+      let openActivation: ReturnType<typeof createTrailheadActivation> | undefined;
+
+      popup.on('open', () => {
+        popupTrigger.value?.setAttribute('aria-expanded', 'true');
+        openActivation?.popupOpened();
+      });
+      popup.on('close', () => {
+        const trigger = popupTrigger.value;
+        trigger?.setAttribute('aria-expanded', 'false');
+        openActivation?.popupClosed(document.activeElement === trigger);
+        popupTrailhead.value = undefined;
+        popupTrigger.value = undefined;
+        openActivation = undefined;
+      });
+
       options.trailheads.forEach((trailhead) => {
         const marker = document.createElement('button');
         marker.type = 'button';
@@ -321,56 +325,30 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
         marker.ariaLabel = `Show details for ${trailhead.name}`;
         marker.ariaExpanded = 'false';
         marker.dataset.trailheadId = trailhead.id;
-
-        const popupContent = createTrailheadPopupContent(trailhead);
-        marker.setAttribute('aria-controls', popupContent.element.id);
-        const popup = new maplibregl.Popup({ offset: 18, closeButton: false }).setLngLat(trailhead.coordinates).setDOMContent(popupContent.element);
+        marker.setAttribute('aria-controls', 'visit-trailhead-popup');
         const activation = createTrailheadActivation({
           trailheadId: trailhead.id,
           setActiveTrailhead: options.onTrailheadActive,
-          isPopupOpen: () => popup.isOpen(),
-        });
-
-        popup.on('open', () => {
-          marker.ariaExpanded = 'true';
-          activation.popupOpened();
-        });
-        popup.on('close', () => {
-          marker.ariaExpanded = 'false';
-          if (openMarkerPopup === popup) openMarkerPopup = null;
-          activation.popupClosed(document.activeElement === marker);
-        });
-
-        popupContent.closeButton.addEventListener('click', () => {
-          dismissPopupWithFocusReturn(
-            () => marker.focus(),
-            () => popup.remove(),
-          );
-        });
-        popupContent.element.addEventListener('keydown', (event) => {
-          dismissPopupOnEscape(
-            event,
-            () => marker.focus(),
-            () => popup.remove(),
-          );
+          isPopupOpen: () => popup.isOpen() && popupTrigger.value === marker,
         });
 
         marker.addEventListener('mouseenter', activation.activate);
         marker.addEventListener('focus', activation.activate);
         marker.addEventListener('mouseleave', activation.deactivate);
         marker.addEventListener('blur', activation.deactivate);
-        marker.addEventListener('click', (event) => {
+        marker.addEventListener('click', async (event) => {
           event.stopPropagation();
           if (popup.isOpen()) {
+            const clickedOpenMarker = popupTrigger.value === marker;
             popup.remove();
-            return;
+            if (clickedOpenMarker) return;
           }
-          openMarkerPopup?.remove();
-          openMarkerPopup = popup;
-          popup.addTo(instance);
-        });
-        marker.addEventListener('keydown', (event) => {
-          if (event.key === 'Escape') popup.remove();
+          popupTrailhead.value = trailhead;
+          popupTrigger.value = marker;
+          openActivation = activation;
+          await nextTick();
+          if (popupTrigger.value !== marker) return;
+          popup.setLngLat(trailhead.coordinates).addTo(instance);
         });
 
         markerElements.set(trailhead.id, marker);
@@ -404,9 +382,15 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
   });
   onBeforeUnmount(disposeMap);
 
+  const closePopup = () => trailheadPopup?.remove();
+
   return {
     status: readonly(status),
     errorMessage: readonly(errorMessage),
+    popupHost: readonly(popupHost),
+    popupTrailhead: readonly(popupTrailhead),
+    popupTrigger: readonly(popupTrigger),
+    closePopup,
     retry: initializeMap,
   };
 };
