@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import turnstilePlugin from '@cloudflare/pages-plugin-turnstile';
+import { isValidEmail, jsonResponse, normalizeField } from '../src/utils/http.js';
 
 export const onRequestPost = [
   async (context) => {
@@ -91,19 +92,4 @@ async function generateRequestData(request) {
   } else {
     throw new Error('Unsupported content type. Only FormData is allowed.');
   }
-}
-
-function normalizeField(value) {
-  return value?.toString().trim() || '';
-}
-
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function jsonResponse(payload, status = 200) {
-  return new Response(JSON.stringify(payload), {
-    status,
-    headers: { 'Content-Type': 'application/json' },
-  });
 }

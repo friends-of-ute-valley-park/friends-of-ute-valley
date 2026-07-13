@@ -1,12 +1,6 @@
 ---
 import { isDateInList } from "../utils/date";
 
-export interface Props {
-  eventDates?: string[];
-}
-
-const { eventDates = [] } = Astro.props as Props;
-
 type CalendarEventType = "public" | "company";
 
 type CalendarEvent = {
@@ -16,7 +10,8 @@ type CalendarEvent = {
   companyName?: string;
 };
 
-const seasonEvents: CalendarEvent[] = [
+// These are tentative dates used before individual event entries are published.
+const calendarEvents: CalendarEvent[] = [
   { date: "2026-05-20", type: "public", title: "Public volunteer event" },
   { date: "2026-06-03", type: "public", title: "Public volunteer event" },
   { date: "2026-06-17", type: "public", title: "Public volunteer event" },
@@ -50,12 +45,6 @@ const toLocalDate = (dateString: string) => {
   return new Date(year, month - 1, day);
 };
 
-const propEvents = eventDates.map((date) => ({
-  date,
-  type: "public" as const,
-  title: "Public volunteer event",
-}));
-const calendarEvents = propEvents.length > 0 ? propEvents : seasonEvents;
 const volunteerEventDates = calendarEvents.map((event) => toLocalDate(event.date));
 const currentYear =
   calendarEvents.length > 0

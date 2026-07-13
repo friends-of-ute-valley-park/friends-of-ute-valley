@@ -4,7 +4,7 @@ const shortMonthDayFormatter = new Intl.DateTimeFormat('en-US', { month: 'short'
 const shortMonthDayYearFormatter = new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
 const shortMonthYearFormatter = new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric' });
 
-export const toDate = (date: DateInput): Date => (date instanceof Date ? date : new Date(date));
+const toDate = (date: DateInput): Date => (date instanceof Date ? date : new Date(date));
 
 export const getDateTime = (date: DateInput): number => toDate(date).getTime();
 

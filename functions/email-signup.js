@@ -1,3 +1,5 @@
+import { isValidEmail, jsonResponse, normalizeField } from '../src/utils/http.js';
+
 export async function onRequestPost(context) {
   try {
     const { request, env } = context;
@@ -82,19 +84,4 @@ async function generateRequestData(request) {
     };
   }
   throw new Error('Unsupported content type');
-}
-
-function normalizeField(value) {
-  return value?.toString().trim() || '';
-}
-
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function jsonResponse(payload, status = 200) {
-  return new Response(JSON.stringify(payload), {
-    status,
-    headers: { 'Content-Type': 'application/json' },
-  });
 }

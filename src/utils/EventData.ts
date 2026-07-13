@@ -1,6 +1,11 @@
-import type { VolunteerEventFrontmatter, MeetingLocation } from '../../typings/index';
+import type { CollectionEntry } from 'astro:content';
 
-export function MeetingLocationParser(volunteerEventFrontmatter: VolunteerEventFrontmatter, meetingLocations: MeetingLocation[]) {
+export type VolunteerEvent = CollectionEntry<'events'>;
+export type MeetingLocation = CollectionEntry<'trailheads'>;
+
+type VolunteerEventData = VolunteerEvent['data'];
+
+export function MeetingLocationParser(volunteerEventFrontmatter: VolunteerEventData, meetingLocations: MeetingLocation[]) {
   if (volunteerEventFrontmatter.meetingLocation.predefinedLocation !== -1) {
     const location = meetingLocations.find((loc) => loc.data.id === volunteerEventFrontmatter.meetingLocation.predefinedLocation);
     if (!location) {

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { MeetingLocationParser } from '@/utils/EventData';
+import { MeetingLocationParser, type MeetingLocation, type VolunteerEvent } from '@/utils/EventData';
 import { formatShortMonthDayYear } from '@/utils/date';
-import type { MeetingLocation, VolunteerEvent } from '@/typings';
 
 const props = defineProps<{
   volunteerEvent: VolunteerEvent;
