@@ -32,39 +32,35 @@ const tangibleUses = [
   "Restoration materials",
 ];
 
-const matchedGiftExamples = [
+const campaignResults = [
   {
-    gift: "$10",
-    matched: "$30",
+    label: "Community gifts",
+    value: donationDrive.raisedFormatted,
   },
   {
-    gift: "$25",
-    matched: "$75",
+    label: "Matching funds unlocked",
+    value: donationDrive.matchedFundsFormatted,
   },
   {
-    gift: "$50",
-    matched: "$150",
-  },
-  {
-    gift: "$100",
-    matched: "$300",
+    label: "Total for the park",
+    value: donationDrive.totalImpactFormatted,
   },
 ];
 
-const matchProgressLabel = `${donationDrive.name}: ${donationDrive.raisedFormatted} of ${donationDrive.goalFormatted} matched.`;
+const matchProgressLabel = `${donationDrive.name} goal met: ${donationDrive.raisedFormatted} raised, unlocking ${donationDrive.matchedFundsFormatted} in matching funds.`;
 
 const matchDetails = [
   {
-    label: "$1 donated",
-    value: "$3 for the park",
+    label: "Community gifts",
+    value: donationDrive.raisedFormatted,
   },
   {
-    label: "Matched through",
-    value: donationDrive.deadlineLabel,
+    label: "Matching funds unlocked",
+    value: donationDrive.matchedFundsFormatted,
   },
   {
-    label: "Challenge cap",
-    value: donationDrive.challengeCapFormatted,
+    label: "Total impact",
+    value: donationDrive.totalImpactFormatted,
   },
 ];
 
@@ -109,22 +105,22 @@ const givingOptions = [
           </p>
 
           <h1 class="hero-title">
-            Protect the park you love.
+            You did it, Ute Valley!
           </h1>
 
           <p class="hero-intro">
-            Friends of Ute Valley Park is now an independent nonprofit dedicated
-            exclusively to caring for Ute Valley Park. To celebrate this new
-            chapter, every donation is matched {donationDrive.matchRatioLabel} through {donationDrive.deadlineLabel}.
-            Every $1 you give becomes $3 for the park.
+            Our community met the {donationDrive.goalFormatted} Independence Kickoff Fund goal,
+            unlocking {donationDrive.matchedFundsFormatted} in matching funds. Together, you created
+            {" "}{donationDrive.totalImpactFormatted} for trails, habitat, and volunteer stewardship
+            in Ute Valley Park. Thank you!
           </p>
 
           <div class="hero-actions" aria-label="Donation page shortcuts">
             <a href="#donation-form" class="button button--brand">
-              Donate Today
+              Keep the Momentum Going
             </a>
             <a href="#why-now" class="text-link">
-              See why now matters
+              See what you made possible
             </a>
           </div>
         </div>
@@ -138,8 +134,7 @@ const givingOptions = [
               <p>
                 Make a one-time or monthly gift through Zeffy. Choose any amount that works for you.
                 Every gift helps keep Ute Valley wild and beautiful.
-                Gifts made through {donationDrive.deadlineLabel} are
-                matched {donationDrive.matchRatioLabel}.
+                Our kickoff match is fully funded, and new gifts keep the work moving.
               </p>
             </div>
 
@@ -159,14 +154,16 @@ const givingOptions = [
         <section class="match-panel" aria-labelledby="match-panel-title">
           <div class="match-panel__copy">
             <p class="match-panel__label">
-              {donationDrive.name}
+              <CheckBadgeIcon aria-hidden="true" />
+              Goal met — thank you!
             </p>
             <h2 id="match-panel-title">
-              {donationDrive.raisedFormatted} of {donationDrive.goalFormatted} matched.
+              Our community unlocked {donationDrive.totalImpactFormatted} for the park.
             </h2>
             <p>
-              Every dollar donated through {donationDrive.deadlineLabel} is
-              matched with two more dollars, up to the {donationDrive.challengeCapFormatted} challenge cap.
+              You gave {donationDrive.raisedFormatted}, met the full kickoff goal, and unlocked
+              {" "}{donationDrive.matchedFundsFormatted} in matching funds. That is a remarkable start
+              to our chapter as an independent nonprofit.
             </p>
           </div>
 
@@ -175,11 +172,11 @@ const givingOptions = [
               <span></span>
             </div>
             <p>
-              {donationDrive.raisedFormatted} of {donationDrive.goalFormatted} matched
+              100% funded — goal met!
             </p>
           </div>
 
-          <dl class="match-panel__details" aria-label="Kickoff matching gift details">
+          <dl class="match-panel__details" aria-label="Kickoff fund results">
             {
               matchDetails.map((item) => (
                 <div>
@@ -241,12 +238,12 @@ const givingOptions = [
       <div class="why-now-layout l-container">
         <div class="why-now-copy">
           <h2>
-            Why donate today?
+            What you made possible
           </h2>
           <p>
-            Gifts made through {donationDrive.deadlineLabel} are matched
-            {donationDrive.matchRatioLabel}. Your gift goes three times as far
-            for local trail work, habitat care, and volunteer stewardship.
+            Reaching our first fundraising goal gives Friends of Ute Valley Park
+            a strong foundation for local trail work, habitat care, and volunteer
+            stewardship.
           </p>
           <p>
             Thousands of people hike, bike, run, and explore Ute Valley Park
@@ -255,12 +252,12 @@ const givingOptions = [
           </p>
         </div>
 
-        <dl class="match-examples" aria-label="Examples of two-to-one matched donations">
+        <dl class="match-examples" aria-label="Independence Kickoff Fund results">
           {
-            matchedGiftExamples.map((example) => (
+            campaignResults.map((result) => (
               <div>
-                <dt>{example.gift} becomes</dt>
-                <dd>{example.matched}</dd>
+                <dt>{result.label}</dt>
+                <dd>{result.value}</dd>
               </div>
             ))
           }
@@ -271,15 +268,14 @@ const givingOptions = [
     <section class="final-donate-cta band l-section content-defer">
       <div class="l-container final-donate-cta__inner">
         <h2>
-          Help launch the next chapter of Ute Valley Park
+          The goal is met. The work continues.
         </h2>
         <p>
-          Every dollar donated through {donationDrive.deadlineLabel} is matched
-          {donationDrive.matchRatioLabel}. Join the community investing in the
-          future of Ute Valley Park.
+          Thank you for giving this new chapter such a strong start. Every new
+          gift builds on that momentum and supports the future of Ute Valley Park.
         </p>
         <a href="#donation-form" class="button button--brand">
-          Donate Today
+          Keep the Momentum Going
         </a>
       </div>
     </section>
@@ -425,8 +421,11 @@ const givingOptions = [
     display: grid;
     gap: 1rem;
     min-width: 0;
-    border-block: 1px solid var(--color-border);
-    padding-block: clamp(1.25rem, 3vw, 1.75rem);
+    border: 2px solid var(--color-brand-muted);
+    border-radius: var(--radius-md);
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    background: var(--color-brand-subtle);
+    box-shadow: var(--shadow-accent-sm);
   }
 
   .match-panel__copy {
@@ -435,6 +434,9 @@ const givingOptions = [
   }
 
   .match-panel__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     width: fit-content;
     margin: 0;
     color: var(--color-brand-strong);
@@ -444,6 +446,11 @@ const givingOptions = [
     letter-spacing: 0.1em;
     line-height: 1;
     text-transform: uppercase;
+  }
+
+  .match-panel__label svg {
+    width: 1.1rem;
+    height: 1.1rem;
   }
 
   .match-panel h2 {
@@ -724,6 +731,10 @@ const givingOptions = [
     min-width: 0;
     background: var(--color-surface);
     padding: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .match-examples div:last-child {
+    grid-column: 1 / -1;
   }
 
   .match-examples dt {

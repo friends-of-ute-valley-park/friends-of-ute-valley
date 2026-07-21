@@ -4,8 +4,10 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0,
 });
 
-const raised = 1968;
+const raised = 2000;
 const goal = 2000;
+const matchedFunds = raised * 2;
+const totalImpact = raised + matchedFunds;
 const progressPercent = Math.min((raised / goal) * 100, 100);
 
 export const donationDrive = {
@@ -16,6 +18,9 @@ export const donationDrive = {
   goal,
   raisedFormatted: currencyFormatter.format(raised),
   goalFormatted: currencyFormatter.format(goal),
+  matchedFundsFormatted: currencyFormatter.format(matchedFunds),
+  totalImpactFormatted: currencyFormatter.format(totalImpact),
+  goalMet: raised >= goal,
   progressPercent,
   progressStyle: `--match-progress: ${progressPercent.toFixed(2)}%`,
   challengeCapFormatted: currencyFormatter.format(goal),

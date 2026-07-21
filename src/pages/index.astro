@@ -184,7 +184,7 @@ const getSeasonalEssentialsForDate = (date: Date) => {
 };
 
 const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
-const matchProgressLabel = `Donate to the ${donationDrive.matchRatioLabel} match. ${donationDrive.raisedFormatted} raised toward the ${donationDrive.goalFormatted} goal.`;
+const matchProgressLabel = `${donationDrive.name} goal met. Our community raised ${donationDrive.raisedFormatted}, unlocking ${donationDrive.matchedFundsFormatted} in matching funds for ${donationDrive.totalImpactFormatted} total impact.`;
 ---
 
 <Layout
@@ -292,7 +292,7 @@ const matchProgressLabel = `Donate to the ${donationDrive.matchRatioLabel} match
                   <span class="icon icon--match">
                     <HeartIcon aria-hidden="true" />
                   </span>
-                  <span>2:1 donation match</span>
+                  <span>Donation match goal met!</span>
                 </dt>
                 <dd class="match-value">
                   <a
@@ -302,11 +302,11 @@ const matchProgressLabel = `Donate to the ${donationDrive.matchRatioLabel} match
                   >
                     <span class="match-copy">
                       <span class="match-total">
-                        <span class="match-raised">{donationDrive.raisedFormatted}</span>
-                        <span class="match-goal">of {donationDrive.goalFormatted}</span>
+                        <span class="match-raised">You did it!</span>
+                        <span class="match-goal">{donationDrive.raisedFormatted} raised</span>
                       </span>
                       <span class="match-cta">
-                        Donate
+                        Celebrate
                         <ChevronRightIcon aria-hidden="true" />
                       </span>
                     </span>
@@ -318,7 +318,7 @@ const matchProgressLabel = `Donate to the ${donationDrive.matchRatioLabel} match
                       <span></span>
                     </span>
                     <span class="match-note">
-                      Every $1 becomes $3 while matching funds last.
+                      Your gifts unlocked {donationDrive.totalImpactFormatted} for Ute Valley Park.
                     </span>
                   </a>
                 </dd>
