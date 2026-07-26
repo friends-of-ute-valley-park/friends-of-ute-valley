@@ -35,7 +35,7 @@
     "@iconify/json": "^2.2.505",
     "oxfmt": "^0.55.0",
     "oxlint": "^1.75.0",
-    "oxlint-tsgolint": "^0.23.0",
+    "oxlint-tsgolint": "^7.0.2001",
     "sharp": "^0.35.3",
     "unplugin-icons": "^23.0.1",
     "vue": "^3.5.40"
