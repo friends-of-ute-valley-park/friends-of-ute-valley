@@ -28,7 +28,7 @@
     "dotenv": "^17.4.2",
     "maplibre-gl": "^6.0.0",
     "resend": "^6.18.0",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "devDependencies": {
     "@astrojs/vue": "^7.0.1",
