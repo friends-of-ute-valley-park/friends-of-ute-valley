@@ -2,7 +2,8 @@ import type { TrailFeatureCollection, TrailProperties } from '@/utils/trailData'
 import { conditionColor, conditionOpacity, difficultyColor, type TrailMapMode, type VisitTrailhead } from '@/utils/trailMapModel';
 import { waitForMapLoad } from '@/utils/waitForMapLoad';
 import { nextTick, onBeforeUnmount, onMounted, readonly, shallowRef, watch, type Ref, type ShallowRef } from 'vue';
-import type { Map as MapLibreMap, Popup, StyleSpecification } from 'maplibre-gl';
+import type { LngLatLike, Map as MapLibreMap, Popup, StyleSpecification } from 'maplibre-gl';
+import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 
 type MapStatus = 'loading' | 'ready' | 'error';
 type UseVisitTrailMapOptions = {
@@ -161,7 +162,7 @@ const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof i
     trailHoverPopup.remove();
   };
 
-  const showTrailPopup = (event: { features?: Array<{ id?: string | number; properties?: Partial<TrailProperties> }>; lngLat?: maplibregl.LngLatLike }) => {
+  const showTrailPopup = (event: { features?: Array<{ id?: string | number; properties?: Partial<TrailProperties> }>; lngLat?: LngLatLike }) => {
     const feature = event.features?.[0];
     const name = feature?.properties?.name;
 
@@ -248,6 +249,8 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
       const [maplibregl, trailData] = await Promise.all([import('maplibre-gl'), loadTrailData(controller.signal)]);
 
       if (controller.signal.aborted || !options.container.value) return;
+
+      maplibregl.setWorkerUrl(maplibreWorkerUrl);
 
       const defaultZoom = window.matchMedia(mobileViewportQuery).matches ? mobileDefaultZoom : desktopDefaultZoom;
       const instance = new maplibregl.Map({
