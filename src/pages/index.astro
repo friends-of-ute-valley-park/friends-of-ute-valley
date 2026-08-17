@@ -189,7 +189,7 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
   title="Home"
   description="Friends of Ute Valley Park helps protect and maintain a 550-acre urban wildland in Colorado Springs through stewardship, education, and community action."
 >
-  <main class="home-page">
+  <div class="home-page">
     <!-- Hero Section: Park Update -->
     <section class="home-hero">
       <Picture
@@ -226,7 +226,7 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
               education.
             </p>
 
-            <div class="home-actions">
+            <nav class="home-actions" aria-label="Homepage actions">
               <a href="/visit/" class="button button--brand">
                 <span class="home-button-content">
                   Plan Visit <ChevronRightIcon class="home-button-icon" />
@@ -235,7 +235,10 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
               <a href="/volunteer/" class="button home-button-secondary">
                 Volunteer
               </a>
-            </div>
+              <a href="/donate/" class="home-support-link">
+                Support the park
+              </a>
+            </nav>
           </div>
 
           <aside class="park-status" aria-labelledby="park-status-title">
@@ -259,6 +262,9 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
                 <dd class="trail-status">
                   <span class="value accent">{trailConditions.status}</span>
                   <span class="trail-status__note">{trailConditions.note}</span>
+                  <a href="/visit/" class="park-status-link">
+                    View trail map &amp; conditions
+                  </a>
                 </dd>
               </div>
 
@@ -279,8 +285,11 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
                   </span>
                   <span>Dog policy</span>
                 </dt>
-                <dd class="value brand">
-                  Leash required
+                <dd class="park-status-policy">
+                  <span class="value brand">Leash required</span>
+                  <a href="/rules/" class="park-status-link">
+                    Read park rules
+                  </a>
                 </dd>
               </div>
 
@@ -502,7 +511,7 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     <div class="leave-no-trace-band content-defer">
       <LeaveNoTrace />
     </div>
-  </main>
+  </div>
 </Layout>
 
 <style>
@@ -667,6 +676,27 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     transform: scale(0.96);
   }
 
+  .home-support-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 0.25rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-label);
+    font-size: var(--text-action);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.4rem;
+    text-transform: uppercase;
+    transition: color var(--duration-fast);
+  }
+
+  .home-support-link:hover {
+    color: var(--color-brand-strong);
+  }
+
   .park-status {
     padding: 1.5rem;
     border-radius: 0.5rem;
@@ -771,6 +801,31 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     font-size: 0.625rem;
     font-weight: 500;
     line-height: 1.35;
+  }
+
+  .park-status .park-status-policy {
+    display: grid;
+    justify-items: end;
+    gap: 0.25rem;
+    margin: 0;
+    text-align: right;
+  }
+
+  .park-status .park-status-link {
+    color: var(--color-brand-strong);
+    font-family: var(--font-label);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    line-height: 1.35;
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25rem;
+    transition: color var(--duration-fast);
+  }
+
+  .park-status .park-status-link:hover {
+    color: var(--color-accent-strong);
   }
 
   .park-status .value.brand {

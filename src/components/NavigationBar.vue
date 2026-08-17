@@ -15,6 +15,7 @@ const menuOpen = shallowRef(false);
 const lntOpen = shallowRef(false);
 const navContainerRef = useTemplateRef<HTMLElement>('navContainerRef');
 const lntDropdown = useTemplateRef<HTMLElement>('lntDropdown');
+const toggleButtonRef = useTemplateRef<HTMLButtonElement>('toggleButtonRef');
 const navHidden = shallowRef(false);
 let lastScrollY = 0;
 let scrollY: Ref<number> = shallowRef(0);
@@ -24,7 +25,18 @@ if (typeof window !== 'undefined') {
 }
 
 watch(scrollY, (current) => {
-  if (menuOpen.value) return;
+  if (menuOpen.value) {
+    lastScrollY = current;
+    return;
+  }
+
+  const navHasFocus = typeof document !== 'undefined' && navContainerRef.value?.contains(document.activeElement);
+  if (navHasFocus) {
+    navHidden.value = false;
+    lastScrollY = current;
+    return;
+  }
+
   if (current > lastScrollY && current > 80) {
     navHidden.value = true;
   } else if (current < lastScrollY) {
@@ -34,7 +46,10 @@ watch(scrollY, (current) => {
 });
 
 watch(menuOpen, (open) => {
-  if (open) navHidden.value = false;
+  if (open) {
+    navHidden.value = false;
+    lastScrollY = scrollY.value;
+  }
 });
 
 watch(navHidden, (hidden) => {
@@ -42,23 +57,35 @@ watch(navHidden, (hidden) => {
 });
 
 function toggleMenu() {
-  menuOpen.value = !menuOpen.value;
+  if (menuOpen.value) {
+    closeMenu();
+    return;
+  }
+
+  menuOpen.value = true;
   navHidden.value = false;
 }
 
-function closeMenu() {
+function closeMenu(restoreFocus = true) {
+  const wasOpen = menuOpen.value;
   menuOpen.value = false;
   navHidden.value = false;
+  lastScrollY = scrollY.value;
+
+  if (restoreFocus && wasOpen) {
+    toggleButtonRef.value?.focus({ preventScroll: true });
+  }
 }
 
 function onKeydown(event: KeyboardEvent) {
   if (event.key === 'Escape' && menuOpen.value) {
+    event.preventDefault();
     closeMenu();
   }
 }
 
 onClickOutside(navContainerRef, () => {
-  closeMenu();
+  if (menuOpen.value) closeMenu();
 });
 
 onClickOutside(lntDropdown, () => {
@@ -100,7 +127,7 @@ const navigation = [
 </script>
 
 <template>
-  <div ref="navContainerRef" :class="['site-nav site-nav-shell', navHidden && 'site-nav-shell--hidden']" @keydown.escape="onKeydown">
+  <div ref="navContainerRef" :class="['site-nav site-nav-shell', navHidden && 'site-nav-shell--hidden']" @keydown.escape="onKeydown" @focusin="navHidden = false">
     <nav aria-label="Primary">
       <div class="inner l-container">
         <div class="bar">
@@ -170,7 +197,7 @@ const navigation = [
 
           <!-- Mobile menu button -->
           <div class="mobile-toggle-wrap">
-            <button type="button" :aria-expanded="menuOpen" aria-controls="mobile-menu" class="toggle" @click="toggleMenu">
+            <button ref="toggleButtonRef" type="button" :aria-expanded="menuOpen" aria-controls="mobile-menu" class="toggle" @click="toggleMenu">
               <span class="sr-only">{{ menuOpen ? 'Close main menu' : 'Open main menu' }}</span>
               <span class="toggle-icons">
                 <HeroiconsBars3 :class="['toggle-icon', menuOpen ? 'toggle-icon hidden' : 'toggle-icon visible']" aria-hidden="true" />
@@ -192,7 +219,7 @@ const navigation = [
           v-for="item in navigation"
           :key="item.name"
           :href="item.href"
-          @click="closeMenu"
+          @click="closeMenu(false)"
           :aria-current="item.current ? 'page' : undefined"
           :class="['mobile-link', item.current && 'mobile-link current']"
           >{{ item.name }}
@@ -206,7 +233,7 @@ const navigation = [
           v-for="item in leaveNoTraceMenuItems"
           :key="item.name"
           :href="item.href"
-          @click="closeMenu"
+          @click="closeMenu(false)"
           :aria-current="item.current ? 'page' : undefined"
           :class="['mobile-link sub', item.current && 'mobile-link current']"
           >{{ item.name }}
@@ -460,8 +487,8 @@ const navigation = [
 
 .site-nav .toggle {
   display: inline-flex;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--color-border);
@@ -527,8 +554,13 @@ const navigation = [
   inset-inline: 0;
   top: 100%;
   z-index: 10;
+  max-height: calc(100vh - 5rem);
+  max-height: calc(100dvh - 5rem);
   border-top: 1px solid var(--color-border);
   background: var(--color-surface);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-block: 1rem;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%);
 }
 
@@ -538,6 +570,7 @@ const navigation = [
 
 .site-nav .mobile-link {
   display: block;
+  min-height: 2.75rem;
   border-bottom: 1px solid var(--color-border-muted);
   color: var(--color-text-muted);
   padding: 1rem 1.5rem;
@@ -577,6 +610,11 @@ const navigation = [
   border-top: 1px solid var(--color-border);
   background: var(--color-page);
   padding: 1.5rem;
+}
+
+.site-nav .mobile-social :deep(.social-links .link.button) {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
 }
 
 .site-nav-menu-enter-active,

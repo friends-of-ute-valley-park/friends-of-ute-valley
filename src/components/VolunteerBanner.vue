@@ -5,6 +5,7 @@ import { formatShortMonthDay } from '@/utils/date';
 
 interface Event {
   date: Date;
+  time: string;
 }
 
 const props = defineProps<{
@@ -15,14 +16,14 @@ const hasUpcomingVolunteerEvent = computed(() => {
   return props.events?.length > 0;
 });
 
-const eventDates = computed(() => {
+const eventSchedule = computed(() => {
   if (props.events === undefined) {
     return '';
   }
 
   return props.events
     .map((item) => {
-      return formatShortMonthDay(item.date);
+      return `${formatShortMonthDay(item.date)} · ${item.time}`;
     })
     .join(' + ');
 });
@@ -35,12 +36,12 @@ const eventDates = computed(() => {
         <div class="message">
           <div class="pulse"></div>
           <p>
-            Upcoming Volunteer Event: <span>Scheduled for {{ eventDates }}</span>
+            Upcoming Volunteer Event: <span>Scheduled for {{ eventSchedule }}</span>
           </p>
         </div>
 
         <a href="/volunteer/" class="link">
-          Learn More
+          View Volunteer Schedule
           <HeroiconsArrowRight class="icon" />
         </a>
       </div>
