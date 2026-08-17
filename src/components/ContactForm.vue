@@ -347,7 +347,7 @@ watch(data, (response) => {
 }
 
 .contact-form .volunteer-note {
-  border-left: 4px solid var(--color-accent);
+  border: 1px solid var(--color-border-inverse);
   background: var(--color-brand-strong);
   color: var(--color-text-inverse);
   padding: 1.5rem;

@@ -103,40 +103,6 @@ const locationInformation = MeetingLocationParser(entry.data, meetingLocations);
 </Layout>
 
 <style>
-  .event-detail {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .event-detail::before,
-  .event-detail::after {
-    position: absolute;
-    z-index: 0;
-    display: none;
-    width: 25rem;
-    height: 24rem;
-    background-image: radial-gradient(var(--color-border-muted) 2px, transparent 2px);
-    background-size: 20px 20px;
-    content: '';
-    pointer-events: none;
-  }
-
-  .event-detail::before {
-    top: 8rem;
-    left: calc(50% + 24rem);
-  }
-
-  .event-detail::after {
-    top: 30rem;
-    right: calc(50% + 24rem);
-  }
-
-  .event-detail .hero,
-  .event-detail .inner {
-    position: relative;
-    z-index: 1;
-  }
-
   .event-detail .title {
     margin: 0;
     color: var(--color-text-strong);
@@ -213,10 +179,4 @@ const locationInformation = MeetingLocationParser(entry.data, meetingLocations);
     font-weight: 700;
   }
 
-  @media (min-width: 64rem) {
-    .event-detail::before,
-    .event-detail::after {
-      display: block;
-    }
-  }
 </style>

@@ -555,10 +555,6 @@ const navigation = [
   color: var(--color-brand);
 }
 
-.site-nav .mobile-link.current {
-  border-left: 4px solid var(--color-brand);
-}
-
 .site-nav .mobile-link.sub {
   padding-inline: 2rem;
 }
