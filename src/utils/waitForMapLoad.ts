@@ -1,4 +1,4 @@
-import type { Map as MapLibreMap } from 'maplibre-gl';
+import type { ErrorEvent, Map as MapLibreMap } from 'maplibre-gl';
 
 export const waitForMapLoad = (mapInstance: MapLibreMap, signal: AbortSignal) => {
   if (mapInstance.loaded()) return Promise.resolve();
@@ -13,7 +13,7 @@ export const waitForMapLoad = (mapInstance: MapLibreMap, signal: AbortSignal) =>
       cleanup();
       resolve();
     };
-    const handleError = (event: { error?: Error }) => {
+    const handleError = (event: ErrorEvent) => {
       cleanup();
       reject(event.error ?? new Error('The map basemap failed to load'));
     };
