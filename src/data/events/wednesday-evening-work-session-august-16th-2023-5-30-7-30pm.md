@@ -11,4 +11,4 @@ time: 5:30-7:30PM
 
 Come join the Friends of Ute Valley on our Wednesday night volunteer work session! We will be focused on closing, rerouting and drainage in the central valley as per the master plan. Please wear pants and closed-toe shoes, bring work gloves, eye protection, sunscreen, water, and snacks.
 
-You *must* register to participate in this event.
+You _must_ register to participate in this event.

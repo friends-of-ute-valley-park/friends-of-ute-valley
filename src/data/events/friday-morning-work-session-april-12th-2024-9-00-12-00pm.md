@@ -13,7 +13,7 @@ time: 9:00AM-12:00PM
 
 Come join the Friends of Ute Valley enjoy a beautiful morning of removing mullein. Please wear closed-toed shoes, bring work gloves, sunscreen, water and snacks. Meet up location at the Popes Valley entrance to Ute Valley Park. From there we will be dividing up into teams to accomplish our goals.
 
-You *must* register to participate in this event.
+You _must_ register to participate in this event.
 
 **All minors** participating in the workday **must turn in** a hard copy of the **liability waiver** filled out with parental signature. Liability waiver is accessible at the following address:
 
