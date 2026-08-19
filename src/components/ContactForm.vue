@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, reactive, shallowRef, useTemplateRef, watch } from 'vue';
-import { useFetch } from '@vueuse/core';
+import { computed, onBeforeUnmount, onMounted, reactive, shallowRef, useTemplateRef } from 'vue';
 import HeroiconsMegaphone from 'virtual:icons/heroicons/megaphone';
 import MdiLoading from 'virtual:icons/mdi/loading';
-
-interface TurnstileAPI {
-  render(container: HTMLElement | string, options: { sitekey: string; theme?: 'light' | 'dark' | 'auto'; size?: 'normal' | 'compact' | 'flexible' }): string;
-  remove?(widgetId: string): void;
-}
+import { resetTurnstileAfterSubmission, type TurnstileAPI } from './contactFormTurnstile';
+import { runFormSubmission, type FormLifecycle } from './formLifecycle';
 
 declare global {
   interface Window {
@@ -33,6 +29,10 @@ const getInitialCategory = (defaultOption: string | null): ContactOption => {
 };
 
 const displayMessage = shallowRef('');
+const lifecycle = shallowRef<FormLifecycle>('idle');
+const isSubmitting = computed(() => lifecycle.value === 'submitting');
+const isSuccess = computed(() => lifecycle.value === 'success');
+const isError = computed(() => lifecycle.value === 'error');
 const form = reactive({
   name: '',
   email: '',
@@ -43,13 +43,6 @@ const form = reactive({
 const formElement = useTemplateRef<HTMLFormElement>('formElement');
 const turnstileContainer = useTemplateRef<HTMLElement>('turnstileContainer');
 const turnstileWidgetId = shallowRef<string | null>(null);
-const formPayload = shallowRef<FormData | null>(null);
-
-const { isFetching, isFinished, data, error, execute } = useFetch('/contact-form', {
-  immediate: false,
-})
-  .post(formPayload)
-  .json();
 
 async function ensureTurnstileScript(): Promise<void> {
   if (typeof window === 'undefined' || window.turnstile) {
@@ -101,33 +94,50 @@ async function loadAndRenderTurnstile() {
   }
 }
 
-function submit() {
-  error.value = null;
+async function submit() {
   displayMessage.value = '';
 
-  if (form.name === '' || form.email === '' || form.message === '') {
-    error.value = 'Incomplete form';
-    displayMessage.value = 'Please fill out your name, email, and message before sending.';
-    return;
+  let turnstileToken = '';
+  const result = await runFormSubmission(lifecycle, {
+    validate: () => {
+      if (form.name === '' || form.email === '' || form.message === '') {
+        displayMessage.value = 'Please fill out your name, email, and message before sending.';
+        return false;
+      }
+
+      turnstileToken = formElement.value?.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]')?.value ?? '';
+      if (!turnstileToken) {
+        displayMessage.value = 'Please complete the verification step, then try again.';
+        return false;
+      }
+
+      return true;
+    },
+    request: () => {
+      const nextPayload = new FormData();
+      nextPayload.append('name', form.name);
+      nextPayload.append('email', form.email);
+      nextPayload.append('category', form.category);
+      nextPayload.append('message', form.message);
+      nextPayload.append('cf-turnstile-response', turnstileToken);
+
+      return fetch('/contact-form', {
+        method: 'POST',
+        body: nextPayload,
+      });
+    },
+  });
+  resetTurnstileAfterSubmission(window.turnstile, turnstileWidgetId.value, result.submitted);
+
+  if (lifecycle.value === 'success') {
+    displayMessage.value = "Thanks for reaching out. We'll reply within 2–3 business days.";
+    form.name = '';
+    form.email = '';
+    form.message = '';
+    form.category = getInitialCategory(props.defaultOption);
+  } else if (!displayMessage.value) {
+    displayMessage.value = result.data?.message || 'Please try again in a moment.';
   }
-
-  const turnstileToken = formElement.value?.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]')?.value;
-
-  if (!turnstileToken) {
-    error.value = 'Verification failure';
-    displayMessage.value = 'Please complete the verification step, then try again.';
-    return;
-  }
-
-  const nextPayload = new FormData();
-  nextPayload.append('name', form.name);
-  nextPayload.append('email', form.email);
-  nextPayload.append('category', form.category);
-  nextPayload.append('message', form.message);
-  nextPayload.append('cf-turnstile-response', turnstileToken);
-
-  formPayload.value = nextPayload;
-  execute();
 }
 
 onMounted(() => {
@@ -138,16 +148,6 @@ onBeforeUnmount(() => {
   if (turnstileWidgetId.value && window.turnstile?.remove) {
     window.turnstile.remove(turnstileWidgetId.value);
   }
-});
-
-watch(data, (response) => {
-  if (!response?.status) return;
-
-  displayMessage.value = "Thanks for reaching out. We'll reply within 2–3 business days.";
-  form.name = '';
-  form.email = '';
-  form.message = '';
-  form.category = getInitialCategory(props.defaultOption);
 });
 </script>
 
@@ -210,8 +210,8 @@ watch(data, (response) => {
               <div ref="turnstileContainer" class="cf-turnstile"></div>
 
               <div>
-                <button :disabled="isFetching" type="submit" class="button button--brand submit">
-                  <MdiLoading v-if="isFetching" class="loading-icon" />
+                <button :disabled="isSubmitting" type="submit" class="button button--brand submit">
+                  <MdiLoading v-if="isSubmitting" class="loading-icon" />
                   Send Message
                 </button>
               </div>
@@ -224,18 +224,18 @@ watch(data, (response) => {
               leave-active-class="contact-form-status-leave-active"
               leave-from-class="contact-form-status-leave-from"
               leave-to-class="contact-form-status-leave-to">
-              <div v-if="isFinished || error" :class="['status', error ? 'status error' : 'status success']" aria-live="polite">
+              <div v-if="isSuccess || isError" :class="['status', isError ? 'status error' : 'status success']" aria-live="polite">
                 <div class="status-content">
                   <div class="status-icon-wrap">
-                    <HeroiconsMegaphone :class="['status-icon', error ? 'status-icon error' : 'status-icon success']" />
+                    <HeroiconsMegaphone :class="['status-icon', isError ? 'status-icon error' : 'status-icon success']" />
                   </div>
                   <div>
-                    <h3 :class="['status-title', error ? 'status-title error' : 'status-title success']">
-                      {{ error ? 'Message Not Sent' : 'Message Received' }}
+                    <h3 :class="['status-title', isError ? 'status-title error' : 'status-title success']">
+                      {{ isError ? 'Message Not Sent' : 'Message Received' }}
                     </h3>
-                    <p :class="['status-message', error ? 'status-message error' : 'status-message success']">
+                    <p :class="['status-message', isError ? 'status-message error' : 'status-message success']">
                       <span v-if="displayMessage">{{ displayMessage }}</span>
-                      <span v-else-if="error">Please try again in a moment.</span>
+                      <span v-else-if="isError">Please try again in a moment.</span>
                     </p>
                   </div>
                 </div>

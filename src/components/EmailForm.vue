@@ -1,24 +1,20 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef } from 'vue';
-import { useFetch } from '@vueuse/core';
 import MdiAccountOutline from 'virtual:icons/mdi/account-outline';
 import MdiEmailOutline from 'virtual:icons/mdi/email-outline';
 import MdiLoading from 'virtual:icons/mdi/loading';
+import { runFormSubmission, type FormLifecycle } from './formLifecycle';
 
 const nameIsError = shallowRef(false);
 const emailIsError = shallowRef(false);
 const emailValidationError = shallowRef('');
 const nameValidationError = shallowRef('');
+const failureMessage = shallowRef('');
+const lifecycle = shallowRef<FormLifecycle>('idle');
+const isSubmitting = computed(() => lifecycle.value === 'submitting');
+const isSuccess = computed(() => lifecycle.value === 'success');
+const isError = computed(() => lifecycle.value === 'error');
 const payload = ref({ name: '', email: '' });
-
-const requestBody = computed(() => ({ payload: payload.value }));
-
-const { isFetching, isFinished, error, data, execute } = useFetch('/email-signup', {
-  updateDataOnError: true,
-  immediate: false,
-})
-  .post(requestBody)
-  .json();
 
 const validateName = (requireValue = true) => {
   const name = payload.value.name.trim();
@@ -50,19 +46,34 @@ const validateEmail = (requireValue = true) => {
 const validate = () => {
   validateName();
   validateEmail();
+  return !nameIsError.value && !emailIsError.value;
 };
 
-const submit = (event: SubmitEvent) => {
+const submit = async (event: SubmitEvent) => {
   event.preventDefault();
-  validate();
-  if (nameIsError.value || emailIsError.value) return;
-  execute();
+  failureMessage.value = '';
+
+  const result = await runFormSubmission(lifecycle, {
+    validate,
+    request: () =>
+      fetch('/email-signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ payload: payload.value }),
+      }),
+  });
+
+  if (lifecycle.value === 'error' && result.submitted) {
+    failureMessage.value = result.data?.message || 'Please try again in a moment.';
+  }
 };
 </script>
 
 <template>
   <div class="email-signup">
-    <div v-if="!isFinished || error">
+    <div v-if="!isSuccess">
       <form class="form" @submit="submit">
         <label for="name" class="sr-only">Name</label>
         <div class="field">
@@ -73,7 +84,7 @@ const submit = (event: SubmitEvent) => {
             type="text"
             name="name"
             autocomplete="name"
-            :disabled="isFetching"
+            :disabled="isSubmitting"
             :class="['input form-input form-input--newsletter', nameIsError && 'form-input--invalid']"
             placeholder="Your name..."
             :aria-invalid="nameIsError"
@@ -90,15 +101,15 @@ const submit = (event: SubmitEvent) => {
             name="email"
             autocomplete="email"
             spellcheck="false"
-            :disabled="isFetching"
+            :disabled="isSubmitting"
             :class="['input form-input form-input--newsletter', emailIsError && 'form-input--invalid']"
             placeholder="Email address..."
             :aria-invalid="emailIsError"
             aria-describedby="form-errors"
             @blur="validateEmail(false)" />
         </div>
-        <button :disabled="isFetching" type="submit" class="button button--accent button--full submit">
-          <MdiLoading v-if="isFetching" class="submit-icon loading" />
+        <button :disabled="isSubmitting" type="submit" class="button button--accent button--full submit">
+          <MdiLoading v-if="isSubmitting" class="submit-icon loading" />
           <MdiEmailOutline v-else class="submit-icon" aria-hidden="true" />
           Get updates
         </button>
@@ -113,13 +124,13 @@ const submit = (event: SubmitEvent) => {
       </p>
     </div>
 
-    <div v-if="isFinished && !error">
+    <div v-if="isSuccess">
       <p class="success">You're on the list. Check your email to confirm your subscription.</p>
     </div>
 
-    <div v-if="error" class="failure">
+    <div v-if="isError && failureMessage" class="failure">
       <h2>We couldn't sign you up yet.</h2>
-      {{ data?.message || 'Please try again in a moment.' }}
+      {{ failureMessage }}
     </div>
   </div>
 </template>
