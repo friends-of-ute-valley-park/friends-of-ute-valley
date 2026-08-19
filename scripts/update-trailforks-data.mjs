@@ -3,6 +3,7 @@ import 'dotenv/config';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { assertTrailDataCounts, assertTrailFeatureCollection, assertTrailSummary } from '../src/utils/trailData.ts';
 import { trailConditionById } from '../src/utils/trailTaxonomy.ts';
 
 const API_BASE_URL = 'https://www.trailforks.com/api/1';
@@ -63,7 +64,11 @@ const parseTrack = (track, trailId) => {
     throw new Error(`Trail ${trailId} has invalid track geometry`);
   }
 
-  return latitudes.map((latitude, index) => [Number(longitudes[index]), Number(latitude)]);
+  return latitudes.map((latitude, index) => {
+    const coordinate = [Number(longitudes[index]), Number(latitude)];
+    if (!coordinate.every(Number.isFinite)) throw new Error(`Trail ${trailId} has non-finite track coordinates`);
+    return coordinate;
+  });
 };
 
 const ageBucket = (days) => {
@@ -166,6 +171,10 @@ const mapData = {
   type: 'FeatureCollection',
   features,
 };
+
+assertTrailFeatureCollection(mapData);
+assertTrailSummary(summary);
+assertTrailDataCounts(mapData, summary);
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputDirectory = path.join(root, 'public', 'data');

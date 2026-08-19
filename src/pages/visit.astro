@@ -8,8 +8,10 @@ import DogImage from "../assets/images/dog.jpg";
 import LeaveNoTrace from "@components/LeaveNoTrace.astro";
 import VisitTrailExplorer from "@components/VisitTrailExplorer.vue";
 import { getSortedTrailheads } from "@/utils/content";
+import { assertTrailSummary } from "@/utils/trailData";
 import trailConditions from "@/data/generated/trailforks-summary.json";
 import type { VisitTrailhead } from "@/utils/trailMapModel";
+assertTrailSummary(trailConditions);
 const sortedTrailheads = await getSortedTrailheads();
 const mapTrailheads: VisitTrailhead[] = sortedTrailheads.map((trailhead) => ({
   id: String(trailhead.id),

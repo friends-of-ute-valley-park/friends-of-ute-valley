@@ -1,4 +1,4 @@
-import type { TrailFeatureCollection, TrailProperties } from '@/utils/trailData';
+import { assertTrailFeatureCollection, type TrailFeatureCollection, type TrailProperties } from '@/utils/trailData';
 import { trailMapModes, type TrailMapMode, type VisitTrailhead } from '@/utils/trailMapModel';
 import { waitForMapLoad } from '@/utils/waitForMapLoad';
 import { nextTick, onBeforeUnmount, onMounted, readonly, shallowRef, watch, type Ref, type ShallowRef } from 'vue';
@@ -66,7 +66,9 @@ const loadTrailData = async (signal: AbortSignal): Promise<TrailFeatureCollectio
     throw new Error(`Trail data failed to load: ${response.status}`);
   }
 
-  return (await response.json()) as TrailFeatureCollection;
+  const trailData: unknown = await response.json();
+  assertTrailFeatureCollection(trailData);
+  return trailData;
 };
 
 const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCollection, mode: TrailMapMode) => {
