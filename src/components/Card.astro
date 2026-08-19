@@ -3,9 +3,8 @@ export interface Props {
   title: string;
   image: ImageMetadata;
   previewText: string;
-  href: string | undefined;
+  href: string;
   publishedOn: Date;
-  canBeWide?: boolean | undefined;
 }
 
 const { title, image, publishedOn, href, previewText } = Astro.props as Props;
