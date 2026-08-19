@@ -18,6 +18,11 @@ export type TrailMapLegendItem = {
   treatment?: 'faded';
 };
 
+type TrailMapPaint = {
+  'line-color': DataDrivenPropertyValueSpecification<string>;
+  'line-opacity': DataDrivenPropertyValueSpecification<number>;
+};
+
 const palette = {
   green: '#2f7d4a',
   blue: '#2367a5',
@@ -73,13 +78,21 @@ export const conditionOpacity: DataDrivenPropertyValueSpecification<number> = [
   0.54,
 ];
 
-export const trailMapModes: Record<TrailMapMode, { label: string; legend: TrailMapLegendItem[] }> = {
+export const trailMapModes: Record<TrailMapMode, { label: string; legend: TrailMapLegendItem[]; paint: TrailMapPaint }> = {
   difficulty: {
     label: 'Trail difficulty',
     legend: [...difficultyCategories.map(({ label, color }) => ({ label, color })), { label: 'Access / unknown', color: palette.gray }],
+    paint: {
+      'line-color': difficultyColor,
+      'line-opacity': 0.92,
+    },
   },
   conditions: {
     label: 'Recent conditions',
     legend: [...conditionCategories.map(({ label, color }) => ({ label, color })), { label: 'Faded = older / assumed', color: palette.gray, treatment: 'faded' }],
+    paint: {
+      'line-color': conditionColor,
+      'line-opacity': conditionOpacity,
+    },
   },
 };

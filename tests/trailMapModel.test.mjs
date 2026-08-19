@@ -1,10 +1,21 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { conditionCategoryKeys, conditionColor, difficultyColor, trailMapModes } from '../src/utils/trailMapModel.ts';
+import { conditionCategoryKeys, conditionColor, conditionOpacity, difficultyColor, trailMapModes } from '../src/utils/trailMapModel.ts';
 import { trailConditionKeys } from '../src/utils/trailTaxonomy.ts';
 
 await describe('trail map model', async () => {
+  await it('assigns each mode its expected line paint', () => {
+    assert.deepEqual(trailMapModes.difficulty.paint, {
+      'line-color': difficultyColor,
+      'line-opacity': 0.92,
+    });
+    assert.deepEqual(trailMapModes.conditions.paint, {
+      'line-color': conditionColor,
+      'line-opacity': conditionOpacity,
+    });
+  });
+
   await it('derives every difficulty legend color from the MapLibre expression', () => {
     const expressionColors = new Set(difficultyColor.filter((value) => typeof value === 'string' && value.startsWith('#')));
 

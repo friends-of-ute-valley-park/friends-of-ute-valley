@@ -1,5 +1,5 @@
 import type { TrailFeatureCollection, TrailProperties } from '@/utils/trailData';
-import { conditionColor, conditionOpacity, difficultyColor, type TrailMapMode, type VisitTrailhead } from '@/utils/trailMapModel';
+import { trailMapModes, type TrailMapMode, type VisitTrailhead } from '@/utils/trailMapModel';
 import { waitForMapLoad } from '@/utils/waitForMapLoad';
 import { nextTick, onBeforeUnmount, onMounted, readonly, shallowRef, watch, type Ref, type ShallowRef } from 'vue';
 import type { LngLatLike, Map as MapLibreMap, Popup, StyleSpecification } from 'maplibre-gl';
@@ -69,7 +69,9 @@ const loadTrailData = async (signal: AbortSignal): Promise<TrailFeatureCollectio
   return (await response.json()) as TrailFeatureCollection;
 };
 
-const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCollection) => {
+const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCollection, mode: TrailMapMode) => {
+  const modePaint = trailMapModes[mode].paint;
+
   mapInstance.addSource(trailSourceId, {
     type: 'geojson',
     data: trailData,
@@ -95,8 +97,7 @@ const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCol
     type: 'line',
     source: trailSourceId,
     paint: {
-      'line-color': difficultyColor,
-      'line-opacity': 0.92,
+      ...modePaint,
       'line-width': [
         'interpolate',
         ['linear'],
@@ -134,9 +135,9 @@ const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCol
 const applyMapMode = (mapInstance: MapLibreMap, mode: TrailMapMode) => {
   if (!mapInstance.getLayer(trailLineLayerId)) return;
 
-  const showingConditions = mode === 'conditions';
-  mapInstance.setPaintProperty(trailLineLayerId, 'line-color', showingConditions ? conditionColor : difficultyColor);
-  mapInstance.setPaintProperty(trailLineLayerId, 'line-opacity', showingConditions ? conditionOpacity : 0.92);
+  const modePaint = trailMapModes[mode].paint;
+  mapInstance.setPaintProperty(trailLineLayerId, 'line-color', modePaint['line-color']);
+  mapInstance.setPaintProperty(trailLineLayerId, 'line-opacity', modePaint['line-opacity']);
 };
 
 const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof import('maplibre-gl')) => {
@@ -281,7 +282,7 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
       await waitForMapLoad(instance, controller.signal);
       if (controller.signal.aborted) return;
 
-      installTrailLayers(instance, trailData);
+      installTrailLayers(instance, trailData, options.mode.value);
       applyMapMode(instance, options.mode.value);
       installTrailInteractions(instance, maplibregl);
 
