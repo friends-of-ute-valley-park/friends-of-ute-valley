@@ -6,7 +6,8 @@ description: Come join the Friends of Ute Valley on our Wednesday night
   Please wear pants and closed-toe shoes, bring work gloves, sunscreen, water,
   and snacks.
 meetingLocation:
-  predefinedLocation: 1
+  kind: trailhead
+  trailheadId: 1
 link: https://cerv.is/m?0132gEuYtss
 time: 5:30-7:30PM
 ---

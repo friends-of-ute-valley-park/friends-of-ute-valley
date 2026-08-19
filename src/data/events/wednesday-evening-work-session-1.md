@@ -3,7 +3,8 @@ title: Wednesday Evening Work Session
 date: 2021-06-03T03:21:05.366Z
 description: Continue work on the Winding Woods reroute near the Popes Valley entrance
 meetingLocation:
-  predefinedLocation: 5
+  kind: trailhead
+  trailheadId: 5
 link: https://cerv.is/m?0132gSACT8v
 time: 5:30-7:30pm
 ---

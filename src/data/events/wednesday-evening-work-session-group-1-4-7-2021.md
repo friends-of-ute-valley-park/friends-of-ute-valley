@@ -4,7 +4,8 @@ date: 2021-04-07T23:30:00.000Z
 description: Come join the Friends of Ute Valley as we kick off our Wednesday
   night volunteer work sessions for the 2021 season!
 meetingLocation:
-  predefinedLocation: 4
+  kind: trailhead
+  trailheadId: 4
 link: https://cerv.is/m?0132gHs2WJ3
 time: 5:30 PM
 ---

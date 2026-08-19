@@ -3,7 +3,8 @@ title: Wednesday Evening Work Session - 7/7/2021
 date: 2021-07-07T23:29:50.077Z
 description: Trail reclamation to prepare for the regional trail though Ute Valley Park.
 meetingLocation:
-  predefinedLocation: 1
+  kind: trailhead
+  trailheadId: 1
 link: https://cerv.is/m?0132gP0JHi3
 time: 5:30-7:30pm
 ---

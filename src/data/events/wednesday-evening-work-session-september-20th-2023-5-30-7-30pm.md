@@ -4,7 +4,8 @@ date: 2023-09-20T20:22:28.568Z
 description: Come join the Friends of Ute Valley on our Wednesday night
   volunteer work session!
 meetingLocation:
-  predefinedLocation: 4
+  kind: trailhead
+  trailheadId: 4
   notes: Top of the hill at the Pinon Valley entrance to Ute Valley Park
 link: https://cerv.is/0132gFaeXrM
 time: 5:30-7:30PM

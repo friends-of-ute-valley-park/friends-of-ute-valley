@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { MeetingLocationParser, type MeetingLocation, type VolunteerEvent } from '@/utils/EventData';
+import { resolveMeetingLocation, type MeetingLocation, type VolunteerEvent } from '@/utils/EventData';
 import { formatShortMonthDayYear } from '@/utils/date';
 
 const props = defineProps<{
@@ -8,9 +8,9 @@ const props = defineProps<{
   meetingLocations: MeetingLocation[];
 }>();
 
-const locationInformation = computed(() => MeetingLocationParser(props.volunteerEvent.data, props.meetingLocations));
-const meetingLocation = computed(() => locationInformation.value.name ?? '');
-const directionsLink = computed(() => locationInformation.value.directionsLink ?? '');
+const locationInformation = computed(() => resolveMeetingLocation(props.volunteerEvent.data, props.meetingLocations));
+const meetingLocation = computed(() => locationInformation.value.name);
+const directionsLink = computed(() => locationInformation.value.directionsLink);
 
 const formattedDate = computed(() => {
   return formatShortMonthDayYear(props.volunteerEvent.data.date);

@@ -3,7 +3,8 @@ title: 3 Days 3 Parks 2023 Volunteer Session!
 date: 2023-04-29T20:00:19.109Z
 description: The 3 Parks in 3 Days - Earth Day Weekend event is back!
 meetingLocation:
-  predefinedLocation: 2
+  kind: trailhead
+  trailheadId: 2
 link: https://cerv.is/0132gQiPEGc
 time: 9:00AM-1:00PM
 ---

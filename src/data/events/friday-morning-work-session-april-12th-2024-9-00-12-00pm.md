@@ -6,7 +6,8 @@ description: 'Come join the Friends of Ute Valley enjoy a beautiful morning of
   water and snacks. Meet up location at the Popes Valley entrance to Ute Valley
   Park. From there we will be dividing up into teams to accomplish our goals. '
 meetingLocation:
-  predefinedLocation: 5
+  kind: trailhead
+  trailheadId: 5
 link: https://www.cervistech.com/acts/console.php?console_id=0132&console_type=event_list&ht=1&event_id=4231
 time: 9:00AM-12:00PM
 ---

@@ -4,7 +4,8 @@ date: 2023-09-16T18:15:38.323Z
 description: Come join the Friends of Ute Valley on a special Saturday session
   as we put on the finishing touches of the Bea-UTE-iful Loop reroute!
 meetingLocation:
-  predefinedLocation: 2
+  kind: trailhead
+  trailheadId: 2
 link: https://cerv.is/0132ghn2ysS
 time: 9:00AM-1PM
 ---

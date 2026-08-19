@@ -3,7 +3,8 @@ title: Wednesday Evening Work Session - May 20th 2026 5:30-7:30PM
 date: 2026-05-20T17:30:00.000Z
 description: Come join the Friends of Ute Valley for a Wednesday night volunteer event as we work on restoration of social trails and noxious weed removal.
 meetingLocation:
-  predefinedLocation: 2
+  kind: trailhead
+  trailheadId: 2
 link: https://cerv.is/0132x5105
 time: 5:30-7:30PM
 ---

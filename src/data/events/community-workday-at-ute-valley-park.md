@@ -4,7 +4,8 @@ date: 2021-10-09T16:18:00.037Z
 description: Saturday Workday in Ute Valley Park in Collaboration with RMFI, Oct
   9, 8:30am-2:30pm
 meetingLocation:
-  predefinedLocation: 1
+  kind: trailhead
+  trailheadId: 1
 link: https://www.rmfi.org/civicrm-event/2227
 time: 8:30am-2:30pm
 ---

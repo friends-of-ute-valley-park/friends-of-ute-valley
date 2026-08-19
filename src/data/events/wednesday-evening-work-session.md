@@ -3,7 +3,8 @@ title: Wednesday Evening Work Session
 date: 2021-04-22T03:23:04.676Z
 description: 3rd Wednesday Work Session 5:30-7:30pm
 meetingLocation:
-  predefinedLocation: 4
+  kind: trailhead
+  trailheadId: 4
 link: https://cerv.is/m?0132gcrXota
 time: 5:30-7:30pm
 ---

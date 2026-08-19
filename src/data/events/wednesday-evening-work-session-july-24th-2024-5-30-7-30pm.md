@@ -4,7 +4,8 @@ date: 2024-07-24T17:30:00.000Z
 description: Come join the Friends of Ute Valley on our Wednesday night
   volunteer work session!
 meetingLocation:
-  predefinedLocation: 2
+  kind: trailhead
+  trailheadId: 2
 link: https://cerv.is/0132x4336
 time: 5:30-7:30 PM
 ---

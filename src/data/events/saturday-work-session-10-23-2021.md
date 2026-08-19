@@ -6,9 +6,9 @@ description: Come join the Friends of Ute Valley on our season ending work
   on this year. Please wear pants and closed-toe shoes, bring work gloves,
   sunscreen, water, and snacks.
 meetingLocation:
-  predefinedLocation: -1
-  alternativeLocation: Intersection of Centennial Boulevard and Crested Butte Circle.
-  alternativeLocationDirectionsLink: https://goo.gl/maps/axQyA8mrMXbjPE5F9
+  kind: custom
+  name: Intersection of Centennial Boulevard and Crested Butte Circle.
+  directionsLink: https://goo.gl/maps/axQyA8mrMXbjPE5F9
   notes: Please be courteous of where you choose to park as this is a residential
     street and not a designated trail head
 link: https://cerv.is/m?0132gLq4jqF

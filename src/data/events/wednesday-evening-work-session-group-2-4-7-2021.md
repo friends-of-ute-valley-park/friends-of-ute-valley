@@ -5,7 +5,8 @@ description: We've been given another signup for a 2nd group since there's a 10
   person limit due to COVID. This group will meet at the same time and place as
   group 1, but will be working in a different area and only have 5 volunteers.
 meetingLocation:
-  predefinedLocation: 4
+  kind: trailhead
+  trailheadId: 4
 link: https://cerv.is/m?0132g0xTgbq
 time: 5:30 PM
 ---

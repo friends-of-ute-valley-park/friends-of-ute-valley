@@ -4,7 +4,8 @@ date: 2021-05-05T14:37:30.541Z
 description: ' We will be working to close down and restore rogue social trails
   along Rattlesnake Ridge.'
 meetingLocation:
-  predefinedLocation: 4
+  kind: trailhead
+  trailheadId: 4
   notes: "We'll be meeting at the top of the hill to the Northeast of the Piñon
     Valley entrance at 5:30pm. Go up the gravel road behind the large gate and
     you'll be there in about a 5-10 minute hike. "

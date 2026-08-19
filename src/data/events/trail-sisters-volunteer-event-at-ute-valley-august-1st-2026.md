@@ -3,7 +3,8 @@ title: Trail Sisters Volunteer Event at Ute Valley
 date: 2026-08-01T09:00:00.000Z
 description: Friends of Ute Valley will be hosting a special volunteer event with Trail Sisters on Saturday August 1st. The work will include noxious weed removal and trash removal along the Regional Trail.
 meetingLocation:
-  predefinedLocation: 2
+  kind: trailhead
+  trailheadId: 2
 link: https://cerv.is/0132x5191
 time: 9:00AM-12:00PM
 ---

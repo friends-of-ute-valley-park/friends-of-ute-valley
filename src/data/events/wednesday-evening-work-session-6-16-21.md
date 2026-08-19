@@ -5,7 +5,8 @@ description: '﻿Come join the Friends of Ute Valley on our Wednesday night
   volunteer work session as we continue work on the Winding Woods reroute near
   the Popes Valley entrance. '
 meetingLocation:
-  predefinedLocation: 5
+  kind: trailhead
+  trailheadId: 5
 link: https://www.cervistech.com/acts/console.php?console_id=0132&console_type=event_list&res_code=iTqXuE&ht=1
 time: 5:30 PM
 ---

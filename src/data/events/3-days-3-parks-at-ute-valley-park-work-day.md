@@ -3,7 +3,8 @@ title: 3 days / 3 Parks at Ute Valley Park Work Day
 date: 2022-04-25T01:46:41.304Z
 description: Weekend Workday in Collaboration With 2 Other Groups!
 meetingLocation:
-  predefinedLocation: 1
+  kind: trailhead
+  trailheadId: 1
   notes: Due to limited parking at the Vindicator trailhead Eagleview Middle
     School has graciously allowed us to utilize their parking lot for the day.
 link: https://cerv.is/0132gJi6rHE

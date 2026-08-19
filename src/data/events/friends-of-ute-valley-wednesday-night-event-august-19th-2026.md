@@ -3,7 +3,8 @@ title: Friends of Ute Valley Wednesday Night Event
 date: 2026-08-19T17:30:00.000Z
 description: Come join the Friends of Ute Valley for a Wednesday night volunteer event as we work on corridor clearing along Rocky Top and complete some social trail closures and restoration.
 meetingLocation:
-  predefinedLocation: 5
+  kind: trailhead
+  trailheadId: 5
 link: https://cerv.is/0132x5212
 time: 5:30-7:30PM
 ---

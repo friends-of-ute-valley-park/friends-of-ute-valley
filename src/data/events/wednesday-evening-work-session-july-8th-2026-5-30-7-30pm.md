@@ -3,7 +3,8 @@ title: Wednesday Evening Work Session - July 8th 2026 5:30-7:30PM
 date: 2026-07-08T17:30:00.000Z
 description: Come join the Friends of Ute Valley for a Wednesday night volunteer event as we work on noxious weed removal and corridor clearing along Rattlesnake Ridge.
 meetingLocation:
-  predefinedLocation: 1
+  kind: trailhead
+  trailheadId: 1
 link: https://cerv.is/0132x5161
 time: 5:30-7:30PM
 ---

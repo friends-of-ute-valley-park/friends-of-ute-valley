@@ -5,9 +5,9 @@ description: 'The 3 days / 3 parks event is a multiday, multi-park collaboration
   between the Friends of Peregrine Parks and Open Spaces, the Guardians of
   Palmer Park, and the Friends of Ute Valley. '
 meetingLocation:
-  predefinedLocation: -1
-  alternativeLocation: '**Meet up location is at Eagleview Middle School.**'
-  alternativeLocationDirectionsLink: http://maps.google.com/maps?q=1325+Vindicator+Dr,+Colorado+Springs,+CO+80919
+  kind: custom
+  name: '**Meet up location is at Eagleview Middle School.**'
+  directionsLink: http://maps.google.com/maps?q=1325+Vindicator+Dr,+Colorado+Springs,+CO+80919
   notes: Due to limited parking Eagleview Middle School has graciously allowed us
     to utilize their parking lot for the day
 link: https://cerv.is/0132x4595

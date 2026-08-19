@@ -4,9 +4,9 @@ date: 2022-08-03T14:30:40.406Z
 description: Come join the Friends of Ute Valley on our Wednesday night
   volunteer work session!
 meetingLocation:
-  predefinedLocation: -1
-  alternativeLocation: Crested Butte entrance (off Centennial and Crested Butte)
-  alternativeLocationDirectionsLink: http://maps.google.com/maps?q=6398+Moccasin+Pass+Ct,+Colorado+Springs,+CO+80919
+  kind: custom
+  name: Crested Butte entrance (off Centennial and Crested Butte)
+  directionsLink: http://maps.google.com/maps?q=6398+Moccasin+Pass+Ct,+Colorado+Springs,+CO+80919
   notes: 6398 Moccasin Pass Ct, Colorado Springs, CO 80919
 link: https://cerv.is/0132gEgifEh
 time: 5:30-7:30PM

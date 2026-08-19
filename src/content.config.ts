@@ -32,12 +32,23 @@ const eventsCollection = defineCollection({
       title: z.string(),
       date: z.date(),
       description: z.string(),
-      meetingLocation: z.object({
-        predefinedLocation: z.number(),
-        alternativeLocation: z.string().optional(),
-        alternativeLocationDirectionsLink: z.string().optional(),
-        notes: z.string().optional(),
-      }),
+      meetingLocation: z.discriminatedUnion('kind', [
+        z
+          .object({
+            kind: z.literal('trailhead'),
+            trailheadId: z.number().int().positive(),
+            notes: z.string().optional(),
+          })
+          .strict(),
+        z
+          .object({
+            kind: z.literal('custom'),
+            name: z.string().min(1),
+            directionsLink: z.string().url(),
+            notes: z.string().optional(),
+          })
+          .strict(),
+      ]),
       link: z.string().optional(),
       time: z.string(),
     }),

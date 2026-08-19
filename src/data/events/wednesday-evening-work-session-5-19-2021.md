@@ -4,7 +4,8 @@ date: 2021-05-19T06:00:00.000Z
 description: ' We will be working to close down and restore rogue social trails
   along Rattlesnake Ridge.'
 meetingLocation:
-  predefinedLocation: 4
+  kind: trailhead
+  trailheadId: 4
   notes: "We'll be meeting at the top of the hill at 5:30pm. Go up the gravel road
     behind the large gate and you'll be there in about a 5-10 minute hike. "
 link: https://cerv.is/m?0132gYFePiM

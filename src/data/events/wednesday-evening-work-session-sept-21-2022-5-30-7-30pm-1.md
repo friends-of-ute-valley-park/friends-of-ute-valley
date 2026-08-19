@@ -4,7 +4,8 @@ date: 2023-04-05T14:54:39.533Z
 description: Come join the Friends of Ute Valley on our first Wednesday night
   volunteer work session for 2023!
 meetingLocation:
-  predefinedLocation: 2
+  kind: trailhead
+  trailheadId: 2
   notes: New Parking Lot located on Ute Valley Trail off Rockrimmon Blvd.
 link: https://cerv.is/0132gH6KG8X
 time: 5:30-7:30PM

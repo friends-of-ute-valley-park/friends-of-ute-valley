@@ -3,7 +3,8 @@ title: Wednesday Evening Work Session - August 5th 2026 5:30-7:30PM
 date: 2026-08-05T17:30:00.000Z
 description: Come join the Friends of Ute Valley for a Wednesday night volunteer event as we work on noxious weed removal around the Vindicator meadow and corridor clearing along Rattlesnake Ridge and Valley View.
 meetingLocation:
-  predefinedLocation: 1
+  kind: trailhead
+  trailheadId: 1
 link: https://cerv.is/0132x5198
 time: 5:30-7:30PM
 ---

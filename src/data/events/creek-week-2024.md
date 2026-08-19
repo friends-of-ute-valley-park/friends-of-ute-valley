@@ -3,7 +3,8 @@ title: Creek Week 2024
 date: 2024-09-28T10:41:00.000Z
 description: Join FUVP this Saturday for Creek Week 2024!
 meetingLocation:
-  predefinedLocation: 3
+  kind: trailhead
+  trailheadId: 3
 link: https://www.fountain-crk.org/creek-week-2024-registration-cc29815
 time: 9:00AM-12:00PM
 ---

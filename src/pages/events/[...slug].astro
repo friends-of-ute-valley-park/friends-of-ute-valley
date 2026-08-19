@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { MeetingLocationParser } from "../../utils/EventData";
+import { resolveMeetingLocation } from "../../utils/EventData";
 import { formatShortMonthDayYear } from "../../utils/date";
 import { Image } from "astro:assets";
 import volunteerImage from "../../assets/images/volunteer.jpg";
@@ -18,7 +18,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 
 const meetingLocations = await getCollection("trailheads");
-const locationInformation = MeetingLocationParser(entry.data, meetingLocations);
+const locationInformation = resolveMeetingLocation(entry.data, meetingLocations);
 ---
 
 <Layout title={entry.data.title} description={entry.data.description}>
