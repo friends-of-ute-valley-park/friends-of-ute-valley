@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import InstagramIcon from '~icons/mdi/instagram';
 import FacebookIcon from '~icons/mdi/facebook';
 import { byPriorityAsc } from '@/utils/content';
+import type { SocialLinkIconKey } from '@/content.config';
 
 interface Props {
   variant?: 'buttons' | 'inline';
@@ -12,14 +13,12 @@ const { variant = 'buttons' } = Astro.props as Props;
 const isInline = variant === 'inline';
 const Wrapper = isInline ? 'span' : 'div';
 
-const iconComponents: Record<string, typeof FacebookIcon> = {
-  facebook: FacebookIcon,
-  instagram: InstagramIcon,
-};
-
-const toneClasses: Record<string, string> = {
-  facebook: 'link brand',
-  instagram: 'link accent',
+const socialLinkRegistry: Record<
+  SocialLinkIconKey,
+  { Icon: typeof FacebookIcon; tone: string }
+> = {
+  facebook: { Icon: FacebookIcon, tone: 'link brand' },
+  instagram: { Icon: InstagramIcon, tone: 'link accent' },
 };
 
 const socialLinks = (await getCollection('social-links'))
@@ -29,8 +28,7 @@ const socialLinks = (await getCollection('social-links'))
 
 <Wrapper class:list={['social-links', isInline ? 'social-links is-inline' : 'social-links is-buttons']}>
   {socialLinks.map((entry) => {
-    const Icon = iconComponents[entry.data.icon];
-    const tone = toneClasses[entry.data.icon] ?? '';
+    const { Icon, tone } = socialLinkRegistry[entry.data.icon];
     return (
       <a
         href={entry.data.link}

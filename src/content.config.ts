@@ -104,13 +104,17 @@ const wishlistCollection = defineCollection({
     }),
 });
 
+const socialLinkIconSchema = z.enum(['facebook', 'instagram']);
+
+export type SocialLinkIconKey = z.infer<typeof socialLinkIconSchema>;
+
 const socialLinksCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/social-links' }),
   schema: () =>
     z.object({
       title: z.string(),
       link: z.string(),
-      icon: z.string(),
+      icon: socialLinkIconSchema,
       priority: z.number(),
       showInline: z.boolean(),
     }),
