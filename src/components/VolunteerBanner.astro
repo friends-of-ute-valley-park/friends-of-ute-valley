@@ -1,55 +1,38 @@
-<script setup lang="ts">
-import { computed } from 'vue';
-import HeroiconsArrowRight from 'virtual:icons/heroicons/arrow-right';
-import { formatShortMonthDay } from '@/utils/date';
+---
+import HeroiconsArrowRight from "~icons/heroicons/arrow-right";
+import { getVolunteerBannerRenderModel, type VolunteerEventSummary } from "@/utils/volunteerBanner";
 
-interface Event {
-  date: Date;
-  time: string;
+interface Props {
+  events: VolunteerEventSummary[];
 }
 
-const props = defineProps<{
-  events: Array<Event>;
-}>();
+const { events } = Astro.props;
+const { hasUpcomingVolunteerEvent, eventSchedule } = getVolunteerBannerRenderModel(events);
+---
 
-const hasUpcomingVolunteerEvent = computed(() => {
-  return props.events?.length > 0;
-});
+{
+  hasUpcomingVolunteerEvent && (
+    <div class="volunteer-alert">
+      <div class="inner l-container">
+        <div class="content">
+          <div class="message">
+            <div class="pulse"></div>
+            <p>
+              Upcoming Volunteer Event: <span>Scheduled for {eventSchedule}</span>
+            </p>
+          </div>
 
-const eventSchedule = computed(() => {
-  if (props.events === undefined) {
-    return '';
-  }
-
-  return props.events
-    .map((item) => {
-      return `${formatShortMonthDay(item.date)} · ${item.time}`;
-    })
-    .join(' + ');
-});
-</script>
-
-<template>
-  <div v-if="hasUpcomingVolunteerEvent" class="volunteer-alert">
-    <div class="inner l-container">
-      <div class="content">
-        <div class="message">
-          <div class="pulse"></div>
-          <p>
-            Upcoming Volunteer Event: <span>Scheduled for {{ eventSchedule }}</span>
-          </p>
+          <a href="/volunteer/" class="link">
+            View Volunteer Schedule
+            <HeroiconsArrowRight class="icon" />
+          </a>
         </div>
-
-        <a href="/volunteer/" class="link">
-          View Volunteer Schedule
-          <HeroiconsArrowRight class="icon" />
-        </a>
       </div>
     </div>
-  </div>
-</template>
+  )
+}
 
-<style scoped>
+<style>
 .volunteer-alert {
   position: relative;
   z-index: 50;
