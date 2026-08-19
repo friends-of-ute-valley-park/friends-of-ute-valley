@@ -71,4 +71,13 @@ await describe('waitForMapLoad', async () => {
     await assert.rejects(pending, { name: 'AbortError' });
     assert.equal(map.listenerCount(), 0);
   });
+
+  await it('rejects an already-aborted signal without adding map listeners', async () => {
+    const map = new FakeMap();
+    const controller = new AbortController();
+    controller.abort();
+
+    await assert.rejects(waitForMapLoad(map, controller.signal), { name: 'AbortError' });
+    assert.equal(map.listenerCount(), 0);
+  });
 });

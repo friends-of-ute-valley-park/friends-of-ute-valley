@@ -2,6 +2,9 @@ import type { ErrorEvent, Map as MapLibreMap } from 'maplibre-gl';
 
 export const waitForMapLoad = (mapInstance: MapLibreMap, signal: AbortSignal) => {
   if (mapInstance.loaded()) return Promise.resolve();
+  if (signal.aborted) {
+    return Promise.reject(new DOMException('Map setup was aborted', 'AbortError'));
+  }
 
   return new Promise<void>((resolve, reject) => {
     const cleanup = () => {
