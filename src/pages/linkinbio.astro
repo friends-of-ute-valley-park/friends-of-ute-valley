@@ -1,14 +1,18 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import VolunteerItem from "@components/VolunteerItem.vue";
+import VolunteerItem from "@components/VolunteerItem.astro";
 import SocialLinks from "@components/SocialLinks.astro";
 
 import { Image } from "astro:assets";
 
 import { getCollection } from "astro:content";
 import { byPriorityDesc, getUpcomingVolunteerEvents } from "@/utils/content";
+import { toVolunteerEventView } from "@/utils/EventData";
 const upcomingVolunteerEvents = await getUpcomingVolunteerEvents();
 const meetingLocations = await getCollection("trailheads");
+const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
+  toVolunteerEventView(volunteerEvent, meetingLocations),
+);
 const links = await getCollection("links");
 const wishlist = await getCollection("wishlist", ({ data }) => {
   return data.quantityNeeded > 0;
@@ -47,7 +51,7 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
 
       <!-- Active Operations -->
       {
-        upcomingVolunteerEvents.length > 0 && (
+        volunteerEventViews.length > 0 && (
           <div class="link-section">
             <div class="heading accent">
               <span />
@@ -56,13 +60,9 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
               </h2>
             </div>
             <div class="stack">
-              {upcomingVolunteerEvents.map((volunteerEvent) => (
+              {volunteerEventViews.map((volunteerEvent) => (
                 <div class="inset">
-                  <VolunteerItem
-                    meetingLocations={meetingLocations}
-                    volunteerEvent={volunteerEvent}
-                    client:idle
-                  />
+                  <VolunteerItem volunteerEvent={volunteerEvent} />
                 </div>
               ))}
             </div>

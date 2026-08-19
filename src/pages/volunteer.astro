@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 
 import Layout from "@layouts/Layout.astro";
-import VolunteerItem from "@components/VolunteerItem.vue";
+import VolunteerItem from "@components/VolunteerItem.astro";
 import LeaveNoTraceSmall from "@components/LeaveNoTraceSmall.astro";
 import ContactForm from "@components/ContactForm.vue";
 import EmailForm from "@components/EmailForm.vue";
@@ -11,7 +11,7 @@ import SocialLinks from "@components/SocialLinks.astro";
 
 import { getCollection } from "astro:content";
 import { getUpcomingVolunteerEvents } from "@/utils/content";
-import { formatShortMonthDayYear } from "@/utils/date";
+import { toVolunteerEventView } from "@/utils/EventData";
 const upcomingVolunteerEvents = await getUpcomingVolunteerEvents();
 
 import VolunteerHeroImage from "../assets/images/volunteer-hero-mask.jpg";
@@ -20,6 +20,9 @@ import VolunteerInfoImage2 from "../assets/images/volunteer-4.jpg";
 import { TURNSTILE_SITE_KEY } from "astro:env/client";
 
 const meetingLocations = await getCollection("trailheads");
+const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
+  toVolunteerEventView(volunteerEvent, meetingLocations),
+);
 ---
 
 <Layout
@@ -62,8 +65,8 @@ const meetingLocations = await getCollection("trailheads");
             <span>Next Event</span>
             <span>
               {
-                upcomingVolunteerEvents.length > 0
-                  ? formatShortMonthDayYear(upcomingVolunteerEvents[0].data.date)
+                volunteerEventViews.length > 0
+                  ? volunteerEventViews[0].formattedDate
                   : "TBD"
               }
             </span>
@@ -75,15 +78,11 @@ const meetingLocations = await getCollection("trailheads");
     <section class="page-section volunteer-events-section">
       <div class="page-section__inner">
         {
-          upcomingVolunteerEvents.length > 0 ? (
+          volunteerEventViews.length > 0 ? (
             <div class="volunteer-events">
-              {upcomingVolunteerEvents.map((volunteerEvent) => (
+              {volunteerEventViews.map((volunteerEvent) => (
                 <div class="item">
-                  <VolunteerItem
-                    meetingLocations={meetingLocations}
-                    volunteerEvent={volunteerEvent}
-                    client:idle
-                  />
+                  <VolunteerItem volunteerEvent={volunteerEvent} />
                 </div>
               ))}
             </div>
