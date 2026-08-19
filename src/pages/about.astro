@@ -308,7 +308,7 @@ import StatsCard from "@components/StatsCard.astro";
       });
       const active = linkById.get(id);
       if (active) {
-        active.classList.add("link active");
+        active.classList.add("active");
         active.setAttribute("aria-current", "location");
       }
     };
@@ -334,8 +334,10 @@ import StatsCard from "@components/StatsCard.astro";
 
       sections.forEach((section) => observer.observe(section));
 
-      const initialId =
-        (location.hash && location.hash.slice(1)) || sections[0].id;
+      const requestedId = location.hash.slice(1);
+      const initialId = linkById.has(requestedId)
+        ? requestedId
+        : sections[0].id;
       setActive(initialId);
     }
   }
