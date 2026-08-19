@@ -26,8 +26,7 @@ const publishedNewsEntries = await getPublishedNewsEntries();
 const buildDate = new Date();
 const currentMonthYear = formatShortMonthYear(buildDate);
 
-// Park hours by season (from FAQ: Winter Nov 1–Apr 30, Summer May 1–Oct 31)
-const { season: parkSeason, hours: parkHours } = getParkHoursForDate();
+const { season: parkSeason, hours: parkHours } = getParkHoursForDate(buildDate);
 
 const seasonalEssentialsBySeason = {
   Winter: {

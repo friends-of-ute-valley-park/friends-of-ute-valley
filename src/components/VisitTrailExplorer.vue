@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import VisitTrailheadList from '@components/VisitTrailheadList.vue';
 import VisitTrailMap from '@components/VisitTrailMap.vue';
+import { parkHoursVisitLines } from '@/utils/date';
 import type { VisitTrailhead } from '@/utils/trailMapModel';
 import { computed, shallowRef } from 'vue';
 
@@ -40,8 +41,7 @@ const activeTrailheadId = computed(() => popupTrailheadId.value ?? interactionTr
         <div class="visit-fact-grid">
           <div>
             <p>Park Hours</p>
-            <p>5:00 AM — 9:00 PM Winter</p>
-            <p>5:00 AM — 10:00 PM Summer</p>
+            <p v-for="hours in parkHoursVisitLines" :key="hours">{{ hours }}</p>
           </div>
           <div>
             <p>Entry Fee</p>

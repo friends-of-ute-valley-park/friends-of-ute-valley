@@ -1,6 +1,7 @@
 ---
 import LeaveNoTrace from "@components/LeaveNoTrace.astro";
 import Layout from "@layouts/Layout.astro";
+import { parkHoursRulesRows } from "@/utils/date";
 import { Picture } from "astro:assets";
 import trailRightOfWay from "../assets/images/trail-right-of-way.png";
 
@@ -73,14 +74,14 @@ const parkRules = [
               Park Hours
             </h3>
             <div class="rows">
-              <div>
-                <span>Winter (Nov-Apr)</span>
-                <span>05:00 — 21:00</span>
-              </div>
-              <div>
-                <span>Summer (May-Oct)</span>
-                <span>05:00 — 22:00</span>
-              </div>
+              {
+                parkHoursRulesRows.map(({ label, hours }) => (
+                  <div>
+                    <span>{label}</span>
+                    <span>{hours}</span>
+                  </div>
+                ))
+              }
             </div>
           </div>
 

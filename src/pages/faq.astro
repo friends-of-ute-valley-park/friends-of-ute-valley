@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import LeaveNoTraceSmall from "@components/LeaveNoTraceSmall.astro";
+import { parkHoursFaqAnswer } from "@/utils/date";
 
 const faqs = [
   {
@@ -14,8 +15,7 @@ const faqs = [
     id: "02",
     tag: "Planning",
     question: "What are the official park hours?",
-    answer:
-      "WINTER (Nov 1 — Apr 30): 5 a.m. to 9 p.m. SUMMER (May 1 — Oct 31): 5 a.m. to 10 p.m.",
+    answer: parkHoursFaqAnswer,
   },
   {
     id: "03",
