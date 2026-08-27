@@ -4,7 +4,8 @@
     {
       "files": ["**/*.vue"],
       "rules": {
-        "max-lines": ["error", { "max": 500 }]
+        "max-lines": ["error", { "max": 500 }],
+        "complexity": ["error", { "max": 80 }]
       }
     }
   ]
