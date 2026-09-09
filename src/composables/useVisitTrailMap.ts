@@ -15,7 +15,7 @@ type UseVisitTrailMapOptions = {
   onPopupChange: (trailheadId?: string) => void;
 };
 
-const parkBasemapUrl = '/images/maps/ute-valley-basemap.webp';
+const parkBasemapUrl = '/images/maps/ute-valley-basemap.avif';
 const trailDataUrl = '/data/ute-valley-trails.geojson';
 const parkBounds = {
   west: -104.8974609375,
@@ -32,7 +32,7 @@ const desktopDefaultZoom = 13.6;
 const mobileDefaultZoom = 12.7;
 const zoomInRange = 1.5;
 
-const parkMapStyle: StyleSpecification = {
+const parkMapStyle = {
   version: 8,
   sources: {
     basemap: {
@@ -55,7 +55,7 @@ const parkMapStyle: StyleSpecification = {
       paint: { 'raster-saturation': -0.72, 'raster-contrast': 0.08, 'raster-opacity': 0.78 },
     },
   ],
-};
+} satisfies StyleSpecification;
 
 const isAbortError = (error: unknown, signal: AbortSignal) => signal.aborted || (error instanceof DOMException && error.name === 'AbortError');
 
@@ -69,6 +69,12 @@ const loadTrailData = async (signal: AbortSignal): Promise<TrailFeatureCollectio
   const trailData: unknown = await response.json();
   assertTrailFeatureCollection(trailData);
   return trailData;
+};
+
+const loadBasemap = async (signal: AbortSignal) => {
+  const response = await fetch(parkBasemapUrl, { signal });
+  if (!response.ok) throw new Error(`Map background failed to load: ${response.status}`);
+  return response.blob();
 };
 
 const installTrailLayers = (mapInstance: MapLibreMap, trailData: TrailFeatureCollection, mode: TrailMapMode) => {
@@ -191,7 +197,8 @@ const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof i
       trailHoverContent.replaceChildren(title, difficulty, condition);
     }
 
-    trailHoverPopup.setLngLat(event.lngLat).addTo(mapInstance);
+    trailHoverPopup.setLngLat(event.lngLat);
+    if (!trailHoverPopup.isOpen()) trailHoverPopup.addTo(mapInstance);
   };
 
   mapInstance.on('mouseenter', trailInteractionLayerId, () => {
@@ -219,6 +226,7 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
   let mapInstance: MapLibreMap | null = null;
   let trailheadPopup: Popup | null = null;
   let setupAbortController: AbortController | null = null;
+  let basemapObjectUrl: string | null = null;
 
   const updateActiveMarker = (trailheadId?: string) => {
     markerElements.forEach((marker, id) => {
@@ -233,6 +241,8 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
     trailheadPopup = null;
     mapInstance?.remove();
     mapInstance = null;
+    if (basemapObjectUrl) URL.revokeObjectURL(basemapObjectUrl);
+    basemapObjectUrl = null;
     popupHost.value = undefined;
     popupTrailhead.value = undefined;
     popupTrigger.value = undefined;
@@ -249,11 +259,13 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
     setupAbortController = controller;
 
     try {
-      const [maplibregl, trailData] = await Promise.all([import('maplibre-gl'), loadTrailData(controller.signal)]);
+      // Download the background alongside the library instead of waiting for map construction.
+      const [maplibregl, trailData, basemap] = await Promise.all([import('maplibre-gl'), loadTrailData(controller.signal), loadBasemap(controller.signal)]);
 
       if (controller.signal.aborted || !options.container.value) return;
 
       maplibregl.setWorkerUrl(maplibreWorkerUrl);
+      basemapObjectUrl = URL.createObjectURL(basemap);
 
       const defaultZoom = window.matchMedia(mobileViewportQuery).matches ? mobileDefaultZoom : desktopDefaultZoom;
       const instance = new maplibregl.Map({
@@ -275,7 +287,13 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
         touchZoomRotate: true,
         keyboard: false,
         attributionControl: false,
-        style: parkMapStyle,
+        style: {
+          ...parkMapStyle,
+          sources: {
+            ...parkMapStyle.sources,
+            basemap: { ...parkMapStyle.sources.basemap, url: basemapObjectUrl },
+          },
+        },
       });
 
       mapInstance = instance;
@@ -285,7 +303,6 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
       if (controller.signal.aborted) return;
 
       installTrailLayers(instance, trailData, options.mode.value);
-      applyMapMode(instance, options.mode.value);
       installTrailInteractions(instance, maplibregl);
 
       instance.addControl(
