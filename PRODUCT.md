@@ -1,8 +1,10 @@
 # Product
 
-## Register
+<!-- impeccable:product-schema 1 -->
 
-brand
+## Platform
+
+web
 
 ## Users
 
@@ -16,27 +18,46 @@ Friends of Ute Valley Park is the public web home for a volunteer-led stewardshi
 
 The site should help people understand the park, trust the organization, and take the next concrete step: plan a visit, follow park rules, volunteer at an event, donate, contact the team, or learn how to protect the wildland. Success looks like fewer confused visitors, more prepared volunteers, stronger donor confidence, and clearer public understanding of how FUVP protects a 550-acre urban wildland.
 
-## Brand Personality
+## Positioning
 
-Trustworthy, civic, grounded.
+FUVP is the local stewardship hub that connects practical visitor guidance, hands-on volunteer work, community support, and accountable care for one specific urban wildland. The site should make that direct relationship visible: people can understand Ute Valley Park, see how local volunteers care for it, and take a useful next step themselves.
 
-The voice should be clear, direct, and community-minded. Write like a capable local stewardship organization: factual, welcoming, practical, and organized, with enough warmth to feel volunteer-powered but never so casual that it weakens trust.
+## Operating Context
 
-The emotional goal is calm confidence. The site should make stewardship feel approachable and specific: real people, real dates, real trailheads, real rules, real work in the park.
+The site serves people planning a park visit, checking current trail information, finding a trailhead, learning park rules, joining scheduled volunteer work, donating, contacting the organization, or following ongoing news and stewardship education.
 
-## Anti-references
+The organization is volunteer-led and works in partnership with the City of Colorado Springs Parks, Recreation, and Cultural Services Department. Public information is maintained through site pages and structured content for events, news, trailheads, Leave No Trace guidance, volunteer spotlights, wish-list items, and social links.
 
-Do not drift into generic nonprofit template design, glossy corporate environmental branding, or vague outdoors lifestyle marketing. Avoid anything that feels like a national conservation campaign detached from Colorado Springs and Ute Valley Park.
+## Capabilities and Constraints
 
-Avoid faux-rustic camp styling, whimsical nature motifs, over-polished SaaS aesthetics, vague stock-photo optimism, and donation-pressure patterns that make the organization feel less transparent or less neighborly.
+- The public site provides visit planning, trailhead details, maps, trail information, park rules, Leave No Trace guidance, events, news, volunteer information, donations, team information, and contact forms.
+- Interactive features include a trail map, email signup, secure donation embed, and Turnstile-protected contact flows.
+- The site is built with Astro and selectively hydrated Vue components. Content is primarily repository-managed Markdown and structured data.
+- Park conditions, impact claims, dates, partnerships, endorsements, nonprofit facts, and other public claims must be verified from named or repository-held evidence. Future work must not fabricate missing facts.
+- Time-sensitive information should be presented with enough source and date context that visitors can judge its freshness.
 
-## Design Principles
+## Brand Commitments
 
-1. Prioritize volunteer action and visitor orientation when storytelling and utility compete.
-2. Build trust through specificity: dates, trailheads, park conditions, maps, rules, impact history, and operational clarity.
-3. Let the landscape carry emotion through authentic park photography, local terminology, and restrained nature-rooted color.
-4. Keep the experience civic and editorial: strong hierarchy, clear records, scannable sections, and confident public-information design.
-5. Make stewardship feel doable by reducing friction around volunteering, donating, visiting, and learning the rules.
+Friends of Ute Valley Park is trustworthy, civic, grounded, clear, direct, community-minded, and practical. Its voice should feel like a capable local stewardship organization: factual and organized, with enough warmth to feel volunteer-powered without weakening public trust.
+
+Preserve the established Friends of Ute Valley Park name and identity, authentic park photography, local terminology, and the focus on real people, dates, trailheads, rules, and work in the park. Avoid generic nonprofit language, national-campaign framing, vague outdoors-lifestyle marketing, faux-rustic whimsy, glossy corporate environmental language, and donation pressure that feels less transparent or neighborly.
+
+## Evidence on Hand
+
+- The public repository README records FUVP as an officially recognized Friends organization of the City of Colorado Springs Parks, Recreation, and Cultural Services Department and states its mission.
+- The About page records the organization's history, City partnership, stewardship activities, awards, independent 501(c)(3) status, and team.
+- A redacted IRS determination letter is available at `public/documents/fuvp-irs-determination-letter-redacted.pdf`.
+- The repository contains authentic park, volunteer, trailhead, historical, team, and educational photography under `src/assets/images`, `src/data`, and `public/images`.
+- Structured source content exists for events, news, trailheads, Leave No Trace guidance, volunteer spotlights, wish-list items, and social links under `src/data`.
+- Public claims and metrics are not assumed verified merely because they appear in site copy; future changes should trace them to the strongest available source before expanding or repeating them.
+
+## Product Principles
+
+1. Make the next useful action obvious for visitors, volunteers, donors, and partners.
+2. Build trust through verified local specificity: dates, trailheads, conditions, maps, rules, impact history, and operational clarity.
+3. Connect public enjoyment of the park directly to practical stewardship and volunteer action.
+4. Prefer clear, maintainable public information over vague promotion or inflated claims.
+5. Keep participation approachable by reducing uncertainty around visiting, volunteering, donating, and contacting the organization.
 
 ## Accessibility & Inclusion
 
