@@ -61,8 +61,18 @@ const conditionCategories: TrailCategory<TrailConditionKey>[] = [
 
 export const conditionCategoryKeys = conditionCategories.flatMap(({ keys }) => keys);
 
-const createColorExpression = (property: string, categories: TrailCategory[]) =>
-  ['match', ['get', property], ...categories.flatMap(({ keys, color }) => [keys.length === 1 ? keys[0] : [...keys], color]), palette.gray] as unknown as DataDrivenPropertyValueSpecification<string>;
+const createColorExpression = (property: string, categories: TrailCategory[]): DataDrivenPropertyValueSpecification<string> => {
+  const [first, ...rest] = categories;
+  if (!first) throw new Error('A map color expression requires at least one category');
+  return [
+    'match',
+    ['get', property],
+    first.keys.length === 1 ? first.keys[0] : [...first.keys],
+    first.color,
+    ...rest.flatMap(({ keys, color }) => [keys.length === 1 ? keys[0] : [...keys], color]),
+    palette.gray,
+  ];
+};
 
 export const difficultyColor = createColorExpression('difficulty', difficultyCategories);
 export const conditionColor = createColorExpression('condition', conditionCategories);

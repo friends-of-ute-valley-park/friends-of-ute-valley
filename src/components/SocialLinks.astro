@@ -9,7 +9,7 @@ interface Props {
   variant?: 'buttons' | 'inline';
 }
 
-const { variant = 'buttons' } = Astro.props as Props;
+const { variant = 'buttons' } = Astro.props;
 const isInline = variant === 'inline';
 const Wrapper = isInline ? 'span' : 'div';
 

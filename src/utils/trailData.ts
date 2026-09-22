@@ -48,16 +48,46 @@ export type TrailSummary = {
   reportedConditions: TrailReportedCondition[];
 };
 
-const trailDifficultyKeys: readonly TrailDifficultyKey[] = ['access', 'easiest', 'easy', 'intermediate', 'difficult', 'extreme', 'proline', 'unknown'];
-const trailReportAgeBuckets: readonly TrailReportAgeBucket[] = ['Today', '1–2 days ago', '3–7 days ago', '8–14 days ago', 'No report in 14 days'];
+const trailDifficultyKeys: ReadonlySet<string> = new Set(['access', 'easiest', 'easy', 'intermediate', 'difficult', 'extreme', 'proline', 'unknown']);
+const trailConditionKeySet: ReadonlySet<string> = new Set(trailConditionKeys);
+const trailReportAgeBuckets: ReadonlySet<string> = new Set(['Today', '1–2 days ago', '3–7 days ago', '8–14 days ago', 'No report in 14 days']);
+interface UnparsedTrailRecord {
+  type?: unknown;
+  features?: unknown;
+  id?: unknown;
+  properties?: unknown;
+  geometry?: unknown;
+  coordinates?: unknown;
+  name?: unknown;
+  difficulty?: unknown;
+  difficultyLabel?: unknown;
+  condition?: unknown;
+  conditionLabel?: unknown;
+  reportAgeDays?: unknown;
+  reportAgeBucket?: unknown;
+  reportedAt?: unknown;
+  conditionAssumed?: unknown;
+  generatedAt?: unknown;
+  regionId?: unknown;
+  maxReportAgeDays?: unknown;
+  status?: unknown;
+  note?: unknown;
+  recentReportCount?: unknown;
+  trailCount?: unknown;
+  reportedConditions?: unknown;
+  label?: unknown;
+  count?: unknown;
+}
 
-const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value);
+const isRecord = (value: unknown): value is UnparsedTrailRecord => Object.prototype.toString.call(value) === '[object Object]';
+const isPrimitiveString = (value: unknown): value is string => Object.prototype.toString.call(value) === '[object String]' && !(value instanceof String);
+const isTrailConditionKey = (value: string): value is TrailConditionKey => trailConditionKeySet.has(value);
 
 const fail = (path: string, expectation: string): never => {
   throw new TypeError(`${path} must be ${expectation}`);
 };
 
-const assertRecord: (value: unknown, path: string) => asserts value is Record<string, unknown> = (value, path) => {
+const assertRecord: (value: unknown, path: string) => asserts value is UnparsedTrailRecord = (value, path) => {
   if (!isRecord(value)) fail(path, 'an object');
 };
 
@@ -66,23 +96,23 @@ const assertArray: (value: unknown, path: string) => asserts value is unknown[] 
 };
 
 const assertString: (value: unknown, path: string) => asserts value is string = (value, path) => {
-  if (typeof value !== 'string') fail(path, 'a string');
+  if (!isPrimitiveString(value)) fail(path, 'a string');
 };
 
 const assertNonNegativeInteger: (value: unknown, path: string) => asserts value is number = (value, path) => {
-  if (!Number.isInteger(value) || (value as number) < 0) fail(path, 'a non-negative integer');
+  if (!Number.isInteger(value) || Number(value) < 0) fail(path, 'a non-negative integer');
 };
 
 const assertPositiveInteger: (value: unknown, path: string) => asserts value is number = (value, path) => {
-  if (!Number.isInteger(value) || (value as number) <= 0) fail(path, 'a positive integer');
+  if (!Number.isInteger(value) || Number(value) <= 0) fail(path, 'a positive integer');
 };
 
 const assertFiniteNumber: (value: unknown, path: string) => asserts value is number = (value, path) => {
-  if (typeof value !== 'number' || !Number.isFinite(value)) fail(path, 'a finite number');
+  if (!Number.isFinite(value)) fail(path, 'a finite number');
 };
 
 const assertNullableString: (value: unknown, path: string) => asserts value is string | null = (value, path) => {
-  if (value !== null && typeof value !== 'string') fail(path, 'a string or null');
+  if (value !== null && !isPrimitiveString(value)) fail(path, 'a string or null');
 };
 
 const reportAgeBucketForDays = (days: number): Exclude<TrailReportAgeBucket, 'No report in 14 days'> => {
@@ -114,16 +144,16 @@ export function assertTrailFeatureCollection(value: unknown): asserts value is T
     if (properties.id !== feature.id) throw new TypeError(`${featurePath}.properties.id must equal ${featurePath}.id`);
     assertString(properties.name, `${featurePath}.properties.name`);
     assertString(properties.difficulty, `${featurePath}.properties.difficulty`);
-    if (!trailDifficultyKeys.includes(properties.difficulty as TrailDifficultyKey)) fail(`${featurePath}.properties.difficulty`, 'a known trail difficulty');
+    if (!trailDifficultyKeys.has(properties.difficulty)) fail(`${featurePath}.properties.difficulty`, 'a known trail difficulty');
     assertString(properties.difficultyLabel, `${featurePath}.properties.difficultyLabel`);
     assertString(properties.condition, `${featurePath}.properties.condition`);
-    if (!trailConditionKeys.includes(properties.condition as TrailConditionKey)) fail(`${featurePath}.properties.condition`, 'a known trail condition');
+    if (!isTrailConditionKey(properties.condition)) fail(`${featurePath}.properties.condition`, 'a known trail condition');
     assertString(properties.conditionLabel, `${featurePath}.properties.conditionLabel`);
     if (properties.reportAgeDays !== null) assertNonNegativeInteger(properties.reportAgeDays, `${featurePath}.properties.reportAgeDays`);
     assertString(properties.reportAgeBucket, `${featurePath}.properties.reportAgeBucket`);
-    if (!trailReportAgeBuckets.includes(properties.reportAgeBucket as TrailReportAgeBucket)) fail(`${featurePath}.properties.reportAgeBucket`, 'a known report age bucket');
+    if (!trailReportAgeBuckets.has(properties.reportAgeBucket)) fail(`${featurePath}.properties.reportAgeBucket`, 'a known report age bucket');
     assertNullableString(properties.reportedAt, `${featurePath}.properties.reportedAt`);
-    if (typeof properties.conditionAssumed !== 'boolean') fail(`${featurePath}.properties.conditionAssumed`, 'a boolean');
+    if (properties.conditionAssumed !== true && properties.conditionAssumed !== false) fail(`${featurePath}.properties.conditionAssumed`, 'a boolean');
 
     if (properties.conditionAssumed) {
       if (properties.reportAgeDays !== null) fail(`${featurePath}.properties.reportAgeDays`, 'null when conditionAssumed is true');
@@ -171,9 +201,9 @@ export function assertTrailSummary(value: unknown): asserts value is TrailSummar
   reportedConditions.forEach((reportedCondition, index) => {
     const conditionPath = `trail summary.reportedConditions[${index}]`;
     assertRecord(reportedCondition, conditionPath);
-    assertString(reportedCondition.condition, `${conditionPath}.condition`);
-    if (!trailConditionKeys.includes(reportedCondition.condition as TrailConditionKey)) fail(`${conditionPath}.condition`, 'a known trail condition');
-    const condition = reportedCondition.condition as TrailConditionKey;
+    const condition = reportedCondition.condition;
+    assertString(condition, `${conditionPath}.condition`);
+    if (!isTrailConditionKey(condition)) throw new TypeError(`${conditionPath}.condition must be a known trail condition`);
     if (conditions.has(condition)) throw new TypeError(`${conditionPath}.condition duplicates condition "${condition}"`);
     conditions.add(condition);
     assertString(reportedCondition.label, `${conditionPath}.label`);

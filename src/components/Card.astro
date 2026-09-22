@@ -7,7 +7,7 @@ export interface Props {
   publishedOn: Date;
 }
 
-const { title, image, publishedOn, href, previewText } = Astro.props as Props;
+const { title, image, publishedOn, href, previewText } = Astro.props;
 
 import { Image } from "astro:assets";
 import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";

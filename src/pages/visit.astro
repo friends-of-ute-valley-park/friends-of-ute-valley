@@ -18,7 +18,7 @@ const mapTrailheads: VisitTrailhead[] = sortedTrailheads.map((trailhead) => ({
   displayId: trailhead.data.id.toString().padStart(2, "0"),
   name: trailhead.data.name,
   description: trailhead.data.description,
-  coordinates: [trailhead.data.longitude, trailhead.data.latitude] as [number, number],
+  coordinates: [trailhead.data.longitude, trailhead.data.latitude],
   url: `/trailheads/${trailhead.id}/`,
 }));
 ---

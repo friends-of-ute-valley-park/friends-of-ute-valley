@@ -16,4 +16,4 @@ export const trailConditionById = {
 
 export type TrailConditionKey = (typeof trailConditionById)[keyof typeof trailConditionById]['key'];
 
-export const trailConditionKeys = [...new Set(Object.values(trailConditionById).map(({ key }) => key))] as TrailConditionKey[];
+export const trailConditionKeys = [...new Set(Object.values(trailConditionById).map(({ key }) => key))];

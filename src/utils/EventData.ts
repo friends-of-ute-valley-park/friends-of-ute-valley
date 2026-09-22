@@ -51,14 +51,15 @@ export function resolveMeetingLocation(volunteerEventFrontmatter: VolunteerEvent
 export function toVolunteerEventView(volunteerEvent: VolunteerEvent, meetingLocations: MeetingLocation[]): VolunteerEventView {
   const location = resolveMeetingLocation(volunteerEvent.data, meetingLocations);
 
-  return {
+  const view: VolunteerEventView = {
     id: volunteerEvent.id,
     title: volunteerEvent.data.title,
     formattedDate: formatShortMonthDayYear(volunteerEvent.data.date),
     time: volunteerEvent.data.time,
     meetingLocation: location.name,
     directionsLink: location.directionsLink,
-    ...(volunteerEvent.data.meetingLocation.notes === undefined ? {} : { meetingNotes: volunteerEvent.data.meetingLocation.notes }),
-    ...(volunteerEvent.data.link === undefined ? {} : { registrationLink: volunteerEvent.data.link }),
   };
+  if (volunteerEvent.data.meetingLocation.notes !== undefined) view.meetingNotes = volunteerEvent.data.meetingLocation.notes;
+  if (volunteerEvent.data.link !== undefined) view.registrationLink = volunteerEvent.data.link;
+  return view;
 }

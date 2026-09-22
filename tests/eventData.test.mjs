@@ -14,16 +14,19 @@ const trailheads = [
 ];
 
 const eventData = (meetingLocation) => ({ meetingLocation });
-const volunteerEvent = (meetingLocation, { withRegistrationLink = true } = {}) => ({
-  id: 'trail-workday',
-  data: {
-    title: 'Trail Workday',
-    date: new Date('2026-08-22T09:00:00.000Z'),
-    time: '9:00AM-12:00PM',
-    meetingLocation,
-    ...(withRegistrationLink ? { link: 'https://example.com/register' } : {}),
-  },
-});
+const volunteerEvent = (meetingLocation, { withRegistrationLink = true } = {}) => {
+  const event = {
+    id: 'trail-workday',
+    data: {
+      title: 'Trail Workday',
+      date: new Date('2026-08-22T09:00:00.000Z'),
+      time: '9:00AM-12:00PM',
+      meetingLocation,
+    },
+  };
+  if (withRegistrationLink) event.data.link = 'https://example.com/register';
+  return event;
+};
 
 await describe('meeting location resolution', async () => {
   await it('resolves a predefined trailhead by ID', () => {

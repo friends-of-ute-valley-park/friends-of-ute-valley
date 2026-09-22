@@ -57,8 +57,6 @@ const parkMapStyle = {
   ],
 } satisfies StyleSpecification;
 
-const isAbortError = (error: unknown, signal: AbortSignal) => signal.aborted || (error instanceof DOMException && error.name === 'AbortError');
-
 const loadTrailData = async (signal: AbortSignal): Promise<TrailFeatureCollection> => {
   const response = await fetch(trailDataUrl, { signal });
 
@@ -175,7 +173,7 @@ const installTrailInteractions = (mapInstance: MapLibreMap, maplibregl: typeof i
     const feature = event.features?.[0];
     const name = feature?.properties?.name;
 
-    if (!feature || typeof name !== 'string' || !event.lngLat) {
+    if (!feature || name === undefined || !event.lngLat) {
       dismissTrailPopup();
       return;
     }
@@ -376,7 +374,7 @@ export const useVisitTrailMap = (options: UseVisitTrailMapOptions) => {
       updateActiveMarker(options.activeTrailheadId.value);
       status.value = 'ready';
     } catch (error) {
-      if (isAbortError(error, controller.signal)) return;
+      if (controller.signal.aborted || (error instanceof DOMException && error.name === 'AbortError')) return;
 
       console.error(error);
       disposeMap();

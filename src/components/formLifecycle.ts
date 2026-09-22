@@ -22,7 +22,13 @@ export interface SubmissionResult {
 
 async function readResponse(response: Response): Promise<FormResponse | null> {
   try {
-    return (await response.json()) as FormResponse;
+    const value: unknown = await response.json();
+    if (!(value instanceof Object) || Array.isArray(value)) return null;
+    const status = 'status' in value && value.status === true;
+    const message = 'message' in value && value.message === String(value.message) ? String(value.message) : undefined;
+    const data: FormResponse = { status };
+    if (message !== undefined) data.message = message;
+    return data;
   } catch {
     return null;
   }

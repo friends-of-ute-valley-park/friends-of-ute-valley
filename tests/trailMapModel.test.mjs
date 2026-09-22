@@ -17,7 +17,7 @@ await describe('trail map model', async () => {
   });
 
   await it('derives every difficulty legend color from the MapLibre expression', () => {
-    const expressionColors = new Set(difficultyColor.filter((value) => typeof value === 'string' && value.startsWith('#')));
+    const expressionColors = new Set(difficultyColor.map(String).filter((value) => value.startsWith('#')));
 
     for (const item of trailMapModes.difficulty.legend) {
       assert.ok(expressionColors.has(item.color), `${item.label} is missing from the difficulty expression`);
@@ -25,7 +25,7 @@ await describe('trail map model', async () => {
   });
 
   await it('derives condition colors from the same categories and labels fading accurately', () => {
-    const expressionColors = new Set(conditionColor.filter((value) => typeof value === 'string' && value.startsWith('#')));
+    const expressionColors = new Set(conditionColor.map(String).filter((value) => value.startsWith('#')));
     const conditionLegend = trailMapModes.conditions.legend;
     const categoryItems = conditionLegend.filter((item) => item.treatment !== 'faded');
     const fadedItem = conditionLegend.find((item) => item.treatment === 'faded');
