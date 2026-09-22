@@ -13,56 +13,57 @@ const principles = [
     name: "Plan Ahead & Prepare",
     text: "A little preparation goes a long way! Check the forecast, plan your route, and review the <a class='text-link' href='/rules/'>park rules</a> before heading out.",
     image: PlanAhead,
-    altText: "A lone tree in Ute Valley Park",
+    altText: "A lone ponderosa pine in golden grassland under a blue sky",
   },
   {
     id: "02",
     name: "Travel on Durable Surfaces",
     text: "<a class='text-link' href='/leavenotrace/travel-on-durable-surfaces/'>Stay on the trail</a> to protect the landscape around you. Stick to marked paths and respect Natural Preservation Area closures so plants and soil can thrive.",
     image: TravelOnDurableSurfaces,
-    altText: "Ute Valley Park trail",
+    altText: "A sandy trail climbing between pines and scrub oak",
   },
   {
     id: "03",
     name: "Dispose of Waste Properly",
     text: "Follow a Pack-In, Pack-Out approach — carry out everything you carry in, including <a class='text-link' href='/leavenotrace/dogs/'>pet waste</a>. This keeps Ute Valley Park looking (and smelling) bea-UTE-iful!",
     image: DisposeOfWasteProperly,
-    altText: "Rubbish in the dirt",
+    altText: "A discarded plastic bottle on a dirt trail through dry grass",
   },
   {
     id: "04",
     name: "Leave What You Find",
     text: "Take only photos, leave only footprints! <a class='text-link' href='/leavenotrace/leave-what-you-find/'>Snap all the pictures you like</a>, but please leave rocks, plants, and other natural treasures for the next visitor to enjoy.",
     image: LeaveWhatYouFind,
-    altText: "Flowers",
+    altText: "Backlit flowers glowing in low evening sun",
   },
   {
     id: "05",
     name: "Respect Wildlife",
     text: "Observe all wildlife from a safe distance and never feed them. Keep dogs on leash to protect wildlife habitat — learn more about our <a class='text-link' href='/leavenotrace/respect-wildlife/'>leash guidelines</a>.",
     image: RespectWildlife,
-    altText: "A deer in Ute Valley Park",
+    altText: "A deer among scrub oak and pines with the foothills beyond",
   },
   {
     id: "06",
     name: "Be Considerate of Other Visitors",
     text: "A friendly hello goes a long way! Yield to other trail users, keep noise levels down, and share the trail so everyone can have a great time in the park.",
     image: BeConsiderateOfOtherVisitors,
-    altText: "Hikers walking on snow in the park",
+    altText: "Three hikers pausing on a snowy trail among pines",
   },
 ];
 
 import lntLogo from "../assets/images/logos/leave-no-trace.png";
+
+const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
 ---
 
-<section class="lnt-principles">
+<section class="lnt-principles" aria-labelledby="lnt-title">
   <div class="inner">
     <div class="layout">
-      <!-- Left Column: About Leave No Trace -->
       <div class="intro">
         <div class="intro-sticky">
           <div class="intro-copy section-heading">
-            <h2 class="title section-heading__title">
+            <h2 id="lnt-title" class="title section-heading__title">
               Leave <br /> No <br />
               <span>Trace.</span>
             </h2>
@@ -75,80 +76,70 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
           </div>
 
           <div class="partner">
-            <div class="logo-card">
-              <a
-                href="https://www.lnt.org"
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-              >
-                <Picture
-                  src={lntLogo}
-                  alt="Leave No Trace Official Logo"
-                  width="200"
-                  class="logo"
-                />
-              </a>
-              <div class="certification">
-                <span>Certified Partner</span>
-              </div>
-            </div>
-
             <a
-              href="/rules/"
-              class="button button--brand rules-link"
+              class="logo-card"
+              href="https://www.lnt.org"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
             >
-              View Park Rules
+              <Picture
+                src={lntLogo}
+                formats={["png"]}
+                densities={[1, 2]}
+                width={240}
+                alt="Leave No Trace Gold Standard Site"
+                class="logo"
+              />
+              <span class="certification">
+                Certified Partner
+                <span class="sr-only">(opens lnt.org in a new tab)</span>
+              </span>
             </a>
+
+            {
+              !onRulesPage && (
+                <a href="/rules/" class="button button--brand rules-link">
+                  View Park Rules
+                </a>
+              )
+            }
           </div>
         </div>
       </div>
 
-      <!-- Principles Column -->
-      <div class="list-wrap">
-        <div class="list">
-          {
-            principles.map((principle) => (
-              <div class="card media-zoom-parent media-zoom-parent--expand">
-                <div class="card-head">
-                  <div class="number-row">
-                    <span>
-                      {principle.id}
-                    </span>
-                    <div />
-                  </div>
-                  <h3>
-                    {principle.name}
-                  </h3>
-                </div>
-
-                <div class="media media-frame">
-                  <Picture
-                    class="image media-cover media-zoom"
-                    src={principle.image}
-                    alt={principle.altText}
-                    width={600}
-                  />
-                </div>
-
-                <p class="copy" set:html={principle.text} />
-
-                <div class="principle-label">
-                  <span>
-                    Principle {principle.id}
-                  </span>
-                </div>
+      <ol class="list">
+        {
+          principles.map((principle) => (
+            <li class="card">
+              <div class="card-head">
+                <span class="number" aria-hidden="true">{principle.id}</span>
+                <h3>
+                  <span class="sr-only">Principle {Number(principle.id)}: </span>
+                  {principle.name}
+                </h3>
               </div>
-            ))
-          }
-        </div>
-      </div>
+
+              <div class="media media-frame">
+                <Picture
+                  class="image media-cover"
+                  src={principle.image}
+                  alt={principle.altText}
+                  width={600}
+                />
+              </div>
+
+              <p class="copy" set:html={principle.text} />
+            </li>
+          ))
+        }
+      </ol>
     </div>
   </div>
 </section>
 
 <style>
   .lnt-principles {
-    overflow: hidden;
+    overflow: clip;
     border-top: 1px solid var(--color-border);
     background: var(--color-page);
   }
@@ -170,7 +161,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
   .lnt-principles .intro-sticky {
     display: grid;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
   .lnt-principles .intro-copy {
@@ -180,109 +171,88 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     --section-heading-copy-margin: 0;
   }
 
-  .lnt-principles .certification span,
-  .lnt-principles .principle-label span {
+  .lnt-principles .partner {
+    display: grid;
+    gap: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 2.5rem;
+  }
+
+  .lnt-principles .logo-card {
+    display: grid;
+    justify-items: center;
+    gap: 1.25rem;
+    border: 2px solid var(--color-brand-strong);
+    background: var(--color-surface);
+    padding: 2rem 1.5rem 1.5rem;
+    color: var(--color-brand-strong);
+    text-decoration: none;
+    transition:
+      box-shadow var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+
+  .lnt-principles .logo-card:hover {
+    box-shadow: var(--shadow-accent-sm);
+    transform: translate(-0.25rem, -0.25rem);
+  }
+
+  .lnt-principles .logo-card:active {
+    transform: scale(0.98);
+  }
+
+  :global(.lnt-principles .logo) {
+    display: block;
+    width: 100%;
+    max-width: 12rem;
+    height: auto;
+  }
+
+  .lnt-principles .certification {
+    width: 100%;
+    border-top: 1px solid var(--color-border-muted);
+    padding-top: 1rem;
     font-family: var(--font-label);
     font-size: var(--text-label);
     font-weight: 900;
     letter-spacing: var(--tracking-label);
+    text-align: center;
     text-transform: uppercase;
   }
 
-  .lnt-principles .partner {
-    display: grid;
-    gap: 2rem;
-    border-top: 1px solid var(--color-border);
-    padding-top: 3rem;
-  }
-
-  .lnt-principles .logo-card {
-    position: relative;
-    border: 2px solid var(--color-brand-strong);
-    background: var(--color-surface);
-    padding: 2rem;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
-    transition: box-shadow 500ms;
-  }
-
-  .lnt-principles .logo-card:hover {
-    box-shadow: var(--shadow-accent-md);
-  }
-
-  :global(.lnt-principles .logo) {
-    width: 100%;
-    max-width: 10rem;
-    height: auto;
-    margin-inline: auto;
-  }
-
-  .lnt-principles .certification {
-    margin-top: 1.5rem;
-    text-align: center;
-  }
-
-  .lnt-principles .certification span,
-  .lnt-principles .principle-label span {
-    color: var(--color-brand-strong);
-  }
-
   .lnt-principles .rules-link {
-    display: block;
-    text-align: center;
+    display: flex;
   }
 
   .lnt-principles .list {
     display: grid;
     gap: 1px;
+    margin: 0;
+    padding: 0;
     background: var(--color-border);
+    list-style: none;
   }
 
   .lnt-principles .card {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.75rem;
     background: var(--color-page);
     padding: clamp(2rem, 4vw, 3rem);
-    transition: background-color var(--duration-fast);
-  }
-
-  .lnt-principles .card:hover {
-    background: var(--color-surface);
   }
 
   .lnt-principles .card-head {
     display: grid;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
-  .lnt-principles .number-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-
-  .lnt-principles .number-row span {
+  .lnt-principles .number {
     color: var(--color-accent-strong);
     font-family: var(--font-label);
     font-size: 2.25rem;
     font-weight: 900;
-    transition: color var(--duration-fast);
-  }
-
-  .lnt-principles .card:hover .number-row span {
-    color: var(--color-accent);
-  }
-
-  .lnt-principles .number-row div {
-    width: 3rem;
-    height: 1px;
-    margin-top: 1.25rem;
-    background: var(--color-border-muted);
-    transition: background-color var(--duration-fast);
-  }
-
-  .lnt-principles .card:hover .number-row div {
-    background: var(--color-brand-strong);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
   }
 
   .lnt-principles .card h3 {
@@ -291,13 +261,9 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 900;
+    line-height: 1.15;
     letter-spacing: 0;
     text-transform: uppercase;
-    transition: color var(--duration-fast);
-  }
-
-  .lnt-principles .card:hover h3 {
-    color: var(--color-brand-strong);
   }
 
   .lnt-principles .media {
@@ -306,26 +272,22 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
   }
 
   .lnt-principles .copy {
+    max-width: 60ch;
     margin: 0;
     color: var(--color-text-muted);
-    font-size: var(--text-body-small);
+    font-size: 0.9375rem;
     font-weight: 500;
     line-height: var(--leading-body);
-  }
-
-  .lnt-principles .principle-label {
-    margin-top: auto;
-    border-top: 1px solid var(--color-border-muted);
-    padding-top: 1.5rem;
-  }
-
-  .lnt-principles .principle-label span {
-    font-size: 0.5625rem;
   }
 
   @media (min-width: 48rem) {
     .lnt-principles .list {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Two-line title slot keeps photos level across each row. */
+    .lnt-principles .card h3 {
+      min-block-size: 2lh;
     }
   }
 
@@ -341,7 +303,7 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
     .lnt-principles .intro-sticky {
       position: sticky;
-      top: 6rem;
+      top: 7rem;
     }
   }
 </style>

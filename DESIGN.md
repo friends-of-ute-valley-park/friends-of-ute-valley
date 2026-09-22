@@ -89,6 +89,18 @@ components:
     textColor: '{colors.trail-ink}'
     rounded: '{rounded.square}'
     padding: '{spacing.panel}'
+  status-record-header:
+    backgroundColor: '{colors.ponderosa-deep}'
+    textColor: '{colors.paper-white}'
+    rounded: '{rounded.square}'
+    padding: '1rem 1.5rem'
+  status-record-cell:
+    backgroundColor: '{colors.paper-white}'
+    textColor: '{colors.field-charcoal}'
+    rounded: '{rounded.square}'
+    padding: '1.25rem 1.5rem'
+  field-tag:
+    textColor: '{colors.ponderosa-deep}'
   input-quiet:
     backgroundColor: '{colors.limestone-paper}'
     textColor: '{colors.trail-ink}'
@@ -147,6 +159,10 @@ The palette reads as Ponderosa Green, Sunlit Amber, Limestone Paper, and charcoa
 
 **The Limestone Rule.** Default surfaces stay within the warm stone family. Pure white is reserved for content that needs separation from the page ground.
 
+**The Inverse Sunlight Rule.** On Field Charcoal bands, the accent role moves from Ponderosa to Sunlit Amber: accented heading words, group labels, and rules all turn amber. Green on charcoal is not used for emphasis.
+
+**The Contrast-by-Surface Rule.** Text on Deep Ponderosa is always Paper White or Ponderosa Mist. Headings inside a green header set their color explicitly instead of inheriting ink from shared heading styles.
+
 ## Typography
 
 **Display Font:** Playfair Display Variable (with Georgia, Cambria, and Times New Roman fallbacks)  
@@ -176,6 +192,10 @@ Layouts begin as single-column grids and become two-column structures around `48
 
 Photography may occupy half a layout or anchor an entire hero. Text overlays retain a limestone reading field or deliberate fade rather than sitting directly on noisy image detail. On small screens, hierarchy remains bold while layouts collapse cleanly and touch targets remain at least 2.75rem.
 
+Full-bleed hero photography fades horizontally into Limestone Paper from `64rem` up. Below that, the photograph becomes its own band at the top of the hero (`clamp(15rem, 46svh, 28rem)` tall) that fades downward into the page, and the display title overlaps the faded edge. Body copy never sits on the photograph at phone widths.
+
+Section headings with a short intro may use a 5/7 split from `64rem`: the title holds the left, and the intro aligns to its baseline on the right. When two columns sit side by side and one holds a tall third-party embed, the shorter column's content becomes sticky (`top: 7rem`, clearing the 5rem navigation), and the parent uses `overflow: clip`, not `hidden`, so stickiness still works.
+
 ## Elevation & Depth
 
 Depth is structural with selective lift. Most surfaces are flat and separated by color, borders, mattes, and grid lines. Primary actions use hard amber offset shadows to feel tactile; a small number of panels and menus use restrained ambient shadows when they truly sit above surrounding content.
@@ -198,6 +218,8 @@ The default form language is square and architectural. Cards, panels, buttons, n
 
 Image mattes create framed depth inside square media. Thin horizontal rules, grid borders, and occasional rotated square markers reinforce a surveyed, record-like geometry. Avoid soft card stacks and indiscriminate rounding.
 
+The rotated square marker is a `0.4375rem` to `0.5rem` square turned 45°, in Sunlit Amber on green or Trail Gold on limestone. It works like a survey pin: it leads a status heading or a category tag, and never appears as a bullet in running prose.
+
 ## Components
 
 Components follow **tactile civic utility**: square, bordered, legible, and explicit, with motion that confirms state rather than decorating the page.
@@ -205,7 +227,8 @@ Components follow **tactile civic utility**: square, bordered, legible, and expl
 ### Buttons
 
 - **Shape:** square by default (`0px`); newsletter controls alone may use `0.375rem`.
-- **Primary:** Deep Ponderosa background, white text, `1rem 2rem` padding, monospaced uppercase action type, and a `4px` Sunlit Amber offset.
+- **Primary:** Deep Ponderosa background, white text, `1rem 2rem` padding, monospaced uppercase action type (rendered at 700 on the green fill), and a `4px` Sunlit Amber offset.
+- **Secondary (hero):** Limestone Paper fill with a 2px Deep Ponderosa border and green text, tinting to Ponderosa Mist on hover. It sits beside the primary action without an offset and without backdrop blur.
 - **Hover / Focus:** primary buttons brighten to Ponderosa Green, grow to a `12px` offset, and translate up-left; all controls retain the 2px amber focus outline. Active states compress to `scale(0.96)`.
 - **Accent:** Trail Gold background with white text, deepening to Ochre on hover.
 - **Quiet / Outline:** transparent with visible boundary; outline buttons invert to charcoal on hover.
@@ -236,6 +259,19 @@ Section headings use uppercase Playfair Display at 900 weight, often with one it
 
 The volunteer alert is a narrow Deep Ponderosa band with a pulsing Sunlit Amber status dot, monospaced event details, and a bordered action with a small amber offset. It is operational, current, and visually distinct from promotional banners.
 
+### Park Status Record
+
+The home hero's status panel is the system's clearest civic record: a square Paper White panel with a 1px Boundary border and the Raised Panel shadow. It is one of the few surfaces that truly floats over photography.
+
+- **Header:** a Deep Ponderosa strip with the heading in uppercase Playfair at 900 (`1.125rem`) in Paper White, led by an amber rotated square marker. A monospaced "Updated" stamp in Ponderosa Mist dates the data it shows.
+- **Body:** a two-column grid with `1px` Boundary Light gaps. The lead fact (trail conditions) spans both columns, and the smaller facts (hours, dog policy) share a row.
+- **Cells:** a monospaced uppercase term with a `1rem` Ponderosa icon, then a monospaced value. The lead value is larger (`1.5rem`) and Deep Ponderosa when conditions are good, switching to Ochre when they are not. Supporting notes use small sans-serif body text, never tiny monospace.
+- **Links:** monospaced, underlined in amber, with a trailing chevron that nudges right on hover and a 2.75rem touch target.
+
+### Field Tag
+
+A monospaced uppercase label (`0.6875rem`, 800, `0.14em`) in Deep Ponderosa, led by a rotated square marker in Trail Gold. It opens a guidance card and names its category (Visitor Prep, Trail Care). It replaces filled tag chips and decorative numbering on cards whose order carries no meaning.
+
 ## Do's and Don'ts
 
 ### Do:
@@ -246,6 +282,8 @@ The volunteer alert is a narrow Deep Ponderosa band with a pulsing Sunlit Amber 
 - **Do** reserve Ponderosa Green for identity, navigation, and meaningful action.
 - **Do** keep amber rare and functional: focus, status, rules, and tactile offset.
 - **Do** make responsive changes structural, collapsing grids before reducing legibility or touch size.
+- **Do** stamp time-sensitive facts (conditions, hours, updates) with a monospaced date so visitors can judge freshness.
+- **Do** write alt text that describes what the photograph shows, and captions that match it.
 
 ### Don't:
 
@@ -255,3 +293,5 @@ The volunteer alert is a narrow Deep Ponderosa band with a pulsing Sunlit Amber 
 - **Don't** introduce glossy corporate gradients, vague stock imagery, faux-rustic textures, or whimsical nature motifs.
 - **Don't** turn operational facts into oversized marketing claims.
 - **Don't** add a fourth typographic voice when the established three already cover hierarchy, explanation, and metadata.
+- **Don't** number items (01, 02, 03) unless the sequence is real, as with the Leave No Trace principles.
+- **Don't** give hover color, zoom, or lift to elements that are not links or controls.

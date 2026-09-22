@@ -19,14 +19,15 @@ import heroImage2 from "../assets/images/ute-valley-park-hero-2.jpg";
 import mountainViewsImage from "../assets/images/volunteer-7.jpg";
 import cta from "../assets/images/volunteer-5.jpg";
 
-import { formatShortMonthDayYear, formatShortMonthYear, getParkHoursForDate } from "@/utils/date";
+import { formatShortMonthDayYear, getParkHoursForDate } from "@/utils/date";
 import { getPublishedNewsEntries } from "@/utils/content";
 import { assertTrailSummary } from "@/utils/trailData";
 import trailConditions from "@/data/generated/trailforks-summary.json";
 assertTrailSummary(trailConditions);
 const publishedNewsEntries = await getPublishedNewsEntries();
 const buildDate = new Date();
-const currentMonthYear = formatShortMonthYear(buildDate);
+const trailUpdatedAt = new Date(trailConditions.generatedAt);
+const trailsLookIdeal = /ideal/i.test(trailConditions.status);
 
 const { season: parkSeason, hours: parkHours } = getParkHoursForDate(buildDate);
 
@@ -37,28 +38,24 @@ const seasonalEssentialsBySeason = {
       "Cold nights, short days, and freeze-thaw cycles make the park sensitive. Here is how you can help protect it through winter.",
     tips: [
       {
-        id: "01",
         title: "Watch for Ice",
         description:
           "Shaded trail sections can stay icy long after sunny areas dry out. Slow down and give other visitors room to pass.",
         tag: "TRAIL SAFETY",
       },
       {
-        id: "02",
         title: "Stay Off Mud",
         description:
           "Freeze-thaw cycles can leave trails soft by afternoon. Turn back or choose a drier route when soil sticks to your shoes or tires.",
         tag: "TRAIL CARE",
       },
       {
-        id: "03",
         title: "Start Early Enough",
         description:
           "Winter daylight fades quickly. Plan your route around sunset and bring a light if your visit may run late.",
         tag: "VISITOR PREP",
       },
       {
-        id: "04",
         title: "Pack Out Everything",
         description:
           "Snow can hide litter and pet waste, but it does not make it disappear. Carry out everything you bring in.",
@@ -72,28 +69,24 @@ const seasonalEssentialsBySeason = {
       "The park is fragile as it emerges from winter. Here is how you can help keep it healthy through the thaw.",
     tips: [
       {
-        id: "01",
         title: "Avoid Muddy Trails",
         description:
           "Spring thaw and rains soften the ground. Walking muddy trails causes erosion and lasting damage, so turn back or stick to drier routes.",
         tag: "TRAIL CARE",
       },
       {
-        id: "02",
         title: "Dress for Shifting Weather",
         description:
           "Spring in Colorado swings from sun to snow. Bring layers, sun protection, and extra water on every outing.",
         tag: "VISITOR PREP",
       },
       {
-        id: "03",
         title: "Give Wildlife Space",
         description:
           "Nesting birds and newborn animals are active this season. Keep dogs leashed and stay well back from wildlife.",
         tag: "WILDLIFE HABITAT",
       },
       {
-        id: "04",
         title: "Pack Out Everything",
         description:
           "Melting snow exposes trash and pet waste left behind over winter. Carry out everything you bring in.",
@@ -107,28 +100,24 @@ const seasonalEssentialsBySeason = {
       "Hot, dry days put extra stress on visitors, wildlife, and the landscape. Here is how you can help care for the park this summer.",
     tips: [
       {
-        id: "01",
         title: "Carry More Water",
         description:
           "Ute Valley has exposed stretches and little shade. Bring more water than you think you need, especially for kids and dogs.",
         tag: "HEAT SAFETY",
       },
       {
-        id: "02",
         title: "Go Early or Late",
         description:
           "Morning and evening visits are cooler, calmer, and easier on the trail. Avoid the hottest part of the day when you can.",
         tag: "VISITOR PREP",
       },
       {
-        id: "03",
         title: "Protect Dry Vegetation",
         description:
           "Stay on designated trails and keep clear of dry grasses. Cutting across fragile areas increases erosion and fire risk.",
         tag: "FIRE AWARENESS",
       },
       {
-        id: "04",
         title: "Leash and Pack Out",
         description:
           "Keep dogs leashed, carry pet waste all the way out, and give wildlife extra space during the busiest season.",
@@ -142,28 +131,24 @@ const seasonalEssentialsBySeason = {
       "Cooler weather brings busy trails, changing light, and dry vegetation. Here is how you can help keep autumn visits low impact.",
     tips: [
       {
-        id: "01",
         title: "Plan for Earlier Dusk",
         description:
           "Evening light drops fast in fall. Start with enough time to finish your route before dark or bring a light.",
         tag: "VISITOR PREP",
       },
       {
-        id: "02",
         title: "Yield on Busy Trails",
         description:
           "Cooler days bring more walkers, runners, riders, and dogs. Slow down, communicate early, and pass with care.",
         tag: "TRAIL COURTESY",
       },
       {
-        id: "03",
         title: "Respect Dry Conditions",
         description:
           "Grasses and shrubs can be brittle late in the season. Stay on designated trails and avoid disturbing recovering areas.",
         tag: "HABITAT CARE",
       },
       {
-        id: "04",
         title: "Pack Out Everything",
         description:
           "Wind can scatter wrappers, bottles, and pet waste bags quickly. Carry out everything you bring in.",
@@ -209,11 +194,6 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
       <div class="l-container container">
         <div class="layout">
           <div class="copy">
-            <div class="home-kicker">
-              <span class="rule"></span>
-              <span class="text">Park update for {currentMonthYear}</span>
-            </div>
-
             <h1 class="title">
               Ute <br /> Valley <br />
               <span>Park.</span>
@@ -244,58 +224,54 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
 
           <aside class="park-status" aria-labelledby="park-status-title">
             <div class="header">
-              <span class="brand-icon">
-                <PineTreeIcon aria-hidden="true" />
-              </span>
               <h2 id="park-status-title" class="title">
                 Current park status
               </h2>
+              <p class="stamp">
+                Updated <time datetime={trailUpdatedAt.toISOString()}>{formatShortMonthDayYear(trailUpdatedAt)}</time>
+              </p>
             </div>
 
             <dl class="list">
-              <div class="item">
+              <div class="item item--wide">
                 <dt class="term">
-                  <span class="icon">
-                    <HikingIcon aria-hidden="true" />
-                  </span>
+                  <HikingIcon aria-hidden="true" />
                   <span>Trail conditions</span>
                 </dt>
-                <dd class="trail-status">
-                  <span class="value accent">{trailConditions.status}</span>
-                  <span class="trail-status__note">{trailConditions.note}</span>
+                <dd class="detail">
+                  <span class:list={["value", "value--lead", { "value--caution": !trailsLookIdeal }]}>
+                    {trailConditions.status}
+                  </span>
+                  <span class="note">{trailConditions.note}</span>
                   <a href="/visit/" class="park-status-link">
-                    View trail map &amp; conditions
+                    View trail map &amp; conditions <ChevronRightIcon aria-hidden="true" />
                   </a>
                 </dd>
               </div>
 
               <div class="item">
                 <dt class="term">
-                  <span class="icon">
-                    <ClockIcon aria-hidden="true" />
-                  </span>
+                  <ClockIcon aria-hidden="true" />
                   <span>{parkSeason} hours</span>
                 </dt>
-                <dd class="value">{parkHours}</dd>
+                <dd class="detail">
+                  <span class="value">{parkHours}</span>
+                </dd>
               </div>
 
               <div class="item">
                 <dt class="term">
-                  <span class="icon">
-                    <DogIcon aria-hidden="true" />
-                  </span>
+                  <DogIcon aria-hidden="true" />
                   <span>Dog policy</span>
                 </dt>
-                <dd class="park-status-policy">
-                  <span class="value brand">Leash required</span>
+                <dd class="detail">
+                  <span class="value">Leash required</span>
                   <a href="/rules/" class="park-status-link">
-                    Read park rules
+                    Read park rules <ChevronRightIcon aria-hidden="true" />
                   </a>
                 </dd>
               </div>
-
             </dl>
-
           </aside>
         </div>
       </div>
@@ -309,10 +285,10 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
           formats={["avif", "webp"]}
           width="600"
           height="600"
-          alt="Trail"
+          alt="Closed for revegetation sign asking visitors to stay on designated trails"
           class="image"
         />
-        <div class="label">Trail System Access</div>
+        <div class="label">Stay on designated trails</div>
       </div>
       <div class="item tablet">
         <Picture
@@ -320,7 +296,7 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
           formats={["avif", "webp"]}
           width="600"
           height="600"
-          alt="Vista"
+          alt="Volunteer holding loppers overhead on a sandstone outcrop with mountains behind"
           class="image"
         />
         <div class="label">Mountain Views</div>
@@ -331,7 +307,7 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
           formats={["avif", "webp"]}
           width="600"
           height="600"
-          alt="Volunteer"
+          alt="Volunteers carrying tools and a bucket along a park trail"
           class="image"
         />
         <div class="label">Active Stewardship</div>
@@ -341,29 +317,24 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     <!-- Seasonal Stewardship: Seasonal Guidance -->
     <section class="l-section band seasonal-section content-defer">
       <div class="l-container">
-        <div class="section-heading">
+        <div class="section-heading section-heading--split">
           <h2 class="t-section-title">
             {seasonalEssentials.title} <span>Essentials.</span>
           </h2>
           <p>{seasonalEssentials.intro}</p>
         </div>
 
-        <div class="seasonal-grid">
+        <ul class="seasonal-grid">
           {
             seasonalEssentials.tips.map((tip) => (
-              <div class="seasonal-card">
-                <div class="content">
-                  <span class="number">{tip.id}</span>
-                  <h3>{tip.title}</h3>
-                  <p>{tip.description}</p>
-                </div>
-                <div class="footer">
-                  <span>{tip.tag}</span>
-                </div>
-              </div>
+              <li class="seasonal-card">
+                <span class="tag">{tip.tag}</span>
+                <h3>{tip.title}</h3>
+                <p>{tip.description}</p>
+              </li>
             ))
           }
-        </div>
+        </ul>
       </div>
     </section>
 
@@ -372,21 +343,20 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
       <div class="l-container">
         <div class="layout">
           <div>
-            <span class="kicker">Our Impact: 2025</span>
             <h2 class="title">
               Our <br />
               <span>Impact.</span>
             </h2>
             <p class="lede">
-              A year of hands-on stewardship and a growing community
-              of people who care about Ute Valley Park.
+              2025 was a year of hands-on stewardship and a growing
+              community of people who care about Ute Valley Park.
             </p>
           </div>
           <div class="impact-groups">
             {
               [
                 {
-                  group: "Park Care",
+                  group: "Park Care in 2025",
                   stats: [
                     { label: "Volunteers", value: "76" },
                     { label: "Volunteer Hours", value: "331" },
@@ -403,18 +373,15 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
                 },
               ].map((section) => (
                 <div class="impact-group">
-                  <div class="heading">
-                    <span />
-                    <span>{section.group}</span>
-                  </div>
-                  <div class="impact-stats">
+                  <h3 class="heading">{section.group}</h3>
+                  <dl class="impact-stats">
                     {section.stats.map((stat) => (
                       <div class="impact-stat">
-                        <div class="value">{stat.value}</div>
-                        <div class="label">{stat.label}</div>
+                        <dt class="label">{stat.label}</dt>
+                        <dd class="value">{stat.value}</dd>
                       </div>
                     ))}
-                  </div>
+                  </dl>
                 </div>
               ))
             }
@@ -494,15 +461,17 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
             <div class="or">Or</div>
 
             <div class="col newsletter">
-              <div class="meta accent">
-                <span class="mark"><EmailNewsletterIcon aria-hidden="true" /></span>
-                <span class="eyebrow t-label">Email Newsletter</span>
+              <div class="pinned">
+                <div class="meta accent">
+                  <span class="mark"><EmailNewsletterIcon aria-hidden="true" /></span>
+                  <span class="eyebrow t-label">Email Newsletter</span>
+                </div>
+                <h2 class="headline">Stay in the Loop.</h2>
+                <p class="copy">
+                  Get park updates, volunteer opportunities, event announcements, and conservation news delivered straight to your inbox.
+                </p>
+                <EmailForm client:idle />
               </div>
-              <h2 class="headline">Stay in the Loop.</h2>
-              <p class="copy">
-                Get park updates, volunteer opportunities, event announcements, and conservation news delivered straight to your inbox.
-              </p>
-              <EmailForm client:idle />
             </div>
           </div>
         </div>
@@ -527,9 +496,10 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
   }
 
   .home-hero {
+    --hero-media: clamp(15rem, 46svh, 28rem);
+
     position: relative;
     isolation: isolate;
-    min-height: calc(100svh - 5rem);
     overflow: hidden;
     border-bottom: 1px solid var(--color-border);
     background: var(--color-page);
@@ -537,21 +507,23 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
 
   :global(.home-hero .image) {
     position: absolute;
-    inset: 0;
+    inset: 0 0 auto;
     z-index: -20;
     width: 100%;
-    height: 100%;
+    height: var(--hero-media);
     object-fit: cover;
-    object-position: 62% 45%;
+    object-position: 56% 55%;
   }
 
   .home-hero .fade-x {
     position: absolute;
-    inset: 0;
+    inset: 0 0 auto;
     z-index: -10;
+    height: var(--hero-media);
   }
 
   .home-hero .fade-corner {
+    display: none;
     position: absolute;
     inset-inline: 0;
     bottom: 0;
@@ -561,9 +533,8 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
 
   .home-hero .container {
     display: flex;
-    min-height: calc(100svh - 15rem);
     align-items: end;
-    padding-block: 3rem;
+    padding-block: calc(var(--hero-media) - 4.5rem) 3rem;
   }
 
   .home-hero .layout {
@@ -577,39 +548,16 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     max-width: 48rem;
   }
 
-  .home-kicker,
   .home-actions,
-  .home-button-content,
-  .park-status .header,
-  .park-status .term,
-  .impact-group .heading {
+  .home-button-content {
     display: flex;
     align-items: center;
   }
 
-  .home-kicker {
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .home-kicker .rule,
-  .home-hero .rule,
-  .impact-group .heading span:first-child {
+  .home-hero .rule {
     display: block;
-    height: 1px;
-    background: var(--color-brand-strong);
-  }
-
-  .home-kicker .rule {
-    width: 3rem;
-  }
-
-  .home-kicker .text {
-    color: var(--color-text-muted);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0;
+    height: 2px;
+    background: var(--color-accent);
   }
 
   .home-hero .title {
@@ -629,8 +577,8 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
   }
 
   .home-hero .rule {
-    width: 2rem;
-    margin-block: 1.5rem;
+    width: 3rem;
+    margin-block: 2rem 1.5rem;
   }
 
   .home-hero .lede {
@@ -654,23 +602,21 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     gap: 0.5rem;
   }
 
-  .home-button-icon,
-  .support-split .button svg {
+  .home-button-icon {
     width: 1rem;
     height: 1rem;
   }
 
   .home-button-secondary {
     border: 2px solid var(--color-brand-strong);
-    background: color-mix(in oklab, var(--color-page) 70%, transparent);
+    background: var(--color-page);
     color: var(--color-brand-strong);
     font-weight: 900;
-    backdrop-filter: blur(4px);
     transition-duration: var(--duration-fast);
   }
 
   .home-button-secondary:hover {
-    background: var(--color-page);
+    background: var(--color-brand-subtle);
   }
 
   .home-button-secondary:active {
@@ -699,139 +645,156 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
   }
 
   .park-status {
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    background: color-mix(in oklab, var(--color-page) 95%, transparent);
-    box-shadow: 0 25px 50px -12px color-mix(in oklab, var(--color-surface-inverse) 15%, transparent);
-    backdrop-filter: blur(4px);
-    outline: 1px solid var(--color-border-muted);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-raised);
   }
 
   .park-status .header {
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .park-status .brand-icon,
-  .park-status .icon {
     display: flex;
-    width: 2.5rem;
-    height: 2.5rem;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-pill);
-  }
-
-  .park-status .brand-icon {
-    background: var(--color-brand-subtle);
-    color: var(--color-brand-strong);
-    outline: 1px solid var(--color-brand-muted);
-  }
-
-  .park-status .brand-icon svg,
-  .park-status .icon svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    padding: 1rem clamp(1rem, 4vw, 1.5rem);
+    background: var(--color-brand-strong);
+    color: var(--color-text-inverse);
   }
 
   .park-status .title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     margin: 0;
-    color: var(--color-brand-strong);
+    color: var(--color-text-inverse);
     font-family: var(--font-display);
     font-size: 1.125rem;
-    font-weight: 700;
+    font-weight: 900;
+    line-height: var(--leading-tight);
     letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .park-status .title::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    flex-shrink: 0;
+    background: var(--color-accent);
+    transform: rotate(45deg);
+  }
+
+  .park-status .stamp {
+    margin: 0;
+    color: var(--color-brand-muted);
+    font-family: var(--font-label);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
   }
 
   .park-status .list {
     display: grid;
-    gap: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
     margin: 0;
+    background: var(--color-border-muted);
   }
 
   .park-status .item {
     display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 1rem;
+    align-content: start;
+    gap: 0.625rem;
+    padding: 1.25rem clamp(1rem, 4vw, 1.5rem);
+    background: var(--color-surface);
+  }
+
+  .park-status .item--wide {
+    grid-column: 1 / -1;
   }
 
   .park-status .term {
-    gap: 1rem;
-  }
-
-  .park-status .icon {
-    background: var(--color-border-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     color: var(--color-text-muted);
-  }
-
-  .park-status .term span:last-child {
-    color: var(--color-text-muted);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 500;
-  }
-
-  .park-status .value {
-    margin: 0;
-    color: var(--color-text);
-    font-family: var(--font-label);
-    font-size: 0.875rem;
-    font-weight: 700;
-  }
-
-  .park-status .value.accent {
-    color: var(--color-accent-strong);
-  }
-
-  .park-status .trail-status {
-    display: grid;
-    max-width: 15rem;
-    justify-items: end;
-    gap: 0.25rem;
-    margin: 0;
-    text-align: right;
-  }
-
-  .park-status .trail-status__note {
-    color: var(--color-text-muted);
-    font-family: var(--font-label);
-    font-size: 0.625rem;
-    font-weight: 500;
-    line-height: 1.35;
-  }
-
-  .park-status .park-status-policy {
-    display: grid;
-    justify-items: end;
-    gap: 0.25rem;
-    margin: 0;
-    text-align: right;
-  }
-
-  .park-status .park-status-link {
-    color: var(--color-brand-strong);
     font-family: var(--font-label);
     font-size: 0.6875rem;
     font-weight: 700;
-    line-height: 1.35;
-    text-decoration-line: underline;
-    text-decoration-color: var(--color-accent);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.25rem;
-    transition: color var(--duration-fast);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
-  .park-status .park-status-link:hover {
+  .park-status .term svg {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    color: var(--color-brand);
+  }
+
+  .park-status .detail {
+    display: grid;
+    justify-items: start;
+    gap: 0.375rem;
+    margin: 0;
+  }
+
+  .park-status .value {
+    color: var(--color-text-strong);
+    font-family: var(--font-label);
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: var(--leading-tight);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .park-status .value--lead {
+    color: var(--color-brand-strong);
+    font-size: 1.5rem;
+  }
+
+  .park-status .value--caution {
     color: var(--color-accent-strong);
   }
 
-  .park-status .value.brand {
+  .park-status .note {
+    max-width: 34ch;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+
+  .park-status .park-status-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.25rem;
+    margin-block: -0.5rem -0.75rem;
     color: var(--color-brand-strong);
-    white-space: nowrap;
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3rem;
+    transition: color var(--duration-fast);
+  }
+
+  .park-status .park-status-link svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .park-status .park-status-link:hover {
+    color: var(--color-brand);
+  }
+
+  .park-status .park-status-link:hover svg {
+    transform: translateX(0.1875rem);
   }
 
   .landscape-strip {
@@ -857,10 +820,12 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--duration-slower);
   }
 
-  .landscape-strip .item:hover :global(.image),
+  :global(.news-card .image) {
+    transition: transform var(--duration-slower) var(--ease-out);
+  }
+
   .news-card:hover :global(.image) {
     transform: scale(1.05);
   }
@@ -908,6 +873,10 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     margin: 0;
   }
 
+  .section-heading--split h2 {
+    margin-bottom: 1.5rem;
+  }
+
   .section-heading p,
   .news-section .heading p,
   .support-split .copy {
@@ -920,97 +889,67 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
   .seasonal-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0;
-    border: 0;
-    background: transparent;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    background: var(--color-border);
+    list-style: none;
   }
 
   .seasonal-card {
     display: flex;
-    min-height: 100%;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 1.5rem;
-    border: 1px solid var(--color-border);
+    gap: 1rem;
     background: var(--color-page);
     padding: 2rem;
-    transition:
-      background-color var(--duration-fast),
-      color var(--duration-fast);
   }
 
-  .seasonal-card:hover {
-    background: var(--color-surface);
-  }
-
-  .seasonal-card .content > * + * {
-    margin-top: 1rem;
-  }
-
-  .seasonal-card .number {
-    color: var(--color-accent-hover);
+  .seasonal-card .tag {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-brand-strong);
     font-family: var(--font-label);
-    font-size: 2.25rem;
-    font-weight: 900;
-    transition: color var(--duration-fast);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
 
-  .seasonal-card:hover .number {
-    color: var(--color-accent);
+  .seasonal-card .tag::before {
+    content: "";
+    width: 0.4375rem;
+    height: 0.4375rem;
+    flex-shrink: 0;
+    background: var(--color-accent-hover);
+    transform: rotate(45deg);
   }
 
   .seasonal-card h3 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.375rem;
+    font-weight: 900;
+    line-height: 1.15;
     letter-spacing: 0;
     text-transform: uppercase;
-    transition: color var(--duration-fast);
-  }
-
-  .seasonal-card:hover h3 {
-    color: var(--color-brand-strong);
+    text-wrap: balance;
   }
 
   .seasonal-card p {
     margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     line-height: var(--leading-body);
-  }
-
-  .seasonal-card .footer {
-    padding-top: 1.5rem;
-  }
-
-  .seasonal-card .footer span {
-    display: inline-block;
-    background: var(--color-brand-strong);
-    color: var(--color-text-inverse);
-    padding: 0.25rem 0.5rem;
-    font-family: var(--font-label);
-    font-size: 0.625rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
   }
 
   .impact-section .layout {
     display: grid;
     align-items: center;
     gap: 4rem;
-  }
-
-  .impact-section .kicker {
-    display: block;
-    margin-bottom: 1rem;
-    color: var(--color-text-inverse-muted);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
   }
 
   .impact-section .title {
@@ -1024,9 +963,9 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     text-transform: uppercase;
   }
 
-  .impact-section .title span,
-  .impact-group .heading span:last-child {
-    color: var(--color-brand-hover);
+  .impact-section .title span {
+    color: var(--color-accent);
+    font-style: italic;
   }
 
   .impact-section .lede {
@@ -1045,40 +984,50 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
   }
 
   .impact-group .heading {
+    display: flex;
+    align-items: center;
     gap: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .impact-group .heading span:first-child {
-    width: 1.5rem;
-    background: var(--color-brand-hover);
-  }
-
-  .impact-group .heading span:last-child {
+    margin: 0 0 1.25rem;
+    color: var(--color-accent);
     font-family: var(--font-label);
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
+  }
+
+  .impact-group .heading::before {
+    content: "";
+    width: 1.5rem;
+    height: 1px;
+    background: currentColor;
   }
 
   .impact-stats {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.5rem;
+    margin: 0;
   }
 
   .impact-stat {
-    display: grid;
-    gap: 0.25rem;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: start;
+    gap: 0.375rem;
+    border-top: 1px solid var(--color-surface-inverse-muted);
+    padding-top: 1rem;
   }
 
   .impact-stat .value {
+    margin: 0;
     color: var(--color-text-inverse);
     font-family: var(--font-label);
     font-size: clamp(1.875rem, 4vw, 3rem);
     font-weight: 900;
+    line-height: 1;
     letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
   }
 
   .impact-stat .label {
@@ -1168,7 +1117,8 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     transition: color var(--duration-fast);
   }
 
-  .news-card:hover h3 {
+  .news-card:hover h3,
+  .news-card:focus-visible h3 {
     color: var(--color-brand-strong);
   }
 
@@ -1189,7 +1139,7 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
   }
 
   .support-split {
-    overflow: hidden;
+    overflow: clip;
     border: 2px solid var(--color-brand-strong);
     background: var(--color-surface);
     box-shadow: var(--shadow-accent-xl);
@@ -1224,8 +1174,8 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     background: color-mix(in oklab, var(--color-brand-subtle) 55%, transparent);
   }
 
-  .support-split .col.newsletter {
-    background: color-mix(in oklab, var(--color-accent) 12%, transparent);
+  .support-split .col.newsletter .pinned > * + * {
+    margin-top: 1.5rem;
   }
 
   .support-split .col.newsletter :global(.email-signup) {
@@ -1357,48 +1307,17 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     line-height: 1.25;
   }
 
-  .support-split .mail-address {
-    display: grid;
-    gap: 0.35rem;
-    border: 1px solid color-mix(in oklab, var(--color-brand-strong) 35%, var(--color-border));
-    background: color-mix(in oklab, var(--color-surface) 84%, transparent);
-    padding: 1.25rem;
-    color: var(--color-brand-strong);
-    font-style: normal;
-    font-weight: 800;
-    line-height: var(--leading-tight);
-  }
-
-  .support-split .button {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    text-align: center;
-  }
-
   .leave-no-trace-band {
-    border-top: 1px solid var(--color-border);
     background: var(--color-page);
   }
 
   .hero-fade-x {
     background: linear-gradient(
-      90deg,
-      var(--color-page) 0%,
-      color-mix(in oklab, var(--color-page) 92%, transparent) 34%,
-      color-mix(in oklab, var(--color-page) 34%, transparent) 58%,
-      transparent 82%
-    );
-  }
-
-  .hero-fade-corner {
-    background: radial-gradient(
-      ellipse at 22% 100%,
-      color-mix(in oklab, var(--color-page) 92%, transparent) 0%,
-      color-mix(in oklab, var(--color-page) 50%, transparent) 38%,
-      transparent 70%
+      180deg,
+      transparent 45%,
+      color-mix(in oklab, var(--color-page) 55%, transparent) 72%,
+      color-mix(in oklab, var(--color-page) 92%, transparent) 88%,
+      var(--color-page) 100%
     );
   }
 
@@ -1433,6 +1352,30 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
   }
 
   @media (min-width: 64rem) {
+    .home-hero {
+      --hero-media: 100%;
+
+      min-height: calc(100svh - 5rem);
+    }
+
+    :global(.home-hero .image) {
+      inset: 0;
+      object-position: 62% 45%;
+    }
+
+    .home-hero .fade-x {
+      inset: 0;
+    }
+
+    .home-hero .fade-corner {
+      display: block;
+    }
+
+    .home-hero .container {
+      min-height: calc(100svh - 15rem);
+      padding-block: 3rem;
+    }
+
     .home-hero .layout {
       grid-template-columns: repeat(12, minmax(0, 1fr));
     }
@@ -1442,8 +1385,23 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     }
 
     .park-status {
-      grid-column: 9 / span 4;
-      padding: 2rem;
+      grid-column: 8 / span 5;
+    }
+
+    .section-heading--split {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      align-items: end;
+      gap: 3rem;
+    }
+
+    .section-heading--split h2 {
+      margin-bottom: 0;
+    }
+
+    .section-heading--split p {
+      justify-self: end;
+      max-width: 36rem;
     }
 
     .landscape-strip {
@@ -1490,6 +1448,11 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
       display: block;
     }
 
+    .support-split .col.newsletter .pinned {
+      position: sticky;
+      top: 7rem;
+    }
+
     .support-split .rule::after {
       content: "Or";
       position: absolute;
@@ -1497,7 +1460,6 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
       left: 50%;
       transform: translate(-50%, -50%);
       border: 1px solid color-mix(in oklab, var(--color-border) 80%, var(--color-page));
-      border-radius: var(--radius-pill);
       background: var(--color-surface);
       color: var(--color-brand-strong);
       padding: 0.5rem 0.875rem;
@@ -1513,7 +1475,7 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
       display: none;
     }
 
-    .hero-fade-x {
+    .home-hero .hero-fade-x {
       background: linear-gradient(
         90deg,
         var(--color-page) 0%,
@@ -1525,7 +1487,7 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
       );
     }
 
-    .hero-fade-corner {
+    .home-hero .hero-fade-corner {
       background: radial-gradient(
         ellipse at 23% 100%,
         color-mix(in oklab, var(--color-page) 96%, transparent) 0%,
@@ -1533,6 +1495,12 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
         color-mix(in oklab, var(--color-page) 14%, transparent) 56%,
         transparent 74%
       );
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .park-status {
+      grid-column: 9 / span 4;
     }
   }
 </style>
