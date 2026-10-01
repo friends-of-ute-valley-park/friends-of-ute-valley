@@ -4,6 +4,9 @@ import TeamList from "@components/TeamList.astro";
 import Layout from "@layouts/Layout.astro";
 import OldPhotos from "@components/OldPhotos.astro";
 import StatsCard from "@components/StatsCard.astro";
+import { Image, Picture } from "astro:assets";
+import Logo from "@/assets/images/logos/logo-medium.jpg";
+import SurveyPreview from "@/assets/images/colorado-land-survey-preview.jpg";
 ---
 
 <Layout
@@ -39,7 +42,12 @@ import StatsCard from "@components/StatsCard.astro";
             class="logo-card"
             aria-label="Friends of Ute Valley Park identity"
           >
-            <img src="/images/logo-medium.jpg" alt="Friends of Ute Valley logo" />
+            <Image
+              src={Logo}
+              alt="Friends of Ute Valley logo"
+              width={192}
+              densities={[1, 2]}
+            />
             <p>
               Volunteer-led stewardship for a 550-acre Colorado Springs
               wildland.
@@ -255,9 +263,15 @@ import StatsCard from "@components/StatsCard.astro";
             Coal Mine <span>Survey Report.</span>
           </h2>
           <div class="media">
-            <img
-              src="/images/colorado-land-survey-preview.jpg"
+            <Picture
+              src={SurveyPreview}
+              formats={["avif"]}
+              fallbackFormat="webp"
               alt="Coal mine survey"
+              width={800}
+              height={450}
+              widths={[400, 800, 1200, 1600]}
+              sizes="(min-width: 64rem) 800px, 92vw"
             />
           </div>
           <div class="footer">

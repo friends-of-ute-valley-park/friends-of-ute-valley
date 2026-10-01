@@ -180,11 +180,12 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
     <section class="home-hero">
       <Picture
         src={heroImage}
-        formats={["avif", "webp"]}
-        width="1800"
-        height="1355"
-        loading="eager"
-        fetchpriority="high"
+        formats={["avif"]}
+        fallbackFormat="webp"
+        width={1280}
+        widths={[640, 828, 1080, 1280, 1668, 1800]}
+        sizes="(max-width: 552px) 552px, 100vw"
+        priority
         alt="Ute Valley Park sandstone, pines, and Pikes Peak under an open sky"
         class="image"
       />
@@ -282,9 +283,12 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
       <div class="item">
         <Picture
           src={heroImage2}
-          formats={["avif", "webp"]}
-          width="600"
-          height="600"
+          formats={["avif"]}
+          fallbackFormat="webp"
+          width={640}
+          height={640}
+          widths={[400, 640, 800]}
+          sizes="(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw"
           alt="Closed for revegetation sign asking visitors to stay on designated trails"
           class="image"
         />
@@ -293,9 +297,12 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
       <div class="item tablet">
         <Picture
           src={mountainViewsImage}
-          formats={["avif", "webp"]}
-          width="600"
-          height="600"
+          formats={["avif"]}
+          fallbackFormat="webp"
+          width={640}
+          height={640}
+          widths={[400, 640, 800]}
+          sizes="(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw"
           alt="Volunteer holding loppers overhead on a sandstone outcrop with mountains behind"
           class="image"
         />
@@ -304,9 +311,12 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
       <div class="item desktop">
         <Picture
           src={cta}
-          formats={["avif", "webp"]}
-          width="600"
-          height="600"
+          formats={["avif"]}
+          fallbackFormat="webp"
+          width={640}
+          height={640}
+          widths={[400, 640, 800]}
+          sizes="(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw"
           alt="Volunteers carrying tools and a bucket along a park trail"
           class="image"
         />
@@ -414,9 +424,12 @@ const seasonalEssentials = getSeasonalEssentialsForDate(buildDate);
                   <div class="media">
                     <Picture
                       src={post.data.coverImage}
-                      formats={["avif", "webp"]}
-                      width="600"
-                      height="400"
+                      formats={["avif"]}
+                      fallbackFormat="webp"
+                      width={480}
+                      height={300}
+                      widths={[480, 720]}
+                      sizes="(min-width: 64rem) 30vw, (min-width: 40rem) 45vw, 100vw"
                       alt={post.data.title}
                       class="image"
                     />

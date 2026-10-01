@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 
 import Layout from "@layouts/Layout.astro";
 import VolunteerItem from "@components/VolunteerItem.astro";
@@ -32,11 +32,16 @@ const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
   <main class="page volunteer-page">
     <!-- Hero Section -->
     <section class="volunteer-hero">
-      <Image
+      <Picture
         src={VolunteerHeroImage}
+        formats={["avif"]}
+        fallbackFormat="webp"
         alt="Volunteers maintaining a trail"
         class="image"
-        width={1800}
+        width={1280}
+        widths={[640, 828, 1080, 1280, 1668, 2048, 2560]}
+        sizes="(max-width: 640px) 640px, 100vw"
+        priority
       />
       <div class="scrim"></div>
 
@@ -102,11 +107,15 @@ const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
       <div class="page-section__inner">
         <div class="volunteer-opps-layout">
           <div class="photo">
-            <Image
+            <Picture
               src={VolunteerOpportunitiesImage}
+              formats={["avif"]}
+              fallbackFormat="webp"
               alt="Volunteer holding a bag of collected litter in a meadow"
-              width={1000}
-              height={1500}
+              width={360}
+              height={540}
+              widths={[360, 720]}
+              sizes="360px"
               class="image"
             />
           </div>
@@ -188,11 +197,15 @@ const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
           </div>
 
           <div class="photo">
-            <Image
+            <Picture
               src={VolunteerInfoImage2}
+              formats={["avif"]}
+              fallbackFormat="webp"
               alt="Volunteers in action"
               class="image"
-              width={1000}
+              width={704}
+              widths={[400, 704, 1056, 1408]}
+              sizes="(min-width: 64rem) 44vw, 100vw"
             />
           </div>
         </div>

@@ -76,10 +76,13 @@ const mapTrailheads: VisitTrailhead[] = sortedTrailheads.map((trailhead) => ({
         <div class="media media-zoom-frame">
           <Picture
             src={heroImage}
-            formats={["avif", "webp"]}
+            formats={["avif"]}
+            fallbackFormat="webp"
             alt="Biker in Ute Valley"
-            width="1200"
-            height="1200"
+            width={1008}
+            widths={[640, 1008]}
+            sizes="(min-width: 48rem) 1008px, 640px"
+            priority
             class="image media-cover media-zoom media-zoom--slow"
           />
           <div class="matte media-matte"></div>
@@ -133,10 +136,13 @@ const mapTrailheads: VisitTrailhead[] = sortedTrailheads.map((trailhead) => ({
             <div class="media">
               <Picture
                 src={DogImage}
-                formats={["avif", "webp"]}
+                formats={["avif"]}
+                fallbackFormat="webp"
                 alt="Dog in park"
-                width="800"
-                height="450"
+                width={600}
+                height={338}
+                widths={[600]}
+                sizes="(min-width: 64rem) 45vw, 100vw"
                 class="image media-cover"
               />
             </div>

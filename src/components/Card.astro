@@ -9,17 +9,20 @@ export interface Props {
 
 const { title, image, publishedOn, href, previewText } = Astro.props;
 
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
 ---
 
 <a href={"/news/" + href} class="news-teaser">
   <article class="media media-frame media-zoom-frame">
-    <Image
+    <Picture
       src={image}
-      width={800}
-      height={500}
-      quality="80"
+      formats={["avif"]}
+      fallbackFormat="webp"
+      width={480}
+      height={300}
+      widths={[480, 720]}
+      sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw"
       alt={title}
       class="image media-cover media-zoom media-zoom--slow"
     />

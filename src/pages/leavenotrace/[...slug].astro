@@ -57,9 +57,12 @@ const { Content } = await render(entry);
               <div class="article-photo-card photo">
                 <Picture
                   class="image"
-                  formats={["avif", "webp"]}
-                  width="900"
-                  height="675"
+                  formats={["avif"]}
+                  fallbackFormat="webp"
+                  width={576}
+                  height={432}
+                  widths={[400, 576, 880]}
+                  sizes="(min-width: 64rem) 440px, (min-width: 36rem) 576px, 100vw"
                   src={entry.data.image}
                   alt={entry.data.imageAlt}
                 />

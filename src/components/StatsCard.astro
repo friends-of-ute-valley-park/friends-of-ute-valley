@@ -6,7 +6,7 @@ const stats = [
   { id: 4, name: "Community survey responses", value: "105" },
 ];
 
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import Volunteers from "@/assets/images/volunteer-6.jpg";
 ---
 
@@ -14,10 +14,15 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
   <div class="layout">
     <!-- Image with framed presentation -->
     <div class="media">
-      <Image
+      <Picture
         src={Volunteers}
+        formats={["avif"]}
+        fallbackFormat="webp"
         alt="Volunteers in action"
         class="image media-cover"
+        width={800}
+        widths={[400, 800, 1200]}
+        sizes="(min-width: 64rem) 50vw, 100vw"
       />
       <div class="matte media-matte"></div>
     </div>

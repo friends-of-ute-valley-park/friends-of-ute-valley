@@ -1,11 +1,11 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 
 const teamMembers = [
   {
     name: "Drew Town",
     title: "Chair",
-    image: import("@/assets/images/members/drew-town.png"),
+    image: import("@/assets/images/members/drew-town.jpg"),
   },
   {
     name: "Christine Thomas",
@@ -67,12 +67,16 @@ const teamMembers = [
         teamMembers.map((teamMember) => (
           <div class="card media-zoom-parent">
             <div class="media">
-              <Image
-                height="600"
-                width="600"
-                class="image media-cover media-zoom"
+              <Picture
                 src={teamMember.image}
+                formats={["avif"]}
+                fallbackFormat="webp"
                 alt={teamMember.name}
+                width={540}
+                height={540}
+                widths={[400, 540, 800]}
+                sizes="(min-width: 100rem) 540px, (min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw"
+                class="image media-cover media-zoom"
               />
               <div class="matte media-matte" />
             </div>

@@ -4,27 +4,37 @@ import Layout from "@layouts/Layout.astro";
 const logos = [
   {
     src: "/images/logo-small.jpg",
+    width: 200,
+    height: 195,
     alt: "Small Logo",
     ref: "LOG_SML_01",
     desc: "Small utility logo",
   },
   {
     src: "/images/logo-medium.jpg",
+    width: 500,
+    height: 488,
     alt: "Medium Logo",
     desc: "Medium-format logo",
   },
   {
     src: "/images/logo-full.jpg",
+    width: 1068,
+    height: 1042,
     alt: "Full Size Logo",
     desc: "Standard full size logo",
   },
   {
     src: "/images/logo-full-uncompressed.jpg",
+    width: 1068,
+    height: 1042,
     alt: "Uncompressed Logo",
     desc: "High-resolution source asset",
   },
   {
     src: "/images/logo-stickers.png",
+    width: 1181,
+    height: 1181,
     alt: "Sticker Logo",
     desc: "Sticker-optimized layout",
   },
@@ -62,6 +72,10 @@ const logos = [
                   <img
                     src={logo.src}
                     alt={logo.alt}
+                    width={logo.width}
+                    height={logo.height}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div class="body">
@@ -119,6 +133,8 @@ const logos = [
 
   .asset-card .media img {
     width: auto;
+    max-width: 100%;
+    height: auto;
     max-height: 100%;
     transition: transform var(--duration-slow);
   }

@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro:assets";
+import { Image, Picture } from "astro:assets";
 import PlanAhead from "../assets/images/lnt/plan-ahead-and-prepare.jpg";
 import TravelOnDurableSurfaces from "../assets/images/lnt/travel-on-durable-surfaces.jpg";
 import DisposeOfWasteProperly from "../assets/images/lnt/dispose-of-waste-properly.jpg";
@@ -82,11 +82,11 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
               target="_blank"
               rel="noopener noreferrer nofollow"
             >
-              <Picture
+              <Image
                 src={lntLogo}
-                formats={["png"]}
+                format="png"
+                width={192}
                 densities={[1, 2]}
-                width={240}
                 alt="Leave No Trace Gold Standard Site"
                 class="logo"
               />
@@ -123,8 +123,13 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
                 <Picture
                   class="image media-cover"
                   src={principle.image}
+                  formats={["avif"]}
+                  fallbackFormat="webp"
                   alt={principle.altText}
-                  width={600}
+                  width={400}
+                  height={250}
+                  widths={[400]}
+                  sizes="(min-width: 64rem) 28vw, (min-width: 48rem) 45vw, 100vw"
                 />
               </div>
 

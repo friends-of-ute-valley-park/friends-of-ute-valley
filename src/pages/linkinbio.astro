@@ -32,7 +32,7 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
       <div class="header">
         <div class="identity">
           <div class="logo-frame">
-            <Image src={Logo} alt="FUVP Seal" width="80" height="80" />
+            <Image src={Logo} alt="FUVP Seal" width={80} height={80} densities={[1, 2]} />
           </div>
           <div class="title-block">
             <h1>
@@ -122,8 +122,10 @@ import Logo from "@/assets/images/logos/logo-medium.jpg";
                   <Image
                     src={item.data.image}
                     alt={item.data.imageAlt}
-                    width="200"
-                    height="200"
+                    width={220}
+                    height={220}
+                    widths={[220, 440]}
+                    sizes="(min-width: 48rem) 220px, 30vw"
                     class="image"
                   />
                   <div class="quantity">

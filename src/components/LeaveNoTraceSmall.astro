@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import EngagementPanel from "./EngagementPanel.astro";
 import lntLogo from "../assets/images/logos/leave-no-trace.png";
 ---
@@ -33,10 +33,12 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
       class="partner"
     >
       <a href="https://www.lnt.org" class="logo-link">
-        <Picture
+        <Image
           src={lntLogo}
+          format="png"
+          width={192}
+          densities={[1, 2]}
           alt="Leave No Trace logo"
-          width="240"
           class="logo"
         />
       </a>

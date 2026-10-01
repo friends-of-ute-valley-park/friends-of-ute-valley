@@ -103,9 +103,13 @@ const { entry } = Astro.props;
             <div class="trailhead-map-card">
               <Picture
                 class="trailhead-map"
-                width="1000"
                 src={entry.data.map}
+                formats={["avif"]}
+                fallbackFormat="webp"
                 alt={`${entry.data.name} map section`}
+                width={640}
+                widths={[400, 640, 960, 1280]}
+                sizes="(min-width: 44rem) 640px, 90vw"
               />
             </div>
           </div>
@@ -130,8 +134,13 @@ const { entry } = Astro.props;
                   <Picture
                     class="image media-cover media-zoom media-zoom--slow"
                     src={photo.photo}
+                    formats={["avif"]}
+                    fallbackFormat="webp"
                     alt={photo.caption}
-                    width={800}
+                    width={780}
+                    height={488}
+                    widths={[400, 800, 1200]}
+                    sizes="(min-width: 48rem) 50vw, 100vw"
                   />
                   <div class="matte media-matte" />
                 </div>

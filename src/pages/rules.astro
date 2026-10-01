@@ -2,7 +2,7 @@
 import LeaveNoTrace from "@components/LeaveNoTrace.astro";
 import Layout from "@layouts/Layout.astro";
 import { parkHoursRulesRows } from "@/utils/date";
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import trailRightOfWay from "../assets/images/trail-right-of-way.png";
 
 const parkRules = [
@@ -195,7 +195,7 @@ const parkRules = [
 
           <div>
             <div class="diagram">
-              <Picture
+              <Image
                 src={trailRightOfWay}
                 alt="Trail right of way diagram"
                 class="image"

@@ -9,6 +9,10 @@ import SweetLife from "../../assets/images/dogs/the.sweet.life.of.five.jpg";
 import LoganRescue from "../../assets/images/dogs/logan.and.the.rescue.crew.jpg";
 import Marisslh from "../../assets/images/dogs/marisslh.jpg";
 import QueenPadme from "../../assets/images/dogs/queen_padme_21.jpg";
+import RedRockCanyon from "../../assets/images/other-parks/red-rock-canyon-open-space.jpg";
+import PalmerPark from "../../assets/images/other-parks/palmer-park.jpg";
+import GardenOfTheGods from "../../assets/images/other-parks/garden-of-the-gods.jpg";
+import RampartDogPark from "../../assets/images/other-parks/rampart-dog-park.jpg";
 
 const dogs = [
   { src: FreyjaPup, handle: "freyja_pup" },
@@ -21,7 +25,7 @@ const dogs = [
 const otherParks = [
   {
     name: "Red Rock Canyon Open Space",
-    image: "/images/other-parks/red-rock-canyon-open-space.jpg",
+    image: RedRockCanyon,
     type: "Unfenced",
     distance: "7.5 miles",
     time: "15 minutes",
@@ -31,7 +35,7 @@ const otherParks = [
   },
   {
     name: "Palmer Park",
-    image: "/images/other-parks/palmer-park.jpg",
+    image: PalmerPark,
     type: "Fenced",
     distance: "9.8 miles",
     time: "20 minutes",
@@ -40,7 +44,7 @@ const otherParks = [
   },
   {
     name: "Garden of the Gods",
-    image: "/images/other-parks/garden-of-the-gods.jpg",
+    image: GardenOfTheGods,
     type: "Unfenced",
     distance: "6.9 miles",
     time: "14 minutes",
@@ -49,7 +53,7 @@ const otherParks = [
   },
   {
     name: "Rampart Dog Park",
-    image: "/images/other-parks/rampart-dog-park.jpg",
+    image: RampartDogPark,
     type: "Fenced",
     distance: "6.6 miles",
     time: "15 minutes",
@@ -119,9 +123,13 @@ const rules = [
                     >
                       <Picture
                         src={dog.src}
-                        formats={["avif", "webp"]}
+                        formats={["avif"]}
+                        fallbackFormat="webp"
                         alt="Dog at Ute Valley Park"
-                        width={400}
+                        width={380}
+                        height={380}
+                        widths={[200, 380, 640, 760]}
+                        sizes="(min-width: 64rem) 20vw, 50vw"
                         class="image"
                       />
                       <p>
@@ -143,9 +151,13 @@ const rules = [
                     >
                       <Picture
                         src={dog.src}
-                        formats={["avif", "webp"]}
+                        formats={["avif"]}
+                        fallbackFormat="webp"
                         alt="Dog at Ute Valley Park"
-                        width={400}
+                        width={380}
+                        height={380}
+                        widths={[200, 380, 640, 760]}
+                        sizes="(min-width: 64rem) 20vw, 50vw"
                         class="image"
                       />
                       <p>
@@ -176,9 +188,13 @@ const rules = [
             <div class="photo">
               <Picture
                 src={DogImage}
-                formats={["avif", "webp"]}
+                formats={["avif"]}
+                fallbackFormat="webp"
                 alt="Dog in park"
-                width="800"
+                width={400}
+                height={400}
+                widths={[400]}
+                sizes="(min-width: 64rem) 40vw, 100vw"
                 class="image"
               />
               <div>
@@ -253,9 +269,15 @@ const rules = [
             otherParks.map((park) => (
               <div class="dog-park-card">
                 <div class="media">
-                  <img
+                  <Picture
                     src={park.image}
+                    formats={["avif"]}
+                    fallbackFormat="webp"
                     alt={park.name}
+                    width={384}
+                    height={240}
+                    widths={[384, 480, 768]}
+                    sizes="(min-width: 64rem) 25vw, (min-width: 40rem) 50vw, 100vw"
                   />
                 </div>
                 <div class="body">

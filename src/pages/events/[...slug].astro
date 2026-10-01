@@ -3,7 +3,7 @@ import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import { resolveMeetingLocation } from "../../utils/EventData";
 import { formatShortMonthDayYear } from "../../utils/date";
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import volunteerImage from "../../assets/images/volunteer.jpg";
 
 export async function getStaticPaths() {
@@ -34,10 +34,16 @@ const locationInformation = resolveMeetingLocation(entry.data, meetingLocations)
 
     <section class="page-section">
       <div class="inner l-container">
-        <Image
+        <Picture
           src={volunteerImage}
+          formats={["avif"]}
+          fallbackFormat="webp"
           class="image"
           alt="volunteers working in Ute Valley Park"
+          width={656}
+          widths={[440, 656, 800]}
+          sizes="(min-width: 48rem) 656px, 440px"
+          priority
         />
 
         <div class="meta-panel">

@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
 import InstagramIcon from "~icons/mdi/instagram";
@@ -100,11 +100,15 @@ const { Content } = await render(entry);
             {
               entry.data.images.map((image, i) => (
                 <div class="article-photo-card photo">
-                  <Image
+                  <Picture
                     src={image.image}
+                    formats={["avif"]}
+                    fallbackFormat="webp"
                     alt={`${entry.data.name} action photo ${i + 1}`}
                     width={800}
                     height={800}
+                    widths={[400, 800, 1200]}
+                    sizes="(min-width: 64rem) 40vw, 100vw"
                     class="photo-image"
                   />
                 </div>

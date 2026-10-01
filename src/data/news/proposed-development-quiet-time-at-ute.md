@@ -8,7 +8,7 @@ previewText: A potential development project near Ute Valley Park
 
 A potential development project near Ute Valley Park.
 
-![](/src/data/news/ute-news-7-7-2.jpg)
+![](./ute-news-7-7-2.jpg)
 
 If you want more information on this proposed development go to [https://www.coloradosprings.​gov/LDRS](https://www.coloradosprings.gov/LDRS?fbclid=IwAR1M8Fk0HYbIzMrdS7p7BrtQH7cY4ysiGfLw6Mu_Z6Nha2pjp7jUYFcwyyU) and type in **AR DP 21-00408** in the file number field.
 

@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 
 import ContactForm from "../components/ContactForm.vue";
 import ZeffyDonationEmbed from "../components/ZeffyDonationEmbed.astro";
@@ -127,11 +127,15 @@ const givingOptions = [
     <section id="gift-impact" class="impact-section l-section content-defer">
       <div class="impact-layout l-container">
         <div class="impact-media media-frame">
-          <Image
+          <Picture
             src={VolunteerHeroImage}
+            formats={["avif"]}
+            fallbackFormat="webp"
             alt="Volunteers gather on a Ute Valley Park trail"
             class="image media-cover"
-            width={1200}
+            width={800}
+            widths={[400, 800, 1200, 1600]}
+            sizes="(min-width: 64rem) 56vw, 100vw"
           />
         </div>
 
