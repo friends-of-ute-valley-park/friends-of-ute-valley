@@ -10,7 +10,7 @@ type CalendarEvent = {
   companyName?: string;
 };
 
-// These are tentative dates used before individual event entries are published.
+// Includes tentative dates before individual event entries are published.
 const calendarEvents: CalendarEvent[] = [
   { date: "2026-05-20", type: "public", title: "Public volunteer event" },
   { date: "2026-06-03", type: "public", title: "Public volunteer event" },
@@ -21,6 +21,7 @@ const calendarEvents: CalendarEvent[] = [
   { date: "2026-08-19", type: "public", title: "Public volunteer event" },
   { date: "2026-09-02", type: "public", title: "Public volunteer event" },
   { date: "2026-09-19", type: "public", title: "Public volunteer event" },
+  { date: "2026-10-31", type: "public", title: "Friends of Ute Valley Park Trail Work Volunteer Day" },
   {
     date: "2026-05-18",
     type: "company",
@@ -58,6 +59,7 @@ const allMonths = [
   { label: "July", monthIndex: 6 },
   { label: "August", monthIndex: 7 },
   { label: "September", monthIndex: 8 },
+  { label: "October", monthIndex: 9 },
 ];
 
 const eventMonthIndexes = volunteerEventDates.map((date) => date.getMonth());
