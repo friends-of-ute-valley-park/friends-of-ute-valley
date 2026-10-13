@@ -5,70 +5,33 @@ image: './travel-on-durable-surfaces.jpeg'
 imageAlt: 'Wayfinding sign next to a trail'
 ---
 
-Ute Valley gets this use because it is close, accessible, and loved. A shortcut can seem harmless. Someone steps around the mud. Someone else follows. A pale line appears beside the trail. The line becomes a route. Each detour makes the next detour easier.
+Ute Valley Park is heavily used because it is close to town and accessible. Staying on designated trails concentrates foot and tire traffic, protecting the surrounding soil, plants, and wildlife.
 
-Traveling on durable surfaces is the practical form of protecting the park. In Ute Valley, it means staying on designated trails.
+## What Counts as a Durable Surface
 
-## Durable Surfaces
+Durable surfaces are built and maintained to handle repeated use. In Ute Valley Park, off-trail travel is prohibited, so the only legal durable surfaces are:
 
-Durable surfaces can handle repeated use, but they are not indestructible. In Ute Valley Park, that means using designated trails and the rock, gravel, sand, snow, or ice that make up those trails when conditions are safe.
+- Established, signed trails
+- Rock, gravel, and sand within the existing trail tread
+- Snow and ice directly on a designated trail
 
-In Ute Valley Park, durable surfaces include:
-
-- Established, designated trails
-- Rock, gravel, and sand that are part of a designated trail
-- Snow and ice on a designated trail, when conditions are safe
-
-The trail itself matters most. Park staff place and maintain designated trails so visitors can enjoy the park without spreading damage across the landscape.
+Park staff and volunteers design and maintain these corridors so visitors can enjoy the park without spreading damage across the landscape.
 
 ## Why It Matters
 
-Most trail damage does not announce itself. It begins as an ordinary decision: not to get shoes wet, not to lose momentum, not to take the longer way around. One person leaves the trail. A few footprints make a faint path. More people follow, and the shortcut becomes bare soil.
+Trail damage rarely starts with bad intentions. It begins when one person steps off the tread to avoid a puddle or cut a switchback. A few footprints flatten the roadside vegetation and make a faint path. Others follow, turning a pale line into bare soil.
 
-Bare soil erodes quickly, especially on slopes. Weeds and invasive plants find the opening. What looked like a few harmless steps becomes a channel for water, a wider edge, a place where the original plants no longer hold the ground together.
+Plants along the trail edge anchor the soil and provide cover and food for wildlife. Once those plants are trampled:
 
-The plants along the trail edge can seem incidental. They are not. They hold soil in place. They provide cover and food for wildlife. Their absence is part of the damage, even when the absence is difficult to see at first.
+- **Erosion accelerates:** Bare soil washes away quickly, especially on slopes, turning shortcuts into water channels.
+- **Invasive weeds take over:** Disturbed ground creates an immediate opening for invasive species.
+- **Trails braid and widen:** Detours split single trails into multiple parallel tracks. Crews and volunteers can restore braided trails, but preventing the damage takes far less effort than repairing it.
 
-Staying on the trail keeps impact concentrated where the park can handle it best.
+## How to Protect the Trails
 
-It also prevents trail braiding, when one trail splits into several parallel tracks. Crews can repair that damage, but avoiding it is easier than repairing it.
+1. **Stay on official trails:** Do not cut switchbacks or follow user-created social trails. If you are unsure whether a path is official, or if you lose the trail, stop and backtrack to the nearest signed route.
+2. **Go through mud and snow, not around:** When conditions are safe, walk or ride directly through shallow mud, puddles, or snow in the center of the trail. If a trail is impassable, deeply muddy, or icy, turn around and choose a drier signed route.
+3. **Yield without leaving the tread:** Hikers, mountain bikers, and equestrians share Ute Valley Park. When yielding to other users, step to the edge of the dirt tread—avoid stepping onto vegetation or fragile soil.
+4. **Respect park closures and rules:** Obey all seasonal or restoration closures, and remember that overnight camping is prohibited in Ute Valley Park.
 
-## Travel Well in Ute Valley Park
-
-### Stay on the trail
-
-Park rules do not allow off-trail travel in Ute Valley Park. Stay on signed, designated trails. Do not follow user-created tracks or shortcuts. If you are unsure whether a path is official, stop and return to the nearest signed trail.
-
-Do not cut switchbacks or take shortcuts. You may save a few seconds, but you leave damage behind.
-
-If you lose the trail, stop and look for the nearest official route instead of continuing across open ground.
-
-### Choose the right trail
-
-Hikers, mountain bikers, and equestrians share Ute Valley Park trails.
-
-Choose a route suited to your activity and ability. Follow posted signs and any park yielding guidance. Give other trail users enough space to pass safely, and expect to share the trail.
-
-Using the right trail helps prevent conflict and keeps heavy use from spilling into sensitive areas.
-
-### Walk through mud and snow
-
-When conditions are safe, stay in the existing trail tread through shallow mud, snow, or puddles. Do not go around the trail edge, even if your shoes get dirty.
-
-Going around damages plants and widens the trail. Each detour makes the next detour easier.
-
-If the trail is deeply muddy, icy, unsafe, or closed, turn around, choose a signed alternative, or come back when conditions improve.
-
-### Camp elsewhere
-
-Camping is not allowed in Ute Valley Park.
-
-Overnight use can create fire risk, litter, wildlife conflicts, and lasting damage in places park staff did not build for it.
-
-If you want to camp, use a designated campsite where overnight use is permitted.
-
-## Protect the Park for Everyone
-
-Protecting the park comes down to a few plain choices: stay on designated trails, respect closures and signs, and let muddy shoes be part of the day.
-
-Ute Valley Park gets a lot of love. Staying on the trail keeps that love from turning into damage.
+Keeping Ute Valley Park intact comes down to a few plain choices: stick to signed routes, respect restoration closures, and let muddy shoes be part of the day.
