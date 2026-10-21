@@ -20,6 +20,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
       - name: POST hook
         run: curl -X POST -d {} https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/${{ secrets.CF_WEBHOOK_ID }}
