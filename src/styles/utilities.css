@@ -1,9 +1,4 @@
 @layer utilities {
-  .content-defer {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 500px;
-  }
-
   .sr-only {
     position: absolute;
     width: 1px;
