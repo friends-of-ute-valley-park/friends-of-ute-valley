@@ -6,6 +6,8 @@
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Anchor jumps land below the sticky header (nav + route profile strip). */
+    scroll-padding-top: 7.5rem;
   }
 
   body {

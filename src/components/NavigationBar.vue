@@ -209,6 +209,8 @@ const navigation = [
       </div>
     </nav>
 
+    <slot name="route-profile" />
+
     <!-- Mobile menu backdrop -->
     <div v-show="menuOpen" class="backdrop" aria-hidden="true" @click="closeMenu" />
 
@@ -255,8 +257,9 @@ const navigation = [
   transition: transform var(--duration-base);
 }
 
+/* Tuck the bar away on scroll but leave the route profile strip (1.625rem) showing. */
 .site-nav-shell--hidden {
-  transform: translateY(-100%);
+  transform: translateY(calc(-100% + 1.625rem));
 }
 
 .site-nav {

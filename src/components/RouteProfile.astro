@@ -1,0 +1,278 @@
+---
+import routeProfile from "@/data/generated/route-profile.json";
+import { buildProfile } from "@/utils/routeProfile";
+
+const W = 1200;
+const H = 36;
+const { line, area, pts, elevations, miles } = buildProfile(routeProfile.samples, W, H);
+---
+
+<!-- Page progress as the park loop's elevation profile: the dot rides the real terrain as you scroll. -->
+<div class="route-profile" data-route-profile data-pts={JSON.stringify(pts)} data-elevations={JSON.stringify(elevations)} data-miles={miles} data-w={W} data-h={H}>
+  <p class="readout">
+    <span class="sr-only">Ute Valley loop, </span>Mi <span data-mile>0.0</span><span aria-hidden="true"> · </span><span data-elev>{elevations[0].toLocaleString("en-US")}</span> ft
+  </p>
+  <div class="track">
+    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <clipPath id="route-profile-traveled"><rect data-traveled x="0" y="0" width="0" height={H}></rect></clipPath>
+      </defs>
+      <path d={area} class="area"></path>
+      <path d={line} class="line" vector-effect="non-scaling-stroke"></path>
+      <g clip-path="url(#route-profile-traveled)">
+        <path d={area} class="area traveled"></path>
+        <path d={line} class="line traveled" vector-effect="non-scaling-stroke"></path>
+      </g>
+    </svg>
+    <span class="dot" data-dot aria-hidden="true"></span>
+    <!-- One tick per section heading on the page, cloned from here at runtime. -->
+    <template data-waypoint-template>
+      <a class="waypoint"><span class="tick" aria-hidden="true"></span><span class="waypoint-label"></span></a>
+    </template>
+  </div>
+</div>
+
+<style>
+  .route-profile {
+    display: flex;
+    height: 1.625rem;
+    align-items: stretch;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-page);
+  }
+
+  .readout {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    margin: 0;
+    border-right: 1px solid var(--color-border);
+    padding-inline: var(--space-page-x) 0.75rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-variant-numeric: tabular-nums;
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    white-space: pre;
+  }
+
+  .track {
+    position: relative;
+    flex: 1;
+    margin-inline: 0.5rem var(--space-page-x);
+  }
+
+  svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .area {
+    fill: color-mix(in oklab, var(--color-text) 5%, transparent);
+  }
+
+  .line {
+    fill: none;
+    stroke: color-mix(in oklab, var(--color-text) 30%, transparent);
+    stroke-dasharray: 3 3;
+    stroke-width: 1;
+  }
+
+  .area.traveled {
+    fill: color-mix(in oklab, var(--color-accent) 28%, transparent);
+  }
+
+  /* Sunlit Amber washes out on Limestone Paper as a thin stroke; Ochre keeps the route legible. */
+  .line.traveled {
+    stroke: var(--color-accent-strong);
+    stroke-dasharray: none;
+    stroke-width: 2;
+  }
+
+  .dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--color-accent-strong);
+    background: var(--color-accent);
+    box-shadow: 0 0 0 2px var(--color-page);
+    transform: translate(-50%, -50%);
+  }
+
+  .waypoint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-inline: 0.375rem;
+    color: var(--color-text-subtle);
+    text-decoration: none;
+    transform: translateX(-50%);
+  }
+
+  .waypoint:hover,
+  .waypoint:focus-visible {
+    color: var(--color-accent-strong);
+  }
+
+  .tick {
+    width: 1px;
+    height: 0.375rem;
+    background: currentColor;
+  }
+
+  .waypoint-label {
+    position: absolute;
+    bottom: 0.625rem;
+    left: 50%;
+    display: none;
+    padding: 0.125rem 0.25rem;
+    background: var(--color-page);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 900;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity var(--duration-fast);
+  }
+
+  .waypoint:hover .waypoint-label,
+  .waypoint:focus-visible .waypoint-label {
+    opacity: 1;
+  }
+
+  @media (min-width: 48rem) {
+    .waypoint-label {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  type Strip = {
+    root: HTMLElement;
+    pts: [number, number][];
+    elevations: number[];
+    miles: number;
+    w: number;
+    h: number;
+    dot: HTMLElement;
+    traveled: Element;
+    mile: Element;
+    elev: Element;
+    waypoints: { el: HTMLElement; target: HTMLElement }[];
+  };
+
+  let strip: Strip | undefined;
+  let scrollable = 0;
+
+  // The header renders inside a Vue island and is swapped on client-side navigation, so re-resolve when detached.
+  function resolve() {
+    if (strip?.root.isConnected) return strip;
+    const root = document.querySelector<HTMLElement>("[data-route-profile]");
+    if (!root) return (strip = undefined);
+    strip = {
+      root,
+      pts: JSON.parse(root.dataset.pts!),
+      elevations: JSON.parse(root.dataset.elevations!),
+      miles: Number(root.dataset.miles),
+      w: Number(root.dataset.w),
+      h: Number(root.dataset.h),
+      dot: root.querySelector<HTMLElement>("[data-dot]")!,
+      traveled: root.querySelector("[data-traveled]")!,
+      mile: root.querySelector("[data-mile]")!,
+      elev: root.querySelector("[data-elev]")!,
+      waypoints: createWaypoints(root),
+    };
+    placeWaypoints(strip);
+    return strip;
+  }
+
+  // Every visible section heading on the page becomes a tick that links to it.
+  function createWaypoints(root: HTMLElement) {
+    const template = root.querySelector<HTMLTemplateElement>("[data-waypoint-template]")!;
+    // Vue hydration re-renders the slot from live HTML, so ticks from before hydration can come back with it.
+    for (const stale of root.querySelectorAll(".waypoint")) stale.remove();
+    const used = new Set([...document.querySelectorAll("[id]")].map((el) => el.id));
+    return [...document.querySelectorAll<HTMLElement>("main h2")].flatMap((target) => {
+      const label = target.textContent!.replace(/\s+/g, " ").trim().replace(/[.:]$/, "");
+      if (!label) return [];
+      if (!target.id) {
+        const base = label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "section";
+        let id = base;
+        for (let n = 2; used.has(id); n++) id = `${base}-${n}`;
+        used.add(id);
+        target.id = id;
+      }
+      const el = template.content.firstElementChild?.cloneNode(true);
+      if (!(el instanceof HTMLAnchorElement)) return [];
+      el.href = `#${target.id}`;
+      el.querySelector(".waypoint-label")!.textContent = label;
+      template.before(el);
+      return [{ el, target }];
+    });
+  }
+
+  function measure() {
+    scrollable = document.documentElement.scrollHeight - innerHeight;
+    const s = resolve();
+    if (s) placeWaypoints(s);
+  }
+
+  function placeWaypoints(s: Strip) {
+    // Ticks mark where the heading lands after an anchor jump, so the dot arrives on the tick.
+    const offset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+    let last = -1;
+    for (const { el, target } of s.waypoints) {
+      const p = scrollable > 0 ? Math.max(0, Math.min(1, (target.getBoundingClientRect().top + scrollY - offset) / scrollable)) : 0;
+      // Skip hidden headings and ones that would stack on the previous tick (side-by-side columns).
+      const show = target.checkVisibility() && p - last > 0.015;
+      el.style.display = show ? "" : "none";
+      el.style.left = `${p * 100}%`;
+      if (show) last = p;
+    }
+  }
+
+  function update() {
+    const s = resolve();
+    if (!s) return;
+    const p = scrollable > 0 ? Math.max(0, Math.min(1, scrollY / scrollable)) : 0;
+    // Samples are evenly spaced, so the fractional index serves both the y position and the elevation.
+    const f = p * (s.pts.length - 1);
+    const i = Math.min(s.pts.length - 2, Math.floor(f));
+    const t = f - i;
+    const y = s.pts[i][1] + t * (s.pts[i + 1][1] - s.pts[i][1]);
+    const ft = s.elevations[i] + t * (s.elevations[i + 1] - s.elevations[i]);
+    s.dot.style.left = `${p * 100}%`;
+    s.dot.style.top = `${(y / s.h) * 100}%`;
+    s.traveled.setAttribute("width", String(p * s.w));
+    s.mile.textContent = (p * s.miles).toFixed(1);
+    s.elev.textContent = Math.round(ft).toLocaleString("en-US");
+  }
+
+  function refresh() {
+    measure();
+    update();
+  }
+
+  addEventListener("scroll", update, { passive: true });
+  addEventListener("resize", refresh);
+  addEventListener("load", refresh);
+  document.addEventListener("astro:page-load", refresh);
+  // Late content (web fonts, embeds, expanding panels) can change the page height after load.
+  new ResizeObserver(refresh).observe(document.body);
+</script>
