@@ -7,7 +7,7 @@ const H = 36;
 const { line, area, pts, elevations, miles } = buildProfile(routeProfile.samples, W, H);
 ---
 
-<!-- Page progress as the park loop's elevation profile: the dot rides the real terrain as you scroll. -->
+<!-- Page progress as the park loop's elevation profile: a stick-figure rider climbs the real terrain as you scroll. -->
 <div class="route-profile" data-route-profile data-pts={JSON.stringify(pts)} data-elevations={JSON.stringify(elevations)} data-miles={miles} data-w={W} data-h={H}>
   <p class="readout">
     <span class="sr-only">Ute Valley loop, </span>Mi <span data-mile>0.0</span><span aria-hidden="true"> · </span><span data-elev>{elevations[0].toLocaleString("en-US")}</span> ft
@@ -24,7 +24,13 @@ const { line, area, pts, elevations, miles } = buildProfile(routeProfile.samples
         <path d={line} class="line traveled" vector-effect="non-scaling-stroke"></path>
       </g>
     </svg>
-    <span class="dot" data-dot aria-hidden="true"></span>
+    <svg class="rider" data-rider viewBox="0 0 16 14" aria-hidden="true">
+      <circle cx="3.5" cy="11.5" r="2.5"></circle>
+      <circle cx="12.5" cy="11.5" r="2.5"></circle>
+      <path d="M3.5 11.5 6 7h5l1.5 4.5M6 7l1.5 4.5M11 7l-.5-1.5"></path>
+      <path d="M6 7 8.5 3.5 11 7M7.5 11.5 6 7"></path>
+      <circle class="head" cx="9.5" cy="1.9" r="1.5"></circle>
+    </svg>
     <!-- One tick per section heading on the page, cloned from here at runtime. -->
     <template data-waypoint-template>
       <a class="waypoint"><span class="tick" aria-hidden="true"></span><span class="waypoint-label"></span></a>
@@ -94,17 +100,27 @@ const { line, area, pts, elevations, miles } = buildProfile(routeProfile.samples
     stroke-width: 2;
   }
 
-  .dot {
+  /* Wheels sit on the line: the anchor is the bottom centre, and the bike tilts with the grade. */
+  .rider {
     position: absolute;
     top: 0;
     left: 0;
-    width: 0.625rem;
-    height: 0.625rem;
-    border-radius: var(--radius-pill);
-    border: 2px solid var(--color-accent-strong);
-    background: var(--color-accent);
-    box-shadow: 0 0 0 2px var(--color-page);
-    transform: translate(-50%, -50%);
+    width: 1rem;
+    height: 0.875rem;
+    overflow: visible;
+    fill: none;
+    stroke: var(--color-accent-strong);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.4;
+    filter: drop-shadow(0 0 1px var(--color-page));
+    transform: translate(-50%, -100%) rotate(var(--tilt, 0deg));
+    transform-origin: 50% 100%;
+  }
+
+  .rider .head {
+    fill: var(--color-accent-strong);
+    stroke: none;
   }
 
   .waypoint {
@@ -170,7 +186,7 @@ const { line, area, pts, elevations, miles } = buildProfile(routeProfile.samples
     miles: number;
     w: number;
     h: number;
-    dot: HTMLElement;
+    rider: SVGElement;
     traveled: Element;
     mile: Element;
     elev: Element;
@@ -179,6 +195,8 @@ const { line, area, pts, elevations, miles } = buildProfile(routeProfile.samples
 
   let strip: Strip | undefined;
   let scrollable = 0;
+  // Rendered px per viewBox unit, measured outside the scroll handler so the tilt needs no layout reads.
+  let aspect = 1;
 
   // The header renders inside a Vue island and is swapped on client-side navigation, so re-resolve when detached.
   function resolve() {
@@ -192,7 +210,7 @@ const { line, area, pts, elevations, miles } = buildProfile(routeProfile.samples
       miles: Number(root.dataset.miles),
       w: Number(root.dataset.w),
       h: Number(root.dataset.h),
-      dot: root.querySelector<HTMLElement>("[data-dot]")!,
+      rider: root.querySelector<SVGElement>("[data-rider]")!,
       traveled: root.querySelector("[data-traveled]")!,
       mile: root.querySelector("[data-mile]")!,
       elev: root.querySelector("[data-elev]")!,
@@ -221,6 +239,8 @@ const { line, area, pts, elevations, miles } = buildProfile(routeProfile.samples
       const el = template.content.firstElementChild?.cloneNode(true);
       if (!(el instanceof HTMLAnchorElement)) return [];
       el.href = `#${target.id}`;
+      // The label is hidden on small screens, so the link carries its own name.
+      el.setAttribute("aria-label", label);
       el.querySelector(".waypoint-label")!.textContent = label;
       template.before(el);
       return [{ el, target }];
@@ -230,7 +250,10 @@ const { line, area, pts, elevations, miles } = buildProfile(routeProfile.samples
   function measure() {
     scrollable = document.documentElement.scrollHeight - innerHeight;
     const s = resolve();
-    if (s) placeWaypoints(s);
+    if (!s) return;
+    const track = s.rider.parentElement!.getBoundingClientRect();
+    aspect = track.width ? (track.height / s.h) / (track.width / s.w) : 1;
+    placeWaypoints(s);
   }
 
   function placeWaypoints(s: Strip) {
@@ -257,8 +280,13 @@ const { line, area, pts, elevations, miles } = buildProfile(routeProfile.samples
     const t = f - i;
     const y = s.pts[i][1] + t * (s.pts[i + 1][1] - s.pts[i][1]);
     const ft = s.elevations[i] + t * (s.elevations[i + 1] - s.elevations[i]);
-    s.dot.style.left = `${p * 100}%`;
-    s.dot.style.top = `${(y / s.h) * 100}%`;
+    // Grade over a few samples either side, so the bike leans with the hill instead of every 6px kink.
+    const a = s.pts[Math.max(0, i - 3)];
+    const b = s.pts[Math.min(s.pts.length - 1, i + 4)];
+    const tilt = Math.max(-30, Math.min(30, (Math.atan2((b[1] - a[1]) * aspect, b[0] - a[0]) * 180) / Math.PI));
+    s.rider.style.left = `${p * 100}%`;
+    s.rider.style.top = `${(y / s.h) * 100}%`;
+    s.rider.style.setProperty("--tilt", `${tilt.toFixed(1)}deg`);
     s.traveled.setAttribute("width", String(p * s.w));
     s.mile.textContent = (p * s.miles).toFixed(1);
     s.elev.textContent = Math.round(ft).toLocaleString("en-US");
