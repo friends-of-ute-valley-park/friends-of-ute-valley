@@ -34,7 +34,7 @@
     "@astrojs/vue": "^7.1.2",
     "@iconify/json": "^2.2.552",
     "@oxlint/plugins": "1.80.0",
-    "oxfmt": "^0.63.0",
+    "oxfmt": "^0.75.0",
     "oxlint": "^1.90.0",
     "oxlint-tsgolint": "^7.0.2005",
     "sharp": "^0.35.5",
