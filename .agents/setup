@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+# Amp's base image provides Node and pnpm. Astro requires Node >=22.23.4;
+# pnpm selects the version pinned in package.json.
+echo "Checking orb toolchain..."
+node --eval '
+  const [major, minor, patch] = process.versions.node.split(".").map(Number);
+  if (major < 22 || (major === 22 && (minor < 23 || (minor === 23 && patch < 4)))) {
+    throw new Error("Astro requires Node >=22.23.4; update the orb base toolchain");
+  }
+  console.log(`Node ${process.versions.node}`);
+'
+pnpm --version
+
+# Let pnpm check the lockfile on warm snapshots; no custom cache marker needed.
+echo "Installing locked dependencies..."
+time pnpm install --frozen-lockfile
+
+# Typechecking needs Astro's generated content types even before the first build.
+echo "Generating Astro types..."
+time pnpm exec astro sync
+
+# Do not fetch trail data or store credentials in a snapshot shared by members.
+echo "Dependencies ready. Dev/build require TRAILFORKS_APP_ID and TRAILFORKS_APP_SECRET at runtime."

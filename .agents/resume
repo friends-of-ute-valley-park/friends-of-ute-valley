@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+# Dependencies survive pause/resume. Never reinstall them on wake.
+if [[ ! -f node_modules/astro/package.json ]]; then
+  echo "Orb dependencies are missing; run .agents/setup." >&2
+  exit 1
+fi
+
+echo "Orb dependencies ready; no authentication or backing services to reconnect."
