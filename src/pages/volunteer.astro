@@ -64,7 +64,7 @@ const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
         <div class="panel">
           <div>
             <span>Volunteer Season</span>
-            <span>Open</span>
+            <span>Closed for the season</span>
           </div>
           <div>
             <span>Next Event</span>
@@ -232,9 +232,6 @@ const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
               </p>
             </div>
             <div class="form">
-              <h3>
-                Stay Updated
-              </h3>
               <EmailForm client:idle />
             </div>
           </div>
@@ -339,11 +336,7 @@ const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
   }
 
   .volunteer-status {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    display: none;
-    padding: 2rem;
+    padding: 1rem var(--space-page-x);
   }
 
   .volunteer-status .panel {
@@ -629,18 +622,6 @@ const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
     width: 100%;
   }
 
-  .volunteer-recruitment .form h3 {
-    margin: 0 0 1.5rem;
-    border-bottom: 1px solid var(--color-border-muted);
-    padding-bottom: 0.5rem;
-    color: var(--color-brand-strong);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
   .volunteer-contact {
     border-bottom: 1px solid var(--color-border);
     padding-block: var(--space-section);
@@ -669,7 +650,10 @@ const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
 
   @media (min-width: 64rem) {
     .volunteer-status {
-      display: block;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      padding: 2rem;
     }
 
     .volunteer-opps-layout {

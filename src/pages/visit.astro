@@ -119,11 +119,6 @@ const mapTrailheads: VisitTrailhead[] = sortedTrailheads.map((trailhead) => ({
               Park <br />
               <span>Rules.</span>
             </h2>
-            <p class="section-heading__copy">
-              To maintain the ecological integrity of this urban wildland, all
-              visitors are expected to follow municipal park codes and stewardship
-              guidelines.
-            </p>
             <a
               href="/rules/"
               class="link"
@@ -183,12 +178,9 @@ const mapTrailheads: VisitTrailhead[] = sortedTrailheads.map((trailhead) => ({
                 name: "Black and Blue Loop",
                 desc: "Challenging terrain featuring sharp rock gardens, steep grades, and a massive bridge, mine tailings, and a cave! Very technical.",
               },
-            ].map((trail, i) => (
+            ].map((trail) => (
               <div class="trail-card">
                 <div>
-                  <span>
-                    Trail {String(i + 1).padStart(2, "0")}
-                  </span>
                   <h3>
                     {trail.name}
                   </h3>
@@ -391,18 +383,6 @@ const mapTrailheads: VisitTrailhead[] = sortedTrailheads.map((trailhead) => ({
   .trail-card > div {
     display: grid;
     gap: 1rem;
-  }
-
-  .trail-card span {
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 900;
-    transition: color var(--duration-fast);
-  }
-
-  .trail-card:hover span {
-    color: var(--color-brand-strong);
   }
 
   .trail-card h3 {

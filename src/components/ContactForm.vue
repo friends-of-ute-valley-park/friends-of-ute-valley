@@ -197,11 +197,6 @@ onBeforeUnmount(() => {
                 </select>
               </div>
 
-              <div v-if="form.category === 'Volunteer'" class="volunteer-note">
-                <h3>Volunteer Info</h3>
-                <p>Tell us whether you want volunteer updates, help planning a group project, or guidance before your first workday. We will point you to the right next step.</p>
-              </div>
-
               <div class="field form-field">
                 <label for="message" class="form-label">Your Message *</label>
                 <textarea id="message" v-model="form.message" name="message" required rows="6" class="input form-input form-input--quiet message" />
@@ -280,7 +275,6 @@ onBeforeUnmount(() => {
 }
 
 .contact-form .response-note p,
-.contact-form .volunteer-note h3,
 .contact-form .status-title {
   font-family: var(--font-label);
   font-size: var(--text-label);
@@ -344,25 +338,6 @@ onBeforeUnmount(() => {
 .contact-form .input.message {
   min-height: 9rem;
   resize: vertical;
-}
-
-.contact-form .volunteer-note {
-  border: 1px solid var(--color-border-inverse);
-  background: var(--color-brand-strong);
-  color: var(--color-text-inverse);
-  padding: 1.5rem;
-}
-
-.contact-form .volunteer-note h3 {
-  margin: 0 0 0.5rem;
-}
-
-.contact-form .volunteer-note p {
-  margin: 0;
-  color: var(--color-text-inverse-muted);
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: var(--leading-body);
 }
 
 .contact-form .submit {

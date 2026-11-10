@@ -36,7 +36,6 @@ const givingOptions = [
     id: "give-by-mail",
     title: "Mail a check",
     icon: MailboxUpIcon,
-    description: "Best for donors who prefer paper records.",
     detail: "Friends of Ute Valley Park, PO Box 50122, Colorado Springs, CO 80919",
     nextStep: "Make checks payable to Friends of Ute Valley Park. Include your return address, and your email address if you would like a receipt emailed to you.",
   },
@@ -103,19 +102,6 @@ const givingOptions = [
               <h2>
                 Secure online donation
               </h2>
-              <p>
-                Make a one-time or monthly gift through Zeffy. Choose any amount that works for you.
-                Every gift helps keep Ute Valley wild and beautiful.
-              </p>
-            </div>
-
-            <div class="tip-note">
-              <CheckBadgeIcon aria-hidden="true" />
-              <p>
-                Zeffy may ask for an optional tip at checkout. That tip supports
-                Zeffy, not the park, and you can set it to any amount, including
-                zero.
-              </p>
             </div>
           </div>
 
@@ -207,7 +193,7 @@ const givingOptions = [
                   </div>
                   <div class="giving-card__body">
                     <h3>{option.title}</h3>
-                    <p>{option.description}</p>
+                    {option.description && <p>{option.description}</p>}
                     <p class="giving-detail">{option.detail}</p>
                     <p class="giving-next">{option.nextStep}</p>
                   </div>
@@ -360,32 +346,6 @@ const givingOptions = [
     letter-spacing: 0;
     line-height: var(--leading-tight);
     text-wrap: balance;
-  }
-
-  .tip-note {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    border-top: 1px solid var(--color-border-muted);
-    padding-top: 1rem;
-  }
-
-  .tip-note svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    flex-shrink: 0;
-    color: var(--color-brand-strong);
-    margin-top: 0.2rem;
-  }
-
-  .tip-note p {
-    color: var(--color-text-strong);
-    font-size: 0.95rem;
-    font-weight: 700;
-  }
-
-  .donation-card :global(.zeffy-donation-embed__note) {
-    display: none;
   }
 
   @keyframes donation-target {

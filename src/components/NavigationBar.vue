@@ -93,24 +93,21 @@ onClickOutside(lntDropdown, () => {
 });
 
 const leaveNoTraceMenuItems = [
-  { name: 'Dog Etiquette', description: 'Rules & Etiquette', href: '/leavenotrace/dogs/', current: props.page === '/leavenotrace/dogs/', icon: LucidePawPrint },
+  { name: 'Dog Etiquette', href: '/leavenotrace/dogs/', current: props.page === '/leavenotrace/dogs/', icon: LucidePawPrint },
   {
     name: 'Travel on Durable Surfaces',
-    description: 'Durable Travel',
     href: '/leavenotrace/travel-on-durable-surfaces/',
     current: props.page === '/leavenotrace/travel-on-durable-surfaces/',
     icon: LucideMap,
   },
   {
     name: 'Leave What You Find',
-    description: 'Leave What You Find',
     href: '/leavenotrace/leave-what-you-find/',
     current: props.page === '/leavenotrace/leave-what-you-find/',
     icon: LucideCamera,
   },
   {
     name: 'Respect Wildlife',
-    description: 'Respecting Wildlife',
     href: '/leavenotrace/respect-wildlife/',
     current: props.page === '/leavenotrace/respect-wildlife/',
     icon: LucideBird,
@@ -180,7 +177,6 @@ const navigation = [
                             <p class="dropdown-title">
                               {{ item.name }}
                             </p>
-                            <p class="dropdown-description">{{ item.description }}</p>
                           </div>
                         </a>
                       </div>
@@ -455,8 +451,7 @@ const navigation = [
   height: 1.25rem;
 }
 
-.site-nav .dropdown-title,
-.site-nav .dropdown-description {
+.site-nav .dropdown-title {
   margin: 0;
   font-family: var(--font-body);
   font-size: var(--text-body-small);
@@ -472,11 +467,6 @@ const navigation = [
 
 .site-nav .dropdown-item:hover .dropdown-title {
   color: var(--color-brand);
-}
-
-.site-nav .dropdown-description {
-  color: var(--color-text-subtle);
-  letter-spacing: 0;
 }
 
 .site-nav .social {
