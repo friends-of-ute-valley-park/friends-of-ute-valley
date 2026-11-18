@@ -7,7 +7,7 @@ latitude: 38.9253889
 directionsLink: https://goo.gl/maps/qbg3DnHYZJL3MchC7
 location: Located on Vindicator Drive between Centennial Boulevard and W Rockrimmon Road just West of Eagleview Middle School.
 amenities:
-  - { name: 'Parking', description: '22 parking spots and 1 handicap parking spot available.' }
+  - { name: 'Parking', description: '22 standard spaces and 1 accessible space.' }
   - { name: 'Facilities', description: '1 portable toilet.' }
   - { name: 'Trash', description: 'A bear-proof trash bin is available for waste disposal.' }
 map: /src/data/trailheads/vindicator-trailhead-map.jpg

@@ -16,3 +16,11 @@
 - Test observable behavior, review substantial changes, and validate user-facing work in the real interface when applicable
 - Preserve unrelated work and never take destructive, production, or external actions beyond what the user authorized
 - Report meaningful blockers, outcomes, and evidence without noisy progress
+
+## Cloudflare
+
+- The site is a Cloudflare Pages project named `friends-of-ute-valley`. Cloudflare builds it from GitHub `main` with `pnpm run build` into `dist`. Pages Functions live in `functions/`. Build settings and environment variables live in the Cloudflare dashboard, not in this repo.
+- There is no Wrangler config. Do not add `cloudflare.config.ts`: it only supports Workers projects, not Pages.
+- Use the `cf` CLI to inspect the project. Find commands with `cf cli search "<task>"`, and describe only the action and the resource type (no names, domains, or IDs). Useful commands: `cf pages deployments list --project-name friends-of-ute-valley` and `cf pages deployments history logs get`.
+- Read-only `cf` commands are fine. Ask before anything that changes Cloudflare: deploy, retry, rollback, delete, `cf pages edit`, environment variables or secrets, deploy hooks, Turnstile, or DNS.
+- Never print environment variable values. Filter `cf` output to the `friends-of-ute-valley` project, and show variable names and types only.

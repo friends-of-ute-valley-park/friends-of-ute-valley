@@ -1,5 +1,5 @@
 ---
-title: Contact Us
-link: https://fuvp.org/contact/
-priority: 97
+title: Donate to the Park
+link: https://fuvp.org/donate/
+priority: 98
 ---

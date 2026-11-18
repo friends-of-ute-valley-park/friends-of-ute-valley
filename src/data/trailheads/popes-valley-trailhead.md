@@ -5,7 +5,7 @@ description: Access to the quieter areas of the park and the downhill biking are
 longitude: -104.8495
 latitude: 38.9111
 directionsLink: https://goo.gl/maps/Mu9WEBhjSYsfFB5a9
-location: Located in the Popes Valley neighborhood east of I-25 and Tech Center Drive
+location: Located in the Popes Valley neighborhood west of I-25 and Tech Center Drive
 amenities:
   - { name: 'Parking', description: 'Street parking only.' }
   - { name: 'Facilities', description: 'None available.' }
