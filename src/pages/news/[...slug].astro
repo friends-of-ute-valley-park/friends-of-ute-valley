@@ -1,11 +1,11 @@
 ---
-import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import { formatShortMonthDayYear } from '../../utils/date';
-import { Picture } from 'astro:assets';
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { formatShortMonthDayYear } from "../../utils/date";
+import { Picture } from "astro:assets";
 
 export async function getStaticPaths() {
-  const newsEntries = await getCollection('news');
+  const newsEntries = await getCollection("news");
   return newsEntries.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
@@ -17,34 +17,26 @@ const { Content } = await render(entry);
 ---
 
 <Layout title={entry.data.title} description={entry.data.previewText}>
-  <main class="page news-detail">
-    <!-- News Header -->
-    <section class="page-hero">
-      <div class="page-hero__inner">
-        <div class="page-eyebrow">
-          <span>
-            News
-          </span>
-        </div>
-
-        <h1 class="title">
-          {entry.data.title}
-        </h1>
-
-        <div class="meta">
-          <span>
-            Publish Date
-          </span>
-          <time
-            datetime={entry.data.publishedOn.toString()}
-          >
-            {formatShortMonthDayYear(entry.data.publishedOn)}
-          </time>
+  <div class="page news-detail">
+    <!-- Record Detail Hero -->
+    <section class="subpage-hero subpage-hero--surface" aria-labelledby="news-entry-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <a href="/news/" class="subpage-hero__back">← All park news</a>
+          <div class="subpage-hero__copy">
+            <time class="subpage-hero__record-meta" datetime={entry.data.publishedOn.toISOString()}>
+              {formatShortMonthDayYear(entry.data.publishedOn)}
+            </time>
+            <h1 id="news-entry-title" class="subpage-hero__title">
+              {entry.data.title}
+            </h1>
+            {entry.data.previewText && <p class="subpage-hero__deck">{entry.data.previewText}</p>}
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Content -->
+    <!-- Dispatch Body & Cover Plate -->
     <section class="article-layout">
       <div class="article-layout__inner">
         <div class="article-layout__grid">
@@ -54,187 +46,80 @@ const { Content } = await render(entry);
             </div>
           </div>
 
-          <div class="article-layout__aside">
+          <aside class="article-layout__aside">
             <div class="aside-stack">
-              <div class="article-photo-card photo">
-                <Picture
-                  formats={["avif"]}
-                  fallbackFormat="webp"
-                  width={576}
-                  height={432}
-                  widths={[400, 576, 880]}
-                  sizes="(min-width: 64rem) 440px, (min-width: 36rem) 576px, 100vw"
-                  class="image"
-                  src={entry.data.coverImage}
-                  alt={`${entry.data.title} cover image`}
-                />
-              </div>
+              <figure class="article-photo-card">
+                <div class="photo-box">
+                  <Picture
+                    formats={["avif"]}
+                    fallbackFormat="webp"
+                    width={576}
+                    height={432}
+                    widths={[400, 576, 880]}
+                    sizes="(min-width: 64rem) 440px, (min-width: 36rem) 576px, 94vw"
+                    class="image"
+                    src={entry.data.coverImage}
+                    alt={`${entry.data.title} cover image`}
+                  />
+                </div>
+                <figcaption class="article-photo-card__meta">
+                  <span>Friends of Ute Valley Park dispatch</span>
+                </figcaption>
+              </figure>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
-  .news-detail .title {
-    max-width: 62rem;
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 7vw, 4.5rem);
-    font-weight: 900;
-    letter-spacing: 0;
-    text-wrap: balance;
-    text-transform: uppercase;
+  .news-detail .subpage-hero__title {
+    max-width: 24ch;
   }
 
-  .news-detail .meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .news-detail .meta span,
-  .news-detail .meta time {
-    font-family: var(--font-label);
-    font-weight: 900;
-    text-transform: uppercase;
-  }
-
-  .news-detail .meta span {
-    color: var(--color-brand-strong);
-    font-size: var(--text-label);
-    letter-spacing: var(--tracking-label);
-  }
-
-  .news-detail .meta time {
-    color: var(--color-text-muted);
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-  }
-
-  .news-detail .aside-stack {
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .news-detail .article-layout__inner {
-    width: min(100% - (var(--space-page-x) * 2), 74rem);
-  }
-
-  .news-detail .article-layout__main {
-    padding-inline: 0;
-  }
-
-  .news-detail .article-layout__aside {
-    padding-inline: 0;
-  }
-
-  .news-detail .article-photo-card {
-    position: relative;
-    width: 100%;
+  .news-detail .photo-box {
     aspect-ratio: 4 / 3;
-    max-width: 34rem;
-    margin-inline: auto;
+    overflow: hidden;
+    background: var(--color-surface-muted);
   }
 
-  .news-detail .article-photo-card :global(picture),
-  .news-detail .article-photo-card :global(img) {
+  .news-detail .photo-box :global(picture),
+  .news-detail .photo-box :global(img) {
     display: block;
     width: 100%;
     height: 100%;
-  }
-
-  .news-detail .article-photo-card :global(img) {
     object-fit: cover;
-    transform: scale(1.05);
-    transition: transform var(--duration-slower);
   }
 
-  .news-detail .photo:hover :global(.image) {
-    transform: scale(1);
+  @media (min-width: 64rem) {
+    .news-detail .aside-stack {
+      position: sticky;
+      top: 5.75rem;
+    }
   }
 
   .news-detail .prose-content :global(.news-video-link) {
-    margin: clamp(2rem, 5vw, 3.5rem) 0;
+    margin: 2rem 0;
     padding: 1.25rem 1.5rem;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface-muted);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface);
   }
 
   .news-detail .prose-content :global(.news-video-link a) {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: var(--font-label);
-    font-size: var(--text-action);
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    line-height: 1.35;
-    text-transform: uppercase;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
   }
 
-  .news-detail .prose-content :global(.news-video-link a span),
-  .news-detail .prose-content :global(.news-source a span) {
-    transition: transform var(--duration-fast);
-  }
-
-  .news-detail .prose-content :global(.news-video-link a:hover span),
-  .news-detail .prose-content :global(.news-source a:hover span) {
-    transform: translateX(0.25rem);
-  }
-
-  .news-detail .prose-content :global(.news-source) {
-    margin-top: clamp(2rem, 5vw, 3rem);
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .news-detail .prose-content :global(.news-source p) {
-    margin: 0 0 0.75rem;
-    color: var(--color-text-subtle);
-    font-size: var(--text-body-small);
-  }
-
-  .news-detail .prose-content :global(.news-source a) {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-label);
-    font-size: var(--text-action);
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    line-height: 1.35;
-    text-transform: uppercase;
-  }
-
-  @media (min-width: 64rem) {
-    .news-detail .article-layout__grid {
-      grid-template-columns: minmax(0, 43rem) minmax(18rem, 26rem);
-      gap: clamp(2.5rem, 5vw, 4rem);
-      align-items: start;
-      justify-content: center;
-      padding-block: var(--space-section);
-    }
-
-    .news-detail .article-layout__main {
-      border-right: 0;
-      padding-block: 0;
-      padding-inline: 0;
-    }
-
-    .news-detail .article-layout__aside {
-      background: transparent;
-      padding: 0;
-    }
-
-    .news-detail .aside-stack {
-      position: sticky;
-      top: 6rem;
-    }
+  .news-detail .prose-content :global(figure),
+  .news-detail .prose-content :global(img) {
+    max-width: 100%;
+    height: auto;
   }
 </style>

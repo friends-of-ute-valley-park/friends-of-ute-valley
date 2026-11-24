@@ -10,36 +10,45 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
   title="Volunteer Spotlight"
   description="Meet the volunteers behind Friends of Ute Valley Park and read spotlight stories from community stewards."
 >
-  <main class="page">
-    <!-- Volunteer Spotlight Header -->
-    <section class="page-hero">
-      <div class="page-hero__inner">
-        <div class="page-eyebrow">
-          <span>
-            Volunteer Stories
-          </span>
+  <div class="page spotlight-index">
+    <!-- Masthead Utility Hero -->
+    <section class="subpage-hero" aria-labelledby="spotlight-hero-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <div class="subpage-hero__split subpage-hero__split--masthead">
+            <div class="subpage-hero__copy">
+              <h1 id="spotlight-hero-title" class="subpage-hero__title">
+                Volunteer spotlight.
+              </h1>
+              <p class="subpage-hero__deck">
+                Stories and reflections from the neighbors, crew leaders, and trail stewards who keep Ute Valley Park healthy year after year.
+              </p>
+            </div>
+
+            <aside class="subpage-hero__aside-box" aria-label="Get involved">
+              <h2 class="subpage-hero__aside-title">Join the trail crew</h2>
+              <ul class="subpage-hero__aside-list">
+                <li>No experience needed</li>
+                <li>Tools and gloves provided</li>
+                <li>
+                  <a href="/volunteer/" class="text-link">See upcoming workdays →</a>
+                </li>
+              </ul>
+            </aside>
+          </div>
         </div>
-
-        <h1 class="page-title">
-          Volunteer <br />
-          <span>Spotlight.</span>
-        </h1>
-
-        <p class="page-intro">
-          Get to know the stories and contributions of our amazing volunteers.
-        </p>
       </div>
     </section>
 
     <!-- Spotlight Grid -->
-    <section class="page-section page-section--muted">
+    <section class="page-section page-section--surface">
       <div class="page-section__inner">
-        <div class="feature-grid feature-grid--two feature-grid--three">
+        <div class="spotlight-grid">
           {
             volunteerSpotlights.map((spotlight) => (
               <a
-                href={`/volunteerspotlight/${spotlight.id}`}
-                class="spotlight-card media-zoom-parent"
+                href={`/volunteerspotlight/${spotlight.id}/`}
+                class="spotlight-card editorial-folio media-zoom-parent"
               >
                 <div class="media">
                   <Picture
@@ -54,29 +63,12 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
                     widths={[400, 540, 800]}
                     sizes="(min-width: 100rem) 540px, (min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw"
                   />
-                  <div class="matte media-matte" />
                 </div>
 
                 <div class="body">
-                  <div class="copy">
-                    <div class="tag">
-                      <span class="meta-label">
-                        Volunteer
-                      </span>
-                    </div>
-                    <h3 class="title card-title">
-                      {spotlight.data.name}
-                    </h3>
-                    <p>
-                      {spotlight.data.intro}
-                    </p>
-                  </div>
-
-                  <div class="footer">
-                    <span class="meta-label">
-                      Read More →
-                    </span>
-                  </div>
+                  <h2 class="title card-title">{spotlight.data.name}</h2>
+                  <p class="excerpt">{spotlight.data.intro}</p>
+                  <span class="read-link">Read spotlight →</span>
                 </div>
               </a>
             ))
@@ -84,21 +76,25 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
+  .spotlight-grid {
+    display: grid;
+    gap: clamp(1.75rem, 3.5vw, 2.5rem);
+  }
+
   .spotlight-card {
     display: flex;
     flex-direction: column;
-    background: var(--color-surface);
     color: inherit;
     text-decoration: none;
-    transition: background-color var(--duration-fast);
+    transition: border-color var(--duration-fast) var(--ease-out);
   }
 
   .spotlight-card:hover {
-    background: var(--color-page);
+    border-color: var(--color-brand-strong);
   }
 
   .spotlight-card .media {
@@ -106,48 +102,36 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
     aspect-ratio: 1;
     width: 100%;
     overflow: hidden;
+    border-bottom: 1px solid var(--color-border-strong);
+    background: var(--color-surface-muted);
   }
 
-  :global(.spotlight-card .image) {
+  .spotlight-card .media :global(picture),
+  .spotlight-card .media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     object-position: top;
-    transform-origin: top;
   }
 
   .spotlight-card .body {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 2rem;
-  }
-
-  .spotlight-card .copy {
-    display: grid;
     gap: 0.75rem;
-  }
-
-  .spotlight-card .tag {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .spotlight-card .tag span {
-    border: 1px solid color-mix(in oklab, var(--color-brand-strong) 20%, transparent);
-    color: var(--color-brand-strong);
-    padding: 0.125rem 0.5rem;
+    padding: 1.5rem;
   }
 
   .spotlight-card .title {
-    --card-title-size: 1.875rem;
-    line-height: 1;
+    --card-title-size: 1.5rem;
   }
 
-  .spotlight-card:hover h3 {
+  .spotlight-card:hover .title {
     color: var(--color-brand-strong);
   }
 
-  .spotlight-card .copy p {
+  .spotlight-card .excerpt {
     display: -webkit-box;
     margin: 0;
     overflow: hidden;
@@ -155,21 +139,31 @@ const volunteerSpotlights = await getCollection("volunteer-spotlight");
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     color: var(--color-text-muted);
-    font-size: var(--text-body-small);
-    font-weight: 500;
-    line-height: var(--leading-body);
+    font-size: 1rem;
+    line-height: 1.55;
   }
 
-  .spotlight-card .footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .spotlight-card .read-link {
     margin-top: auto;
-    border-top: 1px solid var(--color-border-muted);
-    padding-top: 1.5rem;
+    padding-top: 0.5rem;
+    color: var(--color-brand-strong);
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.22rem;
   }
 
-  .spotlight-card .footer span {
-    color: var(--color-brand-strong);
+  @media (min-width: 48rem) {
+    .spotlight-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .spotlight-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 </style>

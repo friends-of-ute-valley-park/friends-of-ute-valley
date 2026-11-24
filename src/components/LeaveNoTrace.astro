@@ -6,53 +6,46 @@ import DisposeOfWasteProperly from "../assets/images/lnt/dispose-of-waste-proper
 import LeaveWhatYouFind from "../assets/images/lnt/leave-what-you-find.jpg";
 import RespectWildlife from "../assets/images/lnt/respect-wildlife.jpg";
 import BeConsiderateOfOtherVisitors from "../assets/images/lnt/be-considerate-of-other-visitors.jpg";
+import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
 const principles = [
   {
-    id: "01",
-    name: "Plan Ahead & Prepare",
-    text: "A little preparation goes a long way! Check the forecast, plan your route, and review the <a class='text-link' href='/rules/'>park rules</a> before heading out.",
+    name: "Plan ahead and prepare",
+    text: "Check the forecast, plan your route, and review the <a class='text-link' href='/rules/'>park rules</a> before heading out.",
     image: PlanAhead,
     altText: "A lone ponderosa pine in golden grassland under a blue sky",
   },
   {
-    id: "02",
-    name: "Travel on Durable Surfaces",
-    text: "<a class='text-link' href='/leavenotrace/travel-on-durable-surfaces/'>Stay on the trail</a> to protect the landscape around you. Stick to marked paths and respect Natural Preservation Area closures so plants and soil can thrive.",
+    name: "Travel on durable surfaces",
+    text: "<a class='text-link' href='/leavenotrace/travel-on-durable-surfaces/'>Stay on designated trails</a> to protect the landscape around you. Stick to marked paths and respect Natural Preservation Area closures so plants and soil can thrive.",
     image: TravelOnDurableSurfaces,
     altText: "A sandy trail climbing between pines and scrub oak",
   },
   {
-    id: "03",
-    name: "Dispose of Waste Properly",
-    text: "Follow a Pack-In, Pack-Out approach — carry out everything you carry in, including <a class='text-link' href='/leavenotrace/dogs/'>pet waste</a>. This keeps Ute Valley Park looking (and smelling) bea-UTE-iful!",
+    name: "Dispose of waste properly",
+    text: "Follow a pack-in, pack-out approach and carry out everything you bring, including <a class='text-link' href='/leavenotrace/dogs/'>pet waste</a>, to trailhead bins.",
     image: DisposeOfWasteProperly,
     altText: "A discarded plastic bottle on a dirt trail through dry grass",
   },
   {
-    id: "04",
-    name: "Leave What You Find",
-    text: "Take only photos, leave only footprints! <a class='text-link' href='/leavenotrace/leave-what-you-find/'>Snap all the pictures you like</a>, but please leave rocks, plants, and other natural treasures for the next visitor to enjoy.",
+    name: "Leave what you find",
+    text: "Take photos, leave natural features intact. <a class='text-link' href='/leavenotrace/leave-what-you-find/'>Snap all the pictures you like</a>, while leaving rocks, wildflowers, and historic sites undisturbed for others.",
     image: LeaveWhatYouFind,
     altText: "Backlit flowers glowing in low evening sun",
   },
   {
-    id: "05",
-    name: "Respect Wildlife",
-    text: "Observe all wildlife from a safe distance and never feed them. Keep dogs on leash to protect wildlife habitat — learn more about our <a class='text-link' href='/leavenotrace/respect-wildlife/'>leash guidelines</a>.",
+    name: "Respect wildlife",
+    text: "Observe all wildlife from a safe distance and never feed them. Keep dogs on leash to protect wildlife habitat and review our <a class='text-link' href='/leavenotrace/respect-wildlife/'>wildlife guidelines</a>.",
     image: RespectWildlife,
     altText: "A deer among scrub oak and pines with the foothills beyond",
   },
   {
-    id: "06",
-    name: "Be Considerate of Other Visitors",
-    text: "A friendly hello goes a long way! Yield to other trail users, keep noise levels down, and share the trail so everyone can have a great time in the park.",
+    name: "Be considerate of other visitors",
+    text: "Yield thoughtfully, keep noise levels down, and share singletrack trails so everyone can enjoy their time in the park.",
     image: BeConsiderateOfOtherVisitors,
     altText: "Three hikers pausing on a snowy trail among pines",
   },
 ];
-
-import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
 const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
 ---
@@ -62,16 +55,13 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
     <div class="layout">
       <div class="intro">
         <div class="intro-sticky">
-          <div class="intro-copy section-heading">
-            <h2 id="lnt-title" class="title section-heading__title">
-              Leave <br /> No <br />
-              <span>Trace.</span>
+          <div class="intro-copy folio-rule-header">
+            <h2 id="lnt-title" class="title folio-rule-header__title">
+              Leave No Trace.
             </h2>
 
-            <p class="summary section-heading__copy">
-              Ute Valley Park is a treasured urban wildland. Please help keep
-              the park safe and clean for all visitors by following Leave No
-              Trace guidance.
+            <p class="summary folio-rule-header__deck">
+              Ute Valley Park is a designated Leave No Trace Gold Standard Site. Help keep the park healthy for wildlife and neighbors by following these everyday stewardship principles.
             </p>
           </div>
 
@@ -91,7 +81,7 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
                 class="logo"
               />
               <span class="certification">
-                Certified Partner
+                Certified Gold Standard Partner
                 <span class="sr-only">(opens lnt.org in a new tab)</span>
               </span>
             </a>
@@ -99,7 +89,7 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
             {
               !onRulesPage && (
                 <a href="/rules/" class="button button--brand rules-link">
-                  View Park Rules
+                  Read park rules
                 </a>
               )
             }
@@ -109,14 +99,11 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
 
       <ol class="list">
         {
-          principles.map((principle) => (
-            <li class="card">
+          principles.map((principle, index) => (
+            <li class="card-cell">
               <div class="card-head">
-                <span class="number" aria-hidden="true">{principle.id}</span>
-                <h3>
-                  <span class="sr-only">Principle {Number(principle.id)}: </span>
-                  {principle.name}
-                </h3>
+                <span class="principle-step">Principle {index + 1}</span>
+                <h3>{principle.name}</h3>
               </div>
 
               <div class="media media-frame">
@@ -128,7 +115,7 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
                   alt={principle.altText}
                   width={400}
                   height={250}
-                  widths={[400]}
+                  widths={[400, 640]}
                   sizes="(min-width: 64rem) 28vw, (min-width: 48rem) 45vw, 100vw"
                 />
               </div>
@@ -147,6 +134,8 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
     overflow: clip;
     border-top: 1px solid var(--color-border);
     background: var(--color-page);
+    font-family: var(--font-body);
+    font-variant-numeric: tabular-nums;
   }
 
   .lnt-principles .inner {
@@ -160,36 +149,33 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
 
   .lnt-principles .intro {
     border-bottom: 1px solid var(--color-border);
-    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
+    background: var(--color-surface);
     padding: clamp(2rem, 5vw, 4rem);
   }
 
   .lnt-principles .intro-sticky {
     display: grid;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 
   .lnt-principles .intro-copy {
-    --section-heading-gap: 1.5rem;
-    --section-heading-title-size: clamp(3rem, 8vw, 3.75rem);
-    --section-heading-accent-style: normal;
-    --section-heading-copy-margin: 0;
+    margin-bottom: 0;
   }
 
   .lnt-principles .partner {
     display: grid;
     gap: 1.5rem;
     border-top: 1px solid var(--color-border);
-    padding-top: 2.5rem;
+    padding-top: 2rem;
   }
 
   .lnt-principles .logo-card {
     display: grid;
     justify-items: center;
-    gap: 1.25rem;
-    border: 2px solid var(--color-brand-strong);
-    background: var(--color-surface);
-    padding: 2rem 1.5rem 1.5rem;
+    gap: 1rem;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-page);
+    padding: 1.75rem 1.5rem 1.25rem;
     color: var(--color-brand-strong);
     text-decoration: none;
     transition:
@@ -199,7 +185,7 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
 
   .lnt-principles .logo-card:hover {
     box-shadow: var(--shadow-accent-sm);
-    transform: translate(-0.25rem, -0.25rem);
+    transform: translate(-2px, -2px);
   }
 
   .lnt-principles .logo-card:active {
@@ -209,20 +195,18 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
   :global(.lnt-principles .logo) {
     display: block;
     width: 100%;
-    max-width: 12rem;
+    max-width: 11.5rem;
     height: auto;
   }
 
   .lnt-principles .certification {
     width: 100%;
     border-top: 1px solid var(--color-border-muted);
-    padding-top: 1rem;
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: var(--tracking-label);
+    padding-top: 0.875rem;
+    font-family: var(--font-body);
+    font-size: var(--text-body-small);
+    font-weight: 600;
     text-align: center;
-    text-transform: uppercase;
   }
 
   .lnt-principles .rules-link {
@@ -238,51 +222,57 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
     list-style: none;
   }
 
-  .lnt-principles .card {
+  .lnt-principles .card-cell {
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: 1.25rem;
     background: var(--color-page);
-    padding: clamp(2rem, 4vw, 3rem);
+    padding: clamp(1.75rem, 4vw, 2.75rem);
   }
 
   .lnt-principles .card-head {
     display: grid;
-    gap: 0.75rem;
+    gap: 0.25rem;
   }
 
-  .lnt-principles .number {
-    color: var(--color-accent-strong);
-    font-family: var(--font-label);
-    font-size: 2.25rem;
-    font-weight: 900;
-    line-height: 1;
+  .lnt-principles .principle-step {
+    color: var(--color-brand-strong);
+    font-family: var(--font-body);
+    font-size: var(--text-body-small);
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
   }
 
-  .lnt-principles .card h3 {
+  .lnt-principles .card-cell h3 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 900;
-    line-height: 1.15;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1.18;
+    letter-spacing: -0.015em;
   }
 
   .lnt-principles .media {
     aspect-ratio: 16 / 10;
-    --media-frame-border-color: var(--color-border-muted);
+    border: 1px solid var(--color-border-strong);
+  }
+
+  .lnt-principles .media :global(picture),
+  .lnt-principles .media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .lnt-principles .copy {
-    max-width: 60ch;
+    max-width: 58ch;
     margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    line-height: var(--leading-body);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
   }
 
   @media (min-width: 48rem) {
@@ -290,8 +280,7 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    /* Two-line title slot keeps photos level across each row. */
-    .lnt-principles .card h3 {
+    .lnt-principles .card-cell h3 {
       min-block-size: 2lh;
     }
   }
@@ -308,7 +297,7 @@ const onRulesPage = Astro.url.pathname.replace(/\/$/, "") === "/rules";
 
     .lnt-principles .intro-sticky {
       position: sticky;
-      top: 7rem;
+      top: 6rem;
     }
   }
 </style>

@@ -86,7 +86,7 @@ const submit = async (event: SubmitEvent) => {
             autocomplete="name"
             :disabled="isSubmitting"
             :class="['input form-input form-input--newsletter', nameIsError && 'form-input--invalid']"
-            placeholder="Your name..."
+            placeholder="Your name"
             :aria-invalid="nameIsError"
             aria-describedby="form-errors"
             @blur="validateName(false)" />
@@ -103,12 +103,12 @@ const submit = async (event: SubmitEvent) => {
             spellcheck="false"
             :disabled="isSubmitting"
             :class="['input form-input form-input--newsletter', emailIsError && 'form-input--invalid']"
-            placeholder="Email address..."
+            placeholder="Email address"
             :aria-invalid="emailIsError"
             aria-describedby="form-errors"
             @blur="validateEmail(false)" />
         </div>
-        <button :disabled="isSubmitting" type="submit" class="button button--accent button--full submit">
+        <button :disabled="isSubmitting" type="submit" class="button button--brand button--full submit">
           <MdiLoading v-if="isSubmitting" class="submit-icon loading" />
           <MdiEmailOutline v-else class="submit-icon" aria-hidden="true" />
           Get updates
@@ -129,8 +129,8 @@ const submit = async (event: SubmitEvent) => {
     </div>
 
     <div v-if="isError && failureMessage" class="failure">
-      <h2>We couldn't sign you up yet.</h2>
-      {{ failureMessage }}
+      <h3>We couldn't sign you up yet.</h3>
+      <p>{{ failureMessage }}</p>
     </div>
   </div>
 </template>
@@ -139,6 +139,7 @@ const submit = async (event: SubmitEvent) => {
 .email-signup {
   width: 100%;
   min-width: 0;
+  font-family: var(--font-body);
   text-align: left;
 }
 
@@ -157,8 +158,8 @@ const submit = async (event: SubmitEvent) => {
   position: absolute;
   top: 50%;
   left: 1rem;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
   color: var(--color-text-subtle);
   pointer-events: none;
   transform: translateY(-50%);
@@ -171,29 +172,22 @@ const submit = async (event: SubmitEvent) => {
 .email-signup .submit {
   min-height: 3rem;
   flex-shrink: 0;
-  cursor: pointer;
-  gap: 0.75rem;
-  border: 1px solid transparent;
-  border-radius: 0.375rem;
-  padding: 0.75rem 1.5rem;
-  font-size: var(--text-body-small);
-  letter-spacing: 0.12em;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%);
-  transition-duration: var(--duration-fast);
+  box-shadow: none;
+}
+
+.email-signup .submit:hover:not(:disabled) {
+  transform: none;
+  box-shadow: none;
 }
 
 .email-signup .submit:disabled {
   cursor: not-allowed;
-  background: var(--color-accent-hover);
-}
-
-.email-signup .submit:hover {
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%);
+  opacity: 0.65;
 }
 
 .email-signup .submit-icon {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.125rem;
+  height: 1.125rem;
   color: var(--color-text-inverse);
 }
 
@@ -202,48 +196,64 @@ const submit = async (event: SubmitEvent) => {
 }
 
 .email-signup .error {
-  margin: 0.5rem 0 0;
+  margin: 0.625rem 0 0;
   color: var(--color-danger);
+  font-family: var(--font-body);
   font-size: var(--text-body-small);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .email-signup .privacy {
-  margin: 1rem 0 0;
+  margin: 0.875rem 0 0;
   color: var(--color-text-muted);
+  font-family: var(--font-body);
   font-size: var(--text-body-small);
-  line-height: var(--leading-body);
+  line-height: 1.5;
 }
 
 .email-signup .privacy a {
   color: var(--color-brand-strong);
   font-weight: 700;
   text-decoration-line: underline;
-  text-decoration-color: color-mix(in oklab, var(--color-accent) 70%, transparent);
-  transition: text-decoration-color var(--duration-fast);
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2rem;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    text-decoration-color var(--duration-fast) var(--ease-out);
 }
 
 .email-signup .privacy a:hover {
-  text-decoration-color: var(--color-accent);
+  color: var(--color-brand);
+  text-decoration-color: var(--color-brand-strong);
 }
 
 .email-signup .success {
+  margin: 0;
   color: var(--color-brand-strong);
-  font-size: 1rem;
-  font-weight: 500;
+  font-family: var(--font-body);
+  font-size: var(--text-body-large);
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .email-signup .failure {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   color: var(--color-danger);
+  font-family: var(--font-body);
   font-size: var(--text-body-small);
 }
 
-.email-signup .failure h2 {
-  margin: 0 0 0.5rem;
+.email-signup .failure h3 {
+  margin: 0 0 0.25rem;
   color: var(--color-text-strong);
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.email-signup .failure p {
+  margin: 0;
 }
 
 @keyframes email-signup-spin {

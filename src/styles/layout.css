@@ -3,37 +3,4 @@
     width: min(100% - (var(--space-page-x) * 2), var(--l-container-max, var(--container-wide)));
     margin-inline: auto;
   }
-
-  .l-container-readable {
-    --l-container-max: var(--container-readable);
-
-    width: min(100% - (var(--space-page-x) * 2), var(--l-container-max, var(--container-wide)));
-    margin-inline: auto;
-  }
-
-  .l-section {
-    padding-block: var(--space-section);
-  }
-
-  .l-section-compact {
-    padding-block: var(--space-section-compact);
-  }
-
-  .l-cluster {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-cluster);
-  }
-
-  .l-split {
-    display: grid;
-    gap: var(--space-panel);
-  }
-
-  @media (min-width: 48rem) {
-    .l-split {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
 }

@@ -8,36 +8,34 @@ interface Props {
 const { volunteerEvent } = Astro.props;
 ---
 
-<div class="volunteer-item">
+<article class="volunteer-item">
   <div class="details">
-    <div class="heading">
-      <h2>
-        <a href={`/events/${volunteerEvent.id}`}>{volunteerEvent.title}</a>
-      </h2>
-    </div>
+    <h3 class="heading">
+      <a href={`/events/${volunteerEvent.id}/`}>{volunteerEvent.title}</a>
+    </h3>
 
-    <div class="meta">
+    <dl class="meta">
       <div>
-        <p>Date & Time</p>
-        <p>
+        <dt>Date and time</dt>
+        <dd>
           <time datetime={`${volunteerEvent.formattedDate} ${volunteerEvent.time}`}>
-            {volunteerEvent.formattedDate} — {volunteerEvent.time}
+            {volunteerEvent.formattedDate} · {volunteerEvent.time}
           </time>
-        </p>
+        </dd>
       </div>
       <div>
-        <p>Meeting Point</p>
-        <p>
+        <dt>Meeting location</dt>
+        <dd>
           <a href={volunteerEvent.directionsLink}>{volunteerEvent.meetingLocation}</a>
-        </p>
+        </dd>
       </div>
-    </div>
+    </dl>
 
     {
       volunteerEvent.meetingNotes && (
         <div class="notes">
-          <p>Meeting Details</p>
-          <p>{volunteerEvent.meetingNotes}</p>
+          <p class="notes-label">Meeting details</p>
+          <p class="notes-copy">{volunteerEvent.meetingNotes}</p>
         </div>
       )
     }
@@ -46,14 +44,19 @@ const { volunteerEvent } = Astro.props;
   <div class="actions">
     {
       volunteerEvent.registrationLink && (
-        <a href={volunteerEvent.registrationLink} class="button button--brand register"> Register </a>
+        <a href={volunteerEvent.registrationLink} class="button button--brand register">
+          Register
+        </a>
       )
     }
-    <a href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf" class="button button--quiet release">
-      Consent and Release Form
+    <a
+      href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
+      class="button button--quiet release"
+    >
+      Consent and release form
     </a>
   </div>
-</div>
+</article>
 
 <style>
   .volunteer-item {
@@ -62,7 +65,9 @@ const { volunteerEvent } = Astro.props;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 1.75rem;
+    font-family: var(--font-body);
+    font-variant-numeric: tabular-nums;
   }
 
   .volunteer-item .details {
@@ -72,120 +77,104 @@ const { volunteerEvent } = Astro.props;
   }
 
   .volunteer-item .heading {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .volunteer-item .heading h2 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: 0;
+    font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 
-  .volunteer-item .heading a,
-  .volunteer-item .meta a {
-    color: inherit;
-    transition: color var(--duration-fast);
-  }
-
   .volunteer-item .heading a {
+    color: inherit;
     text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
   }
 
-  .volunteer-item .heading a:hover,
-  .volunteer-item .meta a:hover {
+  .volunteer-item .heading a:hover {
     color: var(--color-brand-strong);
   }
 
   .volunteer-item .meta {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
-    padding-top: 0.5rem;
+    gap: 1rem 2rem;
+    margin: 0;
   }
 
-  .volunteer-item .meta div,
-  .volunteer-item .notes {
+  .volunteer-item .meta div {
     display: grid;
     gap: 0.25rem;
   }
 
-  .volunteer-item .meta p,
-  .volunteer-item .notes p {
-    margin: 0;
-  }
-
-  .volunteer-item .meta p:first-child,
-  .volunteer-item .notes p:first-child {
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .volunteer-item .meta p:last-child {
-    color: var(--color-text-strong);
-    font-family: var(--font-label);
+  .volunteer-item .meta dt {
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
     font-size: var(--text-body-small);
-    font-weight: 600;
+    font-weight: 500;
+  }
+
+  .volunteer-item .meta dd {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
   }
 
   .volunteer-item .meta a {
-    text-decoration: underline;
+    color: var(--color-brand-strong);
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.22rem;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .volunteer-item .meta a:hover {
+    color: var(--color-brand);
   }
 
   .volunteer-item .notes {
-    margin-top: 1rem;
-    border-left: 2px solid var(--color-border);
-    background: var(--color-surface-muted);
-    padding: 1rem;
+    display: grid;
+    gap: 0.25rem;
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-page);
+    padding: 0.875rem 1.125rem;
   }
 
-  .volunteer-item .notes p:last-child {
+  .volunteer-item .notes-label {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-body);
+    font-size: var(--text-body-small);
+    font-weight: 700;
+  }
+
+  .volunteer-item .notes-copy {
+    margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.75rem;
-    font-weight: 500;
-    line-height: var(--leading-body);
+    font-family: var(--font-body);
+    font-size: var(--text-body-small);
+    font-weight: 400;
+    line-height: 1.55;
   }
 
   .volunteer-item .actions {
     display: flex;
     width: 100%;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.875rem;
   }
 
-  .volunteer-item .register {
-    align-items: center;
-    justify-content: center;
-  }
-
+  .volunteer-item .register,
   .volunteer-item .release {
-    padding: 1rem 1.5rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
+    width: 100%;
+    justify-content: center;
     text-align: center;
-    transition:
-      background-color var(--duration-fast),
-      border-color var(--duration-fast),
-      color var(--duration-fast),
-      transform var(--duration-fast);
-  }
-
-  .volunteer-item .release:hover {
-    background: var(--color-surface-muted);
-  }
-
-  .volunteer-item .release:active {
-    transform: scale(0.96);
   }
 
   @media (min-width: 40rem) {
@@ -195,6 +184,12 @@ const { volunteerEvent } = Astro.props;
 
     .volunteer-item .actions {
       flex-direction: row;
+      width: auto;
+    }
+
+    .volunteer-item .register,
+    .volunteer-item .release {
+      width: auto;
     }
   }
 
@@ -205,7 +200,9 @@ const { volunteerEvent } = Astro.props;
     }
 
     .volunteer-item .actions {
-      width: auto;
+      flex-direction: column;
+      align-items: stretch;
+      min-width: 15rem;
     }
   }
 </style>

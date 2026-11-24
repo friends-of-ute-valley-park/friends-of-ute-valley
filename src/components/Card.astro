@@ -10,130 +10,87 @@ export interface Props {
 const { title, image, publishedOn, href, previewText } = Astro.props;
 
 import { Picture } from "astro:assets";
-import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
+import { formatShortMonthDayYear } from "@/utils/date";
 ---
 
 <a href={"/news/" + href} class="news-teaser">
-  <article class="media media-frame media-zoom-frame">
-    <Picture
-      src={image}
-      formats={["avif"]}
-      fallbackFormat="webp"
-      width={480}
-      height={300}
-      widths={[480, 720]}
-      sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw"
-      alt={title}
-      class="image media-cover media-zoom media-zoom--slow"
-    />
-
-    <div class="matte media-matte"></div>
-
-    <div class="date meta-label">
-      {
-        formatShortMonthDayYear(publishedOn)
-      }
+  <article class="news-teaser__card">
+    <div class="media media-frame media-zoom-frame">
+      <Picture
+        src={image}
+        formats={["avif"]}
+        fallbackFormat="webp"
+        width={480}
+        height={300}
+        widths={[480, 720]}
+        sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw"
+        alt={title}
+        class="image media-cover media-zoom"
+      />
     </div>
 
-    <div class="action">
-      <span class="meta-label">Read More →</span>
+    <div class="body">
+      <time class="date" datetime={publishedOn.toISOString()}>
+        {formatShortMonthDayYear(publishedOn)}
+      </time>
+      <h3 class="title card-title">
+        {title}
+      </h3>
+      <p class="preview">
+        {previewText}
+      </p>
+      <span class="read-link">Read dispatch →</span>
     </div>
   </article>
-
-  <div class="body">
-    <div class="meta">
-      <span></span>
-      <span class="meta-label">
-        {formatShortMonthYear(publishedOn)}
-      </span>
-    </div>
-    <h3 class="title card-title">
-      {title}
-    </h3>
-    <p class="preview">
-      {previewText}
-    </p>
-  </div>
 </a>
 
 <style>
   .news-teaser {
     display: block;
+    height: 100%;
     color: inherit;
     text-decoration: none;
+  }
+
+  .news-teaser__card {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    gap: 1.125rem;
   }
 
   .news-teaser .media {
     position: relative;
     aspect-ratio: 16 / 10;
-    transition: border-color var(--duration-fast);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface-muted);
+    transition: border-color var(--duration-fast) var(--ease-out);
   }
 
   .news-teaser:hover .media {
     border-color: var(--color-brand-strong);
   }
 
-  .news-teaser .matte {
-    --media-matte-border: 1rem solid color-mix(in oklab, var(--color-surface) 10%, transparent);
-  }
-
-  .news-teaser .date {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: var(--color-brand-strong);
-    color: var(--color-text-inverse);
-    padding: 0.25rem 0.5rem;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .news-teaser .action {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    border: 1px solid var(--color-border-muted);
-    background: color-mix(in oklab, var(--color-surface) 90%, transparent);
-    padding: 0.25rem 0.75rem;
-    opacity: 0;
-    transition: opacity 500ms;
-  }
-
-  .news-teaser:hover .action {
-    opacity: 1;
-  }
-
-  .news-teaser .action span {
-    color: var(--color-brand-strong);
+  .news-teaser :global(picture),
+  .news-teaser :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .news-teaser .body {
-    display: grid;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-  }
-
-  .news-teaser .meta {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--color-text-subtle);
-    transition: color var(--duration-fast);
+    flex: 1;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .news-teaser .meta span:first-child {
-    display: inline-block;
-    width: 1.5rem;
-    height: 1px;
-    background: var(--color-border);
-    transition: background-color var(--duration-fast);
-  }
-
-  .news-teaser:hover .meta {
-    color: var(--color-brand-strong);
-  }
-
-  .news-teaser:hover .meta span:first-child {
-    background: var(--color-brand-strong);
+  .news-teaser .date {
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
   }
 
   .news-teaser:hover .title {
@@ -144,13 +101,27 @@ import { formatShortMonthDayYear, formatShortMonthYear } from "@/utils/date";
     display: -webkit-box;
     margin: 0;
     overflow: hidden;
-    line-clamp: 2;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     color: var(--color-text-muted);
+    font-family: var(--font-body);
     font-size: var(--text-body-small);
-    font-weight: 500;
-    line-height: var(--leading-body);
+    font-weight: 400;
+    line-height: 1.55;
     text-wrap: pretty;
+  }
+
+  .news-teaser .read-link {
+    margin-top: auto;
+    padding-top: 0.375rem;
+    color: var(--color-brand-strong);
+    font-family: var(--font-body);
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25rem;
   }
 </style>

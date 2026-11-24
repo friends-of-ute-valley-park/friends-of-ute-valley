@@ -1,100 +1,138 @@
 ---
 import { Picture } from "astro:assets";
-
 import Layout from "@layouts/Layout.astro";
 import VolunteerItem from "@components/VolunteerItem.astro";
 import LeaveNoTraceSmall from "@components/LeaveNoTraceSmall.astro";
 import ContactForm from "@components/ContactForm.vue";
 import EmailForm from "@components/EmailForm.vue";
-import StaticCalendar from "../components/StaticCalendar.astro";
+import EngagementPanel from "@components/EngagementPanel.astro";
+import StaticCalendar from "@components/StaticCalendar.astro";
 import SocialLinks from "@components/SocialLinks.astro";
 
 import { getCollection } from "astro:content";
 import { getUpcomingVolunteerEvents } from "@/utils/content";
 import { toVolunteerEventView } from "@/utils/EventData";
-const upcomingVolunteerEvents = await getUpcomingVolunteerEvents();
-
-import VolunteerHeroImage from "../assets/images/volunteer-hero-mask.jpg";
+import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
 import VolunteerOpportunitiesImage from "../assets/images/volunteer-opportunities.jpg";
 import VolunteerInfoImage2 from "../assets/images/volunteer-4.jpg";
 import { TURNSTILE_SITE_KEY } from "astro:env/client";
 
+const upcomingVolunteerEvents = await getUpcomingVolunteerEvents();
 const meetingLocations = await getCollection("trailheads");
 const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
   toVolunteerEventView(volunteerEvent, meetingLocations),
 );
+
+const expectations = [
+  {
+    title: "No experience needed",
+    desc: "Our crew leaders walk through the project and demonstrate how to use every tool safely before we head up the trail.",
+  },
+  {
+    title: "Tools are provided",
+    desc: "We bring the Pulaskis, pick mattocks, loppers, rakes, and project supplies. Just show up ready to pitch in.",
+  },
+  {
+    title: "What to wear and bring",
+    desc: "Wear long pants and sturdy closed-toe shoes, and bring water. Work gloves and eye protection are required and we keep extra pairs on hand to borrow.",
+  },
+];
 ---
 
 <Layout
   title="Volunteer"
   description="Volunteer with Friends of Ute Valley Park and join trail maintenance and stewardship events in Colorado Springs."
 >
-  <main class="page volunteer-page">
-    <!-- Hero Section -->
-    <section class="volunteer-hero">
-      <Picture
-        src={VolunteerHeroImage}
-        formats={["avif"]}
-        fallbackFormat="webp"
-        alt="Volunteers maintaining a trail"
-        class="image"
-        width={1280}
-        widths={[640, 828, 1080, 1280, 1668, 2048, 2560]}
-        sizes="(max-width: 640px) 640px, 100vw"
-        priority
-      />
-      <div class="scrim"></div>
+  <div class="page volunteer-page">
+    <!-- Framed Split Editorial Hero -->
+    <section class="subpage-hero" aria-labelledby="volunteer-hero-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <div class="subpage-hero__split subpage-hero__split--lead-left">
+            <div class="subpage-hero__copy">
+              <h1 id="volunteer-hero-title" class="subpage-hero__title">
+                Volunteer in Ute Valley Park.
+              </h1>
 
-      <div class="inner l-container">
-        <div class="content">
-          <h1>
-            Volunteer <br />
-            <span>With Us.</span>
-          </h1>
+              <p class="subpage-hero__deck">
+                Spend a couple of hours on the trails alongside your neighbors. We bring the tools and trail know-how; you bring sturdy shoes, water, and a willingness to pitch in.
+              </p>
 
-          <p>
-            Come spend a couple of hours on the trails with your neighbors. We
-            bring the tools and know-how—you just bring sturdy shoes and a
-            willingness to pitch in.
-          </p>
-        </div>
-      </div>
+              <div class="subpage-hero__actions">
+                <a href="#workdays" class="button button--brand">
+                  View scheduled workdays
+                </a>
+                <a href="#newsletter" class="text-link">
+                  Join workday email alerts
+                </a>
+              </div>
 
-      <div class="volunteer-status">
-        <div class="panel">
-          <div>
-            <span>Volunteer Season</span>
-            <span>Closed for the season</span>
-          </div>
-          <div>
-            <span>Next Event</span>
-            <span>
-              {
-                volunteerEventViews.length > 0
-                  ? volunteerEventViews[0].formattedDate
-                  : "TBD"
-              }
-            </span>
+              <dl class="subpage-hero__facts">
+                <div class="subpage-hero__fact">
+                  <dt>Workday season</dt>
+                  <dd>May through October</dd>
+                </div>
+                <div class="subpage-hero__fact">
+                  <dt>Next scheduled date</dt>
+                  <dd>
+                    {
+                      volunteerEventViews.length > 0
+                        ? volunteerEventViews[0].formattedDate
+                        : "Posted in spring"
+                    }
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+            <figure class="subpage-hero__plate-figure">
+              <div class="subpage-hero__plate volunteer-hero-plate">
+                <Picture
+                  src={VolunteerHeroImage}
+                  formats={["avif"]}
+                  fallbackFormat="webp"
+                  alt="Ute Valley Park volunteers gathered around tools at a trailhead briefing"
+                  width={1100}
+                  widths={[640, 1100]}
+                  sizes="(min-width: 64rem) 42vw, 94vw"
+                  priority
+                  class="volunteer-hero-photo"
+                />
+              </div>
+              <figcaption class="subpage-hero__caption">
+                Morning safety briefing before heading out for trail repair and restoration.
+              </figcaption>
+            </figure>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="page-section volunteer-events-section">
+    <!-- Upcoming Workdays Folio -->
+    <section id="workdays" class="page-section page-section--surface" aria-labelledby="workdays-heading">
       <div class="page-section__inner">
+        <div class="folio-rule-header">
+          <h2 id="workdays-heading" class="folio-rule-header__title">
+            Upcoming public workdays.
+          </h2>
+          <p class="folio-rule-header__deck">
+            Register ahead when spots are open so crew leaders can plan tools and group sizes.
+          </p>
+        </div>
+
         {
           volunteerEventViews.length > 0 ? (
-            <div class="volunteer-events">
+            <div class="volunteer-events editorial-folio">
               {volunteerEventViews.map((volunteerEvent) => (
-                <div class="item">
+                <div class="event-row">
                   <VolunteerItem volunteerEvent={volunteerEvent} />
                 </div>
               ))}
             </div>
           ) : (
-            <div class="empty">
+            <div class="empty-schedule editorial-folio">
               <p>
-                No scheduled events at this time. Check back for seasonal updates.
+                No public workdays are currently open for sign-up. Check the seasonal calendar below or join the email list to hear as soon as the next trail day opens.
               </p>
             </div>
           )
@@ -102,564 +140,272 @@ const volunteerEventViews = upcomingVolunteerEvents.map((volunteerEvent) =>
       </div>
     </section>
 
-    <!-- Volunteer Opportunities -->
-    <section class="page-section volunteer-opps">
+    <!-- Volunteer Opportunities Editorial Split -->
+    <section class="page-section" aria-labelledby="opportunities-heading">
       <div class="page-section__inner">
         <div class="volunteer-opps-layout">
-          <div class="photo">
+          <div class="photo-plate">
             <Picture
               src={VolunteerOpportunitiesImage}
               formats={["avif"]}
               fallbackFormat="webp"
-              alt="Volunteer holding a bag of collected litter in a meadow"
-              width={360}
-              height={540}
-              widths={[360, 720]}
-              sizes="360px"
-              class="image"
+              alt="Volunteer holding a bag of collected litter in a Ute Valley Park meadow"
+              width={560}
+              height={680}
+              widths={[400, 560, 800]}
+              sizes="(min-width: 64rem) 34vw, 92vw"
+              class="opps-photo"
             />
           </div>
 
-          <div class="header">
-            <div>
-              <h2>
-                Volunteer{" "}
-                <span>Opportunities.</span>
+          <div class="opps-copy">
+            <div class="folio-rule-header opps-header">
+              <h2 id="opportunities-heading" class="folio-rule-header__title">
+                Twice-monthly stewardship.
               </h2>
-              <p>
-                Caring for 550 acres takes all of us. We host trail workdays on
-                select Wednesday evenings and weekends from spring through fall.
-                Because dates shift each month, sign up for our email list or
-                follow us <SocialLinks variant="inline" /> for the latest
-                schedule. Whether you come out once or every month, your time
-                directly improves the trails we all use.
-              </p>
-              <a href="/volunteerspotlight/" class="spotlight-link">
-                <span>Read Volunteer Spotlights</span>
-                <span aria-hidden="true">→</span>
-              </a>
             </div>
+            <p class="opps-body">
+              Caring for 550 acres takes all of us. We host trail workdays on select Wednesday evenings and weekend mornings from spring through fall. Because exact dates shift with weather and city ranger support, sign up for email updates or follow us
+              <SocialLinks variant="inline" /> for the latest schedule.
+            </p>
+            <a href="/volunteerspotlight/" class="text-link">
+              Read volunteer spotlights →
+            </a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Seasonal Calendar -->
-    <section class="page-section page-section--muted">
+    <section class="page-section page-section--surface">
       <StaticCalendar />
     </section>
 
-    <!-- Volunteer Details -->
-    <section class="page-section">
+    <!-- What to Expect -->
+    <section class="page-section" aria-labelledby="expect-heading">
       <div class="page-section__inner">
         <div class="volunteer-field">
           <div class="copy">
-            <div>
-              <h2>
-                What to <span>Expect.</span>
+            <div class="folio-rule-header expect-header">
+              <h2 id="expect-heading" class="folio-rule-header__title">
+                What to expect on a workday.
               </h2>
-              <p>
-                Everyone is welcome—no trail-work experience needed. Projects
-                range from fixing drainage and repairing eroded tread to pulling
-                invasive weeds and reseeding native plants.
+              <p class="folio-rule-header__deck">
+                Everyone is welcome, and no prior trail-building experience is required. Projects range from shaping drainage and repairing eroded tread to removing invasive weeds and reseeding native plants.
               </p>
             </div>
 
-            <div class="field-notes">
+            <ol class="field-notes">
               {
-                [
-                  {
-                    title: "No Experience Needed",
-                    desc: "Our crew leaders walk through the project and show you how to use every tool safely before we start.",
-                  },
-                  {
-                    title: "Tools Provided",
-                    desc: "We bring the Pulaskis, loppers, rakes, and project supplies. Just show up ready to work.",
-                  },
-                  {
-                    title: "What to Wear",
-                    desc: "Wear long pants and sturdy, closed-toe shoes, and bring water. Work gloves and eye protection are required (we have extras to borrow if you need them).",
-                  },
-                ].map((item, i) => (
-                  <div class="field-note">
-                    <h3>
-                      0{i + 1}. {item.title}
-                    </h3>
-                    <p>
-                      {item.desc}
-                    </p>
-                  </div>
+                expectations.map((item) => (
+                  <li class="field-note">
+                    <h3>{item.title}</h3>
+                    <p>{item.desc}</p>
+                  </li>
                 ))
               }
-            </div>
+            </ol>
           </div>
 
-          <div class="photo">
+          <div class="photo-frame">
             <Picture
               src={VolunteerInfoImage2}
               formats={["avif"]}
               fallbackFormat="webp"
-              alt="Volunteers in action"
-              class="image"
+              alt="Volunteers clearing trail corridors with hand tools in Ute Valley Park"
+              class="field-photo"
               width={704}
-              widths={[400, 704, 1056, 1408]}
-              sizes="(min-width: 64rem) 44vw, 100vw"
+              widths={[400, 704, 1056]}
+              sizes="(min-width: 64rem) 44vw, 94vw"
             />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Recruitment (Engagement) -->
-    <section class="volunteer-recruitment">
-      <div class="marker"></div>
-
-      <div class="inner l-container">
-        <div class="panel">
-          <div class="layout">
-            <div class="copy">
-              <h2>
-                Stay <br />
-                <span>Updated.</span>
-              </h2>
-              <p>
-                We add pop-up workdays throughout the season when the park needs
-                extra hands. Join our email list for meeting spots, new dates,
-                and park updates.
-              </p>
-            </div>
-            <div class="form">
-              <EmailForm client:idle />
-            </div>
-          </div>
+    <!-- Field Charcoal Newsletter Engagement Band -->
+    <div id="newsletter">
+      <EngagementPanel>
+        <h2 slot="heading">Stay updated on upcoming workdays.</h2>
+        <p slot="description" class="section-heading__copy">
+          We add pop-up workdays throughout the season when the park needs extra hands. Sign up for meeting points, new volunteer dates, and park dispatches.
+        </p>
+        <div slot="main">
+          <EmailForm client:idle />
         </div>
-      </div>
-    </section>
-
-    <!-- Communication Link -->
-    <section class="volunteer-contact">
-      <div class="inner l-container">
-        <ContactForm
-          default-option="Volunteer"
-          client:visible
-          turnstileSiteKey={TURNSTILE_SITE_KEY}
-        >
-          <Fragment slot="title">
-            <h2 class="title">
-              Get in <span>Touch.</span>
-            </h2>
-          </Fragment>
-          <Fragment slot="subtitle">
-            For questions about group volunteer events or trail project
-            coordination, please send us a note below.
-          </Fragment>
-        </ContactForm>
-      </div>
-    </section>
-
-    <div class="volunteer-lnt">
-      <LeaveNoTraceSmall />
+      </EngagementPanel>
     </div>
-  </main>
+
+    <!-- Group / Coordination Inquiry -->
+    <section class="volunteer-contact">
+      <ContactForm
+        default-option="Volunteer"
+        client:visible
+        turnstileSiteKey={TURNSTILE_SITE_KEY}
+      >
+        <Fragment slot="title">
+          <h2 class="title">Coordinate a group workday.</h2>
+        </Fragment>
+        <Fragment slot="subtitle">
+          Questions about corporate teams, school groups, or upcoming trail projects? Send our volunteer coordinator a note.
+        </Fragment>
+      </ContactForm>
+    </section>
+
+    <LeaveNoTraceSmall />
+  </div>
 </Layout>
 
 <style>
-  .volunteer-hero {
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-surface-inverse);
+  .volunteer-hero-plate {
+    aspect-ratio: 4 / 3;
   }
 
-  :global(.volunteer-hero .image) {
-    position: absolute;
-    inset: 0;
+  .volunteer-hero-plate :global(picture),
+  .volunteer-hero-plate :global(img) {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.4;
-  }
-
-  .volunteer-hero .scrim {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, var(--color-surface-inverse), transparent);
-  }
-
-  .volunteer-hero .inner {
-    position: relative;
-    padding-block: clamp(6rem, 12vw, 10rem);
-  }
-
-  .volunteer-hero .content {
-    max-width: 48rem;
-  }
-
-  .volunteer-hero .eyebrow {
-    margin-bottom: 2rem;
-  }
-
-  .volunteer-status span,
-  .volunteer-events .empty p {
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
-  }
-
-  .volunteer-hero h1 {
-    margin: 0;
-    color: var(--color-text-inverse);
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 11vw, 8rem);
-    font-weight: 900;
-    line-height: 0.9;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .volunteer-hero h1 span,
-  .volunteer-recruitment .copy h2 span {
-    color: var(--color-accent);
-  }
-
-  .volunteer-hero p {
-    max-width: 36rem;
-    margin: 2rem 0 0;
-    color: var(--color-text-inverse-muted);
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: var(--leading-body);
-  }
-
-  .volunteer-status {
-    padding: 1rem var(--space-page-x);
-  }
-
-  .volunteer-status .panel {
-    display: grid;
-    gap: 1rem;
-    border: 1px solid color-mix(in oklab, var(--color-text-inverse) 20%, transparent);
-    background: color-mix(in oklab, var(--color-text-inverse) 10%, transparent);
-    padding: 1.5rem;
-    backdrop-filter: blur(12px);
-  }
-
-  .volunteer-status .panel div {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 3rem;
-  }
-
-  .volunteer-status span:first-child {
-    color: var(--color-text-subtle);
-  }
-
-  .volunteer-status span:last-child {
-    color: var(--color-text-inverse);
-    font-size: var(--text-body-small);
-    font-weight: 700;
-    letter-spacing: normal;
-    text-transform: none;
-  }
-
-  .volunteer-status div:first-child span:last-child {
-    color: var(--color-accent);
   }
 
   .volunteer-events {
-    border: 1px solid var(--color-border);
+    display: grid;
   }
 
-  .volunteer-events .item {
-    padding: 2rem;
-    border-bottom: 1px solid var(--color-border);
-    transition: background-color var(--duration-fast);
+  .volunteer-events .event-row {
+    border-bottom: 1px solid var(--color-border-muted);
+    padding: clamp(1.5rem, 3.5vw, 2.25rem);
   }
 
-  .volunteer-events .item:hover {
-    background: var(--color-page);
-  }
-
-  .volunteer-events .item:last-child {
+  .volunteer-events .event-row:last-child {
     border-bottom: 0;
   }
 
-  .volunteer-events .empty {
-    border: 1px solid var(--color-border-muted);
-    background: var(--color-page);
-    padding: 3rem;
-    text-align: center;
+  .empty-schedule {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
   }
 
-  .volunteer-events .empty p {
+  .empty-schedule p {
+    max-width: 60ch;
     margin: 0;
     color: var(--color-text-muted);
-  }
-
-  .volunteer-opps {
-    background: var(--color-surface);
+    font-size: var(--text-body-large);
+    line-height: 1.6;
   }
 
   .volunteer-opps-layout {
     display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
     align-items: center;
-    gap: clamp(2.5rem, 7vw, 7rem);
   }
 
-  .volunteer-opps .photo {
-    width: min(100%, 24rem);
-    margin-inline: auto;
-    border: 1px solid var(--color-border);
-    background: var(--color-page);
-    padding: 0.75rem;
+  .photo-plate {
+    aspect-ratio: 4 / 5;
+    max-width: 28rem;
+    overflow: hidden;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-accent-sm);
   }
 
-  :global(.volunteer-opps .photo .image) {
+  .photo-plate :global(picture),
+  .photo-plate :global(img) {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 25%;
   }
 
-  .volunteer-opps .header {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-bottom: 4rem;
+  .opps-copy {
+    display: grid;
+    justify-items: start;
+    gap: 1.25rem;
   }
 
-  .volunteer-opps .header > div {
-    width: min(100%, 56rem);
-    max-width: 56rem;
+  .opps-header {
+    width: 100%;
+    margin-bottom: 0;
   }
 
-  .volunteer-opps h2,
-  .volunteer-field h2,
-  .volunteer-contact .title {
-    margin: 0 0 1.5rem;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 6vw, 3.75rem);
-    font-weight: 900;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .volunteer-opps h2 span,
-  .volunteer-field h2 span,
-  .volunteer-contact .title span {
-    color: var(--color-brand-strong);
-    font-style: italic;
-  }
-
-  .volunteer-opps p,
-  .volunteer-field .copy > div > p {
+  .opps-body {
+    max-width: 56ch;
     margin: 0;
     color: var(--color-text-muted);
     font-size: var(--text-body-large);
-    font-weight: 500;
-    line-height: var(--leading-body);
-  }
-
-  .volunteer-opps .spotlight-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-    color: var(--color-brand-strong);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: var(--tracking-label);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color var(--duration-fast);
-  }
-
-  .volunteer-opps .spotlight-link span:last-child {
-    transition: transform var(--duration-fast);
-  }
-
-  .volunteer-opps .spotlight-link:hover {
-    color: var(--color-accent-strong);
-  }
-
-  .volunteer-opps .spotlight-link:hover span:last-child {
-    transform: translateX(0.25rem);
+    line-height: 1.65;
   }
 
   .volunteer-field {
     display: grid;
-    gap: 4rem;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
   }
 
   .volunteer-field .copy {
     display: grid;
-    gap: 3rem;
+    gap: 2rem;
+  }
+
+  .expect-header {
+    margin-bottom: 0;
   }
 
   .field-notes {
     display: grid;
-    gap: 1.5rem;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-border);
+    list-style-position: inside;
   }
 
   .field-note {
-    border-top: 1px solid var(--color-border-muted);
-    padding-top: 1.25rem;
-  }
-
-  .field-note:first-child {
-    border-top: 0;
-    padding-top: 0;
+    background: var(--color-surface);
+    padding: 1.5rem;
   }
 
   .field-note h3 {
-    margin: 0 0 0.5rem;
+    display: inline;
+    margin: 0;
     color: var(--color-text-strong);
-    font-family: var(--font-label);
-    font-size: var(--text-body-small);
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
   }
 
   .field-note p {
-    margin: 0;
+    margin: 0.5rem 0 0;
     color: var(--color-text-muted);
-    font-size: var(--text-body-small);
-    font-weight: 500;
-    line-height: var(--leading-body);
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
-  .volunteer-field .photo {
-    border: 1px solid var(--color-border);
+  .volunteer-field .photo-frame {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid var(--color-border-strong);
     background: var(--color-surface);
-    padding: 1rem;
+    box-shadow: var(--shadow-accent-sm);
   }
 
-  :global(.volunteer-field .image) {
+  .volunteer-field .photo-frame :global(picture),
+  .volunteer-field .photo-frame :global(img) {
+    display: block;
     width: 100%;
-    height: auto;
-    transition: transform var(--duration-slower);
-  }
-
-  .volunteer-recruitment {
-    position: relative;
-    overflow: clip;
-    background: var(--color-surface-inverse);
-    padding-block: var(--space-section);
-  }
-
-  .volunteer-recruitment .marker {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 16rem;
-    height: 16rem;
-    border: 1px solid color-mix(in oklab, var(--color-accent) 10%, transparent);
-    background: color-mix(in oklab, var(--color-accent) 5%, transparent);
-    transform: translate(50%, -50%) rotate(45deg);
-  }
-
-  .volunteer-recruitment .inner {
-    --l-container-max: 72rem;
-  }
-
-  .volunteer-recruitment .panel {
-    border: 2px solid var(--color-accent);
-    background: var(--color-surface-inverse);
-    padding: clamp(2rem, 5vw, 4rem);
-    box-shadow: var(--shadow-accent-xl);
-  }
-
-  .volunteer-recruitment .layout {
-    display: grid;
-    align-items: center;
-    gap: 4rem;
-  }
-
-  .volunteer-recruitment .copy {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .volunteer-recruitment .copy h2 {
-    margin: 0;
-    color: var(--color-text-inverse);
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 6vw, 3rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .volunteer-recruitment .copy h2 span {
-    font-style: italic;
-  }
-
-  .volunteer-recruitment .copy p {
-    margin: 0;
-    color: var(--color-text-inverse-muted);
-    font-size: var(--text-body-large);
-    font-weight: 500;
-    line-height: var(--leading-body);
-  }
-
-  .volunteer-recruitment .form {
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    padding: clamp(1.25rem, 5vw, 2rem);
-  }
-
-  .volunteer-recruitment .form :global(.email-signup) {
-    width: 100%;
-  }
-
-  .volunteer-contact {
-    border-bottom: 1px solid var(--color-border);
-    padding-block: var(--space-section);
-  }
-
-  .volunteer-contact .inner {
-    --l-container-max: 80rem;
-  }
-
-  .volunteer-lnt {
-    border-top: 1px solid var(--color-border);
-    background: var(--color-page);
-  }
-
-  @media (width <= 24rem) {
-    .volunteer-hero h1 {
-      font-size: clamp(2.5rem, 13vw, 3rem);
-    }
-
-    .volunteer-opps h2,
-    .volunteer-field h2,
-    .volunteer-contact .title {
-      font-size: clamp(1.5rem, 9vw, 1.875rem);
-    }
+    height: 100%;
+    object-fit: cover;
   }
 
   @media (min-width: 64rem) {
-    .volunteer-status {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      padding: 2rem;
-    }
-
     .volunteer-opps-layout {
-      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     }
 
-    .volunteer-field,
-    .volunteer-recruitment .layout {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .volunteer-field {
+      grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
     }
   }
 </style>

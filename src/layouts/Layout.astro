@@ -4,7 +4,6 @@ import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 
 import NavigationBar from "@components/NavigationBar.vue";
-import RouteProfile from "@components/RouteProfile.astro";
 import NavigationFooter from "@components/NavigationFooter.astro";
 import SocialLinks from "@components/SocialLinks.astro";
 import VolunteerBanner from "@components/VolunteerBanner.astro";
@@ -16,13 +15,14 @@ const volunteerEventSummaries = upcomingVolunteerEvents.map(({ data: { date, tim
 export interface Props {
   title: string;
   description?: string;
+  immersive?: boolean;
 }
 
 const {
   title,
   description = "Friends of Ute Valley Park is a volunteer-led nonprofit helping protect, restore, and advocate for Ute Valley Park in Colorado Springs.",
+  immersive = false,
 } = Astro.props;
-
 ---
 
 <!doctype html>
@@ -43,20 +43,17 @@ const {
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="site-shell">
-      <VolunteerBanner events={volunteerEventSummaries} />
-      <NavigationBar page={Astro.url.pathname} client:idle>
+      {!immersive && <VolunteerBanner events={volunteerEventSummaries} />}
+      <NavigationBar page={Astro.url.pathname} immersive={immersive} client:load>
         <Fragment slot="social-links">
           <SocialLinks />
         </Fragment>
-        <RouteProfile slot="route-profile" />
       </NavigationBar>
 
-      <div>
-        <!-- Background Grid Effect -->
-        <main id="main-content" tabindex="-1">
-          <slot />
-        </main>
-      </div>
+      <main id="main-content" tabindex="-1">
+        <slot />
+      </main>
+
       <NavigationFooter />
     </div>
   </body>
@@ -101,4 +98,3 @@ const {
     background: var(--color-page);
   }
 </style>
-

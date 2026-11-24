@@ -7,40 +7,49 @@ import trailRightOfWay from "../assets/images/trail-right-of-way.png";
 
 const parkRules = [
   {
-    code: "9.9.410",
-    title: "Alcoholic Beverages",
-    description: "Prohibited in all City Parks by municipal ordinance.",
+    code: "Code 9.9.410",
+    title: "Alcoholic beverages",
+    description: "Prohibited in all Colorado Springs City Parks by municipal ordinance.",
   },
   {
-    code: "6.6.202",
-    title: "Smoking & Vaping",
-    description:
-      "Prohibited on park property. No designated smoking areas exist in UVP.",
+    code: "Code 6.6.202",
+    title: "Smoking and vaping",
+    description: "Prohibited across all park property. No designated smoking areas exist inside Ute Valley Park.",
   },
   {
-    code: "9.9.301",
-    title: "Waste Management",
-    description:
-      "Please remove and properly dispose of all pet waste.",
+    code: "Code 9.9.301",
+    title: "Waste management",
+    description: "Pack out everything you carry in and properly dispose of all pet waste in trailhead receptacles.",
   },
   {
-    code: "9.9.302",
-    title: "Leash Requirement",
-    description:
-      "All animals must be physically leashed. No off-leash zones exist in UVP.",
+    code: "Code 9.9.302",
+    title: "Leash requirement",
+    description: "All pets must remain on a physical hand-held leash. There are no off-leash areas inside Ute Valley Park.",
   },
   {
-    code: "OR-05",
-    title: "Open Fires",
-    description:
-      "Open fires and charcoal grills are not allowed. Propane may be used only on hard surfaces.",
+    code: "Park Ordinance",
+    title: "Open fires and grills",
+    description: "Open fires and charcoal grills are prohibited. Propane stoves may be used only on hard paved surfaces.",
   },
   {
-    code: "OR-06",
-    title: "Property Integrity",
-    description:
-      "Unlawful to injure, deface, or remove any park property or vegetation.",
+    code: "Park Ordinance",
+    title: "Natural feature protection",
+    description: "It is unlawful to injure, deface, dig, or remove any park soil, rocks, trees, wildflowers, or structures.",
   },
+];
+
+const additionalRestrictions = [
+  "Motorized vehicles (ATVs, dirt bikes, electric motorcycles, golf carts) are prohibited on all trails, turf, and restricted access roads.",
+  "Amplified audio equipment requires a city noise permit issued by the Colorado Springs Police Department (Ref: 9-8-101).",
+  "Posting unauthorized signs or hanging banners on trailhead kiosks or vegetation is prohibited.",
+  "Attaching ropes, slacklines, hammocks, or wires to any tree or plant is prohibited.",
+];
+
+const etiquettePoints = [
+  "Stay on designated trails and respect fenced restoration closures.",
+  "Hikers and bikers moving downhill yield to uphill travelers.",
+  "Bicyclists yield to all hikers and equestrians.",
+  "Slow down, announce yourself clearly before passing on the left, and expect two-way traffic.",
 ];
 ---
 
@@ -48,157 +57,127 @@ const parkRules = [
   title="Rules"
   description="Review Ute Valley Park rules and city ordinances including leash laws, park hours, trail etiquette, and safety requirements."
 >
-  <main class="page rules-page">
-    <!-- Regulations Header -->
-    <section class="page-hero">
-      <div class="page-hero__inner">
-        <h1 class="page-title">
-          Park <br />
-          <span>Regulations.</span>
-        </h1>
+  <div class="page rules-page">
+    <!-- Masthead Utility Hero -->
+    <section class="subpage-hero" aria-labelledby="rules-hero-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <div class="subpage-hero__split subpage-hero__split--masthead">
+            <div class="subpage-hero__copy">
+              <h1 id="rules-hero-title" class="subpage-hero__title">
+                Park rules and hours.
+              </h1>
+              <p class="subpage-hero__deck">
+                The City of Colorado Springs Parks, Recreation, and Cultural Services Department establishes and enforces municipal ordinances to protect visitors and wildlife across Ute Valley Park.
+              </p>
+            </div>
 
-        <p class="page-intro">
-          The City of Colorado Springs Parks, Recreation, and Cultural Services
-          Department establishes and enforces the following ordinances for Ute
-          Valley Park.
-        </p>
+            <aside class="subpage-hero__aside-box" aria-label="Quick safety contacts">
+              <h2 class="subpage-hero__aside-title">Reporting an issue</h2>
+              <ul class="subpage-hero__aside-list">
+                <li>Emergencies: Call 911</li>
+                <li>CSPD non-emergency: 719-444-7000</li>
+                <li>
+                  <a href="/leavenotrace/dogs/" class="text-link">Dog leash policy</a>
+                </li>
+              </ul>
+            </aside>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Essential Hours & Exceptions -->
-    <section class="rules-summary">
+    <!-- Essential Hours & Key Policies -->
+    <section class="page-section page-section--surface" aria-labelledby="essentials-title">
       <div class="page-section__inner">
-        <div class="grid">
+        <h2 id="essentials-title" class="sr-only">Park hours and essential policies</h2>
+        <div class="summary-grid feature-grid feature-grid--three">
           <div class="rules-summary-card">
-            <h3>
-              Park Hours
-            </h3>
-            <div class="rows">
+            <h3>Seasonal park hours</h3>
+            <dl class="rows">
               {
                 parkHoursRulesRows.map(({ label, hours }) => (
                   <div>
-                    <span>{label}</span>
-                    <span>{hours}</span>
+                    <dt>{label}</dt>
+                    <dd>{hours}</dd>
                   </div>
                 ))
               }
-            </div>
+            </dl>
           </div>
 
           <div class="rules-summary-card">
-            <h3>
-              Dog Rules
-            </h3>
+            <h3>Dogs on leash</h3>
             <p>
-              Dogs need to stay leashed throughout Ute Valley Park. The park
-              does not include off-leash areas or dog parks.
+              Dogs must remain physically leashed everywhere in Ute Valley Park. Review our{" "}
+              <a href="/leavenotrace/dogs/" class="text-link">dog etiquette guide</a> for nearby fenced dog parks.
             </p>
           </div>
 
           <div class="rules-summary-card">
-            <h3>
-              Fire Safety
-            </h3>
+            <h3>Fire and smoke safety</h3>
             <p>
-              Smoking, open fires, and charcoal are not allowed in the park.
+              Smoking, vaping, open campfires, fireworks, and charcoal grills are prohibited throughout the open space year-round.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Detailed Code -->
-    <section class="page-section">
+    <!-- Detailed Ordinances -->
+    <section class="page-section" aria-labelledby="ordinances-title">
       <div class="page-section__inner">
-        <div class="rules-heading section-heading">
-          <h2 class="section-heading__title">
-            Municipal <span>Ordinances.</span>
+        <div class="folio-rule-header">
+          <h2 id="ordinances-title" class="folio-rule-header__title">
+            Municipal ordinances.
           </h2>
+          <p class="folio-rule-header__deck">
+            Key city park codes governing visitor conduct, resource protection, and safety.
+          </p>
         </div>
 
-        <div class="feature-grid feature-grid--two feature-grid--three">
+        <div class="ordinance-grid feature-grid feature-grid--two feature-grid--three">
           {
             parkRules.map((rule) => (
-              <div class="ordinance-card">
-                <div>
-                  <span>
-                    {rule.code}
-                  </span>
-                </div>
-                <div>
-                  <h3>
-                    {rule.title}
-                  </h3>
-                  <p>
-                    {rule.description}
-                  </p>
-                </div>
-              </div>
+              <article class="ordinance-card">
+                <p class="ordinance-code">{rule.code}</p>
+                <h3>{rule.title}</h3>
+                <p>{rule.description}</p>
+              </article>
             ))
           }
         </div>
 
-        <div class="additional-rules">
-          <h3>
-            Additional Restrictions
-          </h3>
-          <div>
-            <p>
-              • Motorized vehicles (ATVs, golf carts, etc.) are strictly
-              prohibited on all trails, turf, and restricted roadways.
-            </p>
-            <p>
-              • Amplified audio equipment requires a noise permit from the CSPD
-              (Ref: 9-8-101).
-            </p>
-            <p>
-              • Posting of unauthorized signage or hanging decorations on
-              structures/vegetation is prohibited.
-            </p>
-            <p>
-              • Attachment of ropes, wires, or other contrivances to any tree or
-              plant is prohibited.
-            </p>
-          </div>
+        <div class="additional-rules editorial-folio">
+          <h3>Additional city restrictions</h3>
+          <ul>
+            {additionalRestrictions.map((item) => <li>{item}</li>)}
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- Trail Etiquette -->
-    <section class="right-of-way">
+    <!-- Trail Etiquette Right of Way -->
+    <section class="right-of-way" aria-labelledby="etiquette-title">
       <div class="inner l-container">
         <div class="layout">
-          <div class="copy section-heading section-heading--inverse">
-            <div class="eyebrow section-kicker section-kicker--wide section-kicker--accent">
-              <span class="section-kicker__rule"></span>
-              <span class="section-kicker__text">Trail Etiquette</span>
-            </div>
-            <h2 class="section-heading__title">
-              Right of <br />
-              <span>Way.</span>
-            </h2>
+          <div class="copy">
+            <span class="amber-bar" aria-hidden="true"></span>
+            <h2 id="etiquette-title">Trail right of way.</h2>
+            <p class="etiquette-intro">
+              Hikers, trail runners, and mountain bikers share narrow sandstone corridors across all 37 trails in the park.
+            </p>
             <ul>
-              <li>
-                Stay on designated trails only
-              </li>
-              <li>
-                Yield to uphill travelers
-              </li>
-              <li>
-                Bicyclists yield to all other users
-              </li>
-              <li>
-                Warn others before passing on left
-              </li>
+              {etiquettePoints.map((point) => <li>{point}</li>)}
             </ul>
           </div>
 
-          <div>
+          <div class="diagram-wrap">
             <div class="diagram">
               <Image
                 src={trailRightOfWay}
-                alt="Trail right of way diagram"
-                class="image"
+                alt="Trail right of way diagram showing how cyclists yield to hikers and horses"
+                class="diagram-img"
               />
             </div>
           </div>
@@ -206,192 +185,189 @@ const parkRules = [
       </div>
     </section>
 
-    <div>
-      <LeaveNoTrace />
-    </div>
-  </main>
+    <LeaveNoTrace />
+  </div>
 </Layout>
 
 <style>
-  .rules-summary {
-    border-bottom: 1px solid var(--color-border);
-    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
-    padding-block: 3rem;
-  }
-
-  .rules-summary .grid {
-    display: grid;
-    gap: 2rem;
+  .summary-grid,
+  .ordinance-grid {
+    --feature-grid-border-color: var(--color-border-strong);
+    --feature-grid-background: var(--color-border-strong);
   }
 
   .rules-summary-card {
     display: grid;
-    gap: 1rem;
-    border: 1px solid var(--color-border);
+    align-content: start;
+    gap: 0.875rem;
     background: var(--color-surface);
-    padding: 2rem;
+    padding: clamp(1.375rem, 3vw, 2rem);
   }
 
-  .rules-summary-card h3,
-  .additional-rules h3 {
+  .rules-summary-card h3 {
     margin: 0;
     border-bottom: 1px solid var(--color-border-muted);
-    padding-bottom: 0.5rem;
-    color: var(--color-brand-strong);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    padding-bottom: 0.625rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 700;
   }
 
   .rules-summary-card .rows {
     display: grid;
-    gap: 0.5rem;
+    gap: 0.625rem;
+    margin: 0;
   }
 
   .rules-summary-card .rows div {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
+    font-size: 1rem;
   }
 
-  .rules-summary-card span,
-  p {
+  .rules-summary-card dt {
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .rules-summary-card dd {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .rules-summary-card p {
     margin: 0;
     color: var(--color-text-muted);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    line-height: var(--leading-body);
-    text-transform: uppercase;
-  }
-
-  .rules-summary-card span:last-child,
-  p {
-    font-weight: 900;
-  }
-
-  .rules-heading {
-    margin-bottom: 4rem;
-    --section-heading-title-size: clamp(2.25rem, 6vw, 3.75rem);
-    --section-heading-title-leading: normal;
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   .ordinance-card {
     display: grid;
-    gap: 1.5rem;
+    align-content: start;
+    gap: 0.625rem;
     background: var(--color-surface);
-    padding: 2rem;
-    transition: background-color var(--duration-fast);
+    padding: clamp(1.375rem, 3vw, 2rem);
   }
 
-  .ordinance-card:hover {
-    background: var(--color-page);
-  }
-
-  .ordinance-card span {
-    border: 1px solid color-mix(in oklab, var(--color-brand-strong) 20%, transparent);
+  .ordinance-code {
+    margin: 0;
     color: var(--color-brand-strong);
-    padding: 0.25rem 0.5rem;
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
   }
 
   .ordinance-card h3 {
-    margin: 0 0 0.5rem;
+    margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 900;
-    letter-spacing: 0;
-    text-transform: uppercase;
-    transition: color var(--duration-fast);
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1.2;
   }
 
-  .ordinance-card:hover h3 {
-    color: var(--color-brand-strong);
-  }
-
-  .ordinance-card p,
-  .additional-rules p {
+  .ordinance-card p:last-child {
     margin: 0;
     color: var(--color-text-muted);
-    font-size: var(--text-body-small);
-    font-weight: 500;
-    line-height: var(--leading-body);
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   .additional-rules {
-    display: grid;
-    gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
+    padding: clamp(1.5rem, 3.5vw, 2.25rem);
   }
 
-  .additional-rules > div {
+  .additional-rules h3 {
+    margin: 0 0 1rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 700;
+  }
+
+  .additional-rules ul {
     display: grid;
-    gap: 2rem;
+    gap: 0.625rem;
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   .right-of-way {
+    border-top: 1px solid var(--color-border-strong);
     background: var(--color-surface-inverse);
     color: var(--color-text-inverse);
-    padding-block: var(--space-section);
+    padding-block: clamp(3.5rem, 6vw, 5rem);
   }
 
   .right-of-way .layout {
     display: grid;
     align-items: center;
-    gap: 4rem;
+    gap: clamp(2rem, 5vw, 4rem);
   }
 
   .right-of-way .copy {
-    --section-heading-gap: 2rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .right-of-way .amber-bar {
+    width: 3rem;
+    height: 3px;
+    background: var(--color-accent);
+  }
+
+  .right-of-way h2 {
+    margin: 0;
+    color: var(--color-text-inverse);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.6vw, 3.125rem);
+    font-weight: 700;
+    line-height: 1.06;
+  }
+
+  .etiquette-intro {
+    max-width: 52ch;
+    margin: 0;
+    color: var(--color-text-inverse-muted);
+    font-size: var(--text-body-large);
+    line-height: 1.6;
   }
 
   .right-of-way ul {
     display: grid;
-    gap: 1rem;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-
-  .right-of-way li {
-    border-left: 2px solid var(--color-accent);
-    color: var(--color-text-inverse-muted);
-    padding: 0.25rem 0 0.25rem 1rem;
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    gap: 0.625rem;
+    margin: 0.5rem 0 0;
+    padding-left: 1.25rem;
+    color: var(--color-text-inverse);
+    font-size: 1rem;
+    line-height: 1.55;
   }
 
   .right-of-way .diagram {
-    border: 1px solid var(--color-border-inverse);
-    background: color-mix(in oklab, var(--color-text-inverse) 5%, transparent);
-    padding: 2rem;
+    border: 1px solid color-mix(in oklab, var(--color-text-inverse) 28%, transparent);
+    background: var(--color-surface);
+    padding: 1rem;
+    box-shadow: var(--shadow-accent-sm);
   }
 
-  :global(.right-of-way .image) {
+  .right-of-way :global(.diagram-img) {
+    display: block;
     width: 100%;
     height: auto;
-    filter: brightness(2);
-  }
-
-  @media (min-width: 48rem) {
-    .rules-summary .grid,
-    .additional-rules > div {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
 
   @media (min-width: 64rem) {
-    .rules-summary .grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
     .right-of-way .layout {
-      grid-template-columns: 5fr 7fr;
+      grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
     }
   }
 </style>

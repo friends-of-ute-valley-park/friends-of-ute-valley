@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { shallowRef, useTemplateRef, watch, type Ref } from 'vue';
-import { useScroll, onClickOutside } from '@vueuse/core';
+import { computed, onBeforeUnmount, onMounted, shallowRef, useTemplateRef, watch } from 'vue';
+import { onClickOutside } from '@vueuse/core';
 import LucidePawPrint from 'virtual:icons/lucide/paw-print';
 import LucideBird from 'virtual:icons/lucide/bird';
 import LucideCamera from 'virtual:icons/lucide/camera';
@@ -9,52 +9,46 @@ import HeroiconsBars3 from 'virtual:icons/heroicons/bars-3';
 import HeroiconsChevronDown from 'virtual:icons/heroicons/chevron-down';
 import HeroiconsXMark from 'virtual:icons/heroicons/x-mark';
 
-const props = defineProps<{ page: string }>();
+const props = defineProps<{ page: string; immersive?: boolean }>();
 
 const menuOpen = shallowRef(false);
 const lntOpen = shallowRef(false);
+const scrolledPastTop = shallowRef(typeof window !== 'undefined' && window.scrollY > 16);
 const navContainerRef = useTemplateRef<HTMLElement>('navContainerRef');
 const lntDropdown = useTemplateRef<HTMLElement>('lntDropdown');
 const toggleButtonRef = useTemplateRef<HTMLButtonElement>('toggleButtonRef');
-const navHidden = shallowRef(false);
-let lastScrollY = 0;
-let scrollY: Ref<number> = shallowRef(0);
-if (typeof window !== 'undefined') {
-  const { y } = useScroll(window, { throttle: 50 });
-  scrollY = y;
-}
 
-watch(scrollY, (current) => {
-  if (menuOpen.value) {
-    lastScrollY = current;
-    return;
+const syncScroll = () => {
+  if (typeof window !== 'undefined') {
+    scrolledPastTop.value = window.scrollY > 16;
   }
+};
 
-  const navHasFocus = typeof document !== 'undefined' && navContainerRef.value?.contains(document.activeElement);
-  if (navHasFocus) {
-    navHidden.value = false;
-    lastScrollY = current;
-    return;
-  }
-
-  if (current > lastScrollY && current > 80) {
-    navHidden.value = true;
-  } else if (current < lastScrollY) {
-    navHidden.value = false;
-  }
-  lastScrollY = current;
+onMounted(() => {
+  syncScroll();
+  window.addEventListener('scroll', syncScroll, { passive: true });
+  document.addEventListener('astro:page-load', syncScroll);
 });
 
-watch(menuOpen, (open) => {
-  if (open) {
-    navHidden.value = false;
-    lastScrollY = scrollY.value;
+onBeforeUnmount(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('scroll', syncScroll);
+  }
+  if (typeof document !== 'undefined') {
+    document.removeEventListener('astro:page-load', syncScroll);
   }
 });
 
-watch(navHidden, (hidden) => {
-  if (hidden) lntOpen.value = false;
-});
+const isScrolled = computed(() => !props.immersive || scrolledPastTop.value || menuOpen.value || lntOpen.value);
+
+watch(
+  () => props.page,
+  () => {
+    menuOpen.value = false;
+    lntOpen.value = false;
+    syncScroll();
+  },
+);
 
 function toggleMenu() {
   if (menuOpen.value) {
@@ -63,14 +57,11 @@ function toggleMenu() {
   }
 
   menuOpen.value = true;
-  navHidden.value = false;
 }
 
 function closeMenu(restoreFocus = true) {
   const wasOpen = menuOpen.value;
   menuOpen.value = false;
-  navHidden.value = false;
-  lastScrollY = scrollY.value;
 
   if (restoreFocus && wasOpen) {
     toggleButtonRef.value?.focus({ preventScroll: true });
@@ -124,7 +115,10 @@ const navigation = [
 </script>
 
 <template>
-  <div ref="navContainerRef" :class="['site-nav site-nav-shell', navHidden && 'site-nav-shell--hidden']" @keydown.escape="onKeydown" @focusin="navHidden = false">
+  <div
+    ref="navContainerRef"
+    :class="['site-nav site-nav-shell', props.immersive ? 'site-nav-shell--immersive' : 'site-nav-shell--solid', props.immersive && isScrolled && 'site-nav-shell--scrolled']"
+    @keydown.escape="onKeydown">
     <nav aria-label="Primary">
       <div class="inner l-container">
         <div class="bar">
@@ -134,10 +128,7 @@ const navigation = [
                 <img class="logo" src="/images/logo-small.jpg" alt="FUVP" width="40" height="40" />
               </div>
               <div class="wordmark">
-                <span
-                  >Friends of <br />
-                  Ute Valley Park</span
-                >
+                <span>Friends of Ute Valley Park</span>
               </div>
             </a>
           </div>
@@ -145,7 +136,9 @@ const navigation = [
           <!-- Desktop Navigation -->
           <div class="desktop">
             <div class="links">
-              <a v-for="item in navigation" :key="item.name" :href="item.href" :aria-current="item.current ? 'page' : undefined" :class="['link', item.current && 'link current']">{{ item.name }}</a>
+              <a v-for="item in navigation" :key="item.name" :href="item.href" :aria-current="item.current ? 'page' : undefined" :class="['link', item.current && 'current']">
+                {{ item.name }}
+              </a>
 
               <!-- Leave No Trace Dropdown -->
               <div ref="lntDropdown" class="dropdown" @keydown.escape="lntOpen = false">
@@ -154,9 +147,9 @@ const navigation = [
                   :aria-expanded="lntOpen"
                   aria-haspopup="true"
                   @click="lntOpen = !lntOpen"
-                  :class="['link dropdown-button', (props.page.startsWith('/leavenotrace') || lntOpen) && 'link current']">
+                  :class="['link dropdown-button', (props.page.startsWith('/leavenotrace') || lntOpen) && 'current']">
                   <span>Leave No Trace</span>
-                  <HeroiconsChevronDown :class="['chevron', lntOpen && 'chevron open']" aria-hidden="true" />
+                  <HeroiconsChevronDown :class="['chevron', lntOpen && 'open']" aria-hidden="true" />
                 </button>
 
                 <Transition
@@ -196,16 +189,14 @@ const navigation = [
             <button ref="toggleButtonRef" type="button" :aria-expanded="menuOpen" aria-controls="mobile-menu" class="toggle" @click="toggleMenu">
               <span class="sr-only">{{ menuOpen ? 'Close main menu' : 'Open main menu' }}</span>
               <span class="toggle-icons">
-                <HeroiconsBars3 :class="['toggle-icon', menuOpen ? 'toggle-icon hidden' : 'toggle-icon visible']" aria-hidden="true" />
-                <HeroiconsXMark :class="['toggle-icon', menuOpen ? 'toggle-icon visible' : 'toggle-icon hidden']" aria-hidden="true" />
+                <HeroiconsBars3 :class="['toggle-icon', menuOpen ? 'hidden' : 'visible']" aria-hidden="true" />
+                <HeroiconsXMark :class="['toggle-icon', menuOpen ? 'visible' : 'hidden']" aria-hidden="true" />
               </span>
             </button>
           </div>
         </div>
       </div>
     </nav>
-
-    <slot name="route-profile" />
 
     <!-- Mobile menu backdrop -->
     <div v-show="menuOpen" class="backdrop" aria-hidden="true" @click="closeMenu" />
@@ -219,8 +210,8 @@ const navigation = [
           :href="item.href"
           @click="closeMenu(false)"
           :aria-current="item.current ? 'page' : undefined"
-          :class="['mobile-link', item.current && 'mobile-link current']"
-          >{{ item.name }}
+          :class="['mobile-link', item.current && 'current']">
+          {{ item.name }}
         </a>
 
         <div class="mobile-kicker">
@@ -233,8 +224,8 @@ const navigation = [
           :href="item.href"
           @click="closeMenu(false)"
           :aria-current="item.current ? 'page' : undefined"
-          :class="['mobile-link sub', item.current && 'mobile-link current']"
-          >{{ item.name }}
+          :class="['mobile-link sub', item.current && 'current']">
+          {{ item.name }}
         </a>
       </div>
 
@@ -247,31 +238,39 @@ const navigation = [
 
 <style scoped>
 .site-nav-shell {
+  z-index: 50;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out),
+    backdrop-filter var(--duration-base) var(--ease-out);
+}
+
+.site-nav-shell--solid {
   position: sticky;
   top: 0;
-  z-index: 50;
-  transition: transform var(--duration-base);
-}
-
-/* Tuck the bar away on scroll but leave the route profile strip (1.625rem) showing. */
-.site-nav-shell--hidden {
-  transform: translateY(calc(-100% + 1.625rem));
-}
-
-.site-nav {
   border-bottom: 1px solid var(--color-border);
-  background: var(--color-page);
+  background: color-mix(in oklab, var(--color-page) 95%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.site-nav-shell--immersive {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
 }
 
 .site-nav .bar {
   display: flex;
-  height: 5rem;
+  height: 4.5rem;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .site-nav .brand-wrap {
   display: flex;
+  min-width: 0;
   align-items: center;
 }
 
@@ -289,39 +288,40 @@ const navigation = [
   background: var(--color-surface);
   padding: 0.25rem;
   transition:
-    border-color var(--duration-fast),
-    transform var(--duration-fast);
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .site-nav .brand:hover .logo-frame {
   border-color: var(--color-brand);
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .site-nav .logo {
   display: block;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
 }
 
 .site-nav .wordmark {
-  display: none;
+  display: block;
 }
 
 .site-nav .wordmark span {
   display: block;
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: 1.125rem;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  transition: color var(--duration-fast);
+  font-size: clamp(1rem, 3.6vw, 1.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  white-space: nowrap;
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 .site-nav .brand:hover .wordmark span {
-  color: var(--color-brand);
+  color: var(--color-brand-strong);
 }
 
 .site-nav .desktop {
@@ -331,7 +331,8 @@ const navigation = [
 .site-nav .links {
   display: flex;
   height: 100%;
-  border-left: 1px solid var(--color-border);
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .site-nav .link {
@@ -339,29 +340,29 @@ const navigation = [
   height: 100%;
   align-items: center;
   border: 0;
-  border-right: 1px solid var(--color-border);
   background: transparent;
   color: var(--color-text-muted);
-  padding-inline: 1rem;
+  padding-inline: 0.875rem;
   font-family: var(--font-body);
   font-size: var(--text-body-small);
   font-weight: 600;
   letter-spacing: 0;
   text-transform: none;
   text-decoration: none;
+  white-space: nowrap;
   transition:
-    background-color var(--duration-fast),
-    color var(--duration-fast);
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
 }
 
 .site-nav .link:hover,
 .site-nav .link.current {
-  background: var(--color-surface);
-  color: var(--color-brand);
+  background: color-mix(in oklab, var(--color-surface) 75%, transparent);
+  color: var(--color-brand-strong);
 }
 
 .site-nav .link.current {
-  border-bottom: 2px solid var(--color-brand);
+  border-bottom: 2px solid var(--color-brand-strong);
 }
 
 .site-nav .dropdown {
@@ -377,8 +378,8 @@ const navigation = [
 .site-nav .chevron {
   width: 1rem;
   height: 1rem;
-  opacity: 0.5;
-  transition: transform var(--duration-fast);
+  opacity: 0.6;
+  transition: transform var(--duration-fast) var(--ease-out);
 }
 
 .site-nav .chevron.open {
@@ -396,7 +397,7 @@ const navigation = [
 
 .site-nav .dropdown-panel {
   overflow: hidden;
-  border: 2px solid var(--color-brand);
+  border: 1px solid var(--color-border-strong);
   background: var(--color-surface);
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
 }
@@ -413,7 +414,7 @@ const navigation = [
   padding: 1rem;
   color: inherit;
   text-decoration: none;
-  transition: background-color var(--duration-fast);
+  transition: background-color var(--duration-fast) var(--ease-out);
 }
 
 .site-nav .dropdown-item:last-child {
@@ -421,7 +422,7 @@ const navigation = [
 }
 
 .site-nav .dropdown-item:hover {
-  background: color-mix(in oklab, var(--color-brand) 5%, transparent);
+  background: color-mix(in oklab, var(--color-brand) 6%, transparent);
 }
 
 .site-nav .dropdown-icon {
@@ -435,9 +436,9 @@ const navigation = [
   background: var(--color-page);
   color: var(--color-text-subtle);
   transition:
-    background-color var(--duration-fast),
-    border-color var(--duration-fast),
-    color var(--duration-fast);
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
 }
 
 .site-nav .dropdown-item:hover .dropdown-icon {
@@ -453,25 +454,22 @@ const navigation = [
 
 .site-nav .dropdown-title {
   margin: 0;
+  color: var(--color-text-strong);
   font-family: var(--font-body);
   font-size: var(--text-body-small);
-  text-transform: none;
-}
-
-.site-nav .dropdown-title {
-  color: var(--color-text-strong);
   font-weight: 600;
   letter-spacing: 0;
-  transition: color var(--duration-fast);
+  text-transform: none;
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 .site-nav .dropdown-item:hover .dropdown-title {
-  color: var(--color-brand);
+  color: var(--color-brand-strong);
 }
 
 .site-nav .social {
   display: none;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
 }
 
 .site-nav .mobile-toggle-wrap {
@@ -486,18 +484,19 @@ const navigation = [
   justify-content: center;
   border: 1px solid var(--color-border);
   background: transparent;
-  color: var(--color-text-subtle);
+  color: var(--color-text-muted);
   padding: 0.5rem;
+  cursor: pointer;
   transition:
-    background-color var(--duration-fast),
-    border-color var(--duration-fast),
-    color var(--duration-fast),
-    transform var(--duration-fast);
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .site-nav .toggle:hover {
   background: var(--color-surface-muted);
-  color: var(--color-brand);
+  color: var(--color-brand-strong);
 }
 
 .site-nav .toggle:active {
@@ -547,8 +546,8 @@ const navigation = [
   inset-inline: 0;
   top: 100%;
   z-index: 10;
-  max-height: calc(100vh - 5rem);
-  max-height: calc(100dvh - 5rem);
+  max-height: calc(100vh - 4.5rem);
+  max-height: calc(100dvh - 4.5rem);
   border-top: 1px solid var(--color-border);
   background: var(--color-surface);
   overflow-y: auto;
@@ -578,7 +577,7 @@ const navigation = [
 .site-nav .mobile-link:hover,
 .site-nav .mobile-link.current {
   background: var(--color-brand-subtle);
-  color: var(--color-brand);
+  color: var(--color-brand-strong);
 }
 
 .site-nav .mobile-link.sub {
@@ -591,7 +590,7 @@ const navigation = [
 }
 
 .site-nav .mobile-kicker span {
-  color: var(--color-brand);
+  color: var(--color-brand-strong);
   font-family: var(--font-body);
   font-size: var(--text-body-small);
   font-weight: 600;
@@ -613,8 +612,8 @@ const navigation = [
 .site-nav-menu-enter-active,
 .site-nav-menu-leave-active {
   transition:
-    opacity var(--duration-fast),
-    transform var(--duration-fast);
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .site-nav-menu-leave-active {
@@ -633,17 +632,7 @@ const navigation = [
   transform: translateY(0);
 }
 
-@media (min-width: 48rem) {
-  .site-nav .wordmark {
-    display: block;
-  }
-}
-
 @media (min-width: 64rem) {
-  .site-nav-shell--hidden {
-    transform: translateY(0);
-  }
-
   .site-nav .desktop {
     display: flex;
     height: 100%;
@@ -659,11 +648,87 @@ const navigation = [
 
 @media (min-width: 80rem) {
   .site-nav .link {
-    padding-inline: 1.25rem;
+    padding-inline: 1.125rem;
   }
 
   .site-nav .social {
     display: block;
   }
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) {
+  border-bottom-color: transparent;
+  background: transparent;
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .logo-frame {
+  border-color: color-mix(in oklab, var(--color-text-inverse) 35%, transparent);
+  background: color-mix(in oklab, var(--color-surface) 92%, transparent);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .wordmark span {
+  color: var(--color-text-inverse);
+  text-shadow: 0 1px 12px color-mix(in oklab, var(--color-text) 45%, transparent);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .link {
+  color: color-mix(in oklab, var(--color-text-inverse) 92%, transparent);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .link:hover,
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .link.current {
+  background: color-mix(in oklab, var(--color-surface) 14%, transparent);
+  color: var(--color-text-inverse);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .link.current {
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .toggle {
+  border-color: color-mix(in oklab, var(--color-text-inverse) 35%, transparent);
+  background: color-mix(in oklab, var(--color-text) 20%, transparent);
+  color: var(--color-text-inverse);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .toggle:hover {
+  background: color-mix(in oklab, var(--color-surface) 18%, transparent);
+  color: var(--color-text-inverse);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) :deep(.social-links .link.button) {
+  border-color: color-mix(in oklab, var(--color-text-inverse) 32%, transparent);
+  background: color-mix(in oklab, var(--color-text) 18%, transparent);
+  color: var(--color-text-inverse);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) :deep(.social-links .link.button:hover) {
+  border-color: var(--color-text-inverse);
+  background: color-mix(in oklab, var(--color-surface) 16%, transparent);
+  color: var(--color-text-inverse);
+}
+
+.site-nav-shell--immersive.site-nav-shell--scrolled {
+  border-bottom: 1px solid var(--color-border-muted);
+  background: color-mix(in oklab, var(--color-page) 95%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.site-nav-shell--immersive.site-nav-shell--scrolled .wordmark span {
+  color: var(--color-text-strong);
+  text-shadow: none;
+}
+
+.site-nav-shell--immersive.site-nav-shell--scrolled .link {
+  color: var(--color-text-muted);
+}
+
+.site-nav-shell--immersive.site-nav-shell--scrolled .link:hover,
+.site-nav-shell--immersive.site-nav-shell--scrolled .link.current {
+  color: var(--color-brand-strong);
+}
+
+.site-nav-shell--immersive.site-nav-shell--scrolled .link.current {
+  border-bottom: 2px solid var(--color-brand-strong);
 }
 </style>

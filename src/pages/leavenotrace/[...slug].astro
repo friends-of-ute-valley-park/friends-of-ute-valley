@@ -16,63 +16,61 @@ const { Content } = await render(entry);
 ---
 
 <Layout title={entry.data.title} description={entry.data.topText}>
-  <main class="page lnt-guide">
-    <!-- Leave No Trace Guide -->
-    <section class="page-hero">
-      <div class="page-hero__inner">
-        <div class="page-eyebrow">
-          <span>
-            Leave No Trace Guide
-          </span>
+  <div class="page lnt-guide">
+    <!-- Record Detail Hero -->
+    <section class="subpage-hero" aria-labelledby="lnt-entry-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <a href="/visit/" class="subpage-hero__back">← Plan your visit</a>
+          <div class="subpage-hero__copy">
+            <p class="subpage-hero__record-meta">Leave No Trace Field Guide</p>
+            <h1 id="lnt-entry-title" class="subpage-hero__title">
+              {entry.data.title}
+            </h1>
+            <p class="subpage-hero__deck">
+              {entry.data.topText}
+            </p>
+          </div>
         </div>
-
-        <h1 class="page-title">
-          {entry.data.title.split(" ").slice(0, -1).join(" ")}
-          <br />
-          <span
-            >{entry.data.title.split(" ").slice(-1)}</span
-          >
-        </h1>
-
-        <p class="page-intro">
-          {entry.data.topText}
-        </p>
       </div>
     </section>
 
-    <!-- Content -->
+    <!-- Article Body & Sticky Plate -->
     <section class="article-layout">
       <div class="article-layout__inner">
         <div class="article-layout__grid">
-          <!-- Content -->
           <div class="article-layout__main">
             <div class="prose-content">
               <Content />
             </div>
           </div>
 
-          <!-- Photos -->
-          <div class="article-layout__aside">
+          <aside class="article-layout__aside">
             <div class="aside-stack">
-              <div class="article-photo-card photo">
-                <Picture
-                  class="image"
-                  formats={["avif"]}
-                  fallbackFormat="webp"
-                  width={576}
-                  height={432}
-                  widths={[400, 576, 880]}
-                  sizes="(min-width: 64rem) 440px, (min-width: 36rem) 576px, 100vw"
-                  src={entry.data.image}
-                  alt={entry.data.imageAlt}
-                />
-              </div>
+              <figure class="article-photo-card photo">
+                <div class="photo-box">
+                  <Picture
+                    class="image"
+                    formats={["avif"]}
+                    fallbackFormat="webp"
+                    width={576}
+                    height={432}
+                    widths={[400, 576, 880]}
+                    sizes="(min-width: 64rem) 440px, (min-width: 36rem) 576px, 94vw"
+                    src={entry.data.image}
+                    alt={entry.data.imageAlt}
+                  />
+                </div>
+                <figcaption class="article-photo-card__meta">
+                  <span>{entry.data.imageAlt}</span>
+                </figcaption>
+              </figure>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
@@ -81,67 +79,24 @@ const { Content } = await render(entry);
     gap: 1.5rem;
   }
 
-  .lnt-guide .article-layout__inner {
-    width: min(100% - (var(--space-page-x) * 2), 74rem);
-  }
-
-  .lnt-guide .article-layout__main {
-    padding-inline: 0;
-  }
-
-  .lnt-guide .article-layout__aside {
-    padding-inline: 0;
-  }
-
-  .lnt-guide .article-photo-card {
-    position: relative;
-    width: 100%;
+  .lnt-guide .photo-box {
     aspect-ratio: 4 / 3;
-    max-width: 34rem;
-    margin-inline: auto;
+    overflow: hidden;
+    background: var(--color-surface-muted);
   }
 
-  @media (min-width: 64rem) {
-    .lnt-guide .article-layout__grid {
-      grid-template-columns: minmax(0, 43rem) minmax(18rem, 26rem);
-      gap: clamp(2.5rem, 5vw, 4rem);
-      align-items: start;
-      justify-content: center;
-      padding-block: var(--space-section);
-    }
-
-    .lnt-guide .article-layout__main {
-      border-right: 0;
-      padding-block: 0;
-      padding-inline: 0;
-    }
-
-    .lnt-guide .article-layout__aside {
-      background: transparent;
-      padding: 0;
-    }
-
-    .lnt-guide .aside-stack {
-      position: sticky;
-      top: 6rem;
-    }
-  }
-
-  .lnt-guide .article-photo-card :global(picture),
-  .lnt-guide .article-photo-card :global(img) {
+  .lnt-guide .photo-box :global(picture),
+  .lnt-guide .photo-box :global(img) {
     display: block;
     width: 100%;
     height: 100%;
-  }
-
-  .lnt-guide .article-photo-card :global(img) {
     object-fit: cover;
-    transform: scale(1.05);
-    transition: transform var(--duration-slower);
   }
 
-  .lnt-guide .photo:hover :global(.image) {
-    transform: scale(1);
+  @media (min-width: 64rem) {
+    .lnt-guide .aside-stack {
+      position: sticky;
+      top: 5.75rem;
+    }
   }
-
 </style>

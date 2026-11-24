@@ -7,7 +7,7 @@ const domainFacts = [
     value: "Friends of Ute Valley Park",
   },
   {
-    label: "Domain",
+    label: "Official domain",
     value: "fuvp.org",
   },
   {
@@ -19,7 +19,7 @@ const domainFacts = [
     value: "5780 Linger Way, Colorado Springs, CO 80919",
   },
   {
-    label: "IRS status",
+    label: "IRS classification",
     value: "501(c)(3) public charity",
   },
   {
@@ -27,7 +27,7 @@ const domainFacts = [
     value: "https://fuvp.org",
   },
   {
-    label: "Contact",
+    label: "Official contact",
     value: "contact@fuvp.org",
   },
 ];
@@ -37,62 +37,57 @@ const domainFacts = [
   title="Official Organization Domain"
   description="Confirmation that fuvp.org is the official domain used by Friends of Ute Valley Park for its public website and organizational email."
 >
-  <main class="page organization-domain-page">
-    <section class="page-hero">
-      <div class="page-hero__inner">
-        <div class="page-eyebrow">
-          <span>
-            Official Domain Confirmation
-          </span>
+  <div class="page organization-domain-page">
+    <!-- Masthead Utility Hero -->
+    <section class="subpage-hero" aria-labelledby="domain-hero-title">
+      <div class="subpage-hero__inner subpage-hero__inner--narrow">
+        <div class="subpage-hero__masthead">
+          <div class="subpage-hero__split subpage-hero__split--masthead">
+            <div class="subpage-hero__copy">
+              <h1 id="domain-hero-title" class="subpage-hero__title">
+                Official organization domain.
+              </h1>
+              <p class="subpage-hero__deck">
+                Public confirmation of the legal identity, IRS exempt classification, and official internet domain of Friends of Ute Valley Park.
+              </p>
+            </div>
+
+            <aside class="subpage-hero__aside-box" aria-label="Primary identifiers">
+              <h2 class="subpage-hero__aside-title">Verified entity</h2>
+              <ul class="subpage-hero__aside-list">
+                <li>Domain: fuvp.org</li>
+                <li>EIN: 42-2107142</li>
+                <li>Status: 501(c)(3) public charity</li>
+              </ul>
+            </aside>
+          </div>
         </div>
-
-        <h1 class="page-title">
-          Friends of Ute Valley Park <span>Domain.</span>
-        </h1>
-
-        <p class="page-intro">
-          This page confirms the relationship between Friends of Ute Valley Park
-          and the fuvp.org domain.
-        </p>
       </div>
     </section>
 
-    <section class="page-section">
+    <section class="page-section page-section--surface">
       <div class="page-section__inner page-section__inner--narrow">
-        <article class="confirmation">
+        <article class="confirmation editorial-folio">
           <div class="confirmation__mark" aria-hidden="true"></div>
 
           <div class="confirmation__content">
-            <h2>
-              Official Organization Domain
-            </h2>
+            <h2>Domain and 501(c)(3) verification</h2>
 
             <div class="confirmation__prose">
               <p>
-                Friends of Ute Valley Park confirms that <strong>fuvp.org</strong> is
-                the official internet domain used by the organization for its public
-                website and organizational email.
+                Friends of Ute Valley Park confirms that <strong>fuvp.org</strong> is the official internet domain used by the organization for its public website and organizational email.
               </p>
 
               <p>
-                Friends of Ute Valley Park is recognized by the Internal Revenue
-                Service as exempt from federal income tax under Internal Revenue
-                Code Section 501(c)(3). The organization's Employer
-                Identification Number is <strong>42-2107142</strong>.
+                Friends of Ute Valley Park is recognized by the Internal Revenue Service as exempt from federal income tax under Internal Revenue Code Section 501(c)(3). The organization's Employer Identification Number is <strong>42-2107142</strong>.
               </p>
 
               <p>
-                The IRS determination letter is dated May 6, 2026, with an
-                effective exemption date of April 28, 2026, and classifies
-                Friends of Ute Valley Park as a public charity.
+                The IRS determination letter is dated May 6, 2026, with an effective exemption date of April 28, 2026, and classifies Friends of Ute Valley Park as a public charity.
               </p>
 
               <p>
-                Mission statement: Friends of Ute Valley Park maintains,
-                preserves, and provides education for Ute Valley Park through
-                volunteer trail maintenance, park stewardship, cleanup and
-                restoration projects, public education, and advocacy for this
-                Colorado Springs open space.
+                Mission statement: Friends of Ute Valley Park maintains, preserves, and provides education for Ute Valley Park through volunteer trail maintenance, park stewardship, cleanup and restoration projects, public education, and advocacy for this Colorado Springs open space.
               </p>
             </div>
 
@@ -101,7 +96,7 @@ const domainFacts = [
                 href="/documents/fuvp-irs-determination-letter-redacted.pdf"
                 class="button button--brand"
               >
-                Download IRS Letter
+                Download IRS determination letter
               </a>
               <span>
                 Public copy redacts personal addressee and IRS staff identifier.
@@ -110,70 +105,59 @@ const domainFacts = [
           </div>
         </article>
 
-        <div class="domain-facts" aria-label="Organization domain details">
+        <dl class="domain-facts feature-grid" aria-label="Organization domain details">
           {
             domainFacts.map((fact) => (
               <div class="domain-fact">
-                <span>
-                  {fact.label}
-                </span>
-                <strong>
-                  {fact.value}
-                </strong>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
               </div>
             ))
           }
-        </div>
+        </dl>
 
-        <div class="verification-note">
-          <div>
-            <p>
-              Physical Street Address
-            </p>
-            <p>
-              Friends of Ute Valley Park<br />
-              5780 Linger Way<br />
-              Colorado Springs, CO 80919
-            </p>
-          </div>
+        <div class="verification-note editorial-folio">
+          <div class="address-cols">
+            <div>
+              <p class="address-title">Physical street address</p>
+              <p>
+                Friends of Ute Valley Park<br />
+                5780 Linger Way<br />
+                Colorado Springs, CO 80919
+              </p>
+            </div>
 
-          <div>
-            <p>
-              Mailing Address
-            </p>
-            <p>
-              Friends of Ute Valley Park<br />
-              PO Box 50122<br />
-              Colorado Springs, CO 80919
-            </p>
+            <div>
+              <p class="address-title">Mailing address</p>
+              <p>
+                Friends of Ute Valley Park<br />
+                PO Box 50122<br />
+                Colorado Springs, CO 80919
+              </p>
+            </div>
           </div>
 
           <a href="mailto:contact@fuvp.org" class="button button--brand">
-            Contact Us
+            Email contact@fuvp.org
           </a>
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
-  .organization-domain-page .page-title {
-    max-width: 11ch;
-  }
-
   .confirmation {
     display: grid;
     gap: 1.5rem;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    padding: clamp(1.5rem, 5vw, 3rem);
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+    box-shadow: var(--shadow-accent-sm);
   }
 
   .confirmation__mark {
     width: 3rem;
-    height: 0.35rem;
-    background: var(--color-brand-strong);
+    height: 3px;
+    background: var(--color-accent);
   }
 
   .confirmation__content {
@@ -185,19 +169,17 @@ const domainFacts = [
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 900;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+    font-weight: 700;
   }
 
   .confirmation__prose {
     display: grid;
     gap: 1rem;
+    max-width: 65ch;
     color: var(--color-text-muted);
     font-size: var(--text-body-large);
-    font-weight: 500;
-    line-height: var(--leading-body);
+    line-height: 1.6;
   }
 
   .confirmation__prose p {
@@ -206,49 +188,48 @@ const domainFacts = [
 
   .confirmation__prose strong {
     color: var(--color-text-strong);
+    font-weight: 700;
   }
 
   .confirmation__actions {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.75rem;
+    gap: 0.625rem;
     padding-top: 0.25rem;
   }
 
   .confirmation__actions span {
-    color: var(--color-text-subtle);
+    color: var(--color-text-muted);
     font-size: var(--text-body-small);
-    font-weight: 600;
   }
 
   .domain-facts {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    margin: 2rem 0 0;
+    --feature-grid-border-color: var(--color-border-strong);
+    --feature-grid-background: var(--color-border-strong);
   }
 
   .domain-fact {
     display: grid;
-    gap: 0.5rem;
-    border: 1px solid var(--color-border);
+    gap: 0.25rem;
+    background: var(--color-page);
     padding: 1.25rem;
   }
 
-  .domain-fact span,
-  .verification-note p:first-child {
-    color: var(--color-brand-strong);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+  .domain-fact dt {
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    font-weight: 500;
   }
 
-  .domain-fact strong {
+  .domain-fact dd {
+    margin: 0;
     color: var(--color-text-strong);
-    font-size: var(--text-body-large);
+    font-size: 1rem;
+    font-weight: 700;
     overflow-wrap: anywhere;
   }
 
@@ -258,21 +239,29 @@ const domainFacts = [
     align-items: flex-start;
     justify-content: space-between;
     gap: 1.5rem;
-    margin-top: 1rem;
-    border: 1px solid var(--color-border);
-    background: color-mix(in oklab, var(--color-surface-muted) 55%, transparent);
-    padding: 1.5rem;
+    margin-top: 2rem;
+    background: var(--color-page);
+    padding: 1.5rem 2rem;
+  }
+
+  .address-cols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 3rem;
   }
 
   .verification-note p {
     margin: 0;
     color: var(--color-text-muted);
-    font-weight: 600;
-    line-height: var(--leading-body);
+    font-size: 1rem;
+    line-height: 1.55;
   }
 
-  .verification-note p + p {
-    margin-top: 0.5rem;
+  .address-title {
+    margin-bottom: 0.375rem;
+    color: var(--color-brand-strong);
+    font-size: var(--text-body-small);
+    font-weight: 700;
   }
 
   @media (min-width: 48rem) {

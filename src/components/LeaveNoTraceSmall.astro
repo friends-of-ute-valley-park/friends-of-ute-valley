@@ -6,90 +6,67 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
 
 <div class="lnt-small">
   <EngagementPanel>
-    <h2
-      slot="heading"
-      class="title section-heading__title"
-    >
-      Leave <br /> No <span>Trace.</span>
+    <h2 slot="heading" class="title section-heading__title">
+      Leave No Trace in Ute Valley Park.
     </h2>
-    <Fragment slot="subheading">Environmental Stewardship</Fragment>
     <Fragment slot="description">
       <p class="description section-heading__copy">
-        Ute Valley Park proudly supports The 7 Principles of Leave No Trace.
-        Following these guidelines helps protect the park for everyone.
+        Ute Valley Park proudly follows The 7 Principles of Leave No Trace. Simple daily habits help protect exposed sandstone ridges, ponderosa roots, and Front Range wildlife.
       </p>
       <div class="rules">
-        <a
-          href="/rules/"
-          class="rules-link"
-        >
-          View Park Rules →
+        <a href="/rules/" class="rules-link">
+          View park rules and hours →
         </a>
       </div>
     </Fragment>
 
-    <div
-      slot="main"
-      class="partner"
-    >
-      <a href="https://www.lnt.org" class="logo-link">
+    <div slot="main" class="partner">
+      <a href="https://www.lnt.org" target="_blank" rel="noopener noreferrer nofollow" class="logo-link">
         <Image
           src={lntLogo}
           format="png"
           width={192}
           densities={[1, 2]}
-          alt="Leave No Trace logo"
+          alt="Leave No Trace Gold Standard Site logo"
           class="logo"
         />
       </a>
-      <span>Certified Stewardship Partner</span>
+      <span>Leave No Trace Gold Standard Site partner (opens lnt.org)</span>
     </div>
   </EngagementPanel>
 </div>
 
 <style>
-  .lnt-small .title {
-    margin: 0;
-    color: var(--color-text-inverse);
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 6vw, 3.75rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .lnt-small .title span {
-    color: var(--color-accent);
-    font-style: italic;
-  }
-
   .lnt-small .description {
     margin: 0;
     color: var(--color-text-inverse-muted);
+    font-family: var(--font-body);
     font-size: var(--text-body-large);
-    font-weight: 500;
-    line-height: var(--leading-body);
+    font-weight: 400;
+    line-height: 1.6;
   }
 
   .lnt-small .rules {
-    padding-top: 1.5rem;
+    padding-top: 0.75rem;
   }
 
   .lnt-small .rules-link {
-    display: inline-block;
-    color: var(--color-accent);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: 0.12em;
+    display: inline-flex;
+    min-height: 2.5rem;
+    align-items: center;
+    color: var(--color-text-inverse);
+    font-family: var(--font-body);
+    font-size: var(--text-body-small);
+    font-weight: 700;
     text-decoration-line: underline;
-    text-decoration-color: color-mix(in oklab, var(--color-accent) 30%, transparent);
-    text-transform: uppercase;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3rem;
+    transition: color var(--duration-fast) var(--ease-out);
   }
 
   .lnt-small .rules-link:hover {
-    text-decoration-color: var(--color-accent);
+    color: var(--color-accent);
   }
 
   .lnt-small .partner {
@@ -97,8 +74,9 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
     padding-block: 1rem;
+    text-align: center;
   }
 
   .lnt-small .logo-link {
@@ -111,10 +89,10 @@ import lntLogo from "../assets/images/logos/leave-no-trace.png";
   }
 
   .lnt-small .partner span {
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: 1.45;
   }
 </style>

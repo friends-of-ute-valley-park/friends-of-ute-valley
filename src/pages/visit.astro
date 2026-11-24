@@ -1,6 +1,5 @@
 ---
 import Layout from "@layouts/Layout.astro";
-
 import { Picture } from "astro:assets";
 import heroImage from "../assets/images/ute-valley-park-biker.jpg";
 import DogImage from "../assets/images/dog.jpg";
@@ -11,7 +10,9 @@ import { getSortedTrailheads } from "@/utils/content";
 import { assertTrailSummary } from "@/utils/trailData";
 import trailConditions from "@/data/generated/trailforks-summary.json";
 import type { VisitTrailhead } from "@/utils/trailMapModel";
+
 assertTrailSummary(trailConditions);
+
 const sortedTrailheads = await getSortedTrailheads();
 const mapTrailheads: VisitTrailhead[] = sortedTrailheads.map((trailhead) => ({
   id: String(trailhead.id),
@@ -21,78 +22,97 @@ const mapTrailheads: VisitTrailhead[] = sortedTrailheads.map((trailhead) => ({
   coordinates: [trailhead.data.longitude, trailhead.data.latitude],
   url: `/trailheads/${trailhead.id}/`,
 }));
+
+const featuredTrails = [
+  {
+    name: "BeaUTEiful Loop",
+    desc: "Ridgetop views of Pikes Peak, Black Forest, and Rockrimmon, winding through ponderosa pines and sandstone outcrops.",
+  },
+  {
+    name: "Rattlesnake Ridge",
+    desc: "Wide-open views along a narrow, rocky ridge. Steep and technical, best for experienced hikers and mountain bikers.",
+  },
+  {
+    name: "High Arches Loop",
+    desc: "A short loop near Vindicator Trailhead that winds through an old ranch valley toward a natural sandstone arch.",
+  },
+  {
+    name: "Black and Blue Loop",
+    desc: "Technical terrain featuring rock gardens, steep grades, a bridge, old mine tailings, and a small cave.",
+  },
+];
 ---
 
 <Layout
   title="Visit"
   description="Plan your visit to Ute Valley Park with trailhead locations, map access, park hours, and trail information."
 >
-  <main class="page visit-page">
-    <!-- Visit Hero Section -->
-    <section class="visit-hero">
-      <div class="layout">
-        <!-- Identity Column -->
-        <div class="identity">
-          <div class="stack">
-            <div class="page-eyebrow">
-              <span>
-                Getting Here
-              </span>
+  <div class="page visit-page">
+    <!-- Framed Split Editorial Hero -->
+    <section class="subpage-hero" aria-labelledby="visit-hero-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <div class="subpage-hero__split subpage-hero__split--lead-left">
+            <div class="subpage-hero__copy">
+              <h1 id="visit-hero-title" class="subpage-hero__title">
+                Plan your visit to Ute Valley Park.
+              </h1>
+
+              <p class="subpage-hero__deck">
+                Set between Centennial Boulevard, Vindicator Drive, and I-25 in northwest Colorado Springs, Ute Valley Park spans 550 acres and 37 interconnected trails accessible from five main trailheads.
+              </p>
+
+              <div class="subpage-hero__actions">
+                <a href="#trail-explorer" class="button button--brand">
+                  Explore trailheads and map
+                </a>
+                <a href="/rules/" class="text-link">
+                  Review park rules
+                </a>
+              </div>
+
+              <dl class="subpage-hero__facts">
+                <div class="subpage-hero__fact">
+                  <dt>Trail conditions</dt>
+                  <dd>{trailConditions.status}</dd>
+                </div>
+                <div class="subpage-hero__fact">
+                  <dt>Elevation range</dt>
+                  <dd>6,400–6,800 ft</dd>
+                </div>
+                <div class="subpage-hero__fact">
+                  <dt>Entry fee</dt>
+                  <dd>Free daily entry</dd>
+                </div>
+              </dl>
             </div>
 
-            <h1 class="page-title">
-              Visit Ute<br /> Valley <br />
-              <span>Park.</span>
-            </h1>
-
-            <p>
-              Ute Valley Park sits between Centennial Boulevard, Vindicator
-              Drive, and I-25 in northwest Colorado Springs. You can enter from
-              five main trailheads.
-            </p>
-
-            <div class="facts">
-              <div>
-                <p>
-                  Park Coordinates
-                </p>
-                <p>
-                  38.9189° N, 104.8558° W
-                </p>
+            <figure class="subpage-hero__plate-figure">
+              <div class="subpage-hero__plate visit-hero-plate">
+                <Picture
+                  src={heroImage}
+                  formats={["avif"]}
+                  fallbackFormat="webp"
+                  alt="Mountain bike overlooking sandstone ridges and the Front Range foothills in Ute Valley Park"
+                  width={1008}
+                  widths={[640, 1008]}
+                  sizes="(min-width: 64rem) 42vw, 94vw"
+                  priority
+                  class="visit-hero-photo"
+                />
               </div>
-              <div>
-                <p>
-                  Elevation
-                </p>
-                <p>
-                  6,400'-6,800'
-                </p>
-              </div>
-            </div>
+              <figcaption class="subpage-hero__caption">
+                Sunset ridge overlooking the Front Range foothills near the western singletrack.
+              </figcaption>
+            </figure>
           </div>
-        </div>
-
-        <!-- Visual Context Column -->
-        <div class="media media-zoom-frame">
-          <Picture
-            src={heroImage}
-            formats={["avif"]}
-            fallbackFormat="webp"
-            alt="Biker in Ute Valley"
-            width={1008}
-            widths={[640, 1008]}
-            sizes="(min-width: 48rem) 1008px, 640px"
-            priority
-            class="image media-cover media-zoom media-zoom--slow"
-          />
-          <div class="matte media-matte"></div>
         </div>
       </div>
     </section>
 
-    <!-- Map & Entry Points -->
-    <section class="article-layout">
-      <div class="article-layout__inner">
+    <!-- Interactive Trailhead Explorer -->
+    <section id="trail-explorer" class="page-section visit-explorer-section">
+      <div class="page-section__inner">
         <VisitTrailExplorer
           trailheads={mapTrailheads}
           conditionNote={trailConditions.note}
@@ -101,334 +121,239 @@ const mapTrailheads: VisitTrailhead[] = sortedTrailheads.map((trailhead) => ({
       </div>
     </section>
 
-    <!-- Park Rules -->
-    <section class="visit-rules">
-      <!-- Background map markers -->
-      <div class="marker"></div>
-
-      <div class="inner l-container">
-        <div class="layout">
-          <div class="copy section-heading section-heading--inverse">
-            <div class="eyebrow section-kicker section-kicker--wide section-kicker--accent section-kicker--inverse">
-              <span class="section-kicker__rule"></span>
-              <span class="section-kicker__text">
-                Rules & Etiquette
-              </span>
-            </div>
-            <h2 class="section-heading__title">
-              Park <br />
-              <span>Rules.</span>
-            </h2>
-            <a
-              href="/rules/"
-              class="link"
-            >
-              Review Full Rules
-            </a>
-          </div>
-
-          <div>
-            <div class="media">
-              <Picture
-                src={DogImage}
-                formats={["avif"]}
-                fallbackFormat="webp"
-                alt="Dog in park"
-                width={600}
-                height={338}
-                widths={[600]}
-                sizes="(min-width: 64rem) 45vw, 100vw"
-                class="image media-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Our Trails -->
-    <section class="page-section">
+    <!-- Featured Routes Ledger -->
+    <section class="page-section page-section--surface" aria-labelledby="visit-trails-title">
       <div class="page-section__inner">
-        <div class="visit-section-heading visit-section-heading--spaced section-heading">
-          <h2 class="section-heading__title">
-            Our <span>Trails.</span>
+        <div class="folio-rule-header">
+          <h2 id="visit-trails-title" class="folio-rule-header__title">
+            Featured park loops and ridges.
           </h2>
-          <p class="section-heading__copy">
-            Ute Valley Park offers trails for every skill level, from easy
-            strolls to technical challenges.
+          <p class="folio-rule-header__deck">
+            Ute Valley Park offers routes for every outing, from family meadow strolls to technical rocky singletrack.
           </p>
         </div>
 
-        <div class="trail-grid">
+        <div class="trail-ledger feature-grid feature-grid--two">
           {
-            [
-              {
-                name: "BeaUTEiful Loop",
-                desc: "Ridgetop views of Pikes Peak, Black Forest, and Rockrimmon, winding through ponderosa pines and sandstone outcrops.",
-              },
-              {
-                name: "Rattlesnake Ridge",
-                desc: "Wide-open views along a narrow, rocky ridge. Steep and technical—best for experienced hikers and mountain bikers.",
-              },
-              {
-                name: "High Arches Loop",
-                desc: "A short loop near the Vindicator Trailhead that winds through an old ranch valley to a natural sandstone arch.",
-              },
-              {
-                name: "Black and Blue Loop",
-                desc: "Technical terrain with sharp rock gardens, steep grades, a bridge, old mine tailings, and a small cave.",
-              },
-            ].map((trail) => (
-              <div class="trail-card">
-                <div>
-                  <h3>
-                    {trail.name}
-                  </h3>
-                  <p>
-                    {trail.desc}
-                  </p>
-                </div>
-              </div>
+            featuredTrails.map((trail) => (
+              <article class="trail-cell">
+                <h3>{trail.name}</h3>
+                <p>{trail.desc}</p>
+              </article>
             ))
           }
         </div>
       </div>
     </section>
 
-    <div>
-      <LeaveNoTrace />
-    </div>
-  </main>
+    <!-- Field Charcoal Rules & Dogs Callout -->
+    <section class="visit-rules" aria-labelledby="visit-rules-title">
+      <div class="inner l-container">
+        <div class="layout">
+          <div class="copy">
+            <span class="amber-bar" aria-hidden="true"></span>
+            <h2 id="visit-rules-title">
+              Know before you go.
+            </h2>
+            <p>
+              Dogs must remain on a leash on every trail in Ute Valley Park. Stay on marked routes, yield thoughtfully on shared singletrack, and pack out all trash and pet waste.
+            </p>
+            <div class="links">
+              <a href="/rules/" class="button button--quiet rules-btn">
+                Read full park rules
+              </a>
+              <a href="/leavenotrace/dogs/" class="rules-link">
+                Dog etiquette guidelines →
+              </a>
+            </div>
+          </div>
+
+          <figure class="media-figure">
+            <div class="media">
+              <Picture
+                src={DogImage}
+                formats={["avif"]}
+                fallbackFormat="webp"
+                alt="Leashed dog resting along a sunny Ute Valley Park trail"
+                width={720}
+                height={450}
+                widths={[480, 720]}
+                sizes="(min-width: 64rem) 44vw, 94vw"
+                class="dog-photo"
+              />
+            </div>
+            <figcaption class="media-caption">
+              Leashed dogs help protect nesting birds, deer, and fellow park visitors.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <LeaveNoTrace />
+  </div>
 </Layout>
 
 <style>
-  .visit-hero {
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid var(--color-border);
+  .visit-hero-plate {
+    aspect-ratio: 4 / 3;
   }
 
-  .visit-hero .layout {
+  .visit-hero-plate :global(picture),
+  .visit-hero-plate :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .visit-explorer-section {
+    background: var(--color-page);
+  }
+
+  .trail-ledger {
+    --feature-grid-border-color: var(--color-border-strong);
+    --feature-grid-background: var(--color-border-strong);
+  }
+
+  .trail-cell {
     display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    background: var(--color-surface);
+    padding: clamp(1.5rem, 3.5vw, 2.5rem);
   }
 
-  .visit-hero .identity {
-    padding: clamp(3rem, 8vw, 8rem) var(--space-page-x) clamp(5rem, 10vw, 10rem);
+  .trail-cell h3 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
   }
 
-  .visit-hero .stack {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .visit-hero .stack > p {
-    max-width: 36rem;
+  .trail-cell p {
+    max-width: 48ch;
     margin: 0;
     color: var(--color-text-muted);
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: var(--leading-body);
-  }
-
-  .visit-hero .facts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
-    padding-top: 2rem;
-  }
-
-  .visit-hero .facts p {
-    margin: 0;
-    font-family: var(--font-label);
-    text-transform: uppercase;
-  }
-
-  .visit-hero .facts p:first-child {
-    color: var(--color-text-subtle);
-    font-size: var(--text-label);
-    letter-spacing: 0.12em;
-  }
-
-  .visit-hero .facts p:last-child {
-    color: var(--color-brand-strong);
-    font-size: var(--text-body-small);
-    font-weight: 900;
-  }
-
-  .visit-hero .media {
-    position: relative;
-    overflow: hidden;
-    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
-  }
-
-  :global(.visit-hero .image) {
-    min-height: 28rem;
-  }
-
-  .visit-hero .matte {
-    --media-matte-border: 1.5rem solid color-mix(in oklab, var(--color-surface) 20%, transparent);
-  }
-
-  .visit-section-heading {
-    --section-heading-title-size: clamp(1.875rem, 5vw, 3.75rem);
-    --section-heading-title-leading: normal;
-    --section-heading-copy-size: var(--text-body-small);
-    --section-heading-copy-margin: 0;
-  }
-
-  .visit-section-heading--spaced {
-    margin-bottom: 4rem;
+    font-family: var(--font-body);
+    font-size: var(--text-body-large);
+    font-weight: 400;
+    line-height: 1.6;
   }
 
   .visit-rules {
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border-strong);
     background: var(--color-surface-inverse);
     color: var(--color-text-inverse);
-    padding-block: var(--space-section);
-  }
-
-  .visit-rules .marker {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: none;
-    width: 33%;
-    height: 100%;
-    border-left: 1px solid color-mix(in oklab, var(--color-text-inverse) 5%, transparent);
-    pointer-events: none;
-  }
-
-  .visit-rules .inner {
-    position: relative;
-    z-index: 1;
+    padding-block: clamp(3.5rem, 6vw, 5rem);
+    font-family: var(--font-body);
   }
 
   .visit-rules .layout {
     display: grid;
     align-items: center;
-    gap: 4rem;
+    gap: clamp(2rem, 5vw, 4rem);
   }
 
   .visit-rules .copy {
-    --section-heading-gap: 2rem;
-    --section-heading-copy-margin: 0;
+    display: grid;
+    justify-items: start;
+    gap: 1.25rem;
   }
 
-  .visit-rules .link {
-    display: inline-block;
-    width: fit-content;
-    border: 2px solid var(--color-accent);
-    color: var(--color-accent);
-    padding: 1rem 2rem;
-    font-family: var(--font-label);
-    font-size: var(--text-body-small);
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition:
-      background-color var(--duration-fast),
-      color var(--duration-fast),
-      transform var(--duration-fast);
-  }
-
-  .visit-rules .link:hover {
+  .visit-rules .amber-bar {
+    width: 3rem;
+    height: 3px;
     background: var(--color-accent);
-    color: var(--color-surface-inverse);
   }
 
-  .visit-rules .link:active {
-    transform: scale(0.96);
+  .visit-rules h2 {
+    margin: 0;
+    color: var(--color-text-inverse);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.6vw, 3.125rem);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+  }
+
+  .visit-rules p {
+    max-width: 52ch;
+    margin: 0;
+    color: var(--color-text-inverse-muted);
+    font-size: var(--text-body-large);
+    line-height: 1.6;
+  }
+
+  .visit-rules .links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.75rem;
+    padding-top: 0.5rem;
+  }
+
+  .visit-rules .rules-btn {
+    border-color: var(--color-surface);
+    background: var(--color-surface);
+    color: var(--color-text-strong);
+    box-shadow: var(--shadow-accent-sm);
+  }
+
+  .visit-rules .rules-btn:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .visit-rules .rules-link {
+    display: inline-flex;
+    min-height: 2.5rem;
+    align-items: center;
+    color: var(--color-text-inverse);
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25rem;
+  }
+
+  .visit-rules .rules-link:hover {
+    color: var(--color-accent);
+  }
+
+  .visit-rules .media-figure {
+    margin: 0;
   }
 
   .visit-rules .media {
-    position: relative;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
-    border: 1px solid color-mix(in oklab, var(--color-text-inverse) 10%, transparent);
-    background: var(--color-surface-inverse-muted);
+    border: 1px solid color-mix(in oklab, var(--color-text-inverse) 28%, transparent);
+    box-shadow: var(--shadow-accent-sm);
   }
 
-  :global(.visit-rules .image) {
-    opacity: 0.5;
-    transition: opacity var(--duration-slower);
+  .visit-rules .media :global(picture),
+  .visit-rules .media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .visit-rules .media:hover :global(.image) {
-    opacity: 1;
-  }
-
-  .trail-grid {
-    display: grid;
-    gap: 1px;
-    border: 1px solid var(--color-border);
-    background: var(--color-border);
-  }
-
-  .trail-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: var(--color-surface);
-    padding: 2rem;
-    transition: background-color var(--duration-fast);
-  }
-
-  .trail-card:hover {
-    background: var(--color-page);
-  }
-
-  .trail-card > div {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .trail-card h3 {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .trail-card p {
-    margin: 0;
-    color: var(--color-text-muted);
+  .visit-rules .media-caption {
+    margin: 0.75rem 0 0;
+    color: var(--color-text-inverse-muted);
     font-size: var(--text-body-small);
-    font-weight: 500;
-    line-height: var(--leading-body);
-  }
-
-  @media (min-width: 48rem) {
-    .trail-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
 
   @media (min-width: 64rem) {
-    .visit-hero .layout {
-      grid-template-columns: 7fr 5fr;
-    }
-
-    .visit-hero .identity {
-      border-right: 1px solid var(--color-border);
-      padding-inline: var(--space-page-x) 3rem;
-    }
-
-    .visit-rules .marker {
-      display: block;
-    }
-
     .visit-rules .layout {
-      grid-template-columns: 5fr 7fr;
-    }
-
-    .trail-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
     }
   }
 </style>

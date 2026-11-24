@@ -1,9 +1,9 @@
 ---
 const stats = [
-  { id: 1, name: "Volunteers", value: "76" },
-  { id: 2, name: "Volunteer hours", value: "331" },
-  { id: 3, name: "Stewardship days", value: "7" },
-  { id: 4, name: "Instagram followers", value: "2,500" },
+  { id: 1, name: "Volunteers who pitched in", value: "76" },
+  { id: 2, name: "Volunteer hours logged on trails", value: "331" },
+  { id: 3, name: "Community stewardship workdays", value: "7" },
+  { id: 4, name: "Neighbors following along on Instagram", value: "2,500" },
 ];
 
 import { Picture } from "astro:assets";
@@ -12,52 +12,40 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
 
 <div class="impact-stats">
   <div class="layout">
-    <!-- Image with framed presentation -->
     <div class="media">
       <Picture
         src={Volunteers}
         formats={["avif"]}
         fallbackFormat="webp"
-        alt="Volunteers in action"
+        alt="Ute Valley Park volunteers walking a wooded trail carrying tools"
         class="image media-cover"
         width={800}
         widths={[400, 800, 1200]}
         sizes="(min-width: 64rem) 50vw, 100vw"
       />
-      <div class="matte media-matte"></div>
     </div>
 
-    <!-- Stats Content -->
     <div class="content">
       <div class="stack">
-        <div class="heading section-heading">
-          <div class="eyebrow section-kicker">
-            <span class="section-kicker__rule"></span>
-            <span class="section-kicker__text">Year in Review: 2025</span>
-          </div>
-          <h2 class="section-heading__title">
-            Our <br />
-            <span>Impact.</span>
+        <div class="folio-rule-header heading">
+          <h2 class="folio-rule-header__title">
+            Our 2025 trail impact.
           </h2>
-          <p class="section-heading__copy">
-            Here's what our volunteers accomplished together in Ute Valley Park in 2025.
+          <p class="folio-rule-header__deck">
+            Everything accomplished in Ute Valley Park comes directly from neighbors showing up with gloves, tools, and time.
           </p>
         </div>
 
-        <div class="grid feature-grid">
+        <dl class="grid feature-grid">
           {
             stats.map((stat) => (
               <div class="stat">
-                <div>
-                  {stat.value}
-                </div>
-                <div>
-                  {stat.name}
-                </div>
+                <dd>{stat.value}</dd>
+                <dt>{stat.name}</dt>
               </div>
             ))
           }
-        </div>
+        </dl>
       </div>
     </div>
   </div>
@@ -67,8 +55,10 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
   .impact-stats {
     position: relative;
     overflow: hidden;
-    border-block: 1px solid var(--color-border);
+    border: 1px solid var(--color-border-strong);
     background: var(--color-surface);
+    font-family: var(--font-body);
+    font-variant-numeric: tabular-nums;
   }
 
   .impact-stats .layout {
@@ -77,72 +67,65 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
 
   .impact-stats .media {
     position: relative;
-    height: 24rem;
+    min-height: 20rem;
     overflow: hidden;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border-strong);
   }
 
-  .impact-stats .matte {
-    --media-matte-border: 1.5rem solid color-mix(in oklab, var(--color-surface) 10%, transparent);
+  .impact-stats .media :global(picture),
+  .impact-stats .media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .impact-stats .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: clamp(2rem, 5vw, 4rem);
+    padding: clamp(1.75rem, 4vw, 3.25rem);
   }
 
   .impact-stats .stack {
     display: grid;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .impact-stats .heading {
-    --section-heading-title-size: clamp(2.25rem, 5vw, 3rem);
-    --section-heading-accent-style: normal;
-    --section-heading-copy-width: 36rem;
-    --section-kicker-rule-color: var(--color-accent-strong);
-    --section-kicker-text-color: var(--color-accent-strong);
-  }
-
-  .impact-stats .stat div:last-child {
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
+    margin-bottom: 0;
   }
 
   .impact-stats .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    --feature-grid-border-color: var(--color-border-muted);
-    --feature-grid-background: var(--color-border-muted);
+    margin: 0;
+    --feature-grid-border-color: var(--color-border);
+    --feature-grid-background: var(--color-border);
   }
 
   .impact-stats .stat {
     display: grid;
-    gap: 0.25rem;
+    align-content: start;
+    gap: 0.375rem;
     background: var(--color-surface);
-    padding: 1.5rem;
-    transition: background-color var(--duration-fast);
+    padding: 1.25rem;
   }
 
-  .impact-stats .stat:hover {
-    background: var(--color-page);
-  }
-
-  .impact-stats .stat div:first-child {
+  .impact-stats .stat dd {
+    margin: 0;
     color: var(--color-text-strong);
-    font-family: var(--font-label);
-    font-size: clamp(1.875rem, 4vw, 2.25rem);
-    font-weight: 900;
-    letter-spacing: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1;
     font-variant-numeric: tabular-nums;
   }
 
-  .impact-stats .stat div:last-child {
-    color: var(--color-text-subtle);
+  .impact-stats .stat dt {
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: var(--text-body-small);
+    font-weight: 500;
+    line-height: 1.4;
   }
 
   @media (min-width: 64rem) {
@@ -152,7 +135,7 @@ import Volunteers from "@/assets/images/volunteer-6.jpg";
 
     .impact-stats .media {
       height: auto;
-      border-right: 1px solid var(--color-border);
+      border-right: 1px solid var(--color-border-strong);
       border-bottom: 0;
     }
   }
