@@ -1,86 +1,126 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import ContactForm from '@components/ContactForm.vue';
-import TeamList from '@components/TeamList.astro';
-import { TURNSTILE_SITE_KEY } from 'astro:env/client';
+import Layout from "@layouts/Layout.astro";
+import ContactForm from "@components/ContactForm.vue";
+import TeamList from "@components/TeamList.astro";
+import { TURNSTILE_SITE_KEY } from "astro:env/client";
 ---
 
 <Layout
   title="Contact"
   description="Contact Friends of Ute Valley Park for questions about volunteering, park stewardship, partnerships, or general inquiries."
 >
-  <main class="page">
-    <ContactForm client:idle turnstileSiteKey={TURNSTILE_SITE_KEY} />
+  <div class="page contact-page">
+    <!-- Masthead Utility Hero -->
+    <section class="subpage-hero" aria-labelledby="contact-hero-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <div class="subpage-hero__split subpage-hero__split--masthead">
+            <div class="subpage-hero__copy">
+              <h1 id="contact-hero-title" class="subpage-hero__title">
+                Contact Friends of Ute Valley Park.
+              </h1>
+              <p class="subpage-hero__deck">
+                Reach our all-volunteer board with questions about trail conditions, volunteering, school or company service projects, donations, or park stewardship.
+              </p>
+            </div>
 
-    <section class="mailing-address">
-      <div class="mailing-address__inner l-container">
-        <div>
-          <p class="eyebrow t-label">Mail Correspondence</p>
-          <h2>Our mailing address.</h2>
+            <aside class="subpage-hero__aside-box" aria-label="Direct mailing details">
+              <h2 class="subpage-hero__aside-title">Mailing address</h2>
+              <ul class="subpage-hero__aside-list">
+                <li>Friends of Ute Valley Park</li>
+                <li>PO Box 50122</li>
+                <li>Colorado Springs, CO 80919</li>
+              </ul>
+            </aside>
+          </div>
         </div>
-        <address>
-          <span>Friends of Ute Valley Park</span>
+      </div>
+    </section>
+
+    <section class="contact-form-section">
+      <ContactForm client:idle turnstileSiteKey={TURNSTILE_SITE_KEY}>
+        <Fragment slot="title">
+          <h2 class="title">Send us a note.</h2>
+        </Fragment>
+        <Fragment slot="subtitle">
+          Select the topic that best fits your question and our volunteer team will follow up.
+        </Fragment>
+      </ContactForm>
+    </section>
+
+    <section class="mailing-address page-section page-section--surface">
+      <div class="l-container mailing-address__inner">
+        <div class="mailing-copy">
+          <h2>Organizational records and verification.</h2>
+          <p>
+            Need confirmation of our independent 501(c)(3) status, EIN, or official domain before setting up a matching gift or partnership?
+          </p>
+          <a href="/about/official-organization-domain/" class="text-link">
+            View IRS verification and official domain record →
+          </a>
+        </div>
+
+        <address class="editorial-folio">
+          <strong>Friends of Ute Valley Park</strong>
           <span>PO Box 50122</span>
           <span>Colorado Springs, CO 80919</span>
         </address>
       </div>
     </section>
-    
-    <div class="contact-team">
-      <TeamList />
-    </div>
-  </main>
+
+    <TeamList />
+  </div>
 </Layout>
 
 <style>
-  .mailing-address {
-    border-top: 1px solid var(--color-border);
-    background: var(--color-surface);
-    padding-block: 3rem;
+  .contact-form-section {
+    border-bottom: 1px solid var(--color-border);
   }
 
   .mailing-address__inner {
     display: grid;
-    gap: 1.5rem;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
   }
 
-  .mailing-address .eyebrow {
-    margin: 0 0 0.75rem;
-    color: var(--color-brand-strong);
+  .mailing-copy {
+    display: grid;
+    justify-items: start;
+    gap: 0.75rem;
   }
 
-  .mailing-address h2 {
+  .mailing-copy h2 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.12;
+  }
+
+  .mailing-copy p {
+    max-width: 54ch;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-large);
+    line-height: 1.6;
   }
 
   .mailing-address address {
     display: grid;
-    gap: 0.35rem;
-    border: 1px solid var(--color-border);
-    background: var(--color-page);
+    gap: 0.25rem;
     padding: 1.5rem;
-    color: var(--color-brand-strong);
+    background: var(--color-page);
+    color: var(--color-text-strong);
     font-style: normal;
-    font-weight: 800;
-    line-height: var(--leading-tight);
-  }
-
-  .contact-team {
-    border-top: 1px solid var(--color-border);
+    font-size: 1rem;
+    line-height: 1.55;
+    box-shadow: var(--shadow-accent-sm);
   }
 
   @media (min-width: 48rem) {
     .mailing-address__inner {
-      grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
-      align-items: center;
+      grid-template-columns: minmax(0, 7fr) minmax(16rem, 5fr);
     }
   }
 </style>
-

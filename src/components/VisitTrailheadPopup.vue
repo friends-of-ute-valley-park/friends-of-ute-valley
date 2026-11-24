@@ -15,21 +15,25 @@ const emit = defineEmits<{
     <button type="button" class="trailhead-popup__close" :aria-label="`Close ${trailhead.name} details`" @click="emit('close')">×</button>
     <strong class="trailhead-popup__title">{{ trailhead.name }}</strong>
     <span class="trailhead-popup__description">{{ trailhead.description }}</span>
-    <a class="trailhead-popup__link" :href="trailhead.url">Trailhead details</a>
+    <a class="trailhead-popup__link" :href="trailhead.url">Trailhead details →</a>
   </div>
 </template>
 
 <style scoped>
+.trailhead-popup {
+  font-family: var(--font-body);
+}
+
 .trailhead-popup__close {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 0.25rem;
+  right: 0.25rem;
   border: 0;
-  padding: 0.2rem 0.45rem;
+  padding: 0.25rem 0.5rem;
   background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1;
 }
 
@@ -45,27 +49,31 @@ const emit = defineEmits<{
 }
 
 .trailhead-popup__title {
-  margin-bottom: 0.25rem;
+  padding-right: 1.5rem;
+  margin-bottom: 0.375rem;
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: 1rem;
-  line-height: 1.1;
-  text-transform: uppercase;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.15;
 }
 
 .trailhead-popup__description {
   color: var(--color-text-muted);
-  font-size: 0.8125rem;
-  line-height: 1.4;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  line-height: 1.45;
 }
 
 .trailhead-popup__link {
   margin-top: 0.625rem;
   color: var(--color-brand-strong);
-  font-family: var(--font-label);
-  font-size: 0.75rem;
-  font-weight: 900;
-  text-decoration: none;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: 700;
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2rem;
 }
 </style>

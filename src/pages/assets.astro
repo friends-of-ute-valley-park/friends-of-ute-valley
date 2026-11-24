@@ -6,37 +6,36 @@ const logos = [
     src: "/images/logo-small.jpg",
     width: 200,
     height: 195,
-    alt: "Small Logo",
-    ref: "LOG_SML_01",
-    desc: "Small utility logo",
+    alt: "Small utility logo",
+    desc: "Compact square seal suitable for avatars and badges.",
   },
   {
     src: "/images/logo-medium.jpg",
     width: 500,
     height: 488,
-    alt: "Medium Logo",
-    desc: "Medium-format logo",
+    alt: "Medium logo",
+    desc: "Medium-format seal for newsletters, flyers, and web embeds.",
   },
   {
     src: "/images/logo-full.jpg",
     width: 1068,
     height: 1042,
-    alt: "Full Size Logo",
-    desc: "Standard full size logo",
+    alt: "Full-size logo",
+    desc: "Standard full-resolution JPG emblem for general publication.",
   },
   {
     src: "/images/logo-full-uncompressed.jpg",
     width: 1068,
     height: 1042,
-    alt: "Uncompressed Logo",
-    desc: "High-resolution source asset",
+    alt: "Uncompressed source logo",
+    desc: "Minimal-compression JPG master file for print and kiosk signage.",
   },
   {
     src: "/images/logo-stickers.png",
     width: 1181,
     height: 1181,
-    alt: "Sticker Logo",
-    desc: "Sticker-optimized layout",
+    alt: "Sticker-cut PNG logo",
+    desc: "Transparent-edge PNG layout sized for decals and community gear.",
   },
 ];
 ---
@@ -45,29 +44,42 @@ const logos = [
   title="Assets"
   description="Download official Friends of Ute Valley Park brand assets and logos for approved community, partner, and media use."
 >
-  <main class="page">
-    <!-- Assets Header -->
-    <section class="page-hero">
-      <div class="page-hero__inner">
-        <h1 class="page-title">
-          Brand <br />
-          <span>Assets.</span>
-        </h1>
+  <div class="page assets-page">
+    <!-- Masthead Utility Hero -->
+    <section class="subpage-hero" aria-labelledby="assets-hero-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <div class="subpage-hero__split subpage-hero__split--masthead">
+            <div class="subpage-hero__copy">
+              <h1 id="assets-hero-title" class="subpage-hero__title">
+                Brand assets.
+              </h1>
+              <p class="subpage-hero__deck">
+                Official visual markers and logos for authorized partner communications, trailhead signage, community events, and media reporting.
+              </p>
+            </div>
 
-        <p class="page-intro">
-          Official visual markers and logos for use in authorized
-          communications, trailhead signage, and project reports.
-        </p>
+            <aside class="subpage-hero__aside-box" aria-label="Asset usage">
+              <h2 class="subpage-hero__aside-title">Usage questions</h2>
+              <ul class="subpage-hero__aside-list">
+                <li>JPG and PNG masters included</li>
+                <li>
+                  <a href="/contact/" class="text-link">Ask about partner usage →</a>
+                </li>
+              </ul>
+            </aside>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Assets Grid -->
-    <section class="page-section page-section--muted">
+    <section class="page-section page-section--surface">
       <div class="page-section__inner">
         <div class="assets-grid">
           {
             logos.map((logo) => (
-              <div class="asset-card">
+              <article class="asset-card editorial-folio">
                 <div class="media">
                   <img
                     src={logo.src}
@@ -80,45 +92,34 @@ const logos = [
                 </div>
                 <div class="body">
                   <div>
-                    <h3>
-                      {logo.alt}
-                    </h3>
-                    <p>
-                      {logo.desc}
-                    </p>
+                    <h2>{logo.alt}</h2>
+                    <p class="dims">{logo.width} × {logo.height} px</p>
+                    <p class="desc">{logo.desc}</p>
                   </div>
                   <div>
-                    <a
-                      href={logo.src}
-                      download
-                    >
-                      Download Asset
+                    <a href={logo.src} download class="button button--quiet">
+                      Download file
                     </a>
                   </div>
                 </div>
-              </div>
+              </article>
             ))
           }
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
   .assets-grid {
     display: grid;
-    gap: 3rem;
+    gap: clamp(1.75rem, 3.5vw, 2.5rem);
   }
 
   .asset-card {
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    transition: border-color var(--duration-fast);
-  }
-
-  .asset-card:hover {
-    border-color: var(--color-brand-strong);
+    display: flex;
+    flex-direction: column;
   }
 
   .asset-card .media {
@@ -126,9 +127,9 @@ const logos = [
     aspect-ratio: 1;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid var(--color-border-muted);
-    background: color-mix(in oklab, var(--color-page) 50%, transparent);
-    padding: 3rem;
+    border-bottom: 1px solid var(--color-border-strong);
+    background: var(--color-page);
+    padding: 2.5rem;
   }
 
   .asset-card .media img {
@@ -136,58 +137,38 @@ const logos = [
     max-width: 100%;
     height: auto;
     max-height: 100%;
-    transition: transform var(--duration-slow);
   }
 
   .asset-card .body {
-    display: grid;
-    gap: 1rem;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
     padding: 1.5rem;
   }
 
-  .asset-card .body h3 {
+  .asset-card .body h2 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 900;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    font-size: 1.375rem;
+    font-weight: 700;
   }
 
-  .asset-card .body p {
+  .asset-card .dims {
     margin: 0.25rem 0 0;
-    color: var(--color-text-subtle);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    color: var(--color-brand-strong);
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
   }
 
-  .asset-card .body a {
-    display: inline-block;
-    border: 1px solid var(--color-border);
-    color: var(--color-text-subtle);
-    padding: 0.75rem 1.5rem;
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition:
-      background-color var(--duration-fast),
-      color var(--duration-fast),
-      transform var(--duration-fast);
-  }
-
-  .asset-card .body a:hover {
-    background: var(--color-text-strong);
-    color: var(--color-text-inverse);
-  }
-
-  .asset-card .body a:active {
-    transform: scale(0.96);
+  .asset-card .desc {
+    margin: 0.5rem 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    line-height: 1.55;
   }
 
   @media (min-width: 48rem) {

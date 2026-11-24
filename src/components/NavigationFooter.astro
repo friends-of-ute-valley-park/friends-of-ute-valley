@@ -1,12 +1,6 @@
 ---
 import SocialLinks from "./SocialLinks.astro";
 
-interface Props {
-  editorial?: boolean;
-}
-
-const { editorial = false } = Astro.props;
-
 const footerItems = [
   { name: "About", link: "/about/" },
   { name: "News", link: "/news/" },
@@ -25,306 +19,60 @@ const footerItems = [
 const currentYear = new Date().getFullYear();
 ---
 
-{
-  editorial ? (
-    <footer class="site-footer site-footer--editorial">
-      <div class="editorial-inner l-container">
-        <div class="editorial-grid">
-          <div class="editorial-brand">
-            <h2 class="editorial-title">Friends of Ute Valley Park</h2>
-            <p class="editorial-summary">
-              Independent, volunteer-led stewardship for 550 acres of trails, ponderosa pines, and Front Range habitat in northwest Colorado Springs.
-            </p>
-            <div class="editorial-social">
-              <SocialLinks />
-            </div>
-            <div class="editorial-legal">
-              <p>Friends of Ute Valley Park, PO Box 50122, Colorado Springs, CO 80919</p>
-              <p>Independent 501(c)(3) public charity · EIN 42-2107142</p>
-            </div>
-          </div>
+<footer class="site-footer">
+  <div class="editorial-inner l-container">
+    <div class="editorial-grid">
+      <div class="editorial-brand">
+        <h2 class="editorial-title">Friends of Ute Valley Park</h2>
+        <p class="editorial-summary">
+          Independent, volunteer-led stewardship for 550 acres of trails, ponderosa pines, and Front Range habitat in northwest Colorado Springs.
+        </p>
+        <div class="editorial-social">
+          <SocialLinks />
+        </div>
+        <div class="editorial-legal">
+          <p>Friends of Ute Valley Park, PO Box 50122, Colorado Springs, CO 80919</p>
+          <p>Independent 501(c)(3) public charity · EIN 42-2107142</p>
+        </div>
+      </div>
 
-          <nav class="editorial-nav" aria-label="Footer">
-            <ul class="editorial-links" role="list">
-              {footerItems.map((item) => (
-                <li>
-                  <a href={item.link} class="editorial-link">
-                    <span>{item.name}</span>
-                    <span class="editorial-arrow" aria-hidden="true">→</span>
-                  </a>
-                </li>
-              ))}
+      <nav class="editorial-nav" aria-label="Footer">
+        <ul class="editorial-links" role="list">
+          {
+            footerItems.map((item) => (
               <li>
-                <a href="/sitemap-index.xml" class="editorial-link">
-                  <span>Sitemap</span>
+                <a href={item.link} class="editorial-link">
+                  <span>{item.name}</span>
                   <span class="editorial-arrow" aria-hidden="true">→</span>
                 </a>
               </li>
-            </ul>
-          </nav>
-        </div>
-
-        <div class="editorial-colophon">
-          <span>38.9189° N, 104.8558° W</span>
-          <span>Colorado Springs, CO</span>
-          <span>© {currentYear} Friends of Ute Valley Park. All rights reserved.</span>
-        </div>
-      </div>
-    </footer>
-  ) : (
-    <footer class="site-footer">
-  <div class="inner l-container">
-    <div class="panel">
-      <!-- Branding & Legal -->
-      <div class="brand">
-        <div class="brand-stack">
-          <div>
-            <h2 class="title">
-              Friends of <br />
-              <span>Ute Valley Park.</span>
-            </h2>
-            <p class="summary">
-              Established for the preservation, maintenance, and community
-              education of the 550-acre Ute Valley urban wildland.
-            </p>
-          </div>
-
-          <div class="social">
-            <SocialLinks />
-          </div>
-
-          <div class="legal">
-            <p>
-              Mail correspondence to Friends of Ute Valley Park, PO Box 50122,
-              Colorado Springs, CO 80919.
-            </p>
-            <p>
-              Charity ID / EIN: 42-2107142.
-            </p>
-            <p class="copyright">
-              © {currentYear} Friends of Ute Valley Park — ALL RIGHTS RESERVED.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Navigation Links -->
-      <div class="nav">
-        {
-          footerItems.map((item) => (
-            <a href={item.link} class="nav-link">
-              <span>{item.name}</span>
-              <span aria-hidden="true">→</span>
+            ))
+          }
+          <li>
+            <a href="/sitemap-index.xml" class="editorial-link">
+              <span>Sitemap</span>
+              <span class="editorial-arrow" aria-hidden="true">→</span>
             </a>
-          ))
-        }
-        <a href="/sitemap-index.xml" class="nav-link wide">
-          <span>Sitemap</span>
-          <span aria-hidden="true">→</span>
-        </a>
-      </div>
+          </li>
+        </ul>
+      </nav>
     </div>
 
-    <!-- Coordinate Detail -->
-    <div class="coordinates">
+    <div class="editorial-colophon">
       <span>38.9189° N, 104.8558° W</span>
       <span>Colorado Springs, CO</span>
-      <span>Urban Open Space</span>
+      <span>© {currentYear} Friends of Ute Valley Park. All rights reserved.</span>
     </div>
   </div>
 </footer>
-  )
-}
 
 <style>
   .site-footer {
     border-top: 1px solid var(--color-border);
     background: var(--color-page);
-    padding-block: 5rem 3rem;
-  }
-
-  .site-footer .panel {
-    display: grid;
-    gap: 3rem;
-    border: 1px solid var(--color-border);
-  }
-
-  .site-footer .brand {
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-surface);
-    padding: clamp(2rem, 5vw, 3rem);
-  }
-
-  .site-footer .brand-stack {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .site-footer .title {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: 1.875rem;
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .site-footer .title span {
-    color: var(--color-brand);
-  }
-
-  .site-footer .summary {
-    max-width: 24rem;
-    margin: 1.5rem 0 0;
-    color: var(--color-text-subtle);
-    font-size: var(--text-body-small);
-    font-weight: 500;
-    line-height: var(--leading-body);
-  }
-
-  .site-footer .social {
-    border-top: 1px solid var(--color-border-muted);
-    padding-top: 2rem;
-  }
-
-  .site-footer .legal {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .site-footer .legal p {
-    margin: 0;
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    line-height: var(--leading-tight);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .site-footer .legal .copyright {
-    color: var(--color-brand);
-    font-weight: 900;
-  }
-
-  .site-footer .nav {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .site-footer .nav-link {
-    display: flex;
-    min-height: 8rem;
-    flex-direction: column;
-    justify-content: space-between;
-    border-color: var(--color-border);
-    border-style: solid;
-    border-width: 0 1px 1px 0;
-    padding: 2rem;
-    text-decoration: none;
-    transition: background-color var(--duration-fast);
-  }
-
-  .site-footer .nav-link:hover {
-    background: var(--color-surface);
-  }
-
-  .site-footer .nav-link span:first-child {
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
-    transition: color var(--duration-fast);
-  }
-
-  .site-footer .nav-link span:last-child {
-    align-self: end;
-    color: var(--color-brand);
-    opacity: 0;
-    transition: opacity var(--duration-fast);
-  }
-
-  .site-footer .nav-link:hover span:first-child {
-    color: var(--color-brand);
-  }
-
-  .site-footer .nav-link:hover span:last-child {
-    opacity: 1;
-  }
-
-  .site-footer .nav-link.wide {
-    grid-column: span 2;
-  }
-
-  .site-footer .nav-link.wide:hover span:first-child,
-  .site-footer .nav-link.wide span:last-child {
-    color: var(--color-accent-strong);
-  }
-
-  .site-footer .coordinates {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 3rem;
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: 0.5625rem;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-  }
-
-  .site-footer .coordinates span:first-child,
-  .site-footer .coordinates span:last-child {
-    color: var(--color-brand);
-  }
-
-  .site-footer .coordinates span:nth-child(2) {
-    display: none;
-  }
-
-  @media (min-width: 48rem) {
-    .site-footer .nav {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .site-footer .nav-link.wide {
-      grid-column: span 1;
-    }
-
-    .site-footer .coordinates {
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .site-footer .coordinates span:nth-child(2) {
-      display: block;
-      border-inline: 1px solid var(--color-border-muted);
-      padding-inline: 2rem;
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .site-footer .panel {
-      grid-template-columns: 5fr 7fr;
-      gap: 0;
-    }
-
-    .site-footer .brand {
-      border-right: 1px solid var(--color-border);
-      border-bottom: 0;
-    }
-  }
-
-  .site-footer--editorial {
-    border-top: 1px solid var(--color-border);
-    background: var(--color-page);
     padding-block: clamp(4rem, 7vw, 5.5rem) clamp(2rem, 4vw, 3rem);
+    font-family: var(--font-body);
+    font-variant-numeric: tabular-nums;
   }
 
   .editorial-grid {

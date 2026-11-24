@@ -130,7 +130,7 @@ async function submit() {
   resetTurnstileAfterSubmission(window.turnstile, turnstileWidgetId.value, result.submitted);
 
   if (lifecycle.value === 'success') {
-    displayMessage.value = "Thanks for reaching out. We'll reply within 2–3 business days.";
+    displayMessage.value = "Thanks for reaching out. We'll reply within 2 to 3 business days.";
     form.name = '';
     form.email = '';
     form.message = '';
@@ -156,21 +156,20 @@ onBeforeUnmount(() => {
     <div class="inner l-container">
       <div class="layout">
         <div class="intro">
-          <div class="title-block section-heading">
-            <slot name="title">
-              <h1 class="title section-heading__title">
-                Get In <br />
-                <span>Touch.</span>
-              </h1>
-            </slot>
+          <div class="folio-rule-header">
+            <div class="title-block">
+              <slot name="title">
+                <h2 class="title">Get in touch.</h2>
+              </slot>
+            </div>
           </div>
 
           <p class="subtitle">
-            <slot name="subtitle">Have a question, comment, or concern? We'd love to hear from you.</slot>
+            <slot name="subtitle">Have a question, trail report, or volunteer inquiry? Send our all-volunteer board a note.</slot>
           </p>
 
           <div class="response-note">
-            <p>We usually reply within 2–3 business days.</p>
+            <p>Replies typically arrive within 2 to 3 business days.</p>
           </div>
         </div>
 
@@ -179,26 +178,26 @@ onBeforeUnmount(() => {
             <form ref="formElement" action="/contact-form" method="POST" class="fields" @submit.prevent="submit">
               <div class="field-grid">
                 <div class="field form-field">
-                  <label for="name" class="form-label">Name *</label>
+                  <label for="name" class="form-label">Name</label>
                   <input id="name" v-model="form.name" name="name" type="text" required class="input form-input form-input--quiet" />
                 </div>
                 <div class="field form-field">
-                  <label for="email" class="form-label">Email *</label>
+                  <label for="email" class="form-label">Email</label>
                   <input id="email" v-model="form.email" name="email" autocomplete="email" required type="email" class="input form-input form-input--quiet" />
                 </div>
               </div>
 
               <div class="field form-field">
-                <label for="category" class="form-label">What can we help with? *</label>
+                <label for="category" class="form-label">What can we help with?</label>
                 <select id="category" v-model="form.category" name="category" class="input form-input form-input--quiet select">
                   <option v-for="option in contactOptions" :key="option" :value="option">
-                    {{ option.toUpperCase() }}
+                    {{ option }}
                   </option>
                 </select>
               </div>
 
               <div class="field form-field">
-                <label for="message" class="form-label">Your Message *</label>
+                <label for="message" class="form-label">Your message</label>
                 <textarea id="message" v-model="form.message" name="message" required rows="6" class="input form-input form-input--quiet message" />
               </div>
 
@@ -207,7 +206,7 @@ onBeforeUnmount(() => {
               <div>
                 <button :disabled="isSubmitting" type="submit" class="button button--brand submit">
                   <MdiLoading v-if="isSubmitting" class="loading-icon" />
-                  Send Message
+                  Send message
                 </button>
               </div>
             </form>
@@ -219,16 +218,16 @@ onBeforeUnmount(() => {
               leave-active-class="contact-form-status-leave-active"
               leave-from-class="contact-form-status-leave-from"
               leave-to-class="contact-form-status-leave-to">
-              <div v-if="isSuccess || isError" :class="['status', isError ? 'status error' : 'status success']" aria-live="polite">
+              <div v-if="isSuccess || isError" :class="['status', isError ? 'error' : 'success']" aria-live="polite">
                 <div class="status-content">
                   <div class="status-icon-wrap">
-                    <HeroiconsMegaphone :class="['status-icon', isError ? 'status-icon error' : 'status-icon success']" />
+                    <HeroiconsMegaphone :class="['status-icon', isError ? 'error' : 'success']" aria-hidden="true" />
                   </div>
                   <div>
-                    <h3 :class="['status-title', isError ? 'status-title error' : 'status-title success']">
-                      {{ isError ? 'Message Not Sent' : 'Message Received' }}
+                    <h3 :class="['status-title', isError ? 'error' : 'success']">
+                      {{ isError ? 'Message not sent' : 'Message received' }}
                     </h3>
-                    <p :class="['status-message', isError ? 'status-message error' : 'status-message success']">
+                    <p :class="['status-message', isError ? 'error' : 'success']">
                       <span v-if="displayMessage">{{ displayMessage }}</span>
                       <span v-else-if="isError">Please try again in a moment.</span>
                     </p>
@@ -246,16 +245,19 @@ onBeforeUnmount(() => {
 <style scoped>
 .contact-form {
   background: var(--color-page);
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
 }
 
 .contact-form .inner {
-  padding-block: clamp(4rem, 8vw, 6rem);
+  padding-block: clamp(3rem, 6vw, 4.75rem);
 }
 
 .contact-form .layout {
   display: grid;
   min-width: 0;
   gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
 }
 
 .contact-form .intro,
@@ -269,46 +271,45 @@ onBeforeUnmount(() => {
   gap: 1.25rem;
 }
 
-.contact-form .title-block {
-  min-width: 0;
-  --section-heading-gap: 0.75rem;
+.contact-form .folio-rule-header {
+  margin-bottom: 0;
 }
 
-.contact-form .response-note p,
-.contact-form .status-title {
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  font-weight: 900;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-}
-
-.contact-form .response-note p {
-  color: var(--color-text-subtle);
-}
-
+.contact-form .title-block :deep(h1),
+.contact-form .title-block :deep(h2),
 .contact-form .title {
-  --section-heading-title-size: clamp(3rem, 8vw, 4.5rem);
-  --section-heading-accent-style: normal;
+  margin: 0;
+  color: var(--color-text-strong);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.6vw, 3.125rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .contact-form .subtitle {
+  max-width: 44ch;
   margin: 0;
   color: var(--color-text-muted);
+  font-family: var(--font-body);
   font-size: var(--text-body-large);
-  font-weight: 500;
-  line-height: var(--leading-body);
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .contact-form .response-note {
-  display: grid;
-  gap: 1rem;
-  border-top: 1px solid var(--color-border-muted);
-  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
 }
 
 .contact-form .response-note p {
   margin: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .contact-form .panel {
@@ -317,22 +318,28 @@ onBeforeUnmount(() => {
 
 .contact-form .fields {
   min-width: 0;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .contact-form .field-grid {
   display: grid;
   min-width: 0;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .contact-form .field {
-  --form-field-gap: 0.5rem;
-  --form-label-color: var(--color-text-subtle);
+  --form-field-gap: 0.375rem;
 }
 
 .contact-form .input.select {
+  display: inline-block;
+  -webkit-appearance: none;
   appearance: none;
+  padding-right: 2.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2344403c'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.875rem center;
+  background-size: 1.125rem 1.125rem;
 }
 
 .contact-form .input.message {
@@ -342,35 +349,34 @@ onBeforeUnmount(() => {
 
 .contact-form .submit {
   width: 100%;
-  align-items: center;
   justify-content: center;
 }
 
 .contact-form .submit:disabled {
-  opacity: 0.5;
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 .contact-form .loading-icon {
   width: 1rem;
   height: 1rem;
-  margin-right: 0.5rem;
   animation: contact-form-spin 1s linear infinite;
 }
 
 .contact-form .status {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   border: 1px solid;
-  padding: 1.5rem;
+  padding: 1.25rem;
 }
 
 .contact-form .status.error {
-  border-color: color-mix(in oklab, var(--color-danger) 20%, var(--color-surface));
-  background: color-mix(in oklab, var(--color-danger) 8%, var(--color-surface));
+  border-color: color-mix(in oklab, var(--color-danger) 35%, var(--color-surface));
+  background: color-mix(in oklab, var(--color-danger) 7%, var(--color-surface));
 }
 
 .contact-form .status.success {
   border-color: var(--color-brand-strong);
-  background: color-mix(in oklab, var(--color-brand) 5%, transparent);
+  background: color-mix(in oklab, var(--color-brand) 6%, var(--color-surface));
 }
 
 .contact-form .status-content {
@@ -400,12 +406,17 @@ onBeforeUnmount(() => {
 
 .contact-form .status-title {
   margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
 }
 
 .contact-form .status-message {
-  margin: 0.5rem 0 0;
-  font-size: 0.75rem;
+  margin: 0.375rem 0 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
   font-weight: 500;
+  line-height: 1.5;
 }
 
 .contact-form .status-message.success {
@@ -414,19 +425,19 @@ onBeforeUnmount(() => {
 
 .contact-form-status-enter-active {
   transition:
-    opacity var(--duration-base),
-    transform var(--duration-base);
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
 }
 
 .contact-form-status-leave-active {
   transition:
-    opacity var(--duration-fast),
-    transform var(--duration-fast);
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .contact-form-status-enter-from {
   opacity: 0;
-  transform: translateY(1rem);
+  transform: translateY(0.75rem);
 }
 
 .contact-form-status-enter-to,
@@ -446,7 +457,7 @@ onBeforeUnmount(() => {
   }
 }
 
-@container (min-width: 38rem) {
+@container (min-width: 36rem) {
   .contact-form .field-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

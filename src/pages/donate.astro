@@ -1,6 +1,5 @@
 ---
 import { Picture } from "astro:assets";
-
 import ContactForm from "../components/ContactForm.vue";
 import ZeffyDonationEmbed from "../components/ZeffyDonationEmbed.astro";
 import Layout from "../layouts/Layout.astro";
@@ -13,22 +12,12 @@ import { TURNSTILE_SITE_KEY } from "astro:env/client";
 import VolunteerHeroImage from "../assets/images/volunteer-hero.jpg";
 
 const giftUses = [
-  "Trail restoration",
-  "Habitat protection",
-  "Invasive species removal",
-  "Volunteer tools and safety equipment",
-  "Educational signs and outreach",
-  "Community stewardship events",
-];
-
-const tangibleUses = [
-  "Gloves",
-  "Loppers",
-  "Native seed",
-  "Trail tools",
-  "Educational signs",
-  "Volunteer supplies",
-  "Restoration materials",
+  "Trail restoration and drainage repair",
+  "Habitat protection and native reseeding",
+  "Invasive weed removal",
+  "Volunteer tools, gloves, and safety gear",
+  "Trailhead educational signs and outreach",
+  "Twice-monthly community stewardship workdays",
 ];
 
 const givingOptions = [
@@ -37,23 +26,21 @@ const givingOptions = [
     title: "Mail a check",
     icon: MailboxUpIcon,
     detail: "Friends of Ute Valley Park, PO Box 50122, Colorado Springs, CO 80919",
-    nextStep: "Make checks payable to Friends of Ute Valley Park. Include your return address, and your email address if you would like a receipt emailed to you.",
+    nextStep: "Make checks payable to Friends of Ute Valley Park. Include your return address, and an email address if you would like a tax receipt.",
   },
   {
     id: "give-by-bank-transfer",
     title: "Bank transfer",
     icon: BankTransferIcon,
-    description: "For ACH, wire, or direct deposit arrangements.",
-    detail: "Contact us before sending financial details.",
-    nextStep: "We will coordinate the right details securely.",
+    detail: "ACH, wire, or direct deposit arrangements",
+    nextStep: "Send us a note below before sending financial details so our treasurer can coordinate securely.",
   },
   {
     id: "give-through-workplace",
-    title: "Workplace giving",
+    title: "Workplace giving and matching",
     icon: BriefcaseCheckIcon,
-    description: "For matching gifts, sponsorships, Benevity, or volunteer teams.",
-    detail: "A Benevity profile is in progress.",
-    nextStep: "Tell us what your employer needs and we will help route it.",
+    detail: "Employer matching, Benevity, and team sponsorships",
+    nextStep: "Let us know what documentation or W-9 details your employer needs and we will help route it.",
   },
 ];
 ---
@@ -62,141 +49,142 @@ const givingOptions = [
   title="Donate"
   description="Support Friends of Ute Valley Park with an online gift, mailed check, direct deposit arrangement, or corporate giving program."
 >
-  <main class="page">
-    <section class="donate-hero page-hero band">
-      <div class="hero-shell l-container">
-        <div class="hero-copy">
-          <p class="hero-kicker">
-            Friends of Ute Valley Park
-          </p>
+  <div class="page donate-page">
+    <!-- Framed Split Editorial Hero with Embedded Donation Plate -->
+    <section class="subpage-hero" aria-labelledby="donate-hero-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <div class="subpage-hero__split subpage-hero__split--lead-right">
+            <div class="subpage-hero__copy">
+              <h1 id="donate-hero-title" class="subpage-hero__title">
+                Support Ute Valley Park.
+              </h1>
 
-          <h1 class="hero-title">
-            Support Ute Valley Park
-          </h1>
+              <p class="subpage-hero__deck">
+                Every contribution goes directly toward maintaining trails, restoring Front Range habitat, and equipping neighbors with tools and safety gear in the field.
+              </p>
 
-          <p class="hero-intro">
-            Every dollar goes straight to Ute Valley Park—from trail repair and
-            habitat care to the gloves and tools our volunteers use in the field.
-            Give once or monthly, whatever works for you.
-          </p>
+              <div class="subpage-hero__actions">
+                <a href="#donation-form" class="button button--brand">
+                  Donate online
+                </a>
+                <a href="#gift-impact" class="text-link">
+                  Where your gift goes
+                </a>
+              </div>
 
-          <div class="hero-actions" aria-label="Donation page shortcuts">
-            <a href="#donation-form" class="button button--brand">
-              Make a donation
-            </a>
-            <a href="#gift-impact" class="text-link">
-              See where your gift goes
-            </a>
-          </div>
-
-          <p class="donation-meta">
-            Friends of Ute Valley Park is an independent 501(c)(3) public charity.
-            EIN: 42-2107142. 100% of donations stay focused on Ute Valley Park
-            and may be tax-deductible as allowed by law.
-          </p>
-        </div>
-
-        <aside id="donation-form" class="donation-card panel-card" aria-label="Online donation form">
-          <div class="donation-card__header">
-            <div>
-              <h2>
-                Secure online donation
-              </h2>
+              <dl class="subpage-hero__facts">
+                <div class="subpage-hero__fact">
+                  <dt>Public charity</dt>
+                  <dd>501(c)(3) nonprofit</dd>
+                </div>
+                <div class="subpage-hero__fact">
+                  <dt>Charity EIN</dt>
+                  <dd>42-2107142</dd>
+                </div>
+                <div class="subpage-hero__fact">
+                  <dt>Staff overhead</dt>
+                  <dd>Zero paid staff</dd>
+                </div>
+              </dl>
             </div>
+
+            <aside id="donation-form" class="donation-card subpage-hero__plate" aria-label="Online donation form">
+              <div class="donation-card__header">
+                <h2>Secure online gift</h2>
+                <p>Processed fee-free for nonprofits through Zeffy. Give once or monthly.</p>
+              </div>
+              <div class="donation-card__body">
+                <ZeffyDonationEmbed height="620px" mobileHeight="700px" />
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where Every Dollar Goes -->
+    <section id="gift-impact" class="page-section page-section--surface" aria-labelledby="gift-impact-title">
+      <div class="page-section__inner">
+        <div class="impact-layout">
+          <div class="impact-media">
+            <Picture
+              src={VolunteerHeroImage}
+              formats={["avif"]}
+              fallbackFormat="webp"
+              alt="Volunteers gather at a Ute Valley Park trailhead with tools and gloves"
+              class="impact-photo"
+              width={800}
+              widths={[400, 800, 1200]}
+              sizes="(min-width: 64rem) 46vw, 94vw"
+            />
           </div>
 
-          <ZeffyDonationEmbed height="620px" mobileHeight="700px" />
-        </aside>
+          <div class="impact-copy">
+            <div class="folio-rule-header impact-header">
+              <h2 id="gift-impact-title" class="folio-rule-header__title">
+                Every dollar stays in the park.
+              </h2>
+              <p class="folio-rule-header__deck">
+                Friends of Ute Valley Park is run completely by volunteers, so your donation buys materials and tools for the trails rather than administrative overhead.
+              </p>
+            </div>
+
+            <ul class="gift-list" aria-label="What donations support">
+              {
+                giftUses.map((item) => (
+                  <li>
+                    <CheckBadgeIcon class="icon" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="gift-impact" class="impact-section l-section">
-      <div class="impact-layout l-container">
-        <div class="impact-media media-frame">
-          <Picture
-            src={VolunteerHeroImage}
-            formats={["avif"]}
-            fallbackFormat="webp"
-            alt="Volunteers gather on a Ute Valley Park trail"
-            class="image media-cover"
-            width={800}
-            widths={[400, 800, 1200, 1600]}
-            sizes="(min-width: 64rem) 56vw, 100vw"
-          />
-        </div>
-
-        <div class="impact-copy">
-          <h2>
-            Your donation stays in Ute Valley Park
-          </h2>
+    <!-- Field Charcoal Stewardship Callout -->
+    <section class="donate-band">
+      <div class="l-container donate-band__inner">
+        <div class="donate-band__copy">
+          <h2>Steward 550 acres year-round.</h2>
           <p>
-            Every donation directly supports stewardship of Ute Valley Park.
-            Friends of Ute Valley Park is an all-volunteer nonprofit, so your
-            gift goes toward caring for the park rather than paying staff.
-          </p>
-          <ul class="gift-list" aria-label="What donations support">
-            {
-              giftUses.map((item) => (
-                <li>
-                  <CheckBadgeIcon class="icon" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))
-            }
-          </ul>
-          <p class="specific-impact">
-            Gifts help buy {tangibleUses.join(", ").toLowerCase()}, and other
-            materials for trail work and habitat repair.
+            Recurring monthly gifts give volunteers steady resources for tools, native grass seed, and restoration supplies across every season.
           </p>
         </div>
-      </div>
-    </section>
-
-    <section class="final-donate-cta band l-section">
-      <div class="l-container final-donate-cta__inner">
-        <h2>
-          Support the work year-round.
-        </h2>
-        <p>
-          Regular donations help Friends of Ute Valley Park care for trails,
-          habitat, and the volunteers who keep this 550-acre urban wildland
-          healthy and welcoming.
-        </p>
-        <a href="#donation-form" class="button button--brand">
-          Make a donation
+        <a href="#donation-form" class="button button--quiet donate-band__cta">
+          Start a monthly or one-time gift
         </a>
       </div>
     </section>
 
-    <section id="other-ways-to-give" class="giving-options-section l-section band">
-      <div class="l-container">
-        <div class="section-heading donate-section-heading">
-          <h2 class="section-heading__title">
-            Other ways to give
+    <!-- Other Ways to Give -->
+    <section id="other-ways-to-give" class="page-section page-section--surface" aria-labelledby="other-ways-title">
+      <div class="page-section__inner">
+        <div class="folio-rule-header">
+          <h2 id="other-ways-title" class="folio-rule-header__title">
+            Other ways to give.
           </h2>
-          <p class="section-heading__copy">
-            Prefer to give by check, bank transfer, or through your employer?
-            Here's how. Please reach out before sending any bank details so we
-            can coordinate securely.
+          <p class="folio-rule-header__deck">
+            Prefer to give by check, bank transfer, or workplace matching? Please contact us below before sending bank details so our treasurer can coordinate securely.
           </p>
         </div>
 
-        <div class="giving-grid">
+        <div class="giving-grid feature-grid feature-grid--three">
           {
             givingOptions.map((option) => {
               const Icon = option.icon;
 
               return (
-                <article id={option.id} class="giving-card card">
+                <article id={option.id} class="giving-card">
                   <div class="card-icon">
                     <Icon aria-hidden="true" />
                   </div>
-                  <div class="giving-card__body">
-                    <h3>{option.title}</h3>
-                    {option.description && <p>{option.description}</p>}
-                    <p class="giving-detail">{option.detail}</p>
-                    <p class="giving-next">{option.nextStep}</p>
-                  </div>
+                  <h3>{option.title}</h3>
+                  <p class="giving-detail">{option.detail}</p>
+                  <p class="giving-next">{option.nextStep}</p>
                 </article>
               );
             })
@@ -205,349 +193,210 @@ const givingOptions = [
       </div>
     </section>
 
-    <section class="donor-contact-section">
-      <ContactForm
-        client:idle
-        turnstileSiteKey={TURNSTILE_SITE_KEY}
-        defaultOption="Other"
-      >
-        <Fragment slot="title">
-          <h2 class="donor-contact-title section-heading__title">
-            Set up a giving arrangement.
-          </h2>
-        </Fragment>
-        <Fragment slot="subtitle">
-          Tell us about bank transfers, matching gifts, Benevity, sponsorships,
-          corporate volunteer teams, or documentation your employer needs.
-        </Fragment>
-      </ContactForm>
-    </section>
+    <!-- Giving Arrangement Form -->
+    <ContactForm
+      client:idle
+      turnstileSiteKey={TURNSTILE_SITE_KEY}
+      defaultOption="Other"
+    >
+      <Fragment slot="title">
+        <h2 class="title">Set up a giving arrangement.</h2>
+      </Fragment>
+      <Fragment slot="subtitle">
+        Tell us about bank transfers, matching gifts, corporate volunteer days, or IRS documentation your employer needs.
+      </Fragment>
+    </ContactForm>
 
-    <section class="volunteer-bridge band band--muted">
+    <!-- Bridge to Volunteering -->
+    <section class="volunteer-bridge page-section page-section--surface">
       <div class="l-container bridge-inner">
-        <p>Want to give time instead?</p>
+        <p>Want to give your time on the trails instead?</p>
         <a href="/volunteer/" class="button button--outline">
-          View Volunteer Events
+          View volunteer schedule
         </a>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
-  .donate-hero {
-    padding-block: clamp(2rem, 5vw, 4rem);
-  }
-
-  .hero-shell {
-    --l-container-max: 88rem;
-
-    display: grid;
-    gap: clamp(1.5rem, 4vw, 3rem);
-    align-items: start;
-  }
-
-  .hero-copy {
-    display: grid;
-    gap: clamp(1rem, 2vw, 1.5rem);
-    min-width: 0;
-  }
-
-  .hero-kicker {
-    margin: 0;
-    color: var(--color-brand-strong);
-    font-size: 0.95rem;
-    font-weight: 700;
-    line-height: var(--leading-tight);
-  }
-
-  .hero-title {
-    max-width: 12ch;
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 7vw, 4.75rem);
-    font-weight: 900;
-    letter-spacing: 0;
-    line-height: 0.9;
-    text-transform: uppercase;
-    text-wrap: balance;
-    word-spacing: 0.08em;
-  }
-
-  .hero-intro,
-  .donation-card__header p,
-  .giving-card p {
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: var(--text-body-large);
-    font-weight: 500;
-    line-height: var(--leading-body);
-    text-wrap: pretty;
-  }
-
-  .hero-intro {
-    max-width: 42rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem 1.25rem;
-  }
-
-  .hero-actions .button {
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 800;
-    letter-spacing: 0.01em;
-    text-transform: none;
-  }
-
-  .donation-meta {
-    margin: 0;
-    border-top: 1px solid var(--color-border);
-    padding-top: 1rem;
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
-    font-weight: 500;
-    line-height: var(--leading-body);
-    text-wrap: pretty;
-  }
-
   .donation-card {
-    --panel-card-border-color: var(--color-border-strong);
-    --panel-card-padding: clamp(1rem, 2.5vw, 1.5rem);
-
-    display: grid;
-    gap: 1.25rem;
-    scroll-margin-top: 1.5rem;
-  }
-
-  .donation-card:target {
-    animation: donation-target 1.4s ease-out;
-    outline: 3px solid color-mix(in srgb, var(--color-brand-strong) 55%, transparent);
-    outline-offset: 0.35rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
   }
 
   .donation-card__header {
-    display: grid;
-    gap: 1rem;
+    border-bottom: 1px solid var(--color-border-muted);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
   }
 
-  .donation-card__header h2,
-  .impact-copy h2 {
-    margin: 0 0 0.75rem;
+  .donation-card__header h2 {
+    margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: clamp(1.65rem, 2.4vw, 2.1rem);
-    font-weight: 800;
-    letter-spacing: 0;
-    line-height: var(--leading-tight);
-    text-wrap: balance;
+    font-size: 1.5rem;
+    font-weight: 700;
   }
 
-  @keyframes donation-target {
-    0% {
-      outline-color: color-mix(in srgb, var(--color-brand-strong) 80%, transparent);
-      box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-brand-strong) 24%, transparent);
-    }
-
-    45% {
-      box-shadow: 0 0 0 0.75rem color-mix(in srgb, var(--color-brand-strong) 10%, transparent);
-    }
-
-    100% {
-      outline-color: color-mix(in srgb, var(--color-brand-strong) 0%, transparent);
-      box-shadow: 0 0 0 1rem transparent;
-    }
-  }
-
-  .impact-section {
-    background: var(--color-page);
+  .donation-card__header p {
+    margin: 0.375rem 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    line-height: 1.5;
   }
 
   .impact-layout {
     display: grid;
-    gap: clamp(1.5rem, 4vw, 3rem);
-    align-items: stretch;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
   }
 
   .impact-media {
-    min-height: 18rem;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface-muted);
+    box-shadow: var(--shadow-accent-sm);
+  }
+
+  .impact-media :global(picture),
+  .impact-media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .impact-copy {
     display: grid;
-    align-content: center;
     gap: 1.5rem;
-    border-block: 1px solid var(--color-border);
-    padding-block: clamp(1.5rem, 4vw, 3rem);
   }
 
-  .impact-copy p,
-  .final-donate-cta p {
-    max-width: 44rem;
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: var(--text-body-large);
-    font-weight: 500;
-    line-height: var(--leading-body);
-    text-wrap: pretty;
-  }
-
-  .specific-impact {
-    border-top: 1px solid var(--color-border);
-    padding-top: 1.25rem;
+  .impact-header {
+    margin-bottom: 0;
   }
 
   .gift-list {
     display: grid;
-    gap: 1rem;
-    padding: 0;
+    gap: 0.75rem;
     margin: 0;
+    padding: 0;
     list-style: none;
   }
 
   .gift-list li {
     display: flex;
-    align-items: flex-start;
-    gap: 0.875rem;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-text-strong);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
   }
 
-  :global(.gift-list .icon) {
+  .gift-list .icon {
     width: 1.25rem;
     height: 1.25rem;
     flex-shrink: 0;
-    color: var(--color-accent-strong);
-    margin-top: 0.2rem;
+    color: var(--color-brand-strong);
   }
 
-  .gift-list span {
-    color: var(--color-text-strong);
-    font-size: 1rem;
-    font-weight: 750;
-    line-height: 1.45;
+  .donate-band {
+    border-block: 1px solid var(--color-border-strong);
+    background: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+    padding-block: clamp(3rem, 5vw, 4rem);
   }
 
-  .final-donate-cta h2 {
-    max-width: 18ch;
+  .donate-band__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem 2.5rem;
+  }
+
+  .donate-band__copy h2 {
     margin: 0;
-    color: var(--color-text-strong);
+    color: var(--color-text-inverse);
     font-family: var(--font-display);
-    font-size: clamp(2.1rem, 4.5vw, 3.35rem);
-    font-weight: 900;
-    letter-spacing: 0;
-    line-height: 1;
-    text-transform: uppercase;
-    text-wrap: balance;
+    font-size: clamp(1.875rem, 3.2vw, 2.625rem);
+    font-weight: 700;
+    line-height: 1.08;
   }
 
-  .final-donate-cta {
-    border-bottom: 1px solid var(--color-border);
+  .donate-band__copy p {
+    max-width: 56ch;
+    margin: 0.625rem 0 0;
+    color: var(--color-text-inverse-muted);
+    font-size: var(--text-body-large);
+    line-height: 1.6;
   }
 
-  .final-donate-cta h2 {
-    max-width: 24ch;
-    font-size: clamp(2rem, 3.5vw, 2.85rem);
-    line-height: var(--leading-tight);
+  .donate-band__cta {
+    flex-shrink: 0;
+    border-color: var(--color-surface);
+    background: var(--color-surface);
+    color: var(--color-text-strong);
+    box-shadow: var(--shadow-accent-sm);
   }
 
-  .final-donate-cta__inner {
-    display: grid;
-    gap: 1rem;
-    justify-items: start;
-  }
-
-  .donate-section-heading {
-    --section-heading-title-size: clamp(2rem, 5vw, 3.25rem);
-    --section-heading-title-leading: var(--leading-tight);
-    --section-heading-copy-width: 48rem;
-    --section-heading-copy-margin: 0;
-
-    margin-bottom: clamp(2rem, 5vw, 3.5rem);
-  }
-
-  .donate-section-heading .section-heading__title {
-    font-size: clamp(2rem, 4vw, 2.85rem);
-    font-weight: 800;
-    text-transform: none;
+  .donate-band__cta:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-text);
   }
 
   .giving-grid {
-    display: grid;
-    gap: 1rem;
+    --feature-grid-border-color: var(--color-border-strong);
+    --feature-grid-background: var(--color-border-strong);
   }
 
   .giving-card {
-    display: flex;
-    min-width: 0;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: clamp(1.25rem, 3vw, 2rem);
+    display: grid;
+    align-content: start;
+    gap: 0.875rem;
+    background: var(--color-surface);
+    padding: clamp(1.5rem, 3.5vw, 2.25rem);
   }
 
   .card-icon {
-    display: inline-flex;
-    width: 2.75rem;
-    height: 2.75rem;
-    flex-shrink: 0;
+    display: flex;
+    width: 2.5rem;
+    height: 2.5rem;
     align-items: center;
     justify-content: center;
-    border-radius: var(--radius-pill);
-    background: var(--color-brand-subtle);
+    border: 1px solid var(--color-border);
+    background: var(--color-page);
     color: var(--color-brand-strong);
   }
 
   .card-icon svg {
-    display: block;
-    width: 1.35rem;
-    height: 1.35rem;
-  }
-
-  .giving-card__body {
-    display: grid;
-    gap: 0.65rem;
-    min-width: 0;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   .giving-card h3 {
     margin: 0;
     color: var(--color-text-strong);
-    font-size: 1.05rem;
-    font-weight: 800;
-    line-height: var(--leading-tight);
-    text-wrap: balance;
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 700;
   }
 
-  .giving-card p {
-    font-size: 0.95rem;
-  }
-
-  .giving-card .giving-detail {
+  .giving-detail {
+    margin: 0;
     color: var(--color-text-strong);
-    font-weight: 800;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
   }
 
-  .giving-card .giving-next {
+  .giving-next {
+    margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.875rem;
-  }
-
-  .donor-contact-title {
-    --section-heading-title-size: clamp(2rem, 5vw, 3.25rem);
-    --section-heading-title-leading: var(--leading-tight);
-    --section-heading-accent-style: normal;
-
-    font-size: clamp(2rem, 4vw, 2.85rem);
-    font-weight: 800;
-    text-transform: none;
-  }
-
-  .volunteer-bridge {
-    border-top: 1px solid var(--color-border);
-    padding-block: clamp(2rem, 5vw, 3rem);
+    font-size: var(--text-body-small);
+    line-height: 1.55;
   }
 
   .bridge-inner {
@@ -555,65 +404,27 @@ const givingOptions = [
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 1.25rem;
+    gap: 1rem 2rem;
   }
 
   .bridge-inner p {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: clamp(1.65rem, 3vw, 2.25rem);
-    font-weight: 800;
-    line-height: var(--leading-tight);
-    text-wrap: balance;
+    font-size: clamp(1.375rem, 2.4vw, 1.875rem);
+    font-weight: 700;
   }
 
-  .bridge-inner .button {
-    min-height: 2.75rem;
-  }
-
-  @media (min-width: 54rem) {
-    .giving-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .giving-card {
-      flex-direction: column;
+  @media (min-width: 48rem) {
+    .donate-band__inner {
+      flex-direction: row;
+      align-items: center;
     }
   }
 
   @media (min-width: 64rem) {
-    .hero-shell {
-      grid-template-columns: minmax(0, 0.9fr) minmax(28rem, 1.1fr);
-    }
-
-    .donation-card {
-      grid-column: 2;
-    }
-
     .impact-layout {
-      grid-template-columns: minmax(0, 0.8fr) minmax(22rem, 0.7fr);
-    }
-
-  }
-
-  @media (max-width: 36rem) {
-    .hero-actions .button,
-    .bridge-inner .button,
-    .final-donate-cta .button {
-      width: 100%;
-    }
-
-    .hero-actions .text-link {
-      width: 100%;
-      text-align: center;
-    }
-
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .donation-card:target {
-      animation: none;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     }
   }
 </style>

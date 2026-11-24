@@ -57,15 +57,14 @@ onKeyStroke('Escape', (event) => {
     <div v-if="status !== 'ready'" class="visit-trail-map__status" :role="status === 'error' ? 'alert' : 'status'">
       <p>{{ status === 'error' ? errorMessage : 'Loading interactive trail map…' }}</p>
       <div v-if="status === 'error'" class="visit-trail-map__status-actions">
-        <button type="button" @click="retry">Try Again</button>
-        <a href="/images/maps/ute-valley-park-map-full.jpg" target="_blank" rel="noopener noreferrer"> Open Official Map </a>
+        <button type="button" @click="retry">Try again</button>
+        <a href="/images/maps/ute-valley-park-map-full.jpg" target="_blank" rel="noopener noreferrer">Open official map</a>
       </div>
     </div>
 
     <div v-if="status === 'ready'" class="visit-trail-map__panel">
       <div class="visit-trail-map__panel-heading">
         <div>
-          <p class="visit-trail-map__kicker">Interactive trail map</p>
           <p class="visit-trail-map__title">{{ modeDetails.label }}</p>
         </div>
         <div class="visit-trail-map__actions">
@@ -77,7 +76,7 @@ onKeyStroke('Escape', (event) => {
             href="https://www.trailforks.com/region/ute-valley-park/?activitytype=6&z=13.9&lat=38.91440&lon=-104.84102&content=trails,labels,region,poi,directory,polygon,waypoint,nst,route_popular,routes_featured"
             target="_blank"
             rel="noopener noreferrer">
-            Open Trailforks
+            Trailforks →
           </a>
         </div>
       </div>
@@ -98,8 +97,9 @@ onKeyStroke('Escape', (event) => {
   position: relative;
   min-height: clamp(28rem, 48vw, 42rem);
   overflow: hidden;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-strong);
   background: var(--color-surface-muted);
+  font-family: var(--font-body);
 }
 
 .visit-trail-map__canvas {
@@ -112,8 +112,8 @@ onKeyStroke('Escape', (event) => {
   inset: 50% auto auto 50%;
   z-index: 2;
   width: min(24rem, calc(100% - 2rem));
-  border: 1px solid var(--color-border);
-  background: color-mix(in oklab, var(--color-surface) 94%, transparent);
+  border: 1px solid var(--color-border-strong);
+  background: color-mix(in oklab, var(--color-surface) 95%, transparent);
   padding: 1.5rem;
   text-align: center;
   transform: translate(-50%, -50%);
@@ -122,7 +122,8 @@ onKeyStroke('Escape', (event) => {
 .visit-trail-map__status p {
   margin: 0;
   color: var(--color-text-strong);
-  font-weight: 700;
+  font-size: var(--text-body-small);
+  font-weight: 600;
 }
 
 .visit-trail-map__status-actions {
@@ -138,11 +139,10 @@ onKeyStroke('Escape', (event) => {
   background: none;
   color: var(--color-brand-strong);
   cursor: pointer;
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  font-weight: 900;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: 700;
   text-decoration: underline;
-  text-transform: uppercase;
 }
 
 .visit-trail-map__panel {
@@ -152,17 +152,17 @@ onKeyStroke('Escape', (event) => {
   left: 1rem;
   z-index: 2;
   display: grid;
-  gap: 0.75rem;
-  border: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent);
-  background: color-mix(in oklab, var(--color-surface) 92%, transparent);
-  padding: 1rem;
-  box-shadow: 0 1rem 3rem color-mix(in oklab, var(--color-text-strong) 12%, transparent);
+  gap: 0.625rem;
+  border: 1px solid var(--color-border-strong);
+  background: color-mix(in oklab, var(--color-surface) 95%, transparent);
+  padding: 0.875rem 1rem;
+  box-shadow: 0 1rem 2.5rem color-mix(in oklab, var(--color-text-strong) 14%, transparent);
   pointer-events: none;
 }
 
 .visit-trail-map__panel-heading {
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
@@ -170,14 +170,14 @@ onKeyStroke('Escape', (event) => {
 .visit-trail-map__actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.875rem;
   pointer-events: auto;
 }
 
 .visit-trail-map__toggle {
   display: flex;
   border: 1px solid var(--color-border);
-  background: var(--color-surface-muted);
+  background: var(--color-page);
   padding: 0.1875rem;
 }
 
@@ -186,16 +186,15 @@ onKeyStroke('Escape', (event) => {
   background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
-  font-family: var(--font-label);
-  font-size: 0.6875rem;
-  font-weight: 900;
-  padding: 0.5rem 0.625rem;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: 600;
+  padding: 0.375rem 0.75rem;
 }
 
 .visit-trail-map__toggle button[aria-pressed='true'] {
   background: var(--color-brand-strong);
-  color: var(--color-surface);
+  color: var(--color-text-inverse);
 }
 
 .visit-trail-map__toggle button:focus-visible {
@@ -207,39 +206,30 @@ onKeyStroke('Escape', (event) => {
   margin: 0;
 }
 
-.visit-trail-map__kicker {
-  color: var(--color-text-subtle);
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 .visit-trail-map__title {
   color: var(--color-text-strong);
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
-  font-weight: 800;
-  line-height: 1.1;
-  text-transform: uppercase;
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.15;
 }
 
 .visit-trail-map__panel a {
   color: var(--color-brand-strong);
-  font-family: var(--font-label);
-  font-size: var(--text-label);
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: 700;
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2rem;
   pointer-events: auto;
 }
 
 .visit-trail-map__legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 0.85rem;
+  gap: 0.375rem 1rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -249,17 +239,16 @@ onKeyStroke('Escape', (event) => {
 .visit-trail-map__legend li {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  color: var(--color-text-muted);
-  font-family: var(--font-label);
-  font-size: 0.625rem;
-  font-weight: 800;
-  text-transform: uppercase;
+  gap: 0.375rem;
+  color: var(--color-text-strong);
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  font-weight: 500;
 }
 
 .visit-trail-map__legend-swatch {
-  width: 0.85rem;
-  height: 0.28rem;
+  width: 0.875rem;
+  height: 0.3125rem;
   border-radius: 999px;
 }
 
@@ -269,9 +258,9 @@ onKeyStroke('Escape', (event) => {
 }
 
 .visit-trail-map__condition-note {
-  color: var(--color-text-subtle);
-  font-size: 0.6875rem;
-  line-height: 1.35;
+  color: var(--color-text-muted);
+  font-size: var(--text-body-small);
+  line-height: 1.4;
   pointer-events: auto;
 }
 
@@ -297,10 +286,10 @@ onKeyStroke('Escape', (event) => {
 .visit-trail-map :deep(.maplibregl-ctrl-attrib) {
   max-width: calc(100vw - 4rem);
   overflow: hidden;
-  background: color-mix(in oklab, var(--color-surface) 82%, transparent);
-  font-family: var(--font-label);
-  font-size: 0.625rem;
-  opacity: 0.72;
+  background: color-mix(in oklab, var(--color-surface) 88%, transparent);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  opacity: 0.82;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -312,9 +301,9 @@ onKeyStroke('Escape', (event) => {
 
 .visit-trail-map :deep(.maplibregl-popup-content) {
   position: relative;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-strong);
   border-radius: 0;
-  padding: 0.875rem;
+  padding: 0.875rem 1rem;
   box-shadow: 0 1rem 2rem color-mix(in oklab, var(--color-text-strong) 18%, transparent);
 }
 
@@ -323,23 +312,24 @@ onKeyStroke('Escape', (event) => {
 }
 
 .visit-trail-map :deep(.visit-trail-map-hover-popup .maplibregl-popup-content) {
-  padding: 0.5rem 0.625rem;
+  padding: 0.5rem 0.75rem;
 }
 
 .visit-trail-map :deep(.visit-trail-map-hover-popup .maplibregl-popup-content strong) {
   display: block;
   margin: 0;
   color: var(--color-text-strong);
-  font-family: var(--font-label);
-  font-size: 0.6875rem;
-  letter-spacing: 0.06em;
+  font-family: var(--font-display);
+  font-size: var(--text-body-small);
+  font-weight: 700;
 }
 
 .visit-trail-map :deep(.visit-trail-map-hover-popup .maplibregl-popup-content span) {
   display: block;
   margin-top: 0.2rem;
   color: var(--color-text-muted);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
 }
 
 :global(.visit-trail-map-marker) {

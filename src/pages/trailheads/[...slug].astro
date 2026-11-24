@@ -20,278 +20,221 @@ const { entry } = Astro.props;
 ---
 
 <Layout title={entry.data.name} description={entry.data.description}>
-  <main class="page">
-    <!-- Trailhead Header -->
-    <section class="page-hero">
-      <div class="page-hero__inner">
-        <div class="page-eyebrow">
-          <span>
-            Trailhead Info
-          </span>
-        </div>
-
-        <h1 class="page-title">
-          {entry.data.name.split(" ").slice(0, -1).join(" ")}
-          <br />
-          <span
-            >{entry.data.name.split(" ").slice(-1)}</span
-          >
-        </h1>
-
-        <p class="page-intro">
-          {entry.data.description}
-        </p>
-      </div>
-    </section>
-
-    <!-- Logistics & Entry Grid -->
-    <section class="article-layout">
-      <div class="article-layout__inner">
-        <div class="trailhead-layout">
-          <!-- Details -->
-          <div class="details">
-            <div class="trailhead-stack">
-              <div class="trailhead-block">
-                <h3>
-                  Location Info
-                </h3>
-                <p class="trailhead-location">
-                  {entry.data.location}
-                </p>
-              </div>
-
-              <div class="trailhead-block">
-                <h3>
-                  Available Amenities
-                </h3>
-                <div class="amenity-list">
-                  {
-                    entry.data.amenities.map((amenity, i) => (
-                      <div class="amenity-card">
-                        <span>
-                          [{String(i + 1).padStart(2, "0")}]
-                        </span>
-                        <div>
-                          <h5>
-                            {amenity.name}
-                          </h5>
-                          <p>
-                            {amenity.description}
-                          </p>
-                        </div>
-                      </div>
-                    ))
-                  }
-                </div>
-              </div>
-
-              <div>
+  <div class="page trailhead-detail">
+    <!-- Record Detail Hero -->
+    <section class="subpage-hero" aria-labelledby="trailhead-hero-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <a href="/visit/" class="subpage-hero__back">← Plan your visit</a>
+          <div class="subpage-hero__split subpage-hero__split--masthead">
+            <div class="subpage-hero__copy">
+              <h1 id="trailhead-hero-title" class="subpage-hero__title">
+                {entry.data.name}
+              </h1>
+              <p class="subpage-hero__deck">
+                {entry.data.description}
+              </p>
+              <div class="subpage-hero__actions">
                 <a
                   href={entry.data.directionsLink}
                   target="_blank"
                   rel="noopener noreferrer nofollow"
-                  class="button button--brand trailhead-directions"
+                  class="button button--brand"
                 >
-                  Get Directions →
+                  Get directions →
+                </a>
+                <a href="/visit/#trail-explorer" class="text-link">
+                  View interactive park map
                 </a>
               </div>
             </div>
+
+            <aside class="subpage-hero__aside-box" aria-label="Trailhead location details">
+              <h2 class="subpage-hero__aside-title">Trailhead location</h2>
+              <p class="location-copy">{entry.data.location}</p>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Amenities & Locator Map -->
+    <section class="page-section page-section--surface">
+      <div class="page-section__inner">
+        <div class="trailhead-layout">
+          <div class="details">
+            <div class="folio-rule-header block-header">
+              <h2 class="folio-rule-header__title">Available amenities.</h2>
+            </div>
+
+            <div class="amenity-list">
+              {
+                entry.data.amenities.map((amenity) => (
+                  <article class="amenity-card">
+                    <h3>{amenity.name}</h3>
+                    <p>{amenity.description}</p>
+                  </article>
+                ))
+              }
+            </div>
           </div>
 
-          <!-- Cartographic Context -->
-          <div class="map-wrap">
-            <div class="trailhead-map-card">
+          <figure class="map-wrap">
+            <div class="trailhead-map-card editorial-folio">
               <Picture
                 class="trailhead-map"
                 src={entry.data.map}
                 formats={["avif"]}
                 fallbackFormat="webp"
-                alt={`${entry.data.name} map section`}
+                alt={`${entry.data.name} trailhead map location`}
                 width={640}
                 widths={[400, 640, 960, 1280]}
-                sizes="(min-width: 44rem) 640px, 90vw"
+                sizes="(min-width: 64rem) 46vw, 94vw"
               />
             </div>
+            <figcaption class="subpage-hero__caption">
+              Trailhead position relative to connecting Ute Valley Park routes.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trailhead Photos -->
+    {
+      entry.data.photos.length > 0 && (
+        <section class="page-section" aria-labelledby="trailhead-photos-title">
+          <div class="page-section__inner">
+            <div class="folio-rule-header">
+              <h2 id="trailhead-photos-title" class="folio-rule-header__title">
+                Trailhead photographs.
+              </h2>
+            </div>
+
+            <div class="trailhead-photo-grid">
+              {
+                entry.data.photos.map((photo) => (
+                  <figure class="trailhead-photo">
+                    <div class="media media-frame media-zoom-frame">
+                      <Picture
+                        class="image media-cover media-zoom"
+                        src={photo.photo}
+                        formats={["avif"]}
+                        fallbackFormat="webp"
+                        alt={photo.caption}
+                        width={780}
+                        height={488}
+                        widths={[400, 800, 1200]}
+                        sizes="(min-width: 48rem) 46vw, 94vw"
+                      />
+                    </div>
+                    <figcaption>{photo.caption}</figcaption>
+                  </figure>
+                ))
+              }
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Visual Documentation -->
-    <section class="page-section">
-      <div class="page-section__inner">
-        <div class="header section-heading">
-          <h2 class="section-heading__title">
-            Site <span>Documentation.</span>
-          </h2>
-        </div>
-
-        <div class="trailhead-photo-grid">
-          {
-            entry.data.photos.map((photo) => (
-              <div class="trailhead-photo">
-                <div class="media media-frame media-zoom-frame">
-                  <Picture
-                    class="image media-cover media-zoom media-zoom--slow"
-                    src={photo.photo}
-                    formats={["avif"]}
-                    fallbackFormat="webp"
-                    alt={photo.caption}
-                    width={780}
-                    height={488}
-                    widths={[400, 800, 1200]}
-                    sizes="(min-width: 48rem) 50vw, 100vw"
-                  />
-                  <div class="matte media-matte" />
-                </div>
-                <p>
-                  {photo.caption}
-                </p>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-  </main>
+        </section>
+      )
+    }
+  </div>
 </Layout>
 
 <style>
-  .trailhead-layout {
-    display: grid;
-  }
-
-  .trailhead-layout .details {
-    padding: var(--space-section) var(--space-page-x);
-  }
-
-  .trailhead-stack {
-    display: grid;
-    gap: 3rem;
-  }
-
-  .trailhead-block h3 {
-    margin: 0 0 1.5rem;
-    border-bottom: 1px solid var(--color-border-muted);
-    padding-bottom: 0.5rem;
-    color: var(--color-brand-strong);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .trailhead-location {
+  .location-copy {
     margin: 0;
     color: var(--color-text-muted);
-    font-size: var(--text-body-large);
-    font-style: italic;
-    font-weight: 500;
-    line-height: var(--leading-body);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .trailhead-layout {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .block-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .block-header .folio-rule-header__title {
+    font-size: clamp(1.5rem, 2.5vw, 2.125rem);
   }
 
   .amenity-list {
     display: grid;
-    gap: 1rem;
+    gap: 1px;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-border);
   }
 
   .amenity-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    border: 1px solid var(--color-border-muted);
-    background: var(--color-surface);
-    padding: 1.5rem;
+    display: grid;
+    gap: 0.25rem;
+    background: var(--color-page);
+    padding: 1.25rem 1.5rem;
   }
 
-  .amenity-card > span {
-    color: var(--color-accent-strong);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 900;
-  }
-
-  .amenity-card h5 {
-    margin: 0 0 0.25rem;
+  .amenity-card h3 {
+    margin: 0;
     color: var(--color-text-strong);
-    font-size: var(--text-body-small);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
     font-weight: 700;
-    letter-spacing: 0;
-    text-transform: uppercase;
   }
 
   .amenity-card p {
     margin: 0;
-    color: var(--color-text-subtle);
-    font-size: 0.75rem;
-    font-weight: 500;
-    line-height: var(--leading-body);
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.55;
   }
 
-  .trailhead-directions {
-    display: inline-flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .trailhead-layout .map-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
-    padding: clamp(2rem, 4vw, 3rem);
+  .map-wrap {
+    margin: 0;
   }
 
   .trailhead-map-card {
-    width: 100%;
-    max-width: 42rem;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    padding: 1rem;
+    overflow: hidden;
+    padding: 0.75rem;
+    box-shadow: var(--shadow-accent-sm);
   }
 
-  :global(.trailhead-map) {
+  .trailhead-map-card :global(picture),
+  .trailhead-map-card :global(img) {
+    display: block;
     width: 100%;
     height: auto;
-    transition: transform var(--duration-slow);
-  }
-
-  .trailhead-docs .header {
-    margin-bottom: 4rem;
-    --section-heading-title-size: clamp(2.25rem, 6vw, 3.75rem);
-    --section-heading-title-leading: normal;
   }
 
   .trailhead-photo-grid {
     display: grid;
-    gap: 3rem;
+    gap: clamp(1.75rem, 3.5vw, 2.5rem);
   }
 
   .trailhead-photo {
+    margin: 0;
     display: grid;
-    gap: 1.5rem;
+    gap: 0.75rem;
   }
 
   .trailhead-photo .media {
-    position: relative;
     aspect-ratio: 16 / 10;
+    border: 1px solid var(--color-border-strong);
   }
 
-  .trailhead-photo .matte {
-    --media-matte-border: 1rem solid color-mix(in oklab, var(--color-surface) 10%, transparent);
+  .trailhead-photo .media :global(picture),
+  .trailhead-photo .media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
-  .trailhead-photo p {
-    margin: 0;
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-align: center;
-    text-transform: uppercase;
+  .trailhead-photo figcaption {
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    line-height: 1.5;
   }
 
   @media (min-width: 48rem) {
@@ -302,12 +245,7 @@ const { entry } = Astro.props;
 
   @media (min-width: 64rem) {
     .trailhead-layout {
-      grid-template-columns: 5fr 7fr;
-    }
-
-    .trailhead-layout .details {
-      border-right: 1px solid var(--color-border);
-      padding-inline: var(--space-page-x) 3rem;
+      grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
     }
   }
 </style>

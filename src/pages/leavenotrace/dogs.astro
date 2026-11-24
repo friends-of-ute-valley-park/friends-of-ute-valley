@@ -1,6 +1,5 @@
 ---
 import { Picture } from "astro:assets";
-
 import Layout from "@layouts/Layout.astro";
 
 import DogImage from "../../assets/images/dog.jpg";
@@ -8,70 +7,93 @@ import FreyjaPup from "../../assets/images/dogs/freyja_pup.jpg";
 import SweetLife from "../../assets/images/dogs/the.sweet.life.of.five.jpg";
 import LoganRescue from "../../assets/images/dogs/logan.and.the.rescue.crew.jpg";
 import Marisslh from "../../assets/images/dogs/marisslh.jpg";
-import QueenPadme from "../../assets/images/dogs/queen_padme_21.jpg";
 import RedRockCanyon from "../../assets/images/other-parks/red-rock-canyon-open-space.jpg";
 import PalmerPark from "../../assets/images/other-parks/palmer-park.jpg";
 import GardenOfTheGods from "../../assets/images/other-parks/garden-of-the-gods.jpg";
 import RampartDogPark from "../../assets/images/other-parks/rampart-dog-park.jpg";
 
-const dogs = [
+const featuredDogs = [
   { src: FreyjaPup, handle: "freyja_pup" },
   { src: SweetLife, handle: "the.sweet.life.of.five" },
   { src: LoganRescue, handle: "logan.and.the.rescue.crew" },
   { src: Marisslh, handle: "marisslh" },
-  { src: QueenPadme, handle: "queen_padme_21" },
 ];
 
 const otherParks = [
   {
-    name: "Red Rock Canyon Open Space",
-    image: RedRockCanyon,
-    type: "Unfenced",
-    distance: "7.5 miles",
+    name: "Rampart Dog Park",
+    image: RampartDogPark,
+    type: "Fenced off-leash",
+    distance: "6.6 miles",
     time: "15 minutes",
-    mapLink: "https://goo.gl/maps/qAKchVJRqyTYUc8v9",
-    cityLink:
-      "https://coloradosprings.gov/parks/page/red-rock-canyon-open-space",
-  },
-  {
-    name: "Palmer Park",
-    image: PalmerPark,
-    type: "Fenced",
-    distance: "9.8 miles",
-    time: "20 minutes",
-    mapLink: "https://goo.gl/maps/sgxAgR8Mnjr86Qt98",
-    cityLink: "https://coloradosprings.gov/parks/page/palmer-park",
+    mapLink: "https://goo.gl/maps/UEAzoaFGxCTFi7Qo9",
+    cityLink: "https://coloradosprings.gov/parks/page/rampart-park",
   },
   {
     name: "Garden of the Gods",
     image: GardenOfTheGods,
-    type: "Unfenced",
+    type: "Unfenced area",
     distance: "6.9 miles",
     time: "14 minutes",
     mapLink: "https://goo.gl/maps/Vj2851x6X2JSNeX76",
     cityLink: "https://coloradosprings.gov/parks/page/garden-gods",
   },
   {
-    name: "Rampart Dog Park",
-    image: RampartDogPark,
-    type: "Fenced",
-    distance: "6.6 miles",
+    name: "Red Rock Canyon Open Space",
+    image: RedRockCanyon,
+    type: "Unfenced area",
+    distance: "7.5 miles",
     time: "15 minutes",
-    mapLink: "https://goo.gl/maps/UEAzoaFGxCTFi7Qo9",
-    cityLink: "https://coloradosprings.gov/parks/page/rampart-park",
+    mapLink: "https://goo.gl/maps/qAKchVJRqyTYUc8v9",
+    cityLink: "https://coloradosprings.gov/parks/page/red-rock-canyon-open-space",
+  },
+  {
+    name: "Palmer Park",
+    image: PalmerPark,
+    type: "Fenced dog park",
+    distance: "9.8 miles",
+    time: "20 minutes",
+    mapLink: "https://goo.gl/maps/sgxAgR8Mnjr86Qt98",
+    cityLink: "https://coloradosprings.gov/parks/page/palmer-park",
   },
 ];
+
 const reasons = [
-  "City Ordinance: Colorado Springs Ordinance 6.7.107 requires dogs to be on a leash. Fines range from $50 to $150.",
-  "Courtesy to Others: Not all visitors are comfortable around dogs. Keeping your pup on a leash helps everyone enjoy the trails.",
-  "Wildlife Safety: A leash keeps your dog from chasing or disturbing other pets and the wildlife that call the park home.",
-  "Rattlesnake Risk: Ute Valley Park is home to rattlesnakes. A leash helps keep your dog safe from a dangerous encounter.",
+  {
+    title: "City ordinance",
+    text: "Colorado Springs Ordinance 6.7.107 requires dogs to stay on a leash. Violations carry fines ranging from $50 to $150.",
+  },
+  {
+    title: "Courtesy to other visitors",
+    text: "Not every hiker, child, or leashed dog is comfortable being approached. Staying leashed keeps singletrack welcoming for everyone.",
+  },
+  {
+    title: "Wildlife protection",
+    text: "Ute Valley is home to deer, foxes, and ground-nesting birds. Keeping dogs leashed prevents wildlife from being chased or stressed.",
+  },
+  {
+    title: "Rattlesnake safety",
+    text: "Prairie rattlesnakes live in the park during warm months. Keeping dogs close on trail reduces dangerous encounters.",
+  },
 ];
+
 const rules = [
-  "Leash Required: There are no off-leash areas in Ute Valley Park. Dogs must be on a leash at all times.",
-  "Pick Up After Your Dog: Please bag and dispose of pet waste to keep the trails clean for everyone.",
-  "Stay on the Trail: Dogs should stay on designated trails at all times to protect the natural landscape.",
-  "Know the Rules: Check out the full park regulations so you and your dog can have a great visit.",
+  {
+    title: "Leash required everywhere",
+    text: "There are no off-leash zones inside Ute Valley Park. Keep dogs on a hand-held leash at all times.",
+  },
+  {
+    title: "Pack out all pet waste",
+    text: "Carry waste bags all the way to a trailhead receptacle; never leave bags along the edge of the trail.",
+  },
+  {
+    title: "Keep dogs on designated trails",
+    text: "Keeping paws on durable tread protects fragile prairie grasses and shallow ponderosa pine roots.",
+  },
+  {
+    title: "Review full park rules",
+    text: "Seasonal park hours and trailhead etiquette apply across all 550 acres.",
+  },
 ];
 ---
 
@@ -79,166 +101,130 @@ const rules = [
   title="Dogs at Ute Valley Park"
   description="Dog rules for Ute Valley Park: leash requirements, safety guidance, and nearby off-leash dog parks in Colorado Springs."
 >
-  <main class="page dogs-page">
-    <!-- Dogs Hero -->
-    <section class="dogs-hero">
-      <div class="layout">
-        <!-- Identity Column -->
-        <div class="identity">
-          <div class="stack">
-            <h1 class="page-title">
-              Visiting <br /> With <br />
-              <span>Dogs.</span>
-            </h1>
+  <div class="page dogs-page">
+    <!-- Framed Split Editorial Hero -->
+    <section class="subpage-hero" aria-labelledby="dogs-hero-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <div class="subpage-hero__split subpage-hero__split--lead-left">
+            <div class="subpage-hero__copy">
+              <h1 id="dogs-hero-title" class="subpage-hero__title">
+                Visiting with dogs.
+              </h1>
 
-            <p>
-              We love dogs at Ute Valley Park! For the safety of your furry
-              friend, other visitors, and local wildlife, dogs must be on a
-              leash at all times.
-            </p>
+              <p class="subpage-hero__deck">
+                Dogs are always welcome on Ute Valley Park trails. To protect your dog, fellow trail visitors, and local wildlife, keep pets on a leash at all times and pack out all waste.
+              </p>
 
-            <div class="actions">
-              <a href="#rules" class="button button--brand"> Leash Rules </a>
-              <a
-                href="#off-leash"
-                class="button button--outline secondary-link"
-              >
-                Off-Leash Dog Parks
-              </a>
+              <div class="subpage-hero__actions">
+                <a href="#rules" class="button button--brand">
+                  Leash rules
+                </a>
+                <a href="#off-leash" class="text-link">
+                  Nearby off-leash dog parks
+                </a>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Visual Context -->
-        <div class="gallery">
-          <div class="gallery-grid">
-            <div class="gallery-column">
-              {
-                dogs.slice(0, 2).map((dog) => (
-                  <div class="dog-tile">
-                    <a
-                      href={`https://instagram.com/${dog.handle}`}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                    >
-                      <Picture
-                        src={dog.src}
-                        formats={["avif"]}
-                        fallbackFormat="webp"
-                        alt="Dog at Ute Valley Park"
-                        width={380}
-                        height={380}
-                        widths={[200, 380, 640, 760]}
-                        sizes="(min-width: 64rem) 20vw, 50vw"
-                        class="image"
-                      />
-                      <p>
-                        @{dog.handle}
-                      </p>
-                    </a>
-                  </div>
-                ))
-              }
+            <div class="dogs-mosaic editorial-folio" aria-label="Community dogs visiting Ute Valley Park">
+              <div class="dogs-mosaic__grid">
+                {
+                  featuredDogs.map((dog) => (
+                    <figure class="dogs-mosaic__cell">
+                      <a
+                        href={`https://instagram.com/${dog.handle}`}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                        class="dogs-mosaic__link"
+                      >
+                        <div class="dogs-mosaic__frame">
+                          <Picture
+                            src={dog.src}
+                            formats={["avif"]}
+                            fallbackFormat="webp"
+                            alt={`Dog visiting Ute Valley Park (@${dog.handle})`}
+                            width={380}
+                            height={380}
+                            widths={[200, 380, 640]}
+                            sizes="(min-width: 64rem) 20vw, 44vw"
+                            class="dog-mosaic-photo"
+                          />
+                        </div>
+                        <figcaption class="dogs-mosaic__caption">
+                          @{dog.handle}
+                        </figcaption>
+                      </a>
+                    </figure>
+                  ))
+                }
+              </div>
             </div>
-            <div class="gallery-column">
-              {
-                dogs.slice(2, 5).map((dog) => (
-                  <div class="dog-tile">
-                    <a
-                      href={`https://instagram.com/${dog.handle}`}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                    >
-                      <Picture
-                        src={dog.src}
-                        formats={["avif"]}
-                        fallbackFormat="webp"
-                        alt="Dog at Ute Valley Park"
-                        width={380}
-                        height={380}
-                        widths={[200, 380, 640, 760]}
-                        sizes="(min-width: 64rem) 20vw, 50vw"
-                        class="image"
-                      />
-                      <p>
-                        @{dog.handle}
-                      </p>
-                    </a>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-          <div class="badge">
-            Dogs of Ute Valley
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Leash Rules -->
-    <section class="page-section dogs-rules">
+    <!-- Leash Rules Ledger -->
+    <section id="rules" class="page-section page-section--surface" aria-labelledby="dog-rules-heading">
       <div class="page-section__inner">
-        <div class="layout">
-          <div>
-            <h2>
-              Leash <br />
-              <span>Rules.</span>
-            </h2>
-            <div class="photo">
-              <Picture
-                src={DogImage}
-                formats={["avif"]}
-                fallbackFormat="webp"
-                alt="Dog in park"
-                width={400}
-                height={400}
-                widths={[400]}
-                sizes="(min-width: 64rem) 40vw, 100vw"
-                class="image"
-              />
-              <div>
-                Good dog!
-              </div>
+        <div class="dogs-rules-layout">
+          <div class="dogs-rules-aside">
+            <div class="folio-rule-header dogs-header">
+              <h2 id="dog-rules-heading" class="folio-rule-header__title">
+                Leash and trail rules.
+              </h2>
             </div>
+
+            <figure class="dog-feature-figure">
+              <div class="dog-feature-plate">
+                <Picture
+                  src={DogImage}
+                  formats={["avif"]}
+                  fallbackFormat="webp"
+                  alt="Dog sitting calmly on a leash in Ute Valley Park"
+                  width={560}
+                  height={560}
+                  widths={[400, 560]}
+                  sizes="(min-width: 64rem) 34vw, 92vw"
+                  class="dog-feature-img"
+                />
+              </div>
+              <figcaption class="subpage-hero__caption">
+                Keeping dogs close on trail protects wildlife and prevents rattlesnake bites.
+              </figcaption>
+            </figure>
           </div>
 
-          <div class="content">
+          <div class="dogs-rules-body">
             <div>
-              <p class="kicker">
-                Why Leash Rules Matter
-              </p>
-              <div class="dogs-reason-list">
+              <h3 class="ledger-group-title">Why leashes are required</h3>
+              <div class="rule-cards feature-grid feature-grid--two">
                 {
-                  reasons.map((reason, i) => (
-                    <div class="dogs-reason-card">
-                      <span>
-                        [0{i + 1}]
-                      </span>
-                      <p>
-                        {reason}
-                      </p>
-                    </div>
+                  reasons.map((item) => (
+                    <article class="rule-card">
+                      <h4>{item.title}</h4>
+                      <p>{item.text}</p>
+                    </article>
                   ))
                 }
               </div>
             </div>
 
-            <div id="rules">
-              <p class="kicker">
-                Park Dog Rules
-              </p>
-              <div class="dog-rule-list">
+            <div>
+              <h3 class="ledger-group-title">Checklist for your visit</h3>
+              <ul class="rule-checklist">
                 {
-                  rules.map((rule) => (
-                    <div class="item">
-                      <div />
-                      <p>
-                        {rule}
-                      </p>
-                    </div>
+                  rules.map((item) => (
+                    <li>
+                      <strong>{item.title}:</strong> {item.text}
+                    </li>
                   ))
                 }
+              </ul>
+              <div class="rules-footer-link">
+                <a href="/rules/" class="text-link">
+                  View complete park rules and hours →
+                </a>
               </div>
             </div>
           </div>
@@ -246,484 +232,305 @@ const rules = [
       </div>
     </section>
 
-    <!-- Off-Leash Dog Parks Nearby -->
-    <section id="off-leash" class="off-leash-parks">
+    <!-- Nearby Off-Leash Parks -->
+    <section id="off-leash" class="page-section" aria-labelledby="off-leash-heading">
       <div class="page-section__inner">
-        <div class="header">
+        <div class="folio-rule-header folio-rule-header--split">
           <div>
-            <h2>
-              Off-Leash Dog <span>Parks Nearby.</span>
+            <h2 id="off-leash-heading" class="folio-rule-header__title">
+              Off-leash dog parks nearby.
             </h2>
-            <p>
-              Nearby off-leash dog parks where your pup can run free.
+            <p class="folio-rule-header__deck">
+              If your dog wants off-leash room to run, several Colorado Springs parks offer dedicated areas nearby.
             </p>
           </div>
           <a
             href="https://coloradosprings.gov/parks/page/dog-parks?mlid=4736"
-            >All CS Off-Leash Parks</a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-link"
           >
+            City dog parks directory →
+          </a>
         </div>
 
         <div class="dog-park-grid">
           {
             otherParks.map((park) => (
-              <div class="dog-park-card">
-                <div class="media">
+              <article class="dog-park-card editorial-folio">
+                <div class="dog-park-media">
                   <Picture
                     src={park.image}
                     formats={["avif"]}
                     fallbackFormat="webp"
                     alt={park.name}
-                    width={384}
-                    height={240}
-                    widths={[384, 480, 768]}
-                    sizes="(min-width: 64rem) 25vw, (min-width: 40rem) 50vw, 100vw"
+                    width={420}
+                    height={262}
+                    widths={[384, 480]}
+                    sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 46vw, 94vw"
+                    class="dog-park-img"
                   />
                 </div>
-                <div class="body">
-                  <div>
-                    <p>
-                      {park.type} Park
-                    </p>
-                    <h3>
-                      {park.name}
-                    </h3>
-                  </div>
-
-                  <div class="stats">
+                <div class="dog-park-body">
+                  <p class="dog-park-type">{park.type}</p>
+                  <h3>{park.name}</h3>
+                  <dl class="dog-park-stats">
                     <div>
-                      <p>
-                        Dist
-                      </p>
-                      <p>
-                        {park.distance}
-                      </p>
+                      <dt>Distance</dt>
+                      <dd>{park.distance}</dd>
                     </div>
                     <div>
-                      <p>
-                        Time
-                      </p>
-                      <p>
-                        {park.time}
-                      </p>
+                      <dt>Drive time</dt>
+                      <dd>{park.time}</dd>
                     </div>
-                  </div>
-
-                  <div class="links">
-                    <a
-                      href={park.mapLink}
-                    >
-                      Visit Site <span>→</span>
+                  </dl>
+                  <div class="dog-park-links">
+                    <a href={park.mapLink} target="_blank" rel="noopener noreferrer">
+                      Directions →
                     </a>
-                    <a
-                      href={park.cityLink}
-                    >
-                      Information <span>→</span>
+                    <a href={park.cityLink} target="_blank" rel="noopener noreferrer">
+                      Park page →
                     </a>
                   </div>
                 </div>
-              </div>
+              </article>
             ))
           }
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
-  .dogs-hero {
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .dogs-hero .layout {
-    display: grid;
-  }
-
-  .dogs-hero .identity {
-    padding: clamp(3rem, 8vw, 8rem) var(--space-page-x) clamp(5rem, 10vw, 10rem);
-  }
-
-  .dogs-hero .stack {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .dogs-hero .stack > p {
-    max-width: 36rem;
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: var(--leading-body);
-  }
-
-  .dogs-hero .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding-top: 1rem;
-  }
-
-  .dogs-hero .gallery {
-    position: relative;
-    min-height: 25rem;
-    overflow: hidden;
-    background: var(--color-page);
-  }
-
-  .dogs-hero .gallery-grid {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
+  .dogs-mosaic {
     padding: 0.75rem;
-  }
-
-  .dogs-hero .gallery-column {
-    display: grid;
-    align-content: center;
-    gap: 0.75rem;
-  }
-
-  .dog-tile {
-    position: relative;
-    aspect-ratio: 1;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-  }
-
-  :global(.dog-tile .image) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .dog-tile p {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin: 0;
-    border-top: 1px solid var(--color-border-muted);
-    border-right: 1px solid var(--color-border-muted);
-    background: color-mix(in oklab, var(--color-surface) 90%, transparent);
-    color: var(--color-text-strong);
-    padding: 0.25rem 0.5rem;
-    font-family: var(--font-label);
-    font-size: 0.5rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .dogs-hero .badge {
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    z-index: 1;
-    border: 1px solid var(--color-brand-strong);
-    background: var(--color-brand-strong);
-    color: var(--color-text-inverse);
-    padding: 0.5rem 1rem;
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
     box-shadow: var(--shadow-accent-sm);
   }
 
-  .dogs-rules {
-    background: var(--color-surface);
-  }
-
-  .dogs-rules .layout {
+  .dogs-mosaic__grid {
     display: grid;
-    align-items: start;
-    gap: 4rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
   }
 
-  .dogs-rules h2,
-  .off-leash-parks .header h2 {
-    margin: 0 0 2rem;
+  .dogs-mosaic__cell {
+    margin: 0;
+  }
+
+  .dogs-mosaic__link {
+    display: grid;
+    gap: 0.375rem;
     color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 6vw, 3.75rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    text-decoration: none;
   }
 
-  .dogs-rules h2 span,
-  .off-leash-parks .header h2 span {
-    color: var(--color-brand-strong);
-    font-style: italic;
-  }
-
-  .dogs-rules .photo {
-    position: relative;
+  .dogs-mosaic__frame {
     aspect-ratio: 1;
     overflow: hidden;
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-border-muted);
     background: var(--color-surface-muted);
   }
 
-  :global(.dogs-rules .image) {
+  .dogs-mosaic__frame :global(picture),
+  .dogs-mosaic__frame :global(img) {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--duration-slower);
   }
 
-  .dogs-rules .photo > div {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    background: var(--color-surface-inverse);
-    color: var(--color-text-inverse);
-    padding: 0.125rem 0.5rem;
-    font-family: var(--font-label);
-    font-size: 0.5rem;
-    text-transform: uppercase;
-  }
-
-  .dogs-rules .content {
-    display: grid;
-    gap: 3rem;
-  }
-
-  .dogs-rules .kicker {
-    margin: 0 0 1rem;
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .dogs-reason-list {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .dogs-reason-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    border: 1px solid var(--color-border-muted);
-    background: var(--color-page);
-    padding: 1.5rem;
-  }
-
-  .dogs-reason-card span {
+  .dogs-mosaic__caption {
     color: var(--color-brand-strong);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 900;
-  }
-
-  .dogs-reason-card p {
-    margin: 0;
-    color: var(--color-text-muted);
     font-size: var(--text-body-small);
-    font-weight: 500;
-    line-height: var(--leading-body);
+    font-weight: 600;
   }
 
-  .dog-rule-list {
-    border: 1px solid var(--color-border);
+  .dogs-mosaic__link:hover .dogs-mosaic__caption {
+    text-decoration: underline;
   }
 
-  .dog-rule-list .item {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    border-bottom: 1px solid var(--color-border);
-    padding: 1.5rem;
-    transition: background-color var(--duration-fast);
+  .dogs-rules-layout {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
   }
 
-  .dog-rule-list .item:last-child {
-    border-bottom: 0;
+  .dogs-header {
+    margin-bottom: 1.5rem;
   }
 
-  .dog-rule-list .item:hover {
+  .dog-feature-figure {
+    margin: 0;
+  }
+
+  .dog-feature-plate {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid var(--color-border-strong);
+    box-shadow: var(--shadow-accent-sm);
+  }
+
+  .dog-feature-plate :global(picture),
+  .dog-feature-plate :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .dogs-rules-body {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .ledger-group-title {
+    margin: 0 0 1rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .rule-cards {
+    --feature-grid-border-color: var(--color-border-strong);
+    --feature-grid-background: var(--color-border-strong);
+  }
+
+  .rule-card {
+    display: grid;
+    gap: 0.375rem;
     background: var(--color-page);
+    padding: 1.375rem;
   }
 
-  .dog-rule-list .item div {
-    width: 0.5rem;
-    height: 0.5rem;
-    flex-shrink: 0;
-    background: var(--color-accent);
-  }
-
-  .dog-rule-list .item p {
+  .rule-card h4 {
     margin: 0;
     color: var(--color-text-strong);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
   }
 
-  .off-leash-parks {
-    background: var(--color-surface-muted);
-    padding-block: var(--space-section);
-  }
-
-  .off-leash-parks .header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-bottom: 4rem;
-  }
-
-  .off-leash-parks .header h2 {
-    margin-bottom: 1rem;
-  }
-
-  .off-leash-parks .header p {
+  .rule-card p {
     margin: 0;
-    color: var(--color-text-subtle);
-    font-weight: 500;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.55;
   }
 
-  .off-leash-parks .header > a {
-    color: var(--color-brand-strong);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration-line: underline;
-    text-decoration-color: var(--color-accent);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.5rem;
+  .rule-checklist {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+    list-style: none;
+  }
+
+  .rule-checklist li {
+    border-bottom: 1px solid var(--color-border-muted);
+    padding-block: 0.875rem;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .rule-checklist strong {
+    color: var(--color-text-strong);
+    font-weight: 700;
+  }
+
+  .rules-footer-link {
+    margin-top: 1.25rem;
   }
 
   .dog-park-grid {
     display: grid;
-    gap: 1px;
-    border: 1px solid var(--color-border);
-    background: var(--color-border);
+    gap: 1.5rem;
   }
 
   .dog-park-card {
     display: flex;
     flex-direction: column;
-    background: var(--color-surface);
   }
 
-  .dog-park-card .media {
+  .dog-park-media {
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    border-bottom: 1px solid var(--color-border-muted);
+    border-bottom: 1px solid var(--color-border-strong);
     background: var(--color-surface-muted);
   }
 
-  .dog-park-card .media img {
+  .dog-park-media :global(picture),
+  .dog-park-media :global(img) {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--duration-slow);
   }
 
-  .dog-park-card .body {
+  .dog-park-body {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 2rem;
+    gap: 0.75rem;
+    padding: 1.25rem;
   }
 
-  .dog-park-card .body > div:first-child p,
-  .dog-park-card .stats p:first-child {
+  .dog-park-type {
     margin: 0;
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
+    color: var(--color-brand-strong);
+    font-size: var(--text-body-small);
     font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
   }
 
-  .dog-park-card h3 {
-    margin: 0.25rem 0 0;
+  .dog-park-body h3 {
+    margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
     font-size: 1.25rem;
-    font-weight: 900;
-    line-height: var(--leading-tight);
-    letter-spacing: 0;
-    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1.2;
   }
 
-  .dog-park-card .stats {
+  .dog-park-stats {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-    border-block: 1px solid var(--color-border-muted);
-    padding-block: 1rem;
+    gap: 0.5rem 1rem;
+    margin: 0;
+    border-top: 1px solid var(--color-border-muted);
+    padding-top: 0.75rem;
   }
 
-  .dog-park-card .stats div {
-    display: grid;
-    gap: 0.25rem;
+  .dog-park-stats dt {
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
   }
 
-  .dog-park-card .stats p:last-child {
+  .dog-park-stats dd {
     margin: 0;
     color: var(--color-text-strong);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    text-transform: uppercase;
+    font-size: var(--text-body-small);
+    font-weight: 700;
   }
 
-  .dog-park-card .links {
+  .dog-park-links {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding-top: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
   }
 
-  .dog-park-card .links a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid var(--color-border-muted);
-    background: var(--color-page);
-    color: var(--color-text-strong);
-    padding: 0.75rem 1rem;
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition:
-      background-color var(--duration-fast),
-      color var(--duration-fast),
-      transform var(--duration-fast);
-  }
-
-  .dog-park-card .links a:hover {
-    background: var(--color-surface-inverse);
-    color: var(--color-text-inverse);
-  }
-
-  .dog-park-card .links a:active {
-    transform: scale(0.96);
+  .dog-park-links a {
+    color: var(--color-brand-strong);
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2rem;
   }
 
   @media (min-width: 40rem) {
@@ -732,25 +539,9 @@ const rules = [
     }
   }
 
-  @media (min-width: 48rem) {
-    .off-leash-parks .header {
-      flex-direction: row;
-      align-items: flex-end;
-    }
-  }
-
   @media (min-width: 64rem) {
-    .dogs-hero .layout {
-      grid-template-columns: 7fr 5fr;
-    }
-
-    .dogs-hero .identity {
-      border-right: 1px solid var(--color-border);
-      padding-inline: var(--space-page-x) 3rem;
-    }
-
-    .dogs-rules .layout {
-      grid-template-columns: 5fr 7fr;
+    .dogs-rules-layout {
+      grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
     }
 
     .dog-park-grid {

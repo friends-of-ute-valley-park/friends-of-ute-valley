@@ -1,104 +1,93 @@
 <section class="engagement-panel">
-    <div class="band">
-        <div class="marker"></div>
-
-        <div class="inner l-container">
-            <div class="layout">
-                <!-- Header content -->
-                <div class="header section-heading section-heading--inverse">
-                    <div class="eyebrow section-kicker section-kicker--accent">
-                        <span class="section-kicker__rule"></span>
-                        <span class="section-kicker__text">
-                            <slot name="subheading">Stay Connected</slot>
-                        </span>
-                    </div>
-
-                    <div class="copy">
-                        <slot name="heading">
-                            <h2 class="title section-heading__title">
-                                Stay <span class="accent"
-                                    >Informed.</span
-                                >
-                            </h2>
-                        </slot>
-                        <slot name="description">
-                            <p class="description section-heading__copy">
-                                Sign up for volunteer updates and seasonal news.
-                            </p>
-                        </slot>
-                    </div>
-                </div>
-
-                <!-- Main content/Form container -->
-                <div class="main panel-card">
-                    <slot name="main"> Content </slot>
-                </div>
-            </div>
+  <div class="band">
+    <div class="inner l-container">
+      <div class="layout">
+        <!-- Header content -->
+        <div class="header section-heading section-heading--inverse">
+          <div class="amber-bar" aria-hidden="true"></div>
+          <div class="copy">
+            <slot name="heading">
+              <h2 class="title section-heading__title">Stay informed.</h2>
+            </slot>
+            <slot name="description">
+              <p class="description section-heading__copy">
+                Sign up for volunteer updates and seasonal park news.
+              </p>
+            </slot>
+          </div>
         </div>
+
+        <!-- Main content/Form container -->
+        <div class="main panel-card panel-card--raised">
+          <slot name="main">Content</slot>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <style>
-    .engagement-panel {
-        position: relative;
-        width: 100%;
-        border-block: 1px solid var(--color-border);
-    }
+  .engagement-panel {
+    position: relative;
+    width: 100%;
+    border-block: 1px solid var(--color-border-strong);
+    font-family: var(--font-body);
+    font-variant-numeric: tabular-nums;
+  }
 
-    .engagement-panel .band {
-        position: relative;
-        overflow: clip;
-        background: var(--color-surface-inverse);
-        padding-block: 6rem;
-    }
+  .engagement-panel .band {
+    position: relative;
+    overflow: clip;
+    background: var(--color-surface-inverse);
+    padding-block: clamp(3.5rem, 6vw, 5rem);
+  }
 
-    .engagement-panel .marker {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 16rem;
-        height: 16rem;
-        border: 1px solid color-mix(in oklab, var(--color-accent) 10%, transparent);
-        background: color-mix(in oklab, var(--color-accent) 5%, transparent);
-        transform: translate(50%, -50%) rotate(45deg);
-    }
+  .engagement-panel .inner {
+    position: relative;
+    z-index: 1;
+  }
 
-    .engagement-panel .inner {
-        position: relative;
-        z-index: 1;
-    }
+  .engagement-panel .layout {
+    display: grid;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
 
+  .engagement-panel .header {
+    --section-heading-gap: 1.25rem;
+    --section-heading-copy-margin: 0;
+  }
+
+  .engagement-panel .amber-bar {
+    width: 3rem;
+    height: 3px;
+    background: var(--color-accent);
+  }
+
+  .engagement-panel .copy {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .engagement-panel :global(h2) {
+    margin: 0;
+    color: var(--color-text-inverse);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.6vw, 3.125rem);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+  }
+
+  .engagement-panel .main {
+    position: relative;
+    --panel-card-border-color: var(--color-border-strong);
+    --panel-card-shadow: var(--shadow-accent-sm);
+  }
+
+  @media (min-width: 64rem) {
     .engagement-panel .layout {
-        display: grid;
-        align-items: center;
-        gap: 4rem;
+      grid-template-columns: 5fr 7fr;
     }
-
-    .engagement-panel .header {
-        --section-heading-gap: 2rem;
-        --section-kicker-text-color: var(--color-text-inverse-muted);
-        --section-heading-copy-margin: 0;
-    }
-
-    .engagement-panel .copy {
-        display: grid;
-        gap: 1rem;
-    }
-
-    .engagement-panel .accent {
-        color: var(--color-accent);
-        font-style: italic;
-    }
-
-    .engagement-panel .main {
-        position: relative;
-        --panel-card-border-color: var(--color-surface-inverse-muted);
-        --panel-card-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%);
-    }
-
-    @media (min-width: 64rem) {
-        .engagement-panel .layout {
-            grid-template-columns: 5fr 7fr;
-        }
-    }
+  }
 </style>

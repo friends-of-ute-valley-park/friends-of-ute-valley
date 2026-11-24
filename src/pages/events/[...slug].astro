@@ -22,167 +22,166 @@ const locationInformation = resolveMeetingLocation(entry.data, meetingLocations)
 ---
 
 <Layout title={entry.data.title} description={entry.data.description}>
-  <main class="page event-detail">
-    <section class="page-hero">
-      <div class="page-hero__inner hero">
-        <div class="page-eyebrow">
-          <span>Volunteer Event</span>
-        </div>
-        <h1 class="title">{entry.data.title}</h1>
-      </div>
-    </section>
+  <div class="page event-detail">
+    <!-- Record Detail Hero -->
+    <section class="subpage-hero" aria-labelledby="event-hero-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <a href="/volunteer/" class="subpage-hero__back">← Volunteer schedule</a>
+          <div class="subpage-hero__split subpage-hero__split--masthead">
+            <div class="subpage-hero__copy">
+              <p class="subpage-hero__record-meta">
+                {formatShortMonthDayYear(entry.data.date)} · {entry.data.time}
+              </p>
+              <h1 id="event-hero-title" class="subpage-hero__title">
+                {entry.data.title}
+              </h1>
+              {entry.data.description && <p class="subpage-hero__deck">{entry.data.description}</p>}
+              {
+                entry.data.link && (
+                  <div class="subpage-hero__actions">
+                    <a href={entry.data.link} class="button button--brand">
+                      Register for this workday
+                    </a>
+                  </div>
+                )
+              }
+            </div>
 
-    <section class="page-section">
-      <div class="inner l-container">
-        <Picture
-          src={volunteerImage}
-          formats={["avif"]}
-          fallbackFormat="webp"
-          class="image"
-          alt="volunteers working in Ute Valley Park"
-          width={656}
-          widths={[440, 656, 800]}
-          sizes="(min-width: 48rem) 656px, 440px"
-          priority
-        />
-
-        <div class="meta-panel">
-          <a class="meta-link" href={locationInformation.directionsLink}>
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                clip-rule="evenodd"></path>
-            </svg>
-            {locationInformation.name}
-          </a>
-          {
-            entry.data.meetingLocation.notes && (
-              <span class="notes">
-                {entry.data.meetingLocation.notes}
-              </span>
-            )
-          }
-          <div class="meta-line">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                clip-rule="evenodd"></path>
-            </svg>
-            {formatShortMonthDayYear(entry.data.date)}&nbsp;
-            {entry.data.time}
+            <aside class="subpage-hero__aside-box" aria-label="Meeting logistics">
+              <h2 class="subpage-hero__aside-title">Meeting point</h2>
+              <ul class="subpage-hero__aside-list">
+                <li>
+                  <a href={locationInformation.directionsLink} class="text-link">
+                    {locationInformation.name} →
+                  </a>
+                </li>
+                {entry.data.meetingLocation.notes && <li>{entry.data.meetingLocation.notes}</li>}
+              </ul>
+            </aside>
           </div>
         </div>
-
-        <div class="prose-content content">
-          <Content />
-        </div>
-
-        {
-          entry.data.link && (
-            <div class="registration">
-              <p>
-                You must register to participate in this event.
-              </p>
-              <a href={entry.data.link} class="button button--brand">
-                Register
-              </a>
-            </div>
-          )
-        }
       </div>
     </section>
-  </main>
+
+    <!-- Workday Body & Photo -->
+    <section class="page-section page-section--surface">
+      <div class="page-section__inner">
+        <div class="event-layout">
+          <div class="event-main">
+            <div class="prose-content">
+              <Content />
+            </div>
+
+            {
+              entry.data.link && (
+                <div class="registration editorial-folio">
+                  <h2>Registration required</h2>
+                  <p>Please sign up ahead of time so crew leaders can bring enough tools and safety gear for everyone.</p>
+                  <div class="reg-actions">
+                    <a href={entry.data.link} class="button button--brand">
+                      Register online
+                    </a>
+                    <a
+                      href="https://coloradosprings.gov/sites/default/files/inline-images/informed_consent_and_release_form-fillable.pdf"
+                      class="button button--quiet"
+                    >
+                      Consent and release form
+                    </a>
+                  </div>
+                </div>
+              )
+            }
+          </div>
+
+          <figure class="event-media">
+            <div class="media-plate">
+              <Picture
+                src={volunteerImage}
+                formats={["avif"]}
+                fallbackFormat="webp"
+                class="image"
+                alt="Volunteers repairing a trail corridor in Ute Valley Park"
+                width={800}
+                widths={[440, 800]}
+                sizes="(min-width: 64rem) 42vw, 94vw"
+                priority
+              />
+            </div>
+            <figcaption class="subpage-hero__caption">
+              Sturdy closed-toe shoes, long pants, water, and work gloves keep trail crews comfortable and safe.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </div>
 </Layout>
 
 <style>
-  .event-detail .title {
+  .event-layout {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .event-main {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .registration {
+    display: grid;
+    gap: 0.875rem;
+    padding: clamp(1.5rem, 3.5vw, 2.25rem);
+    background: var(--color-page);
+    box-shadow: var(--shadow-accent-sm);
+  }
+
+  .registration h2 {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 2.75rem);
-    font-weight: 900;
-    line-height: var(--leading-tight);
-    letter-spacing: 0;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  .event-detail .inner {
-    --l-container-max: 65ch;
-  }
-
-  :global(.event-detail .image) {
-    width: 100%;
-    height: 24rem;
-    object-fit: cover;
-    border: 1px solid var(--color-border);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%);
-  }
-
-  .event-detail .meta-panel {
-    display: grid;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-    color: var(--color-text-subtle);
-  }
-
-  .event-detail .meta-link,
-  .event-detail .meta-line {
-    display: flex;
-    align-items: center;
-    color: var(--color-text-subtle);
-  }
-
-  .event-detail .meta-link {
-    color: var(--color-brand);
-    font-size: var(--text-body-large);
-    text-decoration: underline;
-  }
-
-  .event-detail .notes {
-    max-width: 24rem;
-    color: var(--color-text-subtle);
-    font-size: var(--text-body-small);
-  }
-
-  .event-detail .icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    flex-shrink: 0;
-    margin-right: 0.375rem;
-    color: var(--color-text-subtle);
-  }
-
-  .event-detail .content {
-    padding-block: 2rem;
-  }
-
-  .event-detail .registration {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-    margin-top: 0.5rem;
-  }
-
-  .event-detail .registration p {
-    margin: 0;
-    color: var(--color-brand);
+    font-size: 1.5rem;
     font-weight: 700;
   }
 
+  .registration p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .reg-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    padding-top: 0.25rem;
+  }
+
+  .event-media {
+    margin: 0;
+  }
+
+  .media-plate {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid var(--color-border-strong);
+    box-shadow: var(--shadow-accent-sm);
+  }
+
+  .media-plate :global(picture),
+  .media-plate :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 64rem) {
+    .event-layout {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    }
+  }
 </style>

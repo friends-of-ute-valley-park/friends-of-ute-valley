@@ -5,227 +5,202 @@ import Layout from "@layouts/Layout.astro";
 import OldPhotos from "@components/OldPhotos.astro";
 import StatsCard from "@components/StatsCard.astro";
 import { Image, Picture } from "astro:assets";
+import PikesPeakHero from "@/assets/images/ute-valley-park-hero.jpg";
 import Logo from "@/assets/images/logos/logo-medium.jpg";
 import SurveyPreview from "@/assets/images/colorado-land-survey-preview.jpg";
+
+const stewardshipWork = [
+  "Conducts volunteer trail maintenance twice a month during the field season",
+  "Leads special restoration, corridor clearing, and cleanup projects",
+  "Raises community funds to purchase tools, seed, and park improvements",
+  "Provides visitor education on park ecology, geology, and Leave No Trace",
+  "Advocates for protecting Ute Valley Park as open space",
+];
+
+const awards = [
+  {
+    year: "2023",
+    title: "Drew Town, Colorado Springs Parks, Recreation, and Cultural Services Volunteer of the Year Nomination",
+  },
+  { year: "2022", title: "TOSC Best Friends Group" },
+  { year: "2020", title: "Great Outdoors Colorado (GOCO) Award" },
+  { year: "2020", title: "Parks & Recreation Volunteer of the Year" },
+  { year: "2019", title: "David J. Collas Community Service Award" },
+  { year: "2014", title: "City Council Resolution Thanking FUVP" },
+  { year: "2014", title: "Friends Group of the Year" },
+  { year: "2013", title: "TOSC Stewardship Award" },
+  { year: "Past", title: "Dan Woods SuperGroup MVP Award" },
+];
 ---
 
 <Layout
   title="About"
   description="Learn about Friends of Ute Valley Park, our mission, history, and volunteer-led work to protect and maintain Ute Valley Park in Colorado Springs."
 >
-  <main class="page about-page">
-    <!-- Archival Header -->
-    <section class="about-hero page-hero">
-      <div class="page-hero__inner">
-        <div class="about-hero__grid">
-          <div class="intro">
-            <h1 class="page-title title">
-              Our Story <br /> & <span>Mission.</span>
-            </h1>
+  <div class="page about-page">
+    <!-- Framed Split Editorial Hero -->
+    <section class="subpage-hero" aria-labelledby="about-hero-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <div class="subpage-hero__split subpage-hero__split--lead-left">
+            <div class="subpage-hero__copy">
+              <h1 id="about-hero-title" class="subpage-hero__title">
+                Our story and stewardship mission.
+              </h1>
 
-            <div class="prose-content copy">
-              <p>
-                Friends of Ute Valley Park (FUVP) is an officially recognized
-                "Friends" organization dedicated to maintaining, preserving, and
-                providing education for Ute Valley Park in Colorado Springs.
+              <p class="subpage-hero__deck">
+                Friends of Ute Valley Park (FUVP) is an independent, volunteer-led nonprofit dedicated to maintaining, preserving, and educating visitors about Ute Valley Park alongside Colorado Springs park rangers.
               </p>
-              <p>
-                We work in partnership with the city's Parks, Recreation, and
-                Cultural Services Department to care for this treasured community
-                resource, ensuring its wildland character remains intact for
-                future generations.
-              </p>
+
+              <div class="about-emblem-row">
+                <Image
+                  src={Logo}
+                  alt="Friends of Ute Valley Park seal"
+                  width={56}
+                  height={56}
+                  densities={[1, 2]}
+                  class="about-emblem-img"
+                />
+                <p>
+                  All-volunteer 501(c)(3) public charity working for Ute Valley Park since 2012.
+                </p>
+              </div>
+
+              <dl class="subpage-hero__facts">
+                <div class="subpage-hero__fact">
+                  <dt>Founded</dt>
+                  <dd>2012</dd>
+                </div>
+                <div class="subpage-hero__fact">
+                  <dt>Protected open space</dt>
+                  <dd>550 acres</dd>
+                </div>
+                <div class="subpage-hero__fact">
+                  <dt>Paid staff</dt>
+                  <dd>None (all volunteer)</dd>
+                </div>
+              </dl>
             </div>
-          </div>
 
-          <aside
-            class="logo-card"
-            aria-label="Friends of Ute Valley Park identity"
-          >
-            <Image
-              src={Logo}
-              alt="Friends of Ute Valley logo"
-              width={192}
-              densities={[1, 2]}
-            />
-            <p>
-              Volunteer-led stewardship for a 550-acre Colorado Springs
-              wildland.
-            </p>
-          </aside>
+            <figure class="subpage-hero__plate-figure">
+              <div class="subpage-hero__plate about-hero-plate">
+                <Picture
+                  src={PikesPeakHero}
+                  formats={["avif"]}
+                  fallbackFormat="webp"
+                  alt="Sandstone ledges and ponderosa pines in Ute Valley Park looking toward Pikes Peak"
+                  width={1000}
+                  widths={[540, 1000]}
+                  sizes="(min-width: 64rem) 42vw, 94vw"
+                  priority
+                  class="about-hero-photo"
+                />
+              </div>
+              <figcaption class="subpage-hero__caption">
+                Looking west across Ute Valley sandstone toward Pikes Peak.
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Impact Data -->
-    <section class="about-impact">
-      <StatsCard />
+    <!-- Impact Stats Folio -->
+    <section class="page-section page-section--surface">
+      <div class="page-section__inner">
+        <StatsCard />
+      </div>
     </section>
 
-    <!-- Structural Records -->
+    <!-- Structural Chapters & Sticky TOC -->
     <section class="about-records">
       <div class="page-section__inner">
         <div class="layout">
           <div class="about-toc">
             <div class="sticky">
-              <h3>
-                About Our Work
-              </h3>
-              <nav class="links" data-about-toc>
-                <a
-                  href="#history"
-                  class="link"
-                  >01. Our History</a
-                >
-                <a
-                  href="#stewardship"
-                  class="link"
-                  >02. How We Care for the Park</a
-                >
-                <a
-                  href="#awards"
-                  class="link"
-                  >03. Awards & Recognition</a
-                >
-                <a
-                  href="#structure"
-                  class="link"
-                  >04. Our Structure</a
-                >
+              <p class="toc-title">On this page</p>
+              <nav class="links" data-about-toc aria-label="About sections">
+                <a href="#history" class="link">Our history</a>
+                <a href="#stewardship" class="link">How we care for the park</a>
+                <a href="#awards" class="link">Awards and recognition</a>
+                <a href="#structure" class="link">Organizational structure</a>
               </nav>
             </div>
           </div>
 
           <div class="content">
-            <!-- History -->
-            <div id="history" class="about-record section-heading">
-              <h2 class="section-heading__title">
-                Our <span>History.</span>
-              </h2>
+            <div id="history" class="about-record">
+              <div class="folio-rule-header">
+                <h2 class="folio-rule-header__title">Our history.</h2>
+              </div>
               <div class="prose-content">
                 <p>
-                  FUVP was formed in 2012 when we learned the City had an
-                  opportunity to purchase an additional 205 acres to expand Ute
-                  Valley Park. The City hoped to fund the purchase through the
-                  Trails, Open Spaces, and Parks (TOPS) program.
+                  Friends of Ute Valley Park formed in 2012 when neighbors learned the City of Colorado Springs had an opportunity to purchase an additional 205 acres to expand the park through the Trails, Open Spaces, and Parks (TOPS) program.
                 </p>
                 <p>
-                  With the help of FUVP, the Trust for Public Land, and TOPS,
-                  the city was able to acquire the land in 2014-15. FUVP raised
-                  $110,000 in just 3.5 months to contribute to the purchase,
-                  demonstrating unprecedented community support.
+                  Working alongside the Trust for Public Land and TOPS, FUVP raised $110,000 in three and a half months to help fund the land purchase. The city finalized the acquisition between 2014 and 2015, bringing Ute Valley Park to roughly 550 acres.
                 </p>
               </div>
             </div>
 
-            <!-- Stewardship -->
-            <div id="stewardship" class="about-record section-heading">
-              <h2 class="section-heading__title">
-                How We <span>Care for the Park.</span>
-              </h2>
-              <div class="stewardship-grid">
+            <div id="stewardship" class="about-record">
+              <div class="folio-rule-header">
+                <h2 class="folio-rule-header__title">How we care for the park.</h2>
+              </div>
+              <ol class="stewardship-grid">
                 {
-                  [
-                    "Conducts trail maintenance twice a month",
-                    "Leads special maintenance and cleanup projects",
-                    "Raises funds to support park improvements",
-                    "Provides education about the park's ecology and history",
-                    "Advocates for the protection of UVP",
-                  ].map((item, i) => (
-                    <div class="stewardship-card">
-                      <span>
-                        [{String(i + 1).padStart(2, "0")}]
-                      </span>
-                      <p>
-                        {item}
-                      </p>
+                  stewardshipWork.map((item) => (
+                    <li class="stewardship-card">
+                      <p>{item}</p>
+                    </li>
+                  ))
+                }
+              </ol>
+            </div>
+
+            <div id="awards" class="about-record">
+              <div class="folio-rule-header">
+                <h2 class="folio-rule-header__title">Awards and recognition.</h2>
+              </div>
+              <dl class="award-list">
+                {
+                  awards.map((award) => (
+                    <div class="award-item">
+                      <dt>{award.year}</dt>
+                      <dd>{award.title}</dd>
                     </div>
                   ))
                 }
-              </div>
+              </dl>
             </div>
 
-            <!-- Awards -->
-            <div id="awards" class="about-record section-heading">
-              <h2 class="section-heading__title">
-                Awards & <span>Recognition.</span>
-              </h2>
-              <div class="award-list">
-                {
-                  [
-                    {
-                      year: "2023",
-                      title:
-                        "Drew Town Parks, Recreation, and Cultural Services Volunteer of the Year Nomination",
-                    },
-                    { year: "2022", title: "TOSC Best Friends group" },
-                    {
-                      year: "2020",
-                      title: "Great Outdoors Colorado (GOCO) Award",
-                    },
-                    {
-                      year: "2020",
-                      title: "Parks & Recreation Volunteer of the Year",
-                    },
-                    {
-                      year: "2019",
-                      title: "David J Collas Community Service Award",
-                    },
-                    {
-                      year: "2014",
-                      title: "City Council Resolution Thanking FUVP",
-                    },
-                    { year: "2014", title: "Friends Group of the Year" },
-                    { year: "2013", title: "TOSC Stewardship Award" },
-                    {
-                      year: "",
-                      title: "Dan Woods SuperGroup MVP Award",
-                    },
-                  ].map((award) => (
-                    <div class="item">
-                      <span>
-                        {award.year}
-                      </span>
-                      <span>
-                        {award.title}
-                      </span>
-                    </div>
-                  ))
-                }
+            <div id="structure" class="about-record">
+              <div class="folio-rule-header">
+                <h2 class="folio-rule-header__title">Organizational structure.</h2>
               </div>
-            </div>
-
-            <!-- Structure -->
-            <div id="structure" class="about-record section-heading">
-              <h2 class="section-heading__title">
-                Our <span>Structure.</span>
-              </h2>
-              <div class="structure-card">
-                <div class="content">
-                  <p>
-                    FUVP is an independent 501(c)(3) public charity dedicated
-                    to maintaining, preserving, and protecting Ute Valley Park.
-                  </p>
-                  <div class="facts">
-                    <div>
-                      <p>
-                        Status
-                      </p>
-                      <p>
-                        Independent 501(c)(3)
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        Mail
-                      </p>
-                      <p>
-                        PO Box 50122
-                      </p>
-                    </div>
+              <div class="structure-card editorial-folio">
+                <p class="structure-summary">
+                  Friends of Ute Valley Park is an independent 501(c)(3) public charity governed by a volunteer board and focused exclusively on maintaining, preserving, and protecting Ute Valley Park.
+                </p>
+                <dl class="structure-facts">
+                  <div>
+                    <dt>Tax status</dt>
+                    <dd>Independent 501(c)(3) public charity</dd>
                   </div>
+                  <div>
+                    <dt>Charity EIN</dt>
+                    <dd>42-2107142</dd>
+                  </div>
+                  <div>
+                    <dt>Mailing address</dt>
+                    <dd>PO Box 50122, Colorado Springs, CO 80919</dd>
+                  </div>
+                </dl>
+                <div class="structure-links">
+                  <a href="/about/official-organization-domain/" class="text-link">
+                    View official domain and IRS verification →
+                  </a>
                 </div>
-                <div class="marker"></div>
               </div>
             </div>
           </div>
@@ -233,72 +208,61 @@ import SurveyPreview from "@/assets/images/colorado-land-survey-preview.jpg";
       </div>
     </section>
 
-    <!-- Our Team -->
-    <section class="about-team">
-      <TeamList />
-    </section>
+    <TeamList />
 
-    <!-- Photographic Evidence -->
-    <section class="about-gallery">
-      <div class="page-section__inner">
-        <div class="heading section-heading">
-          <h2 class="section-heading__title">
-            Park <span>Gallery.</span>
-          </h2>
+    <!-- Archival Photos & Survey Report -->
+    <section class="about-gallery page-section">
+      <div class="page-section__inner gallery-stack">
+        <div class="folio-rule-header gallery-intro">
+          <h2 class="folio-rule-header__title">Park archives and geology.</h2>
+          <p class="folio-rule-header__deck">
+            Before residential neighborhoods grew along the western bluffs, ranching, coal mining, and sandstone formations shaped Ute Valley.
+          </p>
         </div>
-        <OldPhotos />
-      </div>
-    </section>
 
-    <!-- Historical Surveys -->
-    <section class="survey-report">
-      <div class="inner l-container">
-        <div class="card">
-          <div class="code"></div>
-          <h2>
-            Coal Mine <span>Survey Report.</span>
-          </h2>
-          <div class="media">
+        <OldPhotos />
+
+        <article class="survey-report editorial-folio">
+          <div class="survey-media">
             <Picture
               src={SurveyPreview}
               formats={["avif"]}
               fallbackFormat="webp"
-              alt="Coal mine survey"
+              alt="1983 El Paso County inactive coal mine survey map preview"
               width={800}
               height={450}
-              widths={[400, 800, 1200, 1600]}
-              sizes="(min-width: 64rem) 800px, 92vw"
+              widths={[400, 800, 1200]}
+              sizes="(min-width: 64rem) 44vw, 94vw"
+              class="survey-img"
             />
           </div>
-          <div class="footer">
-            <div>
-              <p>
-                1983 Colorado Front Range Inactive Coal Mine Data (El Paso
-                County). Historical geological report regarding subsurface
-                conditions and previous industrial operations.
-              </p>
-            </div>
+          <div class="survey-copy">
+            <h3>1983 Coal Mine Survey Report</h3>
+            <p>
+              Historical Colorado Front Range inactive coal mine survey covering subsurface conditions and past mining activity beneath El Paso County open spaces.
+            </p>
             <a
               href="/images/maps/colorado-springs-coal-mine-survey.pdf"
               download
               class="button button--brand"
             >
-              Download Report (14.8MB)
+              Download PDF report (14.8 MB)
             </a>
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
-    <div class="about-lnt">
-      <LeaveNoTraceSmall />
-    </div>
-  </main>
+    <LeaveNoTraceSmall />
+  </div>
 </Layout>
 
 <script>
-  const toc = document.querySelector<HTMLElement>("[data-about-toc]");
-  if (toc) {
+  function initAboutToc() {
+    const toc = document.querySelector<HTMLElement>("[data-about-toc]");
+    if (!toc || toc.dataset.bound === "true") return;
+    toc.dataset.bound = "true";
+
     const links = Array.from(
       toc.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'),
     );
@@ -306,16 +270,14 @@ import SurveyPreview from "@/assets/images/colorado-land-survey-preview.jpg";
     for (const link of links) {
       const href = link.getAttribute("href");
       const id = href ? href.slice(1) : "";
-      if (id) {
-        linkById.set(id, link);
-      }
+      if (id) linkById.set(id, link);
     }
 
     const setActive = (id: string) => {
-      links.forEach((link) => {
+      for (const link of links) {
         link.classList.remove("active");
         link.removeAttribute("aria-current");
-      });
+      }
       const active = linkById.get(id);
       if (active) {
         active.classList.add("active");
@@ -330,414 +292,285 @@ import SurveyPreview from "@/assets/images/colorado-land-survey-preview.jpg";
     if (sections.length > 0) {
       const observer = new IntersectionObserver(
         (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActive(entry.target.id);
-            }
-          });
+          for (const entry of entries) {
+            if (entry.isIntersecting) setActive(entry.target.id);
+          }
         },
-        {
-          rootMargin: "-30% 0px -70% 0px",
-          threshold: 0,
-        },
+        { rootMargin: "-28% 0px -65% 0px", threshold: 0 },
       );
 
-      sections.forEach((section) => observer.observe(section));
+      for (const section of sections) observer.observe(section);
 
       const requestedId = location.hash.slice(1);
-      const initialId = linkById.has(requestedId)
-        ? requestedId
-        : sections[0].id;
-      setActive(initialId);
+      setActive(linkById.has(requestedId) ? requestedId : sections[0].id);
     }
   }
+
+  initAboutToc();
+  document.addEventListener("astro:page-load", initAboutToc);
 </script>
 
 <style>
-  .about-hero .title {
-    max-width: 11ch;
-    margin: 0;
-    font-size: clamp(3rem, 8vw, 6rem);
-    text-wrap: balance;
+  .about-emblem-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid var(--color-border-muted);
+    padding-top: 1rem;
   }
 
-  .about-hero .page-hero__inner {
-    padding-block: clamp(3rem, 6vw, 4.5rem);
-  }
-
-  .about-hero__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(14rem, 22rem);
-    align-items: end;
-    gap: clamp(2rem, 6vw, 5rem);
-  }
-
-  .about-hero .intro {
-    display: grid;
-    gap: clamp(1.25rem, 2.5vw, 1.75rem);
-  }
-
-  .about-hero .copy {
-    max-width: 58rem;
-    color: var(--color-text-muted);
-    font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
-    text-wrap: pretty;
-  }
-
-  .about-hero .logo-card {
-    width: min(100%, 20rem);
-    align-self: center;
-    justify-self: end;
-    display: grid;
-    align-content: center;
-    gap: 1.25rem;
-    border: 2px solid var(--color-border-strong);
-    background: var(--color-surface);
-    padding: clamp(1.25rem, 3vw, 2rem);
-    box-shadow: var(--shadow-accent-md);
-  }
-
-  .about-hero .logo-card img {
+  .about-emblem-img {
     display: block;
-    width: min(100%, 12rem);
-    height: auto;
-    margin-inline: auto;
-    transition: transform var(--duration-slow);
+    width: 3.25rem;
+    height: 3.25rem;
+    flex-shrink: 0;
+    border: 1px solid var(--color-border);
   }
 
-  .about-hero .logo-card p {
-    max-width: 18rem;
+  .about-emblem-row p {
     margin: 0;
-    color: var(--color-brand-strong);
-    font-family: var(--font-label);
+    color: var(--color-text-muted);
     font-size: var(--text-body-small);
-    font-weight: 900;
-    line-height: var(--leading-tight);
-    text-align: center;
-    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 1.45;
   }
 
-  .about-impact,
-  .about-team,
-  .about-lnt {
-    border-bottom: 1px solid var(--color-border);
-    background: color-mix(in oklab, var(--color-surface-muted) 50%, transparent);
+  .about-hero-plate {
+    aspect-ratio: 4 / 3;
   }
 
-  .about-records,
-  .about-gallery,
-  .survey-report {
+  .about-hero-plate :global(picture),
+  .about-hero-plate :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+  }
+
+  .about-records {
     border-bottom: 1px solid var(--color-border);
-    padding-block: var(--space-section);
+    padding-block: clamp(3.5rem, 6vw, 5.5rem);
   }
 
   .about-records .layout {
     display: grid;
-    gap: 4rem;
+    gap: clamp(2rem, 5vw, 4rem);
   }
 
-  .about-toc {
-    display: none;
-  }
-
-  .about-toc .sticky {
-    position: sticky;
-    top: 6rem;
-    display: grid;
-    gap: 2rem;
-  }
-
-  .about-toc h3 {
-    margin: 0;
-    color: var(--color-brand-strong);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
-  }
-
-  .about-toc .links,
-  .about-records .content,
-  .about-record {
-    display: grid;
+  .toc-title {
+    margin: 0 0 0.75rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
   }
 
   .about-toc .links {
-    gap: 1rem;
+    display: grid;
+    border-top: 1px solid var(--color-border);
   }
 
   .about-toc .link {
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border-muted);
+    color: var(--color-text-muted);
+    font-size: var(--text-body-small);
+    font-weight: 600;
     text-decoration: none;
-    text-transform: uppercase;
-    transition: color var(--duration-fast);
+    transition:
+      color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out);
   }
 
   .about-toc .link:hover,
   .about-toc .link.active {
-    color: var(--color-brand);
+    border-bottom-color: var(--color-brand-strong);
+    color: var(--color-brand-strong);
   }
 
   .about-records .content {
-    gap: 6rem;
+    display: grid;
+    gap: clamp(3rem, 6vw, 4.5rem);
   }
 
   .about-record {
-    gap: 2rem;
     scroll-margin-top: 6rem;
-  }
-
-  .about-record,
-  .about-gallery .heading {
-    --section-heading-title-size: clamp(2.25rem, 6vw, 3rem);
-    --section-heading-title-leading: normal;
-  }
-
-  .survey-report h2 span {
-    color: var(--color-brand-strong);
-    font-style: italic;
   }
 
   .stewardship-grid {
     display: grid;
-    gap: 1rem;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-border);
+    list-style-position: inside;
   }
 
   .stewardship-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    border: 1px solid var(--color-border);
     background: var(--color-surface);
-    padding: 1.5rem;
-    transition: border-color var(--duration-fast);
-  }
-
-  .stewardship-card:hover {
-    border-color: var(--color-brand-strong);
-  }
-
-  .stewardship-card span {
-    color: var(--color-accent-strong);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 900;
+    padding: 1.25rem 1.5rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
   }
 
   .stewardship-card p {
+    display: inline;
     margin: 0;
-    color: var(--color-text-strong);
-    font-size: var(--text-body-small);
-    font-weight: 700;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--color-text-muted);
   }
 
   .award-list {
-    border: 1px solid var(--color-border);
+    display: grid;
+    margin: 0;
+    border-top: 1px solid var(--color-border);
   }
 
-  .award-list .item {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    border-bottom: 1px solid var(--color-border);
-    padding: 1.5rem;
-    transition: background-color var(--duration-fast);
+  .award-item {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    gap: 1rem;
+    border-bottom: 1px solid var(--color-border-muted);
+    padding-block: 1rem;
+    align-items: baseline;
   }
 
-  .award-list .item:last-child {
-    border-bottom: 0;
-  }
-
-  .award-list .item:hover {
-    background: var(--color-surface);
-  }
-
-  .award-list .item span:first-child {
-    min-width: 3rem;
+  .award-item dt {
     color: var(--color-brand-strong);
-    font-family: var(--font-label);
-    font-size: var(--text-body-large);
-    font-weight: 900;
+    font-family: var(--font-body);
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
   }
 
-  .award-list .item span:last-child {
-    color: var(--color-text-muted);
-    font-family: var(--font-label);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+  .award-item dd {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
   }
 
   .structure-card {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-surface-inverse);
-    color: var(--color-text-inverse);
-    padding: clamp(2rem, 4vw, 3rem);
-  }
-
-  .structure-card .content {
-    position: relative;
-    z-index: 1;
     display: grid;
     gap: 1.5rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
   }
 
-  .structure-card .content > p {
+  .structure-summary {
+    max-width: 56ch;
     margin: 0;
-    color: var(--color-text-inverse-muted);
+    color: var(--color-text-muted);
     font-size: var(--text-body-large);
-    font-weight: 500;
-    line-height: var(--leading-body);
+    line-height: 1.6;
   }
 
-  .structure-card .facts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    border-top: 1px solid var(--color-surface-inverse-muted);
-    padding-top: 2rem;
-  }
-
-  .structure-card .facts p {
+  .structure-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1px;
     margin: 0;
-    font-family: var(--font-label);
-    text-transform: uppercase;
-  }
-
-  .structure-card .facts p:first-child {
-    margin-bottom: 0.25rem;
-    color: var(--color-text-subtle);
-    font-size: var(--text-label);
-    letter-spacing: 0.12em;
-  }
-
-  .structure-card .facts p:last-child {
-    color: var(--color-text-inverse);
-    font-size: 0.75rem;
-    font-weight: 900;
-  }
-
-  .structure-card .marker {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 8rem;
-    height: 8rem;
-    background: color-mix(in oklab, var(--color-brand-strong) 20%, transparent);
-    transform: translate(50%, -50%) rotate(45deg);
-  }
-
-  .about-gallery .heading {
-    margin-bottom: 3rem;
-  }
-
-  .survey-report {
-    background: var(--color-surface-muted);
-  }
-
-  .survey-report .inner {
-    --l-container-max: 56rem;
-  }
-
-  .survey-report .card {
-    position: relative;
-    border: 2px solid var(--color-border-strong);
-    background: var(--color-surface);
-    padding: clamp(2rem, 4vw, 3rem);
-  }
-
-  .survey-report h2 {
-    margin: 0 0 2rem;
-    border-bottom: 1px solid var(--color-border-muted);
-    padding-bottom: 1rem;
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
-    font-size: 1.875rem;
-    font-weight: 900;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .survey-report .media {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
     border: 1px solid var(--color-border);
-    background: var(--color-surface-muted);
-    margin-bottom: 2rem;
+    background: var(--color-border);
   }
 
-  .survey-report .media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--duration-slow);
+  .structure-facts > div {
+    background: var(--color-page);
+    padding: 1rem 1.25rem;
   }
 
-  .survey-report .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-
-  .survey-report .footer > div {
-    max-width: 28rem;
-  }
-
-  .survey-report .footer p {
-    margin: 0;
+  .structure-facts dt {
     color: var(--color-text-muted);
     font-size: var(--text-body-small);
     font-weight: 500;
-    line-height: var(--leading-body);
+    margin-bottom: 0.25rem;
   }
 
-  @media (min-width: 48rem) {
-    .stewardship-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .survey-report .footer {
-      flex-direction: row;
-      align-items: flex-end;
-    }
+  .structure-facts dd {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
   }
 
-  @media (width <= 56rem) {
-    .about-hero__grid {
-      grid-template-columns: 1fr;
-      align-items: start;
-    }
+  .gallery-stack {
+    display: grid;
+    gap: 3rem;
+  }
 
-    .about-hero .logo-card {
-      width: min(100%, 24rem);
-      align-self: start;
-      justify-self: start;
-    }
+  .gallery-intro {
+    margin-bottom: 0;
+  }
 
-    .about-hero .logo-card img {
-      width: min(100%, 10rem);
-    }
+  .survey-report {
+    display: grid;
+    overflow: hidden;
+  }
+
+  .survey-media {
+    aspect-ratio: 16 / 10;
+    border-bottom: 1px solid var(--color-border-strong);
+    background: var(--color-surface-muted);
+  }
+
+  .survey-media :global(picture),
+  .survey-media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .survey-copy {
+    display: grid;
+    justify-items: start;
+    align-content: center;
+    gap: 1rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .survey-copy h3 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-weight: 700;
+  }
+
+  .survey-copy p {
+    max-width: 52ch;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   @media (min-width: 64rem) {
     .about-records .layout {
-      grid-template-columns: 4fr 8fr;
+      grid-template-columns: minmax(14rem, 3fr) minmax(0, 9fr);
+      align-items: start;
     }
 
-    .about-toc {
-      display: block;
-      border-right: 1px solid var(--color-border);
-      padding-right: 3rem;
+    .about-toc .sticky {
+      position: sticky;
+      top: 6rem;
+    }
+
+    .survey-report {
+      grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+    }
+
+    .survey-media {
+      border-right: 1px solid var(--color-border-strong);
+      border-bottom: 0;
     }
   }
 </style>

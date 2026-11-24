@@ -27,56 +27,56 @@ const { Content } = await render(entry);
   title={`Volunteer Spotlight: ${entry.data.name}`}
   description={entry.data.intro}
 >
-  <main class="page spotlight-detail">
-    <!-- Volunteer Spotlight Header -->
-    <section class="page-hero">
-      <div class="page-hero__inner">
-        <div class="hero">
-          <div class="intro">
-            <div class="page-eyebrow">
-              <span>
-                Volunteer Spotlight — {entry.data.name}
-              </span>
+  <div class="page spotlight-detail">
+    <!-- Record Detail Hero -->
+    <section class="subpage-hero" aria-labelledby="spotlight-entry-title">
+      <div class="subpage-hero__inner">
+        <div class="subpage-hero__masthead">
+          <a href="/volunteerspotlight/" class="subpage-hero__back">← Volunteer spotlight archive</a>
+          <div class="subpage-hero__split subpage-hero__split--masthead">
+            <div class="subpage-hero__copy">
+              <p class="subpage-hero__record-meta">Volunteer Spotlight</p>
+              <h1 id="spotlight-entry-title" class="subpage-hero__title">
+                {entry.data.name}
+              </h1>
+              <p class="subpage-hero__deck">
+                {entry.data.intro}
+              </p>
             </div>
 
-            <h1 class="page-title">
-              {entry.data.name.split(" ")[0]}
-              <br />
-              <span
-                >{entry.data.name.split(" ").slice(1).join(" ")}</span
-              >
-            </h1>
-
-            <p class="page-intro">
-              {entry.data.intro}
-            </p>
-          </div>
-
-          <div class="actions">
-            <a
-              href="/volunteerspotlight/"
-              class="back"
-            >
-              <span>← Back to Spotlights</span>
-            </a>
             {
               (entry.data.instagram || entry.data.website) && (
-                <div class="socials">
-                  {entry.data.instagram && (
-                    <a
-                      href={"https://instagram.com/" + entry.data.instagram}
-                    >
-                      <InstagramIcon class="icon" aria-hidden="true" />
-                    </a>
-                  )}
-                  {entry.data.website && (
-                    <a
-                      href={entry.data.website}
-                    >
-                      <WebsiteIcon class="icon" aria-hidden="true" />
-                    </a>
-                  )}
-                </div>
+                <aside class="subpage-hero__aside-box" aria-label="Volunteer links">
+                  <h2 class="subpage-hero__aside-title">Connect</h2>
+                  <div class="socials">
+                    {
+                      entry.data.instagram && (
+                        <a
+                          href={"https://instagram.com/" + entry.data.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer nofollow"
+                          class="social-item"
+                        >
+                          <InstagramIcon class="icon" aria-hidden="true" />
+                          <span>@{entry.data.instagram}</span>
+                        </a>
+                      )
+                    }
+                    {
+                      entry.data.website && (
+                        <a
+                          href={entry.data.website}
+                          target="_blank"
+                          rel="noopener noreferrer nofollow"
+                          class="social-item"
+                        >
+                          <WebsiteIcon class="icon" aria-hidden="true" />
+                          <span>Personal website</span>
+                        </a>
+                      )
+                    }
+                  </div>
+                </aside>
               )
             }
           </div>
@@ -88,124 +88,81 @@ const { Content } = await render(entry);
     <section class="article-layout">
       <div class="article-layout__inner">
         <div class="article-layout__grid">
-          <!-- Their Story -->
           <div class="article-layout__main">
             <div class="prose-content">
               <Content />
             </div>
           </div>
 
-          <!-- Photographic Records -->
-          <div class="article-layout__aside photos">
+          <aside class="article-layout__aside photos">
             {
               entry.data.images.map((image, i) => (
                 <div class="article-photo-card photo">
-                  <Picture
-                    src={image.image}
-                    formats={["avif"]}
-                    fallbackFormat="webp"
-                    alt={`${entry.data.name} action photo ${i + 1}`}
-                    width={800}
-                    height={800}
-                    widths={[400, 800, 1200]}
-                    sizes="(min-width: 64rem) 40vw, 100vw"
-                    class="photo-image"
-                  />
+                  <div class="photo-box">
+                    <Picture
+                      src={image.image}
+                      formats={["avif"]}
+                      fallbackFormat="webp"
+                      alt={`${entry.data.name} action photo ${i + 1}`}
+                      width={800}
+                      height={800}
+                      widths={[400, 800, 1200]}
+                      sizes="(min-width: 64rem) 40vw, 94vw"
+                      class="photo-image"
+                    />
+                  </div>
                 </div>
               ))
             }
-          </div>
+          </aside>
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
-  .spotlight-detail .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-
-  .spotlight-detail .intro {
+  .socials {
     display: grid;
-    gap: 2rem;
+    gap: 0.625rem;
   }
 
-  .spotlight-detail .actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .spotlight-detail .back {
+  .social-item {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    color: var(--color-text-subtle);
-    font-family: var(--font-label);
-    font-size: var(--text-label);
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color var(--duration-fast);
-  }
-
-  .spotlight-detail .back:hover,
-  .spotlight-detail .socials a:hover {
+    gap: 0.625rem;
     color: var(--color-brand-strong);
+    font-size: var(--text-body-small);
+    font-weight: 700;
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.22rem;
   }
 
-  .spotlight-detail .socials {
-    display: flex;
-    gap: 1rem;
-    border: 1px solid var(--color-border-muted);
-    background: var(--color-surface);
-    padding: 1rem;
+  .social-item :global(.icon) {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
   }
 
-  .spotlight-detail .socials a {
-    color: var(--color-text-subtle);
-    transition: color var(--duration-fast);
-  }
-
-  :global(.spotlight-detail .icon) {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  .spotlight-detail .photos {
+  .photos {
     display: grid;
-    align-content: start;
-    gap: 3rem;
+    gap: 1.5rem;
   }
 
-  .spotlight-detail .photo {
-    align-self: start;
+  .photo-box {
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--color-surface-muted);
   }
 
-  :global(.spotlight-detail .photo-image) {
+  .photo-box :global(picture),
+  .photo-box :global(img) {
     display: block;
     width: 100%;
-    height: clamp(14rem, 26vw, 20rem);
+    height: 100%;
     object-fit: cover;
     object-position: top;
-    transform-origin: top center;
-    transform: scale(1.05);
-    transition: transform var(--duration-slower);
-  }
-
-  .spotlight-detail .photo:hover :global(.photo-image) {
-    transform: scale(1);
-  }
-
-  @media (min-width: 48rem) {
-    .spotlight-detail .hero {
-      flex-direction: row;
-    }
   }
 </style>
