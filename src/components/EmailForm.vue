@@ -5,6 +5,10 @@ import MdiEmailOutline from 'virtual:icons/mdi/email-outline';
 import MdiLoading from 'virtual:icons/mdi/loading';
 import { runFormSubmission, type FormLifecycle } from './formLifecycle';
 
+const props = withDefaults(defineProps<{ variant?: 'default' | 'editorial' }>(), {
+  variant: 'default',
+});
+
 const nameIsError = shallowRef(false);
 const emailIsError = shallowRef(false);
 const emailValidationError = shallowRef('');
@@ -72,7 +76,7 @@ const submit = async (event: SubmitEvent) => {
 </script>
 
 <template>
-  <div class="email-signup">
+  <div :class="['email-signup', props.variant === 'editorial' && 'email-signup--editorial']">
     <div v-if="!isSuccess">
       <form class="form" @submit="submit">
         <label for="name" class="sr-only">Name</label>
@@ -250,5 +254,54 @@ const submit = async (event: SubmitEvent) => {
   to {
     transform: rotate(360deg);
   }
+}
+
+.email-signup--editorial .form-input--newsletter {
+  --form-input-min-height: 3rem;
+  --form-input-radius: 0;
+  --form-input-border-color: var(--color-border);
+  --form-input-background: var(--color-surface);
+  --form-input-font-family: var(--font-body);
+  --form-input-font-size: 0.875rem;
+  --form-input-shadow: none;
+  --form-input-focus-border-color: var(--color-brand-strong);
+  --form-input-focus-shadow: 0 0 0 2px color-mix(in oklab, var(--color-brand-strong) 20%, transparent);
+}
+
+.email-signup--editorial .submit {
+  border-radius: 0;
+  background: var(--color-brand-strong);
+  color: var(--color-text-inverse);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  box-shadow: none;
+  transition:
+    background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.email-signup--editorial .submit:hover:not(:disabled) {
+  background: var(--color-brand);
+  box-shadow: none;
+}
+
+.email-signup--editorial .submit:disabled {
+  background: var(--color-brand);
+  opacity: 0.65;
+}
+
+.email-signup--editorial .error,
+.email-signup--editorial .privacy,
+.email-signup--editorial .failure {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+}
+
+.email-signup--editorial .success {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
 }
 </style>

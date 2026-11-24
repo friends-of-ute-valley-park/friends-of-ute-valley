@@ -1,6 +1,12 @@
 ---
 import SocialLinks from "./SocialLinks.astro";
 
+interface Props {
+  editorial?: boolean;
+}
+
+const { editorial = false } = Astro.props;
+
 const footerItems = [
   { name: "About", link: "/about/" },
   { name: "News", link: "/news/" },
@@ -19,7 +25,54 @@ const footerItems = [
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
+{
+  editorial ? (
+    <footer class="site-footer site-footer--editorial">
+      <div class="editorial-inner l-container">
+        <div class="editorial-grid">
+          <div class="editorial-brand">
+            <h2 class="editorial-title">Friends of Ute Valley Park</h2>
+            <p class="editorial-summary">
+              Independent, volunteer-led stewardship for 550 acres of trails, ponderosa pines, and Front Range habitat in northwest Colorado Springs.
+            </p>
+            <div class="editorial-social">
+              <SocialLinks />
+            </div>
+            <div class="editorial-legal">
+              <p>Friends of Ute Valley Park, PO Box 50122, Colorado Springs, CO 80919</p>
+              <p>Independent 501(c)(3) public charity · EIN 42-2107142</p>
+            </div>
+          </div>
+
+          <nav class="editorial-nav" aria-label="Footer">
+            <ul class="editorial-links" role="list">
+              {footerItems.map((item) => (
+                <li>
+                  <a href={item.link} class="editorial-link">
+                    <span>{item.name}</span>
+                    <span class="editorial-arrow" aria-hidden="true">→</span>
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a href="/sitemap-index.xml" class="editorial-link">
+                  <span>Sitemap</span>
+                  <span class="editorial-arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="editorial-colophon">
+          <span>38.9189° N, 104.8558° W</span>
+          <span>Colorado Springs, CO</span>
+          <span>© {currentYear} Friends of Ute Valley Park. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  ) : (
+    <footer class="site-footer">
   <div class="inner l-container">
     <div class="panel">
       <!-- Branding & Legal -->
@@ -80,6 +133,8 @@ const currentYear = new Date().getFullYear();
     </div>
   </div>
 </footer>
+  )
+}
 
 <style>
   .site-footer {
@@ -263,6 +318,139 @@ const currentYear = new Date().getFullYear();
     .site-footer .brand {
       border-right: 1px solid var(--color-border);
       border-bottom: 0;
+    }
+  }
+
+  .site-footer--editorial {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-page);
+    padding-block: clamp(4rem, 7vw, 5.5rem) clamp(2rem, 4vw, 3rem);
+  }
+
+  .editorial-grid {
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .editorial-brand {
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+  }
+
+  .editorial-title {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.8vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+  }
+
+  .editorial-summary {
+    max-width: 44ch;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .editorial-social {
+    padding-block: 0.25rem;
+  }
+
+  .editorial-legal {
+    display: grid;
+    gap: 0.375rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.45;
+  }
+
+  .editorial-legal p {
+    margin: 0;
+  }
+
+  .editorial-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.25rem 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .editorial-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--color-border-muted);
+    color: var(--color-text-strong);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.45;
+    text-decoration: none;
+    transition:
+      color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .editorial-arrow {
+    color: var(--color-text-subtle);
+    transition:
+      color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .editorial-link:hover,
+  .editorial-link:focus-visible {
+    border-bottom-color: var(--color-brand-strong);
+    color: var(--color-brand-strong);
+  }
+
+  .editorial-link:hover .editorial-arrow,
+  .editorial-link:focus-visible .editorial-arrow {
+    color: var(--color-brand-strong);
+    transform: translateX(0.25rem);
+  }
+
+  .editorial-colophon {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: clamp(3rem, 6vw, 4rem);
+    border-top: 1px solid var(--color-border-muted);
+    padding-top: 1.5rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.45;
+  }
+
+  @media (min-width: 48rem) {
+    .editorial-colophon {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem 2rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .editorial-grid {
+      grid-template-columns: 5fr 7fr;
+      align-items: start;
     }
   }
 </style>

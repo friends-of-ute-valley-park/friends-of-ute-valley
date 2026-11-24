@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { shallowRef, useTemplateRef, watch, type Ref } from 'vue';
+import { computed, shallowRef, useTemplateRef, watch, type Ref } from 'vue';
 import { useScroll, onClickOutside } from '@vueuse/core';
 import LucidePawPrint from 'virtual:icons/lucide/paw-print';
 import LucideBird from 'virtual:icons/lucide/bird';
@@ -9,7 +9,7 @@ import HeroiconsBars3 from 'virtual:icons/heroicons/bars-3';
 import HeroiconsChevronDown from 'virtual:icons/heroicons/chevron-down';
 import HeroiconsXMark from 'virtual:icons/heroicons/x-mark';
 
-const props = defineProps<{ page: string }>();
+const props = defineProps<{ page: string; immersive?: boolean }>();
 
 const menuOpen = shallowRef(false);
 const lntOpen = shallowRef(false);
@@ -24,7 +24,15 @@ if (typeof window !== 'undefined') {
   scrollY = y;
 }
 
+const isScrolled = computed(() => !props.immersive || scrollY.value > 32 || menuOpen.value || lntOpen.value);
+
 watch(scrollY, (current) => {
+  if (props.immersive) {
+    navHidden.value = false;
+    lastScrollY = current;
+    return;
+  }
+
   if (menuOpen.value) {
     lastScrollY = current;
     return;
@@ -124,7 +132,11 @@ const navigation = [
 </script>
 
 <template>
-  <div ref="navContainerRef" :class="['site-nav site-nav-shell', navHidden && 'site-nav-shell--hidden']" @keydown.escape="onKeydown" @focusin="navHidden = false">
+  <div
+    ref="navContainerRef"
+    :class="['site-nav site-nav-shell', navHidden && 'site-nav-shell--hidden', props.immersive && 'site-nav-shell--immersive', props.immersive && isScrolled && 'site-nav-shell--scrolled']"
+    @keydown.escape="onKeydown"
+    @focusin="navHidden = false">
     <nav aria-label="Primary">
       <div class="inner l-container">
         <div class="bar">
@@ -665,5 +677,131 @@ const navigation = [
   .site-nav .social {
     display: block;
   }
+}
+
+.site-nav-shell--immersive {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 50;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out),
+    backdrop-filter var(--duration-base) var(--ease-out),
+    transform var(--duration-base);
+}
+
+.site-nav-shell--immersive .bar {
+  height: 4.5rem;
+  gap: 1rem;
+}
+
+.site-nav-shell--immersive .wordmark {
+  display: block;
+}
+
+.site-nav-shell--immersive .wordmark br {
+  display: none;
+}
+
+.site-nav-shell--immersive .wordmark span {
+  font-size: clamp(1rem, 3.6vw, 1.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.site-nav-shell--immersive .links {
+  align-items: center;
+  gap: 0.25rem;
+  border-left: 0;
+}
+
+.site-nav-shell--immersive .link {
+  border-right: 0;
+  padding-inline: 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.site-nav-shell--immersive .dropdown-panel {
+  border-width: 1px;
+  border-color: var(--color-border-strong);
+}
+
+.site-nav-shell--immersive .mobile-link {
+  font-size: 0.875rem;
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) {
+  border-bottom-color: transparent;
+  background: transparent;
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .logo-frame {
+  border-color: color-mix(in oklab, var(--color-text-inverse) 35%, transparent);
+  background: color-mix(in oklab, var(--color-surface) 92%, transparent);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .wordmark span {
+  color: var(--color-text-inverse);
+  text-shadow: 0 1px 12px color-mix(in oklab, var(--color-text) 45%, transparent);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .link {
+  color: color-mix(in oklab, var(--color-text-inverse) 92%, transparent);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .link:hover,
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .link.current {
+  background: color-mix(in oklab, var(--color-surface) 14%, transparent);
+  color: var(--color-text-inverse);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .link.current {
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .toggle {
+  border-color: color-mix(in oklab, var(--color-text-inverse) 35%, transparent);
+  background: color-mix(in oklab, var(--color-text) 20%, transparent);
+  color: var(--color-text-inverse);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) .toggle:hover {
+  background: color-mix(in oklab, var(--color-surface) 18%, transparent);
+  color: var(--color-text-inverse);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) :deep(.social-links .link.button) {
+  border-color: color-mix(in oklab, var(--color-text-inverse) 32%, transparent);
+  background: color-mix(in oklab, var(--color-text) 18%, transparent);
+  color: var(--color-text-inverse);
+}
+
+.site-nav-shell--immersive:not(.site-nav-shell--scrolled) :deep(.social-links .link.button:hover) {
+  border-color: var(--color-text-inverse);
+  background: color-mix(in oklab, var(--color-surface) 16%, transparent);
+  color: var(--color-text-inverse);
+}
+
+.site-nav-shell--immersive.site-nav-shell--scrolled {
+  border-bottom: 1px solid var(--color-border-muted);
+  background: color-mix(in oklab, var(--color-page) 94%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.site-nav-shell--immersive.site-nav-shell--scrolled .link:hover,
+.site-nav-shell--immersive.site-nav-shell--scrolled .link.current {
+  background: color-mix(in oklab, var(--color-surface) 75%, transparent);
+  color: var(--color-brand-strong);
+}
+
+.site-nav-shell--immersive.site-nav-shell--scrolled .link.current {
+  border-bottom: 2px solid var(--color-brand-strong);
 }
 </style>

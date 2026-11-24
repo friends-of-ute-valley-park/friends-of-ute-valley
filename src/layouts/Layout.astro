@@ -16,13 +16,14 @@ const volunteerEventSummaries = upcomingVolunteerEvents.map(({ data: { date, tim
 export interface Props {
   title: string;
   description?: string;
+  editorialLanding?: boolean;
 }
 
 const {
   title,
   description = "Friends of Ute Valley Park is a volunteer-led nonprofit helping protect, restore, and advocate for Ute Valley Park in Colorado Springs.",
+  editorialLanding = false,
 } = Astro.props;
-
 ---
 
 <!doctype html>
@@ -43,12 +44,12 @@ const {
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="site-shell">
-      <VolunteerBanner events={volunteerEventSummaries} />
-      <NavigationBar page={Astro.url.pathname} client:idle>
+      {!editorialLanding && <VolunteerBanner events={volunteerEventSummaries} />}
+      <NavigationBar page={Astro.url.pathname} immersive={editorialLanding} client:idle>
         <Fragment slot="social-links">
           <SocialLinks />
         </Fragment>
-        <RouteProfile slot="route-profile" />
+        {!editorialLanding && <RouteProfile slot="route-profile" />}
       </NavigationBar>
 
       <div>
@@ -57,7 +58,7 @@ const {
           <slot />
         </main>
       </div>
-      <NavigationFooter />
+      <NavigationFooter editorial={editorialLanding} />
     </div>
   </body>
 </html>
@@ -101,4 +102,3 @@ const {
     background: var(--color-page);
   }
 </style>
-
