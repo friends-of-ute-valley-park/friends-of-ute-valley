@@ -152,6 +152,21 @@ const seasonalGuide = [
   },
 ] as const;
 
+const stewardshipPillars = [
+  {
+    title: "Trail maintenance",
+    description: "Repairing eroded tread, shaping drainage, and clearing corridors across 37 trails.",
+  },
+  {
+    title: "Habitat restoration",
+    description: "Closing unauthorized social trails, pulling invasive thistle, and protecting biological soil crusts.",
+  },
+  {
+    title: "Visitor education",
+    description: "Sharing Leave No Trace practices so ponderosa roots, wildlife, and multi-use access thrive together.",
+  },
+];
+
 const impactMetrics = [
   {
     value: "550",
@@ -217,170 +232,97 @@ const leaveNoTracePractices = [
   editorialLanding
 >
   <div class="home-editorial">
-    <!-- Full-Bleed Opening Hero -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <Picture
-        src={heroImage}
-        formats={["avif"]}
-        fallbackFormat="webp"
-        width={1600}
-        widths={[640, 1080, 1440, 1800]}
-        sizes="100vw"
-        priority
-        alt="Ute Valley Park sandstone ledges, ponderosa pines, and Pikes Peak beneath an open Front Range sky"
-        class="hero-photo"
-      />
-      <div class="hero-scrim-top" aria-hidden="true"></div>
-      <div class="hero-scrim-bottom" aria-hidden="true"></div>
+    <!-- Opening Stage: Full-Bleed Hero + Integrated Park Status (in-hero at XL, compact utility strip below XL) -->
+    <section class="opening-stage" aria-labelledby="hero-heading">
+      <div class="hero-cover">
+        <Picture
+          src={heroImage}
+          formats={["avif"]}
+          fallbackFormat="webp"
+          width={1600}
+          widths={[640, 1080, 1440, 1800]}
+          sizes="100vw"
+          priority
+          alt="Ute Valley Park sandstone ledges, ponderosa pines, and Pikes Peak beneath an open Front Range sky"
+          class="hero-photo"
+        />
+        <div class="hero-scrim-top" aria-hidden="true"></div>
+        <div class="hero-scrim-bottom" aria-hidden="true"></div>
 
-      <div class="l-container hero-content">
-        <div class="hero-statement">
-          <h1 id="hero-heading" class="hero-title">Keep Ute Valley Park wild.</h1>
-          <p class="hero-lede">
-            Neighbors maintaining 550 acres of trails, ponderosa pines, and Front Range habitat in northwest Colorado Springs.
-          </p>
-          <a href="/visit/" class="hero-cta">
-            <span>Plan your visit</span>
-            <ChevronRightIcon class="cta-icon" aria-hidden="true" />
-          </a>
+        <div class="l-container hero-overlay">
+          <div class="hero-statement">
+            <h1 id="hero-heading" class="hero-title">Keep Ute Valley Park wild.</h1>
+            <p class="hero-lede">
+              Neighbors maintaining 550 acres of trails, ponderosa pines, and Front Range habitat in northwest Colorado Springs.
+            </p>
+            <a href="/visit/" class="hero-cta">
+              <span>Plan your visit</span>
+              <ChevronRightIcon class="cta-icon" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- Section 1: Today in the Park & Five Trailheads -->
-    <section class="band-surface today-section reveal-section" aria-labelledby="today-heading">
-      <div class="l-container">
-        <div class="today-grid">
-          <div class="today-lead">
-            <h2 id="today-heading" class="section-title">Today in the park</h2>
-            <p class="body-copy">{trailConditions.note}</p>
-            <p class="freshness-note">
+      <aside class="park-status-panel" aria-labelledby="park-status-heading">
+        <div class="park-status-shell">
+          <div class="park-status-head">
+            <h2 id="park-status-heading" class="park-status-title">Today in the park</h2>
+            <p class="park-status-stamp">
               Updated <time datetime={trailUpdatedAt.toISOString()}>{formatShortMonthDayYear(trailUpdatedAt)}</time>
             </p>
-            <div class="section-action">
-              <a href="/visit/" class="editorial-btn editorial-btn--brand">
-                <span>Explore trail map and conditions</span>
-                <ChevronRightIcon class="cta-icon" aria-hidden="true" />
-              </a>
-            </div>
           </div>
 
-          <dl class="status-ledger">
-            <div class="status-row">
-              <dt class="status-term">Trail conditions</dt>
-              <dd class="status-detail">
-                <span class:list={["status-value", trailsLookIdeal ? "status-value--ideal" : "status-value--caution"]}>
+          <dl class="park-status-grid">
+            <div class="park-status-cell park-status-cell--wide">
+              <dt class="park-status-term">Trail conditions</dt>
+              <dd class="park-status-detail">
+                <span class:list={["park-status-value", trailsLookIdeal ? "park-status-value--ideal" : "park-status-value--caution"]}>
                   {trailConditions.status}
                 </span>
-                <span class="status-meta">{trailConditions.trailCount} mapped trails across 550 acres</span>
+                <span class="park-status-note">{trailConditions.note}</span>
+                <a href="/visit/" class="inline-link inline-link--compact">
+                  Trail map and conditions
+                </a>
               </dd>
             </div>
 
-            <div class="status-row">
-              <dt class="status-term">{parkSeason} park hours</dt>
-              <dd class="status-detail">
-                <span class="status-value">{parkHours}</span>
-                <span class="status-meta">Free public entry every day</span>
+            <div class="park-status-cell">
+              <dt class="park-status-term">{parkSeason} hours</dt>
+              <dd class="park-status-detail">
+                <span class="park-status-value">{parkHours}</span>
+                <span class="park-status-note">Free daily entry</span>
               </dd>
             </div>
 
-            <div class="status-row">
-              <dt class="status-term">Dogs and park rules</dt>
-              <dd class="status-detail">
-                <span class="status-value">Leash required at all times</span>
-                <a href="/rules/" class="inline-link">Read full park rules</a>
+            <div class="park-status-cell">
+              <dt class="park-status-term">Dog policy</dt>
+              <dd class="park-status-detail">
+                <span class="park-status-value">Leash required</span>
+                <a href="/rules/" class="inline-link inline-link--compact">
+                  Park rules
+                </a>
               </dd>
             </div>
           </dl>
         </div>
-
-        <div class="trailhead-strip">
-          <h3 class="subhead-sans">Five ways into the park</h3>
-          <ul class="trailhead-list" role="list">
-            {
-              sortedTrailheads.map((trailhead) => (
-                <li class="trailhead-item">
-                  <a href={`/trailheads/${trailhead.id}/`} class="trailhead-link">
-                    <span class="trailhead-name">{trailhead.data.name}</span>
-                    <span class="trailhead-detail">
-                      {trailhead.data.amenities[0]?.description ?? trailhead.data.description}
-                    </span>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </div>
+      </aside>
     </section>
 
-    <!-- Section 2: The Mission Spread -->
-    <section class="band-limestone mission-section reveal-section" aria-labelledby="mission-heading">
+    <!-- Chapter 1: Framed Mission Folio -->
+    <section class="mission-folio reveal-section" aria-labelledby="mission-heading">
       <div class="l-container">
+        <div class="folio-rule-header">
+          <h2 id="mission-heading" class="section-title">Neighbors keeping 550 acres wild.</h2>
+        </div>
+
         <div class="mission-grid">
-          <div class="mission-gallery">
-            <figure class="figure-plate figure-plate--tall">
-              <div class="photo-frame photo-frame--4-5">
-                <Picture
-                  src={stewardToolImage}
-                  formats={["avif"]}
-                  fallbackFormat="webp"
-                  width={720}
-                  widths={[480, 720, 960]}
-                  sizes="(min-width: 64rem) 34vw, 92vw"
-                  loading="lazy"
-                  alt="Ute Valley Park volunteer walking down a pine-lined trail carrying a pick mattock, hand saw, and level"
-                  class="frame-photo"
-                />
-              </div>
-              <figcaption class="photo-caption">
-                Volunteers bring trail tools, saws, and drainage levels to twice-monthly workdays.
-              </figcaption>
-            </figure>
-
-            <figure class="figure-plate figure-plate--wide">
-              <div class="photo-frame photo-frame--4-3">
-                <Picture
-                  src={outcropLopperImage}
-                  formats={["avif"]}
-                  fallbackFormat="webp"
-                  width={640}
-                  widths={[420, 640, 880]}
-                  sizes="(min-width: 64rem) 26vw, 92vw"
-                  loading="lazy"
-                  alt="Volunteer holding loppers overhead on a Ute Valley Park sandstone outcrop overlooking the Front Range"
-                  class="frame-photo"
-                />
-              </div>
-              <figcaption class="photo-caption">
-                Corridor clearing on the western sandstone ridges above Rockrimmon.
-              </figcaption>
-            </figure>
-          </div>
-
           <div class="mission-copy">
-            <h2 id="mission-heading" class="section-title">Neighbors caring for 550 wild acres</h2>
             <p class="body-copy">
               Founded in 2012 when local residents raised $110,000 in three and a half months to help expand Ute Valley Park by 205 acres, Friends of Ute Valley Park is an independent, all-volunteer 501(c)(3) nonprofit working alongside Colorado Springs park rangers.
             </p>
             <p class="body-copy">
-              From spring thaw through late fall, hikers, trail runners, mountain bikers, and neighborhood families gather to keep this urban wildland resilient for wildlife and every visitor who steps onto the trail.
+              From spring thaw through late fall, hikers, trail runners, mountain bikers, and neighborhood families gather twice a month to keep this urban wildland resilient for wildlife and every visitor who steps onto the trail.
             </p>
-
-            <ul class="mission-pillars" role="list">
-              <li>
-                <h3 class="subhead-serif">Trail maintenance</h3>
-                <p class="body-copy">Repairing eroded tread, shaping drainage, and clearing corridors across 37 trails.</p>
-              </li>
-              <li>
-                <h3 class="subhead-serif">Habitat restoration</h3>
-                <p class="body-copy">Closing unauthorized social trails, pulling invasive thistle, and protecting biological soil crusts.</p>
-              </li>
-              <li>
-                <h3 class="subhead-serif">Visitor education</h3>
-                <p class="body-copy">Sharing Leave No Trace practices so ponderosa roots, wildlife, and multi-use access thrive together.</p>
-              </li>
-            </ul>
 
             {
               nextVolunteerEvent && (
@@ -391,75 +333,130 @@ const leaveNoTracePractices = [
             }
 
             <div class="section-action">
-              <a href="/volunteer/" class="editorial-btn editorial-btn--brand">
+              <a href="/volunteer/" class="editorial-btn editorial-btn--brand editorial-btn--tactile">
                 <span>Join a trail workday</span>
                 <ChevronRightIcon class="cta-icon" aria-hidden="true" />
               </a>
             </div>
           </div>
+
+          <div class="mission-plate">
+            <div class="plate-diptych">
+              <figure class="plate-figure">
+                <div class="photo-frame photo-frame--4-5">
+                  <Picture
+                    src={stewardToolImage}
+                    formats={["avif"]}
+                    fallbackFormat="webp"
+                    width={720}
+                    widths={[480, 720, 960]}
+                    sizes="(min-width: 64rem) 28vw, 92vw"
+                    loading="lazy"
+                    alt="Ute Valley Park volunteer walking down a pine-lined trail carrying a pick mattock, hand saw, and level"
+                    class="frame-photo"
+                  />
+                </div>
+                <figcaption class="plate-caption">
+                  Volunteers carry pick mattocks, saws, and levels on twice-monthly workdays.
+                </figcaption>
+              </figure>
+
+              <figure class="plate-figure">
+                <div class="photo-frame photo-frame--4-5">
+                  <Picture
+                    src={outcropLopperImage}
+                    formats={["avif"]}
+                    fallbackFormat="webp"
+                    width={640}
+                    widths={[420, 640, 880]}
+                    sizes="(min-width: 64rem) 24vw, 92vw"
+                    loading="lazy"
+                    alt="Volunteer holding loppers overhead on a Ute Valley Park sandstone outcrop overlooking the Front Range"
+                    class="frame-photo"
+                  />
+                </div>
+                <figcaption class="plate-caption">
+                  Corridor clearing above the western sandstone ridges.
+                </figcaption>
+              </figure>
+            </div>
+
+            <ul class="plate-pillars" role="list">
+              {
+                stewardshipPillars.map((pillar) => (
+                  <li class="plate-pillar">
+                    <h3 class="subhead-serif pillar-heading">{pillar.title}</h3>
+                    <p class="pillar-copy">{pillar.description}</p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 3: Deep Ponderosa Chromatic Band -->
-    <section class="band-ponderosa impact-band reveal-section" aria-labelledby="impact-heading">
-      <div class="l-container">
-        <div class="impact-top">
-          <h2 id="impact-heading" class="section-title section-title--inverse">What local hands built</h2>
-          <span class="amber-rule" aria-hidden="true"></span>
+    <!-- Chapter 2: Full-Bleed Stewardship Split + Monumental Pull-Quote -->
+    <section class="stewardship-split reveal-section" aria-labelledby="impact-heading">
+      <div class="split-banner">
+        <div class="split-photo-pane">
+          <Picture
+            src={volunteerCrewImage}
+            formats={["avif"]}
+            fallbackFormat="webp"
+            width={1100}
+            widths={[640, 960, 1280]}
+            sizes="(min-width: 64rem) 50vw, 100vw"
+            loading="lazy"
+            alt="Volunteers gathered in a circle at a Ute Valley Park trailhead before starting trail work"
+            class="frame-photo"
+          />
         </div>
 
-        <dl class="impact-ledger">
-          {
-            impactMetrics.map((metric) => (
-              <div class="impact-cell">
-                <dd class="impact-figure">{metric.value}</dd>
-                <dt class="impact-label">{metric.label}</dt>
-              </div>
-            ))
-          }
-        </dl>
+        <div class="split-impact-pane">
+          <div class="split-impact-inner">
+            <span class="amber-rule" aria-hidden="true"></span>
+            <h2 id="impact-heading" class="section-title section-title--inverse">What local hands built.</h2>
 
-        <div class="voice-spread">
-          <figure class="voice-media">
-            <div class="photo-frame photo-frame--16-10 photo-frame--inverse">
-              <Picture
-                src={volunteerCrewImage}
-                formats={["avif"]}
-                fallbackFormat="webp"
-                width={900}
-                widths={[540, 900, 1280]}
-                sizes="(min-width: 64rem) 46vw, 92vw"
-                loading="lazy"
-                alt="Volunteers gathered in a circle at a Ute Valley Park trailhead before starting trail work"
-                class="frame-photo"
-              />
-            </div>
-          </figure>
+            <dl class="impact-ledger">
+              {
+                impactMetrics.map((metric) => (
+                  <div class="impact-cell">
+                    <dd class="impact-figure">{metric.value}</dd>
+                    <dt class="impact-label">{metric.label}</dt>
+                  </div>
+                ))
+              }
+            </dl>
+          </div>
+        </div>
+      </div>
 
-          <figure class="voice-quote">
+      <div class="quote-band">
+        <div class="l-container">
+          <figure class="pull-quote">
             <blockquote cite="/volunteerspotlight/vance-hewuse/">
               <p>
-                "Trail maintenance assures the greatest number of individuals can enjoy the park whether they are walkers, bikers or runners. You get a real sense of achievement when you look back over a restored trail."
+                "You get a real sense of achievement when you look back over your work in restoring a trail to a sustainable path that many will use in their enjoyment of nature up close."
               </p>
             </blockquote>
-            <figcaption class="voice-attribution">
-              Vance Hewuse, Ute Valley trail runner since 1987 and certified crew leader
+            <figcaption class="pull-quote-footer">
+              <span class="pull-quote-author">Vance Hewuse, Ute Valley trail runner since 1987 and certified crew leader</span>
+              <a href="/volunteerspotlight/" class="inline-link inline-link--inverse">
+                Read volunteer spotlights
+              </a>
             </figcaption>
-            <a href="/volunteerspotlight/" class="inline-link inline-link--inverse">
-              Read volunteer spotlights
-            </a>
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- Section 4: Interactive Seasonal Field Guide -->
-    <section class="band-surface seasonal-section reveal-section" aria-labelledby="seasonal-heading">
+    <!-- Chapter 3: Framed Seasonal Almanac & Docked Trailhead Index -->
+    <section class="almanac-section reveal-section" aria-labelledby="seasonal-heading">
       <div class="l-container">
-        <h2 id="seasonal-heading" class="section-title">Caring for the park in every season</h2>
+        <div class="almanac-header-bar">
+          <h2 id="seasonal-heading" class="section-title">Field guide by season.</h2>
 
-        <div class="season-tabs" data-season-tabs>
           <div class="season-tablist" role="tablist" {...Object.fromEntries([["focusgroup", "tablist nomemory"]])} aria-label="Seasonal park guidance">
             {
               seasonalGuide.map((season) => {
@@ -481,7 +478,9 @@ const leaveNoTracePractices = [
               })
             }
           </div>
+        </div>
 
+        <div class="almanac-frame" data-season-tabs>
           <div class="season-panels">
             {
               seasonalGuide.map((season) => {
@@ -495,31 +494,31 @@ const leaveNoTracePractices = [
                     hidden={!isDefault ? "until-found" : undefined}
                   >
                     <div class="season-panel-inner">
-                      <div class="season-context">
-                        <p class="body-copy">{season.intro}</p>
-                        <figure class="season-figure">
-                          <div class="photo-frame photo-frame--4-3">
-                            <Picture
-                              src={season.image}
-                              formats={["avif"]}
-                              fallbackFormat="webp"
-                              width={720}
-                              widths={[420, 720, 960]}
-                              sizes="(min-width: 64rem) 36vw, 92vw"
-                              loading="lazy"
-                              fetchpriority={isDefault ? undefined : "low"}
-                              alt={season.imageAlt}
-                              class="frame-photo"
-                            />
-                          </div>
-                          <figcaption class="photo-caption">{season.caption}</figcaption>
-                        </figure>
-                      </div>
+                      <figure class="season-feature-figure">
+                        <div class="photo-frame photo-frame--4-3">
+                          <Picture
+                            src={season.image}
+                            formats={["avif"]}
+                            fallbackFormat="webp"
+                            width={720}
+                            widths={[420, 720, 960]}
+                            sizes="(min-width: 64rem) 36vw, 92vw"
+                            loading={isDefault ? "eager" : "lazy"}
+                            fetchpriority={isDefault ? undefined : "low"}
+                            alt={season.imageAlt}
+                            class="frame-photo"
+                          />
+                        </div>
+                        <figcaption class="season-feature-caption">
+                          <p class="body-copy">{season.intro}</p>
+                          <p class="photo-caption">{season.caption}</p>
+                        </figcaption>
+                      </figure>
 
-                      <div class="season-tips">
+                      <div class="season-tips-grid">
                         {season.tips.map((tip) => (
-                          <div class="season-tip">
-                            <h3 class="subhead-serif">{tip.title}</h3>
+                          <div class="season-tip-cell">
+                            <h3 class="subhead-serif tip-heading">{tip.title}</h3>
                             <p class="body-copy">{tip.description}</p>
                           </div>
                         ))}
@@ -530,41 +529,59 @@ const leaveNoTracePractices = [
               })
             }
           </div>
+
+          <div class="almanac-trailheads">
+            <h3 class="almanac-trailheads-heading">Five park trailheads</h3>
+            <ul class="trailhead-index" role="list">
+              {
+                sortedTrailheads.map((trailhead) => (
+                  <li class="trailhead-index-item">
+                    <a href={`/trailheads/${trailhead.id}/`} class="trailhead-index-link">
+                      <span class="trailhead-index-name">{trailhead.data.name}</span>
+                      <span class="trailhead-index-meta">
+                        {trailhead.data.amenities[0]?.description ?? trailhead.data.description}
+                      </span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 5: Field Dispatches (Asymmetric Front-Page News) -->
-    <section class="band-limestone news-section reveal-section" aria-labelledby="news-heading">
+    <!-- Chapter 4: Field Dispatches Broadsheet -->
+    <section class="broadsheet-section reveal-section" aria-labelledby="news-heading">
       <div class="l-container">
-        <div class="section-header-bar">
-          <h2 id="news-heading" class="section-title">Field dispatches</h2>
+        <div class="folio-rule-header folio-rule-header--split">
+          <h2 id="news-heading" class="section-title">Field dispatches.</h2>
           <a href="/news/" class="inline-link">All park news</a>
         </div>
 
-        <div class="dispatches-layout">
+        <div class="broadsheet-grid">
           {
             leadDispatch && (
-              <article class="dispatch-lead">
-                <a href={`/news/${leadDispatch.id}/`} class="dispatch-lead-link">
-                  <div class="photo-frame photo-frame--16-10 dispatch-lead-media">
+              <article class="broadsheet-lead">
+                <a href={`/news/${leadDispatch.id}/`} class="broadsheet-lead-link">
+                  <div class="photo-frame photo-frame--16-10">
                     <Picture
                       src={leadDispatch.data.coverImage}
                       formats={["avif"]}
                       fallbackFormat="webp"
                       width={920}
                       widths={[540, 920]}
-                      sizes="(min-width: 64rem) 54vw, 92vw"
+                      sizes="(min-width: 64rem) 52vw, 92vw"
                       loading="lazy"
                       alt={leadDispatch.data.title}
                       class="frame-photo dispatch-photo-portrait-safe"
                     />
                   </div>
-                  <div class="dispatch-lead-body">
+                  <div class="broadsheet-lead-body">
                     <time class="dispatch-date" datetime={leadDispatch.data.publishedOn.toISOString()}>
                       {formatShortMonthDayYear(leadDispatch.data.publishedOn)}
                     </time>
-                    <h3 class="dispatch-lead-title">{leadDispatch.data.title}</h3>
+                    <h3 class="broadsheet-lead-title">{leadDispatch.data.title}</h3>
                     <p class="body-copy">{leadDispatch.data.previewText}</p>
                   </div>
                 </a>
@@ -572,19 +589,19 @@ const leaveNoTracePractices = [
             )
           }
 
-          <div class="dispatch-stack">
+          <div class="broadsheet-column">
             {
               secondaryDispatches.map((post) => (
-                <article class="dispatch-row">
-                  <a href={`/news/${post.id}/`} class="dispatch-row-link">
-                    <div class="dispatch-row-copy">
+                <article class="broadsheet-item">
+                  <a href={`/news/${post.id}/`} class="broadsheet-item-link">
+                    <div class="broadsheet-item-copy">
                       <time class="dispatch-date" datetime={post.data.publishedOn.toISOString()}>
                         {formatShortMonthDayYear(post.data.publishedOn)}
                       </time>
-                      <h3 class="subhead-serif dispatch-row-title">{post.data.title}</h3>
-                      <p class="body-copy dispatch-row-excerpt">{post.data.previewText}</p>
+                      <h3 class="subhead-serif broadsheet-item-title">{post.data.title}</h3>
+                      <p class="body-copy broadsheet-item-excerpt">{post.data.previewText}</p>
                     </div>
-                    <div class="photo-frame photo-frame--4-3 dispatch-row-media">
+                    <div class="photo-frame photo-frame--4-3 broadsheet-item-media">
                       <Picture
                         src={post.data.coverImage}
                         formats={["avif"]}
@@ -594,7 +611,7 @@ const leaveNoTracePractices = [
                         sizes="(min-width: 64rem) 14vw, 32vw"
                         loading="lazy"
                         alt={post.data.title}
-                        class="frame-photo dispatch-photo-portrait-safe"
+                        class="frame-photo dispatch-photo-secondary-safe"
                       />
                     </div>
                   </a>
@@ -606,63 +623,65 @@ const leaveNoTracePractices = [
       </div>
     </section>
 
-    <!-- Section 6: Leave No Trace Gold Standard Site (Field Charcoal Band) -->
-    <section class="band-charcoal lnt-band reveal-section" aria-labelledby="lnt-heading">
-      <div class="l-container">
-        <div class="lnt-header">
-          <h2 id="lnt-heading" class="section-title section-title--inverse">Leave every trail as you found it</h2>
-          <p class="body-copy body-copy--inverse">
-            Ute Valley Park is a designated Leave No Trace Gold Standard Site. In a dry Front Range ecosystem with thin topsoil and exposed ponderosa pine roots, these six daily habits keep the park healthy.
-          </p>
+    <!-- Chapter 5: Leave No Trace Architectural Split -->
+    <section class="lnt-split-section reveal-section" aria-labelledby="lnt-heading">
+      <div class="lnt-split-shell">
+        <div class="lnt-anchor-pane">
+          <div class="lnt-anchor-sticky">
+            <h2 id="lnt-heading" class="section-title section-title--inverse">Leave every trail as you found it.</h2>
+            <p class="body-copy body-copy--inverse">
+              Ute Valley Park is a designated Leave No Trace Gold Standard Site. In a dry Front Range ecosystem with thin topsoil and exposed ponderosa pine roots, these six daily habits keep the park healthy.
+            </p>
+
+            <a
+              href="https://www.lnt.org"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              class="lnt-partner-plate"
+            >
+              <Image
+                src={lntLogo}
+                format="png"
+                width={180}
+                densities={[1, 2]}
+                loading="lazy"
+                alt="Leave No Trace Gold Standard Site"
+                class="lnt-logo"
+              />
+              <span class="lnt-partner-caption">Gold Standard Site partner (opens lnt.org)</span>
+            </a>
+
+            <div class="section-action">
+              <a href="/rules/" class="editorial-btn editorial-btn--light">
+                <span>Read park rules</span>
+                <ChevronRightIcon class="cta-icon" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
         </div>
 
-        <ul class="lnt-grid" role="list">
+        <ul class="lnt-practices-grid" role="list">
           {
             leaveNoTracePractices.map((practice) => (
-              <li class="lnt-item">
-                <h3 class="subhead-serif subhead-serif--inverse">{practice.title}</h3>
-                <p class="body-copy body-copy--inverse">{practice.description}</p>
-                <a href={practice.href} class="inline-link inline-link--inverse">
+              <li class="lnt-practice-cell">
+                <h3 class="subhead-serif">{practice.title}</h3>
+                <p class="body-copy">{practice.description}</p>
+                <a href={practice.href} class="inline-link inline-link--compact">
                   {practice.linkText}
                 </a>
               </li>
             ))
           }
         </ul>
-
-        <div class="lnt-footer">
-          <a
-            href="https://www.lnt.org"
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-            class="lnt-partner-plate"
-          >
-            <Image
-              src={lntLogo}
-              format="png"
-              width={180}
-              densities={[1, 2]}
-              loading="lazy"
-              alt="Leave No Trace Gold Standard Site"
-              class="lnt-logo"
-            />
-            <span class="lnt-partner-caption">Gold Standard Site partner (opens lnt.org in a new tab)</span>
-          </a>
-
-          <a href="/rules/" class="editorial-btn editorial-btn--light">
-            <span>Read park rules</span>
-            <ChevronRightIcon class="cta-icon" aria-hidden="true" />
-          </a>
-        </div>
       </div>
     </section>
 
-    <!-- Section 7: Support & Newsletter Closing Spread -->
-    <section class="band-muted support-closing reveal-section" aria-labelledby="donate-heading">
+    <!-- Chapter 6: Closing Civic Support Folio -->
+    <section class="closing-folio-section reveal-section" aria-labelledby="donate-heading">
       <div class="l-container">
-        <div class="closing-grid">
-          <div class="closing-column">
-            <h2 id="donate-heading" class="section-title">Keep stewardship volunteer-led</h2>
+        <div class="civic-folio">
+          <div class="civic-folio-donate">
+            <h2 id="donate-heading" class="section-title">Keep stewardship volunteer-led.</h2>
             <p class="body-copy">
               Friends of Ute Valley Park is an independent 501(c)(3) charity with zero paid staff. Every gift buys trail tools, work gloves, native seed, restoration materials, and visitor education for the park.
             </p>
@@ -670,17 +689,15 @@ const leaveNoTracePractices = [
               Independent 501(c)(3) public charity · EIN 42-2107142 · 100% focused on Ute Valley Park
             </p>
             <div class="section-action">
-              <a href="/donate/" class="editorial-btn editorial-btn--brand">
+              <a href="/donate/" class="editorial-btn editorial-btn--brand editorial-btn--tactile">
                 <span>Donate to Ute Valley Park</span>
                 <ChevronRightIcon class="cta-icon" aria-hidden="true" />
               </a>
             </div>
           </div>
 
-          <div class="closing-divider" aria-hidden="true"></div>
-
-          <div class="closing-column">
-            <h2 class="section-title">Hear about the next workday</h2>
+          <div class="civic-folio-newsletter">
+            <h2 class="section-title">Hear about the next workday.</h2>
             <p class="body-copy">
               Sign up for workday schedules, trail updates, and park news. Sent only when there is something worth sharing.
             </p>
@@ -696,11 +713,12 @@ const leaveNoTracePractices = [
 
 <script>
   function initSeasonTabs() {
+    const tablist = document.querySelector<HTMLElement>(".almanac-header-bar [role='tablist']");
     const container = document.querySelector<HTMLElement>("[data-season-tabs]");
-    if (!container || container.dataset.seasonTabsBound === "true") return;
+    if (!tablist || !container || container.dataset.seasonTabsBound === "true") return;
     container.dataset.seasonTabsBound = "true";
 
-    const tabs = Array.from(container.querySelectorAll<HTMLButtonElement>("[data-season-tab]"));
+    const tabs = Array.from(tablist.querySelectorAll<HTMLButtonElement>("[data-season-tab]"));
     const panels = Array.from(container.querySelectorAll<HTMLElement>("[data-season-panel]"));
     if (tabs.length === 0 || panels.length === 0) return;
 
@@ -764,7 +782,7 @@ const leaveNoTracePractices = [
 <style>
   /* Strict 3-size body discipline + 2 font families (--font-display and --font-body) */
   .home-editorial {
-    --type-heading: clamp(2rem, 3.8vw, 3.25rem);
+    --type-heading: clamp(2rem, 3.6vw, 3.125rem);
     --type-body: 1.125rem;
     --type-sm: 0.875rem;
     --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
@@ -775,38 +793,7 @@ const leaveNoTracePractices = [
     font-variant-numeric: tabular-nums;
   }
 
-  /* Surfaces */
-  .band-surface {
-    background: var(--color-surface);
-    color: var(--color-text);
-    padding-block: clamp(4.5rem, 8vw, 7rem);
-  }
-
-  .band-limestone {
-    background: var(--color-page);
-    color: var(--color-text);
-    padding-block: clamp(4.5rem, 8vw, 7rem);
-  }
-
-  .band-muted {
-    background: var(--color-surface-muted);
-    color: var(--color-text);
-    padding-block: clamp(4.5rem, 8vw, 7rem);
-  }
-
-  .band-ponderosa {
-    background: var(--color-brand-strong);
-    color: var(--color-text-inverse);
-    padding-block: clamp(4.5rem, 8vw, 7rem);
-  }
-
-  .band-charcoal {
-    background: var(--color-surface-inverse);
-    color: var(--color-text-inverse);
-    padding-block: clamp(4.5rem, 8vw, 7rem);
-  }
-
-  /* Shared Typographic Voices (strictly 3 sizes below hero) */
+  /* Shared Typographic Voices */
   .section-title {
     margin: 0;
     color: var(--color-text-strong);
@@ -833,19 +820,6 @@ const leaveNoTracePractices = [
     text-wrap: balance;
   }
 
-  .subhead-serif--inverse {
-    color: var(--color-text-inverse);
-  }
-
-  .subhead-sans {
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-body);
-    font-size: var(--type-body);
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
   .body-copy {
     max-width: 60ch;
     margin: 0;
@@ -858,6 +832,39 @@ const leaveNoTracePractices = [
 
   .body-copy--inverse {
     color: var(--color-text-inverse-muted);
+  }
+
+  /* Double-Rule Editorial Folio Header */
+  .folio-rule-header {
+    border-top: 3px solid var(--color-border-strong);
+    padding-top: 0.375rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .folio-rule-header::before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+    background: var(--color-border);
+  }
+
+  .folio-rule-header--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem 2rem;
+  }
+
+  .folio-rule-header--split::before {
+    grid-column: 1 / -1;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .folio-rule-header--split {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: baseline;
+    }
   }
 
   /* Actions & Links */
@@ -875,7 +882,7 @@ const leaveNoTracePractices = [
     transition:
       background-color 180ms var(--ease-editorial),
       color 180ms var(--ease-editorial),
-      border-color 180ms var(--ease-editorial),
+      box-shadow 180ms var(--ease-editorial),
       transform 180ms var(--ease-editorial);
   }
 
@@ -884,20 +891,31 @@ const leaveNoTracePractices = [
     color: var(--color-text-inverse);
   }
 
+  .editorial-btn--tactile {
+    box-shadow: var(--shadow-accent-sm);
+  }
+
   .editorial-btn--brand:hover {
     background: var(--color-brand);
     transform: translateY(-2px);
   }
 
+  .editorial-btn--tactile:hover {
+    box-shadow: var(--shadow-accent-md);
+    transform: translate(-3px, -3px);
+  }
+
   .editorial-btn--light {
     background: var(--color-surface);
     color: var(--color-text-strong);
+    box-shadow: var(--shadow-accent-sm);
   }
 
   .editorial-btn--light:hover {
     background: var(--color-accent);
     color: var(--color-text);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent-md);
+    transform: translate(-3px, -3px);
   }
 
   .cta-icon {
@@ -930,6 +948,11 @@ const leaveNoTracePractices = [
       text-decoration-color 160ms var(--ease-editorial);
   }
 
+  .inline-link--compact {
+    min-height: 2.25rem;
+    padding-block: 0.25rem;
+  }
+
   .inline-link:hover {
     color: var(--color-brand);
     text-decoration-color: var(--color-brand-strong);
@@ -946,17 +969,13 @@ const leaveNoTracePractices = [
   }
 
   .section-action {
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
   }
 
   /* Photo Frames */
   .photo-frame {
     overflow: hidden;
     background: var(--color-surface-muted);
-  }
-
-  .photo-frame--inverse {
-    background: var(--color-brand);
   }
 
   .photo-frame--4-5 {
@@ -982,8 +1001,12 @@ const leaveNoTracePractices = [
     object-position: 50% 52%;
   }
 
+  :global(.dispatch-photo-secondary-safe) {
+    object-position: 50% 42%;
+  }
+
   .photo-caption {
-    margin-top: 0.75rem;
+    margin: 0.5rem 0 0;
     color: var(--color-text-muted);
     font-family: var(--font-body);
     font-size: var(--type-sm);
@@ -991,14 +1014,17 @@ const leaveNoTracePractices = [
     line-height: 1.45;
   }
 
-  /* Hero */
-  .hero {
+  /* Opening Stage: Full-Bleed Hero + Responsive Park Status */
+  .opening-stage {
+    background: var(--color-surface);
+  }
+
+  .hero-cover {
     position: relative;
     isolation: isolate;
     display: flex;
     align-items: flex-end;
-    min-height: 100svh;
-    min-height: 100dvh;
+    min-height: clamp(32rem, 74svh, 44rem);
     overflow: hidden;
     background: var(--color-text);
   }
@@ -1031,32 +1057,32 @@ const leaveNoTracePractices = [
     position: absolute;
     inset: auto 0 0;
     z-index: -10;
-    height: 56%;
+    height: 58%;
     background: linear-gradient(
       0deg,
-      color-mix(in oklab, var(--color-text) 86%, transparent) 0%,
+      color-mix(in oklab, var(--color-text) 88%, transparent) 0%,
       color-mix(in oklab, var(--color-text) 58%, transparent) 48%,
       transparent 100%
     );
     pointer-events: none;
   }
 
-  .hero-content {
-    padding-block: 7rem clamp(2.5rem, 6vh, 4.5rem);
+  .hero-overlay {
+    padding-block: 6.5rem clamp(2.25rem, 5vh, 3.75rem);
   }
 
   .hero-statement {
     display: grid;
     justify-items: start;
-    gap: 1.25rem;
-    max-width: 58rem;
+    gap: 1.125rem;
+    max-width: 52rem;
   }
 
   .hero-title {
     margin: 0;
     color: var(--color-text-inverse);
     font-family: var(--font-display);
-    font-size: clamp(3rem, 7.6vw, 6.5rem);
+    font-size: clamp(3rem, 6.8vw, 5.75rem);
     font-weight: 800;
     line-height: 0.94;
     letter-spacing: -0.03em;
@@ -1066,228 +1092,252 @@ const leaveNoTracePractices = [
   .hero-lede {
     max-width: 44ch;
     margin: 0;
-    color: color-mix(in oklab, var(--color-text-inverse) 92%, transparent);
+    color: color-mix(in oklab, var(--color-text-inverse) 94%, transparent);
     font-family: var(--font-body);
     font-size: var(--type-body);
     font-weight: 400;
-    line-height: 1.55;
+    line-height: 1.5;
   }
 
   .hero-cta {
     display: inline-flex;
-    min-height: 3.125rem;
+    min-height: 3rem;
     align-items: center;
     gap: 0.625rem;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
     background: var(--color-surface);
     color: var(--color-brand-strong);
-    padding: 0.9rem 1.875rem;
+    padding: 0.875rem 1.75rem;
     font-family: var(--font-body);
     font-size: var(--type-sm);
     font-weight: 700;
     line-height: 1.2;
     text-decoration: none;
+    box-shadow: var(--shadow-accent-sm);
     transition:
       background-color 180ms var(--ease-editorial),
       color 180ms var(--ease-editorial),
+      box-shadow 180ms var(--ease-editorial),
       transform 180ms var(--ease-editorial);
   }
 
   .hero-cta:hover {
     background: var(--color-accent);
     color: var(--color-text);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent-md);
+    transform: translate(-3px, -3px);
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    @supports ((animation-timeline: view()) and (animation-range: entry)) {
-      @keyframes editorial-rise {
-        from {
-          opacity: 0.35;
-          transform: translateY(1.25rem);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .reveal-section {
-        animation: editorial-rise auto linear both;
-        animation-timeline: view();
-        animation-range: entry 0% entry 24%;
-      }
-    }
+  /* Park Status Panel — Compact Strip Below Hero (< 80rem) */
+  .park-status-panel {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
   }
 
-  /* Section 1: Today in the Park */
-  .today-section {
-    border-bottom: 1px solid var(--color-border-muted);
+  .park-status-shell {
+    background: var(--color-surface);
   }
 
-  .today-grid {
-    display: grid;
-    gap: clamp(2.5rem, 5vw, 4rem);
+  .park-status-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-brand-strong);
+    color: var(--color-text-inverse);
+    padding: 0.625rem var(--space-page-x);
   }
 
-  .today-lead {
-    display: grid;
-    align-content: start;
-    justify-items: start;
-    gap: 1.25rem;
-  }
-
-  .freshness-note {
+  .park-status-title {
     margin: 0;
-    color: var(--color-text-muted);
+    color: var(--color-text-inverse);
+    font-family: var(--font-display);
+    font-size: var(--type-body);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .park-status-stamp {
+    margin: 0;
+    color: var(--color-brand-muted);
     font-family: var(--font-body);
     font-size: var(--type-sm);
     font-weight: 500;
-    line-height: 1.45;
+    line-height: 1.3;
   }
 
-  .status-ledger {
-    margin: 0;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .status-row {
+  .park-status-grid {
     display: grid;
-    gap: 0.5rem 2rem;
-    border-bottom: 1px solid var(--color-border-muted);
-    padding-block: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0;
+    background: var(--color-border-muted);
   }
 
-  .status-term {
+  .park-status-cell {
+    display: grid;
+    align-content: start;
+    gap: 0.125rem;
+    background: var(--color-surface);
+    padding: 0.625rem var(--space-page-x);
+  }
+
+  .park-status-cell--wide {
+    grid-column: 1 / -1;
+  }
+
+  .park-status-term {
     color: var(--color-text-muted);
     font-family: var(--font-body);
     font-size: var(--type-sm);
     font-weight: 600;
-    line-height: 1.45;
+    line-height: 1.35;
   }
 
-  .status-detail {
-    display: grid;
-    justify-items: start;
-    gap: 0.25rem;
+  .park-status-detail {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.875rem;
     margin: 0;
   }
 
-  .status-value {
+  .park-status-value {
     color: var(--color-text-strong);
     font-family: var(--font-body);
-    font-size: var(--type-body);
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
-  .status-value--ideal {
-    color: var(--color-brand-strong);
-  }
-
-  .status-value--caution {
-    color: var(--color-accent-strong);
-  }
-
-  .status-meta {
-    color: var(--color-text-muted);
-    font-family: var(--font-body);
-    font-size: var(--type-sm);
-    line-height: 1.45;
-  }
-
-  .trailhead-strip {
-    margin-top: clamp(3rem, 6vw, 4.5rem);
-    border-top: 1px solid var(--color-border);
-    padding-top: 2rem;
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .trailhead-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid var(--color-border-muted);
-    list-style: none;
-  }
-
-  .trailhead-item {
-    border-bottom: 1px solid var(--color-border-muted);
-  }
-
-  .trailhead-link {
-    display: grid;
-    gap: 0.375rem;
-    padding-block: 1.125rem;
-    color: inherit;
-    text-decoration: none;
-    transition: color 160ms var(--ease-editorial);
-  }
-
-  .trailhead-name {
-    color: var(--color-text-strong);
-    font-family: var(--font-display);
     font-size: var(--type-body);
     font-weight: 700;
     line-height: 1.25;
-    transition: color 160ms var(--ease-editorial);
   }
 
-  .trailhead-link:hover .trailhead-name,
-  .trailhead-link:focus-visible .trailhead-name {
+  .park-status-value--ideal {
     color: var(--color-brand-strong);
   }
 
-  .trailhead-detail {
+  .park-status-value--caution {
+    color: var(--color-accent-strong);
+  }
+
+  .park-status-note {
     color: var(--color-text-muted);
     font-family: var(--font-body);
     font-size: var(--type-sm);
-    line-height: 1.45;
+    line-height: 1.4;
   }
 
-  /* Section 2: Mission Spread */
-  .mission-section {
-    border-bottom: 1px solid var(--color-border-muted);
+  /* Tablet & Laptop (48rem - 79.9rem): Ultra-compact 3-column horizontal status bar */
+  @media (min-width: 48rem) and (max-width: 79.999rem) {
+    .park-status-head {
+      padding-inline: max(var(--space-page-x), calc((100% - var(--container-wide)) / 2));
+    }
+
+    .park-status-grid {
+      grid-template-columns: 1.55fr 1fr 1fr;
+      width: min(100%, var(--container-wide));
+      margin-inline: auto;
+    }
+
+    .park-status-cell--wide {
+      grid-column: auto;
+    }
+
+    .park-status-cell {
+      padding: 0.875rem var(--space-page-x);
+    }
+
+    .park-status-detail {
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+  }
+
+  /* XL (min-width: 80rem): Status card docked inside lower-right of full-bleed hero */
+  @media (min-width: 80rem) {
+    .opening-stage {
+      display: grid;
+      position: relative;
+      isolation: isolate;
+      min-height: 100svh;
+      min-height: 100dvh;
+    }
+
+    .hero-cover {
+      grid-area: 1 / 1;
+      min-height: 100svh;
+      min-height: 100dvh;
+    }
+
+    .hero-overlay {
+      padding-block: 7rem clamp(2.5rem, 6vh, 4.5rem);
+    }
+
+    .hero-statement {
+      max-width: min(46rem, calc(100% - 28.5rem));
+    }
+
+    .park-status-panel {
+      grid-area: 1 / 1;
+      z-index: 2;
+      align-self: end;
+      width: min(100% - (var(--space-page-x) * 2), var(--container-wide));
+      margin-inline: auto;
+      padding-bottom: clamp(2.5rem, 6vh, 4.5rem);
+      border-bottom: 0;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .park-status-shell {
+      pointer-events: auto;
+      width: 25.5rem;
+      margin-left: auto;
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-raised);
+    }
+
+    .park-status-head {
+      padding: 0.875rem 1.25rem;
+    }
+
+    .park-status-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .park-status-cell {
+      padding: 1rem 1.25rem;
+    }
+
+    .park-status-cell--wide {
+      grid-column: 1 / -1;
+    }
+
+    .park-status-detail {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+  }
+
+  /* Chapter 1: Framed Mission Folio */
+  .mission-folio {
+    background: var(--color-page);
+    border-top: 1px solid var(--color-border-muted);
+    padding-block: clamp(4.5rem, 8vw, 6.5rem);
   }
 
   .mission-grid {
     display: grid;
-    gap: clamp(2.5rem, 6vw, 5rem);
+    gap: clamp(2.5rem, 5vw, 4rem);
     align-items: start;
-  }
-
-  .mission-gallery {
-    display: grid;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  .figure-plate {
-    margin: 0;
   }
 
   .mission-copy {
     display: grid;
     justify-items: start;
     gap: 1.5rem;
-  }
-
-  .mission-pillars {
-    width: 100%;
-    margin: 0.5rem 0 0;
-    padding: 0;
-    border-top: 1px solid var(--color-border);
-    list-style: none;
-  }
-
-  .mission-pillars li {
-    display: grid;
-    gap: 0.375rem;
-    border-bottom: 1px solid var(--color-border-muted);
-    padding-block: 1.25rem;
   }
 
   .next-workday-note {
@@ -1302,34 +1352,128 @@ const leaveNoTracePractices = [
     line-height: 1.5;
   }
 
-  /* Section 3: Deep Ponderosa Band */
-  .impact-top {
+  .mission-plate {
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface);
+  }
+
+  .plate-diptych {
     display: grid;
-    gap: 1.25rem;
-    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--color-border);
+    border-bottom: 1px solid var(--color-border-strong);
+  }
+
+  .plate-figure {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    margin: 0;
+    background: var(--color-surface);
+  }
+
+  .plate-caption {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--color-border-muted);
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: var(--type-sm);
+    line-height: 1.45;
+  }
+
+  .plate-pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    background: var(--color-border-muted);
+    list-style: none;
+  }
+
+  .plate-pillar {
+    display: grid;
+    align-content: start;
+    gap: 0.5rem;
+    background: var(--color-surface);
+    padding: 1.25rem;
+  }
+
+  .pillar-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pillar-heading::before {
+    content: "";
+    width: 0.375rem;
+    height: 0.375rem;
+    flex-shrink: 0;
+    background: var(--color-accent-hover);
+  }
+
+  .pillar-copy {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: var(--type-sm);
+    line-height: 1.5;
+  }
+
+  /* Chapter 2: Full-Bleed Stewardship Split + Monumental Pull-Quote */
+  .stewardship-split {
+    border-block: 1px solid var(--color-border-strong);
+  }
+
+  .split-banner {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .split-photo-pane {
+    min-height: 22rem;
+    overflow: hidden;
+    background: var(--color-surface-inverse);
+  }
+
+  .split-impact-pane {
+    display: flex;
+    align-items: center;
+    background: var(--color-brand-strong);
+    color: var(--color-text-inverse);
+    padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4.5rem);
+  }
+
+  .split-impact-inner {
+    width: 100%;
+    max-width: 40rem;
+    display: grid;
+    gap: 1.5rem;
   }
 
   .amber-rule {
     display: block;
     width: 4rem;
-    height: 2px;
+    height: 3px;
     background: var(--color-accent);
   }
 
   .impact-ledger {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0;
-    margin: 0;
-    border-top: 1px solid var(--color-border-inverse);
+    gap: 1px;
+    margin: 0.5rem 0 0;
+    border: 1px solid var(--color-border-inverse);
+    background: var(--color-border-inverse);
   }
 
   .impact-cell {
     display: flex;
     flex-direction: column;
-    gap: 0.625rem;
-    border-bottom: 1px solid var(--color-border-inverse);
-    padding-block: 1.75rem;
+    gap: 0.5rem;
+    background: var(--color-brand-strong);
+    padding: 1.5rem;
   }
 
   .impact-figure {
@@ -1343,7 +1487,6 @@ const leaveNoTracePractices = [
   }
 
   .impact-label {
-    max-width: 28ch;
     color: var(--color-brand-muted);
     font-family: var(--font-body);
     font-size: var(--type-sm);
@@ -1351,59 +1494,77 @@ const leaveNoTracePractices = [
     line-height: 1.45;
   }
 
-  .voice-spread {
-    display: grid;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
-    margin-top: clamp(3rem, 6vw, 4.5rem);
+  .quote-band {
+    background: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+    padding-block: clamp(3.5rem, 7vw, 5.5rem);
   }
 
-  .voice-media,
-  .voice-quote {
-    margin: 0;
-  }
-
-  .voice-quote {
+  .pull-quote {
+    max-width: 58rem;
+    margin: 0 auto;
     display: grid;
     justify-items: start;
-    gap: 1.25rem;
+    gap: 1.5rem;
+    border-left: 3px solid var(--color-accent);
+    padding-left: clamp(1.25rem, 3vw, 2.5rem);
   }
 
-  .voice-quote blockquote {
+  .pull-quote blockquote {
     margin: 0;
   }
 
-  .voice-quote blockquote p {
-    max-width: 44ch;
+  .pull-quote blockquote p {
     margin: 0;
     color: var(--color-text-inverse);
     font-family: var(--font-display);
-    font-size: var(--type-body);
-    font-weight: 600;
-    line-height: 1.55;
+    font-size: var(--type-heading);
+    font-weight: 400;
+    line-height: 1.24;
+    letter-spacing: -0.02em;
   }
 
-  .voice-attribution {
-    color: var(--color-brand-muted);
+  .pull-quote-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    width: 100%;
+  }
+
+  .pull-quote-author {
+    color: var(--color-text-inverse-muted);
     font-family: var(--font-body);
     font-size: var(--type-sm);
     font-weight: 500;
     line-height: 1.45;
   }
 
-  /* Section 4: Seasonal Field Guide Tabs */
-  .seasonal-section {
-    border-bottom: 1px solid var(--color-border-muted);
+  /* Chapter 3: Framed Seasonal Almanac & Trailhead Index */
+  .almanac-section {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: clamp(4.5rem, 8vw, 6.5rem);
   }
 
-  .season-tabs {
-    margin-top: clamp(2rem, 4vw, 3rem);
+  .almanac-header-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.25rem 2rem;
+    border-bottom: 2px solid var(--color-border-strong);
+  }
+
+  .almanac-header-bar .section-title {
+    padding-bottom: 0.75rem;
   }
 
   .season-tablist {
     display: flex;
+    max-width: 100%;
     overflow-x: auto;
-    border-bottom: 1px solid var(--color-border);
     scrollbar-width: none;
   }
 
@@ -1419,7 +1580,7 @@ const leaveNoTracePractices = [
     background: transparent;
     color: var(--color-text-muted);
     cursor: pointer;
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.25rem;
     font-family: var(--font-body);
     font-size: var(--type-sm);
     font-weight: 700;
@@ -1443,6 +1604,12 @@ const leaveNoTracePractices = [
     border-block-end: 3px solid var(--color-brand-strong);
   }
 
+  .almanac-frame {
+    margin-top: 2rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
   .season-panels {
     display: grid;
   }
@@ -1454,64 +1621,132 @@ const leaveNoTracePractices = [
 
   .season-panel-inner {
     display: grid;
-    gap: clamp(2rem, 5vw, 4rem);
-    padding-top: clamp(2rem, 4vw, 3rem);
-    align-items: start;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--color-border);
   }
 
-  .season-context {
-    display: grid;
-    gap: 1.75rem;
-  }
-
-  .season-figure {
+  .season-feature-figure {
+    display: flex;
+    flex-direction: column;
     margin: 0;
+    background: var(--color-page);
   }
 
-  .season-tips {
+  .season-feature-caption {
+    display: grid;
+    gap: 0.5rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .season-tips-grid {
     display: grid;
     grid-template-columns: 1fr;
-    border-top: 1px solid var(--color-border);
+    gap: 1px;
+    background: var(--color-border-muted);
   }
 
-  .season-tip {
+  .season-tip-cell {
     display: grid;
     align-content: start;
     gap: 0.625rem;
-    border-bottom: 1px solid var(--color-border-muted);
-    padding-block: 1.5rem;
+    background: var(--color-surface);
+    padding: clamp(1.25rem, 3vw, 2rem);
   }
 
-  /* Section 5: Field Dispatches */
-  .news-section {
-    border-bottom: 1px solid var(--color-border-muted);
-  }
-
-  .section-header-bar {
+  .tip-heading {
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem 2rem;
-    margin-bottom: clamp(2rem, 4vw, 3rem);
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  .dispatches-layout {
-    display: grid;
-    gap: clamp(2.5rem, 5vw, 4rem);
-    align-items: start;
+  .tip-heading::before {
+    content: "";
+    width: 0.375rem;
+    height: 0.375rem;
+    flex-shrink: 0;
+    background: var(--color-accent-hover);
   }
 
-  .dispatch-lead-link {
+  .almanac-trailheads {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-page);
+    padding: 1.5rem clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .almanac-trailheads-heading {
+    margin: 0 0 1rem;
+    color: var(--color-text-strong);
+    font-family: var(--font-body);
+    font-size: var(--type-sm);
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .trailhead-index {
     display: grid;
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .trailhead-index-link {
+    display: grid;
+    gap: 0.25rem;
     color: inherit;
     text-decoration: none;
   }
 
-  .dispatch-lead-body {
+  .trailhead-index-name {
+    color: var(--color-text-strong);
+    font-family: var(--font-display);
+    font-size: var(--type-body);
+    font-weight: 700;
+    line-height: 1.25;
+    transition: color 160ms var(--ease-editorial);
+  }
+
+  .trailhead-index-link:hover .trailhead-index-name,
+  .trailhead-index-link:focus-visible .trailhead-index-name {
+    color: var(--color-brand-strong);
+  }
+
+  .trailhead-index-meta {
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: var(--type-sm);
+    line-height: 1.45;
+  }
+
+  /* Chapter 4: Broadsheet Dispatches */
+  .broadsheet-section {
+    background: var(--color-page);
+    padding-block: clamp(4.5rem, 8vw, 6.5rem);
+  }
+
+  .broadsheet-grid {
+    display: grid;
+    gap: clamp(2rem, 4vw, 3rem);
+    align-items: start;
+  }
+
+  .broadsheet-lead {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .broadsheet-lead-link {
+    display: grid;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .broadsheet-lead-body {
     display: grid;
     gap: 0.75rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
   }
 
   .dispatch-date {
@@ -1522,42 +1757,43 @@ const leaveNoTracePractices = [
     line-height: 1.45;
   }
 
-  .dispatch-lead-title {
+  .broadsheet-lead-title {
     margin: 0;
     color: var(--color-text-strong);
     font-family: var(--font-display);
-    font-size: var(--type-body);
+    font-size: var(--type-heading);
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
     transition: color 160ms var(--ease-editorial);
   }
 
-  .dispatch-lead-link:hover .dispatch-lead-title,
-  .dispatch-lead-link:focus-visible .dispatch-lead-title,
-  .dispatch-row-link:hover .dispatch-row-title,
-  .dispatch-row-link:focus-visible .dispatch-row-title {
+  .broadsheet-lead-link:hover .broadsheet-lead-title,
+  .broadsheet-lead-link:focus-visible .broadsheet-lead-title,
+  .broadsheet-item-link:hover .broadsheet-item-title,
+  .broadsheet-item-link:focus-visible .broadsheet-item-title {
     color: var(--color-brand-strong);
   }
 
-  .dispatch-lead-link :global(.frame-photo),
-  .dispatch-row-link :global(.frame-photo) {
+  .broadsheet-lead-link :global(.frame-photo),
+  .broadsheet-item-link :global(.frame-photo) {
     transition: transform 420ms var(--ease-editorial);
   }
 
-  .dispatch-lead-link:hover :global(.frame-photo),
-  .dispatch-row-link:hover :global(.frame-photo) {
+  .broadsheet-lead-link:hover :global(.frame-photo),
+  .broadsheet-item-link:hover :global(.frame-photo) {
     transform: scale(1.03);
   }
 
-  .dispatch-stack {
+  .broadsheet-column {
     border-top: 1px solid var(--color-border);
   }
 
-  .dispatch-row {
+  .broadsheet-item {
     border-bottom: 1px solid var(--color-border-muted);
   }
 
-  .dispatch-row-link {
+  .broadsheet-item-link {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 7.5rem;
     gap: 1.25rem;
@@ -1567,12 +1803,16 @@ const leaveNoTracePractices = [
     text-decoration: none;
   }
 
-  .dispatch-row-copy {
+  .broadsheet-item-copy {
     display: grid;
     gap: 0.5rem;
   }
 
-  .dispatch-row-excerpt {
+  .broadsheet-item-media {
+    border: 1px solid var(--color-border-muted);
+  }
+
+  .broadsheet-item-excerpt {
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
@@ -1580,49 +1820,38 @@ const leaveNoTracePractices = [
     line-clamp: 2;
   }
 
-  /* Section 6: Leave No Trace Band */
-  .lnt-header {
-    display: grid;
-    gap: 1.5rem;
-    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  /* Chapter 5: Leave No Trace Architectural Split */
+  .lnt-split-section {
+    border-block: 1px solid var(--color-border);
+    background: var(--color-surface);
   }
 
-  .lnt-grid {
+  .lnt-split-shell {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 0 3rem;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid var(--color-border-inverse);
-    list-style: none;
+    max-width: var(--container-wide);
+    margin-inline: auto;
   }
 
-  .lnt-item {
+  .lnt-anchor-pane {
+    background: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+    padding: clamp(3rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 3.5rem);
+  }
+
+  .lnt-anchor-sticky {
     display: grid;
-    align-content: start;
     justify-items: start;
-    gap: 0.625rem;
-    border-bottom: 1px solid var(--color-border-inverse);
-    padding-block: 1.75rem;
-  }
-
-  .lnt-footer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+    gap: 1.5rem;
   }
 
   .lnt-partner-plate {
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1rem;
     background: var(--color-surface);
     color: var(--color-text-strong);
-    padding: 0.875rem 1.25rem;
+    padding: 0.75rem 1rem;
     text-decoration: none;
     transition: transform 180ms var(--ease-editorial);
   }
@@ -1634,7 +1863,7 @@ const leaveNoTracePractices = [
   :global(.lnt-logo) {
     display: block;
     width: auto;
-    height: 2.5rem;
+    height: 2.25rem;
   }
 
   .lnt-partner-caption {
@@ -1645,17 +1874,56 @@ const leaveNoTracePractices = [
     line-height: 1.4;
   }
 
-  /* Section 7: Closing Support & Newsletter */
-  .closing-grid {
+  .lnt-practices-grid {
     display: grid;
-    gap: clamp(2.5rem, 5vw, 4rem);
-    align-items: start;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    background: var(--color-border);
+    list-style: none;
   }
 
-  .closing-column {
+  .lnt-practice-cell {
     display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: 0.75rem;
+    background: var(--color-surface);
+    padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  }
+
+  /* Chapter 6: Closing Civic Support Folio */
+  .closing-folio-section {
+    background: var(--color-page);
+    padding-block: clamp(4.5rem, 8vw, 6.5rem);
+  }
+
+  .civic-folio {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 2px solid var(--color-brand-strong);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-accent-md);
+  }
+
+  .civic-folio-donate {
+    display: grid;
+    align-content: start;
     justify-items: start;
     gap: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-brand-subtle);
+    padding: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .civic-folio-newsletter {
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: 1.25rem;
+    background: var(--color-surface);
+    padding: clamp(2rem, 4vw, 3.5rem);
   }
 
   .trust-meta {
@@ -1667,11 +1935,6 @@ const leaveNoTracePractices = [
     line-height: 1.45;
   }
 
-  .closing-divider {
-    height: 1px;
-    background: var(--color-border);
-  }
-
   .closing-form {
     width: min(100%, 34rem);
     margin-top: 0.25rem;
@@ -1679,101 +1942,126 @@ const leaveNoTracePractices = [
 
   /* Responsive Breakpoints */
   @media (min-width: 48rem) {
-    .status-row {
-      grid-template-columns: 12rem minmax(0, 1fr);
-      align-items: baseline;
-    }
-
-    .trailhead-list {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0 2.5rem;
-    }
-
-    .mission-gallery {
+    .plate-diptych {
       grid-template-columns: 7fr 5fr;
-      align-items: end;
+    }
+
+    .plate-diptych .photo-frame--4-5 {
+      aspect-ratio: auto;
+      height: 23rem;
+    }
+
+    .plate-pillars {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .impact-ledger {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0 3rem;
     }
 
-    .season-tips {
+    .almanac-header-bar {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+
+    .almanac-header-bar .section-title {
+      padding-bottom: 0.875rem;
+    }
+
+    .season-tips-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0 2.5rem;
     }
 
-    .lnt-grid {
+    .trailhead-index {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .dispatch-row-link {
+    .broadsheet-item-link {
       grid-template-columns: minmax(0, 1fr) 9.5rem;
+    }
+
+    .lnt-practices-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (min-width: 64rem) {
-    .today-grid {
-      grid-template-columns: 5fr 7fr;
-      align-items: start;
-    }
-
-    .trailhead-list {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 0 1.75rem;
-    }
-
-    .trailhead-item {
-      border-bottom: 0;
-    }
-
     .mission-grid {
-      grid-template-columns: 7fr 5fr;
+      grid-template-columns: 5fr 7fr;
     }
 
-    .figure-plate--wide {
-      margin-top: 4rem;
+    .split-banner {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .impact-ledger {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0 2.5rem;
-    }
-
-    .impact-cell {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .voice-spread {
-      grid-template-columns: 6fr 6fr;
-      border-top: 1px solid var(--color-border-inverse);
-      padding-top: clamp(3rem, 6vw, 4.5rem);
+    .split-photo-pane {
+      min-height: 32rem;
     }
 
     .season-panel-inner {
       grid-template-columns: 5fr 7fr;
     }
 
-    .dispatches-layout {
-      grid-template-columns: 6.5fr 5.5fr;
+    .trailhead-index {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
-    .lnt-header {
-      grid-template-columns: 5fr 7fr;
-      align-items: end;
-      gap: 3rem;
+    .broadsheet-grid {
+      grid-template-columns: 7fr 5fr;
     }
 
-    .closing-grid {
-      grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
-      align-items: stretch;
+    .broadsheet-column {
+      border-top: 0;
+      border-left: 1px solid var(--color-border);
+      padding-left: clamp(1.5rem, 3vw, 2.5rem);
     }
 
-    .closing-divider {
-      width: 1px;
-      height: auto;
+    .broadsheet-item:first-child .broadsheet-item-link {
+      padding-top: 0;
+    }
+
+    .lnt-split-shell {
+      grid-template-columns: 4fr 8fr;
+      border-inline: 1px solid var(--color-border);
+    }
+
+    .lnt-anchor-pane {
+      border-right: 1px solid var(--color-border);
+    }
+
+    .lnt-anchor-sticky {
+      position: sticky;
+      top: 5.5rem;
+    }
+
+    .civic-folio {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .civic-folio-donate {
+      border-right: 1px solid var(--color-border);
+      border-bottom: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports ((animation-timeline: view()) and (animation-range: entry)) {
+      @keyframes editorial-rise {
+        from {
+          opacity: 0.35;
+          transform: translateY(1.25rem);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .reveal-section {
+        animation: editorial-rise auto linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 24%;
+      }
     }
   }
 </style>

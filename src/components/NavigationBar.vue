@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, shallowRef, useTemplateRef, watch, type Ref } from 'vue';
+import { computed, onMounted, shallowRef, useTemplateRef, watch, type Ref } from 'vue';
 import { useScroll, onClickOutside } from '@vueuse/core';
 import LucidePawPrint from 'virtual:icons/lucide/paw-print';
 import LucideBird from 'virtual:icons/lucide/bird';
@@ -20,9 +20,15 @@ const navHidden = shallowRef(false);
 let lastScrollY = 0;
 let scrollY: Ref<number> = shallowRef(0);
 if (typeof window !== 'undefined') {
-  const { y } = useScroll(window, { throttle: 50 });
+  const { y } = useScroll(window);
   scrollY = y;
 }
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    scrollY.value = window.scrollY;
+  }
+});
 
 const isScrolled = computed(() => !props.immersive || scrollY.value > 32 || menuOpen.value || lntOpen.value);
 
